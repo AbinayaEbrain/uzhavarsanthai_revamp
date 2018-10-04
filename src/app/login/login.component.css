@@ -1,0 +1,67 @@
+.bg {
+    /* The image used */
+    background-image: url('../../assets/Images/A4.jpg');
+
+    /* Full height */
+    height: 100%; 
+    /* opacity: 0.5; */
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+ input[type=text], input[type=password] {
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+input:focus{
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+input{
+    background-color: transparent;
+    /* border: 1px solid #79828b; */
+    border-bottom: 2px solid white !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+} 
+::placeholder {
+    color: white;
+    opacity: 1; /* Firefox */
+}
+.btn{
+    font-size: 18px;
+    background-color: #0d4608;
+    color: white;
+    border: none;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-control-placeholder {
+    position: absolute;
+    top: 0;
+    padding: 7px 0 0 13px;
+    transition: all 200ms;
+    opacity: 0.5;
+    left: 0px;
+  }
+  
+  .form-control:focus + .form-control-placeholder,
+  .form-control:valid + .form-control-placeholder {
+    font-size: 100%;
+    transform: translate3d(0, -100%, 0);
+    opacity: 1;
+    color: rgb(255, 254, 254);
+  }
+  
