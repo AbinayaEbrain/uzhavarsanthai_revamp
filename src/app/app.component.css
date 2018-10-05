@@ -1,12 +1,7 @@
-.view {
-    background: url("https://mdbootstrap.com/img/Photos/Others/img (50).jpg")no-repeat center center;
-    background-size: cover;
-}
-.navbar-nav{
-    margin-left: 65%;
-    color:floralwhite;
-    font-size: 20px;
-}
-.bg{
+
+.nav_clr{
     background-color: #0d4608;
+}
+nav a{
+    color: floralwhite !important;
 }
