@@ -8,7 +8,7 @@ import { PostComponent } from './post/post.component';
 const routes: Routes = [
   {
     path:'',
-    redirectTo:'/login',
+    redirectTo:'/deals',
     pathMatch:'full'
   },
   {
