@@ -1,47 +1,39 @@
-
- <diV class="container-fluid bg">
-    <div class="col-lg-6">
-   <div class="container">
-     <div class="in">
-     <h1 class="log">log in</h1>
-<!-- Horizontal material form -->
-<form class="formm" >
-    <!-- Grid row -->
-    <div class="form-group row ">
-        <!-- Material input -->
-        <label for="inputEmail3MD" class="col-sm-2 col-form-label  ">Phone</label>
-        <div class="col-sm-10">
-            <div class="md-form mt-0">
-                <input type=" " class="form-control" id=" " placeholder="Phone number">
+<div class="bg img-responsive">
+    <div class="text-center mb-5 container">
+      <h2 class="mt-5 pt-5 d-sm-block d-none clr sent_font text-left">The more one sows the greater the harvest</h2>
+    <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+        <form #loginform="ngForm" *ngIf ="!submitted" (ngSubmit)="login()" novalidate>
+            <h1 class="h3 mb-5 font-weight-normal mt-5 pt-5 clr">Log In</h1>
+            <div class="form-group mb-5 mt-2">
+                <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control"  autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
+                <label class="form-control-placeholder" for="phone">Phone Number</label>
+                <span class="text-danger float-left" [class.d-none] = "phone.valid || phone.untouched">Phone Number is required</span>  
+              </div>
+           
+            <div class="form-group mb-5 mt-2">
+              <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control"  autocomplete="off"  required>
+              <label class="form-control-placeholder" for="password">Password</label>
+              <span class="text-danger float-left" [class.d-none] = "password.valid || password.untouched">Password is required</span>  
             </div>
-        </div>
+            <button [disabled]="loginform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit" (click)="post()">LOGIN</button>
+           
+          </form>
+
+          <p class="clr mt-1  ">Don't you have an account? <span class="span_clr" (click)="register()">Register</span> </p>
     </div>
-    <!-- Grid row -->
-
-    <!-- Grid row -->
-    <div class="form-group row">
-        <!-- Material input -->
-        <label for="inputPassword3MD" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-10">
-            <div class="md-form mt-0">
-              <input type="password" class="form-control" id="inputPassword3MD" placeholder="Password">
-            </div>
-        </div>
+    <div class="col-md-1"></div>
+    <!-- <div class="col-md-1"></div>
+    <div class="col-md-5">
+     <h3 class="mt-5 mb-5 pt-5 font-weight-normal clr">We grow BEST food</h3>
+     <div class="card">
+        <div class="card-header">Header</div>
+        <div class="card-body">Content</div> 
+        <div class="card-footer">Footer</div>
+      </div>
     </div>
-    <!-- Grid row -->
-
-    <!-- Grid row -->
-    <div class="form-group row">
-        <div class="col-sm-10 sub">
-            <button type="button" class="btn btn-primary btn-md">Sign in</button>
-        </div>
+    <div class="col-md-1"></div> -->
     </div>
-    <!-- Grid row -->
-</form>
-
-   </div>
-  </div>
-  </div>
-  </diV>
-
-  
+    </div>
+    </div>

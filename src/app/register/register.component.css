@@ -1,38 +1,129 @@
 .bg1{
-    margin-top: -25px;
-    background: url(./images/1507752117_chernyy-kunzhut.jpg)no-repeat center ;
-    height: 650px;
+   
+    background: url(./images/A7.jpeg)no-repeat center ;
     background-size: cover;
-    opacity: 0.9;
+    margin-top: 35px;
+    height: 100vh;
+    width: 100%;
+   
 }
-.formm{
-    margin-top: 50px;
+
+@media only screen and (max-width: 600px) {
+    .bg1{
+   
+        background: url(./images/A7.jpeg)no-repeat center ;
+        background-size: cover;
+        margin-top: 35px;
+        height: 175vh;
+       
+    }
 }
-.log{
-    color:#095d26;
-   padding-top: 70px;
-   padding-right: 35%;
-   font-weight: bold;
+    
+
+ input[type=text], input[type=password] {
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
 }
-.col-form-label{
-    color: #095d26;
-    font-size: 20px;
+
+input:focus{
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+select option {
+    margin: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+select:focus{
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+input{
+    background-color: transparent;
+    /* border: 1px solid #79828b; */
+    border-bottom: 2px solid white !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+select{
+    background-color: transparent;
+    /* border: 1px solid #79828b; */
+    border-bottom: 2px solid white !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+::placeholder {
+    color: white;
+    opacity: 1; /* Firefox */
+   
+}
+.btn{
+    font-size: 18px;
+    background-color: white;
+    /* color: white; */
+    border: none;
+    color: #0d4608;
     font-weight: bold;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
   
+  .form-control{
+    color: white !important;
 }
-.border{
-    border: 1 solid black;
+
+.slect{
+    position: absolute;
+    top: 0;
+    padding: 7px 0 0 0px;
+    transition: all 200ms;
+    opacity: 0.5;
+    font-weight: 500;
+    font-size: 17px;
+    color: white;
 }
-.sub{
+  .form-control-placeholder {
+    position: absolute;
+    top: 0;
+    padding: 7px 0 0 13px;
+    transition: all 200ms;
+    opacity: 0.5;
+    left: -12px;
+    font-weight: 500;
+    font-size: 17px;
+    color: white;
+  }
   
-    padding-left: 35%;
-}
-.btn {
-    width: 150px;
-    height: 40px;
-    background-color: #095d26;
-    color:floralwhite ;
-    border: #095d26;
+  .form-control:focus + .form-control-placeholder,
+  .form-control:valid + .form-control-placeholder {
+    font-size: 100%;
+    transform: translate3d(0, -100%, 0);
+    opacity: 1;
+    color: rgb(255, 254, 254);
+  }
+ 
+  .clr{
+      color: white;
+  }
+
+  .sent_font{
+    font-family: cursive;
     font-weight: bold;
-    font-size: 20px;
-}
+    color: white
+  }
+  .span_clr{
+      text-decoration: underline
+  }

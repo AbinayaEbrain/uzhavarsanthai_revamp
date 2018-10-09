@@ -1,43 +1,27 @@
-
-<nav class="navbar navbar-expand-sm bg navbar-dark">
-    <a class="navbar-brand" href="#"><strong>FarmersMarket</strong></a>
-
-    <ul class="navbar-nav">
+<!--The content below is only a placeholder and can be replaced.-->
+<nav class="navbar  navbar-navbar-inverse-md navbar-dark fixed-top mb-5 nav_clr">
+    <a class="navbar-brand" href="#">Farmers Market</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/login"  routerLinkActive="active">Login</a>
+        </li>
         <li class="nav-item">
-            <a class="nav-link"><strong>Post</strong></a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link"><strong>Deals</strong></a>
-            </li>
-         
-      <li class="nav-item">
-        <a class="nav-link" router-link="/Login"><strong>Login</strong></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"><strong>Register</strong></a>
-      </li>
-
-  </ul>
+          <a class="nav-link" routerLink="/register"  routerLinkActive="active">Register</a>
+        </li>
+         <li class="nav-item">
+              <a class="nav-link" routerLink="/post"  routerLinkActive="active">Post</a>
+         </li>
+         <li class="nav-item">
+                <a class="nav-link" routerLink="/deals"  routerLinkActive="active">Deals</a>
+         </li>
+           
+      </ul>
+    </div>
   </nav>
-  <br>
- <!-- <diV class="container-fluid bg">
-    <div class="col-lg-6 frm">
-   <div class="container In">
-     <h2 class="log">log In</h2>
-      <form>
-        <div class="form-group">
-          <label for="usr">Phone:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-        <div class="form-group">
-          <label for="pwd">Password:</label>
-          <input type="password" class="form-control" id="pwd" name="password">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-   </div>
-  </div>
-  </diV> -->
   
   <router-outlet></router-outlet>
-
+  

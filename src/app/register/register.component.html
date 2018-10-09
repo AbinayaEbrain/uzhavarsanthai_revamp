@@ -1,45 +1,90 @@
 
- <diV class="container-fluid bg1">
-    <div class="col-lg-6">
-   <div class="container">
-     <div class="in">
-     <h1 class="log">Register</h1>
-<!-- Horizontal material form -->
-<form class="formm" >
-    <!-- Grid row -->
-    <div class="form-group row ">
-        <!-- Material input -->
-        <label for="inputEmail3MD" class="col-sm-2 col-form-label  ">Name</label>
-        <div class="col-sm-10">
-            <div class="md-form mt-0">
-                <input type="email" class="form-control" id="inputEmail3MD" placeholder="Name">
-            </div>
-        </div>
-    </div>
-    <!-- Grid row -->
+ <div class="bg1">
+    <div class="text-center container mb-5 mt-5 pt-5">
+      <h2 class="clr mb-5">Registration</h2>
+        <form  *ngIf ="!submitted" (ngSubmit)="login()" novalidate>
+     
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group mb-5 mt-2">
+                    <input type="text"  #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel name="firstname" class="form-control"  autocomplete="off" required>
+                    <label class="form-control-placeholder" for="firstname">First Name</label>
+                    <span class="text-danger float-left" [class.d-none] = "firstname.valid || firstname.untouched">First Name is required</span>  
+                  </div>
+        </div> 
+        <div class="col-md-4">    
+                <div class="form-group mb-5 mt-2">
+                  <input type="text"  #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched" ngModel name="lastName" class="form-control"  autocomplete="off"  required>
+                  <label class="form-control-placeholder" for="lastName">Last Name</label>
+                  <span class="text-danger float-left" [class.d-none] = "lastName.valid || lastName.untouched">Last Name is required</span>  
+                </div>
+          </div>  
+              <div class="col-md-4">
+                  <div class="form-group  mb-5 mt-2">
+                      <!-- <label for="sel1">Select</label> -->
+                      <select required class="form-control slect"  #gender="ngModel" name="gender" [class.is-invalid]="gender.invalid && gender.touched" ngModel>
+                        <option value="" disabled>Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                    </div>
+                    <span class="text-danger float-left" [class.d-none] = "gender.valid || gender.untouched">Gender is required</span>  
+              </div>
+              </div>
 
-    <!-- Grid row -->
-    <div class="form-group row">
-        <!-- Material input -->
-        <label for="inputPassword3MD" class="col-sm-2 col-form-label">Phone</label>
-        <div class="col-sm-10">
-            <div class="md-form mt-0">
-              <input type="password" class="form-control" id="inputPassword3MD" placeholder="Phone number">
-            </div>
-        </div>
-    </div>
-    <!-- Grid row -->
+              <!-- 3rd row -->
+              <div class="row">
+                  <div class="col-md-4">
+                      <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
+                          <input type="text"  #address="ngModel" [class.is-invalid]="address.invalid && address.touched" ngModel name="address" class="form-control"  autocomplete="off" required>
+                          <label class="form-control-placeholder" for="address">Address</label>
+                          <span class="text-danger float-left" [class.d-none] = "address.valid || address.untouched">Address is required</span>  
+                        </div>
+                  </div> 
+                  <div class="col-md-4">    
+                      <div class="form-group mb-5 mt-2">
+                          <input type="text"  #address1="ngModel" [class.is-invalid]="address1.invalid && address1.touched" ngModel name="address1" class="form-control"  autocomplete="off" required>
+                          <label class="form-control-placeholder" for="address1">City</label>
+                          <span class="text-danger float-left" [class.d-none] = "address1.valid || address1.untouched">Address is required</span>  
+                        </div>
+                    </div>      
+                  <div class="col-md-4">
+                      <div class="form-group mb-5 mt-2">
+                          <input type="text"  #location="ngModel" [class.is-invalid]="location.invalid && location.touched" ngModel name="location" class="form-control"  autocomplete="off" required>
+                          <label class="form-control-placeholder" for="location">State</label>
+                          <span class="text-danger float-left" [class.d-none] = "location.valid || location.untouched">Location is required</span>  
+                        </div>
+                  </div>
+                  </div>
 
-    <!-- Grid row -->
-    <div class="form-group row">
-        <div class="col-sm-10 sub">
-            <button type="submit" class="btn btn-primary btn-md">Register</button>
-        </div>
-    </div>
-    <!-- Grid row -->
-</form>
+                      <!-- 5th row -->
+                      <div class="row">
+                          <div class="col-md-4">
+                              <div class="form-group mb-5 mt-2">
+                                  <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control"  autocomplete="off"  required>
+                                  <label class="form-control-placeholder" for="password">Password</label>
+                                  <span class="text-danger float-left" [class.d-none] = "password.valid || password.untouched">Password is required</span>  
+                                </div>
+                          </div> 
+                          <div class="col-md-4">    
+                                  <div class="form-group mb-5 mt-2">
+                                    <input type="password"  #confirmPassword="ngModel" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" ngModel name="confirmPassword" class="form-control"  autocomplete="off"  required>
+                                    <label class="form-control-placeholder" for="confirmPassword">Confirm Password</label>
+                                    <span class="text-danger float-left" [class.d-none] = "confirmPassword.valid || confirmPassword.untouched">Confirm Password is required</span>  
+                                  </div>
+                            </div>       
+                          <div class="col-md-4">
+                              <div class="form-group mt-2">
+                                  <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control"  autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
+                                  <label class="form-control-placeholder" for="phone">Phone Number</label>
+                                  <span class="text-danger float-left" [class.d-none] = "phone.valid || phone.untouched">Phone Number is required</span>  
+                                </div>
+                                <button class="btn mb-5 float-left" type="submit" (click)="post()">Send OTP</button>
+                          </div>
+                          </div>
 
-   </div>
+            <button class="btn mt-2 mb-1" type="submit" (click)="post()">SUBMIT</button>
+          </form>
+              </div>
+      
   </div>
-  </div>
-  </diV>
