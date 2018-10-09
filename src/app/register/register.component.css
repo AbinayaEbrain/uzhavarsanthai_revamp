@@ -1,12 +1,10 @@
 .bg1{
-    margin-top: -25px;
-    background: url(./images/A3.jpg)no-repeat center ;
-    height: 650px;
+   
+    background: url(./images/A6.jpg)no-repeat center ;
+    height: 100%;
     background-size: cover;
-    opacity: 0.9;
+   
 }
-
-
 
  input[type=text], input[type=password] {
     width: 100%;
@@ -20,6 +18,19 @@ input:focus{
     border: none;
 }
 
+select option {
+    margin: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+select:focus{
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
+
 input{
     background-color: transparent;
     /* border: 1px solid #79828b; */
@@ -27,7 +38,16 @@ input{
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
-} 
+}
+
+select{
+    background-color: transparent;
+    /* border: 1px solid #79828b; */
+    border-bottom: 2px solid white !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
 ::placeholder {
     color: white;
     opacity: 1; /* Firefox */
@@ -49,6 +69,17 @@ input{
   
   .form-control{
     color: white !important;
+}
+
+.slect{
+    position: absolute;
+    top: 0;
+    padding: 7px 0 0 0px;
+    transition: all 200ms;
+    opacity: 0.5;
+    font-weight: 500;
+    font-size: 17px;
+    color: white;
 }
   .form-control-placeholder {
     position: absolute;
