@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DealsService {
 
-  private _dealsUrl = "http:localhost:3200/api/deals";
-  private _postUrl = "http:localhost:3200/api/post"
+  private _dealsUrl = "http://localhost:3200/api/deals";
+  private _postUrl ="http://localhost:3200/api/post"
 
   constructor(private http:HttpClient) { }
 
@@ -15,7 +15,7 @@ export class DealsService {
     return this.http.get<any>(this._dealsUrl)
   }
 
-  getPost(){
-    return this.http.get<any>(this._postUrl)
+  addPost(data){
+    return this.http.post<any>(this._postUrl,data)
   }
 }

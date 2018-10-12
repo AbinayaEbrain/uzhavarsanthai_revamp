@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DealsService } from '../deals.service';
+import { AuthService } from '../auth.service';
+import { Router} from '@angular/router'
 
 @Component({
   selector: 'app-deals',
@@ -8,18 +10,23 @@ import { DealsService } from '../deals.service';
 })
 export class DealsComponent implements OnInit {
 
-  deals = [];
-  constructor(private _dealsService:DealsService) { }
+  crdDeals = [];
+  userName = {};
+
+  constructor(private _dealsService:DealsService,private router:Router) { }
 
   ngOnInit() {
 
+    this.userName = localStorage.getItem('currentUser');
+    console.log(this.userName)
     this._dealsService.getDeals()
       .subscribe(
-        res => this.deals = res,
+        res => this.crdDeals = res,
         err => console.log(err)
-        
       )
   }
 
-  
+  // viewMore(){
+  //   this.router.navigate[('/viewmore')]
+  // }
 }

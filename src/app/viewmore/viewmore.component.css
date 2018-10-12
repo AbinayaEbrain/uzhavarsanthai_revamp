@@ -1,0 +1,93 @@
+.card{
+    /* margin-left: 15%; */
+     border: solid black 2px;
+    height: 500px;
+   
+    
+}
+
+.card-tittle{
+    margin-right: -14px;
+    margin-left: -14px;
+    height: 60px;
+ padding-top: 24px;
+    /* background-color: #5c6bc0!important; */
+    background-color:#2d483e;
+    /* opacity: 0.7; */
+}  
+.info{
+    background-color: #8a2C02;
+    margin-top: 5%;
+    margin-left: 25%;
+    text-align: center;
+    width: 50%;
+    border:  solid honeydew 3px;
+    border-radius: 30px;
+    color: white;
+}
+.card-body{
+    margin: auto;
+    /* margin-right: -14px;
+    margin-left: -14px; */
+    
+}
+.product{
+   text-align: left;
+   font-size: 20px;
+}
+.info1{
+    text-align: left;
+    font-size: 23px;
+}
+.table{
+    align-self: auto;
+   /* margin-left: 30%; */
+}
+.des{
+  margin-left: -80px
+}
+.bg {
+    /* The image used */
+    background: url(./images/1.jpg);
+  
+    /* Full height */
+    height: 100vh; 
+    /* opacity: 0.5; */
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    width: 100%;
+      
+  
+  }
+   .register{
+    
+    color: white;
+   } 
+   .detailed{
+       border-radius: 15px;
+       text-align: center;
+       width: 300px;
+       background-color: #8a2C02;
+       border: 2px solid #fff;
+   }
+   @media only screen and (min-width: 300px) {
+       .info{
+           width: 70%;
+           margin:auto;
+       }
+       .info1{
+        text-align: left;
+        font-size: 20px;
+    }
+    .product{
+        text-align: left;
+        font-size: 18px;
+     }
+     .des{
+        margin-left: -10px
+      }
+   }

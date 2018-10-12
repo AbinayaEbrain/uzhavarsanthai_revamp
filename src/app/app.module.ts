@@ -6,14 +6,20 @@ import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './auth.service';
 import { DealsService } from './deals.service';
- 
-
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { UserDealsComponent } from './user-deals/user-deals.component';
+import { FilterdataPipe } from './filterdata.pipe';
+import { ViewmoreComponent } from './viewmore/viewmore.component'
  
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    UserDealsComponent,
+    FilterdataPipe,
+    ViewmoreComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +27,12 @@ import { DealsService } from './deals.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService,DealsService],
+  providers: [AuthService,DealsService,AuthGuard,
+  {
+    provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptorService,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

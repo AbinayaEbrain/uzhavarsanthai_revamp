@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row  mt-5 pt-5">
+    <div class="col-md-4">HAI {{userName.firstname}} !!!</div>
+    <div class="col-md-8">
+        <form action="/action_page.php">
+          <input type="text" class="float-right" placeholder="Search.." [(ngModel)]="queryString" name="search">
+        </form>
+    </div>
+  </div>
+   
+<div class="row mt-5">
+  <div class="col-md-4 mb-3" *ngFor = "let deals of userDeals">
+    <div class="card">
+      <div class="card-body">
+        <!--Title-->
+        <h4 class="card-title">{{deals.name}}</h4>
+        <!--Text-->
+        <p class="card-text">{{deals.description}}</p>
+        <p ></p>
+        <a class="btn btn-primary">Edit</a>
+        <a class="btn btn-primary">Delete</a>
+      </div>
+
+    </div>
+  </div>
+ </div>
+</div> 
+
+<!-- <table border =1 class="mt-5 pt-5">
+    <thead>
+      <tr>
+        <th colspan="4">Search :
+          <input type="text" [(ngModel)]="queryString">
+        </th>
+      </tr>
+      <tr>
+        <th style="width:40px;max-width:40px;">#</th>
+        <th style="width:60px;max-width:100px;">Name</th>
+        <th style="width:60px;max-width:50px;">Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ex of  listofstudent| filterdata: queryString : 'name' ; let i = index ">
+        <td>{{i+1}}</td>
+        <td>{{ex.name}}</td>
+        <td>{{ex.age}}</td>
+      </tr>
+    </tbody>
+  
+  </table> -->

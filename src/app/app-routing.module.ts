@@ -4,6 +4,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DealsComponent } from './deals/deals.component';
 import { PostComponent } from './post/post.component';
+import { AuthGuard } from './auth.guard';
+import { UserDealsComponent } from './user-deals/user-deals.component'
+import { ViewmoreComponent } from './viewmore/viewmore.component'
 
 const routes: Routes = [
   {
@@ -24,8 +27,17 @@ const routes: Routes = [
     component: DealsComponent
   },
   { 
+    path : 'user-deals',
+    component: UserDealsComponent
+  },
+  { 
+    path : 'viewmore',
+    component: ViewmoreComponent
+  },
+  { 
     path : 'post', 
-    component: PostComponent
+    component: PostComponent,
+    canActivate:[AuthGuard]
   }
  
 ];
