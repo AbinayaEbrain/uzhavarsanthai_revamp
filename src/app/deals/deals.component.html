@@ -1,4 +1,4 @@
-<div class="bg">
+<!-- <div class="bg">
 <div class="container">
   <div class="row  mt-5 pt-5">
     <div class="col-md-4">HAI {{userName.firstname}} !!!</div>
@@ -14,36 +14,72 @@
     <div class="card">
       <div class="card-body">
         <!--Title-->
-        <h4 class="card-title">{{deal.name}}</h4>
+        <!-- <h4 class="card-title">{{deal.name}}</h4> -->
         <!--Text-->
-        <p class="card-text">{{deal.description}}</p>
-        <a class="btn btn-primary" routerLink= "/viewmore" >Viewmore</a>
+        <!-- <p class="card-text">{{deal.description}}</p>
+        <p>{{deal.accountId}}</p>
+        <a class="btn btn-primary" routerLink= "/viewmore/{{deal.accountId}}" >Viewmore</a>
       </div>
 
     </div>
   </div>
  </div>
 </div> 
+</div> --> 
+
+
+
+<div class="bg">
+<div class="container">
+    <div class="row  mt-5 pt-5">
+        <div class="col-md-4 col-sm-12"><h2 style="color: white">Hai,</h2></div>
+        <div class="col-md-8 col-sm-12">
+            <form action="/action_page.php">
+              <input type="text" class="float-right srchBox" placeholder="Search.." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+            </form>
+        </div>
+      </div>
+      <p class="no_deals_found">{{errMsg}}</p>
+  <div class="row mt-5">
+    <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals | filterdata: queryString  : 'name'">
+        <div class="card">
+           <table>
+              <div class="title">
+                <tr>
+                  <th class="details">Product Details</th>
+                </tr>
+              </div>
+              <div class="card-body">
+                  <tr>
+                      <td><strong>Category &nbsp; </strong></td>
+                      <td>:</td>
+                      <td><strong>&nbsp;&nbsp;{{deal.category}}</strong></td>
+                    </tr>
+                <tr>
+                  <td><strong>Name &nbsp;</strong></td>
+                  <td>:</td>
+                  <td><strong>&nbsp;&nbsp;{{deal.name}}</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Quantity &nbsp;</strong></td>
+                    <td>:</td>
+                    <td><strong>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Price / kg &nbsp;</strong></td>
+                    <td>:</td>
+                    <td><strong>&nbsp;&nbsp;{{deal.price}}</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Description &nbsp;</strong></td>
+                    <td>:</td>
+                    <td><textarea>&nbsp;&nbsp;{{deal.description}}</textarea></td>
+                </tr>
+          </div>
+          </table>
+            <a  class="btn btn-primary mb-3"  routerLink= "/viewmore/{{deal.accountId}}"><strong>View Contact Details</strong></a>
+        </div>
+      </div>
+  </div>
 </div>
-<!-- <table border =1 class="mt-5 pt-5">
-    <thead>
-      <tr>
-        <th colspan="4">Search :
-          <input type="text" [(ngModel)]="queryString">
-        </th>
-      </tr>
-      <tr>
-        <th style="width:40px;max-width:40px;">#</th>
-        <th style="width:60px;max-width:100px;">Name</th>
-        <th style="width:60px;max-width:50px;">Age</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let ex of  listofstudent| filterdata: queryString : 'name' ; let i = index ">
-        <td>{{i+1}}</td>
-        <td>{{ex.name}}</td>
-        <td>{{ex.age}}</td>
-      </tr>
-    </tbody>
-  
-  </table> -->
+</div>

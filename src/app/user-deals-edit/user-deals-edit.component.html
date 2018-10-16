@@ -1,0 +1,122 @@
+
+ <div class="bg1">
+    <div class="text-center container mb-5 mt-5 pt-5">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+                <h2 class="clr mb-5 mt-2 mt-sm-2 mt-md-5">Edit Your Product</h2>
+            </div>
+     </div>
+        <form>
+     
+        <div class="row">
+          <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group mb-5 mt-2">
+                    <!-- <input type="text"  #category="ngModel" [class.is-invalid]="category.invalid && category.touched" ngModel name="category" class="form-control"  autocomplete="off" required>
+                    <label class="form-control-placeholder" for="category">Category</label>
+                    <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span>   -->
+                    <select required class="form-control slect"  #category="ngModel" [(ngModel)]="deallistobj.category" name="category"  [class.is-invalid]="category.invalid && category.touched" ngModel>
+                        <option value="" disabled>Category</option>
+                        <option value="Vegetable">Vegetable</option>
+                        <option value="Fruits">Fruits</option>
+                        <option value="Grains">Grains</option>
+  
+                      </select>
+                  </div>
+                  <!-- <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span>    -->
+                </div> 
+        <div class="col-md-4">    
+                <div class="form-group  mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
+                  <input type="text" #name="ngModel" [(ngModel)]="deallistobj.name" name="name" ngModel (keypress)="handleInput($event)" [class.is-invalid]="name.invalid && name.touched"  class="form-control" value="{{deallistobj.name}}"  autocomplete="off"  required>
+                  <label class="form-control-placeholder" for="name">Product Name</label>
+                  <!-- <span class="text-danger float-left" [class.d-none] = "name.valid || name.untouched">Product Name is required</span>   -->
+                </div>
+          </div>  
+              </div>
+  
+              <div class="row">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-3 col-sm-8 col-8">
+                      <div class="form-group mb-5 mt-2">
+                          <input type="text" #quantity="ngModel" [(ngModel)]="deallistobj.quantity" name="quantity"  [class.is-invalid]="quantity.invalid && quantity.touched" class="form-control"  autocomplete="off"  value="{{deallistobj.quantity}}" required>
+                          <label class="form-control-placeholder" for="quantity">Available Quantity</label>
+                          <!-- <span class="text-danger float-left" [class.d-none] = "quantity.valid || quantity.untouched">Available Quantity is required</span>   -->
+                        </div>
+                  </div>
+                  <div class="col-md-1 col-sm-4 col-4">
+                      <div class="form-group mb-5 mt-2">
+                          <!-- <input type="text"  #category="ngModel" [class.is-invalid]="category.invalid && category.touched" ngModel name="category" class="form-control"  autocomplete="off" required>
+                          <label class="form-control-placeholder" for="category">Category</label>
+                          <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span>   -->
+                          <select required class="form-control slect" #qnty="ngModel" [(ngModel)]="deallistobj.qnty" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel  >
+                              <option value="" disabled>QT</option>
+                              <option value="Grams">Grams</option>
+                              <option value="Kg">Kg</option>
+                              <option value="Lt">Lt</option>
+                            </select>
+                        </div>
+                      </div> 
+                 
+                  <div class="col-md-4">
+                      <div class="form-group mb-5 mt-2">
+                          <input type="text"  [class.is-invalid]="price.invalid && price.touched" ngModel #price="ngModel" [(ngModel)]="deallistobj.price" name="price" class="form-control"  autocomplete="off" value="{{deallistobj.price}}" required >
+                          <label class="form-control-placeholder" for="price">Price</label>
+                          <!-- <span class="text-danger float-left" [class.d-none] = "price.valid || price.untouched">Price is required</span>   -->
+                        </div>
+                  </div>
+              </div>
+  
+              <!-- 3rd row -->
+              <div class="row">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-8">
+                      <div class="form-group mb-5 mt-2">
+                        
+                          <input type="text"   #description="ngModel" [(ngModel)]="deallistobj.description" name="description" [class.is-invalid]="description.invalid && description.touched" ngModel  class="form-control" value="{{deallistobj.description}}" autocomplete="off" required>
+                          <label class="form-control-placeholder" for="date">Description</label>
+                          <!-- <span class="text-danger float-left" [class.d-none] = "description.valid || description.untouched">Description is required</span>   -->
+                        </div>
+                  </div> 
+                  <!-- <div class="col-md-4">
+                       <input type="text" value="ghuiuwe" name="account" [(ngModel)]="productData.account">
+                      <label class="form-control-placeholder">Description</label> 
+                      <p name="account" [(ngModel)]="productData.account">{{accountId._id}}</p>
+                  </div> -->
+                  </div>
+  
+                  <div class="row">
+                      <div class="col-md-4"></div>
+                      <div class="col-md-8">
+                          <button class="btn mt-4 " type="submit" (click)="update()" routerLink="/user-deals">Save Changes</button>
+                        </div>
+               </div>
+          </form>
+              </div>
+  </div>
+  
+  
+  
+  
+  <!-- //default edit  -->
+  
+  <!-- <div class="row mt-5">
+    <div class="col-md-4 mb-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <input type="text" #category="ngModel" [(ngModel)]="deallistobj.category" name="category" 
+           value="{{deallistobj.category}}">
+          <input type="text" #name="ngModel" [(ngModel)]="deallistobj.name" name="name" value="{{deallistobj.name}}">
+          <input type="text" #quantity="ngModel" [(ngModel)]="deallistobj.quantity" name="quantity" value="{{deallistobj.quantity}}">
+          <input type="text" #qnty="ngModel" [(ngModel)]="deallistobj.qnty" name="qnty" value="{{deallistobj.qnty}}">
+          <input type="text" #price="ngModel" [(ngModel)]="deallistobj.price" name="price" value="{{deallistobj.price}}">
+          <input type="text" #description="ngModel" [(ngModel)]="deallistobj.description" name="description" value="{{deallistobj.description}}">
+        
+        </div>
+        <button type="button" (click)="update()">Update</button>
+      </div>
+    </div>
+  </div> -->
+  
+  
+  

@@ -1,14 +1,12 @@
 .card{
     /* margin-left: 15%; */
      border: solid black 2px;
-    height: 500px;
-   
-    
+     border-radius: 0 20px;
+     background-color: #032b31;
+     color: white
 }
 
 .card-tittle{
-    margin-right: -14px;
-    margin-left: -14px;
     height: 60px;
  padding-top: 24px;
     /* background-color: #5c6bc0!important; */
@@ -16,13 +14,15 @@
     /* opacity: 0.7; */
 }  
 .info{
-    background-color: #8a2C02;
-    margin-top: 5%;
-    margin-left: 25%;
+    background-color: #23dfe8;
+    padding-top: 8px;
+    color: #fff;
+    font-size: 18px;
     text-align: center;
     width: 50%;
-    border:  solid honeydew 3px;
-    border-radius: 30px;
+    height: 45px;
+    /* border:  solid honeydew 3px; */
+    border-radius: 0 20px;
     color: white;
 }
 .card-body{
@@ -37,7 +37,7 @@
 }
 .info1{
     text-align: left;
-    font-size: 23px;
+    /* font-size: 23px; */
 }
 .table{
     align-self: auto;
@@ -51,6 +51,7 @@
     background: url(./images/1.jpg);
   
     /* Full height */
+
     height: 100vh; 
     /* opacity: 0.5; */
   
@@ -81,7 +82,7 @@
        }
        .info1{
         text-align: left;
-        font-size: 20px;
+        font-size: 15px;
     }
     .product{
         text-align: left;
@@ -90,4 +91,8 @@
      .des{
         margin-left: -10px
       }
+   }
+
+   .table td, .table th{
+       border-top: none
    }

@@ -41,29 +41,33 @@ router.get('/',(req,res)=>{
 router.post('/register',(req,res)=>{
     let userData = req.body
     let user = new User(userData)
-    
-    User.findOne({phone: userData.phone},(error,user)=>{
-        if(user.phone == null){
-            User.save((error,registeredUser)=>{
-        if(error){
-            console.log(error)
-        }else{
-            //jwt 
-             let payload={subject:registeredUser._id}
-             let token =jwt.sign(payload,'secretKey')
 
-            //before adding jwt
-           // res.status(200).send(registeredUser)
-
-            //after add jwt
-            console.log(payload)
-           res.status(200).send({token,payload,user})
+    User.findOne({phone: userData.phone},(err,exuser)=>{
+        if(exuser == null){
+            user.save((error,registeredUser)=>{
+                if(error){
+                    console.log(error)
+                }else{
+                    //jwt 
+                     let payload={subject:registeredUser._id}
+                     let token =jwt.sign(payload,'secretKey')
+        
+                    //before adding jwt
+                   // res.status(200).send(registeredUser)
+        
+                    //after add jwt
+                    console.log(payload)
+                   res.status(200).send({token,payload,user})
+                }
+            })
+        }
+        else{
+            console.log("Number already exist")
         }
     })
-    }else{
-        console.log("Number already exist!!")
-    }
-        })
+      
+   
+        
 })
 
 //postdeals
@@ -133,6 +137,57 @@ router.get('/deals',(req,res)=>{
     })
  })
 
+ //get a user
+ router.get('/details',(req,res)=>{
+    User.find(function (err,result){
+        if(err){
+            console.log('no data')
+ 
+        }
+        else{
+         res.send(result)
+           
+        }
+    })
+ })
+
+ //delete deals
+router.delete('/deals/:id',(req,res)=>{
+    Post.findByIdAndRemove(req.params.id,function(errors,deleteuser){
+        if(errors){
+            console.log("Error deleting" + errors);
+        }else{
+            res.json(deleteuser)
+
+        }
+    });
+});
+
+
+ //update deals
+ router.put('/deals/:id', function(req, res){
+    console.log('Update a user');
+    console.log(req.body)
+     //let userData = req.body
+    // let User = new User(userData)
+    Post.findByIdAndUpdate(req.params.id,
+    {
+        $set: {category : req.body.category, name : req.body.name, quantity : req.body.quantity,
+            qnty : req.body.qnty, price : req.body.price, description : req.body.description}
+    },
+    {
+        new: true
+    },
+    function(err,updatedUser){
+        if(err){
+            res.send("Error updating user");
+        }else{
+            res.json(updatedUser);
+        }
+    }
+
+    );
+});
 // router.get('/deals',(req,res)=>{
 //     let deals =[
 //         {

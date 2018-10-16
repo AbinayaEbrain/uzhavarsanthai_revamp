@@ -33,6 +33,8 @@ export class AuthService {
 
   //logout
   logoutUser(){
+    localStorage.removeItem('payload')
+    localStorage.removeItem('currentUser')
     localStorage.removeItem('token')
     this.route.navigate(['/deals'])
   }

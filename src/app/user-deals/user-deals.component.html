@@ -1,50 +1,88 @@
-<div class="container">
-  <div class="row  mt-5 pt-5">
-    <div class="col-md-4">HAI {{userName.firstname}} !!!</div>
-    <div class="col-md-8">
-        <form action="/action_page.php">
-          <input type="text" class="float-right" placeholder="Search.." [(ngModel)]="queryString" name="search">
-        </form>
-    </div>
-  </div>
-   
-<div class="row mt-5">
-  <div class="col-md-4 mb-3" *ngFor = "let deals of userDeals">
-    <div class="card">
-      <div class="card-body">
-        <!--Title-->
-        <h4 class="card-title">{{deals.name}}</h4>
-        <!--Text-->
-        <p class="card-text">{{deals.description}}</p>
-        <p ></p>
-        <a class="btn btn-primary">Edit</a>
-        <a class="btn btn-primary">Delete</a>
+
+
+<div class="bg">
+    <div class="container">
+        <div class="row  mt-5 pt-5">
+            <div class="col-md-4"><h2 style="color: white;font-weight: bolder">Hai, {{userName.firstname}} !!!</h2></div>
+            <div class="col-md-8">
+                <form action="/action_page.php">
+                  <input type="text" class="float-right srchBox" placeholder="Search.." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+                </form>
+            </div>
+          </div>
+          <p class="no_deals_found">{{errMsg}}</p>
+      <div class="row mt-5">
+    
+        <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of userDeals | filterdata: queryString  : 'name'">
+            <div class="card">
+               <table>
+                  <div class="title">
+                    <tr>
+                      <th class="details">Product Details</th>
+                    </tr>
+                  </div>
+                  <div class="card-body">
+                    <tr>
+                      <td><strong>Category &nbsp;</strong></td>
+                      <td>:</td>
+                      <td><strong>&nbsp;&nbsp;{{deal.category}}</strong></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Name &nbsp;</strong></td>
+                      <td>:</td>
+                      <td><strong>&nbsp;&nbsp;{{deal.name}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost/kg &nbsp;</strong></td>
+                        <td>:</td>
+                        <td><strong>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Price(per kg)&nbsp;</strong></td>
+                        <td>:</td>
+                        <td><strong>&nbsp;&nbsp;{{deal.price}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Description &nbsp;</strong></td>
+                        <td>:</td>
+                        <td><textarea>&nbsp;&nbsp;{{deal.description}}</textarea></td>
+                    </tr>
+              </div>
+              </table>
+
+                <a  class="btn btn-primary btn-primary1 mb-2"  routerLink="/user-deals-edit/{{deal._id}}"><strong>Edit</strong></a>
+                
+                <button type="button" routerLink="/user-deals/{{deal._id}}"  type="submit" class="btn btn-primary btn-primary1 mb-2" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false"><strong>Delete</strong></button>
+              
+            </div>
+          </div>
       </div>
-
     </div>
-  </div>
- </div>
-</div> 
+    </div>
+    
 
-<!-- <table border =1 class="mt-5 pt-5">
-    <thead>
-      <tr>
-        <th colspan="4">Search :
-          <input type="text" [(ngModel)]="queryString">
-        </th>
-      </tr>
-      <tr>
-        <th style="width:40px;max-width:40px;">#</th>
-        <th style="width:60px;max-width:100px;">Name</th>
-        <th style="width:60px;max-width:50px;">Age</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let ex of  listofstudent| filterdata: queryString : 'name' ; let i = index ">
-        <td>{{i+1}}</td>
-        <td>{{ex.name}}</td>
-        <td>{{ex.age}}</td>
-      </tr>
-    </tbody>
-  
-  </table> -->
+
+    <!-- modal -->
+
+    <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                
+                  <h4 class="modal-title">Delete Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                  <h6 class="text-center">Are you sure want to delete?</h6>
+                  <div class="text-center">
+                 
+                   <button type="button" class="btn btn-primary" routerLink="/deals" (click)="deleteuser()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+                   <button type="button" class="btn btn-danger" routerLink="/user-deals" data-dismiss="modal">No</button>
+                  </div>
+                </div>
+              
+              </div>
+              
+            </div>
+          </div>

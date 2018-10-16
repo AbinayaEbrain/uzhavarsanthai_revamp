@@ -3,11 +3,6 @@
 .bg {
     /* The image used */
     background: url(./images/A5.jpg);
-
-    /* Full height */
-    height: 100%; 
-    /* opacity: 0.5; */
-
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -65,7 +60,7 @@ input{
     top: 0;
     padding: 7px 0 0 13px;
     transition: all 200ms;
-    opacity: 0.5;
+    /* opacity: 0.5; */
     left: -12px;
     font-weight: 500;
     font-size: 17px;
@@ -90,5 +85,6 @@ input{
     color: white
   }
   .span_clr{
-      text-decoration: underline
+      text-decoration: underline;
+      cursor: pointer;
   }

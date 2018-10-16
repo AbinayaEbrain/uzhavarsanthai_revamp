@@ -7,7 +7,7 @@
               <h2 class="clr mb-5 mt-2 mt-sm-2 mt-md-5">Post Your Product {{accountId}}</h2>
           </div>
    </div>
-      <form>
+      <form  #postform="ngForm" *ngIf ="!submitted" novalidate>
    
       <div class="row">
         <div class="col-md-4"></div>
@@ -18,17 +18,17 @@
                   <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span>   -->
                   <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.category" name="category" [class.is-invalid]="category.invalid && category.touched" ngModel>
                       <option value="" disabled>Category</option>
-                      <option value="vegetable">Vegetable</option>
-                      <option value="fruits">Fruits</option>
-                      <option value="grains">Grains</option>
+                      <option value="Vegetable">Vegetable</option>
+                      <option value="Fruits">Fruits</option>
+                      <option value="Grains">Grains</option>
 
                     </select>
                 </div>
-                <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span>   -->
+                <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span> 
               </div> 
       <div class="col-md-4">    
               <div class="form-group mb-5 mt-2">
-                <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel  [(ngModel)]="productData.name"  name="name" class="form-control"  autocomplete="off"  required>
+                <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)" [(ngModel)]="productData.name" pattern="[a-zA-Z]+" name="name" class="form-control"  autocomplete="off"  required>
                 <label class="form-control-placeholder" for="name">Product Name</label>
                 <span class="text-danger float-left" [class.d-none] = "name.valid || name.untouched">Product Name is required</span>  
               </div>
@@ -39,7 +39,7 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-3 col-sm-8 col-8">
                     <div class="form-group mb-5 mt-2">
-                        <input type="text"  #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched" ngModel  [(ngModel)]="productData.quantity"  name="quantity" class="form-control"  autocomplete="off"  required>
+                        <input type="text"  #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="productData.quantity"  name="quantity" class="form-control"  autocomplete="off"  required>
                         <label class="form-control-placeholder" for="quantity">Available Quantity</label>
                         <span class="text-danger float-left" [class.d-none] = "quantity.valid || quantity.untouched">Available Quantity is required</span>  
                       </div>
@@ -50,18 +50,18 @@
                         <label class="form-control-placeholder" for="category">Category</label>
                         <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span>   -->
                         <select required class="form-control slect"  #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel  [(ngModel)]="productData.qnty" >
-                            <option value="" disabled>QT</option>
-                            <option value="grams">Grams</option>
-                            <option value="kg">Kg</option>
-                            <option value="lt">Lt</option>
+                            <option value="" disabled>Unit</option>
+                            <option value="Grams">Grams</option>
+                            <option value="Kg">Kg</option>
+                            <option value="Ltre">Ltre</option>
                           </select>
                       </div>
                     </div> 
                
                 <div class="col-md-4">
                     <div class="form-group mb-5 mt-2">
-                        <input type="text"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel name="price"  [(ngModel)]="productData.price"  class="form-control"  autocomplete="off"  required>
-                        <label class="form-control-placeholder" for="price">Price</label>
+                        <input type="text"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel name="price"  [(ngModel)]="productData.price"  class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  autocomplete="off" maxlength="5" required>
+                        <label class="form-control-placeholder" for="price">Price (Per Kg)</label>
                         <span class="text-danger float-left" [class.d-none] = "price.valid || price.untouched">Price is required</span>  
                       </div>
                 </div>
@@ -70,7 +70,7 @@
             <!-- 3rd row -->
             <div class="row">
                 <div class="col-md-4"></div>
-                <div class="col-md-4">
+                <div class="col-md-8">
                     <div class="form-group mb-5 mt-2">
                         <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="productData.description"  name="description" class="form-control"  autocomplete="off" required>
                         <label class="form-control-placeholder" for="date">Description</label>
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-md-4"></div>
                     <div class="col-md-8">
-                        <button class="btn mt-4 " type="submit" (click)="postProduct()">SUBMIT</button>
+                        <button class="btn mt-4 " type="submit" routerLink= "/user-deals" [disabled]="postform.form.invalid" (click)="postProduct()">SUBMIT</button>
                       </div>
              </div>
         </form>

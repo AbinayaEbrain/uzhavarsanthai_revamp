@@ -10,7 +10,9 @@ import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { UserDealsComponent } from './user-deals/user-deals.component';
 import { FilterdataPipe } from './filterdata.pipe';
-import { ViewmoreComponent } from './viewmore/viewmore.component'
+import { ViewmoreComponent } from './viewmore/viewmore.component';
+import {PasswordValidatorDirective} from '../app/register/password.validator.directive';
+import { UserDealsEditComponent } from './user-deals-edit/user-deals-edit.component'
  
 
 @NgModule({
@@ -19,7 +21,9 @@ import { ViewmoreComponent } from './viewmore/viewmore.component'
     routingComponents,
     UserDealsComponent,
     FilterdataPipe,
-    ViewmoreComponent
+    ViewmoreComponent,
+    PasswordValidatorDirective,
+    UserDealsEditComponent
   ],
   imports: [
     BrowserModule,

@@ -1,56 +1,23 @@
-/* .bg1{
+.bg1{
     
-    background: url(./images/A6.jpg)no-repeat center ;
-    height: 650px;
-    background-size: cover;
-    margin-top: 35px;
+    background: url(../../assets/Images/P2.jpeg)no-repeat center ;
     height: 100vh;
     width: 100%;
+    background-size: cover;
    
-} */
-
-.bg1{
-    background: url(./images/A6.jpg)no-repeat center ;
-    height: 100vh;
-    margin-bottom: 0px;
-    margin-top: -25px;
 }
 
-   
 
-@media only screen and (min-width: 1140px) {
-    .bg1{
-        background-size: cover;
-        margin-top: 35px;
-        height: 100vh;  
-    }
-} 
-@media only screen and  (max-width: 400px) and (min-width: 300px) {
-    .bg1{
-        background-size: cover;
-        margin-top: 35px;
-        height: 180vh;  
-    }
-} 
-@media only screen and  (max-width: 600px) and (min-width: 400px) {
-    .bg1{
-        background-size: cover;
-        margin-top: 35px;
-        height: 180vh;  
-    }
-}
-
-/* @media only screen and (max-width: 600px) {
-    .bg1{
-   
-        background: url(./images/A6.jpg)no-repeat center ;
-        background-size: cover;
-        margin-top: 35px;
-        height: 175vh;
-       
-    }
-} */
+@media only screen and (max-width: 600px) {
+   .bg1{
+  
     
+       background-size: cover;
+       margin-top: 35px;
+       height: 120vh;
+      
+   }
+}
 
  input[type=text], input[type=password] {
     width: 100%;
@@ -65,7 +32,7 @@ input:focus{
 }
 
 select option {
-    margin: 40px;
+    /* margin: 40px; */
     background: rgba(0, 0, 0, 0.3);
     color: #fff;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);

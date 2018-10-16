@@ -1,10 +1,117 @@
-.text-small {
+/* .text-small {
     font-size: 0.75rem;
   }
   .card{
       padding: 30px;
-  }
+  } */
   /* .test{
     padding-left: 10px;  
     padding-right: 10px;
   } */
+
+  /* .bg{
+    background: url();
+  } */
+
+  .card{
+    /* margin: 10px; */
+   border-radius: 0px 20px;
+   /*background-color: #23dfe8;
+     background-color: rgb(252, 176, 59); */
+   background-color: #032b31;
+    height: 380px;
+    /* width: 300px; */
+    color: aliceblue;
+  }
+  .title{
+    border-radius: 0px 20px 0px 20px;
+    height: 45px;
+    color: #dee2e6;
+    padding-left: 30%;
+    background-color: #23dfe8;  
+  }
+  .details{
+    padding-top: 8px;
+    color: #fff;
+    font-size: 18px
+  }
+  .card-body{
+    font-size: 17px;
+  }
+  /* .btnRadius{
+    border-radius: 25px !important;
+  } */
+
+  textarea{
+    overflow: hidden;
+    background-color: transparent;
+    border: none;
+    color: white;
+    margin-top: 30px;
+    height: 50px;
+  }
+  
+  .modal-title{
+    color: #072304;
+    margin-left: auto;
+    margin-right: auto
+  }
+  .no_deals_found{
+    text-align: center;
+    color: #f2f2f3;
+    font-weight: bold;
+    font-size: 18px
+  }
+
+  .btn-primary{
+    border-color: #072304;
+    background-color: #072304;
+  }
+  .btn-primary1{ 
+    margin: auto;
+    border-radius: 25px ;
+    width: 50%;
+    color: #fff;
+    background-color: rgb(242, 101, 50);
+    border: 1px solid  #9d0a18;
+  }
+  .btn-primary1:hover{
+    border: 1px solid #04857e;
+    background-color:  green;
+  }
+  .bg {
+    background: url(./images/6.jpg);
+    height: 100vh; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+  }
+  .card-body{
+    
+  font-size: 17px;
+  }
+  tr{
+    text-align: left;
+  }
+  table{
+    margin: auto;
+  }
+  .srchBox{
+    border-radius: 50px;
+    border-color: #f26532;
+   } 
+   
+ .srchBox {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 130px;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  transition: all .5s ease;
+  float: right;
+}
+.srchBox:focus {
+  width: 200px;
+}

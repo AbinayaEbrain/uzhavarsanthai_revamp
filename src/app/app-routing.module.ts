@@ -7,6 +7,7 @@ import { PostComponent } from './post/post.component';
 import { AuthGuard } from './auth.guard';
 import { UserDealsComponent } from './user-deals/user-deals.component'
 import { ViewmoreComponent } from './viewmore/viewmore.component'
+import { UserDealsEditComponent } from './user-deals-edit/user-deals-edit.component'
 
 const routes: Routes = [
   {
@@ -26,12 +27,24 @@ const routes: Routes = [
     path : 'deals',
     component: DealsComponent
   },
+  {
+    path : 'user-deals-edit/:id',
+    component: UserDealsEditComponent
+  },
   { 
     path : 'user-deals',
     component: UserDealsComponent
   },
   { 
-    path : 'viewmore',
+    path : 'user-deals/:id',
+    component: UserDealsComponent
+  },
+  { 
+    path : 'viewmore/:id',
+    component: ViewmoreComponent
+  },
+  { 
+    path : 'viewmore/:id',
     component: ViewmoreComponent
   },
   { 

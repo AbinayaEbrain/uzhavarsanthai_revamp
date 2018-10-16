@@ -3,83 +3,72 @@
 
  <div class="bg">
   <div class="register">
-    <div class="container mb-5 mt-5 pt-5 ">
+    <!-- <div class="container mb-5 mt-5 pt-5 ">
       <h2 class="clr mb-5.5 detailed">Detailed Info</h2>
-    </div>
+    </div> -->
   </div>
 
-<div class="container">
-<div class="row">
-  <div class="col-sm-5 col-xs-12 card">
-    <div class="card-tittle">
-      <h2 class="info">Product Info</h2>
-    </div>
-    <div class="card-body">
-    
-    <table>
-        <div class="table">
-      <tr>
-       <th class="product">Category</th>
-       <th class="info1">: Vegitable</th>
-      </tr>
-      <tr>
-          <th class="product">Name</th>
-          <th class="info1">: Kesav</th>
-         </tr>
-         <tr>
-            <th class="product">Cost/kg</th>
-            <th class="info1">: Rs.200</th>
-           </tr>
-           <tr>
-              <th class="product">Availability</th>
-              <th class="info1">: 100kg</th>
-             </tr>
-            </div>
-             <div class="des">
-                <p> description:</p>
-                <p></p>
-               </div>
-    </table>
- </div>
-  </div>
-  <div class="col-sm-2">
+<div class="container mt-5 pt-5">
+    <h2 style="color: white" class="text-center">Hai, {{userName}} !!!</h2>
+<div class="row" style="margin-top: 30px">
+  <div class="col-md-3"></div>
 
-  </div>
-
-
-  <div class="col-sm-5 col-xs-12 card">
-      <div class="card-tittle">
-        <h2 class="info">Contact Info</h2>
-      </div>
+  <div class="col-md-6 col-xs-12">
+    <div class="card">
+      <!-- <div class="card-tittle"> -->
+        <h2 class="info mt-2">Contact Info</h2>
+      <!-- </div> -->
       <div class="card-body">
       
           <table>
               <div class="table">
             <tr>
              <th class="product">Name</th>
-             <th class="info1">: Kesavaraj</th>
+             <th>:</th>
+             <th class="info1">{{register.firstName}} {{register.lastName}}</th>
             </tr>
             <tr>
                 <th class="product">Phone</th>
-                <th class="info1">: 848982771</th>
+                <th>:</th>
+                <th class="info1">{{register.phone}}</th>
                </tr>
                <tr>
-                  <th class="product">State</th>
-                  <th class="info1">: TamilNadu</th>
+                  <th class="product">Address1</th>
+                  <th>:</th>
+                  <th class="info1">{{register.address.addressLine}}</th>
                  </tr>
                  <tr>
-                    <th class="product">City</th>
-                    <th class="info1">: Thanjavur</th>
+                    <th class="product">Address2</th>
+                    <th>:</th>
+                    <th class="info1">{{register.address.address1}}</th>
                    </tr>
+                   <tr>
+                      <th class="product">City</th>
+                      <th>:</th>
+                      <th class="info1">{{register.address.city}}</th>
+                     </tr>
+                     <tr>
+                        <th class="product">State</th>
+                        <th>:</th>
+                        <th class="info1">{{register.address.location}}</th>
+                       </tr>
+                 <!-- <tr>
+                    <th class="product">State</th>
+                    <th class="info1">:{{register.location}}</th>
+                   </tr> -->
                   </div>
-                   <div class="des">
+                   <!-- <div class="des">
                       <p> Address:</p>
                       <p></p>
-                     </div>
+                     </div> -->
           </table>
+   </div>
    </div>
     </div>
 
+    <div class="col-md-3">
+
+    </div>
   </div>
   </div>
 

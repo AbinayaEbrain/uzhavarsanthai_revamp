@@ -10,9 +10,21 @@ import { Router} from '@angular/router'
 export class RegisterComponent implements OnInit {
 
 
-  registeredUserData = {};
+  registeredUserData = {
+    address : {
+      location:''
+    },
+    gender:''
+  };
+ 
   
-  constructor(private _auth:AuthService,private router:Router) { }
+  constructor(private _auth:AuthService,private router:Router) { 
+
+  // this.registeredUserData.address = {};
+
+  this. registeredUserData.gender = ''
+  this. registeredUserData.address.location = ''
+  }
 
   ngOnInit() {
   }
@@ -31,4 +43,15 @@ export class RegisterComponent implements OnInit {
       }
       )
   }
+
+  handleInput(evt)
+			{
+				var charCode = (evt.which) ? evt.which : evt.keyCode;
+				if (charCode != 46 && charCode > 31 
+				&& (charCode < 48 || charCode > 57))
+				return true;
+				return false;
+			} 
 }
+
+

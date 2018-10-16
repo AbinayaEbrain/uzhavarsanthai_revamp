@@ -32,7 +32,9 @@
  }
  
  select option {
-     margin: 40px;
+     padding: 10px;
+     /* margin: 40px; */
+     width: 100px;
      background: rgba(0, 0, 0, 0.3);
      color: #fff;
      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
@@ -89,7 +91,7 @@
      top: 0;
      padding: 7px 0 0 0px;
      transition: all 200ms;
-     opacity: 0.5;
+     /* opacity: 0.5; */
      font-weight: 500;
      font-size: 17px;
      color: white;
@@ -99,11 +101,15 @@
      top: 0;
      padding: 7px 0 0 13px;
      transition: all 200ms;
-     opacity: 0.5;
+     /* opacity: 0.5; */
      left: -12px;
      font-weight: 500;
      font-size: 17px;
      color: white;
+   }
+
+   option{
+    width: 100px;
    }
    
    .form-control:focus + .form-control-placeholder,

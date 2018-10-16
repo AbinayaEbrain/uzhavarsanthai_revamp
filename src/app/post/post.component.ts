@@ -13,15 +13,17 @@ export class PostComponent implements OnInit {
 
   deals = [];
   productData = {
-    accountId:''
+    accountId:'',
+    qnty:'',
+    category:''
   };
   
   
   constructor(private _dealsService:DealsService,private route:Router) {
 
-  //  this.productData = {
-  //   accountId:'',
-  //  };
+   this.productData.qnty = '';
+   this.productData.category = ''
+  
    }
 
   
@@ -61,4 +63,14 @@ export class PostComponent implements OnInit {
        
       )
   }
+
+
+  handleInput(evt)
+			{
+				var charCode = (evt.which) ? evt.which : evt.keyCode;
+				if (charCode != 46 && charCode > 31 
+				&& (charCode < 48 || charCode > 57))
+				return true;
+				return false;
+			} 
 }

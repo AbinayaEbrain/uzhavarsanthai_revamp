@@ -2,18 +2,18 @@
  <div class="bg1">
     <div class="text-center container mb-5 mt-5 pt-5">
       <h2 class="clr mb-5">Registration</h2>
-        <form>
+        <form   #postform="ngForm" *ngIf ="!submitted" novalidate>
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group mb-5 mt-2">
-                    <input type="text"  #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel name="firstname" class="form-control" [(ngModel)]="registeredUserData.firstname" autocomplete="off" required>
+                    <input type="text"  #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="registeredUserData.firstname" autocomplete="off" required>
                     <label class="form-control-placeholder" for="firstname">First Name</label>
                     <span class="text-danger float-left" [class.d-none] = "firstname.valid || firstname.untouched">First Name is required</span>  
                   </div>
         </div> 
         <div class="col-md-4">    
                 <div class="form-group mb-5 mt-2">
-                  <input type="text"  #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched" ngModel name="lastName" class="form-control" [(ngModel)]="registeredUserData.lastName" autocomplete="off"  required>
+                  <input type="text"  #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched" ngModel (keypress)="handleInput($event)" name="lastName" class="form-control" [(ngModel)]="registeredUserData.lastName" autocomplete="off"  required>
                   <label class="form-control-placeholder" for="lastName">Last Name</label>
                   <span class="text-danger float-left" [class.d-none] = "lastName.valid || lastName.untouched">Last Name is required</span>  
                 </div>
@@ -23,8 +23,8 @@
                       <!-- <label for="sel1">Select</label> -->
                       <select required class="form-control slect"  #gender="ngModel" name="gender" [class.is-invalid]="gender.invalid && gender.touched" ngModel [(ngModel)]="registeredUserData.gender">
                         <option value="" disabled>Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                       </select>
                     </div>
                     <span class="text-danger float-left" [class.d-none] = "gender.valid || gender.untouched">Gender is required</span>  
@@ -35,54 +35,66 @@
               <div class="row">
                   <div class="col-md-4">
                       <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
-                          <input type="text"  #address="ngModel" [class.is-invalid]="address.invalid && address.touched" ngModel name="address" class="form-control" [(ngModel)]="registeredUserData.address" autocomplete="off" required>
-                          <label class="form-control-placeholder" for="address">Address</label>
-                          <span class="text-danger float-left" [class.d-none] = "address.valid || address.untouched">Address is required</span>  
+                          <input type="text"  #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control" [(ngModel)]="registeredUserData.address.addressLine" autocomplete="off" required>
+                          <label class="form-control-placeholder" for="address">AddressLine 1</label>
+                          <span class="text-danger float-left" [class.d-none] = "addressLine.valid || addressLine.untouched">Address is required</span>  
                         </div>
                   </div> 
                   <div class="col-md-4">    
                       <div class="form-group mb-5 mt-2">
-                          <input type="text"  #address1="ngModel" [class.is-invalid]="address1.invalid && address1.touched" ngModel name="address1" class="form-control" [(ngModel)]="registeredUserData.address1" autocomplete="off" required>
-                          <label class="form-control-placeholder" for="address1">City</label>
+                          <input type="text"  #address1="ngModel" [class.is-invalid]="address1.invalid && address1.touched" ngModel name="address1" class="form-control" [(ngModel)]="registeredUserData.address.address1" autocomplete="off" required>
+                          <label class="form-control-placeholder" for="address1">AddressLine 2</label>
                           <span class="text-danger float-left" [class.d-none] = "address1.valid || address1.untouched">Address is required</span>  
                         </div>
-                    </div>      
-                  <div class="col-md-4">
+                    </div>    
+                    <div class="col-md-2">
+                            <div class="form-group mb-5 mt-2">
+                         <input type="text"  #city="ngModel" [class.is-invalid]="city.invalid && city.touched" ngModel name="city" class="form-control" [(ngModel)]="registeredUserData.address.city" autocomplete="off" required>
+                          <label class="form-control-placeholder" for="city">City</label>
+                          <span class="text-danger float-left" [class.d-none] = "city.valid || city.untouched">Required</span>  
+                            </div>
+                        </div>  
+                  <div class="col-md-2">
                       <div class="form-group mb-5 mt-2">
-                          <input type="text"  #location="ngModel" [class.is-invalid]="location.invalid && location.touched" ngModel name="location" class="form-control" [(ngModel)]="registeredUserData.location" autocomplete="off" required>
-                          <label class="form-control-placeholder" for="location">State</label>
-                          <span class="text-danger float-left" [class.d-none] = "location.valid || location.untouched">Location is required</span>  
+                         
+                          <select required class="form-control slect"  #location="ngModel" name="location" [class.is-invalid]="location.invalid && location.touched" ngModel [(ngModel)]="registeredUserData.address.location">
+                                <option value="" disabled>Select your state</option>
+                                <option value="Tamilnadu">Tamilnadu</option>
+                                <option value="Kerala">Kerala</option>
+                              </select>
                         </div>
+                        <span class="text-danger float-left" [class.d-none] = "location.valid || location.untouched">Required</span>  
                   </div>
                   </div>
 
                       <!-- 5th row -->
                       <div class="row">
-                          <div class="col-md-4">
-                              <div class="form-group mb-5 mt-2">
-                                  <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required>
-                                  <label class="form-control-placeholder" for="password">Password</label>
-                                  <span class="text-danger float-left" [class.d-none] = "password.valid || password.untouched">Password is required</span>  
-                                </div>
-                          </div> 
-                          <div class="col-md-4">    
-                                  <div class="form-group mb-5 mt-2">
-                                    <input type="password"  #confirmPassword="ngModel" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" ngModel name="confirmPassword" class="form-control" [(ngModel)]="registeredUserData.confirmPassword"  autocomplete="off"  required>
-                                    <label class="form-control-placeholder" for="confirmPassword">Confirm Password</label>
-                                    <span class="text-danger float-left" [class.d-none] = "confirmPassword.valid || confirmPassword.untouched">Confirm Password is required</span>  
+                            <div class="col-md-4">
+                                <div class="form-group  mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
+                                    <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
+                                    <label class="form-control-placeholder" for="password">Password</label>
+                                    <span class="text-danger float-left" [class.d-none] = "password.valid || password.untouched">Password is required</span>  
                                   </div>
-                            </div>       
-                          <div class="col-md-4">
-                              <div class="form-group mt-2">
-                                  <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="registeredUserData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
-                                  <label class="form-control-placeholder" for="phone">Phone Number</label>
-                                  <span class="text-danger float-left" [class.d-none] = "phone.valid || phone.untouched">Phone Number is required</span>  
-                                </div>
-                                <button class="btn mb-5 float-left" type="submit" (click)="post()">Send OTP</button>
-                          </div>
-                          </div>
+                            </div> 
+                            <div class="col-md-4">    
+                                    <div class="form-group mb-5 mt-2">
+                                      <input type="password"  #confirmPassword="ngModel" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" ngModel name="confirmPassword" class="form-control" [(ngModel)]="registeredUserData.confirmPassword"  autocomplete="off" maxlength="10" appConfirmEqualValidator="password" required reverse="false" validateEqual="password">
+                                      <label class="form-control-placeholder" for="confirmPassword">Confirm Password</label>
+                                      <!-- <span class="text-danger float-left" [class.d-none] = "confirmPassword.valid || confirmPassword.untouched ">Confirm Password is required</span>  -->
+                                      <span class="text-danger float-left" [class.d-none] = "confirmPassword.valid || confirmPassword.untouched && !confirmPassword.required">Password and Confirm Password must be same</span>  
+                                    </div>
+                              </div>       
+                            <div class="col-md-4">
+                                <div class="form-group mt-2">
+                                    <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="registeredUserData.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
+                                    <label class="form-control-placeholder" for="phone">Phone Number</label>
+                                    <span class="text-danger float-left" [class.d-none] = "phone.valid || phone.untouched">Phone Number is required</span>  
+                                  </div>
+                                  <!-- <button class="btn mb-5 float-left" type="submit" (click)="post()">Send OTP</button> -->
+                            </div>
+                            </div>
 
-            <button class="btn mt-2 mb-1" type="submit" (click)="post()">SUBMIT</button>
+            <button class="btn mt-2 mb-1" [disabled]="postform.form.invalid" type="submit" (click)="post()">SUBMIT</button>
           </form>
               </div>
       

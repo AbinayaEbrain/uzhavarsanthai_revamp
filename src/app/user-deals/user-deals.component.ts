@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DealsService } from '../deals.service';
+import {ActivatedRoute} from '@angular/router';
+import {Router, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-user-deals',
@@ -11,12 +13,14 @@ export class UserDealsComponent implements OnInit {
   crdDeals = [];
   userName = {};
   userDeals = [];
+  id:any;
+  errMsg : any
 
-  constructor(private  _dealsService:DealsService) { }
+  constructor(private  _dealsService:DealsService,private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
 
-    this.userName = localStorage.getItem('currentUser');
+    this.userName = JSON.parse(localStorage.getItem('currentUser'));
     console.log(this.userName)
     this._dealsService.getDeals()
       .subscribe(
@@ -34,9 +38,28 @@ export class UserDealsComponent implements OnInit {
           console.log(this.userDeals[j])
             }
           }
+          if (this.userDeals.length == 0){
+            this.errMsg = "Still you not post any deals"
+            document.getElementById('search_box').style.display='none';
+            console.log(this.errMsg)
+          }
+     
         },
         err => console.log(err)
       )
   }
 
+  deleteuser(){
+    this.id = this.route.snapshot.params['id']
+    this._dealsService.deletedeal(this.id)
+    .subscribe(
+       res=>{ console.log(res)
+       
+        
+       },
+       err=>{ console.log(err);
+      },
+    
+    )
+   }
 }
