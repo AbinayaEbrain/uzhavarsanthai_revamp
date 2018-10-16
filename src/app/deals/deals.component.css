@@ -19,7 +19,7 @@
    /*background-color: #23dfe8;
      background-color: rgb(252, 176, 59); */
    background-color: #032b31;
-    height: 350px;
+    height: 280px;
     /* width: 300px; */
     color: aliceblue;
   }
@@ -70,7 +70,8 @@
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    background-attachment: fixed;
   }
   .card-body{
     

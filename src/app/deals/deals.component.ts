@@ -17,7 +17,7 @@ export class DealsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userName = JSON.parse(localStorage.getItem('currentUser'));
+   // this.userName = JSON.parse(localStorage.getItem('currentUser'));
     console.log(this.userName)
     this._dealsService.getDeals()
       .subscribe(

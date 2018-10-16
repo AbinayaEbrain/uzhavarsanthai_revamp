@@ -66,6 +66,11 @@ select{
     opacity: 1; /* Firefox */
    
 }
+.btn1{
+    float: left !important;
+    width: 90px;
+}
+
 .btn{
     font-size: 18px;
     background-color: white;
@@ -73,6 +78,7 @@ select{
     border: none;
     color: #0d4608;
     font-weight: bold;
+    float: right;
 }
 
 .form-group {
@@ -104,6 +110,13 @@ select{
     font-weight: 500;
     font-size: 17px;
     color: white;
+  }
+
+  .lab{
+    color: white;
+    float: left;
+    font-weight: 500;
+    margin-top: -17px;
   }
   
   .form-control:focus + .form-control-placeholder,

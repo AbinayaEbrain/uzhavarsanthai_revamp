@@ -62,7 +62,7 @@ router.post('/register',(req,res)=>{
             })
         }
         else{
-            console.log("Number already exist")
+            res.status(401).send("Number already exist")
         }
     })
       
@@ -102,7 +102,7 @@ router.post('/login',(req,res)=>{
 
         }else{
             if(!user){
-                res.status(401).send('Invalid email')
+                res.status(401).send('Invalid Phone Number')
                
             }else{
                 if(user.password !== userData.password){
@@ -123,6 +123,7 @@ router.post('/login',(req,res)=>{
         }
     })
 })
+
 
 router.get('/deals',(req,res)=>{
     Post.find(function (err,result){
@@ -173,7 +174,7 @@ router.delete('/deals/:id',(req,res)=>{
     Post.findByIdAndUpdate(req.params.id,
     {
         $set: {category : req.body.category, name : req.body.name, quantity : req.body.quantity,
-            qnty : req.body.qnty, price : req.body.price, description : req.body.description}
+            qnty : req.body.qnty, price : req.body.price, description : req.body.description, avlPlace : req.body.avlPlace}
     },
     {
         new: true

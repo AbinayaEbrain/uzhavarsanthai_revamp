@@ -1,11 +1,15 @@
 <div class="bg">
     <div class="text-center mb-5 container">
       <h2 class="mt-5 pt-5 d-sm-block d-none clr sent_font text-left">The more one sows the greater the harvest</h2>
-    <div class="row">
+    <div class="row mt-4">
     <div class="col-md-1"></div>
     <div class="col-md-4">
+        <div class="alert alert-danger"  *ngIf="errormsg">
+            {{errormsg}}
+          </div>
         <form #loginform="ngForm" *ngIf ="!submitted" novalidate>
-            <h1 class="h3 mb-5 font-weight-normal mt-5 pt-5 clr">Log In</h1>
+            <h1 class="h3 mb-5 font-weight-normal mt-5 pt-2 clr">Log In</h1>
+       
             <div class="form-group mb-5 mt-2">
                 <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
                 <label class="form-control-placeholder" for="phone">Phone Number</label>
@@ -17,6 +21,8 @@
               <label class="form-control-placeholder" for="password">Password</label>
               <span class="text-danger float-left" [class.d-none] = "password.valid || password.untouched">Password is required</span>  
             </div>
+
+            
             <button [disabled]="loginform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit" (click)="logform()">LOGIN</button>
            
           </form>

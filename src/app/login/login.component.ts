@@ -24,14 +24,14 @@ export class LoginComponent implements OnInit {
     // console.log(this.loginUserData);
   
     this._auth.logInUser(this.userData)
-      .subscribe((data:any) =>{
-       
+      .subscribe(
+       res =>{
           console.log(this.userData)
-          console.log(data.payload)
-          console.log(data);
-          localStorage.setItem('currentUser', JSON.stringify(data.user));
-          localStorage.setItem('payload', JSON.stringify(data.payload));
-          localStorage.setItem('token',data.token);
+          console.log(res.payload)
+          console.log(res);
+          localStorage.setItem('currentUser', JSON.stringify(res.user));
+          localStorage.setItem('payload', JSON.stringify(res.payload));
+          localStorage.setItem('token',res.token);
 
           let user =  localStorage.getItem('currentUser');
           console.log()
@@ -39,20 +39,25 @@ export class LoginComponent implements OnInit {
           //  localStorage.setItem('userDeviceId', btoa(data));
           this.router.navigate(['/post']);
 
-      
+       },
         err =>{
-          console.log(err)
-          alert("Invalid Username and Password")
+          if(err.statusText === 'Unauthorized'){
+            console.log('Ooops!');
+             this.errormsg ='Check Phone Number and Password !'
+           }
         }
-      }
+        
+     
       )
-
   }
 
 
   register(){
     this.router.navigate(['/register']);
   }
+
+
+
 
 }
 

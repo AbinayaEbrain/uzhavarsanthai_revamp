@@ -10,6 +10,8 @@ const postSchema = new Schema({
     price:String,
     description:String,
     accountId:String,
+    date:String,
+    avlPlace:String
 })
 
 module.exports = mongoose.model('post',postSchema,'post')

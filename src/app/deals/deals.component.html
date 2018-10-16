@@ -1,33 +1,3 @@
-<!-- <div class="bg">
-<div class="container">
-  <div class="row  mt-5 pt-5">
-    <div class="col-md-4">HAI {{userName.firstname}} !!!</div>
-    <div class="col-md-8">
-        <form action="/action_page.php">
-          <input type="text" class="float-right" placeholder="Search.." [(ngModel)]="queryString" name="search">
-        </form>
-    </div>
-  </div>
-   
-<div class="row mt-5">
-  <div class="col-md-4 mb-3" *ngFor = "let deal of crdDeals | filterdata: queryString  : 'name'">
-    <div class="card">
-      <div class="card-body">
-        <!--Title-->
-        <!-- <h4 class="card-title">{{deal.name}}</h4> -->
-        <!--Text-->
-        <!-- <p class="card-text">{{deal.description}}</p>
-        <p>{{deal.accountId}}</p>
-        <a class="btn btn-primary" routerLink= "/viewmore/{{deal.accountId}}" >Viewmore</a>
-      </div>
-
-    </div>
-  </div>
- </div>
-</div> 
-</div> --> 
-
-
 
 <div class="bg">
 <div class="container">
@@ -35,13 +5,14 @@
         <div class="col-md-4 col-sm-12"><h2 style="color: white">Hai,</h2></div>
         <div class="col-md-8 col-sm-12">
             <form action="/action_page.php">
-              <input type="text" class="float-right srchBox" placeholder="Search.." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+              <input type="text" class="float-right srchBox" placeholder="Search By Location" id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
             </form>
         </div>
       </div>
       <p class="no_deals_found">{{errMsg}}</p>
+
   <div class="row mt-5">
-    <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals | filterdata: queryString  : 'name'">
+    <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals | filterdata: queryString  : 'avlPlace'">
         <div class="card">
            <table>
               <div class="title">
@@ -71,9 +42,9 @@
                     <td><strong>&nbsp;&nbsp;{{deal.price}}</strong></td>
                 </tr>
                 <tr>
-                    <td><strong>Description &nbsp;</strong></td>
+                    <td><strong>Posted On &nbsp;</strong></td>
                     <td>:</td>
-                    <td><textarea>&nbsp;&nbsp;{{deal.description}}</textarea></td>
+                    <td><strong>&nbsp;&nbsp;{{deal.date}}</strong></td>
                 </tr>
           </div>
           </table>
@@ -83,3 +54,17 @@
   </div>
 </div>
 </div>
+<style>
+  @media only screen and (max-width: 600px) {
+    .bg {
+      background-attachment: fixed;
+        height: 100%;
+    }
+}
+@media only screen and (min-width: 600px) {
+    .bg {
+      background-attachment: fixed;
+        height: 100%;
+    }
+}
+</style>

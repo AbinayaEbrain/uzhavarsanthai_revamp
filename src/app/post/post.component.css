@@ -7,7 +7,7 @@
     
  }
 
- 
+/*  
 @media only screen and (max-width: 600px) {
     .bg1{
    
@@ -17,7 +17,7 @@
         height: 120vh;
        
     }
-}
+} */
  
   input[type=text], input[type=password] {
      width: 100%;
@@ -68,6 +68,11 @@
      opacity: 1; /* Firefox */
     
  }
+ .btn1{
+     float: left !important;
+     width: 90px
+     
+ }
  .btn{
      font-size: 18px;
      background-color: white;
@@ -75,6 +80,7 @@
      border: none;
      color: #0d4608;
      font-weight: bold;
+     float: right;
  }
  
  .form-group {

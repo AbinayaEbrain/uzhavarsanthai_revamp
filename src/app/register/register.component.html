@@ -2,8 +2,18 @@
  <div class="bg1">
     <div class="text-center container mb-5 mt-5 pt-5">
       <h2 class="clr mb-5">Registration</h2>
+      <div class="row mb-3" *ngIf = "success">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+                <div class="alert alert-success">
+                        {{success}}
+                </div>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+      
         <form   #postform="ngForm" *ngIf ="!submitted" novalidate>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-md-4">
                 <div class="form-group mb-5 mt-2">
                     <input type="text"  #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="registeredUserData.firstname" autocomplete="off" required>
@@ -90,12 +100,29 @@
                                     <label class="form-control-placeholder" for="phone">Phone Number</label>
                                     <span class="text-danger float-left" [class.d-none] = "phone.valid || phone.untouched">Phone Number is required</span>  
                                   </div>
+                                
+                                    <span class="text-danger float-left" *ngIf="errormsg" style="font-weight: bold">{{errormsg}}</span>  
+
                                   <!-- <button class="btn mb-5 float-left" type="submit" (click)="post()">Send OTP</button> -->
                             </div>
                             </div>
 
-            <button class="btn mt-2 mb-1" [disabled]="postform.form.invalid" type="submit" (click)="post()">SUBMIT</button>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-6">
+                    <button class="btn mt-4" [disabled]="postform.form.invalid" type="submit" (click)="post()">Submit</button>
+                </div>
+                <div class="col-md-6 col-sm-6 col-6">
+                    <button type="reset" class="btn mt-4 btn1">Reset</button>
+                </div>
+            </div>
           </form>
               </div>
       
   </div>
+  <style>
+    @media only screen and (max-width: 600px) {
+      .bg1 {
+          height: 100%;
+      }
+  }
+  </style>

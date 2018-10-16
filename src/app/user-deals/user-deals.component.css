@@ -19,7 +19,7 @@
    /*background-color: #23dfe8;
      background-color: rgb(252, 176, 59); */
    background-color: #032b31;
-    height: 380px;
+    height: 350px;
     /* width: 300px; */
     color: aliceblue;
   }
@@ -81,11 +81,12 @@
   }
   .bg {
     background: url(./images/6.jpg);
-    height: 100vh; 
+    height: 100%; 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
+    background-attachment: fixed;
   }
   .card-body{
     

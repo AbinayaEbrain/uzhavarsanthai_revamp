@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { Router} from '@angular/router'
+import { Router} from '@angular/router';
+
+declare var swal :any;
 
 @Component({
   selector: 'app-register',
@@ -9,13 +11,15 @@ import { Router} from '@angular/router'
 })
 export class RegisterComponent implements OnInit {
 
-
+  
   registeredUserData = {
     address : {
       location:''
     },
     gender:''
   };
+  success : any
+  errormsg:any
  
   
   constructor(private _auth:AuthService,private router:Router) { 
@@ -32,15 +36,33 @@ export class RegisterComponent implements OnInit {
   post(){
     // console.log(this.registeredUserData);
     this._auth.registerUser(this.registeredUserData)
-      .subscribe((data:any) =>{
-           console.log(data)
-           console.log(data.user.phone)
-           localStorage.setItem('token',data.token)
-           localStorage.setItem('currentUser',JSON.stringify(data.user));
-           this.router.navigate(['/deals'])
-       
-        err => console.log(err)
-      }
+      .subscribe( 
+        res =>{
+           console.log(res)
+           console.log(res.user.phone)
+           localStorage.setItem('token',res.token)
+           localStorage.setItem('currentUser',JSON.stringify(res.user));
+           //this.router.navigate(['/login'])
+           this.success = "Registered successfully!"
+
+           setTimeout(() => {
+            // swal.close();
+            this.router.navigate(['login']);
+        }, 2000);
+
+        if(res.statusText == 'Unauthorized'){
+          //console.log('Ooops!');
+          this.errormsg ='Check Email and Password !'
+        }
+      },
+        err =>{
+          console.log(err)
+          if(err.statusText == 'Unauthorized'){
+            console.log('Ooops!');
+             this.errormsg ='Phone Number already exist!'
+           }
+        }
+      
       )
   }
 

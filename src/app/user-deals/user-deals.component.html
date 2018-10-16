@@ -5,8 +5,8 @@
         <div class="row  mt-5 pt-5">
             <div class="col-md-4"><h2 style="color: white;font-weight: bolder">Hai, {{userName.firstname}} !!!</h2></div>
             <div class="col-md-8">
-                <form action="/action_page.php">
-                  <input type="text" class="float-right srchBox" placeholder="Search.." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+                <form>
+                  <input type="text" class="float-right srchBox" placeholder="Search By Name" id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
                 </form>
             </div>
           </div>
@@ -43,10 +43,15 @@
                         <td><strong>&nbsp;&nbsp;{{deal.price}}</strong></td>
                     </tr>
                     <tr>
-                        <td><strong>Description &nbsp;</strong></td>
+                        <td><strong>Posted on &nbsp;</strong></td>
                         <td>:</td>
-                        <td><textarea>&nbsp;&nbsp;{{deal.description}}</textarea></td>
+                        <td><strong>&nbsp;&nbsp;{{deal.date}}</strong></td>
                     </tr>
+                    <!-- <tr>
+                        <td><strong>Location &nbsp;</strong></td>
+                        <td>:</td>
+                        <td><strong>&nbsp;&nbsp;{{deal.avlPlace}}</strong></td>
+                    </tr> -->
               </div>
               </table>
 
@@ -86,3 +91,16 @@
               
             </div>
           </div>
+          <style>
+            @media only screen and (max-width: 600px) {
+              .bg {
+                  height: 100%;
+              }
+          }
+          @media only screen and (min-width: 600px) {
+    .bg {
+      background-attachment: fixed;
+        height: 100%;
+    }
+}
+          </style>

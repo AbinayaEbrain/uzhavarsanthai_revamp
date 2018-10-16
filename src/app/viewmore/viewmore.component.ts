@@ -29,7 +29,7 @@ export class ViewmoreComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userName = JSON.parse(localStorage.getItem('currentUser')).firstname;
+   //this.userName = JSON.parse(localStorage.getItem('currentUser')).firstname;
 
     this.id = this.route.snapshot.params['id']
       this._dealsService.getDetails()

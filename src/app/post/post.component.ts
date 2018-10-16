@@ -3,6 +3,7 @@ import { DealsService } from '../deals.service';
 import { Router} from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
+declare var $: any;
 
 @Component({
   selector: 'app-post',
@@ -11,18 +12,23 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class PostComponent implements OnInit {
 
+  private postform;
   deals = [];
   productData = {
     accountId:'',
     qnty:'',
-    category:''
+    category:'',
+    date: new Date().toLocaleDateString(),
+    avlPlace:''
   };
+  success: any
   
   
   constructor(private _dealsService:DealsService,private route:Router) {
 
    this.productData.qnty = '';
-   this.productData.category = ''
+   this.productData.category = '';
+   this.productData.avlPlace = ''
   
    }
 
@@ -43,13 +49,22 @@ export class PostComponent implements OnInit {
 
   postProduct(){
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let curntDte = new Date().toLocaleDateString();
+    this.productData.date = curntDte
     //  acntId = accountId;
     this._dealsService.addPost(this.productData)
       .subscribe((data:any) =>{
-       // console.log(this.accountId)
+       console.log(this.productData.date)
+       console.log(new Date())
         console.log(data);
-        this.route.navigate[('/deals')]
+        //this.route.navigate[('/deals')]
 
+        this.success = "Posted successfully!"
+
+        setTimeout(() => {
+          // swal.close();
+          this.route.navigate(['user-deals']);
+      }, 2000);
       
       err =>{
           if(err instanceof HttpErrorResponse){
@@ -64,6 +79,7 @@ export class PostComponent implements OnInit {
       )
   }
 
+  
 
   handleInput(evt)
 			{
@@ -72,5 +88,6 @@ export class PostComponent implements OnInit {
 				&& (charCode < 48 || charCode > 57))
 				return true;
 				return false;
-			} 
+      } 
+      
 }
