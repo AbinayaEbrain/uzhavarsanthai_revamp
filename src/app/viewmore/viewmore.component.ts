@@ -70,14 +70,16 @@ export class ViewmoreComponent implements OnInit {
           },
           err=> console.log(err)
         )
-        this.loadingCtrl.show();
+       
         this._dealsService.getDetails()
         .subscribe(
           res => {
-            this.loadingCtrl.hide();
+            this.loadingCtrl.show();
+            
             this.viewmore = res;
             console.log(this.viewmore)
             for(let i=0; i < this.viewmore.length; i++){
+              this.loadingCtrl.hide();
               if(this.postProduct.accountId == this.viewmore[i]._id){
                 console.log(this.viewmore[i]._id)
                 console.log(this.postProduct.accountId )
