@@ -11,7 +11,61 @@
 <div class="container mt-5 pt-5">
     <h2 style="color: white" class="text-center"></h2>
 <div class="row" style="margin-top: 30px">
-  <div class="col-md-3"></div>
+
+    <div class="col-md-6 col-xs-12">
+      <div class="card">
+        <!-- <div class="card-tittle"> -->
+          <h2 class="info mt-2">Product Info</h2>
+        <!-- </div> -->
+        <div class="card-body">
+        
+            <table>
+                <div class="table">
+              <tr>
+               <th class="product">Category</th>
+               <th>:</th>
+               <th class="info1">{{postProduct.category}}</th>
+              </tr>
+              <tr>
+                  <th class="product">Name</th>
+                  <th>:</th>
+                  <th class="info1">{{postProduct.name}}</th>
+                 </tr>
+                 <tr>
+                    <th class="product">Quantity</th>
+                    <th>:</th>
+                    <th class="info1">{{postProduct.quantity}} {{postProduct.qnty}}
+                    </th>
+                   </tr>
+                   <tr>
+                      <th class="product">Price</th>
+                      <th>:</th>
+                      <th class="info1">Rs. {{postProduct.price}}</th>
+                     </tr>
+                     <tr>
+                        <th class="product">Available Place</th>
+                        <th>:</th>
+                        <th class="info1">{{postProduct.avlPlace}}</th>
+                       </tr>
+                       <tr>
+                          <th class="product">Description</th>
+                          <th>:</th>
+                          <th class="info1">{{postProduct.description}}</th>
+                         </tr>
+                   <!-- <tr>
+                      <th class="product">State</th>
+                      <th class="info1">:{{register.location}}</th>
+                     </tr> -->
+                    </div>
+                     <!-- <div class="des">
+                        <p> Address:</p>
+                        <p></p>
+                       </div> -->
+            </table>
+     </div>
+     </div>
+      </div>
+ 
 
   <div class="col-md-6 col-xs-12">
     <div class="card">
@@ -66,11 +120,8 @@
    </div>
     </div>
 
-    <div class="col-md-3">
-
     </div>
   </div>
   </div>
 
 
-</div>

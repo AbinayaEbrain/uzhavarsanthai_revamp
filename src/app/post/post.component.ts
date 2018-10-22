@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild} from '@angular/core';
 import { DealsService } from '../deals.service';
 import { Router} from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import {ActivatedRoute, Params} from '@angular/router'
+// loader 
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var $: any;
 
 @Component({
@@ -15,16 +17,24 @@ export class PostComponent implements OnInit {
   private postform;
   deals = [];
   productData = {
+    name:'',
+    quantity:'',
+    price:'',
     accountId:'',
     qnty:'',
     category:'',
     date: new Date().toLocaleDateString(),
-    avlPlace:''
+    avlPlace:'',
+    description:''
   };
+  id:any;
+  @ViewChild('postform') form
+  dealslists = [];
   success: any
+  success1:any
   
   
-  constructor(private _dealsService:DealsService,private route:Router) {
+  constructor(private _dealsService:DealsService,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
 
    this.productData.qnty = '';
    this.productData.category = '';
@@ -35,19 +45,49 @@ export class PostComponent implements OnInit {
   
   ngOnInit() {
 
-    // this.accountId = JSON.parse(localStorage.getItem('currentUser'));
-    //    console.log(this.accountId);
-    // err =>{
-    //   if(err instanceof HttpErrorResponse){
-    //    if(err.status === 401){
-    //      this.route.navigate(['/login'])
-    //    }
-    //   }
-    // }
-  }
+    this.id = this.router.snapshot.params['id']
 
+    // if(this.id == null){
+    //   //alert("dsfg");
+    //   document.getElementById('update').style.display='none';
+    // }
+    this.loadingCtrl.show();
+    this._dealsService.getDeals()
+  .subscribe(
+    res=>{
+      this.loadingCtrl.hide();
+      this.dealslists = res
+      
+      for(let i=0; i < this.dealslists.length; i++){
+        if(this.id == this.dealslists[i]._id){
+          this.productData.category = this.dealslists[i].category
+          this.productData.name = this.dealslists[i].name
+          this.productData.quantity = this.dealslists[i].quantity
+          this.productData.qnty = this.dealslists[i].qnty
+          this.productData.price = this.dealslists[i].price
+          this.productData.description = this.dealslists[i].description
+          this.productData.avlPlace = this.dealslists[i].avlPlace
+        }
+      }
+
+    },
+    err=>{
+      console.log(err)
+    }
+  )
+
+  
+
+  // if(this.id !== null && this.id !== ''){
+  //   //alert("dsfg");
+  //   document.getElementById('save').style.display='none';
+  //   document.getElementById('update').style.display='block';
+  // }
+
+}
 
   postProduct(){
+   
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
     let curntDte = new Date().toLocaleDateString();
     this.productData.date = curntDte
@@ -60,10 +100,12 @@ export class PostComponent implements OnInit {
         //this.route.navigate[('/deals')]
 
         this.success = "Posted successfully!"
-
+      
         setTimeout(() => {
           // swal.close();
+          this.loadingCtrl.show();
           this.route.navigate(['user-deals']);
+          this.loadingCtrl.hide();
       }, 2000);
       
       err =>{
@@ -79,6 +121,29 @@ export class PostComponent implements OnInit {
       )
   }
 
+  update(){
+    //console.log(this.deallistobj)
+    let curntDte = new Date().toLocaleDateString();
+    this.productData.date = curntDte
+    this._dealsService.editDeals(this.productData,this.id)
+    .subscribe(
+
+      res=>{console.log(this.productData)
+ 
+        this.success1 = "Updated successfully!"
+
+        setTimeout(() => {
+          // swal.close();
+          this.loadingCtrl.show();
+          this.route.navigate(['user-deals']);
+          this.loadingCtrl.hide();
+      }, 2000);
+      },
+      err=>console.log(err),
+
+    )
+  }
+    
   
 
   handleInput(evt)

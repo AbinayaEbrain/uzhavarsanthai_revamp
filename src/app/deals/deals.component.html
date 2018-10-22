@@ -12,7 +12,8 @@
       <p class="no_deals_found">{{errMsg}}</p>
 
   <div class="row mt-5">
-    <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals | filterdata: queryString  : 'avlPlace'">
+    <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals | filterdata: queryString  : 'avlPlace' | paginate: { itemsPerPage:6,currentPage:p }">
+            
         <div class="card">
            <table>
               <div class="title">
@@ -24,47 +25,39 @@
                   <tr>
                       <td><strong>Category &nbsp; </strong></td>
                       <td>:</td>
-                      <td><strong>&nbsp;&nbsp;{{deal.category}}</strong></td>
+                      <td>&nbsp;&nbsp;{{deal.category}}</td>
                     </tr>
                 <tr>
                   <td><strong>Name &nbsp;</strong></td>
                   <td>:</td>
-                  <td><strong>&nbsp;&nbsp;{{deal.name}}</strong></td>
+                  <td>&nbsp;&nbsp;{{deal.name}}</td>
                 </tr>
                 <tr>
                     <td><strong>Quantity &nbsp;</strong></td>
                     <td>:</td>
-                    <td><strong>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</strong></td>
+                    <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
                 </tr>
                 <tr>
                     <td><strong>Price / kg &nbsp;</strong></td>
                     <td>:</td>
-                    <td><strong>&nbsp;&nbsp;{{deal.price}}</strong></td>
+                    <td>&nbsp;&nbsp;{{deal.price}}</td>
                 </tr>
                 <tr>
                     <td><strong>Posted On &nbsp;</strong></td>
                     <td>:</td>
-                    <td><strong>&nbsp;&nbsp;{{deal.date}}</strong></td>
+                    <td>&nbsp;&nbsp;{{deal.date}}</td>
                 </tr>
+                <tr>
+                    <td><strong>Available Place &nbsp;</strong></td>
+                        <td>:</td>
+                        <td>&nbsp;&nbsp;{{deal.avlPlace}}</td>
+                    </tr>
           </div>
           </table>
-            <a  class="btn btn-primary mb-3"  routerLink= "/viewmore/{{deal.accountId}}"><strong>View Contact Details</strong></a>
+            <a  class="btn btn-primary mb-3"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
         </div>
       </div>
+      <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
   </div>
 </div>
 </div>
-<style>
-  @media only screen and (max-width: 600px) {
-    .bg {
-      background-attachment: fixed;
-        height: 100%;
-    }
-}
-@media only screen and (min-width: 600px) {
-    .bg {
-      background-attachment: fixed;
-        height: 100%;
-    }
-}
-</style>

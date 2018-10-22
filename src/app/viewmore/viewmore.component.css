@@ -47,20 +47,13 @@
   margin-left: -80px
 }
 .bg {
-    /* The image used */
-    background: url(./images/1.jpg);
-  
-    /* Full height */
-
-    height: 100vh; 
-    /* opacity: 0.5; */
-  
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     
-    width: 100%;
+    background: url(./images/1.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: -webkit-fill-available;
       
   
   }

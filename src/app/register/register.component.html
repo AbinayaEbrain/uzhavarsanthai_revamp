@@ -32,7 +32,7 @@
                   <div class="form-group  mb-5 mt-2">
                       <!-- <label for="sel1">Select</label> -->
                       <select required class="form-control slect"  #gender="ngModel" name="gender" [class.is-invalid]="gender.invalid && gender.touched" ngModel [(ngModel)]="registeredUserData.gender">
-                        <option value="" disabled>Gender</option>
+                        <option value="">Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                       </select>
@@ -68,7 +68,7 @@
                       <div class="form-group mb-5 mt-2">
                          
                           <select required class="form-control slect"  #location="ngModel" name="location" [class.is-invalid]="location.invalid && location.touched" ngModel [(ngModel)]="registeredUserData.address.location">
-                                <option value="" disabled>Select your state</option>
+                                <option value="">Select your state</option>
                                 <option value="Tamilnadu">Tamilnadu</option>
                                 <option value="Kerala">Kerala</option>
                               </select>
@@ -119,10 +119,4 @@
               </div>
       
   </div>
-  <style>
-    @media only screen and (max-width: 600px) {
-      .bg1 {
-          height: 100%;
-      }
-  }
-  </style>
+  

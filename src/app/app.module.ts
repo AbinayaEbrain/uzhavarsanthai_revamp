@@ -12,8 +12,11 @@ import { UserDealsComponent } from './user-deals/user-deals.component';
 import { FilterdataPipe } from './filterdata.pipe';
 import { ViewmoreComponent } from './viewmore/viewmore.component';
 import {PasswordValidatorDirective} from '../app/register/password.validator.directive';
-import { UserDealsEditComponent } from './user-deals-edit/user-deals-edit.component'
- 
+import { UserDealsEditComponent } from './user-deals-edit/user-deals-edit.component';
+// loader  
+import { NgxSpinnerModule } from 'ngx-spinner'; 
+//pagination
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { UserDealsEditComponent } from './user-deals-edit/user-deals-edit.compon
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule,
+    NgxPaginationModule
   ],
   providers: [AuthService,DealsService,AuthGuard,
   {

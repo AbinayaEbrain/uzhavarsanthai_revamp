@@ -22,7 +22,6 @@ export class UserDealsEditComponent implements OnInit {
     description:'',
     date:new Date().toLocaleDateString(),
     avlPlace:''
-
   }
   constructor(private  _dealsService:DealsService,private route:ActivatedRoute,private router:Router) { }
 
@@ -30,38 +29,9 @@ export class UserDealsEditComponent implements OnInit {
 
     
     this.InitialCall();
-    // this._dealsService.getDeals();
 
     this.id = this.route.snapshot.params['id']
-    // console.log(this.id)
-    this._dealsService.getDeals()
-    .subscribe(
-      res=>{
-        this.dealslists = res
-        // console.log(this.dealslists)
-        for(let i=0; i < this.dealslists.length; i++){
-          if(this.id == this.dealslists[i]._id){
-            this.deallistobj.category = this.dealslists[i].category
-            this.deallistobj.name = this.dealslists[i].name
-            this.deallistobj.quantity = this.dealslists[i].quantity
-            this.deallistobj.qnty = this.dealslists[i].qnty
-            this.deallistobj.price = this.dealslists[i].price
-            this.deallistobj.description = this.dealslists[i].description
-            this.deallistobj.avlPlace = this.dealslists[i].avlPlace
-            // console.log(this.deallistobj.productCatogory)
-            // console.log( this.deallistobj.productName)
-            // console.log(this.deallistobj.productQty )
-            // console.log( this.deallistobj.productUnit)
-            // console.log(this.deallistobj.productCost)
-            // console.log(this.deallistobj.productDescription)
-          }
-        }
-
-      },
-      err=>{
-        console.log(err)
-      }
-    )
+   
   }
 
 InitialCall() {

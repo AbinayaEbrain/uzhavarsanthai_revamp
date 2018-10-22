@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router'
 import { AuthService } from '../auth.service';
 import { DealsService } from '../deals.service';
-
+// loader 
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,14 +16,20 @@ export class LoginComponent implements OnInit {
   errormsg;
   id : any
 
-  constructor(private router:Router,private _auth:AuthService,private _dealsService:DealsService) { }
+  constructor(private router:Router,private _auth:AuthService,private _dealsService:DealsService,public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.loadingCtrl.show();
+    setTimeout(() => {
+      // swal.close();
+      this.loadingCtrl.hide();
+  }, 1000);
+   
   }
-
+  
   logform(){
     // console.log(this.loginUserData);
-  
+    this.loadingCtrl.show();
     this._auth.logInUser(this.userData)
       .subscribe(
        res =>{
@@ -37,6 +44,7 @@ export class LoginComponent implements OnInit {
           console.log()
           // localStorage.setItem('id',data._id)
           //  localStorage.setItem('userDeviceId', btoa(data));
+          this.loadingCtrl.hide();
           this.router.navigate(['/post']);
 
        },

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DealsService } from '../deals.service';
 import { Router} from '@angular/router';
 import {ActivatedRoute, Params} from '@angular/router'
-
+// loader 
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-viewmore',
   templateUrl: './viewmore.component.html',
@@ -10,8 +11,10 @@ import {ActivatedRoute, Params} from '@angular/router'
 })
 export class ViewmoreComponent implements OnInit {
 
+ 
   id = '';
   viewmore = [];
+  viewPost = [];
   register = {
     firstName : '',
     lastName:'',
@@ -23,23 +26,61 @@ export class ViewmoreComponent implements OnInit {
       location:'',
     }
   }
+  postProduct = {
+    category:'',
+    name:'',
+    quantity:'',
+    qnty:'',
+    price:'',
+    description:'',
+    accountId:'',
+    date:'',
+    avlPlace:''
+  }
   userName = '';
 
-  constructor(private _dealsService:DealsService,private router:Router,private route:ActivatedRoute) { }
+  constructor(private _dealsService:DealsService,private router:Router,private route:ActivatedRoute,public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
 
    //this.userName = JSON.parse(localStorage.getItem('currentUser')).firstname;
 
     this.id = this.route.snapshot.params['id']
-      this._dealsService.getDetails()
+    console.log( this.id)
+    this.loadingCtrl.show();
+      this._dealsService.getDeals()
         .subscribe(
           res=>{
-            this.viewmore = res
-           console.log(this.viewmore)
+            this.loadingCtrl.hide();
+            this.viewPost = res
+           console.log(this.viewPost)
+            for(let i=0; i < this.viewPost.length; i++){
+              if(this.id == this.viewPost[i]._id){
+               this.postProduct.category =  this.viewPost[i].category;
+               this.postProduct.name =  this.viewPost[i].name;
+               this.postProduct.quantity = this.viewPost[i].quantity;
+               this.postProduct.qnty = this.viewPost[i].qnty;
+               this.postProduct.price = this.viewPost[i].price;
+               this.postProduct.description = this.viewPost[i].description;
+               this.postProduct.avlPlace = this.viewPost[i].avlPlace;
+               this.postProduct.accountId = this.viewPost[i].accountId;
+              
+              }
+            }
+          },
+          err=> console.log(err)
+        )
+        this.loadingCtrl.show();
+        this._dealsService.getDetails()
+        .subscribe(
+          res => {
+            this.loadingCtrl.hide();
+            this.viewmore = res;
+            console.log(this.viewmore)
             for(let i=0; i < this.viewmore.length; i++){
-              if(this.id == this.viewmore[i]._id){
+              if(this.postProduct.accountId == this.viewmore[i]._id){
                 console.log(this.viewmore[i]._id)
+                console.log(this.postProduct.accountId )
                this.register.firstName =  this.viewmore[i].firstname;
                this.register.lastName =  this.viewmore[i].lastName;
                this.register.phone = this.viewmore[i].phone;
@@ -51,7 +92,7 @@ export class ViewmoreComponent implements OnInit {
               }
             }
           },
-          err=> console.log(err)
+          err => console.log(err)
         )
   }
 

@@ -62,7 +62,7 @@
                         <label class="form-control-placeholder" for="category">Category</label>
                         <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span>   -->
                         <select required class="form-control slect"  #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel  [(ngModel)]="productData.qnty" >
-                            <option value="" disabled>Unit</option>
+                            <option value="">Unit</option>
                             <option value="Grams">Grams</option>
                             <option value="Kg">Kg</option>
                             <option value="Ltre">Ltre</option>
@@ -110,17 +110,29 @@
                 </div> -->
                 </div>
 
-                <div class="row">
+                <div class="row" id="save">
                     <div class="col-md-4"></div>
-                    <div class="col-md-4 col-sm-6 col-6">
-                        <button class="btn mt-4" type="submit"  [disabled]="postform.form.invalid" (click)="postProduct()">Submit</button>
+                    <div class="col-md-3 col-sm-6 col-6">
+                        <button class="btn mt-4" type="submit" [disabled]="postform.form.invalid" (click)="postProduct()">Submit</button>
                       </div>
-                      <div class="col-md-4 col-sm-6 col-6">
+                      <div class="col-md-3 col-sm-6 col-6">
+                        <button class="btn mt-4" type="submit" (click)="update()" routerLink="/user-deals">Update</button>
+                      </div>
+                      <div class="col-md-2 col-sm-6 col-6">
                         <button type="reset" class="btn mt-4 btn1">Reset</button>
                       </div>
              </div>
+             <!-- <div class="row" id="update">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 col-sm-6 col-6">
+                    <button class="btn mt-4" type="submit" (click)="update()" routerLink="/user-deals">Update</button>
+                  </div>
+                  <div class="col-md-4 col-sm-6 col-6">
+                    <button type="reset" class="btn mt-4 btn1">Reset</button>
+                  </div>
+            </div> -->
         </form>
-            </div>
+      </div>
 </div>
 <style>
     @media only screen and (max-width: 600px) {

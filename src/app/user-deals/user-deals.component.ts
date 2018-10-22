@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DealsService } from '../deals.service';
 import {ActivatedRoute} from '@angular/router';
 import {Router, ParamMap} from '@angular/router';
-
+// loader 
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-user-deals',
   templateUrl: './user-deals.component.html',
@@ -16,15 +17,22 @@ export class UserDealsComponent implements OnInit {
   id:any;
   errMsg : any
 
-  constructor(private  _dealsService:DealsService,private route:ActivatedRoute,private router:Router) { }
+  constructor(private  _dealsService:DealsService,private route:ActivatedRoute,private router:Router,public loadingCtrl: NgxSpinnerService) { 
+    for(let i=1;i<=1; i++){
+      this.userDeals.push('Angular ${i}.0');
+      }
+    }
+  
 
   ngOnInit() {
 
     this.userName = JSON.parse(localStorage.getItem('currentUser'));
     console.log(this.userName)
+    this.loadingCtrl.show();
     this._dealsService.getDeals()
       .subscribe(
         res =>{
+          this.loadingCtrl.hide();
           let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
           let j = 0;
           

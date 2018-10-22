@@ -13,16 +13,17 @@
     background: url();
   } */
 
-  .card{
+  
+  /* .card{
     /* margin: 10px; */
-   border-radius: 0px 20px;
+   /* border-radius: 0px 20px; */
    /*background-color: #23dfe8;
      background-color: rgb(252, 176, 59); */
-   background-color: #032b31;
-    height: 350px;
+   /* background-color: #032b31;
+    height: 350px; */
     /* width: 300px; */
-    color: aliceblue;
-  }
+    /* color: aliceblue; */
+  /* }  */
   .title{
     border-radius: 0px 20px 0px 20px;
     height: 45px;
@@ -35,9 +36,9 @@
     color: #fff;
     font-size: 18px
   }
-  .card-body{
+  /* .card-body{
     font-size: 17px;
-  }
+  } */
   /* .btnRadius{
     border-radius: 25px !important;
   } */
@@ -63,10 +64,10 @@
     font-size: 18px
   }
 
-  .btn-primary{
+  /* .btn-primary{
     border-color: #072304;
     background-color: #072304;
-  }
+  } */
   .btn-primary1{ 
     margin: auto;
     border-radius: 25px ;
@@ -80,15 +81,14 @@
     background-color:  green;
   }
   .bg {
-    background: url(./images/6.jpg);
-    height: 100%; 
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url(./images/6.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    width: 100%;
-    background-attachment: fixed;
+    min-height: -webkit-fill-available;
   }
-  .card-body{
+  /* .card-body{
     
   font-size: 17px;
   }
@@ -97,7 +97,7 @@
   }
   table{
     margin: auto;
-  }
+  } */
   .srchBox{
     border-radius: 50px;
     border-color: #f26532;
@@ -115,4 +115,9 @@
 }
 .srchBox:focus {
   width: 200px;
+}
+
+.Appbtn{
+  text-align: right;
+  padding: 0;
 }

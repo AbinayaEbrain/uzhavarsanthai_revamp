@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+/* 
+.ngx-pagination a, .ngx-pagination button {
+    color: rgb(255, 94, 0) !important;
+    display: block;
+    padding: 0.1875rem 0.625rem;
+    border-radius: 5px !important;
+    font-weight: bold !important;
+  }
+  .ngx-pagination .disabled {
+    padding: 0.1875rem 0.625rem;
+    color: green !important;
+    cursor: default;
+  }
+  
+  .ngx-pagination .current {
+    padding: 0.1875rem 0.625rem;
+    background: #2199e8;
+    color: #fefefe;
+    cursor: default;
+    font-weight: 600;
+  } */

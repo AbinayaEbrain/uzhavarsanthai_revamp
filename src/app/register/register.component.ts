@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router} from '@angular/router';
-
+// loader 
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var swal :any;
 
 @Component({
@@ -22,7 +23,7 @@ export class RegisterComponent implements OnInit {
   errormsg:any
  
   
-  constructor(private _auth:AuthService,private router:Router) { 
+  constructor(private _auth:AuthService,private router:Router,public loadingCtrl: NgxSpinnerService) { 
 
   // this.registeredUserData.address = {};
 
@@ -31,10 +32,16 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadingCtrl.show();
+    setTimeout(() => {
+      // swal.close();
+      this.loadingCtrl.hide();
+  }, 1000);
   }
 
   post(){
     // console.log(this.registeredUserData);
+    this.loadingCtrl.show();
     this._auth.registerUser(this.registeredUserData)
       .subscribe( 
         res =>{
@@ -45,10 +52,11 @@ export class RegisterComponent implements OnInit {
            //this.router.navigate(['/login'])
            this.success = "Registered successfully!"
 
-           setTimeout(() => {
+           //setTimeout(() => {
             // swal.close();
+            this.loadingCtrl.hide();
             this.router.navigate(['login']);
-        }, 2000);
+       // }, 2000);
 
         if(res.statusText == 'Unauthorized'){
           //console.log('Ooops!');

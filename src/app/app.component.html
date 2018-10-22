@@ -13,13 +13,13 @@
           <a class="nav-link" routerLink="/register" *ngIf="!_authService.loggedIn()" routerLinkActive="active">Register</a>
         </li> -->
          <li class="nav-item">
-              <a class="nav-link" routerLink="/post"  routerLinkActive="active">Post</a>
+              <a class="nav-link" routerLink="/post" *ngIf="_authService.loggedIn()"  routerLinkActive="active">Post</a>
          </li>
          <li class="nav-item">
-                <a class="nav-link" routerLink="/deals"  routerLinkActive="active">Deals</a>
+                <a class="nav-link" routerLink="/deals" *ngIf="!_authService.loggedIn()" routerLinkActive="active">Deals</a>
          </li>
          <li class="nav-item">
-          <a class="nav-link" routerLink="/user-deals" *ngIf="_authService.loggedIn()" routerLinkActive="active">UserDeals</a>
+          <a class="nav-link" routerLink="/user-deals" *ngIf="_authService.loggedIn()" routerLinkActive="active">MyDeals</a>
         </li>
          <li class="nav-item">
           <a class="nav-link" style="cursor: pointer;" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">Logout</a>
@@ -27,6 +27,8 @@
       </ul>
     </div>
   </nav>
-  
+  <ngx-spinner >
+      <img class="loading" width="200px" height="200px" src="../assets/Images/15a93c_5c5da7dfc3284ef48ac38f86d4cf00ab_mv2.gif"/>
+  </ngx-spinner>
   <router-outlet></router-outlet>
   

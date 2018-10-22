@@ -51,6 +51,11 @@ const routes: Routes = [
     path : 'post', 
     component: PostComponent,
     canActivate:[AuthGuard]
+  },
+  { 
+    path : 'post/:id', 
+    component: PostComponent,
+   
   }
  
 ];
