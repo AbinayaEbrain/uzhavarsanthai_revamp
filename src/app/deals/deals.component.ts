@@ -28,8 +28,6 @@ export class DealsComponent implements OnInit {
    }
 
   ngOnInit() {
-   
-
    // this.userName = JSON.parse(localStorage.getItem('currentUser'));
    //console.log(this.userName)
    this.loadingCtrl.show();
