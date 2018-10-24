@@ -11,7 +11,14 @@ const postSchema = new Schema({
     description:String,
     accountId:String,
     date:String,
-    avlPlace:String
+    avlPlace:{
+        avlplaceName:String,
+            latitude:String,
+            longtitude:String
+
+        
+    },
+   
 })
 
 module.exports = mongoose.model('post',postSchema,'post')

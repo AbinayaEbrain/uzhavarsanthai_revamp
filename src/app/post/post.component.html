@@ -28,19 +28,18 @@
                   <!-- <input type="text"  #category="ngModel" [class.is-invalid]="category.invalid && category.touched" ngModel name="category" class="form-control"  autocomplete="off" required>
                   <label class="form-control-placeholder" for="category">Category</label>
                   <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span>   -->
-                  <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.category" name="category" [class.is-invalid]="category.invalid && category.touched" ngModel>
+                    <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.category" name="category" [class.is-invalid]="category.invalid && category.touched" ngModel>
                       <option value="">Category</option>
                       <option value="Vegetable">Vegetable</option>
                       <option value="Fruits">Fruits</option>
                       <option value="Grains">Grains</option>
-
                     </select>
                 </div>
                 <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span> 
               </div> 
       <div class="col-md-4">    
               <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
-                <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)" [(ngModel)]="productData.name" pattern="[a-zA-Z]+" name="name" class="form-control"  autocomplete="off"  required>
+                <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)" [(ngModel)]="productData.name"  name="name" class="form-control"  autocomplete="off"  required>
                 <label class="form-control-placeholder" for="name">Product Name</label>
                 <span class="text-danger float-left" [class.d-none] = "name.valid || name.untouched">Product Name is required</span>  
               </div>
@@ -86,15 +85,23 @@
                     <div class="form-group mb-5 mt-2">
                         <!-- <input type="text"  #avlPlace="ngModel" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel  [(ngModel)]="productData.avlPlace"  name="avlPlace" class="form-control"  autocomplete="off" required>
                         <label class="form-control-placeholder" for="date">Available Place</label> -->
-                        <select required class="form-control slect"  #avlPlace="ngModel" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel  [(ngModel)]="productData.avlPlace" >
+                        <!-- <select id="address" required class="form-control slect"  #avlplaceName="ngModel" name="avlplaceName" [class.is-invalid]="avlplaceName.invalid && avlplaceName.touched" ngModel  [(ngModel)]="productData.avlPlace.avlplaceName" >
                             <option value="">Available Place</option>
                             <option value="Trichy">Trichy</option>
                             <option value="Thanjavur">Thanjavur</option>
                             <option value="Orathanadu">Orathanadu</option>
+                          </select> -->
+
+                          <select id="address">
+                            <option value="">Available Place</option>
+                            <option value="Trichy">Trichy</option>
+                            <option value="Thanjavur">Thanjavur</option>
+                            <option value="Orathanadu">Orathanadu</option>
+                             <option value="America">America</option>
                           </select>
-                          
+                          <button id="btn" (click)="getLatitudeLongitude(callback,address)">Get LatLong</button>
                       </div>
-                      <span class="text-danger float-left" [class.d-none] = "avlPlace.valid || avlPlace.untouched">Place is required</span>
+                      <!-- <span class="text-danger float-left" [class.d-none] = "avlplaceName.valid || avlplaceName.untouched">Place is required</span> -->
                 </div> 
                 <div class="col-md-4">
                     <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
@@ -113,7 +120,7 @@
                 <div class="row" id="save">
                     <div class="col-md-4"></div>
                     <div class="col-md-3 col-sm-6 col-6">
-                        <button class="btn mt-4" type="submit" [disabled]="postform.form.invalid" (click)="postProduct()">Submit</button>
+                        <button class="btn mt-4" type="submit" [disabled]="postform.form.invalid" (click)="postProduct(callback,productlPlace)">Submit</button>
                       </div>
                       <div class="col-md-3 col-sm-6 col-6">
                         <button class="btn mt-4" type="submit" (click)="update()" routerLink="/user-deals">Update</button>
@@ -121,6 +128,7 @@
                       <div class="col-md-2 col-sm-6 col-6">
                         <button type="reset" class="btn mt-4 btn1">Reset</button>
                       </div>
+                     
              </div>
              <!-- <div class="row" id="update">
                 <div class="col-md-4"></div>

@@ -24,7 +24,12 @@ export class PostComponent implements OnInit {
     qnty:'',
     category:'',
     date: new Date().toLocaleDateString(),
-    avlPlace:'',
+    avlPlace:{
+      avlplaceName:String,
+      latitude:String,
+      longtitude:String
+
+    },
     description:''
   };
   id:any;
@@ -32,13 +37,13 @@ export class PostComponent implements OnInit {
   dealslists = [];
   success: any
   success1:any
-  
+  geocoder:any
   
   constructor(private _dealsService:DealsService,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
 
    this.productData.qnty = '';
    this.productData.category = '';
-   this.productData.avlPlace = ''
+   //this.productData.avlPlace = 
   
    }
 
@@ -87,6 +92,8 @@ export class PostComponent implements OnInit {
 }
 
   postProduct(){
+
+
    
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
     let curntDte = new Date().toLocaleDateString();
@@ -115,11 +122,35 @@ export class PostComponent implements OnInit {
            }
           }
         }
+
+
       }
       
        
       )
   }
+
+  getLatitudeLongitude(callback, address) {
+    alert('jfgfg')
+        // If adress is not supplied, use default value 'Ferrol, Galicia, Spain'
+        address = address || 'Ferrol, Galicia, Spain';
+        // Initialize the Geocoder
+        this.geocoder = new google.maps.Geocoder();
+        if (this.geocoder) {
+        alert('1')
+        this.geocoder.geocode({
+                'address': address
+            }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                 alert(status);
+                    (results[0]);
+                    console.log(results)
+                }
+            });
+        }
+    }
+    
+    
 
   update(){
     //console.log(this.deallistobj)
@@ -154,5 +185,6 @@ export class PostComponent implements OnInit {
 				return true;
 				return false;
       } 
+     
       
 }
