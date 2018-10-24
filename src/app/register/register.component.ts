@@ -55,12 +55,13 @@ export class RegisterComponent implements OnInit {
            //setTimeout(() => {
             // swal.close();
             this.loadingCtrl.hide();
-            this.router.navigate(['login']);
+            this.router.navigate(['user-deals']);
        // }, 2000);
 
         if(res.statusText == 'Unauthorized'){
           //console.log('Ooops!');
           this.errormsg ='Check Email and Password !'
+          this.loadingCtrl.hide();
         }
       },
         err =>{
@@ -68,6 +69,7 @@ export class RegisterComponent implements OnInit {
           if(err.statusText == 'Unauthorized'){
             console.log('Ooops!');
              this.errormsg ='Phone Number already exist!'
+             this.loadingCtrl.hide();
            }
         }
       

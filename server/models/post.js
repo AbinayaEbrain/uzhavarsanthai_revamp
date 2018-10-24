@@ -12,6 +12,7 @@ const postSchema = new Schema({
     accountId:String,
     date:String,
     avlPlace:String
+    
 })
 
 module.exports = mongoose.model('post',postSchema,'post')

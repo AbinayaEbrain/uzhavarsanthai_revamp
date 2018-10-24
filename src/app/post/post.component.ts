@@ -16,6 +16,8 @@ export class PostComponent implements OnInit {
 
   private postform;
   deals = [];
+  categoryArr = [];
+  subCateArr = [];
   productData = {
     name:'',
     quantity:'',
@@ -36,15 +38,18 @@ export class PostComponent implements OnInit {
   
   constructor(private _dealsService:DealsService,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
 
+  // this.getDropDownDatas();
    this.productData.qnty = '';
-   this.productData.category = '';
+   this.productData.category ='';
    this.productData.avlPlace = ''
+  // this.productData.category. = ''
   
    }
 
   
   ngOnInit() {
 
+  //  this.getDropDownDatas();
     this.id = this.router.snapshot.params['id']
 
     // if(this.id == null){
@@ -76,15 +81,51 @@ export class PostComponent implements OnInit {
     }
   )
 
-  
+  //category
 
-  // if(this.id !== null && this.id !== ''){
-  //   //alert("dsfg");
-  //   document.getElementById('save').style.display='none';
-  //   document.getElementById('update').style.display='block';
-  // }
+  this._dealsService.getCategory()
+      .subscribe(
+          res => {
+            this.categoryArr = res;
+            console.log(this.categoryArr)
+          },
+      
+          err => {
+              this.categoryArr = [];
+          });
+
+
+//subcategory
+   this._dealsService.getSubCategory()
+       .subscribe(
+           res => {
+             this.subCateArr = res;
+             console.log(this.subCateArr)
+            },
+          
+             err => {
+               this.subCateArr = [];
+             });
+    
 
 }
+
+
+onCategoryChange(){
+  let i =0
+  // this.productData.category.forEach(element => {
+    
+  // });(element => {
+  //   console.log(element)
+    // if(element.productId == this.subCateArr[i].productId){
+    //   console.log(this.subCateArr[i].productId)
+    //   this.subCateArr = element.productCategory;
+    // }
+  
+ 
+}
+        
+
 
   postProduct(){
    
@@ -154,5 +195,7 @@ export class PostComponent implements OnInit {
 				return true;
 				return false;
       } 
-      
+
+
+     
 }

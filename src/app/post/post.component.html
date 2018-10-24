@@ -28,11 +28,13 @@
                   <!-- <input type="text"  #category="ngModel" [class.is-invalid]="category.invalid && category.touched" ngModel name="category" class="form-control"  autocomplete="off" required>
                   <label class="form-control-placeholder" for="category">Category</label>
                   <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span>   -->
-                  <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.category" name="category" [class.is-invalid]="category.invalid && category.touched" ngModel>
+                  <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.category" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel (change)="onCategoryChange()">
                       <option value="">Category</option>
                       <option value="Vegetable">Vegetable</option>
                       <option value="Fruits">Fruits</option>
                       <option value="Grains">Grains</option>
+                      <!-- <option selected="" disabled="" value="">Category</option>
+                      <option *ngFor="let val of categoryArr" value="{{val.productCategory}}">{{val.productCategory}}</option> -->
 
                     </select>
                 </div>
@@ -40,14 +42,20 @@
               </div> 
       <div class="col-md-4">    
               <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
-                <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)" [(ngModel)]="productData.name" pattern="[a-zA-Z]+" name="name" class="form-control"  autocomplete="off"  required>
+                <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)" [(ngModel)]="productData.name" name="name" class="form-control"  autocomplete="off"  required>
                 <label class="form-control-placeholder" for="name">Product Name</label>
                 <span class="text-danger float-left" [class.d-none] = "name.valid || name.untouched">Product Name is required</span>  
+
+                <!-- <select required class="form-control slect"  #name="ngModel" [(ngModel)]="productData.name" name="name" [class.is-invalid]="name.invalid && name.touched" ngModel>
+                    <option selected="" disabled="" value="">Product Name</option>
+                    <option *ngFor="let val of subCateArr" value="{{val.productName}}">{{val.productName}}</option>
+                    </select> -->
               </div>
+              <!-- <span class="text-danger float-left" [class.d-none] = "name.valid || name.untouched">Product Name is required</span> -->
         </div>  
             </div>
 
-            <div class="row">
+            <div class="row ">
                 <div class="col-md-4"></div>
                 <div class="col-md-3 col-sm-8 col-8">
                     <div class="form-group mb-5 mt-2">
@@ -71,7 +79,7 @@
                     </div> 
                
                 <div class="col-md-4">
-                    <div class="form-group mb-5 mt-2">
+                    <div class="form-group mb-5 mt-2 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-2">
                         <input type="text"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel name="price"  [(ngModel)]="productData.price"  class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  autocomplete="off" maxlength="4" required>
                         <label class="form-control-placeholder" for="price">Price (Per Kg)</label>
                         <span class="text-danger float-left" [class.d-none] = "price.valid || price.untouched">Price is required</span>  
