@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken')
 const router = express.Router()
 const User = require('../models/user')
 const Post = require('../models/post')
+const Category = require('../models/category')
+const subCategory = require('../models/subCategory')
 
 const mongoose = require('mongoose')
 const db ="mongodb://user01:user01@ds023704.mlab.com:23704/farmersdb"
@@ -127,6 +129,32 @@ router.post('/login',(req,res)=>{
 
 router.get('/deals',(req,res)=>{
     Post.find(function (err,result){
+        if(err){
+            console.log('no data')
+ 
+        }
+        else{
+         res.send(result)
+           
+        }
+    })
+ })
+
+ router.get('/category',(req,res)=>{
+    Category.find(function (err,result){
+        if(err){
+            console.log('no data')
+ 
+        }
+        else{
+         res.send(result)
+           
+        }
+    })
+ })
+
+ router.get('/subcategory',(req,res)=>{
+    subCategory.find(function (err,result){
         if(err){
             console.log('no data')
  

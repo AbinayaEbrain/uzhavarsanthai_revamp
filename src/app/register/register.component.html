@@ -98,10 +98,15 @@
                                 <div class="form-group mt-2">
                                     <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="registeredUserData.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
                                     <label class="form-control-placeholder" for="phone">Phone Number</label>
-                                    <span class="text-danger float-left" [class.d-none] = "phone.valid || phone.untouched">Phone Number is required</span>  
+
+                                    <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
+                                        <span class="text-danger float-left" *ngIf="phone.errors.required">Phone Number is required</span>
+                                    </div>
+
+                                    <span class="text-danger float-left" *ngIf="errormsg" [class.d-none] = "phone.invalid && phone.touched">{{errormsg}}</span>
+                                    <!-- <span class="text-danger float-left" [class.d-none] = "phone.valid || phone.untouched">Phone Number is required</span>   -->
                                   </div>
-                                
-                                    <span class="text-danger float-left" *ngIf="errormsg" style="font-weight: bold">{{errormsg}}</span>  
+                                <!-- <span class="text-danger float-left" *ngIf="errormsg" style="font-weight: bold">{{errormsg}}</span>   -->
 
                                   <!-- <button class="btn mb-5 float-left" type="submit" (click)="post()">Send OTP</button> -->
                             </div>

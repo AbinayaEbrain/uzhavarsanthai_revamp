@@ -8,7 +8,9 @@ export class DealsService {
 
   private _dealsUrl = "http://localhost:3200/api/deals";
   private _postUrl ="http://localhost:3200/api/post";
-  private _getUrl ="http://localhost:3200/api/details"
+  private _getUrl ="http://localhost:3200/api/details";
+  private _getCategoryUrl ="http://localhost:3200/api/category";
+  private _getSubCategoryUrl ="http://localhost:3200/api/subcategory";
 
   constructor(private http:HttpClient) { }
 
@@ -31,4 +33,13 @@ export class DealsService {
   deletedeal(id){
     return this.http.delete<any>(this._dealsUrl + "/" + id )
   }
+
+  getCategory(){
+    return this.http.get<any>(this._getCategoryUrl)
+  }
+
+  getSubCategory(){
+    return this.http.get<any>(this._getSubCategoryUrl)
+  }
+
 }
