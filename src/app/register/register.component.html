@@ -103,7 +103,7 @@
                                         <span class="text-danger float-left" *ngIf="phone.errors.required">Phone Number is required</span>
                                     </div>
 
-                                    <span class="text-danger float-left" *ngIf="errormsg" [class.d-none] = "phone.invalid && phone.touched">{{errormsg}}</span>
+                                    <span class="text-danger float-left"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="errormsg">{{errormsg}}</span>
                                     <!-- <span class="text-danger float-left" [class.d-none] = "phone.valid || phone.untouched">Phone Number is required</span>   -->
                                   </div>
                                 <!-- <span class="text-danger float-left" *ngIf="errormsg" style="font-weight: bold">{{errormsg}}</span>   -->

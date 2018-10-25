@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
 
        },
         err =>{
+          this.loadingCtrl.hide();
           if(err.statusText === 'Unauthorized'){
             console.log('Ooops!');
              this.errormsg ='Check Phone Number and Password !'

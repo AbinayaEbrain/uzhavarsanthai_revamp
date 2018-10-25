@@ -41,9 +41,10 @@ export class UserDealsComponent implements OnInit {
           for(let i=0; i < this.crdDeals.length; i++){
             if(acntID == this.crdDeals[i].accountId){
               this.userDeals[j] = this.crdDeals[i];
-              j++;
+             
           console.log(this.crdDeals[i]);
-          console.log(this.userDeals[j])
+          console.log(this.userDeals[j]);
+          j++;
             }
           }
           if (this.userDeals.length == 0){

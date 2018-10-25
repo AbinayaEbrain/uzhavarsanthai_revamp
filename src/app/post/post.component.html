@@ -92,22 +92,25 @@
                     <div class="form-group mb-5 mt-2">
                         <!-- <input type="text"  #avlPlace="ngModel" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel  [(ngModel)]="productData.avlPlace"  name="avlPlace" class="form-control"  autocomplete="off" required>
                         <label class="form-control-placeholder" for="date">Available Place</label> -->
-                        <!-- <select id="address" required class="form-control slect"  #avlplaceName="ngModel" name="avlplaceName" [class.is-invalid]="avlplaceName.invalid && avlplaceName.touched" ngModel  [(ngModel)]="productData.avlPlace.avlplaceName" >
+                        <select id="address" required class="form-control slect"  #avlplaceName="ngModel" name="avlplaceName" [class.is-invalid]="avlplaceName.invalid && avlplaceName.touched" ngModel  [(ngModel)]="productData.avlPlace.avlplaceName" (change)="getLatitudeLongitude()">
                             <option value="">Available Place</option>
                             <option value="Trichy">Trichy</option>
                             <option value="Thanjavur">Thanjavur</option>
-                            <option value="Orathanadu">Orathanadu</option>
-                          </select> -->
+                            <option value="Chennai">Chennai</option>
+                            <option value="Karur">Karur</option>
+                            <option value="Coimbatore">Coimbatore</option>
+                          </select>
 
-                          <select id="address">
+                          <!-- <select id="address">
                             <option value="">Available Place</option>
                             <option value="Trichy">Trichy</option>
                             <option value="Thanjavur">Thanjavur</option>
                             <option value="Orathanadu">Orathanadu</option>
                              <option value="America">America</option>
-                          </select>
-                          <button id="btn" (click)="getLatitudeLongitude(callback,address)">Get LatLong</button>
+                          </select> -->
+                          
                       </div>
+                      <!-- <button id="btn" (click)="getLatitudeLongitude()">Get LatLong</button> -->
                       <!-- <span class="text-danger float-left" [class.d-none] = "avlplaceName.valid || avlplaceName.untouched">Place is required</span> -->
                 </div> 
                 <div class="col-md-4">
@@ -129,7 +132,7 @@
                 <div class="row" id="save">
                     <div class="col-md-4"></div>
                     <div class="col-md-3 col-sm-6 col-6">
-                        <button class="btn mt-4" type="submit" [disabled]="postform.form.invalid" (click)="postProduct(callback,productlPlace)">Submit</button>
+                        <button class="btn mt-4" type="submit" [disabled]="postform.form.invalid" (click)="postProduct(result)">Submit</button>
                       </div>
                       <div class="col-md-3 col-sm-6 col-6">
                         <button class="btn mt-4" type="submit" (click)="update()" routerLink="/user-deals">Update</button>

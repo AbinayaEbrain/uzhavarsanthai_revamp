@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild} from '@angular/core';
+import { Component, OnInit,ViewChild, PLATFORM_INITIALIZER} from '@angular/core';
 import { DealsService } from '../deals.service';
 import { Router} from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -40,7 +40,9 @@ export class PostComponent implements OnInit {
   success: any
   success1:any
   geocoder:any
-  
+  latite:any
+  longti:any
+
   constructor(private _dealsService:DealsService,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
 
   // this.getDropDownDatas();
@@ -112,7 +114,7 @@ export class PostComponent implements OnInit {
                this.subCateArr = [];
              });
     
-
+              
 }
 
 
@@ -134,8 +136,8 @@ onCategoryChange(){
 
   postProduct(){
 
-
-   
+    this.productData.avlPlace.latitude = JSON.parse(localStorage.getItem('Address'));
+    this.productData.avlPlace.longtitude = JSON.parse(localStorage.getItem('Address1'));
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
     let curntDte = new Date().toLocaleDateString();
     this.productData.date = curntDte
@@ -166,32 +168,46 @@ onCategoryChange(){
 
 
       }
-      
-       
       )
   }
 
-  getLatitudeLongitude(callback, address) {
-    alert('jfgfg')
+  getLatitudeLongitude1(callback, address) {
+    //alert('jfgfg')
         // If adress is not supplied, use default value 'Ferrol, Galicia, Spain'
         address = address || 'Ferrol, Galicia, Spain';
         // Initialize the Geocoder
         this.geocoder = new google.maps.Geocoder();
         if (this.geocoder) {
-        alert('1')
+        //alert('1')
         this.geocoder.geocode({
                 'address': address
             }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
-                 alert(status);
-                    (results[0]);
+                 //alert(status);
+                 callback(results[0]);
+                
                     console.log(results)
+                    // let result = results.geometry.location.lat();
+                    // console.log(result)
                 }
             });
         }
     }
-    
-    
+
+    getLatitudeLongitude(){
+             let address =  this.productData.avlPlace.avlplaceName
+             this.getLatitudeLongitude1(this.showResult,address) 
+    }
+
+    showResult(result) {
+      // this.latite=result.geometry.location.lat()
+      // this.longti=result.geometry.location.lng()
+      localStorage.setItem('Address', JSON.stringify(result.geometry.location.lat()));
+      localStorage.setItem('Address1', JSON.stringify(result.geometry.location.lng()));
+      console.log(result.geometry.location.lat())
+      console.log(result.geometry.location.lng())
+      //callback(this.postProduct)
+    }
 
   update(){
     //console.log(this.deallistobj)

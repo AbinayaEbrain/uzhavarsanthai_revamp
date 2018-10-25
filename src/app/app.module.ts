@@ -15,6 +15,7 @@ import {PasswordValidatorDirective} from '../app/register/password.validator.dir
 import { UserDealsEditComponent } from './user-deals-edit/user-deals-edit.component';
 // loader  
 import { NgxSpinnerModule } from 'ngx-spinner'; 
+ //import {googlemaps} from '../../node_modules/';
 //pagination
 import { NgxPaginationModule } from 'ngx-pagination';
 

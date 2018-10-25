@@ -14,7 +14,7 @@
 
   <div class="row mt-5">
 
-    <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals | filterdata: queryString  : 'avlPlace' | paginate: { itemsPerPage:6,currentPage:p }">
+    <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of mapDeals | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }">
             
         <div class="card">
            <table>
@@ -52,7 +52,7 @@
                 <tr>
                     <td><strong>Available Place &nbsp;</strong></td>
                         <td>:</td>
-                        <td>&nbsp;&nbsp;{{deal.avlPlace}}</td>
+                        <td>&nbsp;&nbsp;{{deal.avlPlace.avlplaceName}}</td>
                     </tr>
           </div>
           </table>
