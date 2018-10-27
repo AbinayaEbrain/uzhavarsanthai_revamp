@@ -29,10 +29,12 @@
                   <label class="form-control-placeholder" for="category">Category</label>
                   <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span>   -->
                   <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.category" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel (change)="onCategoryChange()">
-                      <option value="">Category</option>
+                      <!-- <option value="">Category</option>
                       <option value="Vegetable">Vegetable</option>
                       <option value="Fruits">Fruits</option>
-                      <option value="Grains">Grains</option>
+                      <option value="Grains">Grains</option> -->
+                      <option selected="" disabled="" value="">Category</option>
+                      <option *ngFor="let val of categoryArr" value="{{val.productCategory}}">{{val.productCategory}}</option>
                     </select>
                 </div>
                 <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span> 
