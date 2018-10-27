@@ -95,6 +95,23 @@ router.post('/post',(req,res)=>{
     })
 })
 
+//admin
+
+router.post('/category',(req,res)=>{
+    let categoryData = req.body
+    let category = new Category(categoryData)
+    category.save((error,productData)=>{
+        if(error){
+            console.log(error)
+        }else{
+            
+            console.log(category);
+            res.status(200).send(productData)
+
+        }
+    })
+})
+
 router.post('/login',(req,res)=>{
     let userData = req.body
 

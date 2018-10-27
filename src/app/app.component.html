@@ -13,17 +13,20 @@
           <a class="nav-link" routerLink="/register" *ngIf="!_authService.loggedIn()" routerLinkActive="active">Register</a>
         </li> -->
          <li class="nav-item">
-              <a class="nav-link" routerLink="/post" *ngIf="_authService.loggedIn()"  routerLinkActive="active">Post</a>
+              <a class="nav-link" routerLink="/post" *ngIf="_authService.loggedIn() && !_authService.roleAdmin()"  routerLinkActive="active">Post</a>
          </li>
          <li class="nav-item">
                 <a class="nav-link" routerLink="/deals" *ngIf="!_authService.loggedIn()" routerLinkActive="active">Deals</a>
          </li>
          <li class="nav-item">
-          <a class="nav-link" routerLink="/user-deals" *ngIf="_authService.loggedIn()" routerLinkActive="active">MyDeals</a>
+          <a class="nav-link" routerLink="/user-deals" *ngIf="_authService.loggedIn() && !_authService.roleAdmin()" routerLinkActive="active">MyDeals</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin" *ngIf="_authService.roleAdmin() && _authService.loggedIn()" routerLinkActive="active">Admin</a>
         </li>
          <li class="nav-item">
           <a class="nav-link" style="cursor: pointer;" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">Logout</a>
-     </li>
+        </li>
       </ul>
     </div>
   </nav>

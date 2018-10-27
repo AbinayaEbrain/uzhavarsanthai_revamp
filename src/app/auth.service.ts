@@ -26,6 +26,17 @@ export class AuthService {
     return !!localStorage.getItem('token')
   }
 
+  roleAdmin(){
+    
+    let role = JSON.parse(localStorage.getItem('firstname'));
+   
+    if(role == 'Admin'){
+      return !!role
+   }
+
+  }
+
+
   //get token from interceptor
   getToken(){
     return localStorage.getItem('token')
@@ -36,6 +47,10 @@ export class AuthService {
     localStorage.removeItem('payload')
     localStorage.removeItem('currentUser')
     localStorage.removeItem('token')
+    localStorage.removeItem('Address')
+    localStorage.removeItem('Address1')
+    localStorage.removeItem('googleLat')
+    localStorage.removeItem('googleLong')
     this.route.navigate(['/deals'])
   }
 }

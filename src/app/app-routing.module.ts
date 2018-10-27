@@ -5,9 +5,11 @@ import { RegisterComponent } from './register/register.component';
 import { DealsComponent } from './deals/deals.component';
 import { PostComponent } from './post/post.component';
 import { AuthGuard } from './auth.guard';
+import { RoleGuardService as RoleGuard } from './role-guard.service';
 import { UserDealsComponent } from './user-deals/user-deals.component'
 import { ViewmoreComponent } from './viewmore/viewmore.component'
 import { UserDealsEditComponent } from './user-deals-edit/user-deals-edit.component'
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {
@@ -55,8 +57,11 @@ const routes: Routes = [
   { 
     path : 'post/:id', 
     component: PostComponent,
-   
-  }
+  },
+  { 
+    path: 'admin', 
+    component: AdminComponent, 
+}
  
 ];
 

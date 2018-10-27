@@ -18,6 +18,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
  //import {googlemaps} from '../../node_modules/';
 //pagination
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FilterdataPipe,
     ViewmoreComponent,
     PasswordValidatorDirective,
-    UserDealsEditComponent
+    UserDealsEditComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

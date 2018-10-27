@@ -40,11 +40,11 @@ export class DealsComponent implements OnInit {
   constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService){}
 
   ngOnInit() {
-   this.loadingCtrl.show();
+   //this.loadingCtrl.show();
    this._dealsService.getDeals()
       .subscribe(
         res =>{ 
-          this.loadingCtrl.hide();
+         // this.loadingCtrl.hide();
           this.crdDeals = res
 
           this.lat = localStorage.getItem('googleLat')

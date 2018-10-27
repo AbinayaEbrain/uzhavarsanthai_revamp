@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   userData={}
   errormsg;
   id : any
+  user:any
 
   constructor(private router:Router,private _auth:AuthService,private _dealsService:DealsService,public loadingCtrl: NgxSpinnerService) { }
 
@@ -37,16 +38,22 @@ export class LoginComponent implements OnInit {
           console.log(res.payload)
           console.log(res);
           localStorage.setItem('currentUser', JSON.stringify(res.user));
+          localStorage.setItem('firstname', JSON.stringify(res.user.firstname));
           localStorage.setItem('payload', JSON.stringify(res.payload));
           localStorage.setItem('token',res.token);
 
-          let user =  localStorage.getItem('currentUser');
-          console.log()
+          this.user =  JSON.parse(localStorage.getItem('firstname'));
+          console.log(this.user)
           // localStorage.setItem('id',data._id)
           //  localStorage.setItem('userDeviceId', btoa(data));
+          
+          if(this.user === "Admin"){
+            this.router.navigate(['/admin']);
+          }
+          else{
+            this.router.navigate(['/post']);
+          }
           this.loadingCtrl.hide();
-          this.router.navigate(['/post']);
-
        },
         err =>{
           this.loadingCtrl.hide();
