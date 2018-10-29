@@ -38,6 +38,10 @@ export class DealsService {
     return this.http.delete<any>(this._getCategoryUrl + "/" + id )
   }
 
+  deleteUser(id){
+    return this.http.delete<any>(this._getUrl + "/" + id )
+  }
+
 
   getCategory(){
     return this.http.get<any>(this._getCategoryUrl)

@@ -18,22 +18,22 @@
                             <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                 <thead style="text-align: center">
                                     <tr>
-                                        <th>Category</th>
-                                        <!-- <th>Name</th>
-                                        <th>Quantity</th>
-                                        <th>Price</th>
-                                        <th>Posted On</th>
+                                        <th>Name</th>
+                                        <th>Phone Number</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <!-- <th>Posted On</th>
                                         <th>City</th> -->
                                         <th class="disabled-sorting">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody style="text-align: center">
                                     <tr *ngFor="let deal of registerUser | paginate: { itemsPerPage:6,currentPage:p};">
-                                        <td>{{deal.firstname}}</td>
-                                        <!-- <td>{{deal.name}}</td>
-                                        <td>{{deal.quantity}}{{deal.qnty}}</td>
-                                        <td>{{deal.price}}</td>
-                                        <td>{{deal.date}}</td>
+                                        <td>{{deal.firstname}} {{deal.lastName}}</td>
+                                        <td>{{deal.phone}}</td>
+                                        <td>{{deal.address.city}}</td>
+                                        <td>{{deal.address.location}}</td>
+                                        <!-- <td>{{deal.date}}</td>
                                         <td>{{deal.avlPlace.avlplaceName}}</td> -->
                                         <td>
                                             <!-- <button class="btn btn-simple btn-info btn-icon like">
@@ -43,7 +43,7 @@
                                                  Edit
                                             </button>&nbsp;&nbsp; -->
                                             <button class="btn btn-simple btn-danger btn-icon remove" data-toggle="modal" data-target="#myModal" data-backdrop="static"
-                                             data-keyboard="false" routerLink="/category/{{deal._id}}">
+                                             data-keyboard="false" routerLink="/admin-user/{{deal._id}}">
                                                 <!-- <i class="fa fa-rupee"></i> -->Delete
                                             </button>
                                         </td>

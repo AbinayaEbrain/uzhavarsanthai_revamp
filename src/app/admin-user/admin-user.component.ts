@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DealsService } from '../deals.service';
+import {ActivatedRoute} from '@angular/router';
+import {Router, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-admin-user',
@@ -9,8 +11,9 @@ import { DealsService } from '../deals.service';
 export class AdminUserComponent implements OnInit {
 
   registerUser=[]
+  id:any
 
-  constructor(private _dealService:DealsService) { }
+  constructor(private _dealService:DealsService,private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
 
@@ -24,6 +27,20 @@ export class AdminUserComponent implements OnInit {
          }
        )
 
+  }
+
+  deleteuser(){
+    this.id = this.route.snapshot.params['id']
+    this._dealService.deleteUser(this.id)
+    .subscribe(
+       res=>{ console.log(res)
+       
+       
+       },
+       err=>{ console.log(err);
+      },
+    
+    )
   }
 
 }

@@ -221,6 +221,17 @@ router.delete('/category/:id',(req,res)=>{
     });
 });
 
+//delete user
+router.delete('/details/:id',(req,res)=>{
+    User.findByIdAndRemove(req.params.id,function(errors,deleteuser){
+        if(errors){
+            console.log("Error deleting" + errors);
+        }else{
+            res.json(deleteuser)
+
+        }
+    });
+});
 
  //update deals
  router.put('/deals/:id', function(req, res){
