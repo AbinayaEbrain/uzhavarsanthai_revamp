@@ -63,8 +63,7 @@ export class UserDealsComponent implements OnInit {
     this._dealsService.deletedeal(this.id)
     .subscribe(
        res=>{ console.log(res)
-       
-        
+     
        },
        err=>{ console.log(err);
       },

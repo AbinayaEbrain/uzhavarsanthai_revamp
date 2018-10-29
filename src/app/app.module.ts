@@ -19,6 +19,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 //pagination
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminComponent } from './admin/admin.component';
+import { CategoryComponent } from './category/category.component';
+import { AdminUserComponent } from './admin-user/admin-user.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { AdminComponent } from './admin/admin.component';
     ViewmoreComponent,
     PasswordValidatorDirective,
     UserDealsEditComponent,
-    AdminComponent
+    AdminComponent,
+    CategoryComponent,
+    AdminUserComponent
   ],
   imports: [
     BrowserModule,

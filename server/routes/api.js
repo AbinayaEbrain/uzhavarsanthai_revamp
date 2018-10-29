@@ -209,6 +209,18 @@ router.delete('/deals/:id',(req,res)=>{
     });
 });
 
+//delete category
+router.delete('/category/:id',(req,res)=>{
+    Category.findByIdAndRemove(req.params.id,function(errors,deleteuser){
+        if(errors){
+            console.log("Error deleting" + errors);
+        }else{
+            res.json(deleteuser)
+
+        }
+    });
+});
+
 
  //update deals
  router.put('/deals/:id', function(req, res){

@@ -56,33 +56,6 @@ export class AdminComponent implements OnInit {
 
   }
   
-  addCategory(){
-    
-    this.loadingCtrl.show();
-    this._adminService.addCate(this.cateData)
-      .subscribe(
-       res =>{
-          console.log(this.cateData)
-          console.log(res);
-          
-          this.loadingCtrl.hide();
-       },
-        err =>{
-          this.loadingCtrl.hide();
-          console.log(err)
-        }
-        
-     
-      )
-  }
-
-
-  register(){
-    this.router.navigate(['/register']);
-  }
-
-
-
 
 }
 

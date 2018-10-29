@@ -10,6 +10,8 @@ import { UserDealsComponent } from './user-deals/user-deals.component'
 import { ViewmoreComponent } from './viewmore/viewmore.component'
 import { UserDealsEditComponent } from './user-deals-edit/user-deals-edit.component'
 import { AdminComponent } from './admin/admin.component';
+import { CategoryComponent } from './category/category.component';
+import { AdminUserComponent } from './admin-user/admin-user.component';
 
 const routes: Routes = [
   {
@@ -61,6 +63,18 @@ const routes: Routes = [
   { 
     path: 'admin', 
     component: AdminComponent, 
+},
+{ 
+  path: 'category', 
+  component: CategoryComponent, 
+},
+{ 
+  path: 'category/:id', 
+  component: CategoryComponent, 
+},
+{ 
+  path: 'admin-user', 
+  component: AdminUserComponent, 
 }
  
 ];

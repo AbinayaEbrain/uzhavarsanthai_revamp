@@ -34,6 +34,11 @@ export class DealsService {
     return this.http.delete<any>(this._dealsUrl + "/" + id )
   }
 
+  deleteCate(id){
+    return this.http.delete<any>(this._getCategoryUrl + "/" + id )
+  }
+
+
   getCategory(){
     return this.http.get<any>(this._getCategoryUrl)
   }
