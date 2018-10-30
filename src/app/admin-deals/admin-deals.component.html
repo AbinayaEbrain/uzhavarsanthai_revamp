@@ -4,7 +4,9 @@
   <div class="container">
     <button class="btn btn-success btn1 mb-2" routerLink="/admin">BACK</button>
       <h4 class="text-center text-white mb-4">Details of posted product</h4>
-      
+      <div *ngIf="errMsg">
+            <p style="text-align: center;font-weight: bold;color:red">{{errMsg}}</p>
+        </div>
       <div class="row">
           <div class="col-md-12">
               <div class="card">

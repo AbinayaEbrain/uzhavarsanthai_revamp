@@ -89,6 +89,7 @@ export class PostComponent implements OnInit {
 
     },
     err=>{
+      this.loadingCtrl.hide();
       console.log(err)
     }
   )
@@ -122,23 +123,7 @@ export class PostComponent implements OnInit {
               
 }
 
-
-onCategoryChange(){
-  let i =0
-  // this.productData.category.forEach(element => {
-    
-  // });(element => {
-  //   console.log(element)
-    // if(element.productId == this.subCateArr[i].productId){
-    //   console.log(this.subCateArr[i].productId)
-    //   this.subCateArr = element.productCategory;
-    // }
-  
- 
-}
-        
-
-
+      
   postProduct(){
 
     this.productData.avlPlace.latitude = JSON.parse(localStorage.getItem('Address'));
@@ -166,7 +151,9 @@ onCategoryChange(){
       err =>{
           if(err instanceof HttpErrorResponse){
            if(err.status === 401){
+            this.loadingCtrl.show();
              this.route.navigate(['/login'])
+             this.loadingCtrl.hide();
            }
           }
         }

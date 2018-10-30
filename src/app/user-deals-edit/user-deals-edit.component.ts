@@ -3,6 +3,7 @@ import { Component, OnInit ,ViewChild} from '@angular/core';
 import { DealsService } from '../deals.service';
 import {ActivatedRoute, Params} from '@angular/router'
 import { Router} from '@angular/router'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-user-deals-edit',
@@ -18,6 +19,8 @@ export class UserDealsEditComponent implements OnInit {
     name:'',
     quantity:'',
     qnty:'',
+    subQuantity:'',
+    subqnty:'',
     price:'',
     description:'',
     date:new Date().toLocaleDateString(),
@@ -28,12 +31,14 @@ export class UserDealsEditComponent implements OnInit {
     },
   }
   success:any
+  categoryArr = []
+  showUnit:any
 
-  constructor(private  _dealsService:DealsService,private route:ActivatedRoute,private router:Router) { }
+  constructor(private  _dealsService:DealsService,private route:ActivatedRoute,private router:Router,public loadingCtrl:NgxSpinnerService) { }
 
   ngOnInit() {
 
-    
+    this.loadingCtrl.show();
     this.InitialCall();
 
     this.id = this.route.snapshot.params['id']
@@ -41,7 +46,7 @@ export class UserDealsEditComponent implements OnInit {
     this._dealsService.getDeals()
     .subscribe(
       res=>{
-        //this.loadingCtrl.hide();
+        this.loadingCtrl.hide();
         this.dealslists = res
         
         for(let i=0; i < this.dealslists.length; i++){
@@ -50,20 +55,44 @@ export class UserDealsEditComponent implements OnInit {
             this.deallistobj.name = this.dealslists[i].name
             this.deallistobj.quantity = this.dealslists[i].quantity
             this.deallistobj.qnty = this.dealslists[i].qnty
+            this.deallistobj.subQuantity = this.dealslists[i].subQuantity
+            this.deallistobj.subqnty = this.dealslists[i].subqnty
             this.deallistobj.price = this.dealslists[i].price
             this.deallistobj.description = this.dealslists[i].description
             this.deallistobj.avlPlace.avlplaceName = this.dealslists[i].avlPlace.avlplaceName
+            this.showUnit = this.dealslists[i].qnty
           }
         }
-  
+        
         console.log(this.deallistobj)
       },
       err=>{
+        this.loadingCtrl.hide();
         console.log(err)
       }
     )
+
+      //category
+
+  this._dealsService.getCategory()
+  .subscribe(
+      res => {
+        this.categoryArr = res;
+        console.log(this.categoryArr)
+      },
+  
+      err => {
+          this.categoryArr = [];
+      });
+
    
   }
+
+  getunits(){
+    this.showUnit =this.deallistobj.qnty
+   
+  }
+
 
 InitialCall() {
   for(let i=0; i < this.dealslists.length; i++){
@@ -91,9 +120,9 @@ InitialCall() {
         setTimeout(() => {
           // swal.close();
          // this.loadingCtrl.show();
-          this.router.navigate(['user-deals']);
+          this.router.navigate(['/user-deals']);
          // this.loadingCtrl.hide();
-      }, 2000);
+      }, 3000);
       
       },
       err=>console.log(err),

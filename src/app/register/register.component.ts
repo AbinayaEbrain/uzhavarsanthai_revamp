@@ -48,18 +48,20 @@ export class RegisterComponent implements OnInit {
     this._auth.registerUser(this.registeredUserData)
       .subscribe( 
         res =>{
+          this.loadingCtrl.hide();
            console.log(res)
            console.log(res.user.phone)
            localStorage.setItem('token',res.token)
            localStorage.setItem('currentUser',JSON.stringify(res.user));
+           localStorage.setItem('firstname',JSON.stringify(res.user.firstname));
            //this.router.navigate(['/login'])
            this.success = "Registered successfully!"
 
-           //setTimeout(() => {
+           setTimeout(() => {
             // swal.close();
             this.loadingCtrl.hide();
             this.router.navigate(['/post']);
-       // }, 2000);
+        }, 2000);
 
         if(res.statusText == 'Unauthorized'){
           //console.log('Ooops!');

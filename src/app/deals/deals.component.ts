@@ -50,25 +50,34 @@ export class DealsComponent implements OnInit {
           this.loadingCtrl.hide();
           this.crdDeals = res
 
-          this.lat = localStorage.getItem('googleLat')
-          this.long = localStorage.getItem('googleLong')
+          // this.lat = localStorage.getItem('googleLat')
+          // this.long = localStorage.getItem('googleLong')
 
-          this.lat1 = this.lat*1.009
-         //alert(this.lat1)
+          // this.lat1 = this.lat*1.009
+        
          
-          this.latd = this.lat/1.002
+          // this.latd = this.lat/1.002
          // alert(this.latd)
 
           console.log(this.crdDeals)
           console.log(this.crdDeals.length)
-          let j=0
-          for(let i=0; i < this.crdDeals.length; i++){
-            if(this.crdDeals[i].avlPlace.latitude < this.lat1 && this.crdDeals[i].avlPlace.latitude > this.latd){
-                this.mapDeals[j]=this.crdDeals[i];
-                console.log(this.mapDeals[j])
-                j++
-            }
-          }
+          // let j=0
+          // for(let i=0; i < this.crdDeals.length; i++){
+          //   if(this.crdDeals[i].avlPlace.latitude < this.lat1 && this.crdDeals[i].avlPlace.latitude > this.latd){
+          //       this.mapDeals[j]=this.crdDeals[i];
+          //       console.log(this.mapDeals[j])
+          //       j++
+          //   }
+          // }
+          
+      if (this.crdDeals.length == 0){
+        this.loadingCtrl.hide();
+        this.errMsg = "Still you didn't post any deals"
+        document.getElementById('hideButton').style.display='none';
+        document.getElementById('search_box').style.display='none';
+        console.log(this.errMsg)
+      }
+
         },
         err =>{
           this.loadingCtrl.hide();
@@ -76,13 +85,6 @@ export class DealsComponent implements OnInit {
         } 
       )
      
-      if (this.crdDeals == null){
-        this.loadingCtrl.hide();
-        this.errMsg = "Still you didn't post any deals"
-        document.getElementById('search_box').style.display='none';
-        console.log(this.errMsg)
-      }
-
 
        var mapProp = {
       center: new google.maps.LatLng(18.5793, 73.8143),

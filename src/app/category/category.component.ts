@@ -15,7 +15,7 @@ export class CategoryComponent implements OnInit {
   cateData={}
   categoryArr=[]
   id:any
-
+  errMsg:any;
   constructor(private _adminService:AdminService,public loadingCtrl: NgxSpinnerService,private _dealService:DealsService,private route:ActivatedRoute,private router:Router) { }
 
   
@@ -23,21 +23,22 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
 
     this.loadingCtrl.show();
-    setTimeout(() => {
-      // swal.close();
-      this.loadingCtrl.hide();
-  }, 1000);
-
    //category
 
    this._dealService.getCategory()
    .subscribe(
        res => {
+        this.loadingCtrl.hide();
          this.categoryArr = res;
          console.log(this.categoryArr)
+         if(this.categoryArr.length == 0){
+           this.errMsg = "No Category Added"
+
+         }
        },
    
        err => {
+        this.loadingCtrl.hide();
            this.categoryArr = [];
        });
 

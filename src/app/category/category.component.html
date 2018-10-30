@@ -5,12 +5,17 @@
             <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12 Appbtn">
             <button class="btn btn-success btn1 mb-2" routerLink="/admin">BACK</button>
             </div>
-            <div class="col-md-8"></div>
+            <div class="col-md-8">
+              
+            </div>
             <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12 Appbtn" style="float:right;">
                 <button type="button" class="btn btn-success btn-fill btn-wd btn-finish" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
                 data-keyboard="false" routerLink="/category">New Category</button>
             </div>
         </div>
+        <div *ngIf="errMsg">
+                <p style="text-align: center;font-weight: bold;color:red">{{errMsg}}</p>
+            </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -22,11 +27,7 @@
                                 <thead style="text-align: center">
                                     <tr>
                                         <th>Category</th>
-                                        <!-- <th>Name</th>
-                                        <th>Quantity</th>
-                                        <th>Price</th>
-                                        <th>Posted On</th>
-                                        <th>City</th> -->
+                                    
                                         <th class="disabled-sorting">Action</th>
                                     </tr>
                                 </thead>

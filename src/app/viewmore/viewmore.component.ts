@@ -74,7 +74,7 @@ export class ViewmoreComponent implements OnInit {
         this._dealsService.getDetails()
         .subscribe(
           res => {
-            this.loadingCtrl.show();
+            this.loadingCtrl.hide();
             
             this.viewmore = res;
             console.log(this.viewmore)

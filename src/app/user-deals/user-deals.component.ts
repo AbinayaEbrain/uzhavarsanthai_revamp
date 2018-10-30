@@ -70,7 +70,10 @@ export class UserDealsComponent implements OnInit {
           // }
      
         },
-        err => console.log(err)
+        err =>{
+          this.loadingCtrl.hide();
+          console.log(err)
+        } 
       )
   }
 
