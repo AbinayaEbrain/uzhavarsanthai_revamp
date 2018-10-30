@@ -7,6 +7,8 @@ const postSchema = new Schema({
     name:String,
     quantity:String,
     qnty:String,
+    subQuantity:String,
+    subqnty:String,
     price:String,
     description:String,
     accountId:String,

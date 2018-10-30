@@ -2,6 +2,8 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import {} from '@types/googlemaps';
 import { DealsService } from '../deals.service';
 import { Router} from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
   selector: 'app-locationdeals',
   templateUrl: './locationdeals.component.html',
@@ -31,13 +33,15 @@ export class LocationdealsComponent implements OnInit {
   long1:any
   latd:any
   longd:any
-  constructor(private _dealsService:DealsService,private route:Router) { }
+  
+  constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.loadingCtrl.show();
     this._dealsService.getDeals()
     .subscribe(
       res =>{ 
-       // this.loadingCtrl.hide();
+        this.loadingCtrl.hide();
         this.crdDeals = res
 
         this.lat = localStorage.getItem('googleLat')
@@ -60,10 +64,14 @@ export class LocationdealsComponent implements OnInit {
           }
         }
       },
-      err => console.log(err)
+      err => {
+        this.loadingCtrl.hide();
+        console.log(err)
+      }
     )
    
     if (this.mapDeals == null){
+      this.loadingCtrl.hide();
       this.errMsg = "Still you didn't post any deals"
       document.getElementById('search_box').style.display='none';
       console.log(this.errMsg)

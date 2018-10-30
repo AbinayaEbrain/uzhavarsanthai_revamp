@@ -1,9 +1,16 @@
 <div class="main-content mt-5 pt-5 bg">
   <div class="container-fluid">
-      <div class="toolbar mb-3">
-          <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 Appbtn">
-              <button type="button" class="btn btn-success btn-fill btn-wd btn-finish" routerLink="/post">New Post</button>
+      <div class="toolbar mb-3 row">
+          <div class="col-md-8"></div>
+          <div class="col-md-2 col-lg-2 col-xs-12 col-sm-2 Appbtn">
+              <button type="button" class="btn btn-success btn-fill  btn-wd btn-finish post" routerLink="/post">New Post</button>
           </div>
+          <div class="col-md-2 col-lg-2 col-xs-12 col-sm-2 Appbtn" >
+                <form>
+                        <input type="text" class="float-right srchBox" placeholder="Search By Location" id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+                      </form>
+            </div>
+        
       </div>
       <div class="row mb-3" *ngIf = "success">
             <div class="col-md-4"></div>
@@ -15,32 +22,46 @@
             <div class="col-md-4"></div>
           </div>
       <div class="row">
+            <div class="col-md-4 col-sm-12"></div>
+            <div class="col-md-4" *ngIf="errMsg">
+                    <div class="alert alert-danger text-center">
+                        {{errMsg}}
+                    </div>
+              </div>
+         
+          </div>
+    
+      <div class="row">
           <div class="col-md-12">
-              <div class="card">
+              <div class="card" >
                   <div class="card-content">
                       <!-- <br> -->
 
-                      <div class="fresh-table">
+                      <div class="fresh-table table-responsive" id="hideTable">
                           <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                               <thead style="text-align: center">
                                   <tr>
                                       <th>Category</th>
                                       <th>Name</th>
                                       <th>Quantity</th>
-                                      <th>Price</th>
+                                      <th>Sub Quantity</th>
+                                      <th>Price / Quantity</th>
                                       <th>Posted On</th>
-                                      <th>City</th>
+                                      <!-- <th>City</th> -->
                                       <th class="disabled-sorting">Action</th>
                                   </tr>
                               </thead>
-                              <tbody style="text-align: center">
-                                  <tr *ngFor="let deal of userDeals | paginate: { itemsPerPage:6,currentPage:p};">
+                              <tbody style="text-align: center" id="hide">
+                                
+                                  <tr  *ngFor="let deal of userDeals | paginate: { itemsPerPage:6,currentPage:p} | filterdata: queryString  : 'category' "  >
+                                      
                                       <td>{{deal.category}}</td>
                                       <td>{{deal.name}}</td>
-                                      <td>{{deal.quantity}}{{deal.qnty}}</td>
-                                      <td>{{deal.price}}</td>
-                                      <td>{{deal.date}}</td>
-                                      <td>{{deal.avlPlace.avlplaceName}}</td>
+                                      <td>{{deal.quantity}}{{deal.qnty}} </td>
+                                      <td> {{deal.subQuantity}}{{deal.subqnty}} </td>
+                                      <td>Rs.{{deal.price}}/-</td>
+                                      <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
+                                      <!-- <td>{{deal.avlPlace.avlplaceName}}</td> -->
                                       <td>
                                           <!-- <button class="btn btn-simple btn-info btn-icon like">
                                               <i class="ti-heart"></i>
@@ -54,12 +75,6 @@
                                           </button>
                                       </td>
                                   </tr>
-
-                                  <!-- <tr *ngIf="success">
-                                      <td colspan="8" class="row-spinner-cntr">
-                                          {{success}}
-                                      </td>
-                                  </tr> -->
                               </tbody>
                           </table>
                           

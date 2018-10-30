@@ -24,12 +24,14 @@ export class PostComponent implements OnInit {
     price:'',
     accountId:'',
     qnty:'',
+    subQuantity:'',
+    subqnty:'',
     category:'',
     date: new Date().toLocaleDateString(),
     avlPlace:{
-      avlplaceName:String,
-      latitude:String,
-      longtitude:String
+      avlplaceName:'',
+      latitude:'',
+      longtitude:''
 
     },
     description:''
@@ -42,20 +44,21 @@ export class PostComponent implements OnInit {
   geocoder:any
   latite:any
   longti:any
-
+  showUnit:any
   constructor(private _dealsService:DealsService,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
 
   // this.getDropDownDatas();
    this.productData.qnty = '';
    this.productData.category ='';
- //  this.productData.avlPlace = ''
+   this.productData.subqnty = '';
+ this.productData.avlPlace.avlplaceName = ''
   // this.productData.category. = ''
   
    }
 
   
   ngOnInit() {
-
+    
   //  this.getDropDownDatas();
     this.id = this.router.snapshot.params['id']
 
@@ -79,6 +82,8 @@ export class PostComponent implements OnInit {
           this.productData.price = this.dealslists[i].price
           this.productData.description = this.dealslists[i].description
           this.productData.avlPlace = this.dealslists[i].avlPlace
+          this.productData.avlPlace = this.dealslists[i].subqnty
+          this.productData.avlPlace = this.dealslists[i].subQuantity
         }
       }
 
@@ -144,7 +149,7 @@ onCategoryChange(){
     //  acntId = accountId;
     this._dealsService.addPost(this.productData)
       .subscribe((data:any) =>{
-       console.log(this.productData.date)
+       console.log(this.productData)
        console.log(new Date())
         console.log(data);
         //this.route.navigate[('/deals')]
@@ -168,6 +173,11 @@ onCategoryChange(){
 
       }
       )
+  }
+
+  getunits(){
+    this.showUnit =this.productData.qnty
+   
   }
 
   getLatitudeLongitude1(callback, address) {

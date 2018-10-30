@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.loadingCtrl.show();
+    setTimeout(() => {
+      // swal.close();
+      this.loadingCtrl.hide();
+  }, 1000);
   }
 
 }

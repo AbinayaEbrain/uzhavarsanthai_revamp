@@ -38,8 +38,9 @@ export class UserDealsComponent implements OnInit {
           let j = 0;
           
           this.crdDeals = res
-
-          for(let i=0; i < this.crdDeals.length; i++){
+          console.log(this.crdDeals)
+          console.log("1")
+          for(let i=0 ; i < this.crdDeals.length ; i++){
             if(acntID == this.crdDeals[i].accountId){
               this.userDeals[j] = this.crdDeals[i];
              
@@ -47,12 +48,26 @@ export class UserDealsComponent implements OnInit {
           console.log(this.userDeals[j]);
           j++;
             }
+            // else{
+            //   alert(this.userDeals.length)
+            //   alert(this.userDeals[j].category)
+            // }
+            
           }
-          if (this.userDeals.length == 0){
-            this.errMsg = "Still you not post any deals"
+          if (this.userDeals[j].category == undefined){
+            this.errMsg = "Still you haven't post any deals"
             document.getElementById('search_box').style.display='none';
+            document.getElementById('hide').style.display='none';
             console.log(this.errMsg)
           }
+          // alert(this.userDeals.length)
+          // if (this.userDeals.length == 0){
+          //   this.errMsg = "Still you haven't post any deals"
+         
+          //   document.getElementById('hideTable').style.display='none';
+          //   document.getElementById('search_box').style.display='none';
+          //   console.log(this.errMsg)
+          // }
      
         },
         err => console.log(err)
