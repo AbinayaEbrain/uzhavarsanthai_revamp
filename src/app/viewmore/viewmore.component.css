@@ -55,12 +55,17 @@
     background-size: cover;
     min-height: -webkit-fill-available;
       
-  
   }
    .register{
-    
     color: white;
    } 
+
+   .btn1{
+        font-weight: bold;
+        background-color: #23dfe8;
+        border-color: #23dfe8; 
+   }
+
    .detailed{
        border-radius: 15px;
        text-align: center;

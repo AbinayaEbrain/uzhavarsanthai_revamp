@@ -10,7 +10,10 @@ import {Router, ParamMap} from '@angular/router';
 })
 export class AdminUserComponent implements OnInit {
 
-  registerUser=[]
+  registerUser=[{
+    firstname:''
+  }
+  ]
   id:any
 
   constructor(private _dealService:DealsService,private route:ActivatedRoute,private router:Router) { }

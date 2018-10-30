@@ -86,6 +86,7 @@ export class DealsComponent implements OnInit {
 
       // tracking location 
       if (navigator.geolocation) {
+
         navigator.geolocation.getCurrentPosition((position) => {
           this.showPosition(position);
         });
@@ -95,15 +96,20 @@ export class DealsComponent implements OnInit {
   }
 
 
-  // viewMore(){
-  //   this.router.navigate[('/viewmore')]
-  // }
 
   findMe(){
-   
+  //   setTimeout( function(){
+  //     location.reload()
+  // }, 2000 );
+
+  document.getElementById('hideButton').style.display='none';
+  document.getElementById('showButton').style.display='block';
+  // this.route.navigate[('/post')]
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.showPosition(position);
+      
+       
       });
     } else {
       alert("Geolocation is not supported by this browser.");

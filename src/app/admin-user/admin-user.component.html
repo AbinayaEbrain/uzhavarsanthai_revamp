@@ -1,13 +1,8 @@
 
 <div class="main-content mt-5 pt-5 bg">
     <div class="container">
-        <!-- <div class="toolbar mb-3">
-            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 Appbtn">
-                <button type="button" class="btn btn-success btn-fill btn-wd btn-finish" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
-                data-keyboard="false" routerLink="/category">New Post</button>
-            </div>
-        </div> -->
-        <h4 class="text-center text-white">Details of registered users</h4>
+        <button class="btn btn-success btn1 mb-2" routerLink="/admin">BACK</button>
+        <h4 class="text-center text-white mb-4">Details of registered users</h4>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -22,8 +17,6 @@
                                         <th>Phone Number</th>
                                         <th>City</th>
                                         <th>State</th>
-                                        <!-- <th>Posted On</th>
-                                        <th>City</th> -->
                                         <th class="disabled-sorting">Action</th>
                                     </tr>
                                 </thead>
@@ -33,27 +26,14 @@
                                         <td>{{deal.phone}}</td>
                                         <td>{{deal.address.city}}</td>
                                         <td>{{deal.address.location}}</td>
-                                        <!-- <td>{{deal.date}}</td>
-                                        <td>{{deal.avlPlace.avlplaceName}}</td> -->
                                         <td>
-                                            <!-- <button class="btn btn-simple btn-info btn-icon like">
-                                                <i class="ti-heart"></i>
-                                            </button> -->
-                                            <!-- <button class="btn btn-simple btn-warning btn-icon edit" routerLink="/post/{{deal._id}}">
-                                                 Edit
-                                            </button>&nbsp;&nbsp; -->
                                             <button class="btn btn-simple btn-danger btn-icon remove" data-toggle="modal" data-target="#myModal" data-backdrop="static"
                                              data-keyboard="false" routerLink="/admin-user/{{deal._id}}">
-                                                <!-- <i class="fa fa-rupee"></i> -->Delete
+                                               Delete
                                             </button>
                                         </td>
                                     </tr>
   
-                                    <tr *ngIf="isLoading">
-                                        <td colspan="8" class="row-spinner-cntr">
-                                            <img class="row-spinner" src="../../../assets/img/loader.gif" />
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                             
@@ -68,7 +48,9 @@
             </div>
             <!-- end col-md-12 -->
         </div>
-        <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+        <div class="mx-auto page mt-2" style="float: right">
+            <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+          </div>
         <!-- end row -->
     </div>
   

@@ -15,20 +15,23 @@ export class RegisterComponent implements OnInit {
   
   registeredUserData = {
     address : {
+      city:'',
       location:''
     },
     gender:''
   };
   success : any
   errormsg:any
+  
  
   
   constructor(private _auth:AuthService,private router:Router,public loadingCtrl: NgxSpinnerService) { 
 
   // this.registeredUserData.address = {};
 
-  this. registeredUserData.gender = ''
-  this. registeredUserData.address.location = ''
+  this.registeredUserData.gender = ''
+  this.registeredUserData.address.location = ''
+  this.registeredUserData.address.city = ''
   }
 
   ngOnInit() {
@@ -55,7 +58,7 @@ export class RegisterComponent implements OnInit {
            //setTimeout(() => {
             // swal.close();
             this.loadingCtrl.hide();
-            this.router.navigate(['user-deals']);
+            this.router.navigate(['/post']);
        // }, 2000);
 
         if(res.statusText == 'Unauthorized'){
@@ -68,7 +71,11 @@ export class RegisterComponent implements OnInit {
           console.log(err)
           if(err.statusText == 'Unauthorized'){
             console.log('Ooops!');
-             this.errormsg ='Phone Number already exist!'
+            this.errormsg ='Phone Number already exist!'
+            setTimeout(()=>{
+             this.errormsg=''
+            },2000)
+            
              this.loadingCtrl.hide();
            }
         }

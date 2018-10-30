@@ -101,41 +101,11 @@
   width: 200px;
 }
 .bg { 
-  background: url(./images/6.jpg) no-repeat center center fixed; 
+  background: url(../../assets/Images/A3.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   min-height: -webkit-fill-available;
 }
- 
-.ngx-pagination a, .ngx-pagination button {
-  color: rgb(5, 126, 31) !important;
-  display: block;
-  padding: 0.1875rem 0.625rem;
-  border-radius: 5px !important;
-  font-weight: bold !important;
-  font-size: 25px;
-}
-.ngx-pagination .disabled {
-  padding: 0.1875rem 0.625rem;
-  color: whitesmoke !important;
-  cursor: default;
-  font-size: 25px;
-}
-
-.ngx-pagination .current {
-  padding: 0.1875rem 0.625rem;
-  background: #055a28 !important;
-  color: #fefefe;
-  cursor: default;
-  font-weight: 600;
-  font-size: 30px;
-  border-radius: 5px !important;
-  /* / border-radius: 15px !important; / */
-} 
-pagination-controls{
-  margin-top: 10px;
-  float: right;
   
-}

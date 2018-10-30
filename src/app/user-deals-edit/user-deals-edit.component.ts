@@ -21,8 +21,14 @@ export class UserDealsEditComponent implements OnInit {
     price:'',
     description:'',
     date:new Date().toLocaleDateString(),
-    avlPlace:''
+    avlPlace:{
+      avlplaceName:'',
+      latitude:'',
+      longtitude:''
+    },
   }
+  success:any
+
   constructor(private  _dealsService:DealsService,private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
@@ -31,6 +37,31 @@ export class UserDealsEditComponent implements OnInit {
     this.InitialCall();
 
     this.id = this.route.snapshot.params['id']
+
+    this._dealsService.getDeals()
+    .subscribe(
+      res=>{
+        //this.loadingCtrl.hide();
+        this.dealslists = res
+        
+        for(let i=0; i < this.dealslists.length; i++){
+          if(this.id == this.dealslists[i]._id){
+            this.deallistobj.category = this.dealslists[i].category
+            this.deallistobj.name = this.dealslists[i].name
+            this.deallistobj.quantity = this.dealslists[i].quantity
+            this.deallistobj.qnty = this.dealslists[i].qnty
+            this.deallistobj.price = this.dealslists[i].price
+            this.deallistobj.description = this.dealslists[i].description
+            this.deallistobj.avlPlace.avlplaceName = this.dealslists[i].avlPlace.avlplaceName
+          }
+        }
+  
+        console.log(this.deallistobj)
+      },
+      err=>{
+        console.log(err)
+      }
+    )
    
   }
 
@@ -55,7 +86,16 @@ InitialCall() {
     this._dealsService.editDeals(this.deallistobj,this.id)
     .subscribe(
       res=>{console.log(this.deallistobj),
-        this.router.navigate[('/user-deals')]},
+
+        this.success = "Updated successfully!"
+        setTimeout(() => {
+          // swal.close();
+         // this.loadingCtrl.show();
+          this.router.navigate(['user-deals']);
+         // this.loadingCtrl.hide();
+      }, 2000);
+      
+      },
       err=>console.log(err),
 
     )

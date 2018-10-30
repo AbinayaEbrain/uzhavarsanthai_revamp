@@ -45,7 +45,7 @@
               <div class="row">
                   <div class="col-md-4">
                       <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
-                          <input type="text"  #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control" [(ngModel)]="registeredUserData.address.addressLine" autocomplete="off" required>
+                          <input type="text"  #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control"  [(ngModel)]="registeredUserData.address.addressLine" autocomplete="off" required>
                           <label class="form-control-placeholder" for="address">AddressLine 1</label>
                           <span class="text-danger float-left" [class.d-none] = "addressLine.valid || addressLine.untouched">Address is required</span>  
                         </div>
@@ -59,10 +59,20 @@
                     </div>    
                     <div class="col-md-2">
                             <div class="form-group mb-5 mt-2">
-                         <input type="text"  #city="ngModel" [class.is-invalid]="city.invalid && city.touched" ngModel name="city" class="form-control" [(ngModel)]="registeredUserData.address.city" autocomplete="off" required>
+                                    <select required class="form-control slect"  #city="ngModel" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel  [(ngModel)]="registeredUserData.address.city">
+                                            <option value="">City</option>
+                                            <option value="Trichy">Trichy</option>
+                                            <option value="Thanjavur">Thanjavur</option>
+                                            <option value="Chennai">Chennai</option>
+                                            <option value="Karur">Karur</option>
+                                            <option value="Coimbatore">Coimbatore</option>
+                                          </select>
+
+                         <!-- <input type="text"  #city="ngModel" [class.is-invalid]="city.invalid && city.touched" ngModel name="city" class="form-control" [(ngModel)]="registeredUserData.address.city" autocomplete="off" required>
                           <label class="form-control-placeholder" for="city">City</label>
-                          <span class="text-danger float-left" [class.d-none] = "city.valid || city.untouched">Required</span>  
+                          <span class="text-danger float-left" [class.d-none] = "city.valid || city.untouched">Required</span>   -->
                             </div>
+                            <span class="text-danger float-left" [class.d-none] = "city.valid || city.untouched">Required</span>
                         </div>  
                   <div class="col-md-2">
                       <div class="form-group mb-5 mt-2">

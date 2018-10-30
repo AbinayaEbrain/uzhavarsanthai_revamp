@@ -1,0 +1,86 @@
+.bg {
+    background: url(../../assets/Images/A3.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    background-attachment: fixed;
+  
+}
+.clr{
+    color: white
+}
+.wellcome{
+    
+    color: #124e32;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+.to{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    /* / color:#ffc004; /
+    color: #124e32;
+    / font-size: 30px; / */
+}
+.we{
+    font-size: 30px;
+    color: #124e32;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+.if{
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 200;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+.every{
+    color: #124e32;
+}
+.farmer{
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    /* / color: #dc3545; /
+    color: darkcyan;
+    font-size: 50px; */
+}
+.margin{
+    float: left;
+}
+p.font {
+    font: italic bold 20px/25px Georgia, serif;
+}
+.font{
+    color: #ffeb3b;
+    font-size: 25px;
+}
+.second{
+    color: #1cefdb;
+    
+}
+.der{
+    border:#948929 solid 3px;
+}
+.container-fluid{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+button{
+    background-color: #124e32;
+    color: azure;
+    border: none;
+    padding: 0px;
+}
+ .card-header{
+     padding: 0px; 
+    border: none;
+
+} 
+.card-body{
+    padding: 0px;
+    border: none;
+} 
+.card{
+   
+    border: none;
+}

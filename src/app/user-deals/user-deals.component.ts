@@ -16,6 +16,7 @@ export class UserDealsComponent implements OnInit {
   userDeals = [];
   id:any;
   errMsg : any
+  success:any
 
   constructor(private  _dealsService:DealsService,private route:ActivatedRoute,private router:Router,public loadingCtrl: NgxSpinnerService) { 
     for(let i=1;i<=1; i++){
@@ -64,6 +65,14 @@ export class UserDealsComponent implements OnInit {
     .subscribe(
        res=>{ console.log(res)
      
+        this.success = "Deleted successfully!"
+
+        setTimeout(() => {
+          // swal.close();
+          this.loadingCtrl.show();
+          this.router.navigate(['user-deals']);
+          this.loadingCtrl.hide();
+      }, 2000);
        },
        err=>{ console.log(err);
       },

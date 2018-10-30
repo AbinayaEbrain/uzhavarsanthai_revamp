@@ -5,6 +5,15 @@
               <button type="button" class="btn btn-success btn-fill btn-wd btn-finish" routerLink="/post">New Post</button>
           </div>
       </div>
+      <div class="row mb-3" *ngIf = "success">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                    <div class="alert alert-success text-center">
+                            {{success}}
+                          </div>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
       <div class="row">
           <div class="col-md-12">
               <div class="card">
@@ -36,7 +45,7 @@
                                           <!-- <button class="btn btn-simple btn-info btn-icon like">
                                               <i class="ti-heart"></i>
                                           </button> -->
-                                          <button class="btn btn-simple btn-warning btn-icon edit" routerLink="/post/{{deal._id}}">
+                                          <button class="btn btn-simple btn-warning btn-icon edit" routerLink="/user-deals-edit/{{deal._id}}">
                                               <!-- <i class="ti-pencil-alt"></i> தொகுத்தல்--> Edit
                                           </button>&nbsp;&nbsp;
                                           <button class="btn btn-simple btn-danger btn-icon remove" data-toggle="modal" data-target="#myModal" data-backdrop="static"
@@ -46,11 +55,11 @@
                                       </td>
                                   </tr>
 
-                                  <tr *ngIf="isLoading">
+                                  <!-- <tr *ngIf="success">
                                       <td colspan="8" class="row-spinner-cntr">
-                                          <img class="row-spinner" src="../../../assets/img/loader.gif" />
+                                          {{success}}
                                       </td>
-                                  </tr>
+                                  </tr> -->
                               </tbody>
                           </table>
                           
@@ -65,7 +74,9 @@
           </div>
           <!-- end col-md-12 -->
       </div>
-      <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+      <div class="mx-auto page mt-2"  style="float: right">
+        <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+      </div>
       <!-- end row -->
   </div>
 
@@ -88,7 +99,7 @@
         <h6 class="text-center">Are you sure want to delete?</h6>
         <div class="text-center">
        
-         <button type="button" class="btn btn-primary" routerLink="/deals" (click)="deleteuser()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+         <button type="button" class="btn btn-primary" routerLink="/user-deal" (click)="deleteuser()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
          <button type="button" class="btn btn-danger" routerLink="/user-deals" data-dismiss="modal">No</button>
         </div>
       </div>

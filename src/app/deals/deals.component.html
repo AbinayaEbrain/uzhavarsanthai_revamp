@@ -2,10 +2,14 @@
 <div class="bg">
 <div class="container">
     <div class="row  mt-5 pt-5">
-        <div class="col-md-4 col-sm-12"><h2 style="color: white">Hai,</h2></div>
-        <button class="btn btn-primary" (click)="findMe()">தேடுங்கள்</button>
-        <div class="col-md-8 col-sm-12">
-            <form action="/action_page.php">
+        <div class="col-md-4 col-sm-12">
+        <button class="btn btn-primary" (click)="findMe()" id="hideButton">அருகிலுள்ள 
+            விற்பனை</button>
+            <button class="btn btn-primary" routerLink="/location" style="display: none" id="showButton">Click here to continue</button>
+            <button class="btn btn-primary" style="display: none;" routerLink="/location" id="showButton" >continue</button>
+        </div>
+            <div class="col-md-8 col-sm-12 mt-3">
+            <form>
               <input type="text" class="float-right srchBox" placeholder="Search By Location" id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
             </form>
         </div>
@@ -14,7 +18,7 @@
 
   <div class="row mt-5">
 
-    <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of mapDeals | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }">
+    <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }">
             
         <div class="card">
            <table>
@@ -59,7 +63,10 @@
             <a  class="btn btn-primary mb-3"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
         </div>
       </div>
-      <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+      <div class="mx-auto page">
+        <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+      </div>
   </div>
 </div>
 </div>
+

@@ -1,10 +1,14 @@
 
 <div class="main-content mt-5 pt-5 bg">
     <div class="container">
-        <div class="toolbar mb-3">
-            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 Appbtn">
+        <div class="toolbar mb-3 row">
+            <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12 Appbtn">
+            <button class="btn btn-success btn1 mb-2" routerLink="/admin">BACK</button>
+            </div>
+            <div class="col-md-8"></div>
+            <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12 Appbtn" style="float:right;">
                 <button type="button" class="btn btn-success btn-fill btn-wd btn-finish" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
-                data-keyboard="false" routerLink="/category">New Post</button>
+                data-keyboard="false" routerLink="/category">New Category</button>
             </div>
         </div>
         <div class="row">
@@ -29,18 +33,7 @@
                                 <tbody style="text-align: center">
                                     <tr *ngFor="let deal of categoryArr | paginate: { itemsPerPage:6,currentPage:p};">
                                         <td>{{deal.productCategory}}</td>
-                                        <!-- <td>{{deal.name}}</td>
-                                        <td>{{deal.quantity}}{{deal.qnty}}</td>
-                                        <td>{{deal.price}}</td>
-                                        <td>{{deal.date}}</td>
-                                        <td>{{deal.avlPlace.avlplaceName}}</td> -->
                                         <td>
-                                            <!-- <button class="btn btn-simple btn-info btn-icon like">
-                                                <i class="ti-heart"></i>
-                                            </button> -->
-                                            <!-- <button class="btn btn-simple btn-warning btn-icon edit" routerLink="/post/{{deal._id}}">
-                                                 Edit
-                                            </button>&nbsp;&nbsp; -->
                                             <button class="btn btn-simple btn-danger btn-icon remove" data-toggle="modal" data-target="#myModal" data-backdrop="static"
                                              data-keyboard="false" routerLink="/category/{{deal._id}}">
                                                 <!-- <i class="fa fa-rupee"></i> -->Delete
@@ -48,11 +41,6 @@
                                         </td>
                                     </tr>
   
-                                    <tr *ngIf="isLoading">
-                                        <td colspan="8" class="row-spinner-cntr">
-                                            <img class="row-spinner" src="../../../assets/img/loader.gif" />
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                             
@@ -67,7 +55,9 @@
             </div>
             <!-- end col-md-12 -->
         </div>
-        <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+        <div class="mx-auto page mt-2"  style="float: right">
+            <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+          </div>
         <!-- end row -->
     </div>
   
@@ -83,7 +73,6 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-        
           <h4 class="modal-title">Delete Confirmation</h4>
         </div>
         <div class="modal-body">
@@ -109,8 +98,8 @@
         <!-- Modal content-->
         <div class="modal-content bg1">
           <div class="modal-header">
-          
-            <h4 class="modal-title mx-auto text-center clr">Add a Category</h4>
+            <h4 class="modal-title clr">Add a Category</h4>
+            <button type="button" class="close clr" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
               <form #cateform="ngForm" *ngIf ="!submitted" novalidate>
@@ -121,7 +110,7 @@
                       <span class="text-danger float-left" [class.d-none] = "productCategory.valid || productCategory.untouched">Category is required</span>  
                     </div>
                  
-                  <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit"  routerLink="/admin" (click)="addCategory()">Add Category</button>
+                  <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit"  routerLink="/admin" (click)="addCategory()" data-dismiss="modal">Add Category</button>
                  
                 </form>
           </div>

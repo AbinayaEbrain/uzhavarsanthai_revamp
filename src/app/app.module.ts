@@ -21,6 +21,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminComponent } from './admin/admin.component';
 import { CategoryComponent } from './category/category.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
+import { AdminDealsComponent } from './admin-deals/admin-deals.component';
+import { LocationdealsComponent } from './locationdeals/locationdeals.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { AdminUserComponent } from './admin-user/admin-user.component';
     UserDealsEditComponent,
     AdminComponent,
     CategoryComponent,
-    AdminUserComponent
+    AdminUserComponent,
+    AdminDealsComponent,
+    LocationdealsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

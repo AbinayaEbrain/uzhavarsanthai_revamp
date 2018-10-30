@@ -58,7 +58,7 @@ router.post('/register',(req,res)=>{
                    // res.status(200).send(registeredUser)
         
                     //after add jwt
-                    console.log(payload)
+                    //console.log(payload)
                    res.status(200).send({token,payload,user})
                 }
             })
@@ -105,7 +105,6 @@ router.post('/category',(req,res)=>{
             console.log(error)
         }else{
             
-            console.log(category);
             res.status(200).send(productData)
 
         }

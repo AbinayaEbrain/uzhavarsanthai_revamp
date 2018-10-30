@@ -12,16 +12,22 @@ import { UserDealsEditComponent } from './user-deals-edit/user-deals-edit.compon
 import { AdminComponent } from './admin/admin.component';
 import { CategoryComponent } from './category/category.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
-
+import { AdminDealsComponent } from './admin-deals/admin-deals.component';
+import {LocationdealsComponent} from '../app/locationdeals/locationdeals.component';
+import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {
     path:'',
-    redirectTo:'/deals',
+    redirectTo:'/home',
     pathMatch:'full'
   },
   {
     path : 'login',
     component: LoginComponent
+},
+{
+  path : 'home',
+  component: HomeComponent
 },
   { 
     path : 'register',
@@ -30,6 +36,10 @@ const routes: Routes = [
   { 
     path : 'deals',
     component: DealsComponent
+  },
+  { 
+    path : 'location',
+    component: LocationdealsComponent
   },
   {
     path : 'user-deals-edit/:id',
@@ -79,6 +89,10 @@ const routes: Routes = [
 { 
   path: 'admin-user/:id', 
   component: AdminUserComponent, 
+},
+{
+  path: 'admin-deals',
+  component: AdminDealsComponent
 }
  
 ];
