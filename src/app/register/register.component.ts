@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
   }, 1000);
   }
 
+
   post(){
     // console.log(this.registeredUserData);
     this.loadingCtrl.show();

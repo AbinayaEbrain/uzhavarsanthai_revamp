@@ -1,10 +1,14 @@
-<div class="main-content mt-5 pt-5 bg">
+<body class="main-content mt-5 pt-5 bg">
   <div class="container-fluid">
+      <div class="container-fluid">
+            <div class="Appbtn">
+                    <button type="button" class="btn btn-success btn-fill  btn-wd btn-finish post" routerLink="/post">New Post</button>
+                </div>
+      </div>
+      
       <div class="toolbar mb-3 row">
           <div class="col-md-8"></div>
-          <div class="col-md-2 col-lg-2 col-xs-12 col-sm-2 Appbtn">
-              <button type="button" class="btn btn-success btn-fill  btn-wd btn-finish post" routerLink="/post">New Post</button>
-          </div>
+          
           <div class="col-md-2 col-lg-2 col-xs-12 col-sm-2 Appbtn" >
                 <form>
                         <input type="text" class="float-right srchBox" placeholder="Search By Category" id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
@@ -95,7 +99,7 @@
       <!-- end row -->
   </div>
 
-</div>
+</body>
 
 
 
