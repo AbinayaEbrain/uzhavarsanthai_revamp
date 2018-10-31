@@ -1,7 +1,5 @@
 
-
-
- <div class="bg">
+  <body class="bg" style="overflow: hidden;">
   <div class="register">
     <div class="container mt-5 pt-5 ">
       <button class="btn btn-primary btn1" routerLink="/deals">BACK</button>
@@ -50,7 +48,7 @@
                        <tr>
                         <th class="product">Description</th>
                         <th>:</th>
-                        <th class="info1" style="width: 200px"><textarea class="" rows="1" readonly>{{postProduct.description}}</textarea></th><br>
+                        <th class="info1" style="width: 80px;"><textarea class="" rows="1" readonly>{{postProduct.description}}</textarea></th><br>
                         <a class="mt-4" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">More...</a>
                         <div class="modal fade" id="myModal" role="dialog">
                             <div class="modal-dialog">
@@ -142,6 +140,6 @@
 
     </div>
   </div>
-  </div>
+</body>
 
 

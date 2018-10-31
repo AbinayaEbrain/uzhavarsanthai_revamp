@@ -1,9 +1,13 @@
 .bg1{
     
      background: url(./images/P2.jpeg)no-repeat center ;
-     height: 100vh;
-     width: 100%;
-     background-size: cover;
+     background-position: center center;
+     background-repeat:  no-repeat;
+     background-attachment: fixed;
+     background-size:  cover;
+     background-color: #999;
+     min-height: 100vh;
+     width:100%
     
  }
 
@@ -137,4 +141,13 @@
    }
    .span_clr{
        text-decoration: underline
+   }
+   @media screen and (min-width: 320px) and (max-width: 425px) {
+       body{
+           overflow: scroll;
+       }
+       .clr{
+           font-size: 25px;
+           margin-top: 10px;
+       }
    }
