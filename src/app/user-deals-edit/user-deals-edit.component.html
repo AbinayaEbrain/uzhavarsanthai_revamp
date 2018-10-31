@@ -32,7 +32,7 @@
                     </div> 
             <div class="col-md-4">    
                     <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
-                      <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)" [(ngModel)]="deallistobj.name"  name="name" class="form-control"  autocomplete="off"  required>
+                      <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)" [(ngModel)]="deallistobj.name"  name="name" class="form-control" maxlength="20"  autocomplete="off"  required>
                
                       <label class="form-control-placeholder" for="name">Product Name</label>
                       <span class="text-danger float-left" [class.d-none] = "name.valid || name.untouched">Product Name is required</span> 
@@ -45,7 +45,7 @@
                       <div class="col-md-4"></div>
                       <div class="col-md-2 col-sm-8 col-8">
                           <div class="form-group mb-5 mt-2">
-                              <input type="text"  #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="deallistobj.quantity"  name="quantity" class="form-control"  autocomplete="off"  required>
+                              <input type="text"  #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched"  maxlength="5" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="deallistobj.quantity"  name="quantity" class="form-control"  autocomplete="off"  required>
                               <label class="form-control-placeholder" for="quantity">Quantity</label>
                               <span class="text-danger float-left" [class.d-none] = "quantity.valid || quantity.untouched">Quantity is required</span>  
                             </div>
@@ -65,7 +65,7 @@
                      
                           <div class="col-md-2 col-sm-8 col-8">
                               <div class="form-group mb-5 mt-2">
-                                  <input type="text"  #subQuantity="ngModel" [class.is-invalid]="subQuantity.invalid && subQuantity.touched" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="deallistobj.subQuantity"  name="subQuantity" class="form-control" value="0" autocomplete="off"  required>
+                                  <input type="text"  #subQuantity="ngModel" [class.is-invalid]="subQuantity.invalid && subQuantity.touched" maxlength="5" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="deallistobj.subQuantity"  name="subQuantity" class="form-control" value="0" autocomplete="off"  required>
                                   <label class="form-control-placeholder" for="quantity">Sub Quantity</label>
                                   <span class="text-danger float-left" [class.d-none] = "subQuantity.valid || subQuantity.untouched">required</span>  
                                 </div>
@@ -91,11 +91,10 @@
                       <div class="col-md-4"></div>
                       <div class="col-md-4">    
                           <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
-                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="deallistobj.price"  name="price" class="form-control"  autocomplete="off"  required>
+                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="deallistobj.price"  name="price" class="form-control" maxlength="5" autocomplete="off"  required>
                             <label class="form-control-placeholder" for="name">Price / {{showUnit}}</label>
                             <span class="text-danger float-left" [class.d-none] = "price.valid || price.untouched">Price is required</span> 
                           </div>
-                        
                     </div>  
                       <div class="col-md-4">
                             <label class="lab" for="category">Available Place</label>
@@ -126,7 +125,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-4 col-sm-6 col-6">
-                            <button class="btn mt-4" type="submit" (click)="update()">Update</button>
+                            <button class="btn mt-4" [disabled]="postform.form.invalid" type="submit" (click)="update()">Update</button>
                           </div>
                           <div class="col-md-4 col-sm-6 col-6">
                               <button type="submit" class="btn mt-4 btn1" (click)="onSubmit()">Reset</button>

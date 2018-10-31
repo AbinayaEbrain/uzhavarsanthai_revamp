@@ -1,25 +1,13 @@
 .bg{
     /* The image used */
     background: url(../../assets/Images/A2.jpg);
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    width: 100%;
+    background-position: center center;
+    background-repeat:  no-repeat;
     background-attachment: fixed;
-}
-
-.bg1{
-    /* The image used */
-    background: url(../../assets/Images/P2.jpeg);
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    background-attachment: fixed;
+    background-size:  cover;
+    background-color: #999;
+    min-height: 100vh;
+    width:100%
 }
 
  input[type=text], input[type=password] {

@@ -33,7 +33,7 @@ export class LocationdealsComponent implements OnInit {
   long1:any
   latd:any
   longd:any
-  
+  noLocationErr:any;
   constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
@@ -63,7 +63,12 @@ export class LocationdealsComponent implements OnInit {
               j++
           }
         }
+        if(this.mapDeals.length ==0){
+         this.noLocationErr = "Please Allow Location"
+        }
       },
+    
+      
       err => {
         this.loadingCtrl.hide();
         console.log(err)

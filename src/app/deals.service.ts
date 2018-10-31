@@ -30,6 +30,10 @@ export class DealsService {
     return this.http.put<any>(this._dealsUrl + "/" + id ,data)
   }
 
+  editCategory(data,id){
+    return this.http.put<any>(this._getCategoryUrl + "/" + id ,data)
+  }
+
   deletedeal(id){
     return this.http.delete<any>(this._dealsUrl + "/" + id )
   }

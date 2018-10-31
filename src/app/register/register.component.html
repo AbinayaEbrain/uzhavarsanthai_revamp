@@ -106,7 +106,7 @@
                               </div>       
                             <div class="col-md-4">
                                 <div class="form-group mt-2">
-                                    <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="registeredUserData.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
+                                    <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" (change)="phnTen()" [(ngModel)]="registeredUserData.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
                                     <label class="form-control-placeholder" for="phone">Phone Number</label>
 
                                     <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
@@ -114,6 +114,7 @@
                                     </div>
 
                                     <span class="text-danger float-left"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="errormsg">{{errormsg}}</span>
+                                    <span class="text-danger float-left" *ngIf="phnErr">{{phnErr}}</span>
                                     <!-- <span class="text-danger float-left" [class.d-none] = "phone.valid || phone.untouched">Phone Number is required</span>   -->
                                   </div>
                                 <!-- <span class="text-danger float-left" *ngIf="errormsg" style="font-weight: bold">{{errormsg}}</span>   -->

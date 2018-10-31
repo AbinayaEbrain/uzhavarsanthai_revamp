@@ -83,6 +83,10 @@ const routes: Routes = [
   component: CategoryComponent, 
 },
 { 
+  path: 'category/:id/category', 
+  component: CategoryComponent, 
+},
+{ 
   path: 'admin-user', 
   component: AdminUserComponent, 
 },

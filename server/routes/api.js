@@ -256,6 +256,30 @@ router.delete('/details/:id',(req,res)=>{
 
     );
 });
+
+ //update deals
+ router.put('/category/:id', function(req, res){
+    console.log('Update a user');
+    console.log(req.body)
+     //let userData = req.body
+    // let User = new User(userData)
+    Category.findByIdAndUpdate(req.params.id,
+    {
+        $set: {productCategory : req.body.productCategory}
+    },
+    {
+        new: true
+    },
+    function(err,updatedUser){
+        if(err){
+            res.send("Error updating user");
+        }else{
+            res.json(updatedUser);
+        }
+    }
+
+    );
+});
 // router.get('/deals',(req,res)=>{
 //     let deals =[
 //         {

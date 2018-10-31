@@ -18,10 +18,12 @@ export class RegisterComponent implements OnInit {
       city:'',
       location:''
     },
-    gender:''
+    gender:'',
+    phone:''
   };
   success : any
   errormsg:any
+  phnErr:any
   
  
   
@@ -76,13 +78,24 @@ export class RegisterComponent implements OnInit {
             this.errormsg ='Phone Number already exist!'
             setTimeout(()=>{
              this.errormsg=''
-            },2000)
+            },3000)
             
              this.loadingCtrl.hide();
            }
         }
       
       )
+  }
+
+  phnTen(){
+    if(this.registeredUserData.phone.length !== 10){
+      //alert(this.registeredUserData.phone.length)
+      this.phnErr = "Phone number must be 10 digits"
+      setTimeout(()=>{
+        this.phnErr=''
+       },3000)
+      //alert(this.phnErr)
+    }
   }
 
   handleInput(evt)
