@@ -111,3 +111,9 @@ background-color: #011518;
    .table td, .table th{
        border-top: none
    }
+
+   .btn2{
+       background-color: #032b31;
+       border-color: #23dfe8;
+       font-weight: bold
+   }
