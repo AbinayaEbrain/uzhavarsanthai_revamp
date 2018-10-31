@@ -15,6 +15,8 @@ import { AdminUserComponent } from './admin-user/admin-user.component';
 import { AdminDealsComponent } from './admin-deals/admin-deals.component';
 import {LocationdealsComponent} from '../app/locationdeals/locationdeals.component';
 import { HomeComponent } from './home/home.component';
+import { AdminViewComponent } from './admin-view/admin-view.component';
+
 const routes: Routes = [
   {
     path:'',
@@ -97,6 +99,10 @@ const routes: Routes = [
 {
   path: 'admin-deals',
   component: AdminDealsComponent
+},
+{
+  path: 'admin-view/:id',
+  component: AdminViewComponent
 }
  
 ];

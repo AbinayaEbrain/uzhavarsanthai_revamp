@@ -18,9 +18,9 @@
          <li class="nav-item">
               <a class="nav-link" routerLink="/post" *ngIf="_authService.loggedIn() && !_authService.roleAdmin()"  routerLinkActive="active">Post</a>
          </li>
-         <!-- <li class="nav-item">
+         <li class="nav-item">
                 <a class="nav-link" routerLink="/deals" *ngIf="!_authService.loggedIn()" routerLinkActive="active">Deals</a>
-         </li> -->
+         </li>
          <li class="nav-item">
           <a class="nav-link" routerLink="/user-deals" *ngIf="_authService.loggedIn() && !_authService.roleAdmin()" routerLinkActive="active">MyDeals</a>
         </li>

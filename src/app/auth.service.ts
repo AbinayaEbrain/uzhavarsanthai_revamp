@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { Observable } from 'rxjs/observable';
+import 'rxjs/add/operator/map';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,14 @@ export class AuthService {
     localStorage.removeItem('Address1')
     localStorage.removeItem('googleLat')
     localStorage.removeItem('googleLong')
+    localStorage.removeItem('ipAddress')
     this.route.navigate(['/deals'])
   }
+
+  get_ipAddress(): Observable<any>{
+    return this.http.get('https://jsonip.com')
+        .map( data => {
+        return data;
+        })
+}
 }

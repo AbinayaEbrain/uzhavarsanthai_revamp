@@ -28,6 +28,7 @@ export class PostComponent implements OnInit {
     subqnty:'',
     category:'',
     date: new Date().toLocaleDateString(),
+    ipAddress:'',
     avlPlace:{
       avlplaceName:'',
       latitude:'',
@@ -129,6 +130,8 @@ export class PostComponent implements OnInit {
     this.productData.avlPlace.latitude = JSON.parse(localStorage.getItem('Address'));
     this.productData.avlPlace.longtitude = JSON.parse(localStorage.getItem('Address1'));
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
+    this.productData.ipAddress = localStorage.getItem('ipAddress');
+
     let curntDte = new Date().toLocaleDateString();
     this.productData.date = curntDte
     //  acntId = accountId;
