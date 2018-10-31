@@ -45,31 +45,7 @@
                         <th>:</th>
                         <th class="info1">{{postProduct.avlPlace.avlplaceName}}</th>
                        </tr>
-                       <tr>
-                        <th class="product">Description</th>
-                        <th>:</th>
-                        <th class="info1" style="width: 80px;"><textarea class="" rows="1" readonly>{{postProduct.description}}</textarea></th><br>
-                        <a class="mt-4" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">More...</a>
-                        <div class="modal fade" id="myModal" role="dialog">
-                            <div class="modal-dialog">
-                            
-                              <!-- Modal content-->
-                              <div class="modal-content">
-                              <div class="modal-header">
-                                  <h4 class="modal-title">Detailed Description</h4>
-                                  <button type="button" class="close btn-danger" data-dismiss="modal">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                  <p>{{postProduct.description}}</p>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                </div>
-                              </div>
-                              
-                            </div>
-                          </div>
-                       </tr>
+                      
                    <!-- <tr>
                       <th class="product">State</th>
                       <th class="info1">:{{register.location}}</th>
@@ -80,6 +56,29 @@
                         <p></p>
                        </div> -->
             </table>
+            <div class="mx-auto text-center">
+                <!-- <th class="info1" style="width: 80px;"></th><br> -->
+                <button class="mt-2 btn btn-primary btn2" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">View Description</button>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                    
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                      <div class="modal-header">
+                          <h4 class="modal-title">Detailed Description</h4>
+                          <button type="button" class="close btn-danger" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                          <p>{{postProduct.description}}</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
      </div>
      </div>
       </div>

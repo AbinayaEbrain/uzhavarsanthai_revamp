@@ -21,10 +21,11 @@ export class RegisterComponent implements OnInit {
     gender:'',
     phone:''
   };
-  success : any;
-  errormsg:any;
-  checkNum:any;
-  phoneNumberErr:any;
+  success : any
+  errormsg:any
+  phnErr:any
+  
+ 
   
   constructor(private _auth:AuthService,private router:Router,public loadingCtrl: NgxSpinnerService) { 
 
@@ -43,21 +44,6 @@ export class RegisterComponent implements OnInit {
   }, 1000);
   }
 
-  checkTen(){
-  this.checkNum = this.registeredUserData.phone.length;
-  console.log(this.checkNum)
-  
-  if( this.checkNum < 10){
-    alert(this.checkNum)
-    alert("Phone Number Must Be 10 Digits")
-   this.phoneNumberErr ="Phone Number Must Be 10 Digits"
-  }else{
-    alert("Digits")
-   // this.phoneNumberErr ="Phone Number Must Be 10 Digits"
-   this.phoneNumberErr ="Phone Number Must Be 10 Digits"
-  }
- 
-  }
 
   post(){
     // console.log(this.registeredUserData);
@@ -93,13 +79,24 @@ export class RegisterComponent implements OnInit {
             this.errormsg ='Phone Number already exist!'
             setTimeout(()=>{
              this.errormsg=''
-            },2000)
+            },3000)
             
              this.loadingCtrl.hide();
            }
         }
       
       )
+  }
+
+  phnTen(){
+    if(this.registeredUserData.phone.length !== 10){
+      //alert(this.registeredUserData.phone.length)
+      this.phnErr = "Phone number must be 10 digits"
+      setTimeout(()=>{
+        this.phnErr=''
+       },3000)
+      //alert(this.phnErr)
+    }
   }
 
   handleInput(evt)

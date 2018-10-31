@@ -12,7 +12,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class AdminUserComponent implements OnInit {
 
   registerUser=[{
-    firstname:''
+    firstname:'',
+    _id:''
   }
   ]
   id:any
@@ -28,6 +29,19 @@ errMsg:any;
          res=>{
           this.loadingCtrl.hide();
           this.registerUser= res;
+
+          for(let i=0;i<this.registerUser.length;i++){
+            if(this.registerUser[i].firstname == "Admin"){
+              // alert(this.registerUser[i].firstname)
+              // alert("i"+i)
+              this.registerUser.splice(this.registerUser.indexOf(this.registerUser[i]), 1);
+              //alert(this.registerUser.indexOf(this.registerUser[i]))
+              
+              // document.getElementById('shwBtn').style.display='block';
+            }
+          }
+         
+
           if(this.registerUser.length == 0){
             this.errMsg = "No Category Added"
  
