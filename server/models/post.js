@@ -13,6 +13,7 @@ const postSchema = new Schema({
     description:String,
     accountId:String,
     date:String,
+    ipAddress:String,
     avlPlace:{
         avlplaceName:String,
             latitude:String,

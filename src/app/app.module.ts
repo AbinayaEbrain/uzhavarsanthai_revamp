@@ -24,6 +24,7 @@ import { AdminUserComponent } from './admin-user/admin-user.component';
 import { AdminDealsComponent } from './admin-deals/admin-deals.component';
 import { LocationdealsComponent } from './locationdeals/locationdeals.component';
 import { HomeComponent } from './home/home.component';
+import { AdminViewComponent } from './admin-view/admin-view.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { HomeComponent } from './home/home.component';
     AdminUserComponent,
     AdminDealsComponent,
     LocationdealsComponent,
-    HomeComponent
+    HomeComponent,
+    AdminViewComponent
   ],
   imports: [
     BrowserModule,

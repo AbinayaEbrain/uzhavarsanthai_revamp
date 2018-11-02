@@ -58,6 +58,14 @@ export class AuthService {
     localStorage.removeItem('Address1')
     localStorage.removeItem('googleLat')
     localStorage.removeItem('googleLong')
+    localStorage.removeItem('ipAddress')
     this.route.navigate(['/deals'])
   }
+
+  get_ipAddress(): Observable<any>{
+    return this.http.get('https://jsonip.com')
+        .map( data => {
+        return data;
+        })
+}
 }
