@@ -56,9 +56,9 @@ export class RegisterComponent implements OnInit {
 
 
   post(){
-    // console.log(this.registeredUserData);
+    
     this.registeredUserData.privateIP = this.privateIP
-   // alert(this.privateIP)
+   
     this.registeredUserData.status = "ACTIVE"
     this.loadingCtrl.show();
     this._auth.registerUser(this.registeredUserData)
