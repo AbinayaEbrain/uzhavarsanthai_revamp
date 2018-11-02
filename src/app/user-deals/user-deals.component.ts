@@ -54,12 +54,14 @@ export class UserDealsComponent implements OnInit {
             // }
             
           }
+          for(let j=0;j<this.userDeals.length;j++){
           if (this.userDeals[j].category == undefined){
             this.errMsg = "Still you haven't post any deals"
             document.getElementById('search_box').style.display='none';
             document.getElementById('hide').style.display='none';
             console.log(this.errMsg)
           }
+        }
           // alert(this.userDeals.length)
           // if (this.userDeals.length == 0){
           //   this.errMsg = "Still you haven't post any deals"

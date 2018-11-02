@@ -5,6 +5,8 @@ import { AuthService } from '../auth.service';
 import { DealsService } from '../deals.service';
 // loader 
 import { NgxSpinnerService } from 'ngx-spinner';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,18 +28,15 @@ export class LoginComponent implements OnInit {
       // swal.close();
       this.loadingCtrl.hide();
   }, 1000);
-   
-  this._auth.get_ipAddress()
-  .subscribe((data: any) => {
-    this.ipAddress = data.ip;
-    alert("1")
-    console.log(this.ipAddress)
-  },
-    err => {
-      this.ipAddress = '';
-    });
+ 
 
-  }
+  // this._auth.get_ipAddress().subscribe(data => {
+  //   this.ipAddress = data;
+  //   console.log(data);
+
+  // }
+
+}
 
 
 
@@ -55,7 +54,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('firstname', JSON.stringify(res.user.firstname));
           localStorage.setItem('payload', JSON.stringify(res.payload));
           localStorage.setItem('token',res.token);
-          localStorage.setItem('ipAddress', this.ipAddress);
+          // localStorage.setItem('ipAddress', this.ipAddress.ip);
 
           this.user =  JSON.parse(localStorage.getItem('firstname'));
           console.log(this.user)

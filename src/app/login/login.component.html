@@ -21,8 +21,7 @@
               <label class="form-control-placeholder" for="password">Password</label>
               <span class="text-danger float-left" [class.d-none] = "password.valid || password.untouched">Password is required</span>  
             </div>
-
-            
+           
             <button [disabled]="loginform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit" (click)="logform()">LOGIN</button>
            
           </form>

@@ -1,0 +1,62 @@
+
+
+<body class="bg" style="overflow: hidden;">
+  <div class="container mt-5 pt-5">
+    <button class="btn btn-success btn1 mb-2" routerLink="/admin">BACK</button>
+      <h4 class="text-center text-white mb-4">Details of posted product</h4>
+      <div *ngIf="errMsg">
+            <p style="text-align: center;font-weight: bold;color:red">{{errMsg}}</p>
+        </div>
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-content">
+                      <!-- <br> -->
+
+                      <div class="fresh-table table-responsive">
+                          <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                              <thead style="text-align: center">
+                                  <tr>
+                                      <th>Category</th>
+                                      <th>Product Name</th>
+                                      <th>Quantity</th>
+                                      <th>Price</th>
+                                      <th>Posted On</th>
+                                      <th>City</th>
+                                     
+                                  </tr>
+                              </thead>
+                              <tbody style="text-align: center">
+                                  <tr *ngFor="let deal of crdDeals | paginate: { itemsPerPage:5,currentPage:p};">
+                                      <td>{{deal.category}}</td>
+                                      <td>{{deal.name}}</td>
+                                      <td>{{deal.quantity}} {{deal.qnty}}</td>
+                                      <td>{{deal.price}}</td>
+                                      <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
+                                      <td>{{deal.avlPlace.avlplaceName}}</td>
+                                  </tr>
+
+                              </tbody>
+                          </table>
+                          
+                      </div>
+                      
+                  </div>
+                  <!-- end content-->
+
+              </div>
+              
+              <!--  end card  -->
+          </div>
+          <!-- end col-md-12 -->
+      </div>
+      <div class="mx-auto page mt-2"  style="float: right">
+        <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+      </div>
+      <!-- end row -->
+  </div>
+
+</body>
+
+
+

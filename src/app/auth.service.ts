@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpErrorResponse  } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/observable';
+import { Observable, throwError as observableThrowError } from 'rxjs';
+import { catchError, map } from "rxjs/operators";
+import { IP } from "./ip";
 import 'rxjs/add/operator/map';
 
 @Injectable({
@@ -62,4 +64,16 @@ export class AuthService {
         return data;
         })
 }
+// getIpAddress(): Observable<any> {
+//   return this.http
+//     .get<IP>("https://freegeoip.net/json/?callback").pipe(
+//       map(response => response || {}),
+//       catchError(this.handleError)
+//     );
+// }
+
+// private handleError(error: HttpErrorResponse): Observable<any> {
+//   console.error("observable error: ", error);
+//   return observableThrowError(error);
+// }
 }

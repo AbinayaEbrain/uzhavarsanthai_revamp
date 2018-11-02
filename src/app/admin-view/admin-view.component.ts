@@ -16,12 +16,52 @@ export class AdminViewComponent implements OnInit {
   viewPost = [];
   productId:any
   descrip:any
+  registerUser = []
+  register = {
+    firstName : '',
+    lastName:'',
+    gender:'',
+    phone:'',
+    address:{
+      addressLine:'',
+      address1:'',
+      city:'',
+      location:'',
+    }
+  }
+  postLength:any
+  errMsg:any
 
   constructor(private _dealsService:DealsService,private router:Router,private route:ActivatedRoute,public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
 
     this.id = this.route.snapshot.params['id']
+
+    this._dealsService.getDetails()
+    .subscribe(
+      res=>{
+       this.loadingCtrl.hide();
+       this.registerUser= res;
+
+       for(let i=0;i<this.registerUser.length;i++){
+       if(this.id == this.registerUser[i]._id){
+        this.register.firstName =  this.registerUser[i].firstname;
+        this.register.lastName =  this.registerUser[i].lastName;
+        this.register.gender =  this.registerUser[i].gender;
+        this.register.phone = this.registerUser[i].phone;
+        this.register.address.addressLine = this.registerUser[i].address.addressLine;
+        this.register.address.address1 = this.registerUser[i].address.address1;
+        this.register.address.city = this.registerUser[i].address.city;
+        this.register.address.location = this.registerUser[i].address.location;
+       }
+      }
+      },
+      err=>{
+        console.log(err)
+      }
+    )
+
 
     this._dealsService.getDeals()
     .subscribe(
@@ -35,10 +75,17 @@ export class AdminViewComponent implements OnInit {
           if(this.id == this.viewPost[i].accountId){
             this.postProduct[j] =  this.viewPost[i];
             console.log(this.postProduct[j])
+            //length
+            
             this.productId = this.postProduct[j]._id
             console.log(this.productId)
             j++
           }
+        }
+        this.postLength = this.postProduct.length
+      
+        if(this.postLength == 0){
+          this.errMsg = "No posts found";
         }
       },
       err=> console.log(err)

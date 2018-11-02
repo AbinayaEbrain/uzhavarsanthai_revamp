@@ -14,7 +14,8 @@ const userSchema = new Schema({
     },
     password:String,
     confirmPassword:String,
-    phone:Number
+    phone:Number,
+    privateIP:String
 })
 
 module.exports = mongoose.model('user',userSchema,'users')

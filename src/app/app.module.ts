@@ -25,6 +25,8 @@ import { AdminDealsComponent } from './admin-deals/admin-deals.component';
 import { LocationdealsComponent } from './locationdeals/locationdeals.component';
 import { HomeComponent } from './home/home.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
+import { AdminIpComponent } from './admin-ip/admin-ip.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
     AdminDealsComponent,
     LocationdealsComponent,
     HomeComponent,
-    AdminViewComponent
+    AdminViewComponent,
+    AdminIpComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
     FormsModule,
     HttpClientModule,
     NgxSpinnerModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+   
   ],
   providers: [AuthService,DealsService,AuthGuard,
   {
