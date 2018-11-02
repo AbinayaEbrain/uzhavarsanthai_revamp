@@ -62,10 +62,4 @@ export class AuthService {
     this.route.navigate(['/deals'])
   }
 
-  get_ipAddress(): Observable<any>{
-    return this.http.get('https://jsonip.com')
-        .map( data => {
-        return data;
-        })
-}
 }
