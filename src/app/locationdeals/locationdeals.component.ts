@@ -22,9 +22,11 @@ export class LocationdealsComponent implements OnInit {
     avlPlace:{
       latitude:'',
       longitude:''
-    }
+    },
+    accountId:''
   }];
   mapDeals=[];
+  activeUsers=[]
   userName = {};
   errMsg = "";
   lat:any
@@ -34,6 +36,8 @@ export class LocationdealsComponent implements OnInit {
   latd:any
   longd:any
   noLocationErr:any;
+  crdDeals1= []
+
   constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
@@ -63,8 +67,40 @@ export class LocationdealsComponent implements OnInit {
               j++
           }
         }
+
+        // active deals
+
+        
+      this._dealsService.getDetails()
+      .subscribe(
+        res =>{
+          this.activeUsers = res
+          console.log(this.activeUsers)
+    
+        let k =0;
+
+      for(let i=0;i<this.activeUsers.length;i++){
+        for(let j=0;j<this.mapDeals.length;j++){
+        if(this.activeUsers[i]._id == this.mapDeals[j].accountId) {
+            // alert("3")
+            // alert(this.activeUsers[i].status)
+            if(this.activeUsers[i].status == 'ACTIVE'){
+             // alert("1")
+              this.crdDeals1[k] = this.mapDeals[j]
+              console.log(this.crdDeals1[k])
+              console.log(this.mapDeals[j])
+              //alert("2")
+              k++;
+            }
+        }
+      }
+      }
+        },
+        err=>{}
+      )
+     
         if(this.mapDeals.length ==0){
-         this.noLocationErr = "Please Allow Location"
+         this.noLocationErr = "No deals based on your location"
         }
       },
     

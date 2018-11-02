@@ -14,7 +14,9 @@ const userSchema = new Schema({
     },
     password:String,
     confirmPassword:String,
-    phone:Number
+    phone:Number,
+    status:String
+    
 })
 
 module.exports = mongoose.model('user',userSchema,'users')

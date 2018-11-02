@@ -280,91 +280,51 @@ router.delete('/details/:id',(req,res)=>{
 
     );
 });
-// router.get('/deals',(req,res)=>{
-//     let deals =[
-//         {
-//             "_id": "1",
-//             "name": "Auto Expo",
-//             "description": "lorem ipsum",
-//             "date": "2012-04-23T18:25:43.511Z"
-//           },
-//           {
-//             "_id": "2",
-//             "name": "Auto Expo",
-//             "description": "lorem ipsum",
-//             "date": "2012-04-23T18:25:43.511Z"
-//           },
-//           {
-//             "_id": "3",
-//             "name": "Auto Expo",
-//             "description": "lorem ipsum",
-//             "date": "2012-04-23T18:25:43.511Z"
-//           },
-//           {
-//             "_id": "4",
-//             "name": "Auto Expo",
-//             "description": "lorem ipsum",
-//             "date": "2012-04-23T18:25:43.511Z"
-//           },
-//           {
-//             "_id": "5",
-//             "name": "Auto Expo",
-//             "description": "lorem ipsum",
-//             "date": "2012-04-23T18:25:43.511Z"
-//           },
-//           {
-//             "_id": "6",
-//             "name": "Auto Expo",
-//             "description": "lorem ipsum",
-//             "date": "2012-04-23T18:25:43.511Z"
-//           }
-//     ]
 
-//     res.json(deals)
-// })
+//Deactivate account 
+router.put('/admin-user/deactive/:id', function(req, res){
+    console.log('Update a user');
+    console.log(req.body)
+    User.findByIdAndUpdate(req.params.id,
+    {
+        $set: {status : 'DEACTIVE'}
+    },
+    {
+        new: true
+    },
+    function(err,updatedUser){
+        if(err){
+            res.send("Error updating user");
+        }else{
+            res.json(updatedUser);
+        }
+    }
 
-//verfify token verifies the token
-router.get('/post', verifyToken, (req,res)=>{
-    let deals =[
-        {
-            "_id": "1",
-            "name": "Auto Expo",
-            "description": "lorem ipsum",
-            "date": "2012-04-23T18:25:43.511Z"
-          },
-          {
-            "_id": "2",
-            "name": "Auto Expo",
-            "description": "lorem ipsum",
-            "date": "2012-04-23T18:25:43.511Z"
-          },
-          {
-            "_id": "3",
-            "name": "Auto Expo",
-            "description": "lorem ipsum",
-            "date": "2012-04-23T18:25:43.511Z"
-          },
-          {
-            "_id": "4",
-            "name": "Auto Expo",
-            "description": "lorem ipsum",
-            "date": "2012-04-23T18:25:43.511Z"
-          },
-          {
-            "_id": "5",
-            "name": "Auto Expo",
-            "description": "lorem ipsum",
-            "date": "2012-04-23T18:25:43.511Z"
-          },
-          {
-            "_id": "6",
-            "name": "Auto Expo",
-            "description": "lorem ipsum",
-            "date": "2012-04-23T18:25:43.511Z"
-          }
-    ]
+    );
+});
 
-    res.json(deals)
-})
+//activate account 
+router.put('/admin-user/active/:id', function(req, res){
+    console.log('Update a user');
+    console.log(req.body)
+    User.findByIdAndUpdate(req.params.id,
+    {
+        $set: {status : 'ACTIVE'}
+    },
+    {
+        new: true
+    },
+    function(err,updatedUser){
+        if(err){
+            res.send("Error updating user");
+        }else{
+            res.json(updatedUser);
+        }
+    }
+
+    );
+});
+
+
 
 module.exports = router;
