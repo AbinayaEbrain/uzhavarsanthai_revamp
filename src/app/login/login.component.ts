@@ -25,11 +25,7 @@ export class LoginComponent implements OnInit {
       // swal.close();
       this.loadingCtrl.hide();
   }, 1000);
-   
-  // console.log("ip");
-  // this._auth.getIpAddress().subscribe(data => {
-  //   console.log(data);
-  // });
+
   }
   
   logform(){
