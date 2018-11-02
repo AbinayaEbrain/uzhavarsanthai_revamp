@@ -27,7 +27,7 @@ export class PostComponent implements OnInit {
     subQuantity:'',
     subqnty:'',
     category:'',
-    date: new Date().toLocaleDateString(),
+    date: new Date().getTime(),
     ipAddress:'',
     avlPlace:{
       avlplaceName:'',
@@ -132,7 +132,7 @@ export class PostComponent implements OnInit {
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.productData.ipAddress = localStorage.getItem('ipAddress');
 
-    let curntDte = new Date().toLocaleDateString();
+    let curntDte = new Date().getTime();
     this.productData.date = curntDte
     //  acntId = accountId;
     this._dealsService.addPost(this.productData)
@@ -210,7 +210,7 @@ export class PostComponent implements OnInit {
 
   update(){
     //console.log(this.deallistobj)
-    let curntDte = new Date().toLocaleDateString();
+    let curntDte = new Date().getTime();
     this.productData.date = curntDte
     this._dealsService.editDeals(this.productData,this.id)
     .subscribe(

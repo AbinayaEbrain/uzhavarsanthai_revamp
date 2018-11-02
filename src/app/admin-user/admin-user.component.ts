@@ -55,7 +55,7 @@ activeMsg:any
 
           
           if(this.registerUser.length == 0){
-            this.errMsg = "No Category Added"
+            this.errMsg = "No users found"
             }
          },
          err=>{

@@ -3,6 +3,9 @@ import { AuthService } from '../auth.service';
 import { Router} from '@angular/router';
 // loader 
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HttpClient } from '@angular/common/http';
+
+declare let ClientIP: any;
 declare var swal :any;
 
 @Component({
@@ -12,7 +15,8 @@ declare var swal :any;
 })
 export class RegisterComponent implements OnInit {
 
-  
+  privateIP ;
+  publicIP;
   registeredUserData = {
     address : {
       city:'',
@@ -20,17 +24,22 @@ export class RegisterComponent implements OnInit {
     },
     gender:'',
     phone:'',
+    privateIP:'',
     status:''
   };
   success : any
   errormsg:any
   phnErr:any
-  
+  ipAddress:any
  
   
-  constructor(private _auth:AuthService,private router:Router,public loadingCtrl: NgxSpinnerService) { 
+  constructor(private _auth:AuthService,private router:Router,public loadingCtrl: NgxSpinnerService,private http: HttpClient) { 
 
-  // this.registeredUserData.address = {};
+    this.privateIP = ClientIP;
+
+    this.http.get('https://api.ipify.org?format=json').subscribe(data => {
+      this.publicIP=data['ip'];
+    });
 
   this.registeredUserData.gender = ''
   this.registeredUserData.address.location = ''
@@ -47,7 +56,9 @@ export class RegisterComponent implements OnInit {
 
 
   post(){
-    // console.log(this.registeredUserData);
+    
+    this.registeredUserData.privateIP = this.privateIP
+   
     this.registeredUserData.status = "ACTIVE"
     this.loadingCtrl.show();
     this._auth.registerUser(this.registeredUserData)
@@ -56,6 +67,7 @@ export class RegisterComponent implements OnInit {
           this.loadingCtrl.hide();
            console.log(res)
            console.log(res.user.phone)
+           console.log(res.user.privateIP)
            console.log(this.registeredUserData)
           //  alert(this.registeredUserData)
            localStorage.setItem('token',res.token)

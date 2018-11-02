@@ -1,4 +1,4 @@
-<body class="bg" style="overflow: hidden;">
+<body class="bg" style="overflow: scroll;">
     <div class="text-center mb-5  container" style="margin-top: 100px">
       <h2 class="mt-5 pt-5 d-sm-block d-none clr sent_font text-left">The more one sows the greater the harvest</h2>
     <div class="row mt-4">
@@ -6,6 +6,9 @@
     <div class="col-md-4">
         <div class="alert alert-danger"  *ngIf="errormsg">
             {{errormsg}}
+          </div>
+          <div class="alert alert-danger"  *ngIf="deactiveErrorMsg">
+            {{deactiveErrorMsg}}
           </div>
         <form #loginform="ngForm" *ngIf ="!submitted" novalidate>
             <h1 class="h3 mb-5 font-weight-normal mt-5 pt-2 clr">Log In</h1>
@@ -21,8 +24,7 @@
               <label class="form-control-placeholder" for="password">Password</label>
               <span class="text-danger float-left" [class.d-none] = "password.valid || password.untouched">Password is required</span>  
             </div>
-
-            
+           
             <button [disabled]="loginform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit" (click)="logform()">LOGIN</button>
            
           </form>

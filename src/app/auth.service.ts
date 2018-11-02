@@ -43,6 +43,25 @@ export class AuthService {
 
   }
 
+  findActive(){
+    let status = JSON.parse(localStorage.getItem('status'));
+    if(status =='ACTIVE') {
+    return !!status
+    }
+    else{
+      localStorage.removeItem('payload')
+      localStorage.removeItem('currentUser')
+      localStorage.removeItem('token')
+      localStorage.removeItem('Address')
+      localStorage.removeItem('Address1')
+      localStorage.removeItem('googleLat')
+      localStorage.removeItem('googleLong')
+      localStorage.removeItem('ipAddress')
+      localStorage.removeItem('status')
+      localStorage.removeItem('firstname')
+    }
+  }
+
 
   //get token from interceptor
   getToken(){
@@ -59,6 +78,8 @@ export class AuthService {
     localStorage.removeItem('googleLat')
     localStorage.removeItem('googleLong')
     localStorage.removeItem('ipAddress')
+    localStorage.removeItem('status')
+    localStorage.removeItem('firstname')
     this.route.navigate(['/deals'])
   }
 

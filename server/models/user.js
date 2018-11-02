@@ -15,6 +15,7 @@ const userSchema = new Schema({
     password:String,
     confirmPassword:String,
     phone:Number,
+    privateIP:String,
     status:String
     
 })

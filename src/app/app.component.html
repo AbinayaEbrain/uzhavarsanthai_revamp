@@ -7,20 +7,20 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/login" *ngIf="!_authService.loggedIn()" routerLinkActive="active">Login</a>
+          <a class="nav-link" routerLink="/login" *ngIf="!_authService.loggedIn() || !_authService.findActive()" routerLinkActive="active">Login</a>
         </li>
         <!-- <li class="nav-item">
             <a class="nav-link" routerLink="/home" *ngIf="!_authService.loggedIn()" routerLinkActive="active">Home</a>
           </li> -->
     
          <li class="nav-item">
-              <a class="nav-link" routerLink="/post" *ngIf="_authService.loggedIn() && !_authService.roleAdmin()"  routerLinkActive="active">Post</a>
+              <a class="nav-link" routerLink="/post" *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()"  routerLinkActive="active">Post</a>
          </li>
          <li class="nav-item">
                 <a class="nav-link" routerLink="/deals" *ngIf="!_authService.loggedIn()" routerLinkActive="active">Deals</a>
          </li>
          <li class="nav-item">
-          <a class="nav-link" routerLink="/user-deals" *ngIf="_authService.loggedIn() && !_authService.roleAdmin()" routerLinkActive="active">MyDeals</a>
+          <a class="nav-link" routerLink="/user-deals" *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()" routerLinkActive="active">MyDeals</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/admin" *ngIf="_authService.roleAdmin() && _authService.loggedIn()" routerLinkActive="active">Admin</a>
