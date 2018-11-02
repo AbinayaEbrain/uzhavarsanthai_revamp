@@ -76,8 +76,7 @@ export class LoginComponent implements OnInit {
              this.errormsg ='Invalid Phone Number and Password !'
            }
         }
-        
-     
+
       )
   }
 

@@ -24,7 +24,8 @@ export class RegisterComponent implements OnInit {
     },
     gender:'',
     phone:'',
-    privateIP:''
+    privateIP:'',
+    status:''
   };
   success : any
   errormsg:any
@@ -58,6 +59,7 @@ export class RegisterComponent implements OnInit {
     // console.log(this.registeredUserData);
     this.registeredUserData.privateIP = this.privateIP
    // alert(this.privateIP)
+    this.registeredUserData.status = "ACTIVE"
     this.loadingCtrl.show();
     this._auth.registerUser(this.registeredUserData)
       .subscribe( 
@@ -65,6 +67,8 @@ export class RegisterComponent implements OnInit {
           this.loadingCtrl.hide();
            console.log(res)
            console.log(res.user.phone)
+           console.log(this.registeredUserData)
+          //  alert(this.registeredUserData)
            localStorage.setItem('token',res.token)
            localStorage.setItem('currentUser',JSON.stringify(res.user));
            localStorage.setItem('firstname',JSON.stringify(res.user.firstname));
