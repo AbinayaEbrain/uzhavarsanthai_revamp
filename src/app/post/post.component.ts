@@ -130,8 +130,9 @@ export class PostComponent implements OnInit {
     this.productData.avlPlace.latitude = JSON.parse(localStorage.getItem('Address'));
     this.productData.avlPlace.longtitude = JSON.parse(localStorage.getItem('Address1'));
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
-    this.productData.ipAddress = localStorage.getItem('ipAddress');
+    this.productData.ipAddress = JSON.parse(localStorage.getItem('currentUser')).privateIP;
 
+    alert(this.productData.ipAddress)
     let curntDte = new Date().getTime();
     this.productData.date = curntDte
     //  acntId = accountId;

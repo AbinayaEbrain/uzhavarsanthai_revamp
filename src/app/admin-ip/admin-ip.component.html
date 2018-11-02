@@ -17,23 +17,23 @@
                           <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                               <thead style="text-align: center">
                                   <tr>
-                                      <th>Category</th>
-                                      <th>Product Name</th>
+                                      <th>IpAddress</th>
+                                      <!-- <th>Product Name</th>
                                       <th>Quantity</th>
                                       <th>Price</th>
                                       <th>Posted On</th>
-                                      <th>City</th>
+                                      <th>City</th> -->
                                      
                                   </tr>
                               </thead>
                               <tbody style="text-align: center">
                                   <tr *ngFor="let deal of crdDeals | paginate: { itemsPerPage:5,currentPage:p};">
-                                      <td>{{deal.category}}</td>
-                                      <td>{{deal.name}}</td>
+                                      <!-- <td>{{deal.ipAddress}}</td> -->
+                                      <!-- <td>{{deal.name}}</td>
                                       <td>{{deal.quantity}} {{deal.qnty}}</td>
                                       <td>{{deal.price}}</td>
                                       <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
-                                      <td>{{deal.avlPlace.avlplaceName}}</td>
+                                      <td>{{deal.avlPlace.avlplaceName}}</td> -->
                                   </tr>
 
                               </tbody>

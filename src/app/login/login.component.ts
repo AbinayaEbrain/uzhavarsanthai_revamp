@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
 
               setTimeout(() => {
                 this.deactiveErrorMsg = ''
-            }, 2000);
+            }, 3000);
             }
             this.loadingCtrl.hide();
           }

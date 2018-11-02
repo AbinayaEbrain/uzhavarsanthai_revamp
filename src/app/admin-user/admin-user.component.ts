@@ -35,25 +35,13 @@ activeMsg:any
           this.loadingCtrl.hide();
           this.registerUser= res;
 
-          // let j = 0
-          // for(let i=0;i<this.registerUser.length;i++){
-          //   if(this.registerUser[i].status == "ACTIVE"){
-          //        this.mapDeals[j]=this.registerUser[i];
-          //   console.log(this.mapDeals[j])
-          //   j++
-             
-          //     console.log(this.registerUser)
-          //   }
-
             for(let i=0;i<this.registerUser.length;i++){
               if(this.registerUser[i].firstname == "Admin"){
                console.log(this.registerUser)
                 this.registerUser.splice(this.registerUser.indexOf(this.registerUser[i]), 1);
                }
             }
-          // }
-
-          
+         
           if(this.registerUser.length == 0){
             this.errMsg = "No users found"
             }
