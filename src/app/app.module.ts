@@ -24,6 +24,22 @@ import { AdminUserComponent } from './admin-user/admin-user.component';
 import { AdminDealsComponent } from './admin-deals/admin-deals.component';
 import { LocationdealsComponent } from './locationdeals/locationdeals.component';
 import { HomeComponent } from './home/home.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+
+library.add(fas, far);
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { fas } from '@fortawesome/free-solid-svg-icons';
+// import { far } from '@fortawesome/free-regular-svg-icons';
+// import { fab } from '@fortawesome/free-brands-svg-icons';
+
+//import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+//import { faTwitter } from '@fortawesome/free-solid-svg-icons';
+
+
 
 @NgModule({
   declarations: [
@@ -47,7 +63,9 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     HttpClientModule,
     NgxSpinnerModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FontAwesomeModule
+
   ],
   providers: [AuthService,DealsService,AuthGuard,
   {
@@ -57,4 +75,6 @@ import { HomeComponent } from './home/home.component';
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+ }

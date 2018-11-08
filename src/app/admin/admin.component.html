@@ -1,8 +1,148 @@
 
 <div class="bg" style="overflow: hidden;">
 
-  <div class="mb-5 container mt-5 pt-5" >
+  <div class="mb-5 container-fluid mt-5 pt-5" >
+    <div class="container-fluid ">
+    <div class="row">
+     &nbsp;
+     &nbsp;
+     &nbsp;
+     &nbsp;
+     &nbsp;
+     &nbsp;
+     &nbsp;
+    
+     <div class="col-lg-1 post">
+         <div>
+            <table>
+                
+              <tr>
+                        <td> <h5 class="mt-3">POST</h5></td>
+                        
+                    </tr>
+                    <tr>
+                        <td> <h4>10000</h4></td>
+                    </tr>
+                  
+                </table>
+            </div>
+      </div>
+     
+     &nbsp;
+     &nbsp;
+      <div class="col-lg-5 post">
+          <table>
+              <tr>
+                  <td> <h5 class="mt-3">FIRST NAME</h5></td>
+                  <td>:</td>
+                  <td> <h4 class="mt-3">Silambarasan</h4></td>
+              </tr>
+              <tr>
+                   <td><h5  class="mt-3"> LAST NAME</h5></td>
+                   <td>:</td>
+                  <td> <h4 class="mt-3">Silambarasan</h4></td>
+                </tr>
+                <tr>
+                        <td> <h5 class="mt-3">GENDER</h5></td>
+                        <td>:</td>
+                        <td> <h4 class="mt-3">Male</h4></td>
+                    </tr>
+                    <tr>
+                         <td><h5  class="mt-3">PHONE NUMBER</h5></td>
+                         <td>:</td>
+                        <td> <h4 class="mt-3">000000000</h4></td>
+                      </tr>
+          </table>
+         
+       
+         
+      </div>
+      
+      &nbsp;
+      &nbsp;
+      <div class="col-lg-5 post">
+            <table>
+                <tr>
+                    <td> <h5 class="mt-3">ADDRESS LINE 1</h5></td>
+                    <td>:</td>
+                    <td> <h4 class="mt-3">Silambarasan</h4></td>
+                </tr>
+                <tr>
+                     <td><h5  class="mt-3"> ADDRESS LINE 2</h5></td>
+                     <td>:</td>
+                    <td> <h4 class="mt-3">Silambarasan</h4></td>
+                  </tr>
+                  <tr>
+                        <td> <h5 class="mt-3">CITY</h5></td>
+                        <td>:</td>
+                        <td> <h4 class="mt-3">Thanjavur</h4></td>
+                    </tr>
+                    <tr>
+                         <td><h5  class="mt-3">STATE</h5></td>
+                         <td>:</td>
+                        <td> <h4 class="mt-3">Tamilnadu</h4></td>
+                      </tr>
+            </table>
+           
+            
+           
+        </div>
+      
+   
+        
+      </div>
 
+      </div>
+
+
+
+
+
+
+      <div class="card col-lg-3 mt-5">
+          <table>
+           <h1 class="btn">PRODUCT DETAILS</h1>
+           <div class="card-body">
+                 <tr>
+                     <td><strong>Category &nbsp; </strong></td>
+                     <td>:</td>
+                     <td>&nbsp;&nbsp;{{deal.category}}</td>
+                   </tr>
+               <tr>
+                 <td><strong>Name &nbsp;</strong></td>
+                 <td>:</td>
+                 <td>&nbsp;&nbsp;{{deal.name}}</td>
+               </tr>
+               <tr>
+                   <td><strong>Quantity &nbsp;</strong></td>
+                   <td>:</td>
+                   <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
+               </tr>
+               <tr>
+                   <td><strong>Price / Quantity &nbsp;</strong></td>
+                   <td>:</td>
+                   <td>&nbsp;&nbsp;{{deal.price}}</td>
+               </tr>
+               <tr>
+                   <td><strong>Posted On &nbsp;</strong></td>
+                   <td>:</td>
+                   <td>&nbsp;&nbsp;{{deal.date | date: 'dd/MM/yyyy'}}</td>
+               </tr>
+               <tr>
+                   <td><strong>Available Place &nbsp;</strong></td>
+                       <td>:</td>
+                       <td>&nbsp;&nbsp;{{deal.avlPlace.avlplaceName}}</td>
+               </tr>
+                   
+         </div>
+         </table>
+           
+       </div>
+
+     
+    
+          
+<!-- 
     <h2 class="text-success text-center mt-5">WELCOME TO FARMERS MARKET !</h2>
 
 <div class="row mt-5">
@@ -10,10 +150,7 @@
           <div class="card border-success flex-md-row mb-4 shadow-sm h-md-250">
              <div class="card-body text-center">
                 <h4 class="d-inline-block mb-2 text-success mx-auto">Number of Registered Users</h4>
-                <!-- <h6 class="mb-0">
-                   <a class="text-dark" href="#"></a>
-                </h6> -->
-                <!-- <div class="mb-1 text-muted small">Nov 11</div> -->
+       
                 <h5 class="card-text mb-auto mx-auto mt-3 mb-5"><strong>{{length}}</strong></h5>
                 <button class="btn btn-outline-success btn-sm mt-3" routerLink="/admin-user">View Details</button>
              </div>
@@ -24,10 +161,7 @@
           <div class="card border-success flex-md-row mb-4 shadow-sm h-md-250">
              <div class="card-body text-center">
                 <h4 class="d-inline-block mb-2 text-success mx-auto">Number of Posted Product</h4>
-                <!-- <h6 class="mb-0">
-                   <a class="text-dark" href="#"></a>
-                </h6> -->
-                <!-- <div class="mb-1 text-muted small">Nov 11</div> -->
+                
                 <h5 class="card-text mb-auto mx-auto mt-3 mb-5"><strong>{{dealsLength}}</strong></h5>
                 <button class="btn btn-outline-success btn-sm mt-3" routerLink = "/admin-deals">View Details</button>
              </div>
@@ -38,8 +172,8 @@
 
 <h4 class="mt-5 text-white">
   Click here to add category <button  class="btn btn-outline-success btn-sm" routerLink="/category">New Category</button>
-</h4>
-  </div>
+</h4> 
+  </div>-->
  
   </div>
  

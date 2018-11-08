@@ -1,21 +1,21 @@
 <body class="main-content mt-5 pt-5 bg">
   <div class="container-fluid">
-      <div class="container-fluid">
-            <div class="Appbtn">
-                    <button type="button" class="btn btn-success btn-fill  btn-wd btn-finish post" routerLink="/post">New Post</button>
-                </div>
-      </div>
-      
-      <div class="toolbar mb-3 row">
-          <div class="col-md-8"></div>
-          
-          <div class="col-md-2 col-lg-2 col-xs-12 col-sm-2 Appbtn" >
-                <form>
-                        <input type="text" class="float-right srchBox" placeholder="Search By Category" id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
-                      </form>
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-5 post  ">
+            <button type="button" class="btn btn-success mb-3" routerLink="/post">New Post</button>
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-2 "></div>
+        <div class="col-md-4 col-lg-4 col-sm-5  " >
+            <form>
+               <div>
+                    <span> <img  class="imge" src="../../assets/Images/Search-512.png" alt="" style="float: right;  vertical-align: middle"></span>
+                <input type="text" style="float: right;" class="  srchBox" placeholder="Search "  [(ngModel)]="queryString" name="search" autocomplete="off">
+              
             </div>
-        
+            </form>
+        </div>
       </div>
+     
       <div class="row mb-3" *ngIf = "success">
             <div class="col-md-4"></div>
             <div class="col-md-4">

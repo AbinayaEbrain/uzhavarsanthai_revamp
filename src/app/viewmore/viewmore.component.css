@@ -61,20 +61,25 @@
    .register{
     color: white;
    } 
-
+  
    .modal-dialog{
     background-color: #032b31;
 }
+.modal-content{
+    background-color: transparent !important;
+}
 .modal-header{
  color: beige;
-background-color: #011518;
+ border: none;
+background-color: #032b31;
 }
 .modal-body{
-    color: beige;
- background-color: #011518; 
+    text-align: left;
+    color: black;
+ background-color: #fff; 
 }
 .modal-footer{
- background-color: #18757e; 
+ background-color: #fff; 
 }
 
    .btn1{
