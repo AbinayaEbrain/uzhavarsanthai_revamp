@@ -3,7 +3,7 @@
 <body class="bg" style="overflow: hidden;">
   <div class="container mt-5 pt-5">
     <button class="btn btn-success btn1 mb-2" routerLink="/admin">BACK</button>
-      <h4 class="text-center text-white mb-4">Details of posted product</h4>
+      <h4 class="text-center text-white mb-4">Posts based on IP address</h4>
       <div *ngIf="errMsg">
             <p style="text-align: center;font-weight: bold;color:red">{{errMsg}}</p>
         </div>
@@ -17,7 +17,7 @@
                           <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                               <thead style="text-align: center">
                                   <tr>
-                                      <th>IpAddress</th>
+                                      <th>IP Address</th>
                                       <th>Category</th>
                                       <th>Product Name</th>
                                       <!-- <th>Quantity</th>

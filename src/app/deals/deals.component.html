@@ -46,12 +46,17 @@
                 <tr>
                     <td><strong>Price / Quantity &nbsp;</strong></td>
                     <td>:</td>
-                    <td>&nbsp;&nbsp;{{deal.price}}</td>
+                    <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
                 </tr>
                 <tr>
-                    <td><strong>Posted On &nbsp;</strong></td>
+                    <td><strong>Post Date &nbsp;</strong></td>
                     <td>:</td>
-                    <td>&nbsp;&nbsp;{{deal.date | date: 'dd/MM/yyyy hh:mm'}}</td>
+                    <td>&nbsp;&nbsp;{{deal.date | date:'dd/MM/yyyy'}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Post Time &nbsp;</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;&nbsp;{{deal.date | date:'hh:mm a'}}</td>
                 </tr>
                 <tr>
                     <td><strong>Available Place &nbsp;</strong></td>

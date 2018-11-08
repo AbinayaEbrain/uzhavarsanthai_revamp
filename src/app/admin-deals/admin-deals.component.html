@@ -21,7 +21,8 @@
                                       <th>Product Name</th>
                                       <th>Quantity</th>
                                       <th>Price</th>
-                                      <th>Posted On</th>
+                                      <th>Post Date</th>
+                                      <th>Post Time</th>
                                       <th>City</th>
                                      
                                   </tr>
@@ -33,6 +34,7 @@
                                       <td>{{deal.quantity}} {{deal.qnty}}</td>
                                       <td>{{deal.price}}</td>
                                       <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
+                                      <td>{{deal.date | date: 'hh:mm a'}}</td>
                                       <td>{{deal.avlPlace.avlplaceName}}</td>
                                   </tr>
 

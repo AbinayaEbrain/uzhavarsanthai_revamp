@@ -5,7 +5,7 @@
       <div class="row">
           <div class="col-md-4"></div>
           <div class="col-md-8">
-              <h2 class="clr mb-5 mt-2 mt-sm-2 mt-md-5">Post Your Product Details</h2>
+              <h3 class="clr mb-5 mt-2 mt-sm-2 mt-md-5">Post Your Product Details</h3>
               <div class="row mb-3" *ngIf = "success">
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
@@ -27,7 +27,7 @@
           <div class="col-md-4">
               <div class="form-group mb-5 mt-2">
                   <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.category" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
-                      <option selected="" disabled="" value="">Category</option>
+                      <option selected="" disabled="" value="">Category / வகை</option>
                       <option *ngFor="let val of categoryArr" value="{{val.productCategory}}">{{val.productCategory}}</option>
                     </select>
                 </div>
@@ -37,7 +37,7 @@
               <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                 <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)"  maxlength="20" [(ngModel)]="productData.name"  name="name" class="form-control"  autocomplete="off"  required>
          
-                <label class="form-control-placeholder" for="name">Product Name</label>
+                <label class="form-control-placeholder" for="name">Name / பெயர்</label>
                 <span class="text-danger float-left" [class.d-none] = "name.valid || name.untouched">Product Name is required</span> 
               </div>
             
@@ -49,7 +49,7 @@
                 <div class="col-md-2 col-sm-8 col-8">
                     <div class="form-group mb-5 mt-2">
                         <input type="text"  #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="productData.quantity"  name="quantity" class="form-control"  maxlength="5" autocomplete="off"  required>
-                        <label class="form-control-placeholder" for="quantity">Quantity</label>
+                        <label class="form-control-placeholder" for="quantity">Quantity / அளவு</label>
                         <span class="text-danger float-left" [class.d-none] = "quantity.valid || quantity.untouched">Quantity is required</span>  
                       </div>
                 </div>
@@ -57,7 +57,7 @@
                     <div class="form-group mb-5 mt-2">
                       
                         <select required class="form-control slect"  #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel (change)="getunits()" [(ngModel)]="productData.qnty" >
-                            <option value="">Unit</option>
+                            <option value="">Unit/எடை</option>
                             <option value="Kg">Kg</option>
                             <option value="Ltre">Ltre</option>
                           </select>
@@ -91,10 +91,10 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">    
-                    <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
+                    <div class="form-group mb-5 mt-2">
                       <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="productData.price"  name="price" class="form-control" maxlength="5"  autocomplete="off"  required>
                
-                      <label class="form-control-placeholder" for="name">Price / {{showUnit}}</label>
+                      <label class="form-control-placeholder" for="name">விலை / Price / {{showUnit}}</label>
                       <span class="text-danger float-left" [class.d-none] = "price.valid || price.untouched">Price is required</span> 
                     </div>
                   
@@ -103,7 +103,7 @@
                     <div class="form-group mb-5 mt-2">
                       
                         <select id="address" required class="form-control slect"  #avlplaceName="ngModel" name="avlplaceName" [class.is-invalid]="avlplaceName.invalid && avlplaceName.touched" ngModel  [(ngModel)]="productData.avlPlace.avlplaceName" (change)="getLatitudeLongitude()">
-                            <option value="">Available Place</option>
+                            <option value="">Available Place / கிடைக்குமிடம்</option>
                             <option value="Trichy">Trichy</option>
                             <option value="Thanjavur">Thanjavur</option>
                             <option value="Chennai">Chennai</option>
@@ -119,7 +119,7 @@
                 <div class="col-md-8">
                     <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                         <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="productData.description"  name="description" class="form-control"  autocomplete="off" maxlength="250" required>
-                        <label class="form-control-placeholder" for="date">Description</label>
+                        <label class="form-control-placeholder" for="date">Description / பொருளைப் பற்றி</label>
                         <span class="text-danger float-left" [class.d-none] = "description.valid || description.untouched">Description is required</span>  
                       </div>
                 </div> 

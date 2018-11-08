@@ -31,7 +31,7 @@ export class AdminIpComponent implements OnInit {
           if(this.crdDeals[i].ipAddress !== undefined && this.crdDeals[i].ipAddress !== null){
             let vari = this.crdDeals[i].ipAddress
             if(vari == this.crdDeals[i].ipAddress){
-              alert("1")
+              // alert("1")
             }
             console.log(vari)
             console.log(this.crdDeals[i].ipAddress)
