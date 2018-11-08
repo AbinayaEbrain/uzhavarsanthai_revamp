@@ -22,7 +22,7 @@
             <form>
                <div>
                    
-                <input type="text" style="width: 90%" class="srchBox" placeholder="Search "  [(ngModel)]="queryString" name="search" autocomplete="off">
+                <input type="text" style="width: 90%" class="srchBox" placeholder="Search by category"  [(ngModel)]="queryString" name="search" autocomplete="off">
               <fa-icon [icon]="faSearch" class="icon" style="width: 10%"></fa-icon>
             </div>
             </form>
@@ -71,7 +71,7 @@
                               </thead>
                               <tbody style="text-align: center" id="hide">
                                 
-                                  <tr  *ngFor="let deal of userDeals | paginate: { itemsPerPage:6,currentPage:p} | filterdata: queryString  : 'category' "  >
+                                  <tr  *ngFor="let deal of userDeals | paginate: { itemsPerPage:6,currentPage:p} | filterdata: queryString  : 'category'"  >
                                       
                                       <td>{{deal.category}}</td>
                                       <td>{{deal.name}}</td>
