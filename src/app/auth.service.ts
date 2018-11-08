@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
+// import { Observable } from 'rxjs/Observable';
+// import 'rxjs/add/operator/map';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,17 @@ export class AuthService {
     return this.http.post<any>(this._registerUrl,user)
   }
 
+  //  getIpAddress() {
+  //     return this.http
+  //           .get('http://freegeoip.net/json/?callback');
+  //           .map(response => response || {})
+  //           .catch(this.handleError);
+  // }
+
   logInUser(data){
     return this.http.post<any>(this._logInUrl,data)
   }
 
-   //auth guard
    loggedIn(){
     return !!localStorage.getItem('token')
   }
@@ -34,6 +41,25 @@ export class AuthService {
       return !!role
    }
 
+  }
+
+  findActive(){
+    let status = JSON.parse(localStorage.getItem('status'));
+    if(status =='ACTIVE') {
+    return !!status
+    }
+    else{
+      localStorage.removeItem('payload')
+      localStorage.removeItem('currentUser')
+      localStorage.removeItem('token')
+      localStorage.removeItem('Address')
+      localStorage.removeItem('Address1')
+      localStorage.removeItem('googleLat')
+      localStorage.removeItem('googleLong')
+      localStorage.removeItem('ipAddress')
+      localStorage.removeItem('status')
+      localStorage.removeItem('firstname')
+    }
   }
 
 
@@ -51,6 +77,10 @@ export class AuthService {
     localStorage.removeItem('Address1')
     localStorage.removeItem('googleLat')
     localStorage.removeItem('googleLong')
+    localStorage.removeItem('ipAddress')
+    localStorage.removeItem('status')
+    localStorage.removeItem('firstname')
     this.route.navigate(['/deals'])
   }
+
 }

@@ -5,7 +5,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import {ActivatedRoute, Params} from '@angular/router'
 // loader 
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HttpClient } from '@angular/common/http';
+
 declare var $: any;
+declare let ClientIP: any;
 
 @Component({
   selector: 'app-post',
@@ -14,6 +17,8 @@ declare var $: any;
 })
 export class PostComponent implements OnInit {
 
+  privateIP ;
+  publicIP;
   private postform;
   deals = [];
   categoryArr = [];
@@ -27,7 +32,8 @@ export class PostComponent implements OnInit {
     subQuantity:'',
     subqnty:'',
     category:'',
-    date: new Date().toLocaleDateString(),
+    date: new Date().getTime(),
+    ipAddress:'',
     avlPlace:{
       avlplaceName:'',
       latitude:'',
@@ -45,13 +51,18 @@ export class PostComponent implements OnInit {
   latite:any
   longti:any
   showUnit:any
-  constructor(private _dealsService:DealsService,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
+  constructor(private _dealsService:DealsService,private http: HttpClient,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
 
-  // this.getDropDownDatas();
+    this.privateIP = ClientIP;
+
+    this.http.get('https://api.ipify.org?format=json').subscribe(data => {
+      this.publicIP=data['ip'];
+    });
+
    this.productData.qnty = '';
    this.productData.category ='';
    this.productData.subqnty = '';
- this.productData.avlPlace.avlplaceName = ''
+   this.productData.avlPlace.avlplaceName = ''
   // this.productData.category. = ''
   
    }
@@ -129,7 +140,11 @@ export class PostComponent implements OnInit {
     this.productData.avlPlace.latitude = JSON.parse(localStorage.getItem('Address'));
     this.productData.avlPlace.longtitude = JSON.parse(localStorage.getItem('Address1'));
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
-    let curntDte = new Date().toLocaleDateString();
+    this.productData.ipAddress = this.privateIP;
+
+
+    //alert(this.productData.ipAddress)
+    let curntDte = new Date().getTime();
     this.productData.date = curntDte
     //  acntId = accountId;
     this._dealsService.addPost(this.productData)
@@ -207,7 +222,7 @@ export class PostComponent implements OnInit {
 
   update(){
     //console.log(this.deallistobj)
-    let curntDte = new Date().toLocaleDateString();
+    let curntDte = new Date().getTime();
     this.productData.date = curntDte
     this._dealsService.editDeals(this.productData,this.id)
     .subscribe(

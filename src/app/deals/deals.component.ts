@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { DealsService } from '../deals.service';
 import { Router} from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import {} from '@types/googlemaps';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
@@ -10,7 +11,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 // loader 
-import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
   selector: 'app-deals',
   templateUrl: './deals.component.html',
@@ -36,9 +37,11 @@ export class DealsComponent implements OnInit {
     avlPlace:{
       latitude:'',
       longitude:''
-    }
+    },
+    accountId:''
   }];
   mapDeals=[];
+  activeUsers=[]
   userName = {};
   errMsg = "";
   lat:any
@@ -47,41 +50,23 @@ export class DealsComponent implements OnInit {
   long1:any
   latd:any
   longd:any
+  crdDeals1 = []
 
   constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService){
-    this.loadingCtrl.show();
+   
   }
 
   ngOnInit() {
-    
-   this.loadingCtrl.show();
+    this.loadingCtrl.show();
    this._dealsService.getDeals()
       .subscribe(
         res =>{ 
           this.loadingCtrl.hide();
           this.crdDeals = res
-
-          // this.lat = localStorage.getItem('googleLat')
-          // this.long = localStorage.getItem('googleLong')
-
-          // this.lat1 = this.lat*1.009
-        
-         
-          // this.latd = this.lat/1.002
-         // alert(this.latd)
-
           console.log(this.crdDeals)
           console.log(this.crdDeals.length)
-          // let j=0
-          // for(let i=0; i < this.crdDeals.length; i++){
-          //   if(this.crdDeals[i].avlPlace.latitude < this.lat1 && this.crdDeals[i].avlPlace.latitude > this.latd){
-          //       this.mapDeals[j]=this.crdDeals[i];
-          //       console.log(this.mapDeals[j])
-          //       j++
-          //   }
-          // }
-          
-      if (this.crdDeals.length == 0){
+
+    if (this.crdDeals.length == 0){
         this.loadingCtrl.hide();
         this.errMsg = "Still you didn't post any deals"
         document.getElementById('hideButton').style.display='none';
@@ -94,6 +79,29 @@ export class DealsComponent implements OnInit {
           this.loadingCtrl.hide();
           console.log(err)
         } 
+      )
+
+      this._dealsService.getDetails()
+      .subscribe(
+        res =>{
+          this.activeUsers = res
+          console.log(this.activeUsers)
+      
+      let k =0;
+      for(let i=0;i<this.activeUsers.length;i++){
+        for(let j=0;j<this.crdDeals.length;j++){
+        if(this.activeUsers[i]._id == this.crdDeals[j].accountId) {
+            if(this.activeUsers[i].status == 'ACTIVE'){
+              this.crdDeals1[k] = this.crdDeals[j]
+              console.log(this.crdDeals1[k])
+              console.log(this.crdDeals[j])
+              k++;
+            }
+        }
+      }
+      }
+        },
+        err=>{}
       )
      
 
@@ -113,6 +121,9 @@ export class DealsComponent implements OnInit {
       } else {
         alert("Geolocation is not supported by this browser.");
       }
+
+
+    
   }
 
 

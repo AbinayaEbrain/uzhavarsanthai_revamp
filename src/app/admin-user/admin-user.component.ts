@@ -13,11 +13,16 @@ export class AdminUserComponent implements OnInit {
 
   registerUser=[{
     firstname:'',
-    _id:''
+    _id:'',
+    status:''
   }
   ]
+
+  mapDeals=[];
   id:any
 errMsg:any;
+deactiveMsg:any
+activeMsg:any
   constructor(private _dealService:DealsService,private route:ActivatedRoute,private router:Router,public loadingCtrl: NgxSpinnerService
   ) { }
 
@@ -30,22 +35,16 @@ errMsg:any;
           this.loadingCtrl.hide();
           this.registerUser= res;
 
-          for(let i=0;i<this.registerUser.length;i++){
-            if(this.registerUser[i].firstname == "Admin"){
-              // alert(this.registerUser[i].firstname)
-              // alert("i"+i)
-              this.registerUser.splice(this.registerUser.indexOf(this.registerUser[i]), 1);
-              //alert(this.registerUser.indexOf(this.registerUser[i]))
-              
-              // document.getElementById('shwBtn').style.display='block';
+            for(let i=0;i<this.registerUser.length;i++){
+              if(this.registerUser[i].firstname == "Admin"){
+               console.log(this.registerUser)
+                this.registerUser.splice(this.registerUser.indexOf(this.registerUser[i]), 1);
+               }
             }
-          }
          
-
           if(this.registerUser.length == 0){
-            this.errMsg = "No Category Added"
- 
-          }
+            this.errMsg = "No users found"
+            }
          },
          err=>{
           this.loadingCtrl.hide();
@@ -53,6 +52,51 @@ errMsg:any;
          }
        )
 
+  }
+
+  //Deactivate Account
+  deactiveAccount(data,id){
+    this.id = this.route.snapshot.params['id']
+    // alert(this.id)
+    console.log(this.id)
+    this._dealService.deactivateAccount(data,this.id)
+    .subscribe(
+       res=>{ 
+         console.log(res)
+         this.deactiveMsg ='Account Deactivated!'
+            setTimeout(()=>{
+              this.deactiveMsg = ''
+              this.router.navigate[('/admin-user')]
+            },2000)
+           // this.router.navigate[('/admin-user')]
+       },
+       err=>{ console.log(err);
+      },
+    
+    )
+  }
+
+   //activate Account
+  activeAccount(data,id){
+    this.id = this.route.snapshot.params['id']
+    // alert(this.id)
+    console.log(this.id)
+    this._dealService.activateAccount(data,this.id)
+    .subscribe(
+       res=>{ 
+         console.log(res)
+         this.activeMsg ='Account Activated!'
+        //  alert(this.activeMsg)
+         setTimeout(()=>{
+          this.activeMsg = ''
+          this.router.navigate[('/admin-user')]
+         },2000)
+        
+       },
+       err=>{ console.log(err);
+      },
+    
+    )
   }
 
   deleteuser(){

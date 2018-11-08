@@ -100,10 +100,10 @@ export class CategoryComponent implements OnInit {
           
           console.log(res);
          
-           
+          this.sucessMsg="Category Added";
           
           setTimeout(()=>{
-            this.sucessMsg="Category Added";
+            this.sucessMsg = ''
           },2000)
           
           this.router.navigate[('/category')]

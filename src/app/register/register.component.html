@@ -16,14 +16,14 @@
             <div class="col-md-4">
                 <div class="form-group mb-5 mt-2">
                     <input type="text"  #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="registeredUserData.firstname" autocomplete="off" required>
-                    <label class="form-control-placeholder" for="firstname">First Name</label>
+                    <label class="form-control-placeholder" for="firstname">First Name/பெயர்</label>
                     <span class="text-danger float-left" [class.d-none] = "firstname.valid || firstname.untouched">First Name is required</span>  
                   </div>
         </div> 
         <div class="col-md-4">    
                 <div class="form-group mb-5 mt-2">
                   <input type="text"  #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched" ngModel (keypress)="handleInput($event)" name="lastName" class="form-control" [(ngModel)]="registeredUserData.lastName" autocomplete="off"  required>
-                  <label class="form-control-placeholder" for="lastName">Last Name</label>
+                  <label class="form-control-placeholder" for="lastName">Last Name/பெயர்</label>
                   <span class="text-danger float-left" [class.d-none] = "lastName.valid || lastName.untouched">Last Name is required</span>  
                 </div>
           </div>  
@@ -31,7 +31,7 @@
                   <div class="form-group  mb-5 mt-2">
                       <!-- <label for="sel1">Select</label> -->
                       <select required class="form-control slect"  #gender="ngModel" name="gender" [class.is-invalid]="gender.invalid && gender.touched" ngModel [(ngModel)]="registeredUserData.gender">
-                        <option value="">Gender</option>
+                        <option value="">Gender/பாலினம்</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                       </select>
@@ -45,21 +45,21 @@
                   <div class="col-md-4">
                       <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                           <input type="text"  #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control"  [(ngModel)]="registeredUserData.address.addressLine" autocomplete="off" required>
-                          <label class="form-control-placeholder" for="address">AddressLine 1</label>
+                          <label class="form-control-placeholder" for="address">AddressLine 1/முகவரி 1</label>
                           <span class="text-danger float-left" [class.d-none] = "addressLine.valid || addressLine.untouched">Address is required</span>  
                         </div>
                   </div> 
                   <div class="col-md-4">    
                       <div class="form-group mb-5 mt-2">
                           <input type="text"  #address1="ngModel" [class.is-invalid]="address1.invalid && address1.touched" ngModel name="address1" class="form-control" [(ngModel)]="registeredUserData.address.address1" autocomplete="off" required>
-                          <label class="form-control-placeholder" for="address1">AddressLine 2</label>
+                          <label class="form-control-placeholder" for="address1">AddressLine 2/முகவரி 2</label>
                           <span class="text-danger float-left" [class.d-none] = "address1.valid || address1.untouched">Address is required</span>  
                         </div>
                     </div>    
                     <div class="col-md-2">
                             <div class="form-group mb-5 mt-2">
                                     <select required class="form-control slect"  #city="ngModel" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel  [(ngModel)]="registeredUserData.address.city">
-                                            <option value="">City</option>
+                                            <option value="">City/மாவட்டம்</option>
                                             <option value="Trichy">Trichy</option>
                                             <option value="Thanjavur">Thanjavur</option>
                                             <option value="Chennai">Chennai</option>
@@ -77,7 +77,7 @@
                       <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                          
                           <select required class="form-control slect"  #location="ngModel" name="location" [class.is-invalid]="location.invalid && location.touched" ngModel [(ngModel)]="registeredUserData.address.location">
-                                <option value="">Select your state</option>
+                                <option value="">State/மாநிலம்</option>
                                 <option value="Tamilnadu">Tamilnadu</option>
                                 <option value="Kerala">Kerala</option>
                               </select>
@@ -91,14 +91,14 @@
                             <div class="col-md-4 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
                                 <div class="form-group  mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                                     <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
-                                    <label class="form-control-placeholder" for="password">Password</label>
+                                    <label class="form-control-placeholder" for="password">Password/கடவுச்சொல்</label>
                                     <span class="text-danger float-left" [class.d-none] = "password.valid || password.untouched">Password is required</span>  
                                   </div>
                             </div> 
                             <div class="col-md-4">    
                                     <div class="form-group mb-5 mt-2">
                                       <input type="password"  #confirmPassword="ngModel" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" ngModel name="confirmPassword" class="form-control" [(ngModel)]="registeredUserData.confirmPassword"  autocomplete="off" maxlength="10" appConfirmEqualValidator="password" required reverse="false" validateEqual="password">
-                                      <label class="form-control-placeholder" for="confirmPassword">Confirm Password</label>
+                                      <label class="form-control-placeholder" for="confirmPassword">Confirm Password/ உறுதி செய்க</label>
                                       <!-- <span class="text-danger float-left" [class.d-none] = "confirmPassword.valid || confirmPassword.untouched ">Confirm Password is required</span>  -->
                                       <span class="text-danger float-left" [class.d-none] = "confirmPassword.valid || confirmPassword.untouched && !confirmPassword.required">Password and Confirm Password must be same</span>  
                                     </div>
@@ -106,7 +106,7 @@
                             <div class="col-md-4">
                                 <div class="form-group mt-2">
                                     <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" (change)="phnTen()" [(ngModel)]="registeredUserData.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
-                                    <label class="form-control-placeholder" for="phone">Phone Number</label>
+                                    <label class="form-control-placeholder" for="phone">Phone Number/தொலைபேசி எண்</label>
 
                                     <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
                                         <span class="text-danger float-left" *ngIf="phone.errors.required">Phone Number is required</span>
@@ -116,18 +116,16 @@
                                     <span class="text-danger float-left" *ngIf="phnErr">{{phnErr}}</span>
                                     <!-- <span class="text-danger float-left" [class.d-none] = "phone.valid || phone.untouched">Phone Number is required</span>   -->
                                   </div>
-                                <!-- <span class="text-danger float-left" *ngIf="errormsg" style="font-weight: bold">{{errormsg}}</span>   -->
-
-                                  <!-- <button class="btn mb-5 float-left" type="submit" (click)="post()">Send OTP</button> -->
+                                
                             </div>
                             </div>
-
+                            
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-6">
-                    <button class="btn mt-4" [disabled]="postform.form.invalid" type="submit" (click)="post()">Submit</button>
+                    <button id="hideButton" class="btn mt-4" [disabled]="postform.form.invalid" type="submit" (click)="post()">Submit</button>
                 </div>
                 <div class="col-md-6 col-sm-6 col-6">
-                    <button type="reset" class="btn mt-4 btn1">Reset</button>
+                    <button id="hideRestButton" type="reset" class="btn mt-4 btn1">Reset</button>
                 </div>
             </div>
           </form>

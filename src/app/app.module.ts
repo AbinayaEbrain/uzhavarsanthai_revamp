@@ -55,7 +55,9 @@ library.add(fas, far);
     AdminUserComponent,
     AdminDealsComponent,
     LocationdealsComponent,
-    HomeComponent
+    HomeComponent,
+    AdminViewComponent,
+    AdminIpComponent
   ],
   imports: [
     BrowserModule,
@@ -64,8 +66,12 @@ library.add(fas, far);
     HttpClientModule,
     NgxSpinnerModule,
     NgxPaginationModule,
+<<<<<<< HEAD
     FontAwesomeModule
 
+=======
+   
+>>>>>>> 0df6cd5109dd508c8a366195a5be7e7e9b65656f
   ],
   providers: [AuthService,DealsService,AuthGuard,
   {

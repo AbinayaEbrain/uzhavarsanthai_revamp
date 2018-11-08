@@ -3,7 +3,8 @@ import { AuthService } from '../auth.service';
 import { Router} from '@angular/router';
 // loader 
 import { NgxSpinnerService } from 'ngx-spinner';
-declare var swal :any;
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-register',
@@ -12,24 +13,24 @@ declare var swal :any;
 })
 export class RegisterComponent implements OnInit {
 
-  
   registeredUserData = {
     address : {
       city:'',
       location:''
     },
     gender:'',
-    phone:''
+    phone:'',
+    privateIP:'',
+    status:''
   };
   success : any
   errormsg:any
   phnErr:any
-  
+  ipAddress:any
  
   
-  constructor(private _auth:AuthService,private router:Router,public loadingCtrl: NgxSpinnerService) { 
+  constructor(private _auth:AuthService,private router:Router,public loadingCtrl: NgxSpinnerService,private http: HttpClient) { 
 
-  // this.registeredUserData.address = {};
 
   this.registeredUserData.gender = ''
   this.registeredUserData.address.location = ''
@@ -46,7 +47,10 @@ export class RegisterComponent implements OnInit {
 
 
   post(){
-    // console.log(this.registeredUserData);
+    
+    
+   
+    this.registeredUserData.status = "ACTIVE"
     this.loadingCtrl.show();
     this._auth.registerUser(this.registeredUserData)
       .subscribe( 
@@ -54,12 +58,17 @@ export class RegisterComponent implements OnInit {
           this.loadingCtrl.hide();
            console.log(res)
            console.log(res.user.phone)
+           console.log(res.user.privateIP)
+           console.log(this.registeredUserData)
+          //  alert(this.registeredUserData)
            localStorage.setItem('token',res.token)
            localStorage.setItem('currentUser',JSON.stringify(res.user));
            localStorage.setItem('firstname',JSON.stringify(res.user.firstname));
            //this.router.navigate(['/login'])
            this.success = "Registered successfully!"
-
+          document.getElementById('hideButton').style.display ='none'
+          document.getElementById('hideRestButton').style.display ='none'
+          
            setTimeout(() => {
             // swal.close();
             this.loadingCtrl.hide();
