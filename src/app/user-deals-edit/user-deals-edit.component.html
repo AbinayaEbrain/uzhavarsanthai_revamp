@@ -90,7 +90,7 @@
                   <div class="row">
                       <div class="col-md-4"></div>
                       <div class="col-md-4">    
-                          <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
+                          <div class="form-group mb-5 mt-2">
                             <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="deallistobj.price"  name="price" class="form-control" maxlength="5" autocomplete="off"  required>
                             <label class="form-control-placeholder" for="name">Price / {{showUnit}}</label>
                             <span class="text-danger float-left" [class.d-none] = "price.valid || price.untouched">Price is required</span> 
@@ -110,7 +110,7 @@
                                 </select>
       
                             </div>
-                            <span class="text-danger float-left" [class.d-none] = "avlplaceName.valid || avlplaceName.untouched">Price is required</span> 
+                            <span class="text-danger float-left" [class.d-none] = "avlplaceName.valid || avlplaceName.untouched">Place is required</span> 
                            
                       </div> 
                       <div class="col-md-4"></div>
