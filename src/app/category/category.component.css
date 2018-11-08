@@ -81,7 +81,13 @@ input{
     position: relative;
     margin-bottom: 1.5rem;
   }
-  
+  input{
+    background-color: transparent;
+    border-bottom: 2px solid black !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
 
   .form-control-placeholder {
     position: absolute;
