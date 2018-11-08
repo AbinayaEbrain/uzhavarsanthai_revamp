@@ -29,6 +29,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
+import { AdminViewComponent } from './admin-view/admin-view.component';
+import { AdminIpComponent } from './admin-ip/admin-ip.component';
 
 library.add(fas, far);
 // import { library } from '@fortawesome/fontawesome-svg-core';
@@ -66,12 +68,8 @@ library.add(fas, far);
     HttpClientModule,
     NgxSpinnerModule,
     NgxPaginationModule,
-<<<<<<< HEAD
     FontAwesomeModule
 
-=======
-   
->>>>>>> 0df6cd5109dd508c8a366195a5be7e7e9b65656f
   ],
   providers: [AuthService,DealsService,AuthGuard,
   {

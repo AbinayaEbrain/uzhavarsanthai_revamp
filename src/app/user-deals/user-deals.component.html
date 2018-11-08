@@ -1,16 +1,29 @@
 <body class=" mt-5 pt-5 bg">
   <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-4 col-lg-4 col-sm-5 post  ">
-            <button type="button" class="btn btn-success mb-3" routerLink="/post">New Post</button>
+        <!-- <div class="row  mt-5 pt-5">
+                <div class="col-lg-3 col-sm-12 col-md-12">
+                <button class="btnnn btn-success" (click)="findMe()" id="hideButton">அருகிலுள்ள 
+                    விற்பனை</button>
+                    <button class="btn" routerLink="/location" style="display: none" id="showButton">Click here to continue</button>
+                    <button class="btn" style="display: none;" routerLink="/location" id="showButton" >continue</button>
+                </div>
+               <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
+                    <div class=" col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" class="srchBox" style="width: 90%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+                        <fa-icon [icon]="faSearch" class="icon" style="width: 10%"></fa-icon>                                  
+                </div>
+              </div> -->
+      <div class="row  mt-3 mb-3">
+        <div class="col-lg-3 col-sm-12 col-md-12">
+            <button type="button" class="btnnn btn-success" routerLink="/post">New Post</button>
         </div>
-        <div class="col-md-4 col-lg-4 col-sm-2 "></div>
-        <div class="col-md-4 col-lg-4 col-sm-5  " >
+       <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
+        <div class="col-lg-6 col-md-6 col-sm-6  " >
             <form>
                <div>
-                    <span> <img  class="imge" src="../../assets/Images/Search-512.png" alt="" style="float: right;  vertical-align: middle"></span>
-                <input type="text" style="float: right;" class="  srchBox" placeholder="Search "  [(ngModel)]="queryString" name="search" autocomplete="off">
-              
+                   
+                <input type="text" style="width: 90%" class="srchBox" placeholder="Search "  [(ngModel)]="queryString" name="search" autocomplete="off">
+              <fa-icon [icon]="faSearch" class="icon" style="width: 10%"></fa-icon>
             </div>
             </form>
         </div>
