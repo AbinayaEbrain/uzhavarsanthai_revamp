@@ -26,6 +26,19 @@ export class AdminIpComponent implements OnInit {
       res =>{ 
       this.loadingCtrl.hide();
         this.crdDeals = res
+
+        for(let i=0;i<this.crdDeals.length;i++){
+          if(this.crdDeals[i].ipAddress !== undefined && this.crdDeals[i].ipAddress !== null){
+            let vari = this.crdDeals[i].ipAddress
+            if(vari == this.crdDeals[i].ipAddress){
+              alert("1")
+            }
+            console.log(vari)
+            console.log(this.crdDeals[i].ipAddress)
+          }
+        }
+
+        console.log(this.crdDeals)
         if(this.crdDeals.length == 0){
           this.errMsg = "No Posts Found"
 
@@ -37,31 +50,6 @@ export class AdminIpComponent implements OnInit {
       }
     )
 
-    this._dealsService.getDetails()
-    .subscribe(
-      res=>{
-       this.loadingCtrl.hide();
-       this.registerUser= res;
-
-    //  let j=0
-    //      for(let i=0;i<this.registerUser.length;i++){
-    //       if(this.registerUser[i].privateIP !== undefined || this.registerUser[i].privateIP !== null || this.registerUser[i].privateIP == 0){
-            
-    //         this.ipAdrs[j] = this.registerUser[i].privateIP
-    //         console.log(this.ipAdrs[j])
-    //        j++
-    //       }
-    //      }
-      
-       if(this.registerUser.length == 0){
-         this.errMsg = "No users found"
-         }
-      },
-      err=>{
-       this.loadingCtrl.hide();
-       console.log(err)
-      }
-    )
   }
 
 }

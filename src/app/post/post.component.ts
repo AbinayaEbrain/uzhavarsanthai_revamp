@@ -142,8 +142,8 @@ export class PostComponent implements OnInit {
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.productData.ipAddress = this.privateIP;
 
-    
-    alert(this.productData.ipAddress)
+
+    //alert(this.productData.ipAddress)
     let curntDte = new Date().getTime();
     this.productData.date = curntDte
     //  acntId = accountId;

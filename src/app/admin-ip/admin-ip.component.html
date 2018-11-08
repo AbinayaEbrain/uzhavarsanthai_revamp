@@ -18,8 +18,9 @@
                               <thead style="text-align: center">
                                   <tr>
                                       <th>IpAddress</th>
-                                      <!-- <th>Product Name</th>
-                                      <th>Quantity</th>
+                                      <th>Category</th>
+                                      <th>Product Name</th>
+                                      <!-- <th>Quantity</th>
                                       <th>Price</th>
                                       <th>Posted On</th>
                                       <th>City</th> -->
@@ -28,9 +29,10 @@
                               </thead>
                               <tbody style="text-align: center">
                                   <tr *ngFor="let deal of crdDeals | paginate: { itemsPerPage:5,currentPage:p};">
-                                      <!-- <td>{{deal.ipAddress}}</td> -->
-                                      <!-- <td>{{deal.name}}</td>
-                                      <td>{{deal.quantity}} {{deal.qnty}}</td>
+                                      <td>{{deal.ipAddress}}</td>
+                                      <td>{{deal.category}}</td>
+                                      <td>{{deal.name}}</td>
+                                      <!-- <td>{{deal.quantity}} {{deal.qnty}}</td>
                                       <td>{{deal.price}}</td>
                                       <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
                                       <td>{{deal.avlPlace.avlplaceName}}</td> -->
