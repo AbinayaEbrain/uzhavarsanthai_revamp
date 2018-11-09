@@ -1,21 +1,34 @@
-<body class="main-content mt-5 pt-5 bg">
+<body class=" mt-5 pt-5 bg">
   <div class="container-fluid">
-      <div class="container-fluid">
-            <div class="Appbtn">
-                    <button type="button" class="btn btn-success btn-fill  btn-wd btn-finish post" routerLink="/post">New Post</button>
+        <!-- <div class="row  mt-5 pt-5">
+                <div class="col-lg-3 col-sm-12 col-md-12">
+                <button class="btnnn btn-success" (click)="findMe()" id="hideButton">அருகிலுள்ள 
+                    விற்பனை</button>
+                    <button class="btn" routerLink="/location" style="display: none" id="showButton">Click here to continue</button>
+                    <button class="btn" style="display: none;" routerLink="/location" id="showButton" >continue</button>
                 </div>
-      </div>
-      
-      <div class="toolbar mb-3 row">
-          <div class="col-md-8"></div>
-          
-          <div class="col-md-2 col-lg-2 col-xs-12 col-sm-2 Appbtn" >
-                <form>
-                        <input type="text" class="float-right srchBox" placeholder="Search By Category" id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
-                      </form>
+               <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
+                    <div class=" col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" class="srchBox" style="width: 90%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+                        <fa-icon [icon]="faSearch" class="icon" style="width: 10%"></fa-icon>                                  
+                </div>
+              </div> -->
+      <div class="row  mt-3 mb-3">
+        <div class="col-lg-3 col-sm-12 col-md-12">
+            <button type="button" class="btnnn btn-success" routerLink="/post">New Post</button>
+        </div>
+       <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
+        <div class="col-lg-6 col-md-6 col-sm-6  " >
+            <form>
+               <div>
+                   
+                <input type="text" style="width: 90%" class="srchBox" placeholder="Search by category"  [(ngModel)]="queryString" name="search" autocomplete="off">
+              <fa-icon [icon]="faSearch" class="icon" style="width: 10%"></fa-icon>
             </div>
-        
+            </form>
+        </div>
       </div>
+     
       <div class="row mb-3" *ngIf = "success">
             <div class="col-md-4"></div>
             <div class="col-md-4">
@@ -50,21 +63,23 @@
                                       <th>Quantity</th>
                                       <th>Sub Quantity</th>
                                       <th>Price / Quantity</th>
-                                      <th>Posted On</th>
+                                      <th>Post Date</th>
+                                      <th>Post Time</th>
                                       <!-- <th>City</th> -->
                                       <th class="disabled-sorting">Action</th>
                                   </tr>
                               </thead>
                               <tbody style="text-align: center" id="hide">
                                 
-                                  <tr  *ngFor="let deal of userDeals | paginate: { itemsPerPage:6,currentPage:p} | filterdata: queryString  : 'category' "  >
+                                  <tr  *ngFor="let deal of userDeals | paginate: { itemsPerPage:6,currentPage:p} | filterdata: queryString  : 'category'"  >
                                       
                                       <td>{{deal.category}}</td>
                                       <td>{{deal.name}}</td>
                                       <td>{{deal.quantity}}{{deal.qnty}} </td>
                                       <td> {{deal.subQuantity}}{{deal.subqnty}} </td>
                                       <td>Rs.{{deal.price}}/-</td>
-                                      <td>{{deal.date | date: 'dd/MM/yyyy HH:MM'}}</td>
+                                      <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
+                                      <td>{{deal.date | date: 'hh:mm a'}}</td>
                                       <!-- <td>{{deal.avlPlace.avlplaceName}}</td> -->
                                       <td>
                                           <!-- <button class="btn btn-simple btn-info btn-icon like">

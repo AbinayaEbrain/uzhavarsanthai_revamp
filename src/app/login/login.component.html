@@ -15,13 +15,13 @@
        
             <div class="form-group mb-5 mt-2">
                 <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
-                <label class="form-control-placeholder" for="phone">Phone Number</label>
+                <label class="form-control-placeholder" for="phone">Phone Number/தொலைபேசி எண்</label>
                 <span class="text-danger float-left" [class.d-none] = "phone.valid || phone.untouched">Phone Number is required</span>  
               </div>
            
             <div class="form-group mb-5 mt-2">
               <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="userData.password" autocomplete="off"  required>
-              <label class="form-control-placeholder" for="password">Password</label>
+              <label class="form-control-placeholder" for="password">Password / கடவுச்சொல்</label>
               <span class="text-danger float-left" [class.d-none] = "password.valid || password.untouched">Password is required</span>  
             </div>
            

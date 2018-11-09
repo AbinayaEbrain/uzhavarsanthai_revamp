@@ -3,6 +3,13 @@ import { DealsService } from '../deals.service';
 import { Router} from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {} from '@types/googlemaps';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+
+
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 // loader 
 
 @Component({
@@ -12,7 +19,11 @@ import {} from '@types/googlemaps';
 })
 
 export class DealsComponent implements OnInit {
-
+  faCoffee = faCoffee;
+  faTwitter = faTwitter;
+  faCheck = faCheck;
+  faSearch =faSearch;
+  
   //for location 
   @ViewChild('gmap')gmapElement: any;
   map: google.maps.Map;

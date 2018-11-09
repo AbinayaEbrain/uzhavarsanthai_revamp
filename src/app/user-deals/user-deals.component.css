@@ -81,42 +81,78 @@
     background-color:  green;
   }
   .bg {
-    background: url(./images/6.jpg) no-repeat center center fixed; 
+    background: url(./images/6.jpg)no-repeat center; 
     background-position: center center;
-    background-repeat:  no-repeat;
-    background-attachment: fixed;
-    background-size:  cover;
-    background-color: #999;
-    min-height: 100vh;
-    width:100%
+     background-repeat:  no-repeat;
+     background-attachment: fixed;
+     background-size:  cover;
+     background-color: #999;
+     min-height: 165vh;
+     width:100%
   }
-  /* .card-body{
-    
-  font-size: 17px;
+  .icon{
+    /* margin: auto; */
+    background: white;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius:5px; 
+/*    
+    font-weight: 400; */
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    float: right;
   }
-  tr{
-    text-align: left;
+
+  .srchBox {
+    background: white;
+    border-left: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius:0px; 
+    display: inline-block;
+    font-weight: 400;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
   }
-  table{
-    margin: auto;
-  } */
-  .srchBox{
-    border-radius: 50px;
-    border-color: #f26532;
-   } 
-   
- .srchBox {
-  border-radius: 5px;
-  border: 1px solid #ccc;
+
+.imge{
   padding: 5px;
-  width: 150px;
-  -webkit-transition: all .5s ease;
-  -moz-transition: all .5s ease;
-  transition: all .5s ease;
-  margin-right: 16px;
+  width: 7.4%;
+
+  background-color: white;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border: 2px solid #fff;
+
+
+
+}
+.btnnn {
+  width: 100%;
+   display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .srchBox:focus {
-  width: 200px;
+  width: 90%;
 }
 
 .Appbtn{
@@ -124,6 +160,8 @@
   padding: 0;
 }
 
-.post{
-  margin-right: 16px;
+.btn{
+  
+  width: 50%;
+  
 }

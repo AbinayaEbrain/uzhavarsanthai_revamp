@@ -9,6 +9,28 @@
     min-height: 100vh;
     width:100%
 }
+input[_ngcontent-c2] {
+    background-color: transparent;
+    border-bottom: 2px solid black !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+.form-control-placeholder[_ngcontent-c2] {
+    position: absolute;
+    top: 0;
+    padding: 7px 0 0 13px;
+    transition: all 200ms;
+    left: -12px;
+    font-weight: 500;
+    font-size: 17px;
+    color: black !important; 
+}
+
+
+.modal-header{
+    border-bottom: 2px solid black !important;  
+}
 
 .bg1{
     /* The image used */
@@ -59,10 +81,14 @@ input{
     position: relative;
     margin-bottom: 1.5rem;
   }
-  
-  .form-control{
-    color: white !important;
+  input{
+    background-color: transparent;
+    border-bottom: 2px solid black !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
 }
+
   .form-control-placeholder {
     position: absolute;
     top: 0;
@@ -72,7 +98,7 @@ input{
     left: -12px;
     font-weight: 500;
     font-size: 17px;
-    color: white;
+   
   }
   
   .form-control:focus + .form-control-placeholder,
@@ -84,7 +110,7 @@ input{
   }
  
   .clr{
-      color: white;
+      color: black;
   }
 
   .sent_font{

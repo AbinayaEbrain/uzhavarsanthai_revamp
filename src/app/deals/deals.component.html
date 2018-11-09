@@ -60,12 +60,17 @@
                 <tr>
                     <td><strong>Price / Quantity &nbsp;</strong></td>
                     <td>:</td>
-                    <td>&nbsp;&nbsp;{{deal.price}}</td>
+                    <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
                 </tr>
                 <tr>
-                    <td><strong>Posted On &nbsp;</strong></td>
+                    <td><strong>Post Date &nbsp;</strong></td>
                     <td>:</td>
-                    <td>&nbsp;&nbsp;{{deal.date | date: 'dd/MM/yyyy hh:mm'}}</td>
+                    <td>&nbsp;&nbsp;{{deal.date | date:'dd/MM/yyyy'}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Post Time &nbsp;</strong></td>
+                    <td>:</td>
+                    <td>&nbsp;&nbsp;{{deal.date | date:'hh:mm a'}}</td>
                 </tr>
                 <tr>
                     <td><strong>Available Place &nbsp;</strong></td>
@@ -78,7 +83,14 @@
             <a  class="btn btn-primary mb-3"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
         </div>
       </div>
-      <div class="mx-auto page">
+      <!-- <div style="text-align:center">
+        <fa-icon [icon]="faCoffee"></fa-icon>
+        <fa-icon [icon]="faTwitter"></fa-icon>
+        <fa-icon [icon]="faCheck"></fa-icon>
+        
+        
+      </div> -->
+      <div class="mx-auto">
         <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
       </div>
   </div>
