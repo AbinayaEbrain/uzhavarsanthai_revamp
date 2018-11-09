@@ -4,14 +4,13 @@ import {ActivatedRoute} from '@angular/router';
 import {Router, ParamMap} from '@angular/router';
 // loader 
 import { NgxSpinnerService } from 'ngx-spinner';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-user-deals',
   templateUrl: './user-deals.component.html',
   styleUrls: ['./user-deals.component.css']
 })
 export class UserDealsComponent implements OnInit {
-  faSearch =faSearch;
+
   crdDeals = [];
   userName = {};
   userDeals = [];
