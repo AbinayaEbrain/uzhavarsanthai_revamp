@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AdminService {
 
-  private _postCatUrl = "http://localhost:3200/api/category";
+  private _postCatUrl = "http://localhost:8080/api/category";
 
   constructor(private http:HttpClient) { }
 
