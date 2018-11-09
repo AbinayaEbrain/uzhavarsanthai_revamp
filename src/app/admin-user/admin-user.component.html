@@ -35,24 +35,15 @@
                                         <td>{{deal.address.location}}</td>
                                         <td style="font-weight: bold;" [ngStyle]="{'color':deal.status === 'ACTIVE' ? 'green' : 'red' }">{{deal.status}}</td>
                                         <td>
-                                            <button class="btn btn-simple btn-success" data-toggle="modal" data-target="#myModal2" data-backdrop="static"
+                                            <button class="btn btn-simple btn-success"  [ngStyle]="{'display':deal.status === 'ACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal2" data-backdrop="static"
                                             data-keyboard="false"  routerLink="/admin-user/{{deal._id}}" >
                                                Active
-                                            </button>&nbsp;&nbsp;
-                                            <button class="btn btn-simple btn-danger " data-toggle="modal" data-target="#myModal1" data-backdrop="static"
+                                            </button>
+                                            <button class="btn btn-simple btn-danger" [ngStyle]="{'display':deal.status === 'DEACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
                                             data-keyboard="false"  routerLink="/admin-user/{{deal._id}}" >
                                               Deactive
                                            </button>&nbsp;&nbsp;
-                                           <!-- <button class="btn btn-simple btn-danger btn-icon remove" data-toggle="modal" data-target="#myModal" data-backdrop="static"
-                                           data-keyboard="false" routerLink="/admin-user/{{deal._id}}">
-                                             Delete
-                                          </button> -->
-                                            <!-- <button class="btn btn-simple btn-danger btn-icon remove" data-toggle="modal" data-target="#myModal" data-backdrop="static"
-                                             data-keyboard="false" routerLink="/admin-user/{{deal._id}}">
-                                               Delete
-                                            </button>&nbsp;&nbsp; -->
-                                            <!-- edit -->
-                                            <button class="btn btn-simple btn-success btn-icon remove" routerLink="/admin-view/{{deal._id}}">
+                                            <button class="btn btn-simple btn-warning btn-icon remove" routerLink="/admin-view/{{deal._id}}">
                                               View
                                            </button>
                                         </td>

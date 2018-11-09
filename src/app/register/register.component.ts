@@ -64,6 +64,7 @@ export class RegisterComponent implements OnInit {
            localStorage.setItem('token',res.token)
            localStorage.setItem('currentUser',JSON.stringify(res.user));
            localStorage.setItem('firstname',JSON.stringify(res.user.firstname));
+           localStorage.setItem('status', JSON.stringify(res.user.status));
            //this.router.navigate(['/login'])
            this.success = "Registered successfully!"
           document.getElementById('hideButton').style.display ='none'

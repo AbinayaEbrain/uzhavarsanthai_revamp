@@ -7,7 +7,7 @@ const cors=require('cors')
 const api = require('./routes/api')
 
 //define port of server 
-const PORT = 3200
+const PORT = 8080
 
 const app = express()
 

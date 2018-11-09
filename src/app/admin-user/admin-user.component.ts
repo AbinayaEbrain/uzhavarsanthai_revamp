@@ -14,7 +14,11 @@ export class AdminUserComponent implements OnInit {
   registerUser=[{
     firstname:'',
     _id:'',
-    status:''
+    status:'',
+    address:{
+      city:'',
+      location:''
+    }
   }
   ]
 
@@ -35,6 +39,7 @@ activeMsg:any
           this.loadingCtrl.hide();
           this.registerUser= res;
 
+          console.log( this.registerUser)
             for(let i=0;i<this.registerUser.length;i++){
               if(this.registerUser[i].firstname == "Admin"){
                console.log(this.registerUser)
@@ -42,6 +47,7 @@ activeMsg:any
                }
             }
          
+
           if(this.registerUser.length == 0){
             this.errMsg = "No users found"
             }
