@@ -21,7 +21,7 @@ app.use(express.static(__dirname + '/dist/farmers'));
 // app.get('/',function(req,res){
 //     res.send('Hello from the server ')
 // })
-app.get('/', function(req,res) {
+app.get('/*', function(req,res) {
     
     res.sendFile(path.join(__dirname+'/dist/farmers/index.html'));
     });
