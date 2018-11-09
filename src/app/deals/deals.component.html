@@ -1,17 +1,31 @@
 
 <div class="bg">
 <div class="container">
-    <div class="row  mt-5 pt-5">
-        <div class="col-md-4 col-sm-12">
-        <button class="btn btn-primary" (click)="findMe()" id="hideButton">அருகிலுள்ள 
+    <!--  <div class="row  mt-5 pt-5">
+        <div class="col-lg-3 col-sm-12 col-md-12">
+        <button class="btnnn btn-success" (click)="findMe()" id="hideButton">அருகிலுள்ள 
             விற்பனை</button>
-            <button class="btn btn-primary" routerLink="/location" style="display: none" id="showButton">Click here to continue</button>
-            <button class="btn btn-primary" style="display: none;" routerLink="/location" id="showButton" >continue</button>
+            <button class="btn" routerLink="/location" style="display: none" id="showButton">Click here to continue</button>
+            <button class="btn" style="display: none;" routerLink="/location" id="showButton" >continue</button>
         </div>
+       <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
             <div class="col-md-8 col-sm-12 mt-3">
             <form>
               <input type="text" class="float-right srchBox" placeholder="Search By Category" id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
             </form>
+        </div>
+      </div> -->
+          <div class="row  mt-5 pt-5">
+        <div class="col-lg-3 col-sm-12 col-md-12">
+        <button class="btnnn btn-success" (click)="findMe()" id="hideButton">அருகிலுள்ள 
+            விற்பனை</button>
+            <button class="btn" routerLink="/location" style="display: none" id="showButton">Click here to continue</button>
+            <button class="btn" style="display: none;" routerLink="/location" id="showButton" >continue</button>
+        </div>
+       <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
+            <div class=" col-lg-6 col-md-6 col-sm-6">
+                <input type="text" class="srchBox" style="width: 90%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+                <!-- <fa-icon [icon]="faSearch" class="icon" style="width: 10%"></fa-icon>                                   -->
         </div>
       </div>
       <p class="no_deals_found " *ngIf="errMsg">{{errMsg}}</p>
