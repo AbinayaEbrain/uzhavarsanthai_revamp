@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   user:any
   wholedata:any
   deactiveErrorMsg:any
+  submitted:boolean;
 
   constructor(private router:Router,private _auth:AuthService,private _dealsService:DealsService,public loadingCtrl: NgxSpinnerService) { }
 
