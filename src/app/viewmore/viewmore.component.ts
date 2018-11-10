@@ -38,7 +38,7 @@ export class ViewmoreComponent implements OnInit {
     avlPlace:''
   }
   userName = '';
-  avlplaceName:any;
+  avlplaceName='';
   constructor(private _dealsService:DealsService,private router:Router,private route:ActivatedRoute,public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
