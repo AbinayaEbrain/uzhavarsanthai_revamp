@@ -90,7 +90,7 @@ export class UserDealsComponent implements OnInit {
         setTimeout(() => {
           // swal.close();
           this.loadingCtrl.show();
-          this.router.navigate(['user-deals']);
+          this.router.navigate(['/user-deals']);
           this.loadingCtrl.hide();
       }, 2000);
        },
