@@ -51,6 +51,7 @@ export class PostComponent implements OnInit {
   latite:any
   longti:any
   showUnit:any
+  submitted:boolean;
   constructor(private _dealsService:DealsService,private http: HttpClient,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
 
     this.privateIP = ClientIP;

@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
   errormsg:any
   phnErr:any
   ipAddress:any
+  submitted:boolean;
  
   
   constructor(private _auth:AuthService,private router:Router,public loadingCtrl: NgxSpinnerService,private http: HttpClient) { 

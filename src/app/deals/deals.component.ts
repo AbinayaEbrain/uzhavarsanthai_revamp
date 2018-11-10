@@ -43,6 +43,8 @@ export class DealsComponent implements OnInit {
   latd:any
   longd:any
   crdDeals1 = []
+  queryString:any;
+  p:any;
 
   constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService){
    
