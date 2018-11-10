@@ -35,10 +35,12 @@ export class ViewmoreComponent implements OnInit {
     description:'',
     accountId:'',
     date:'',
-    avlPlace:''
+    avlPlace:{
+        avlplaceName:''
+    }
   }
   userName = '';
-  avlplaceName='';
+
   constructor(private _dealsService:DealsService,private router:Router,private route:ActivatedRoute,public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
@@ -62,7 +64,7 @@ export class ViewmoreComponent implements OnInit {
                this.postProduct.qnty = this.viewPost[i].qnty;
                this.postProduct.price = this.viewPost[i].price;
                this.postProduct.description = this.viewPost[i].description;
-               this.postProduct.avlPlace = this.viewPost[i].avlPlace;
+               this.postProduct.avlPlace.avlplaceName = this.viewPost[i].avlPlace.avlplaceName;
                this.postProduct.accountId = this.viewPost[i].accountId;
               
               }
