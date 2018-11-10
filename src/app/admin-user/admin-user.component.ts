@@ -27,6 +27,7 @@ export class AdminUserComponent implements OnInit {
 errMsg:any;
 deactiveMsg:any
 activeMsg:any
+p:any;
   constructor(private _dealService:DealsService,private route:ActivatedRoute,private router:Router,public loadingCtrl: NgxSpinnerService
   ) { }
 

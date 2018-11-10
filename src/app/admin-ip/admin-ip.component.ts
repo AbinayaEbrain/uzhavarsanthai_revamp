@@ -12,7 +12,8 @@ export class AdminIpComponent implements OnInit {
   crdDeals=[];
   errMsg:any;
   registerUser=[];
-  ipAdrs = []
+  ipAdrs = [];
+  p:any;
 
   constructor(private _dealsService:DealsService,public loadingCtrl: NgxSpinnerService
   ) { }

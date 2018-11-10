@@ -30,7 +30,9 @@ export class AdminViewComponent implements OnInit {
     }
   }
   postLength:any
-  errMsg:any
+  errMsg:any;
+  p:any;
+  queryString:any;
 
   constructor(private _dealsService:DealsService,private router:Router,private route:ActivatedRoute,public loadingCtrl: NgxSpinnerService) { }
 

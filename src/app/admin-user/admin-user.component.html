@@ -114,7 +114,7 @@
                         <p style="text-align: center;font-weight: bold;color:red">{{deactiveMsg}}</p>
                     </div>
                    
-           <button type="button" class="btn btn-primary" (click)="deactiveAccount()" >Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btn-primary" (click)="deactiveAccount(data,id)" >Yes</button>&nbsp;&nbsp;&nbsp;
            <button type="button" class="btn btn-danger" routerLink="/admin-user" data-dismiss="modal">No</button>
           </div>
         </div>
@@ -140,7 +140,7 @@
                 <div *ngIf="activeMsg">
                         <p style="text-align: center;font-weight: bold;color:green">{{activeMsg}}</p>
                     </div>
-           <button type="button" class="btn btn-primary"  (click)="activeAccount()" >Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btn-primary"  (click)="activeAccount(data,id)" >Yes</button>&nbsp;&nbsp;&nbsp;
            <button type="button" class="btn btn-danger" routerLink="/admin-user" data-dismiss="modal">No</button>
           </div>
         </div>

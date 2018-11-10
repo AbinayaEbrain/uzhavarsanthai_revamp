@@ -37,6 +37,8 @@ export class LocationdealsComponent implements OnInit {
   longd:any
   noLocationErr:any;
   crdDeals1= []
+  p:any;
+  queryString:any;
 
   constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService) { }
 

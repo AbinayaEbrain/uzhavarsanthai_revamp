@@ -33,7 +33,7 @@ export class UserDealsEditComponent implements OnInit {
   success:any
   categoryArr = []
   showUnit:any
-
+  submitted:boolean;
   constructor(private  _dealsService:DealsService,private route:ActivatedRoute,private router:Router,public loadingCtrl:NgxSpinnerService) { }
 
   ngOnInit() {

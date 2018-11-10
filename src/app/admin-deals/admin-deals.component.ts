@@ -11,6 +11,7 @@ export class AdminDealsComponent implements OnInit {
 
   crdDeals=[];
   errMsg:any;
+  p:any;
   constructor(private _dealsService:DealsService,public loadingCtrl: NgxSpinnerService
   ) { }
 

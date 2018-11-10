@@ -21,7 +21,8 @@ export class CategoryComponent implements OnInit {
     productCategory:''
   }
   sucessMsg:any;
-
+p:any;
+submitted:boolean;
   constructor(private _adminService:AdminService,public loadingCtrl: NgxSpinnerService,private _dealService:DealsService,private route:ActivatedRoute,private router:Router) { }
 
   

@@ -18,6 +18,7 @@ export class UserDealsComponent implements OnInit {
   errMsg : any
   success:any
   queryString:any;
+  p:any;
   constructor(private  _dealsService:DealsService,private route:ActivatedRoute,private router:Router,public loadingCtrl: NgxSpinnerService) { 
     for(let i=1;i<=1; i++){
       this.userDeals.push('Angular ${i}.0');
