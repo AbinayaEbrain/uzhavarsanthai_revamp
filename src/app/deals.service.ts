@@ -6,15 +6,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DealsService {
 
-  private _dealsUrl = "http://localhost:8080/api/deals";
-  private _postUrl ="http://localhost:8080/api/post";
-  private _getUrl ="http://localhost:8080/api/details";
-  private _getCategoryUrl ="http://localhost:8080/api/category";
-  private _getSubCategoryUrl ="http://localhost:8080/api/subcategory";
+  private _dealsUrl = "http://localhost:5000/api/deals";
+  private _postUrl ="http://localhost:5000/api/post";
+  private _getUrl ="http://localhost:5000/api/details";
+  private _getCategoryUrl ="http://localhost:5000/api/category";
+  private _getSubCategoryUrl ="http://localhost:5000/api/subcategory";
   //Deactivate URL
-  private deactiveUrl ="http://localhost:8080/api/admin-user/deactive";
+  private deactiveUrl ="http://localhost:5000/api/admin-user/deactive";
   //Active URL
-  private activeUrl ="http://localhost:8080/api/admin-user/active";
+  private activeUrl ="http://localhost:5000/api/admin-user/active";
 
   constructor(private http:HttpClient) { }
 

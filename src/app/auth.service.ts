@@ -9,8 +9,8 @@ import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
 })
 export class AuthService {
 
-  private _registerUrl = "http://localhost:8080/api/register";
-  private _logInUrl = "http://localhost:8080/api/login";
+  private _registerUrl = "http://localhost:5000/api/register";
+  private _logInUrl = "http://localhost:5000/api/login";
 
   constructor(private http:HttpClient,private route:Router) { }
 
