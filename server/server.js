@@ -13,11 +13,19 @@ app.use(cors())
 app.use('/api',api)
 
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist/farmers'));
+ app.use(express.static(__dirname + './dist/farmers'));
 
-app.get('*', function(req,res) {
-    res.sendFile(path.join(__dirname+ '/dist/farmers/index.html'));
+app.get('/*', function(req,res) {
+    res.sendFile(path.join(__dirname+ './dist/farmers/index.html'));
     });
+
+
+
+
+// app.get('/',function(req,res){
+//     res.send('Hello from the server ')
+// })
+
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000);
