@@ -1,5 +1,7 @@
 {
   "name": "farmers",
+  "main": "server.js",
+  "license": "MIT",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -76,8 +78,7 @@
     "node": "8.11.2",
     "npm": "5.6.0"
   },
-  "main": "index.js",
   "repository": "https://github.com/AbinayaEbrain/Farmers.git",
-  "author": "silambuayyakk <42801305+silambuayyakk@users.noreply.github.com>",
-  "license": "MIT"
+  "author": "silambuayyakk <42801305+silambuayyakk@users.noreply.github.com>"
+ 
 }
