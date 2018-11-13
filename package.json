@@ -1,7 +1,5 @@
 {
   "name": "farmers",
-  "main": "server.js",
-  "license": "MIT",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -10,7 +8,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ng build --aot --prod",
-    "start": "node server.js"
+    "start": "ng build && node server.js"
   },
   "private": true,
   "dependencies": {
@@ -78,7 +76,8 @@
     "node": "8.11.2",
     "npm": "5.6.0"
   },
+  "main": "server.js",
   "repository": "https://github.com/AbinayaEbrain/Farmers.git",
-  "author": "silambuayyakk <42801305+silambuayyakk@users.noreply.github.com>"
- 
+  "author": "silambuayyakk <42801305+silambuayyakk@users.noreply.github.com>",
+  "license": "MIT"
 }
