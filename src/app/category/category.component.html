@@ -1,21 +1,21 @@
 
 <div class="bg" style="overflow: hidden;">
     <div class="container mt-5 pt-5">
-        <div class="toolbar mb-3 row">
-            <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12 Appbtn">
-            <button class="btn btn-success btn1 mb-2" routerLink="/admin">BACK</button>
+        <div class="row" >
+            <div class="mb-3 pl-3" style="width: 50%;">
+            <button class="btn btn-success" routerLink="/admin">BACK</button>
             </div>
-            <div class="col-md-8">
-              
-            </div>
-            <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12 Appbtn" style="float:right;">
-                <button type="button" class="btn btn-success btn-fill btn-wd btn-finish" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
+           
+            <div  class="mb-3 pr-3"  style="width: 50%;">
+                <button type="button" class="btn btn-success" style="float: right;" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
                 data-keyboard="false" routerLink="/category">New Category</button>
             </div>
         </div>
         <div *ngIf="errMsg">
                 <p style="text-align: center;font-weight: bold;color:red">{{errMsg}}</p>
             </div>
+            
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -60,7 +60,7 @@
             </div>
             <!-- end col-md-12 -->
         </div>
-        <div class="mx-auto page mt-2"  style="float: right">
+        <div class="mx-auto page mt-2">
             <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
           </div>
         <!-- end row -->

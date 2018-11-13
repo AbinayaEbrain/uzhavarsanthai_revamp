@@ -1,4 +1,4 @@
-<body class="bg" style="overflow: scroll;">
+<body class="bg" style="overflow-y: scroll;">
     <div class="text-center mb-5  container" style="margin-top: 100px">
       <h2 class="mt-5 pt-5 d-sm-block d-none clr sent_font text-left">The more one sows the greater the harvest</h2>
     <div class="row mt-4">
@@ -15,13 +15,13 @@
        
             <div class="form-group mb-5 mt-2">
                 <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
-                <label class="form-control-placeholder" for="phone">Phone Number/தொலைபேசி எண்</label>
+                <label class="form-control-placeholder" for="phone">Phone Number/<span style="font-size: 14px">தொலைபேசி எண்</span></label>
                 <span class="text-danger float-left" [class.d-none] = "phone.valid || phone.untouched">Phone Number is required</span>  
               </div>
            
             <div class="form-group mb-5 mt-2">
               <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="userData.password" autocomplete="off"  required>
-              <label class="form-control-placeholder" for="password">Password / கடவுச்சொல்</label>
+              <label class="form-control-placeholder" for="password">Password /<span style="font-size: 14px"> கடவுச்சொல்</span></label>
               <span class="text-danger float-left" [class.d-none] = "password.valid || password.untouched">Password is required</span>  
             </div>
            

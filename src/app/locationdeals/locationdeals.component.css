@@ -53,11 +53,19 @@
   }
   .btn-primary{ 
     margin: auto;
-    border-radius: 25px 0px 0px 0px  ;
-    /* width: 50%; */
+    border-radius: 5px 5px 5px 5px  ;
+  
     color: #fff;
     background-color: rgb(242, 101, 50);
     border: 1px solid  #9d0a18;
+  }
+  .btn-primary1{ 
+    margin: auto;
+    border-radius: 5px 5px 5px 5px  ;
+    width: 100%;
+    color: #fff;
+    background-color: rgb(6, 75, 23);
+    
   }
   .btn-primary:hover{
     border: 1px solid #04857e;
@@ -86,16 +94,35 @@
   border-radius: 50px;
   border-color: #f26532;
  } 
+ .icon{
+  /* margin: auto; */
+  background: white;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius:5px; 
+/*    
+  font-weight: 400; */
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  float: right;
+}
 
  .srchBox {
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding: 5px;
-  width: 150px;
-  -webkit-transition: all .5s ease;
-  -moz-transition: all .5s ease;
-  transition: all .5s ease;
-  float: right;
+  background: white;
+  border-left: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius:0px; 
+  display: inline-block;
+  font-weight: 400;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 .srchBox:focus {
   width: 200px;

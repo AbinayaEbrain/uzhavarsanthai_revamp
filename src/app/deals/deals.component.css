@@ -39,8 +39,8 @@
   }
   .btn-primary{ 
     margin: auto;
-    border-radius: 25px 0px 0px 0px  ;
-    /* width: 50%; */
+    border-radius: 0px 10px 0px 10px  ;
+    width: 50%; 
     color: #fff;
     background-color: rgb(242, 101, 50);
     border: 1px solid  #9d0a18;
@@ -68,19 +68,6 @@
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   }
 
-
-/* @media only screen and (max-width: 600px) {
-  .btnnn {
-   
-    }
-    
-     ::placeholder {
-        text-align:center;
-        color: #04857e;
-          
-        }
-} */
-
   .card-body{
     
   font-size: 17px;
@@ -106,31 +93,6 @@
     line-height: 1.5;
     float: right;
   }
-  /* .col-lg-11{
-    padding-right: 0px !important;
-    padding-left: 0px !important;
-  } */
-  /* .col-md-1{
-    width: 0%!important;
-  }
-  .col-sm-1{
-    width: 0%!important;
-  }*/
-  /* .col-lg-3{
-    width: 0%!important;
-    padding-right: 0px !important;
-    padding-left: 0px !important;
-  } 
-  .col-md-3{
-    width: 0%!important;
-    padding-right: 0px !important;
-    padding-left: 0px !important;
-  } 
-  .col-sm-3{
-    width: 0%!important;
-    padding-right: 0px !important;
-    padding-left: 0px !important;
-  }  */
  .srchBox {
   background: white;
   border-left: none;
@@ -151,41 +113,19 @@
     
   }
 .bg { 
-  background: url(./images/6.jpg) no-repeat center center fixed; 
+  background: url(../../assets/Images/6.jpg);
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  background-size:  cover;
+  min-height: 100vh;
+  width:100%;
+  min-height: -webkit-fill-available;
+  /* background: url(./images/6.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  min-height: -webkit-fill-available;
+  min-height: -webkit-fill-available; */
 }
  
-.ngx-pagination a, .ngx-pagination button {
-  color: rgb(5, 126, 31) !important;
-  display: block;
-  padding: 0.1875rem 0.625rem;
-  border-radius: 5px !important;
-  font-weight: bold !important;
-
-}
-.ngx-pagination .disabled {
-  padding: 0.1875rem 0.625rem;
-  color: whitesmoke !important;
-  cursor: default;
-
-}
-
-.ngx-pagination .current {
-  padding: 0.1875rem 0.625rem;
-  background: #055a28 !important;
-  color: #fefefe;
-  cursor: default;
-  font-weight: 600;
-
-  border-radius: 5px !important;
-  /* / border-radius: 15px !important; / */
-} 
-pagination-controls{
-  margin-top: 10px;
-  float: right;
-  
-}

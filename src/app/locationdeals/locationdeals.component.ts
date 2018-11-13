@@ -3,6 +3,7 @@ import {} from '@types/googlemaps';
 import { DealsService } from '../deals.service';
 import { Router} from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+// import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-locationdeals',
@@ -10,6 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./locationdeals.component.css']
 })
 export class LocationdealsComponent implements OnInit {
+ 
   @ViewChild('gmap')gmapElement: any;
   map: google.maps.Map;
   currentLat: any;

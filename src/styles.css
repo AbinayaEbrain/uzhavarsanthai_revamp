@@ -1,57 +1,43 @@
+.ngx-pagination a{
+  border: 1px solid red;
+  background-color: #d3efe680;
 
-ul{
-
-  margin: 10px !important;
-  margin-left: -10px;
 }
-.ngx-pagination a, .ngx-pagination button {
-    color: rgb(255, 94, 0) !important;
-    display: block;
-    padding: 0.1875rem 0.625rem;
-    border-radius: 5px !important;
-    font-weight: bold !important;
-    font-size: 20px;
-  }
-  .ngx-pagination .disabled {
-  }
-  .ngx-pagination .disabled {
+
+.ngx-pagination{
+  
+  position: sticky;
+  bottom: 0;
+  overflow: hidden;
+  justify-content: center;
+  display: flex;
+}
+ dl, ol, ul {
+  margin-left: -35px !important;
+  } 
+.ngx-pagination .disabled {
     padding: 0px !important;
     color: whitesmoke !important;
     cursor: default;
-    font-size: 17px;  
-  }
-  .ngx-pagination .current {
+    font-size: 100%;
+    border: 1px solid red;
+    background-color: #d3efe680;
+    border-radius: 5px !important;
+}
+  .ngx-pagination .current{
     padding: 0.1875rem 0.625rem;
     background: #f26532 !important;
     color: #fefefe;
     cursor: default;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 100%;
     border-radius: 15px !important;
-  } 
-
-/* .ngx-pagination a {
-
-  color: rgb(244, 152, 119) !important;
-  display: block;
-  padding: 0.1875rem 0.625rem;
-  border-radius: 5px !important;
-  font-weight: bold !important;
-  font-size: 20px;
- 
-
-} */
-
-
-
-
-pagination-controls{
-
-  background-color: rgba(1, 18, 3, 0.64);
-  border-radius: 50px;
-}
-pagination-controls ul{
-  margin-left: -25px !important;
-
 } 
-
+ .ngx-pagination a, .ngx-pagination button {
+    color: rgb(5, 126, 31) !important;
+    display: block;
+    padding: 0.1875rem 0.625rem;
+    border-radius: 5px !important;
+    font-weight: bold !important;
+    font-size: 100%;
+} 

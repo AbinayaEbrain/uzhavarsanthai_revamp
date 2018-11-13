@@ -1,5 +1,5 @@
-<body class=" mt-5 pt-5 bg">
-  <div class="container-fluid">
+<body class="bg" style="overflow-x: hidden;">
+  <div class="container mt-5 pt-5">
         <!-- <div class="row  mt-5 pt-5">
                 <div class="col-lg-3 col-sm-12 col-md-12">
                 <button class="btnnn btn-success" (click)="findMe()" id="hideButton">அருகிலுள்ள 
@@ -81,14 +81,14 @@
                                       <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
                                       <td>{{deal.date | date: 'hh:mm a'}}</td>
                                       <!-- <td>{{deal.avlPlace.avlplaceName}}</td> -->
-                                      <td>
+                                      <td style="display: flex;">
                                           <!-- <button class="btn btn-simple btn-info btn-icon like">
                                               <i class="ti-heart"></i>
                                           </button> -->
-                                          <button class="btn btn-simple btn-warning btn-icon edit" routerLink="/user-deals-edit/{{deal._id}}">
+                                          <button class="btn btn-simple btn-warning btn-icon edit" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}">
                                               <!-- <i class="ti-pencil-alt"></i> தொகுத்தல்--> Edit
-                                          </button>&nbsp;&nbsp;
-                                          <button class="btn btn-simple btn-danger btn-icon remove" data-toggle="modal" data-target="#myModal" data-backdrop="static"
+                                          </button> &nbsp;
+                                          <button class="btn btn-simple btn-danger btn-icon remove"   style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
                                            data-keyboard="false" routerLink="/user-deals/{{deal._id}}">
                                               <!-- <i class="fa fa-rupee"></i> -->Delete
                                           </button>
@@ -99,6 +99,7 @@
                           
                       </div>
                       
+                      
                   </div>
                   <!-- end content-->
 
@@ -108,11 +109,14 @@
           </div>
           <!-- end col-md-12 -->
       </div>
-      <div class="mx-auto page mt-2"  style="float: right">
-        <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
-      </div>
+     
+      <div class="mx-auto mt-3">
+            <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+          </div>
+      
       <!-- end row -->
   </div>
+  
 
 </body>
 

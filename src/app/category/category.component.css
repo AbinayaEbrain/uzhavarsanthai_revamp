@@ -88,7 +88,9 @@ input{
     border-left: none !important;
     border-right: none !important;
 }
-
+input-placeholder{
+    color: aquamarine;
+}
   .form-control-placeholder {
     position: absolute;
     top: 0;
@@ -99,6 +101,9 @@ input{
     font-weight: 500;
     font-size: 17px;
    
+  }
+  .bot{
+      background-color: aqua;
   }
   
   .form-control:focus + .form-control-placeholder,
@@ -123,6 +128,3 @@ input{
       cursor: pointer;
   }
 
-  /* .btn{
-    border: 2px solid;
-  } */

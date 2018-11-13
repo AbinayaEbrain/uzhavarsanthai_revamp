@@ -20,7 +20,7 @@
     width:100%
 }
 
-   
+
 /* 
 @media only screen and (min-width: 1140px) {
     .bg1{
@@ -73,7 +73,12 @@ select option {
     background: rgba(0, 0, 0, 0.3);
     color: #fff;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+   
 }
+
+/* span1{
+    font-size: 13px !important
+} */
 
 select:focus{
     background-color: transparent;

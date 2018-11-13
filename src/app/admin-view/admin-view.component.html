@@ -1,7 +1,7 @@
 
 <body class="bg">
 
-    <div class="mb-5 container mt-5 pt-5" >
+    <div class=" container mt-5 pt-5" >
         <div class="register">
             <div class="container">
               <button class="btn btn-success mb-3" routerLink="/admin-user">BACK</button>
@@ -28,23 +28,23 @@
     <div class="col-lg-5 post">
        <table>
           <tr>
-            <td> <h5 class="mt-3">FIRST NAME</h5></td>
-            <td>:</td>
-            <td> <h4 class="mt-3">{{register.firstName}}</h4></td>
+            <td><h5 class="mt-3">FIRST NAME</h5></td>
+            <td>&nbsp;:&nbsp;</td>
+            <td><h4 class="mt-3">{{register.firstName}}</h4></td>
           </tr>
           <tr>
             <td><h5  class="mt-3"> LAST NAME</h5></td>
-            <td>:</td>
+            <td>&nbsp;:&nbsp;</td>
             <td> <h4 class="mt-3">{{register.lastName}}</h4></td>
           </tr>
           <tr>
             <td> <h5 class="mt-3">GENDER</h5></td>
-            <td>:</td>
+            <td>&nbsp;:&nbsp;</td>
             <td> <h4 class="mt-3">{{register.gender}}</h4></td>
           </tr>
           <tr>
             <td><h5  class="mt-3">PHONE NUMBER</h5></td>
-            <td>:</td>
+            <td>&nbsp;:&nbsp;</td>
             <td> <h4 class="mt-3">{{register.phone}}</h4></td>
           </tr>
         </table>
@@ -54,22 +54,22 @@
         <table>
           <tr>
             <td> <h5 class="mt-3">ADDRESS LINE 1</h5></td>
-              <td>:</td>
+            <td>&nbsp;:&nbsp;</td>
               <td> <h4 class="mt-3">{{register.address.addressLine}}</h4></td>
             </tr>
             <tr>
               <td><h5  class="mt-3"> ADDRESS LINE 2</h5></td>
-              <td>:</td>
+              <td>&nbsp;:&nbsp;</td>
               <td> <h4 class="mt-3">{{register.address.address1}}</h4></td>
             </tr>
               <tr>
               <td> <h5 class="mt-3">CITY</h5></td>
-              <td>:</td>
+              <td>&nbsp;:&nbsp;</td>
               <td> <h4 class="mt-3">{{register.address.city}}</h4></td>
             </tr>
             <tr>
               <td><h5  class="mt-3">STATE</h5></td>
-              <td>:</td>
+              <td>&nbsp;:&nbsp;</td>
               <td> <h4 class="mt-3">{{register.address.location}}</h4></td>
             </tr>
         </table>
@@ -92,69 +92,51 @@
     
       <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3 mt-4"  *ngFor = "let product of postProduct | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }">
         <div class="card">
-          
-            <h2 class="info mt-2 text-center">Product Info</h2>
-    
-          <div class="card-body">
-          
-              <table>
-                  <div class="table">
-                <tr>
-                 <th class="product">Category</th>
-                 <th>:</th>
-                 <th class="info1">{{product.category}}</th>
-                </tr>
-                <tr>
-                    <th class="product">Name</th>
-                    <th>:</th>
-                    <th class="info1">{{product.name}}</th>
-                   </tr>
-                   <tr>
-                      <th class="product">Quantity</th>
-                      <th>:</th>
-                      <th class="info1">{{product.quantity}} {{product.qnty}}
-                      </th>
-                     </tr>
-                     <tr>
-                        <th class="product">Price</th>
-                        <th>:</th>
-                        <th class="info1">Rs. {{product.price}}</th>
-                       </tr>
-                       <tr>
-                          <th class="product">Available Place</th>
-                          <th>:</th>
-                          <th class="info1">{{product.avlPlace.avlplaceName}}</th>
-                         </tr>
-                      </div>
+          <h2 class="info mt-2 text-center">Product Info</h2>
+        <div class="card-body">
+          <table>
+            <div class="table">
+              <tr>
+                <th class="product">Category</th>
+                <th>:</th>
+                <th class="info1">{{product.category}}</th>
+              </tr>
+              <tr>
+                <th class="product">Name</th>
+                <th>:</th>
+                <th class="info1">{{product.name}}</th>
+              </tr>
+              <tr>
+                <th class="product">Quantity</th>
+                <th>:</th>
+                <th class="info1">{{product.quantity}} {{product.qnty}}
+                </th>
+              </tr>
+              <tr>
+                <th class="product">Price</th>
+                <th>:</th>
+                <th class="info1">Rs. {{product.price}}</th>
+              </tr>
+              <tr>
+                <th class="product">Available Place</th>
+                <th>:</th>
+                <th class="info1">{{product.avlPlace.avlplaceName}}</th>
+              </tr>
+            </div>
+            <div class="mx-auto text-center">
+              <button class="mt-2 btn btn-primary btn2" data-toggle="modal" (click)="modalDes(product._id)"  data-target="#myModal" style="cursor: pointer;">View Description</button>
+            </div>
               </table>
-              <div class="mx-auto text-center">
-                 
-                  <button class="mt-2 btn btn-primary btn2" data-toggle="modal" (click)="modalDes(product._id)"  data-target="#myModal" style="cursor: pointer;">View Description</button>
-                
-                        </div>
-                      <!-- <div class="modal-dialog">
-                      
-                      
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Detailed Description</h4>
-                            <button type="button" class="close btn-danger" data-dismiss="modal">&times;</button>
-                          </div>
-                          <div class="modal-body">
-                            <p>{{descrip}}</p>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                          </div>
-                        </div>
-                        
-                      </div> -->
-                   
+     </div>
        </div>
        </div>
+
+       <div class="mx-auto">
+          <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+        </div>
        </div>
        </div>
-       </div>
+       
       
     </body>
       

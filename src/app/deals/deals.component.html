@@ -1,25 +1,11 @@
 
-<div class="bg">
-<div class="container">
-    <!--  <div class="row  mt-5 pt-5">
+<body class="bg" style="overflow-x: hidden;">
+<div class="container mt-5 pt-5">
+    <div class="row mt-3 mb-3">
         <div class="col-lg-3 col-sm-12 col-md-12">
         <button class="btnnn btn-success" (click)="findMe()" id="hideButton">அருகிலுள்ள 
             விற்பனை</button>
-            <button class="btn" routerLink="/location" style="display: none" id="showButton">Click here to continue</button>
-            <button class="btn" style="display: none;" routerLink="/location" id="showButton" >continue</button>
-        </div>
-       <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
-            <div class="col-md-8 col-sm-12 mt-3">
-            <form>
-              <input type="text" class="float-right srchBox" placeholder="Search By Category" id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
-            </form>
-        </div>
-      </div> -->
-          <div class="row  mt-5 pt-5">
-        <div class="col-lg-3 col-sm-12 col-md-12">
-        <button class="btnnn btn-success" (click)="findMe()" id="hideButton">அருகிலுள்ள 
-            விற்பனை</button>
-            <button class="btn" routerLink="/location" style="display: none" id="showButton">Click here to continue</button>
+            <button class="btn btn-success" routerLink="/location" style="display: none" id="showButton">Click here to continue</button>
             <button class="btn" style="display: none;" routerLink="/location" id="showButton" >continue</button>
         </div>
        <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
@@ -90,10 +76,14 @@
         
         
       </div> -->
-      <div class="mx-auto">
+      
+  </div>
+  <div class="mx-auto">
         <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
       </div>
-  </div>
 </div>
-</div>
+
+</body>
+
+
 

@@ -1,12 +1,13 @@
 
 .nav_clr{
     background-color: #0d4608;
+    
 }
 /* nav a{
     color: black !important;
 } */
 
-.ngx-pagination a, .ngx-pagination button {
+/* .ngx-pagination a, .ngx-pagination button {
     color: rgb(5, 126, 31) !important;
     display: block;
     padding: 0.1875rem 0.625rem;
@@ -28,11 +29,12 @@
     cursor: default;
     font-weight: 600;
     font-size: 30px;
+   
     border-radius: 5px !important;
-     /* border-radius: 15px !important;  */
+   
   } 
   pagination-controls{
     margin-top: 10px;
     float: right;
     
-  }
+  } */

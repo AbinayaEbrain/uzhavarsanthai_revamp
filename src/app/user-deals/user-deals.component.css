@@ -1,29 +1,4 @@
-/* .text-small {
-    font-size: 0.75rem;
-  }
-  .card{
-      padding: 30px;
-  } */
-  /* .test{
-    padding-left: 10px;  
-    padding-right: 10px;
-  } */
 
-  /* .bg{
-    background: url();
-  } */
-
-  
-  /* .card{
-    /* margin: 10px; */
-   /* border-radius: 0px 20px; */
-   /*background-color: #23dfe8;
-     background-color: rgb(252, 176, 59); */
-   /* background-color: #032b31;
-    height: 350px; */
-    /* width: 300px; */
-    /* color: aliceblue; */
-  /* }  */
   .title{
     border-radius: 0px 20px 0px 20px;
     height: 45px;
@@ -36,13 +11,7 @@
     color: #fff;
     font-size: 18px
   }
-  /* .card-body{
-    font-size: 17px;
-  } */
-  /* .btnRadius{
-    border-radius: 25px !important;
-  } */
-
+ 
   textarea{
     overflow: hidden;
     background-color: transparent;
@@ -64,10 +33,6 @@
     font-size: 18px
   }
 
-  /* .btn-primary{
-    border-color: #072304;
-    background-color: #072304;
-  } */
   .btn-primary1{ 
     margin: auto;
     border-radius: 25px ;
@@ -81,14 +46,15 @@
     background-color:  green;
   }
   .bg {
-    background: url(./images/6.jpg)no-repeat center; 
+    background: url(../../assets/Images/6.jpg); 
     background-position: center center;
      background-repeat:  no-repeat;
      background-attachment: fixed;
      background-size:  cover;
      background-color: #999;
-     min-height: 165vh;
-     width:100%
+     min-height: 100vh;
+     width:100%;
+     min-height: -webkit-fill-available;
   }
   .icon{
     /* margin: auto; */
@@ -162,6 +128,24 @@
 
 .btn{
   
-  width: 50%;
+  /* width: 50%; */
   
+}
+btn2{
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  width: 0px !important;
 }

@@ -1,14 +1,13 @@
-.bg{
-    /* The image used */
-    background: url(../../assets/Images/A2.jpg);
+ .bg{
+    background: url(../../assets/Images/4f6d052bb1b26150115888ea06d4c106.jpg);
     background-position: center center;
     background-repeat:  no-repeat;
     background-attachment: fixed;
     background-size:  cover;
-    background-color: #999;
     min-height: 100vh;
-    width:100%
-}
+    width:100%;
+    /* min-height: -webkit-fill-available; */
+} 
 
 
 
