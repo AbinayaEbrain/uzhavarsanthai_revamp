@@ -16,7 +16,7 @@ app.use('/api',api)
  app.use(express.static(__dirname + '/farmers'));
 
 app.get('*', function(req,res) {
-    res.sendFile(path.join(__dirname+ '/farmers/src/app/index.html'));
+    res.sendFile(path.join(__dirname+ '/dist/index.html'));
     });
 
 
