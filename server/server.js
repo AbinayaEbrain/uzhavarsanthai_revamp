@@ -15,7 +15,7 @@ app.use('/api',api)
 // Serve only the static files form the dist directory
  app.use(express.static(__dirname + '/src'));
 
-app.get('', function(req,res) {
+app.get('/', function(req,res) {
     res.sendFile(path.resolve('/farmers/src/app/index.html'));
     });
 
