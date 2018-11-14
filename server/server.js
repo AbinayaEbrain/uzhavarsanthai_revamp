@@ -16,7 +16,7 @@ app.use('/api',api)
  app.use(express.static('/src'));
 
 app.get('', function(req,res) {
-    res.sendFile(path.join('/app','index.html'));
+    res.sendFile(path.join('/src','index.html'));
     });
 
 // app.get('/', function(req,res) {
