@@ -13,10 +13,10 @@ app.use(cors())
 app.use('/api',api)
 
 // Serve only the static files form the dist directory
- app.use(express.static(__dirname + '/src'));
+ app.use(express.static(__dirname + '/dist'));
 
 app.get('/', function(req,res) {
-    res.sendFile(path.resolve('/farmers/src/app/index.html'));
+    res.sendFile(path.join('/dist/index.html'));
     });
 
 // app.get('', function(req,res) {
