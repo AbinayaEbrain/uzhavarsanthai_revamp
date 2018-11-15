@@ -1,7 +1,7 @@
 
-<body class="bg">
+<body class="bg" style="overflow-x: hidden;">
 
-    <div class=" container mt-5 pt-5" >
+    <div class="container mt-5 pt-5" >
         <div class="register">
             <div class="container">
               <button class="btn btn-success mb-3" routerLink="/admin-user">BACK</button>
@@ -131,10 +131,11 @@
        </div>
        </div>
 
-       <div class="mx-auto">
-          <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
-        </div>
+      
        </div>
+       <div class="mx-auto">
+        <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+      </div>
        </div>
        
       

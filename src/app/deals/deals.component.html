@@ -9,9 +9,16 @@
             <button class="btn" style="display: none;" routerLink="/location" id="showButton" >continue</button>
         </div>
        <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
-            <div class=" col-lg-6 col-md-6 col-sm-6">
-                <input type="text" class="srchBox" style="width: 90%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
-                <!-- <fa-icon [icon]="faSearch" class="icon" style="width: 10%"></fa-icon>                                   -->
+            <!-- <div class="col-lg-6 col-md-6 col-sm-6">
+                <span><input type="text" class="srchBox" style="width: 90%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+                   </span>
+                                   
+        </div> -->
+        <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" class="srchBox form-control1" style="width: 90%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+            </div>
         </div>
       </div>
       <p class="no_deals_found " *ngIf="errMsg">{{errMsg}}</p>
@@ -21,6 +28,7 @@
     <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }">
             
         <div class="card">
+              
            <table>
               <div class="title">
                 <tr>
