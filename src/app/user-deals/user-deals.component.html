@@ -18,14 +18,18 @@
             <button type="button" class="btnnn btn-success" routerLink="/post">New Post</button>
         </div>
        <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
-        <div class="col-lg-6 col-md-6 col-sm-6  " >
-            <form>
+        <div class="col-lg-6 col-md-6 col-sm-6" >
+            <!-- <form>
                <div>
                    
                 <input type="text" style="width: 90%" class="srchBox" placeholder="Search by category"  [(ngModel)]="queryString" name="search" autocomplete="off">
-              <!-- <fa-icon [icon]="faSearch" class="icon" style="width: 10%"></fa-icon> -->
+              
             </div>
-            </form>
+            </form> -->
+            <div class="form-group has-search">
+                    <span class="fa fa-search form-control-feedback"></span>
+                    <input type="text" class="srchBox form-control1" style="width: 90%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+                </div>
         </div>
       </div>
      

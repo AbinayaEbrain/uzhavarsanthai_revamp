@@ -11,7 +11,21 @@
     color: #fff;
     font-size: 18px
   }
- 
+  .has-search .form-control1 {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
   textarea{
     overflow: hidden;
     background-color: transparent;
@@ -77,8 +91,8 @@
     border-left: none;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius:0px; 
+    border-top-right-radius: 5px;
+    border-bottom-right-radius:5px; 
     display: inline-block;
     font-weight: 400;
     border: 1px solid transparent;
