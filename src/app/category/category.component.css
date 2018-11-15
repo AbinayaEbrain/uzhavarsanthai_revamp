@@ -111,7 +111,7 @@ input-placeholder{
     font-size: 100%;
     transform: translate3d(0, -100%, 0);
     opacity: 1;
-    color: rgb(255, 254, 254);
+    color:black
   }
  
   .clr{

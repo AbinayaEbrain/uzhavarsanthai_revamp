@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AdminService {
 
-  private _postCatUrl = "http://localhost:5000/api/category";
+  private _postCatUrl = "https://farmers-marker-app.herokuapp.com/api/category";
 
   constructor(private http:HttpClient) { }
 

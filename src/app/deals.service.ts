@@ -6,15 +6,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DealsService {
 
-  private _dealsUrl = "http://localhost:5000/api/deals";
-  private _postUrl ="http://localhost:5000/api/post";
-  private _getUrl ="http://localhost:5000/api/details";
-  private _getCategoryUrl ="http://localhost:5000/api/category";
-  private _getSubCategoryUrl ="http://localhost:5000/api/subcategory";
+  private _dealsUrl = "https://farmers-marker-app.herokuapp.com/api/deals";
+  private _postUrl ="https://farmers-marker-app.herokuapp.com/api/post";
+  private _getUrl ="https://farmers-marker-app.herokuapp.com/api/details";
+  private _getCategoryUrl ="https://farmers-marker-app.herokuapp.com/api/category";
+  private _getSubCategoryUrl ="https://farmers-marker-app.herokuapp.com/api/subcategory";
   //Deactivate URL
-  private deactiveUrl ="http://localhost:5000/api/admin-user/deactive";
+  private deactiveUrl ="https://farmers-marker-app.herokuapp.com/api/admin-user/deactive";
   //Active URL
-  private activeUrl ="http://localhost:5000/api/admin-user/active";
+  private activeUrl ="https://farmers-marker-app.herokuapp.com/api/admin-user/active";
 
   constructor(private http:HttpClient) { }
 
