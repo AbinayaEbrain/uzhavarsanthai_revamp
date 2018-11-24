@@ -3,6 +3,9 @@
     background-color: #0d4608;
     
 }
+.loading{
+  background-color: transparent;
+}
 /* nav a{
     color: black !important;
 } */
