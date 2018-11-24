@@ -8,9 +8,9 @@ import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-
-  private _registerUrl = "https://farmers-marker-app.herokuapp.com/api/register";
-  private _logInUrl = "https://farmers-marker-app.herokuapp.com/api/login";
+  
+  private _registerUrl = "https://farmers-market-ebrain.herokuapp.com/api/register";
+  private _logInUrl = "https://farmers-market-ebrain.herokuapp.com/api/login";
 
   constructor(private http:HttpClient,private route:Router) { }
 
