@@ -26,6 +26,7 @@ import { LocationdealsComponent } from './locationdeals/locationdeals.component'
 import { HomeComponent } from './home/home.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { AdminIpComponent } from './admin-ip/admin-ip.component';
+import { DealscategoryComponent } from './dealscategory/dealscategory.component';
 
 
 
@@ -47,7 +48,8 @@ import { AdminIpComponent } from './admin-ip/admin-ip.component';
     LocationdealsComponent,
     HomeComponent,
     AdminViewComponent,
-    AdminIpComponent
+    AdminIpComponent,
+    DealscategoryComponent
   ],
   imports: [
     BrowserModule,

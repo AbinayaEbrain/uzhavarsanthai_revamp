@@ -17,6 +17,7 @@ import {LocationdealsComponent} from '../app/locationdeals/locationdeals.compone
 import { HomeComponent } from './home/home.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { AdminIpComponent } from './admin-ip/admin-ip.component';
+import { DealscategoryComponent} from '../app/dealscategory/dealscategory.component'
 
 const routes: Routes = [
   {
@@ -108,6 +109,10 @@ const routes: Routes = [
 {
   path: 'admin-ip',
   component: AdminIpComponent
+},
+{
+  path: 'dealCategory',
+  component: DealscategoryComponent
 }
  
 ];

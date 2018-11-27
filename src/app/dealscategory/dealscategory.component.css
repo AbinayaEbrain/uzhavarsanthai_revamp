@@ -1,0 +1,16 @@
+.bg{
+    background-image:  url(../../assets/Images/grass-wallpapers-hd-68478-7563383.png);
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+    background-color: #999;
+    min-height: 100vh;
+    width:100%
+  }
+.categoryHeading{
+  margin-top: 50px;text-align: center;color: white;font-weight: bold;padding: 10px;
+} 
+.categoryName{
+  text-align: center;background-color: #0d4608;border:1px solid #0d4608;color: white;margin: auto;width: 150px;
+} 
