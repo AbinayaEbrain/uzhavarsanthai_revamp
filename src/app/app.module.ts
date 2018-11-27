@@ -27,6 +27,8 @@ import { HomeComponent } from './home/home.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { AdminIpComponent } from './admin-ip/admin-ip.component';
 
+//address
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -56,7 +58,10 @@ import { AdminIpComponent } from './admin-ip/admin-ip.component';
     HttpClientModule,
     NgxSpinnerModule,
     NgxPaginationModule,
-
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAmEuB6RfjEQdz9zqL_nYihfHkeWR-iq-Y',
+      libraries: ["places"]
+    })
 
   ],
   providers: [AuthService,DealsService,AuthGuard,
