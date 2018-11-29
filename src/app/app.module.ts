@@ -27,6 +27,8 @@ import { HomeComponent } from './home/home.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { AdminIpComponent } from './admin-ip/admin-ip.component';
 import { DealscategoryComponent } from './dealscategory/dealscategory.component';
+import { ViewcategoryComponent } from './viewcategory/viewcategory.component';
+import { HotdealsComponent } from './hotdeals/hotdeals.component';
 
 
 
@@ -49,7 +51,9 @@ import { DealscategoryComponent } from './dealscategory/dealscategory.component'
     HomeComponent,
     AdminViewComponent,
     AdminIpComponent,
-    DealscategoryComponent
+    DealscategoryComponent,
+    ViewcategoryComponent,
+    HotdealsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,7 @@ import { DealscategoryComponent } from './dealscategory/dealscategory.component'
 
 
   ],
-  providers: [AuthService,DealsService,AuthGuard,
+  providers: [AuthService,DealsService,AuthGuard,ViewcategoryComponent,
   {
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,

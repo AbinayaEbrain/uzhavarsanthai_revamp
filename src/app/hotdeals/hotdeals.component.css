@@ -1,0 +1,141 @@
+.bg{
+    background-image:  url(../../assets/Images/Green_farms_of_Jats_in_Haryana.jpg);
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+    background-color: #999;
+    min-height: 100vh;
+    width:100%
+  }
+  
+  
+  .card{
+    /* margin: 10px; */
+   border-radius: 0px 20px;
+   /*background-color: #23dfe8;
+     background-color: rgb(252, 176, 59); */
+   background-color: #032b31;
+    height: 325px;
+    /* width: 300px; */
+    color: aliceblue;
+  }
+  .title{
+    border-radius: 0px 20px 0px 20px;
+    height: 45px;
+    color: #dee2e6;
+    padding-left: 30%;
+    background-color: #23dfe8;  
+  }
+  .details{
+    padding-top: 5px;
+    color: #fff;
+  }
+  .card-body{
+    font-size: 17px;
+  }
+  .no_deals_found{
+    text-align: center;
+    color: #f2f2f3;
+    font-weight: bold;
+    font-size: 18px
+  }
+  textarea{
+    overflow: hidden;
+    background-color: transparent;
+    border: none;
+    color: white;
+    margin-top: 30px;
+    height: 50px;
+  }
+  .btn-primary{ 
+    margin: auto;
+    border-radius: 0px 10px 0px 10px  ;
+    width: 50%; 
+    color: #fff;
+    background-color: rgb(242, 101, 50);
+    border: 1px solid  #9d0a18;
+  }
+  .btn-primary:hover{
+    border: 1px solid #04857e;
+    background-color:  green;
+  }
+  .btnnn {
+    width: 100%;
+     display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+  .card-body{
+    
+  font-size: 17px;
+  }
+  tr{
+    text-align: left;
+  }
+  table{
+    margin: auto;
+  }
+
+  .has-search .form-control1 {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+  .icon{
+    /* margin: auto; */
+    background: white;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius:5px; 
+/*    
+    font-weight: 400; */
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    float: right;
+  }
+ .srchBox {
+  background: white;
+  border-left: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius:5px; 
+  display: inline-block;
+  font-weight: 400;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+::placeholder {
+  text-align:left;
+  color: #04857e;
+    
+  }

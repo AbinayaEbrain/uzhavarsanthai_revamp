@@ -21,7 +21,7 @@ export class PostComponent implements OnInit {
   publicIP;
   private postform;
   deals = [];
-  categoryArr = [];
+  categoryArr:any;
   subCateArr = [];
   productData = {
     name:'',
@@ -32,6 +32,7 @@ export class PostComponent implements OnInit {
     subQuantity:'',
     subqnty:'',
     category:'',
+    categoryId:'',
     date: new Date().getTime(),
     ipAddress:'',
     avlPlace:{
@@ -52,6 +53,7 @@ export class PostComponent implements OnInit {
   longti:any
   showUnit:any
   submitted:boolean;
+  
   constructor(private _dealsService:DealsService,private http: HttpClient,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
 
     this.privateIP = ClientIP;
@@ -142,7 +144,12 @@ export class PostComponent implements OnInit {
     this.productData.avlPlace.longtitude = JSON.parse(localStorage.getItem('Address1'));
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.productData.ipAddress = this.privateIP;
-
+    for(let i=0;i<this.categoryArr.length;i++){
+      if(this.productData.categoryId == this.categoryArr[i]._id){
+        this.productData.category = this.categoryArr[i].productCategory
+        console.log(this.productData.category)
+      }
+    }
 
     //alert(this.productData.ipAddress)
     let curntDte = new Date().getTime();

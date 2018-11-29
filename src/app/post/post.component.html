@@ -26,10 +26,10 @@
         <div class="col-md-4"></div>
           <div class="col-md-4">
               <div class="form-group mb-5 mt-2">
-                  <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.category" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
-                      <option selected="" disabled="" value="">Category /<span style="font-size: 14px">வகை</span> </option>
-                      <option *ngFor="let val of categoryArr" value="{{val.productCategory}}">{{val.productCategory}}</option>
-                    </select>
+                <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.categoryId" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
+                    <option selected="" disabled="" value="">Category /<span style="font-size: 14px">வகை</span> </option>
+                    <option *ngFor="let val of categoryArr" value="{{val._id}}">{{val.productCategory}}</option>
+                  </select>
                 </div>
                 <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span> 
               </div> 

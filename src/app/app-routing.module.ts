@@ -18,6 +18,8 @@ import { HomeComponent } from './home/home.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { AdminIpComponent } from './admin-ip/admin-ip.component';
 import { DealscategoryComponent} from '../app/dealscategory/dealscategory.component'
+import {ViewcategoryComponent} from '../app/viewcategory/viewcategory.component';
+import {HotdealsComponent} from '../app/hotdeals/hotdeals.component'
 
 const routes: Routes = [
   {
@@ -113,6 +115,14 @@ const routes: Routes = [
 {
   path: 'dealCategory',
   component: DealscategoryComponent
+},
+{
+  path: 'viewCategory/:id',
+  component: ViewcategoryComponent
+},
+{
+  path: 'hotDeals/:id',
+  component: HotdealsComponent
 }
  
 ];

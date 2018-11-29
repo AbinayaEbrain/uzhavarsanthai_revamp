@@ -9,10 +9,11 @@ const postSchema = new Schema({
     qnty:String,
     subQuantity:String,
     subqnty:String,
-    price:String,
+    price:Number,
     description:String,
     accountId:String,
     date:String,
+    categoryId:String,
     ipAddress:String,
     avlPlace:{
         avlplaceName:String,

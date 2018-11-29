@@ -8,38 +8,14 @@
     </div>
     <div class="container">
             <div class="row">
-              <div class="col-md-3">
-                <div class="card" style="cursor: pointer;">
+              <div class="col-md-3" *ngFor="let deal of categoryArr">
+                <div class="card" style="cursor: pointer;" routerLink="/viewCategory/{{deal._id}}">
                   <img class="card-img-top" src="../../assets/Images/fresh-fruits-6.jpg" alt="Card image cap">
                      <div class="card-body">
-                     <h5 class="card-title categoryName">Fruits</h5>
+                     <h5 class="card-title categoryName">{{deal.productCategory}}</h5>
                     </div>
                 </div> 
               </div>
-              <div class="col-md-3">
-                    <div class="card" style="cursor: pointer;">
-                            <img class="card-img-top" src="../../assets/Images/d56c0e90-a696-472e-b87b-5dbf559e332c.jpg" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title categoryName">Vegetables</h5>
-                           </div>
-                       </div> 
-              </div>
-              <div class="col-md-3">
-                    <div class="card" style="cursor: pointer;">
-                            <img class="card-img-top" src="../../assets/Images/Fotolia_52775325_Subscription_Monthly_XL.jpg" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title categoryName">Grains</h5>
-                           </div>
-                       </div> 
-              </div>
-              <div class="col-md-3">
-                    <div class="card" style="cursor: pointer;">
-                            <img class="card-img-top" src="../../assets/Images/Fotolia_52775325_Subscription_Monthly_XL.jpg" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title categoryName">Others</h5>
-                           </div>
-                       </div> 
-              </div>
-            </div>
+           </div>
           </div>
 </body>

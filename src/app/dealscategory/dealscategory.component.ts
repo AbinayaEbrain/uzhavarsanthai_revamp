@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DealsService } from '../deals.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dealscategory',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dealscategory.component.css']
 })
 export class DealscategoryComponent implements OnInit {
-
-  constructor() { }
+  categoryArr=[]
+  constructor(private _dealService:DealsService,public loadingCtrl: NgxSpinnerService,) { }
 
   ngOnInit() {
+    this._dealService.getCategory()
+    .subscribe(
+        res => {
+         this.loadingCtrl.hide();
+          this.categoryArr = res;
+          console.log(this.categoryArr)
+        },
+        err => {
+         this.loadingCtrl.hide();
+            this.categoryArr = [];
+        });
   }
 
 }
