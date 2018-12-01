@@ -74,33 +74,22 @@ showUnit:any
       
       let j =0;
         for(let i=0; i < this.crdDeals.length; i++){
-          // console.log(this.crdDeals[i])
-          // console.log(this.id)
-          // console.log(this.querydetails)
-          // console.log(this.crdDeals[i].price)
-          // console.log(this.querydetails.frmAmt < parseFloat(this.crdDeals[i].price))
-          //parseFloat for coverstion such number
           if(this.id == this.crdDeals[i].categoryId){
-            // console.log('first')
             if(this.querydetails.searchmainquantity <= this.crdDeals[i].quantity && this.querydetails.searchqnty == this.crdDeals[i].qnty && (this.querydetails.frmAmt <= parseFloat(this.crdDeals[i].price) && this.querydetails.toCost >= parseFloat(this.crdDeals[i].price))){
-              // console.log('second')
-              //   console.log(this.id)
                 this.specifyCategory[j] = this.crdDeals[i]
                 console.log(this.specifyCategory[j])
                   j++;
-               
-              
+
+                  
             }
-          
           }
-        //   if(this.specifyCategory.length == 0){
-        //     this.errMsg = "Still you didn't post any deals"
-        //    console.log('hgdfg')
-        //  }
-         
          
         }
-      
+        if(this.specifyCategory.length == 0){
+          console.log('nodata')
+          this.errMsg='Currently no products available based on your search '
+          document.getElementById('hidePagination').style.display='none';
+      }
 },
       err =>{
         console.log(err)

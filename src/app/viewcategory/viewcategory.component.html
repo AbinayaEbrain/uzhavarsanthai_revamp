@@ -15,7 +15,7 @@
           <div class="form-group">
               <label style="color: white;font-weight: bold;"> {{categeoryName}} Quantity</label>
               <input type="text" #searchmainquantity="ngModel" [class.is-invalid]="searchmainquantity.invalid && searchmainquantity.touched" ngModel  name="searchmainquantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: white;" required [(ngModel)]="userdetails.searchmainquantity">
-              <span class="text-danger float-left" [class.d-none] = "searchmainquantity.valid || searchmainquantity.untouched">Quantity is required</span> 
+              <span style="color:#5aff6d;" class=" float-left" [class.d-none] = "searchmainquantity.valid || searchmainquantity.untouched">Quantity is required</span> 
           </div>
        
       </div>
@@ -27,7 +27,7 @@
                     <option style="color: black" value="Kg">Kg</option>
                     <option style="color: black" value="Ltre">Ltre</option>
                 </select>
-                <span class="text-danger float-left" [class.d-none] = "searchqnty.valid || searchqnty.untouched">Unit is required</span> 
+                <span style="color:#5aff6d;" class=" float-left" [class.d-none] = "searchqnty.valid || searchqnty.untouched">Unit is required</span> 
           </div>
         
       </div>
@@ -35,14 +35,14 @@
           <div class="form-group">
               <label style="color: white;font-weight: bold;">Price search - From</label>
               <input type="text" #frmAmt="ngModel" [class.is-invalid]="frmAmt.invalid && frmAmt.touched" ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: white;" required [(ngModel)]="userdetails.frmAmt">
-                <span class="text-danger float-left" [class.d-none] = "frmAmt.valid || frmAmt.untouched">Category is required</span> 
+                <span style="color:#5aff6d;" class=" float-left" [class.d-none] = "frmAmt.valid || frmAmt.untouched">Category is required</span> 
           </div>
          </div>
          <div class="col-md-6">
             <div class="form-group">
                 <label style="color: white;font-weight: bold;"> To</label>
                 <input type="text" #toCost="ngModel" [class.is-invalid]="toCost.invalid && toCost.touched" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: white;" required [(ngModel)]="userdetails.toCost">
-                  <span class="text-danger float-left" [class.d-none] = "toCost.valid || toCost.untouched">Category is required</span> 
+                  <span  style="color:#5aff6d;" class=" float-left" [class.d-none] = "toCost.valid || toCost.untouched">Category is required</span> 
             </div>
            </div>
      
@@ -54,17 +54,19 @@
     </div>
     </div>
     </div>
+
+    
     <div class="container">
         <div class="col-md-4">
-                <button class="btnnn btn-success" (click)="showsearchdiv()" routerLink="/dealCategory" id="showButton">Back to search</button>
+                <button class="btnnn btn-success" (click)="showsearchdiv()" routerLink="/dealCategory" id="showButton">Back</button>
         </div>
-         
+        <p style="text-align: center;color:white;font-weight: bold;margin-top: 100px;"  *ngIf="errMsg">{{errMsg}}</p>
            
-            <p style="text-align: center;color:white;font-weight: bold" *ngIf="errMsg">{{errMsg}}</p>
+           
         <div class="row mt-5">
                
             <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of specifyCategory | paginate: { itemsPerPage:6,currentPage:p }">
-                    
+            
                 <div class="card">
                       
                    <table>
