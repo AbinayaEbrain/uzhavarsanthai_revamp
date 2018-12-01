@@ -6,6 +6,8 @@ import {ActivatedRoute, Params} from '@angular/router'
 // loader 
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
+import { MapsAPILoader } from '@agm/core';
+import {} from '@types/googlemaps'
 
 declare var $: any;
 declare let ClientIP: any;
@@ -44,7 +46,7 @@ export class PostComponent implements OnInit {
     description:''
   };
   id:any;
-  @ViewChild('postform') form
+  @ViewChild('search') form
   dealslists = [];
   success: any
   success1:any

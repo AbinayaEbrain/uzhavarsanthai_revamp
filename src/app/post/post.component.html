@@ -102,17 +102,18 @@
                 <div class="col-md-4">
                     <div class="form-group mb-5 mt-2">
                       
-                        <select id="address" required class="form-control slect"  #avlplaceName="ngModel" name="avlplaceName" [class.is-invalid]="avlplaceName.invalid && avlplaceName.touched" ngModel  [(ngModel)]="productData.avlPlace.avlplaceName" (change)="getLatitudeLongitude()">
+                        <!-- <select id="address" required class="form-control slect"  #avlplaceName="ngModel" name="avlplaceName" [class.is-invalid]="avlplaceName.invalid && avlplaceName.touched" ngModel  [(ngModel)]="productData.avlPlace.avlplaceName" (change)="getLatitudeLongitude()">
                             <option value="">Available Place /<span style="font-size: 14px">கிடைக்குமிடம்</span> </option>
                             <option value="Trichy">Trichy</option>
                             <option value="Thanjavur">Thanjavur</option>
                             <option value="Chennai">Chennai</option>
                             <option value="Karur">Karur</option>
                             <option value="Coimbatore">Coimbatore</option>
-                          </select>
+                          </select> -->
 
+                          <input type="text" placeholder="Search" class="form-control" #search>
                       </div>
-                      <span class="text-danger float-left" [class.d-none] = "avlplaceName.valid || avlplaceName.untouched">Price is required</span> 
+                      <!-- <span class="text-danger float-left" [class.d-none] = "avlplaceName.valid || avlplaceName.untouched">Price is required</span>  -->
                      
                 </div> 
                 <div class="col-md-4"></div>

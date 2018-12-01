@@ -30,6 +30,8 @@ import { DealscategoryComponent } from './dealscategory/dealscategory.component'
 import { ViewcategoryComponent } from './viewcategory/viewcategory.component';
 import { HotdealsComponent } from './hotdeals/hotdeals.component';
 
+//address
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -62,7 +64,10 @@ import { HotdealsComponent } from './hotdeals/hotdeals.component';
     HttpClientModule,
     NgxSpinnerModule,
     NgxPaginationModule,
-
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAmEuB6RfjEQdz9zqL_nYihfHkeWR-iq-Y',
+      libraries: ["places"]
+    })
 
   ],
   providers: [AuthService,DealsService,AuthGuard,ViewcategoryComponent,
