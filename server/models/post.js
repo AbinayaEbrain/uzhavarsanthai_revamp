@@ -4,6 +4,7 @@ const Schema= mongoose.Schema
 
 const postSchema = new Schema({
     category:String,
+    categoryId:String,
     name:String,
     quantity:String,
     qnty:String,
@@ -17,9 +18,7 @@ const postSchema = new Schema({
     avlPlace:{
         avlplaceName:String,
             latitude:String,
-            longtitude:String
-
-        
+            longtitude:String  
     },
    
 })

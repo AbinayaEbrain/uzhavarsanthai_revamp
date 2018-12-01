@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild, PLATFORM_INITIALIZER} from '@angular/core';
+import { Component, OnInit,ViewChild, PLATFORM_INITIALIZER, ElementRef,NgZone} from '@angular/core';
 import { DealsService } from '../deals.service';
 import { Router} from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -23,7 +23,7 @@ export class PostComponent implements OnInit {
   publicIP;
   private postform;
   deals = [];
-  categoryArr = [];
+  categoryArr :any;
   subCateArr = [];
   productData = {
     name:'',
@@ -34,6 +34,7 @@ export class PostComponent implements OnInit {
     subQuantity:'',
     subqnty:'',
     category:'',
+    categoryId:'',
     date: new Date().getTime(),
     ipAddress:'',
     avlPlace:{
@@ -45,7 +46,7 @@ export class PostComponent implements OnInit {
     description:''
   };
   id:any;
-  @ViewChild('search') form
+  @ViewChild('search') public searchElement: ElementRef
   dealslists = [];
   success: any
   success1:any
@@ -56,7 +57,7 @@ export class PostComponent implements OnInit {
   submitted:boolean;
   
 
-  constructor(private _dealsService:DealsService,private http: HttpClient,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
+  constructor(private _dealsService:DealsService,private MapsAPILoader: MapsAPILoader,private ngZone: NgZone,private http: HttpClient,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
 
     this.privateIP = ClientIP;
 
@@ -68,13 +69,14 @@ export class PostComponent implements OnInit {
    this.productData.category ='';
    this.productData.subqnty = '';
    this.productData.avlPlace.avlplaceName = ''
+   this.productData.categoryId = ''
   // this.productData.category. = ''
   
    }
 
   
   ngOnInit() {
-    
+
   //  this.getDropDownDatas();
     this.id = this.router.snapshot.params['id']
 
@@ -110,6 +112,7 @@ export class PostComponent implements OnInit {
     }
   )
 
+
   //category
 
   this._dealsService.getCategory()
@@ -125,16 +128,16 @@ export class PostComponent implements OnInit {
 
 
 //subcategory
-   this._dealsService.getSubCategory()
-       .subscribe(
-           res => {
-             this.subCateArr = res;
-             console.log(this.subCateArr)
-            },
+  //  this._dealsService.getSubCategory()
+  //      .subscribe(
+  //          res => {
+  //            this.subCateArr = res;
+  //            console.log(this.subCateArr)
+  //           },
           
-             err => {
-               this.subCateArr = [];
-             });
+  //            err => {
+  //              this.subCateArr = [];
+  //            });
     
               
 }
@@ -146,17 +149,27 @@ export class PostComponent implements OnInit {
     this.productData.avlPlace.longtitude = JSON.parse(localStorage.getItem('Address1'));
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.productData.ipAddress = this.privateIP;
+   
+    console.log(this.productData.categoryId)
 
+    for(let i=0;i<this.categoryArr.length;i++){
+      if(this.productData.categoryId == this.categoryArr[i]._id){
+        this.productData.category = this.categoryArr[i].productCategory
+        console.log(this.productData.category)
+      }
+    }
 
     //alert(this.productData.ipAddress)
     let curntDte = new Date().getTime();
     this.productData.date = curntDte
     //  acntId = accountId;
     this._dealsService.addPost(this.productData)
-      .subscribe((data:any) =>{
+      .subscribe(
+        res=>{
        console.log(this.productData)
+       console.log(this.productData.categoryId)
        console.log(new Date())
-        console.log(data);
+        console.log(res);
         //this.route.navigate[('/deals')]
 
         this.success = "Posted successfully!"
@@ -167,7 +180,7 @@ export class PostComponent implements OnInit {
           this.route.navigate(['user-deals']);
           this.loadingCtrl.hide();
       }, 2000);
-      
+    },
       err =>{
           if(err instanceof HttpErrorResponse){
            if(err.status === 401){
@@ -178,7 +191,6 @@ export class PostComponent implements OnInit {
           }
         }
 
-      }
       )
   }
 

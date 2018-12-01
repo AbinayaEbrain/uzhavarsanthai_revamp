@@ -1,5 +1,6 @@
 const express =require('express')
 const jwt = require('jsonwebtoken')
+const getmac= require('getmac')
 const router = express.Router()
 const User = require('../models/user')
 const Post = require('../models/post')
@@ -84,16 +85,21 @@ router.post('/post',(req,res)=>{
             //jwt 
             //  let payload={subject:productData._id}
             //  let token =jwt.sign(payload,'secretKey')
-            console.log(user);
+            // console.log(user);
+            // console.log(userData)
            // console.log(accountId)
             //before adding jwt
+            console.log(this.getmac)
             res.status(200).send(productData)
-
+         
+           
             //after add jwt
         //    res.status(200).send({token})
         }
     })
 })
+
+
 
 //admin
 
@@ -147,11 +153,10 @@ router.get('/deals',(req,res)=>{
     Post.find(function (err,result){
         if(err){
             console.log('no data')
- 
         }
         else{
          res.send(result)
-           
+           console.log(result)
         }
     })
  })

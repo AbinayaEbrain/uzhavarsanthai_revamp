@@ -2,8 +2,12 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DealsService } from '../deals.service';
-import {ActivatedRoute} from '@angular/router';
-import {Router, ParamMap} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Router, ParamMap } from '@angular/router';
+import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
+
+//const URL = 'http://localhost:3000/api/upload';
+const URL = 'http://localhost:5000/api/upload';
 
 @Component({
   selector: 'app-category',
@@ -12,7 +16,10 @@ import {Router, ParamMap} from '@angular/router';
 })
 export class CategoryComponent implements OnInit {
 
-  cateData={}
+ public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
+  cateData={
+    image:String
+  }
   @ViewChild('cateform') form
   categoryArr=[]
   id:any
@@ -21,13 +28,20 @@ export class CategoryComponent implements OnInit {
     productCategory:''
   }
   sucessMsg:any;
-p:any;
-submitted:boolean;
+  p:any;
+
   constructor(private _adminService:AdminService,public loadingCtrl: NgxSpinnerService,private _dealService:DealsService,private route:ActivatedRoute,private router:Router) { }
 
-  
-
   ngOnInit() {
+
+    this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+    //overide the onCompleteItem property of the uploader so we are 
+    //able to deal with the server response.
+    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+         console.log("ImageUpload:uploaded:", item, status, response);
+
+         localStorage.setItem('Image', JSON.stringify(response));
+     };
 
     this.loadingCtrl.show();
     this.InitialCall();
@@ -65,12 +79,7 @@ submitted:boolean;
         for(let i=0; i < this.categoryArr.length; i++){
           if(this.id == this.categoryArr[i]._id){
             this.deallistobj.productCategory = this.categoryArr[i].productCategory
-            // console.log(this.deallistobj.productCatogory)
-            // console.log( this.deallistobj.productName)
-            // console.log(this.deallistobj.productQty )
-            // console.log( this.deallistobj.productUnit)
-            // console.log(this.deallistobj.productCost)
-            // console.log(this.deallistobj.productDescription)
+            
           }
         }
 
@@ -95,10 +104,10 @@ submitted:boolean;
   addCategory(){
     
     this.loadingCtrl.show();
+    this.cateData.image = JSON.parse(localStorage.getItem('Image'));
     this._adminService.addCate(this.cateData)
       .subscribe(
        res =>{
-          
           console.log(res);
          
           this.sucessMsg="Category Added";
@@ -119,6 +128,7 @@ submitted:boolean;
         
      
       )
+      localStorage.removeItem('Image')
     }
 
     deleteuser(){
@@ -164,4 +174,6 @@ submitted:boolean;
      
       this.InitialCall(); 
     }
+
+   
 }

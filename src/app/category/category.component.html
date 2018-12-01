@@ -60,6 +60,7 @@
             </div>
             <!-- end col-md-12 -->
         </div>
+        
         <div class="mx-auto page mt-2">
             <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
           </div>
@@ -114,7 +115,13 @@
                         <label class="form-control-placeholder" for="productCategory">Category</label>
                         <span class="text-danger float-left" [class.d-none] = "productCategory.valid || productCategory.untouched">Category is required</span>  
                       </div>
-                   
+                      <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                      <!-- button to trigger the file upload when submitted -->
+                      <button type="button" class="btn btn-success btn-s"
+                            (click)="uploader.uploadAll()" 
+                            [disabled]="!uploader.getNotUploadedItems().length">
+                            Upload with ng-2 file uploader
+                      </button>
                       <div class="row">
                             <div class="col-md-6">
                                     <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit" (click)="update()"  routerLink="category" data-dismiss="modal">Update</button>
@@ -150,18 +157,34 @@
           <div class="modal-body">
               <form #cateform="ngForm" *ngIf ="!submitted" novalidate>
      
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <h6 *ngIf = "sucessMsg" class="alert alert-success text-center">{{this.sucessMsg}}</h6> 
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+
                   <div class="form-group mb-5 mt-4">
                       <input type="text"  #productCategory="ngModel" [class.is-invalid]="productCategory.invalid && productCategory.touched" ngModel name="productCategory" class="form-control" [(ngModel)]="cateData.productCategory" autocomplete="off" required>
                       <label class="form-control-placeholder" for="productCategory">Category</label>
                       <span class="text-danger float-left" [class.d-none] = "productCategory.valid || productCategory.untouched">Category is required</span>  
                     </div>
-                 
+
+                    <div class="form-group mb-5 mt-4">
+                    <input type="file" name="image" [(ngModel)]="cateData.image" ng2FileSelect [uploader]="uploader" />
+                        <!-- button to trigger the file upload when submitted -->
+                        <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                            Upload your image
+                        </button>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-6">
-                            <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit"  routerLink="/category" (click)="addCategory()" data-dismiss="modal">Add Category</button>
+                            <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit" (click)="addCategory()">Add Category</button>
                         </div>
                         <div class="col-md-6">
-                            <button  class="btn mt-3 mb-5 btn-block" type="reset">Reset</button>
+                            <button  class="btn mt-3 mb-5 btn-block" type="reset" routerLink="/admin">Reset</button>
                         </div>
                     </div>
                  

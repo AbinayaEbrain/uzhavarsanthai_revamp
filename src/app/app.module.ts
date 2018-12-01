@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './auth.service';
@@ -11,7 +11,7 @@ import { TokenInterceptorService } from './token-interceptor.service';
 import { UserDealsComponent } from './user-deals/user-deals.component';
 import { FilterdataPipe } from './filterdata.pipe';
 import { ViewmoreComponent } from './viewmore/viewmore.component';
-import {PasswordValidatorDirective} from '../app/register/password.validator.directive';
+import { PasswordValidatorDirective } from '../app/register/password.validator.directive';
 import { UserDealsEditComponent } from './user-deals-edit/user-deals-edit.component';
 // loader  
 import { NgxSpinnerModule } from 'ngx-spinner'; 
@@ -30,9 +30,10 @@ import { DealscategoryComponent } from './dealscategory/dealscategory.component'
 
 //address
 import { AgmCoreModule } from '@agm/core';
+import { GooglePlacesDirective } from './google-places.directive';
 
-
-
+//file upload
+import { FileSelectDirective } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,9 @@ import { AgmCoreModule } from '@agm/core';
     HomeComponent,
     AdminViewComponent,
     AdminIpComponent,
-    DealscategoryComponent
+    DealscategoryComponent,
+    GooglePlacesDirective,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
