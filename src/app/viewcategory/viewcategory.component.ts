@@ -82,7 +82,7 @@ showUnit:any
           //parseFloat for coverstion such number
           if(this.id == this.crdDeals[i].categoryId){
             // console.log('first')
-            if(this.querydetails.searchmainquantity <= this.crdDeals[i].quantity && this.querydetails.searchqnty == this.crdDeals[i].qnty && (this.querydetails.frmAmt < parseFloat(this.crdDeals[i].price) && this.querydetails.toCost > parseFloat(this.crdDeals[i].price))){
+            if(this.querydetails.searchmainquantity <= this.crdDeals[i].quantity && this.querydetails.searchqnty == this.crdDeals[i].qnty && (this.querydetails.frmAmt <= parseFloat(this.crdDeals[i].price) && this.querydetails.toCost >= parseFloat(this.crdDeals[i].price))){
               // console.log('second')
               //   console.log(this.id)
                 this.specifyCategory[j] = this.crdDeals[i]
