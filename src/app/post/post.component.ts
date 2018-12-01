@@ -56,9 +56,7 @@ export class PostComponent implements OnInit {
   showUnit:any
   submitted:boolean;
   
-
-  constructor(private _dealsService:DealsService,private MapsAPILoader: MapsAPILoader,private ngZone: NgZone,private http: HttpClient,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
-
+  constructor(private _dealsService:DealsService,private http: HttpClient,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
     this.privateIP = ClientIP;
 
     this.http.get('https://api.ipify.org?format=json').subscribe(data => {

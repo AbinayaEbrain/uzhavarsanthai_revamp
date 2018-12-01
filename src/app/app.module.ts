@@ -27,6 +27,8 @@ import { HomeComponent } from './home/home.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { AdminIpComponent } from './admin-ip/admin-ip.component';
 import { DealscategoryComponent } from './dealscategory/dealscategory.component';
+import { ViewcategoryComponent } from './viewcategory/viewcategory.component';
+import { HotdealsComponent } from './hotdeals/hotdeals.component';
 
 //address
 import { AgmCoreModule } from '@agm/core';
@@ -54,7 +56,9 @@ import { FileSelectDirective } from 'ng2-file-upload';
     AdminIpComponent,
     DealscategoryComponent,
     GooglePlacesDirective,
-    FileSelectDirective
+    FileSelectDirective,
+    ViewcategoryComponent,
+    HotdealsComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +73,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
     })
 
   ],
-  providers: [AuthService,DealsService,AuthGuard,
+  providers: [AuthService,DealsService,AuthGuard,ViewcategoryComponent,
   {
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,
