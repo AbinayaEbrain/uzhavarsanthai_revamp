@@ -41,7 +41,7 @@ export class GooglePlacesDirective implements OnInit {
       } else if (item['types'].indexOf("lattitude") > -1) {
         location_obj['lattitude'] = item['short_name']
       } 
-     
+     console.log(location_obj)
     }
     return location_obj;
   }

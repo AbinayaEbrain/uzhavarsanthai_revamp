@@ -188,7 +188,6 @@ router.get('/deals',(req,res)=>{
     User.find(function (err,result){
         if(err){
             console.log('no data')
- 
         }
         else{
          res.send(result)
