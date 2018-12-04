@@ -29,12 +29,14 @@ export class CategoryComponent implements OnInit {
   }
   sucessMsg:any;
   p:any;
+  url:any
 
   constructor(private _adminService:AdminService,public loadingCtrl: NgxSpinnerService,private _dealService:DealsService,private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
 
-    this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+     this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
+
     //overide the onCompleteItem property of the uploader so we are 
     //able to deal with the server response.
     this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
@@ -53,7 +55,6 @@ export class CategoryComponent implements OnInit {
         this.loadingCtrl.hide();
          this.categoryArr = res;
          console.log(this.categoryArr)
-
 
          if(this.categoryArr.length == 0){
            this.errMsg = "No Category Added"
@@ -116,7 +117,7 @@ export class CategoryComponent implements OnInit {
             this.sucessMsg = ''
           },2000)
           
-          this.router.navigate[('/category')]
+        
           this.loadingCtrl.hide();
          
          
@@ -125,8 +126,7 @@ export class CategoryComponent implements OnInit {
           this.loadingCtrl.hide();
           console.log(err)
         }
-        
-     
+
       )
       localStorage.removeItem('Image')
     }
@@ -136,14 +136,25 @@ export class CategoryComponent implements OnInit {
       this._dealService.deleteCate(this.id)
       .subscribe(
          res=>{ console.log(res)
-         
-         
+
          },
          err=>{ console.log(err);
         },
       
       )
     }
+
+  //   onSelectFile(event) { // called each time file input changes
+  //     if (event.target.files && event.target.files[0]) {
+  //       var reader = new FileReader();
+  
+  //       reader.readAsDataURL(event.target.files[0]); // read file as data url
+  
+  //       reader.onload = (event) => { // called once readAsDataURL is completed
+  //         this.url = event.target.result;
+  //       }
+  //     }
+  // }
 
     update(){
       console.log(this.deallistobj)

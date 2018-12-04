@@ -172,12 +172,16 @@
                     </div>
 
                     <div class="form-group mb-5 mt-4">
-                    <input type="file" name="image" [(ngModel)]="cateData.image" ng2FileSelect [uploader]="uploader" />
-                        <!-- button to trigger the file upload when submitted -->
+                    <input type="file"  #image="ngModel" name="image" [(ngModel)]="cateData.image" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
+                        
                         <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-                            Upload your image
-                        </button>
+                            Upload Image
+                        </button> 
+                         <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Category Image is required</span>  
+
                     </div>
+                    <!-- <img [src]="url" height="200"> <br/>
+                        <input type='file' name="image" [(ngModel)]="cateData.image" (change)="onSelectFile($event)"> -->
 
                     <div class="row">
                         <div class="col-md-6">

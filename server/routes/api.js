@@ -67,9 +67,7 @@ router.post('/register',(req,res)=>{
         else{
             res.status(401).send("Number already exist")
         }
-    })
-      
-   
+    })  
         
 })
 
@@ -98,8 +96,6 @@ router.post('/post',(req,res)=>{
         }
     })
 })
-
-
 
 //admin
 
@@ -169,7 +165,7 @@ router.get('/deals',(req,res)=>{
         }
         else{
          res.send(result)
-           
+          //console.log(result) 
         }
     })
  })
