@@ -55,8 +55,22 @@ export class PostComponent implements OnInit {
   longti:any
   showUnit:any
   submitted:boolean;
+  public addrKeys: string[];
+  public addr: object;
+
+  setAddress(addrObj) {
+    alert("1")
+    //We are wrapping this in a NgZone to reflect the changes
+    //to the object in the DOM.
+    this.zone.run(() => {
+      this.addr = addrObj;
+      this.addrKeys = Object.keys(addrObj);
+      console.log(this.addrKeys)
+      console.log(this.addr)
+    });
+  }
   
-  constructor(private _dealsService:DealsService,private http: HttpClient,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService) {
+  constructor(private _dealsService:DealsService,private http: HttpClient,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService,public zone:NgZone) {
     this.privateIP = ClientIP;
 
     this.http.get('https://api.ipify.org?format=json').subscribe(data => {

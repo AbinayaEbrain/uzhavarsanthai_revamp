@@ -10,7 +10,8 @@
             <div class="row">
               <div class="col-md-3" *ngFor="let deal of categoryArr">
                 <div class="card" style="cursor: pointer;" routerLink="/viewCategory/{{deal._id}}">
-                  <img class="card-img-top" src="../../assets/Images/fresh-fruits-6.jpg" alt="Card image cap">
+                    <!-- {{deal.image}} -->
+                  <img class="card-img-top" src="{{deal.image}}" alt="Card image cap">
                      <div class="card-body">
                      <h5 class="card-title categoryName">{{deal.productCategory}}</h5>
                     </div>

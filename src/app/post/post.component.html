@@ -111,7 +111,7 @@
                             <option value="Coimbatore">Coimbatore</option>
                           </select> -->
 
-                          <input google-place type="text" placeholder="Search" class="form-control"  name="avlplaceName" [(ngModel)]="productData.avlPlace.avlplaceName" #search>
+                          <input google-place type="text" placeholder="Search" class="form-control" (onSelect)="setAddress($event)" name="avlplaceName" [(ngModel)]="productData.avlPlace.avlplaceName" #search>
                       </div>
                       <!-- <span class="text-danger float-left" [class.d-none] = "avlplaceName.valid || avlplaceName.untouched">Price is required</span>  -->
                      

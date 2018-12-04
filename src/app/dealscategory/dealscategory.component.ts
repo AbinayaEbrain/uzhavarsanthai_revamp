@@ -1,3 +1,4 @@
+declare function require(path: string);
 import { Component, OnInit } from '@angular/core';
 import { DealsService } from '../deals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -8,7 +9,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./dealscategory.component.css']
 })
 export class DealscategoryComponent implements OnInit {
-  categoryArr=[]
+
+  categoryArr=[{
+    image:''
+  }];
+ //imageSrc = require('server/uploads/photo-1543648029335.jpg');
+ imageSrc:any
+
   constructor(private _dealService:DealsService,public loadingCtrl: NgxSpinnerService,) { }
 
   ngOnInit() {
@@ -16,12 +23,16 @@ export class DealscategoryComponent implements OnInit {
     .subscribe(
         res => {
          this.loadingCtrl.hide();
+         
           this.categoryArr = res;
+          this.imageSrc = require('server/uploads/' + this.categoryArr);
+          
+         // console.log(this.imageSrc)
           console.log(this.categoryArr)
         },
         err => {
          this.loadingCtrl.hide();
-            this.categoryArr = [];
+           // this.categoryArr = [];
         });
   }
 

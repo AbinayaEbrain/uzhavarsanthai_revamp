@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpModule, Response } from '@angular/http';
 import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './auth.service';
@@ -65,6 +66,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    HttpModule,
     NgxSpinnerModule,
     NgxPaginationModule,
     AgmCoreModule.forRoot({
