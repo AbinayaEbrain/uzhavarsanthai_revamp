@@ -26,8 +26,6 @@ const postSchema = new Schema({
         default: function() {
             return new Date(new Date(this.validityTime));
         },expires : 60 
-    }
- 
+    } 
 })
-
 module.exports = mongoose.model('post',postSchema,'post')
