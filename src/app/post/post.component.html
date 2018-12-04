@@ -1,6 +1,6 @@
 
 
- <body class="bg1" style="overflow: hidden;">
+ <body class="bg1" style="overflow: scroll;">
   <div class="text-center container mb-5 mt-5 pt-5">
       <div class="row">
           <div class="col-md-4"></div>
@@ -117,11 +117,23 @@
                      
                 </div> 
                 <div class="col-md-4"></div>
-                <div class="col-md-8">
+                <div class="col-md-4">
                     <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                         <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="productData.description"  name="description" class="form-control"  autocomplete="off" maxlength="250" required>
                         <label class="form-control-placeholder" for="date">Description /<span style="font-size: 14px"> பொருளைப் பற்றி</span></label>
                         <span class="text-danger float-left" [class.d-none] = "description.valid || description.untouched">Description is required</span>  
+                      </div>
+                </div> 
+                <div class="col-md-4">
+                    <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
+                            <!-- <input type="text"
+                            placeholder="Datepicker"
+                            class="form-control"
+                            bsDatepicker> -->
+                            <!-- expire_at: {type: Date, default: Date.now, expires: 1296000} -->
+                        <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="productData.validityTime"  name="validityTime" class="form-control"   bsDatepicker  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
+                        <label class="form-control-placeholder" for="date">Expiration /<span style="font-size: 14px">காலாவதியாகும் தேதி</span></label>
+                        <span class="text-danger float-left" [class.d-none] = "validityTime.valid || validityTime.untouched">Expiration is required</span>  
                       </div>
                 </div> 
               </div>

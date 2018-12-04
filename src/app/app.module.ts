@@ -33,6 +33,9 @@ import { HotdealsComponent } from './hotdeals/hotdeals.component';
 //address
 import { AgmCoreModule } from '@agm/core';
 import { GooglePlacesDirective } from './google-places.directive';
+//datepicker
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 //file upload
 import { FileSelectDirective } from 'ng2-file-upload';
@@ -58,7 +61,8 @@ import { FileSelectDirective } from 'ng2-file-upload';
     GooglePlacesDirective,
     FileSelectDirective,
     ViewcategoryComponent,
-    HotdealsComponent
+    HotdealsComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -67,6 +71,8 @@ import { FileSelectDirective } from 'ng2-file-upload';
     HttpClientModule,
     NgxSpinnerModule,
     NgxPaginationModule,
+    BsDatepickerModule,
+    BsDatepickerModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAmEuB6RfjEQdz9zqL_nYihfHkeWR-iq-Y',
       libraries: ["places"]

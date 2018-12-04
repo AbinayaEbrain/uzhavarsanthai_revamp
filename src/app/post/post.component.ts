@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps'
 
+
 declare var $: any;
 declare let ClientIP: any;
 
@@ -37,6 +38,7 @@ export class PostComponent implements OnInit {
     categoryId:'',
     date: new Date().getTime(),
     ipAddress:'',
+    validityTime:'',
     avlPlace:{
       avlplaceName:'',
       latitude:'',
@@ -68,7 +70,7 @@ export class PostComponent implements OnInit {
    this.productData.subqnty = '';
    this.productData.avlPlace.avlplaceName = ''
    this.productData.categoryId = ''
-  // this.productData.category. = ''
+   this.productData.validityTime = ''
   
    }
 
@@ -100,6 +102,7 @@ export class PostComponent implements OnInit {
           this.productData.avlPlace = this.dealslists[i].avlPlace
           this.productData.avlPlace = this.dealslists[i].subqnty
           this.productData.avlPlace = this.dealslists[i].subQuantity
+          this.productData.validityTime =this.dealslists[i].validityTime
         }
       }
 
@@ -142,11 +145,12 @@ export class PostComponent implements OnInit {
 
       
   postProduct(){
-
+console.log(this.productData)
     this.productData.avlPlace.latitude = JSON.parse(localStorage.getItem('Address'));
     this.productData.avlPlace.longtitude = JSON.parse(localStorage.getItem('Address1'));
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.productData.ipAddress = this.privateIP;
+  
    
     console.log(this.productData.categoryId)
 
