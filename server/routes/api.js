@@ -87,7 +87,7 @@ router.post('/post',(req,res)=>{
             // console.log(userData)
            // console.log(accountId)
             //before adding jwt
-            console.log(this.getmac)
+            // console.log(this.getmac)
             res.status(200).send(productData)
          
            
@@ -148,11 +148,11 @@ router.post('/login',(req,res)=>{
 router.get('/deals',(req,res)=>{
     Post.find(function (err,result){
         if(err){
-            console.log('no data')
+            console.log('no data1')
         }
         else{
          res.send(result)
-           console.log(result)
+           //console.log(result)
         }
     })
  })
@@ -160,7 +160,7 @@ router.get('/deals',(req,res)=>{
  router.get('/category',(req,res)=>{
     Category.find(function (err,result){
         if(err){
-            console.log('no data')
+            console.log('no data2')
  
         }
         else{
@@ -173,7 +173,7 @@ router.get('/deals',(req,res)=>{
  router.get('/subcategory',(req,res)=>{
     subCategory.find(function (err,result){
         if(err){
-            console.log('no data')
+            console.log('no data3')
  
         }
         else{
@@ -187,7 +187,7 @@ router.get('/deals',(req,res)=>{
  router.get('/details',(req,res)=>{
     User.find(function (err,result){
         if(err){
-            console.log('no data')
+            console.log('no data4')
         }
         else{
          res.send(result)

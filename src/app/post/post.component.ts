@@ -6,7 +6,7 @@ import {ActivatedRoute, Params} from '@angular/router'
 // loader 
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
-import { MapsAPILoader } from '@agm/core';
+// import { MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps'
 
 
@@ -39,16 +39,11 @@ export class PostComponent implements OnInit {
     date: new Date().getTime(),
     ipAddress:'',
     validityTime:'',
-    avlPlace:{
-      avlplaceName:'',
-      latitude:'',
-      longtitude:''
-
-    },
+    avlPlace:{},
     description:''
   };
   id:any;
-  @ViewChild('search') public searchElement: ElementRef
+  @ViewChild('avlplaceName') public searchElement: ElementRef
   dealslists = [];
   success: any
   success1:any
@@ -59,9 +54,9 @@ export class PostComponent implements OnInit {
   submitted:boolean;
   public addrKeys: string[];
   public addr: object;
+  
 
   setAddress(addrObj) {
-    alert("1")
     //We are wrapping this in a NgZone to reflect the changes
     //to the object in the DOM.
     this.zone.run(() => {
@@ -71,7 +66,7 @@ export class PostComponent implements OnInit {
       console.log(this.addr)
     });
   }
-  
+
   constructor(private _dealsService:DealsService,private http: HttpClient,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService,public zone:NgZone) {
     this.privateIP = ClientIP;
 
@@ -82,7 +77,7 @@ export class PostComponent implements OnInit {
    this.productData.qnty = '';
    this.productData.category ='';
    this.productData.subqnty = '';
-   this.productData.avlPlace.avlplaceName = ''
+  // this.productData.avlPlace.avlplaceName = ''
    this.productData.categoryId = ''
    this.productData.validityTime = ''
   
@@ -99,33 +94,37 @@ export class PostComponent implements OnInit {
     //   document.getElementById('update').style.display='none';
     // }
     this.loadingCtrl.show();
-    this._dealsService.getDeals()
-  .subscribe(
-    res=>{
+    setTimeout(() => {
+      // swal.close();
       this.loadingCtrl.hide();
-      this.dealslists = res
+  }, 1000);
+  //   this._dealsService.getDeals()
+  // .subscribe(
+  //   res=>{
+  //     this.loadingCtrl.hide();
+  //     this.dealslists = res
       
-      for(let i=0; i < this.dealslists.length; i++){
-        if(this.id == this.dealslists[i]._id){
-          this.productData.category = this.dealslists[i].category
-          this.productData.name = this.dealslists[i].name
-          this.productData.quantity = this.dealslists[i].quantity
-          this.productData.qnty = this.dealslists[i].qnty
-          this.productData.price = this.dealslists[i].price
-          this.productData.description = this.dealslists[i].description
-          this.productData.avlPlace = this.dealslists[i].avlPlace
-          this.productData.avlPlace = this.dealslists[i].subqnty
-          this.productData.avlPlace = this.dealslists[i].subQuantity
-          this.productData.validityTime =this.dealslists[i].validityTime
-        }
-      }
+  //     for(let i=0; i < this.dealslists.length; i++){
+  //       if(this.id == this.dealslists[i]._id){
+  //         this.productData.category = this.dealslists[i].category
+  //         this.productData.name = this.dealslists[i].name
+  //         this.productData.quantity = this.dealslists[i].quantity
+  //         this.productData.qnty = this.dealslists[i].qnty
+  //         this.productData.price = this.dealslists[i].price
+  //         this.productData.description = this.dealslists[i].description
+  //         this.productData.avlPlace = this.dealslists[i].avlPlace
+  //         this.productData.subqnty = this.dealslists[i].subqnty
+  //         this.productData.subQuantity = this.dealslists[i].subQuantity
+  //         this.productData.validityTime =this.dealslists[i].validityTime
+  //       }
+  //     }
 
-    },
-    err=>{
-      this.loadingCtrl.hide();
-      console.log(err)
-    }
-  )
+  //   },
+  //   err=>{
+  //     this.loadingCtrl.hide();
+  //     console.log(err)
+  //   }
+  // )
 
 
   //category
@@ -159,11 +158,13 @@ export class PostComponent implements OnInit {
 
       
   postProduct(){
-console.log(this.productData)
-    this.productData.avlPlace.latitude = JSON.parse(localStorage.getItem('Address'));
-    this.productData.avlPlace.longtitude = JSON.parse(localStorage.getItem('Address1'));
+    console.log(this.productData)
+    // this.productData.avlPlace.latitude = JSON.parse(localStorage.getItem('Address'));
+    // this.productData.avlPlace.longtitude = JSON.parse(localStorage.getItem('Address1'));
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.productData.ipAddress = this.privateIP;
+    this.productData.avlPlace = this.addr
+    console.log(this.productData.avlPlace)
   
    
     console.log(this.productData.categoryId)
@@ -186,16 +187,17 @@ console.log(this.productData)
        console.log(this.productData.categoryId)
        console.log(new Date())
         console.log(res);
+
         //this.route.navigate[('/deals')]
 
         this.success = "Posted successfully!"
-      
+      console.log( this.productData.avlPlace)
         setTimeout(() => {
           // swal.close();
           this.loadingCtrl.show();
           this.route.navigate(['user-deals']);
           this.loadingCtrl.hide();
-      }, 2000);
+      }, 1000);
     },
       err =>{
           if(err instanceof HttpErrorResponse){
@@ -238,10 +240,10 @@ console.log(this.productData)
         }
     }
 
-    getLatitudeLongitude(){
-             let address =  this.productData.avlPlace.avlplaceName
-             this.getLatitudeLongitude1(this.showResult,address) 
-    }
+    // getLatitudeLongitude(){
+    //      let address =  this.productData.avlPlace.avlplaceName
+    //          this.getLatitudeLongitude1(this.showResult,address) 
+    // }
 
     showResult(result) {
       // this.latite=result.geometry.location.lat()

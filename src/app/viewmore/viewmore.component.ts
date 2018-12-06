@@ -36,7 +36,7 @@ export class ViewmoreComponent implements OnInit {
     accountId:'',
     date:'',
     avlPlace:{
-        avlplaceName:''
+      locality:''
     }
   }
   userName = '';
@@ -64,7 +64,7 @@ export class ViewmoreComponent implements OnInit {
                this.postProduct.qnty = this.viewPost[i].qnty;
                this.postProduct.price = this.viewPost[i].price;
                this.postProduct.description = this.viewPost[i].description;
-               this.postProduct.avlPlace.avlplaceName = this.viewPost[i].avlPlace.avlplaceName;
+               this.postProduct.avlPlace.locality = this.viewPost[i].avlPlace.locality;
                this.postProduct.accountId = this.viewPost[i].accountId;
               
               }

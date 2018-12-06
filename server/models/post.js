@@ -17,9 +17,13 @@ const postSchema = new Schema({
     ipAddress:String,
     validityTime:String,
     avlPlace:{
-        avlplaceName:String,
-            latitude:String,
-            longtitude:String  
+        lat:'',
+        lng:'',
+        formatted_address:'',
+        locality:'',
+        admin_area_l1:'',
+        country:'',
+        postal_code:''
     },
     expireAt: {
         type: Date, required: true,

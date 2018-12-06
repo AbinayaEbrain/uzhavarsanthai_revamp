@@ -21,10 +21,15 @@ export class GooglePlacesDirective implements OnInit {
    getFormattedAddress(place) {
     //@params: place - Google Autocomplete place object
     //@returns: location_obj - An address object in human readable format
-    let location_obj = {};
+    console.log(place)
+    let location_obj = {
+      lat:'',
+      lng:''
+    };
+    let geometry = {};
     for (let i in place.address_components) {
       let item = place.address_components[i];
-      
+      console.log(place.address_components[i])
       location_obj['formatted_address'] = place.formatted_address;
       if(item['types'].indexOf("locality") > -1) {
         location_obj['locality'] = item['long_name']
@@ -38,11 +43,20 @@ export class GooglePlacesDirective implements OnInit {
         location_obj['country'] = item['long_name']
       } else if (item['types'].indexOf("postal_code") > -1) {
         location_obj['postal_code'] = item['short_name']
-      } else if (item['types'].indexOf("lattitude") > -1) {
-        location_obj['lattitude'] = item['short_name']
+      } else if (item['types'].indexOf("geometry") > -1) {
+        location_obj['geometry'] = item['geometry']
       } 
-     console.log(location_obj)
+     
     }
+     
+     // console.log(place.geometry)
+      // get lat
+      location_obj.lat = place.geometry.location.lat();
+      //console.log(location_obj.lat)
+      // get lng
+      location_obj.lng = place.geometry.location.lng();
+      // console.log(location_obj.lng)
+      // console.log(location_obj)
     return location_obj;
   }
 
@@ -50,8 +64,9 @@ export class GooglePlacesDirective implements OnInit {
     const autocomplete = new google.maps.places.Autocomplete(this.element);
 
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
-      //Emit the new address object for the updated place
+      // Emit the new address object for the updated place
       this.onSelect.emit(this.getFormattedAddress(autocomplete.getPlace()));
+      console.log(autocomplete.getPlace())
     });
   }
 

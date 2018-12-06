@@ -1,5 +1,5 @@
 
-import { Component, OnInit ,ViewChild} from '@angular/core';
+import { Component, OnInit ,ViewChild, ElementRef,NgZone} from '@angular/core';
 import { DealsService } from '../deals.service';
 import {ActivatedRoute, Params} from '@angular/router'
 import { Router} from '@angular/router'
@@ -24,17 +24,28 @@ export class UserDealsEditComponent implements OnInit {
     price:'',
     description:'',
     date:new Date().toLocaleDateString(),
-    avlPlace:{
-      avlplaceName:'',
-      latitude:'',
-      longtitude:''
-    },
+    avlPlace:{},
+    validityTime:''
   }
   success:any
   categoryArr = []
   showUnit:any
   submitted:boolean;
-  constructor(private  _dealsService:DealsService,private route:ActivatedRoute,private router:Router,public loadingCtrl:NgxSpinnerService) { }
+  public addrKeys: string[];
+  public addr: object;
+
+  setAddress(addrObj) {
+    //We are wrapping this in a NgZone to reflect the changes
+    //to the object in the DOM.
+    this.zone.run(() => {
+      this.addr = addrObj;
+      this.addrKeys = Object.keys(addrObj);
+      console.log(this.addrKeys)
+      console.log(this.addr)
+    });
+  }
+
+  constructor(private  _dealsService:DealsService,private route:ActivatedRoute,private router:Router,public zone:NgZone,public loadingCtrl:NgxSpinnerService) { }
 
   ngOnInit() {
 
@@ -48,7 +59,7 @@ export class UserDealsEditComponent implements OnInit {
       res=>{
         this.loadingCtrl.hide();
         this.dealslists = res
-        
+        console.log(this.dealslists)
         for(let i=0; i < this.dealslists.length; i++){
           if(this.id == this.dealslists[i]._id){
             this.deallistobj.category = this.dealslists[i].category
@@ -59,12 +70,13 @@ export class UserDealsEditComponent implements OnInit {
             this.deallistobj.subqnty = this.dealslists[i].subqnty
             this.deallistobj.price = this.dealslists[i].price
             this.deallistobj.description = this.dealslists[i].description
-            this.deallistobj.avlPlace.avlplaceName = this.dealslists[i].avlPlace.avlplaceName
+            this.deallistobj.avlPlace = this.dealslists[i].avlPlace.formatted_address
+            this.deallistobj.validityTime = this.dealslists[i].validityTime
             this.showUnit = this.dealslists[i].qnty
           }
         }
         
-        console.log(this.deallistobj)
+         console.log(this.deallistobj)
       },
       err=>{
         this.loadingCtrl.hide();
@@ -104,6 +116,7 @@ InitialCall() {
       this.deallistobj.price = this.dealslists[i].price
       this.deallistobj.description = this.dealslists[i].description
       this.deallistobj.avlPlace = this.dealslists[i].avlPlace
+      this.deallistobj.validityTime = this.dealslists[i].validityTime
     }
   }
 }
@@ -112,10 +125,13 @@ InitialCall() {
     console.log(this.deallistobj)
     let curntDte = new Date().toLocaleDateString();
     this.deallistobj.date = curntDte
+    this.deallistobj.avlPlace = this.addr
     this._dealsService.editDeals(this.deallistobj,this.id)
     .subscribe(
-      res=>{console.log(this.deallistobj),
+      res=>{
+        console.log(this.deallistobj),
 
+        // console.log(res)
         this.success = "Updated successfully!"
         setTimeout(() => {
           // swal.close();
