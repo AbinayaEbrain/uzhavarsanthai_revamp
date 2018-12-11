@@ -30,6 +30,7 @@ export class CategoryComponent implements OnInit {
   sucessMsg:any;
   p:any;
   url:any
+  submitted:any;
 
   constructor(private _adminService:AdminService,public loadingCtrl: NgxSpinnerService,private _dealService:DealsService,private route:ActivatedRoute,private router:Router) { }
 

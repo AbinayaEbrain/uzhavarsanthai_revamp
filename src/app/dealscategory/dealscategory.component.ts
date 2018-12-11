@@ -25,7 +25,7 @@ export class DealscategoryComponent implements OnInit {
          this.loadingCtrl.hide();
          
           this.categoryArr = res;
-          this.imageSrc = require('server/uploads/' + this.categoryArr);
+         // this.imageSrc = require('server/uploads/' + this.categoryArr);
           
          // console.log(this.imageSrc)
           console.log(this.categoryArr)
