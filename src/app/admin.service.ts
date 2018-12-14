@@ -19,22 +19,4 @@ export class AdminService {
     return this.http.post<any>(this._postCatUrl,data)
   }
 
-  postFile(prfImgData) {
-    const headers = new Headers({ 'Content-Type': 'multipart/form-data' });
-    const options = new RequestOptions({ headers: headers });
-
-    const formData: FormData = new FormData();
-    formData.append('photo', prfImgData, prfImgData.name);
-    //formData.append('venueid', venueId);
-
-    return this.http
-      .post(this._postCatUrl, formData)
-      .pipe(map(res => res));
-  }
-
-  
-
-// handleError(error) {
-//   console.log(error)
-// }
 }

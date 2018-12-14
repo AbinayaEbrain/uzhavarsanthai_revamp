@@ -13,8 +13,8 @@ export class DealscategoryComponent implements OnInit {
   categoryArr=[{
     image:''
   }];
- //imageSrc = require('server/uploads/photo-1543648029335.jpg');
- imageSrc:any
+ //imageSrc = require('../../../server/uploads/photo-1544505995155.jpg');
+  imageSrc:any
 
   constructor(private _dealService:DealsService,public loadingCtrl: NgxSpinnerService,) { }
 
@@ -25,10 +25,11 @@ export class DealscategoryComponent implements OnInit {
          this.loadingCtrl.hide();
          
           this.categoryArr = res;
-          this.imageSrc = require('server/uploads/' + this.categoryArr);
+          this.imageSrc = require('../../../server/uploads' + this.categoryArr);
           
          // console.log(this.imageSrc)
           console.log(this.categoryArr)
+         
         },
         err => {
          this.loadingCtrl.hide();

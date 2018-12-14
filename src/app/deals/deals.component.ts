@@ -45,6 +45,8 @@ export class DealsComponent implements OnInit {
   crdDeals1 = []
   queryString:any;
   p:any;
+  getlat:any
+  getlng:any
 
   constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService){
    
@@ -98,7 +100,6 @@ export class DealsComponent implements OnInit {
         err=>{}
       )
      
-
        var mapProp = {
       center: new google.maps.LatLng(18.5793, 73.8143),
       zoom: 15,
@@ -118,6 +119,7 @@ export class DealsComponent implements OnInit {
 
 
     
+    
   }
 
 
@@ -127,7 +129,7 @@ export class DealsComponent implements OnInit {
   //     location.reload()
   // }, 2000 );
 
-  document.getElementById('hideButton').style.display='none';
+  document.getElementById('hideButton').style.display='block';
   document.getElementById('showButton').style.display='block';
   // this.route.navigate[('/post')]
     if (navigator.geolocation) {

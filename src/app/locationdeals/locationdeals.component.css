@@ -19,10 +19,29 @@
    /*background-color: #23dfe8;
      background-color: rgb(252, 176, 59); */
    background-color: #032b31;
-    height: 300px;
+   height: 325px;
     /* width: 300px; */
     color: aliceblue;
   }
+  .btnnn {
+    width: 100%;
+     display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
   .title{
     border-radius: 0px 20px 0px 20px;
     height: 45px;

@@ -22,8 +22,8 @@ export class LocationdealsComponent implements OnInit {
   //-------
   crdDeals = [{
     avlPlace:{
-      latitude:'',
-      longitude:''
+      lat:'',
+      lng:''
     },
     accountId:''
   }];
@@ -31,7 +31,7 @@ export class LocationdealsComponent implements OnInit {
   activeUsers=[]
   userName = {};
   errMsg = "";
-  lat:any
+  lat2:any
   long:any
   lat1:any
   long1:any
@@ -52,20 +52,25 @@ export class LocationdealsComponent implements OnInit {
         this.loadingCtrl.hide();
         this.crdDeals = res
 
-        this.lat = localStorage.getItem('googleLat')
+        this.lat2 = localStorage.getItem('googleLat')
         this.long = localStorage.getItem('googleLong')
 
-        this.lat1 = this.lat*1.009
+        if(this.lat2 == null){
+          document.getElementById('hideButton').style.display='none';
+          document.getElementById('showButton').style.display='block';
+        }
+       
+        this.lat1 = this.lat2*1.009
        //alert(this.lat1)
        
-        this.latd = this.lat/1.002
+        this.latd = this.lat2/1.002
        // alert(this.latd)
 
         console.log(this.crdDeals)
         console.log(this.crdDeals.length)
         let j=0
         for(let i=0; i < this.crdDeals.length; i++){
-          if(this.crdDeals[i].avlPlace.latitude < this.lat1 && this.crdDeals[i].avlPlace.latitude > this.latd){
+          if(this.crdDeals[i].avlPlace.lat < this.lat1 && this.crdDeals[i].avlPlace.lng > this.latd){
               this.mapDeals[j]=this.crdDeals[i];
               console.log(this.mapDeals[j])
               j++
@@ -122,36 +127,30 @@ export class LocationdealsComponent implements OnInit {
       console.log(this.errMsg)
     }
 
+  }
 
-     var mapProp = {
-    center: new google.maps.LatLng(18.5793, 73.8143),
-    zoom: 15,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-  this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
 
-    // tracking location 
+  trackMe() {
+    alert("1")
     if (navigator.geolocation) {
-
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.showPosition(position);
+      this.isTracking = true;
+      navigator.geolocation.watchPosition((position) => {
+        this.showTrackingPosition(position);
       });
     } else {
       alert("Geolocation is not supported by this browser.");
     }
   }
 
-
-  
-  showPosition(position) {
+  showTrackingPosition(position) {
+    console.log(`tracking postion:  ${position.coords.latitude} - ${position.coords.longitude}`);
     this.currentLat = position.coords.latitude;
     this.currentLong = position.coords.longitude;
 
-    console.log(this.currentLat)
-    console.log(this.currentLong)
     localStorage.setItem('googleLat', JSON.stringify(this.currentLat));
     localStorage.setItem('googleLong', JSON.stringify(this.currentLong));
-
+    // console.log(this.currentLat)
+    // console.log(this.currentLong)
     let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     this.map.panTo(location);
 

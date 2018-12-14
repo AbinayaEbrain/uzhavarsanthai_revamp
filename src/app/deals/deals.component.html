@@ -3,10 +3,9 @@
 <div class="container mt-5 pt-5">
     <div class="row mt-3 mb-3">
         <div class="col-lg-3 col-sm-12 col-md-12">
-        <button class="btnnn btn-success" (click)="findMe()" id="hideButton">அருகிலுள்ள 
-            விற்பனை</button>
-            <button class="btn btn-success" routerLink="/location" style="display: none" id="showButton">Click here to continue</button>
-            <button class="btn" style="display: none;" routerLink="/location" id="showButton" >continue</button>
+        <button class="btnnn btn-success" routerLink="/location">அருகிலுள்ள விற்பனை</button>
+            <!-- <button class="btn btn-success" routerLink="/location" style="display: none" id="showButton">Click here to continue</button> -->
+            <!-- <button class="btn" style="display: none;" routerLink="/location" id="showButton" >continue</button> -->
         </div>
        <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
             <!-- <div class="col-lg-6 col-md-6 col-sm-6">
@@ -25,7 +24,7 @@
 
   <div class="row mt-5">
 
-    <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }">
+    <div class="col-lg-6 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }">
             
         <div class="card">
               

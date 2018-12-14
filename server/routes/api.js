@@ -1,6 +1,6 @@
 const express =require('express')
 const jwt = require('jsonwebtoken')
-const getmac= require('getmac')
+
 const router = express.Router()
 const User = require('../models/user')
 const Post = require('../models/post')
@@ -87,7 +87,7 @@ router.post('/post',(req,res)=>{
             // console.log(userData)
            // console.log(accountId)
             //before adding jwt
-            // console.log(this.getmac)
+            
             res.status(200).send(productData)
          
            

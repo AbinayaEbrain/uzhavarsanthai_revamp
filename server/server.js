@@ -1,6 +1,6 @@
 //express package 
 const express = require('express')
-const getmac= require('getmac')
+// const getmac= require('getmac')
 //middleware package 
 const bodyParser =require('body-parser')
 const cors=require('cors')
@@ -63,6 +63,19 @@ app.post('/api/upload',upload.single('photo'), function (req, res) {
        return res.send(path)
       }
 });
+
+// app.get('/deals',(req,res)=>{
+//   upload.find(function (err,result){
+//       if(err){
+//           console.log('no data1')
+//       }
+//       else{
+//        res.send(result)
+//          console.log(result)
+//       }
+//   })
+// })
+
     // Serve only the static files form the dist directory
  app.use(express.static(__dirname + '/farmers'));
 
