@@ -39,7 +39,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 //file upload
-// import { FileSelectDirective } from 'ng2-file-upload';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -60,7 +60,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     AdminIpComponent,
     DealscategoryComponent,
     GooglePlacesDirective,
-    // FileSelectDirective,
+    FileSelectDirective,
     ViewcategoryComponent,
     HotdealsComponent,
     

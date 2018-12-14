@@ -4,10 +4,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DealsService } from '../deals.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router, ParamMap } from '@angular/router';
-import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import {  FileUploader } from 'ng2-file-upload';
 
 //const URL = 'http://localhost:3000/api/upload';
 const URL = 'http://localhost:5000/api/upload';
+
 
 @Component({
   selector: 'app-category',
@@ -25,7 +26,8 @@ export class CategoryComponent implements OnInit {
   id:any
   errMsg:any;
   deallistobj={
-    productCategory:''
+    productCategory:'',
+    image:''
   }
   sucessMsg:any;
   p:any;
@@ -81,7 +83,7 @@ export class CategoryComponent implements OnInit {
         for(let i=0; i < this.categoryArr.length; i++){
           if(this.id == this.categoryArr[i]._id){
             this.deallistobj.productCategory = this.categoryArr[i].productCategory
-            
+            this.deallistobj.image = this.categoryArr[i].image
           }
         }
 

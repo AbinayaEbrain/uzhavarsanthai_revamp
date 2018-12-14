@@ -64,6 +64,25 @@ app.post('/api/upload',upload.single('photo'), function (req, res) {
       }
 });
 
+
+app.put('/api/uploads',upload.single('photo'), function (req, res) {
+  if (!req.file) {
+      console.log("No file received");
+      return res.send({
+        success: false
+      });
+  
+    } else {
+      //   console.log(res)
+      // return res.send({
+      //   success: true,
+      // }) 
+     var path = ''
+     path = req.file.filename;
+     var path1 =  ("Upload Completed for "+path); 
+     return res.send(path)
+    }
+});
 // app.get('/deals',(req,res)=>{
 //   upload.find(function (err,result){
 //       if(err){
