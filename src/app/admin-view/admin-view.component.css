@@ -9,7 +9,12 @@
     width:100%
     /* min-height: -webkit-fill-available; */
 } 
-
+.button_word{
+  font-family: 'Kanit', sans-serif;
+}
+.english_wrd{
+  font-family: 'Mukta', sans-serif;
+}
 
 
 
@@ -124,18 +129,7 @@ input{
     color: white;
 
 }
-/* .btn{
-    font-size: 20px;
-    background-color: white;
-   
-    border: none;
-    color: #fdbf03;
-    font-weight: bold;
-    font-family:  "Comic Sans MS", cursive, sans-serif;
-} */
-table{
-  text-align: left;
-}
+
 .form-group {
     position: relative;
     margin-bottom: 1.5rem;
@@ -180,163 +174,12 @@ table{
   .register{
     color: white;
    } 
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .card{
-
-   border: solid black 2px;
-   border-radius: 0 20px;
-   background-color: #032b31;
-   color: white
-}
-
-.card-tittle{
-  height: 60px;
-padding-top: 24px;
-
-  background-color:#2d483e;
-
-}  
-.info{
-  background-color: #23dfe8;
-  padding-top: 8px;
-  color: #fff;
-  font-size: 18px;
-  text-align: center;
-  width: 50%;
-  height: 45px;
-
-  border-radius: 0 20px;
-  color: white;
-}
-.card-body{
-  margin: auto;
-
-  
-}
-.product{
- text-align: left;
- font-size: 20px;
-}
-.info1{
-  text-align: left;
-  
-}
-.table{
-  align-self: auto;
-
-}
-.des{
-margin-left: -80px
-}
-
- .register{
-  color: white;
- } 
-
- .modal-dialog{
-  background-color: #032b31;
-}
-.modal-header{
-color: beige;
-background-color: #011518;
-}
-.modal-body{
-  color: beige;
-background-color: #011518; 
-}
-.modal-footer{
-background-color: #18757e; 
-}
-
-
-
- .detailed{
-     border-radius: 15px;
-     text-align: center;
-     width: 300px;
-     background-color: #8a2C02;
-     border: 2px solid #fff;
- }
- @media only screen and (min-width: 300px) {
-     .info{
-         width: 70%;
-         margin:auto;
-     }
-     .info1{
-      text-align: left;
-      font-size: 15px;
+   .button_word{
+    font-family: 'Kanit', sans-serif;
   }
-  .product{
-      text-align: left;
-      font-size: 18px;
-   }
-   .des{
-      margin-left: -10px
+ 
+  @media screen and (min-width: 320px) and (max-width:425px) {
+    .english_wrd{
+      font-size: 15px;
     }
- }
-
- .table td, .table th{
-     border-top: none
- }
-
- .btn2{
-     background-color: #032b31;
-     border-color: #23dfe8;
-     font-weight: bold
- } */
+  }

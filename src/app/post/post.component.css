@@ -135,6 +135,7 @@
   
    .clr{
        color: white;
+       font-family: 'Oxygen', sans-serif;
    }
  
    .sent_font{
@@ -145,12 +146,38 @@
    .span_clr{
        text-decoration: underline
    }
+   .english_wrd{
+    font-family: 'Mukta', sans-serif;
+  }
+  .tamil_wrd{
+    font-family: 'Hind Madurai', sans-serif; 
+  }
+  input {
+    font-family: 'Nunito', sans-serif;
+  }
+  .button_word{
+    font-family: 'Kanit', sans-serif;
+  }
+
    @media screen and (min-width: 320px) and (max-width: 425px) {
        body{
            overflow: scroll;
        }
        .clr{
-           font-size: 25px;
+           font-size: 20px;
            margin-top: 10px;
        }
+       .slect{
+        font-size: 15px;
+       }
+       .form-control{
+        font-size: 15px;  
+       }
+       .tamil_wrd{
+        font-size: 15px;   
+        font-family: 'Hind Madurai', sans-serif; 
+       }
    }
+   .error_word{
+    font-family: 'Cabin', sans-serif;
+  }

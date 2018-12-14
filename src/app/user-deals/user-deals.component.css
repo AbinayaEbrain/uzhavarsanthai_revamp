@@ -11,6 +11,10 @@
     color: #fff;
     font-size: 18px
   }
+  .search_div{
+    float: right;
+    width: 100%
+  }
   .has-search .form-control1 {
     padding-left: 2.375rem;
 }
@@ -19,7 +23,6 @@
     position: absolute;
     z-index: 2;
     display: block;
-    width: 2.375rem;
     height: 2.375rem;
     line-height: 2.375rem;
     text-align: center;
@@ -163,3 +166,43 @@ btn2{
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   width: 0px !important;
 }
+th{
+  font-family: 'Oxygen', sans-serif;
+}
+td {
+  font-family: 'Oxygen', sans-serif;
+}
+@media screen and (min-width: 320px) and (max-width:425px) {
+  th {
+    font-size: 13px;
+    font-family: 'Oxygen', sans-serif;
+  }
+  td {
+    font-size: 12px;
+    font-family: 'Oxygen', sans-serif;
+  }
+  .btn-warning{
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .btn-danger{
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .srchBox{
+    font-size: 13px;
+  }
+  .btn-success{
+    font-size: 13px;
+  }
+}
+.button_word{
+  font-family: 'Kanit', sans-serif;
+}
+.english_wrd{
+  font-family: 'Mukta', sans-serif;
+}
+input {
+  font-family: 'Nunito', sans-serif;
+}
+

@@ -7,48 +7,48 @@
  
     <div class="row">
     <div class="center-block">
-    <h5 style="text-align: center;color: white"> Your Selected Category {{categeoryName}}!</h5>
+    <h5 style="text-align: center;color: white; font-family:'Oxygen', sans-serif;"> Your Selected Category {{categeoryName}}!</h5>
     <br>
     <form #searchform="ngForm" *ngIf ="!submitted" novalidate>
     <div class="row">
       <div class="col-md-6">
           <div class="form-group">
-              <label style="color: white;font-weight: bold;"> {{categeoryName}} Quantity</label>
-              <input type="text" #searchmainquantity="ngModel" [class.is-invalid]="searchmainquantity.invalid && searchmainquantity.touched" ngModel  name="searchmainquantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: white;" required [(ngModel)]="userdetails.searchmainquantity">
-              <span style="color:#5aff6d;" class=" float-left" [class.d-none] = "searchmainquantity.valid || searchmainquantity.untouched">Quantity is required</span> 
+              <label style="color: white;font-weight: bold;" class="english_wrd"> {{categeoryName}} Quantity</label>
+              <input type="text" #searchmainquantity="ngModel" [class.is-invalid]="searchmainquantity.invalid && searchmainquantity.touched" ngModel  name="searchmainquantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: white; font-family: 'Mukta', sans-serif;" required [(ngModel)]="userdetails.searchmainquantity">
+              <span style="color:whitesmoke;" class=" float-left error_word" [class.d-none] = "searchmainquantity.valid || searchmainquantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span> 
           </div>
        
       </div>
       <div class="col-md-6">
           <div class="form-group">
-              <label style="color: white;font-weight: bold;"> {{categeoryName}} Unit</label>
+              <label style="color: white;font-weight: bold;" class="english_wrd"> {{categeoryName}} Unit</label>
               <select required class="form-control" class="form-control"   placeholder="Enter unit" style="background-color: transparent;color: white;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
                     <option disabled >Choose unit..</option>
                     <option style="color: black" value="Kg">Kg</option>
                     <option style="color: black" value="Ltre">Ltre</option>
                 </select>
-                <span style="color:#5aff6d;" class=" float-left" [class.d-none] = "searchqnty.valid || searchqnty.untouched">Unit is required</span> 
+                <span style="color:whitesmoke" class=" float-left error_word" [class.d-none] = "searchqnty.valid || searchqnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Unit is required</span> 
           </div>
         
       </div>
       <div class="col-md-6">
           <div class="form-group">
-              <label style="color: white;font-weight: bold;">Price search - From</label>
-              <input type="text" #frmAmt="ngModel" [class.is-invalid]="frmAmt.invalid && frmAmt.touched" ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: white;" required [(ngModel)]="userdetails.frmAmt">
-                <span style="color:#5aff6d;" class=" float-left" [class.d-none] = "frmAmt.valid || frmAmt.untouched">Category is required</span> 
+              <label style="color: white;font-weight: bold;" class="english_wrd">Price search - From</label>
+              <input type="text" #frmAmt="ngModel" [class.is-invalid]="frmAmt.invalid && frmAmt.touched" ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: white; font-family: 'Mukta', sans-serif;" required [(ngModel)]="userdetails.frmAmt">
+                <span style="color:whitesmoke;" class=" float-left error_word" [class.d-none] = "frmAmt.valid || frmAmt.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span> 
           </div>
          </div>
          <div class="col-md-6">
             <div class="form-group">
-                <label style="color: white;font-weight: bold;"> To</label>
-                <input type="text" #toCost="ngModel" [class.is-invalid]="toCost.invalid && toCost.touched" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: white;" required [(ngModel)]="userdetails.toCost">
-                  <span  style="color:#5aff6d;" class=" float-left" [class.d-none] = "toCost.valid || toCost.untouched">Category is required</span> 
+                <label style="color: white;font-weight: bold;" class="english_wrd"> To</label>
+                <input type="text" #toCost="ngModel" [class.is-invalid]="toCost.invalid && toCost.touched" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: white; font-family: 'Mukta', sans-serif;" required [(ngModel)]="userdetails.toCost">
+                  <span  style="color:whitesmoke;" class=" float-left error_word" [class.d-none] = "toCost.valid || toCost.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span> 
             </div>
            </div>
      
     </div>
     <div class="text-center">
-        <button type="submit"  class="btn btn-success mb-2" style="border: 1px solid white"  [disabled] ="searchform.form.invalid" (click)="filterDeal()">Search</button>
+        <button type="submit"  class="btn btn-success mb-2 button_word" style="border: 1px solid white"  [disabled] ="searchform.form.invalid" (click)="filterDeal()">Search</button>
     </div>
   </form>
     </div>
@@ -58,9 +58,9 @@
     
     <div class="container">
         <div class="col-md-2">
-                <button class="btnnn btn-success btn-sm" (click)="showsearchdiv()" routerLink="/dealCategory" id="showButton"><i class="fas fa-angle-left"></i>&nbsp;&nbsp;Back</button>
+                <button class="btnnn btn-success btn-sm button_word" (click)="showsearchdiv()" routerLink="/dealCategory" id="showButton"><i class="fas fa-angle-left"></i>&nbsp;&nbsp;Back</button>
         </div>
-        <p style="text-align: center;color:white;font-weight: bold;margin-top: 100px;"  *ngIf="errMsg">{{errMsg}}</p>
+        <p style="text-align: center;color:white;font-weight: bold;margin-top: 100px;" class="display_msg" *ngIf="errMsg">{{errMsg}}</p>
            
            
         <div class="row mt-5">
@@ -117,13 +117,7 @@
                     <a  class="btn btn-primary mb-3"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
                 </div>
               </div>
-              <!-- <div style="text-align:center">
-                <fa-icon [icon]="faCoffee"></fa-icon>
-                <fa-icon [icon]="faTwitter"></fa-icon>
-                <fa-icon [icon]="faCheck"></fa-icon>
-                
-                
-              </div> -->
+          
               
           </div>
           <div class="mx-auto" id="hidePagination">

@@ -77,14 +77,40 @@ input{
  
   .clr{
       color: white;
+      font-family: 'Oxygen', sans-serif;
   }
-
   .sent_font{
-    font-family: cursive;
     font-weight: bold;
-    color: white
+    color: white;
+    font-size: 20px;
   }
   .span_clr{
       text-decoration: underline;
       cursor: pointer;
+  }
+.greetmsg{
+  display: none;
+}
+  .english_wrd{
+    font-family: 'Mukta', sans-serif;
+  }
+  .tamil_word{
+    font-family: 'Hind Madurai', sans-serif;
+  }
+  .error_word{
+    font-family: 'Cabin', sans-serif;
+  }
+  input {
+    font-family: 'Nunito', sans-serif;
+  }
+  .button_word{
+    font-family: 'Kanit', sans-serif;
+  }
+  @media screen and (min-width: 320px) and (max-width: 425px) {
+    .sent_font{
+      font-size: 15px;
+    }
+    .greetmsg{
+      display: block;
+    }
   }

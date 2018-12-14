@@ -21,41 +21,6 @@
 }
 
 
-/* 
-@media only screen and (min-width: 1140px) {
-    .bg1{
-        background-size: cover;
-        margin-top: 35px;
-        height: 100vh;  
-    }
-} 
-@media only screen and  (max-width: 400px) and (min-width: 300px) {
-    .bg1{
-        background-size: cover;
-        margin-top: 35px;
-        height: 180vh;  
-    }
-} 
-@media only screen and  (max-width: 600px) and (min-width: 400px) {
-    .bg1{
-        background-size: cover;
-        margin-top: 35px;
-        height: 180vh;  
-    }
-} */
-
-/* @media only screen and (max-width: 600px) {
-    .bg1{
-   
-        background: url(./images/A6.jpg)no-repeat center ;
-        background-size: cover;
-        margin-top: 35px;
-        height: 175vh;
-       
-    }
-} */
-    
-
  input[type=text], input[type=password] {
     width: 100%;
     display: inline-block;
@@ -76,9 +41,6 @@ select option {
    
 }
 
-/* span1{
-    font-size: 13px !important
-} */
 
 select:focus{
     background-color: transparent;
@@ -170,6 +132,7 @@ select{
  
   .clr{
       color: white;
+      font-family: 'Oxygen', sans-serif;
   }
 
   .sent_font{
@@ -179,4 +142,19 @@ select{
   }
   .span_clr{
       text-decoration: underline
+  }
+  .english_wrd{
+    font-family: 'Mukta', sans-serif;
+  }
+  .tamil_word{
+    font-family: 'Hind Madurai', sans-serif;
+  }
+  .error_word{
+    font-family: 'Cabin', sans-serif;
+  }
+  input {
+    font-family: 'Nunito', sans-serif;
+  }
+  .button_word{
+    font-family: 'Kanit', sans-serif;
   }

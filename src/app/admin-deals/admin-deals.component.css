@@ -34,14 +34,6 @@ input{
     color: white;
     opacity: 1; /* Firefox */ 
 }
-/* .btn{
-    font-size: 18px;
-    background-color: white;
-   
-    border: none;
-    color: #0d4608;
-    font-weight: bold;
-} */
 
 .form-group {
     position: relative;
@@ -85,6 +77,15 @@ input{
       cursor: pointer;
   }
 
-  /* .btn{
-    border: 2px solid;
-  } */
+  .button_word{
+    font-family: 'Kanit', sans-serif;
+  }
+  th{
+    font-family: 'Oxygen', sans-serif;
+  }
+  td{
+    font-family: 'Oxygen', sans-serif; 
+  }
+  .error_word{
+    font-family: 'Cabin', sans-serif;
+  }

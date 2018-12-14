@@ -1,42 +1,21 @@
 <body class="bg" style="overflow-x: hidden;">
   <div class="container mt-5 pt-5">
-        <!-- <div class="row  mt-5 pt-5">
-                <div class="col-lg-3 col-sm-12 col-md-12">
-                <button class="btnnn btn-success" (click)="findMe()" id="hideButton">அருகிலுள்ள 
-                    விற்பனை</button>
-                    <button class="btn" routerLink="/location" style="display: none" id="showButton">Click here to continue</button>
-                    <button class="btn" style="display: none;" routerLink="/location" id="showButton" >continue</button>
-                </div>
-               <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
-                    <div class=" col-lg-6 col-md-6 col-sm-6">
-                        <input type="text" class="srchBox" style="width: 90%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
-                        <fa-icon [icon]="faSearch" class="icon" style="width: 10%"></fa-icon>                                  
-                </div>
-              </div> -->
-      <div class="row  mt-3 mb-3">
-        <div class="col-lg-3 col-sm-12 col-md-12">
-            <button type="button" class="btnnn btn-success" routerLink="/post">New Post</button>
-        </div>
-       <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
-        <div class="col-lg-6 col-md-6 col-sm-6" >
-            <!-- <form>
-               <div>
-                   
-                <input type="text" style="width: 90%" class="srchBox" placeholder="Search by category"  [(ngModel)]="queryString" name="search" autocomplete="off">
-              
-            </div>
-            </form> -->
-            <div class="form-group has-search">
+      <div class="row">
+          <div class="col-md-6 col-xs-12 mt-2" >
+            <button type="button" class="btn btn-success button_word" routerLink="/post">New Post</button>
+          </div>
+            <div class="col-md-6 col-xs-12 search_div mt-2">
+                <div class="form-group has-search">
                     <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" class="srchBox form-control1" style="width: 90%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+                    <input type="text" class="srchBox form-control1 english_wrd" style="width: 100%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
                 </div>
-        </div>
+            </div>
       </div>
      
       <div class="row mb-3" *ngIf = "success">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                    <div class="alert alert-success text-center">
+                    <div class="alert alert-success text-center english_wrd">
                             {{success}}
                           </div>
             </div>
@@ -45,7 +24,7 @@
       <div class="row">
             <div class="col-md-4 col-sm-12"></div>
             <div class="col-md-4" *ngIf="errMsg">
-                    <div class="alert alert-danger text-center">
+                    <div class="alert alert-danger text-center english_wrd">
                         {{errMsg}}
                     </div>
               </div>
@@ -89,10 +68,10 @@
                                           <!-- <button class="btn btn-simple btn-info btn-icon like">
                                               <i class="ti-heart"></i>
                                           </button> -->
-                                          <button class="btn btn-simple btn-warning btn-icon edit" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}">
+                                          <button class="btn btn-simple btn-warning btn-icon edit button_word" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}">
                                               <!-- <i class="ti-pencil-alt"></i> தொகுத்தல்--> Edit
                                           </button> &nbsp;
-                                          <button class="btn btn-simple btn-danger btn-icon remove"   style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
+                                          <button class="btn btn-simple btn-danger btn-icon remove button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
                                            data-keyboard="false" routerLink="/user-deals/{{deal._id}}">
                                               <!-- <i class="fa fa-rupee"></i> -->Delete
                                           </button>
@@ -135,14 +114,14 @@
     <div class="modal-content">
       <div class="modal-header">
       
-        <h4 class="modal-title">Delete Confirmation</h4>
+        <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;">Delete Confirmation</h4>
       </div>
       <div class="modal-body">
-        <h6 class="text-center">Are you sure want to delete?</h6>
+        <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete?</h6>
         <div class="text-center">
        
-         <button type="button" class="btn btn-primary" (click)="deleteuser()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
-         <button type="button" class="btn btn-danger" routerLink="/user-deals" data-dismiss="modal">No</button>
+         <button type="button" class="btn btn-primary button_word" (click)="deleteuser()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+         <button type="button" class="btn btn-danger button_word" routerLink="/user-deals" data-dismiss="modal">No</button>
         </div>
       </div>
     

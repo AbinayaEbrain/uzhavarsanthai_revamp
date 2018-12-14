@@ -168,3 +168,18 @@
   color: white;
     
   }
+  .english_wrd{
+    font-family: 'Mukta', sans-serif;
+  }
+  input {
+    font-family: 'Nunito', sans-serif;
+  }
+  .button_word{
+    font-family: 'Kanit', sans-serif;
+  }
+  .display_msg{
+    font-family: 'Headland One', serif;
+  }
+  .error_word{
+    font-family: 'Cabin', sans-serif;
+  }

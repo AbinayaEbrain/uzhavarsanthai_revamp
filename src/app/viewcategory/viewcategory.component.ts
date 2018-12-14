@@ -21,6 +21,7 @@ crdDeals=[]
 userdetails=[];
 querydetails:any;
 showUnit:any
+p:any;
   constructor(private route:ActivatedRoute,private _dealService:DealsService,public loadingCtrl: NgxSpinnerService,
   private router:Router) { }
 

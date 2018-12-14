@@ -1,30 +1,30 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <nav class="navbar navbar-expand-md fixed-top navbar-dark mb-5 nav_clr">
-    <a class="navbar-brand" routerLink="/home">உழவன்</a>
+    <a class="navbar-brand apptitle" routerLink="/home">உழவர் சந்தை</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <a class="nav-link" routerLink="/login" *ngIf="!_authService.loggedIn() || !_authService.findActive()" routerLinkActive="active">Login</a>
         </li>
         <!-- <li class="nav-item">
             <a class="nav-link" routerLink="/home" *ngIf="!_authService.loggedIn()" routerLinkActive="active">Home</a>
           </li> -->
-         <li class="nav-item">
+         <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <a class="nav-link" routerLink="/post" *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()"  routerLinkActive="active">Post</a>
          </li>
-         <li class="nav-item">
+         <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <a class="nav-link" routerLink="/deals" *ngIf="!_authService.loggedIn()" (click)="trackMe()" routerLinkActive="active">Deals</a>
          </li>
-         <li class="nav-item">
+         <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <a class="nav-link" routerLink="/user-deals" *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()" routerLinkActive="active">MyDeals</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <a class="nav-link" routerLink="/admin" *ngIf="_authService.roleAdmin() && _authService.loggedIn()" routerLinkActive="active">Admin</a>
         </li>
-         <li class="nav-item">
+         <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <a class="nav-link" style="cursor: pointer;" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">Logout</a>
         </li>
       </ul>
@@ -35,7 +35,7 @@
       <ngx-spinner> 
        
           <div style="background-color: whitesmoke;margin-top:-80px;border-radius: 5px;">
-              <p style="color:#0d4608;font-weight: bold;">&nbsp;&nbsp;&nbsp;Please wait
+              <p style="color:#0d4608;font-weight: bold; font-family: 'Mukta', sans-serif;">&nbsp;&nbsp;&nbsp;Please wait
                   <img class="loading" width="50px" height="50px" src="../assets/Images/loader (2).gif"/>
               </p>
              

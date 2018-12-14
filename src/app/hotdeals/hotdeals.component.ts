@@ -13,6 +13,8 @@ export class HotdealsComponent implements OnInit {
   id:any;
   categeoryName:string;
   viewCategory=[];
+  queryString:any;
+  p:any;
   constructor(private _dealsService:DealsService,private route:Router,private router:ActivatedRoute,private catcomp:ViewcategoryComponent) { }
 
   ngOnInit() {
