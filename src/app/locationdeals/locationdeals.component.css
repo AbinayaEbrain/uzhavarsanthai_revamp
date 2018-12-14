@@ -135,4 +135,7 @@
   background-size: cover;
   min-height: -webkit-fill-available;
 }
+.error_word{
+  font-family: 'Cabin', sans-serif;
+}
   

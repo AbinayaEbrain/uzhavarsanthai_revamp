@@ -116,6 +116,7 @@ input-placeholder{
  
   .clr{
       color: black;
+      font-family: 'Oxygen', sans-serif;
   }
 
   .sent_font{
@@ -127,4 +128,21 @@ input-placeholder{
       text-decoration: underline;
       cursor: pointer;
   }
-
+  .button_word{
+    font-family: 'Kanit', sans-serif;
+  }
+  th{
+    font-family: 'Oxygen', sans-serif;
+  }
+  td{
+    font-family: 'Oxygen', sans-serif;
+  }
+  .english_wrd{
+    font-family: 'Mukta', sans-serif;
+  }
+  input {
+    font-family: 'Nunito', sans-serif;
+  }
+  .error_word{
+    font-family: 'Cabin', sans-serif;
+  }

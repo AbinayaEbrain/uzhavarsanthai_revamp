@@ -1,27 +1,21 @@
 
 <body class="bg" style="overflow-x: hidden;">
 <div class="container mt-5 pt-5">
-    <div class="row mt-3 mb-3">
-        <div class="col-lg-3 col-sm-12 col-md-12">
-        <button class="btnnn btn-success" (click)="findMe()" id="hideButton">அருகிலுள்ள 
-            விற்பனை</button>
-            <button class="btn btn-success" routerLink="/location" style="display: none" id="showButton">Click here to continue</button>
-            <button class="btn" style="display: none;" routerLink="/location" id="showButton" >continue</button>
-        </div>
-       <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
-            <!-- <div class="col-lg-6 col-md-6 col-sm-6">
-                <span><input type="text" class="srchBox" style="width: 90%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
-                   </span>
-                                   
-        </div> -->
-        <div class="col-lg-6 col-md-6 col-sm-6">
-        <div class="form-group has-search">
-                <span class="fa fa-search form-control-feedback"></span>
-                <input type="text" class="srchBox form-control1" style="width: 90%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
-            </div>
-        </div>
+
+      <div class="row">
+          <div class="col-md-6 col-xs-12 ">
+                <button class="btn btn-success tamil_word" (click)="findMe()" id="hideButton">அருகிலுள்ள  விற்பனை</button>
+              <button class="btn btn-success" routerLink="/location" style="display: none" id="showButton">Click here to continue</button>
+        <button class="btn" style="display: none;" routerLink="/location" id="showButton" >continue</button>
+          </div>
+          <div class="col-md-6 col-xs-12 mt-2">
+                <div class="form-group has-search">
+                        <span class="fa fa-search form-control-feedback"></span>
+                        <input type="text" class="srchBox form-control1 english_wrd" style="width: 100%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+                    </div>
+          </div>
       </div>
-      <p class="no_deals_found " *ngIf="errMsg">{{errMsg}}</p>
+      <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
 
   <div class="row mt-5">
 
@@ -29,7 +23,7 @@
             
         <div class="card">
               
-           <table>
+           <table class="english_wrd">
               <div class="title">
                 <tr>
                   <th class="details">Product Details</th>
@@ -74,16 +68,10 @@
                     
           </div>
           </table>
-            <a  class="btn btn-primary mb-3"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
+            <a  class="btn btn-primary mb-3 button_word"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
         </div>
       </div>
-      <!-- <div style="text-align:center">
-        <fa-icon [icon]="faCoffee"></fa-icon>
-        <fa-icon [icon]="faTwitter"></fa-icon>
-        <fa-icon [icon]="faCheck"></fa-icon>
-        
-        
-      </div> -->
+   
       
   </div>
   <div class="mx-auto">

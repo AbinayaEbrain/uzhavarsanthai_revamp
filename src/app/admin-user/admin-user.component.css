@@ -84,7 +84,15 @@ input{
       text-decoration: underline;
       cursor: pointer;
   }
-
-  /* .btn{
-    border: 2px solid;
-  } */
+  .button_word{
+    font-family: 'Kanit', sans-serif;
+  }
+  th{
+    font-family: 'Oxygen', sans-serif;
+  }
+  td{
+    font-family: 'Oxygen', sans-serif; 
+  }
+  .error_word{
+    font-family: 'Cabin', sans-serif;
+  }

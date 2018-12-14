@@ -23,8 +23,8 @@
     color: whitesmoke !important;
     cursor: default;
     font-size: 100%;
-    border: 1px solid red;
-    background-color: #d3efe680;
+    /* border: 1px solid red; */
+    /* background-color: #d3efe680; */
     border-radius: 5px !important;
 }
   .ngx-pagination .current{
@@ -44,3 +44,4 @@
     font-weight: bold !important;
     font-size: 100%;
 } 
+

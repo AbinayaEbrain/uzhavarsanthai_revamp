@@ -10,7 +10,7 @@
      <div class="row mb-3" *ngIf = "success">
             <div class="col-md-6"></div>
             <div class="col-md-4">
-                    <div class="alert alert-success">
+                    <div class="alert alert-success error_word">
                             {{success}}
                           </div>
             </div>
@@ -28,14 +28,14 @@
                             <option *ngFor="let val of categoryArr" value="{{val.productCategory}}">{{val.productCategory}}</option>
                           </select>
                       </div>
-                      <span class="text-danger float-left" [class.d-none] = "category.valid || category.untouched">Category is required</span> 
+                      <span class="text-danger float-left error_word" [class.d-none] = "category.valid || category.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span> 
                     </div> 
             <div class="col-md-4">    
                     <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                       <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)" [(ngModel)]="deallistobj.name"  name="name" class="form-control" maxlength="20"  autocomplete="off"  required>
                
-                      <label class="form-control-placeholder" for="name">Product Name</label>
-                      <span class="text-danger float-left" [class.d-none] = "name.valid || name.untouched">Product Name is required</span> 
+                      <label class="form-control-placeholder english_wrd" for="name">Product Name</label>
+                      <span class="text-danger float-left error_word" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product Name is required</span> 
                     </div>
                   
               </div>  
@@ -46,8 +46,8 @@
                       <div class="col-md-2 col-sm-8 col-8">
                           <div class="form-group mb-5 mt-2">
                               <input type="text"  #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched"  maxlength="5" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="deallistobj.quantity"  name="quantity" class="form-control"  autocomplete="off"  required>
-                              <label class="form-control-placeholder" for="quantity">Quantity</label>
-                              <span class="text-danger float-left" [class.d-none] = "quantity.valid || quantity.untouched">Quantity is required</span>  
+                              <label class="form-control-placeholder english_wrd" for="quantity">Quantity</label>
+                              <span class="text-danger float-left error_word" [class.d-none] = "quantity.valid || quantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>  
                             </div>
                       </div>
                       <div class="col-md-2 col-sm-4 col-4">
@@ -60,14 +60,14 @@
                                   <option value="Ltre">Ltre</option>
                                 </select>
                             </div>
-                            <span class="text-danger float-left" [class.d-none] = "qnty.valid || qnty.untouched">required</span> 
+                            <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> required</span> 
                           </div> 
                      
                           <div class="col-md-2 col-sm-8 col-8">
                               <div class="form-group mb-5 mt-2">
                                   <input type="text"  #subQuantity="ngModel" [class.is-invalid]="subQuantity.invalid && subQuantity.touched" maxlength="5" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="deallistobj.subQuantity"  name="subQuantity" class="form-control" value="0" autocomplete="off"  required>
-                                  <label class="form-control-placeholder" for="quantity">Sub Quantity</label>
-                                  <span class="text-danger float-left" [class.d-none] = "subQuantity.valid || subQuantity.untouched">required</span>  
+                                  <label class="form-control-placeholder english_wrd" for="quantity">Sub Quantity</label>
+                                  <span class="text-danger float-left error_word" [class.d-none] = "subQuantity.valid || subQuantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> required</span>  
                                 </div>
                           </div>
                           <div class="col-md-2 col-sm-4 col-4">
@@ -80,7 +80,7 @@
                                     </select>
                                    
                                 </div>
-                                <span class="text-danger float-left" [class.d-none] = "subqnty.valid || subqnty.untouched">required</span> 
+                                <span class="text-danger float-left error_word" [class.d-none] = "subqnty.valid || subqnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> required</span> 
                                
                               </div> 
                    
@@ -92,55 +92,42 @@
                       <div class="col-md-4">    
                           <div class="form-group mb-5 mt-2">
                             <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="deallistobj.price"  name="price" class="form-control" maxlength="5" autocomplete="off"  required>
-                            <label class="form-control-placeholder" for="name">Price / {{showUnit}}</label>
-                            <span class="text-danger float-left" [class.d-none] = "price.valid || price.untouched">Price is required</span> 
+                            <label class="form-control-placeholder english_wrd" for="name">Price / {{showUnit}}</label>
+                            <span class="text-danger float-left error_word" [class.d-none] = "price.valid || price.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Price is required</span> 
                           </div>
                     </div>  
                   
                     <div class="col-md-4">
-                            <label class="lab" for="category">Available Place</label>
+                            <label class="lab english_wrd" for="category">Available Place</label>
                         <div class="form-group mb-5 mt-2">
-                          
-                            <!-- <select id="address" required class="form-control slect"  #avlplaceName="ngModel" name="avlplaceName" [class.is-invalid]="avlplaceName.invalid && avlplaceName.touched" ngModel  [(ngModel)]="productData.avlPlace.avlplaceName" (change)="getLatitudeLongitude()">
-                                <option value="">Available Place /<span style="font-size: 14px">கிடைக்குமிடம்</span> </option>
-                                <option value="Trichy">Trichy</option>
-                                <option value="Thanjavur">Thanjavur</option>
-                                <option value="Chennai">Chennai</option>
-                                <option value="Karur">Karur</option>
-                                <option value="Coimbatore">Coimbatore</option>
-                              </select> -->
+                         
                               <input google-place type="text" placeholder="Search" class="form-control"  #avlplaceName="ngModel" (onSelect)="setAddress($event)" name="avlplaceName" [class.is-invalid]="avlplaceName.invalid && avlplaceName.touched" ngModel [(ngModel)]="deallistobj.avlPlace" required>
-                              <span class="text-danger float-left" [class.d-none] = "avlplaceName.valid || avlplaceName.untouched">Address is required</span> 
+                              <span class="text-danger float-left error_word" [class.d-none] = "avlplaceName.valid || avlplaceName.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span> 
                           </div>
                     </div> 
                       <div class="col-md-4"></div>
                       <div class="col-md-4">
-                          <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
+                          <div class="form-group mb-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                               <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="deallistobj.description"  name="description" class="form-control"  autocomplete="off" maxlength="250" required>
-                              <label class="form-control-placeholder" for="date">Description</label>
-                              <span class="text-danger float-left" [class.d-none] = "description.valid || description.untouched">Description is required</span>  
+                              <label class="form-control-placeholder english_wrd" for="date">Description</label>
+                              <span class="text-danger float-left error_word" [class.d-none] = "description.valid || description.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Description is required</span>  
                             </div>
                       </div> 
                       <div class="col-md-4">
-                            <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
-                                    <!-- <input type="text"
-                                    placeholder="Datepicker"
-                                    class="form-control"
-                                    bsDatepicker> -->
-                                    <!-- expire_at: {type: Date, default: Date.now, expires: 1296000} -->
+                            <div class="form-group mb-5  mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                                 <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="deallistobj.validityTime"  name="validityTime" class="form-control"   bsDatepicker  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
-                                <label class="form-control-placeholder" for="date">Expiration /<span style="font-size: 14px">காலாவதியாகும் தேதி</span></label>
-                                <span class="text-danger float-left" [class.d-none] = "validityTime.valid || validityTime.untouched">Expiration is required</span>  
+                                <label class="form-control-placeholder english_wrd" for="date">Expiration /<span style="font-size: 14px" class="tamil_word">காலாவதியாகும் தேதி</span></label>
+                                <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>  
                               </div>
                         </div> 
                     </div>
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-4 col-sm-6 col-6">
-                            <button class="btn mt-4" [disabled]="postform.form.invalid" type="submit" (click)="update()">Update</button>
+                            <button class="btn mt-4 button_word" [disabled]="postform.form.invalid" type="submit" (click)="update()">Update</button>
                           </div>
                           <div class="col-md-4 col-sm-6 col-6">
-                              <button type="submit" class="btn mt-4 btn1" (click)="onSubmit()">Reset</button>
+                              <button type="submit" class="btn mt-4 btn1 button_word" (click)="onSubmit()">Reset</button>
                           </div>
                  </div>
                

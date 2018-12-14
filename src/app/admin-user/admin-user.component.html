@@ -1,10 +1,10 @@
 
 <body class="bg" style="overflow: hidden;">
     <div class="container mt-5 pt-5">
-        <button class="btn btn-success btn1 mb-2" routerLink="/admin">BACK</button>
-        <h4 class="text-center text-white mb-4">Details of registered users</h4>
+        <button class="btn btn-success btn1 mb-2 button_word" routerLink="/admin">BACK</button>
+        <h4 class="text-center text-white mb-4" style="font-family: 'Oxygen', sans-serif;">Details of registered users</h4>
         <div *ngIf="errMsg">
-                <p style="text-align: center;font-weight: bold;color:red">{{errMsg}}</p>
+                <p style="text-align: center;font-weight: bold;color:red" class="error_word">{{errMsg}}</p>
             </div>
           
 
@@ -35,31 +35,19 @@
                                         <td>{{deal.address.location}}</td>
                                         <td style="font-weight: bold;" [ngStyle]="{'color':deal.status === 'ACTIVE' ? 'green' : 'red' }">{{deal.status}}</td>
                                         <td>
-                                            <button class="btn btn-simple btn-success"  [ngStyle]="{'display':deal.status === 'ACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal2" data-backdrop="static"
+                                            <button class="btn btn-simple btn-success button_word"  [ngStyle]="{'display':deal.status === 'ACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal2" data-backdrop="static"
                                             data-keyboard="false"  routerLink="/admin-user/{{deal._id}}" >
                                                Active
                                             </button>
-                                            <button class="btn btn-simple btn-danger" [ngStyle]="{'display':deal.status === 'DEACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
+                                            <button class="btn btn-simple btn-danger button_word" [ngStyle]="{'display':deal.status === 'DEACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
                                             data-keyboard="false"  routerLink="/admin-user/{{deal._id}}" >
                                               Deactive
                                            </button>&nbsp;&nbsp;
-                                            <button class="btn btn-simple btn-warning btn-icon remove" routerLink="/admin-view/{{deal._id}}">
+                                            <button class="btn btn-simple btn-warning btn-icon remove button_word" routerLink="/admin-view/{{deal._id}}">
                                               View
                                            </button>
                                         </td> 
-                                        <!-- <td class="d-flex">
-                                            <button class="btn btn-simple btn-success" data-toggle="modal" data-target="#myModal2" data-backdrop="static"
-                                            data-keyboard="false"  routerLink="/admin-user/{{deal._id}}" >
-                                               Active
-                                            </button>&nbsp;
-                                            <button class="btn btn-simple btn-danger " data-toggle="modal" data-target="#myModal1" data-backdrop="static"
-                                            data-keyboard="false"  routerLink="/admin-user/{{deal._id}}" >
-                                              Deactive
-                                           </button>&nbsp;
-                                           <button class="btn btn-simple btn-success btn-icon remove" routerLink="/admin-view/{{deal._id}}">
-                                            View
-                                         </button>
-                                        </td> -->
+                            
                                     </tr>
   
                                 </tbody>
@@ -83,32 +71,6 @@
     </div>
   
 </body>
-  
-  
-
-  <!-- delete model  -->
-   <!-- <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-      <div class="modal-content">
-        <div class="modal-header">
-        
-          <h4 class="modal-title">Delete Confirmation</h4>
-        </div>
-        <div class="modal-body">
-          <h6 class="text-center">Are you sure want to delete?</h6>
-          <div class="text-center">
-         
-           <button type="button" class="btn btn-primary" routerLink="/admin" (click)="deleteuser()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" class="btn btn-danger" routerLink="/admin-user" data-dismiss="modal">No</button>
-          </div>
-        </div>
-      
-      </div>
-      
-    </div>
-  </div> -->
-
 <!-- Deactive model  -->
   
 <div class="modal fade" id="myModal1" role="dialog">
@@ -117,18 +79,18 @@
       <div class="modal-content">
         <div class="modal-header">
         
-          <h4 class="modal-title">Deactive Confirmation</h4>
+          <h4 class="modal-title" style="font-family: 'Oxygen', sans-serif;">Deactive Confirmation</h4>
           <button type="button" class="close btn-danger" routerLink="/admin-user" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <h6 class="text-center">Are you sure want to deactive this account?</h6>
+          <h6 class="text-center" style="font-family: 'Oxygen', sans-serif;">Are you sure want to deactive this account?</h6>
           <div class="text-center">
                 <div *ngIf="deactiveMsg">
-                        <p style="text-align: center;font-weight: bold;color:red">{{deactiveMsg}}</p>
+                        <p style="text-align: center;font-weight: bold;color:red" class="error_word">{{deactiveMsg}}</p>
                     </div>
                    
-           <button type="button" class="btn btn-primary" (click)="deactiveAccount(data,id)" >Yes</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" class="btn btn-danger" routerLink="/admin-user" data-dismiss="modal">No</button>
+           <button type="button" class="btn btn-primary button_word" (click)="deactiveAccount(data,id)" >Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btn-danger button_word" routerLink="/admin-user" data-dismiss="modal">No</button>
           </div>
         </div>
       
@@ -151,7 +113,7 @@
           <h6 class="text-center">Are you sure want to active this account?</h6>
           <div class="text-center">
                 <div *ngIf="activeMsg">
-                        <p style="text-align: center;font-weight: bold;color:green">{{activeMsg}}</p>
+                        <p style="text-align: center;font-weight: bold;color:green" class="error_word">{{activeMsg}}</p>
                     </div>
            <button type="button" class="btn btn-primary"  (click)="activeAccount(data,id)" >Yes</button>&nbsp;&nbsp;&nbsp;
            <button type="button" class="btn btn-danger" routerLink="/admin-user" data-dismiss="modal">No</button>

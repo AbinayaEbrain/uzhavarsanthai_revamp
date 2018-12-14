@@ -138,6 +138,7 @@ select{
  
   .clr{
       color: white;
+      font-family: 'Oxygen', sans-serif;
   }
 
   .sent_font{
@@ -147,4 +148,19 @@ select{
   }
   .span_clr{
       text-decoration: underline
+  }
+  .english_wrd{
+    font-family: 'Mukta', sans-serif;
+  }
+  .button_word{
+    font-family: 'Kanit', sans-serif;
+  }
+  input {
+    font-family: 'Nunito', sans-serif;
+  }
+  .tamil_word{
+    font-family: 'Hind Madurai', sans-serif;
+  }
+  .error_word{
+    font-family: 'Cabin', sans-serif;
   }

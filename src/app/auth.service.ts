@@ -18,13 +18,6 @@ export class AuthService {
     return this.http.post<any>(this._registerUrl,user)
   }
 
-  //  getIpAddress() {
-  //     return this.http
-  //           .get('http://freegeoip.net/json/?callback');
-  //           .map(response => response || {})
-  //           .catch(this.handleError);
-  // }
-
   logInUser(data){
     return this.http.post<any>(this._logInUrl,data)
   }

@@ -3,16 +3,16 @@
     <div class="container mt-5 pt-5">
         <div class="row" >
             <div class="mb-3 pl-3" style="width: 50%;">
-            <button class="btn btn-success" routerLink="/admin">BACK</button>
+            <button class="btn btn-success button_word" routerLink="/admin">BACK</button>
             </div>
            
             <div  class="mb-3 pr-3"  style="width: 50%;">
-                <button type="button" class="btn btn-success" style="float: right;" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
+                <button type="button" class="btn btn-success button_word" style="float: right;" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
                 data-keyboard="false" routerLink="/category">New Category</button>
             </div>
         </div>
         <div *ngIf="errMsg">
-                <p style="text-align: center;font-weight: bold;color:red">{{errMsg}}</p>
+                <p style="text-align: center;font-weight: bold;color:red" class="error_word">{{errMsg}}</p>
             </div>
             
 
@@ -35,11 +35,11 @@
                                     <tr *ngFor="let deal of categoryArr | paginate: { itemsPerPage:5,currentPage:p};">
                                         <td>{{deal.productCategory}}</td>
                                         <td>
-                                            <button class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-target="#myModal2" data-backdrop="static"
+                                            <button class="btn btn-simple btn-warning btn-icon edit button_word" data-toggle="modal" data-target="#myModal2" data-backdrop="static"
                                                 data-keyboard="false" routerLink="/category/{{deal._id}}">
                                                     <!-- <i class="ti-pencil-alt"></i> தொகுத்தல்--> Edit
                                             </button>&nbsp;&nbsp;
-                                            <button class="btn btn-simple btn-danger btn-icon remove" data-toggle="modal" data-target="#myModal" data-backdrop="static"
+                                            <button class="btn btn-simple btn-danger btn-icon remove button_word" data-toggle="modal" data-target="#myModal" data-backdrop="static"
                                              data-keyboard="false" routerLink="/category/{{deal._id}}">
                                                 <!-- <i class="fa fa-rupee"></i> -->Delete
                                             </button>
@@ -79,14 +79,14 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Delete Confirmation</h4>
+          <h4 class="modal-title" style="font-family: 'Oxygen', sans-serif;">Delete Confirmation</h4>
         </div>
         <div class="modal-body">
-          <h6 class="text-center">Are you sure want to delete?</h6>
+          <h6 class="text-center" style="font-family: 'Oxygen', sans-serif;">Are you sure want to delete?</h6>
           <div class="text-center">
          
-           <button type="button" class="btn btn-primary" routerLink="/category" (click)="deleteuser()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" class="btn btn-danger" routerLink="/category" data-dismiss="modal">No</button>
+           <button type="button" class="btn btn-primary button_word" routerLink="/category" (click)="deleteuser()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btn-danger button_word" routerLink="/category" data-dismiss="modal">No</button>
           </div>
         </div>
       
@@ -112,29 +112,23 @@
        
                     <div class="form-group mb-5 mt-4">
                         <input type="text"  #productCategory="ngModel" [class.is-invalid]="productCategory.invalid && productCategory.touched" ngModel name="productCategory" class="form-control" [(ngModel)]="deallistobj.productCategory" autocomplete="off" required>
-                        <label class="form-control-placeholder" for="productCategory">Category</label>
+                        <label class="form-control-placeholder english_wrd" for="productCategory">Category</label>
                         <span class="text-danger float-left" [class.d-none] = "productCategory.valid || productCategory.untouched">Category is required</span>  
                       </div>
-                      <!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" /> -->
-                      <!-- button to trigger the file upload when submitted -->
-                      <!-- <button type="button" class="btn btn-success btn-s"
-                            (click)="uploader.uploadAll()" 
-                            [disabled]="!uploader.getNotUploadedItems().length">
-                            Upload with ng-2 file uploader
-                      </button> -->
+                   
                       <div class="row">
                             <div class="col-md-6">
-                                    <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit" (click)="update()"  routerLink="category" data-dismiss="modal">Update</button>
+                                    <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block button_word" type="submit" (click)="update()"  routerLink="category" data-dismiss="modal">Update</button>
                             </div>
                     
                     <div class="col-md-6">
-                            <button  class="btn mt-3 mb-5 btn-block" type="submit"  (click)="onSubmit()">Reset</button>
+                            <button  class="btn mt-3 mb-5 btn-block button_word" type="submit"  (click)="onSubmit()">Reset</button>
                     </div>
                 </div>
                   </form>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger button_word" data-dismiss="modal">Close</button>
                   </div>
           </div>
           
@@ -167,35 +161,23 @@
 
                   <div class="form-group mb-5 mt-4">
                       <input type="text"  #productCategory="ngModel" [class.is-invalid]="productCategory.invalid && productCategory.touched" ngModel name="productCategory" class="form-control" [(ngModel)]="cateData.productCategory" autocomplete="off" required>
-                      <label class="form-control-placeholder" for="productCategory">Category</label>
+                      <label class="form-control-placeholder english_wrd" for="productCategory">Category</label>
                       <span class="text-danger float-left" [class.d-none] = "productCategory.valid || productCategory.untouched">Category is required</span>  
                     </div>
 
-                    <!-- <div class="form-group mb-5 mt-4">
-                    <input type="file"  #image="ngModel" name="image" [(ngModel)]="cateData.image" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
-                        
-                        <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-                            Upload Image
-                        </button> 
-                         <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Category Image is required</span>  
-
-                    </div> -->
-                    <!-- <img [src]="url" height="200"> <br/>
-                        <input type='file' name="image" [(ngModel)]="cateData.image" (change)="onSelectFile($event)"> -->
-
                     <div class="row">
                         <div class="col-md-6">
-                            <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit" (click)="addCategory()">Add Category</button>
+                            <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block button_word" type="submit" (click)="addCategory()">Add Category</button>
                         </div>
                         <div class="col-md-6">
-                            <button  class="btn mt-3 mb-5 btn-block" type="reset" routerLink="/admin">Reset</button>
+                            <button  class="btn mt-3 mb-5 btn-block button_word" type="reset" routerLink="/admin">Reset</button>
                         </div>
                     </div>
                  
                 </form>
           </div>
           <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger button_word" data-dismiss="modal">Close</button>
               </div>
             
         

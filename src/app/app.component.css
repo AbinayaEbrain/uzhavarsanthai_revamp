@@ -6,38 +6,9 @@
 .loading{
   background-color: transparent;
 }
-/* nav a{
-    color: black !important;
-} */
-
-/* .ngx-pagination a, .ngx-pagination button {
-    color: rgb(5, 126, 31) !important;
-    display: block;
-    padding: 0.1875rem 0.625rem;
-    border-radius: 5px !important;
-    font-weight: bold !important;
-    font-size: 25px;
-  }
-  .ngx-pagination .disabled {
-    padding: 0.1875rem 0.625rem;
-    color: whitesmoke !important;
-    cursor: default;
-    font-size: 25px;
-  }
-  
-  .ngx-pagination .current {
-    padding: 0.1875rem 0.625rem;
-    background: #055a28 !important;
-    color: #fefefe;
-    cursor: default;
-    font-weight: 600;
-    font-size: 30px;
-   
-    border-radius: 5px !important;
-   
-  } 
-  pagination-controls{
-    margin-top: 10px;
-    float: right;
-    
-  } */
+.apptitle{
+  font-family: 'Baloo Thambi', cursive;
+}
+ul li a {
+  font-family: 'Ubuntu', sans-serif;
+}
