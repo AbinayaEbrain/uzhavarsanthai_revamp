@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild, ElementRef,NgZone } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router} from '@angular/router';
 // loader 
@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
 
   registeredUserData = {
     address : {
-      city:'',
+      city:{},
       location:''
     },
     gender:'',
@@ -28,9 +28,22 @@ export class RegisterComponent implements OnInit {
   phnErr:any
   ipAddress:any
   submitted:boolean;
+  public addrKeys: string[];
+  public addr: {
+    formatted_address:''
+  };
  
+  setAddress(addrObj) {
+    this.zone.run(() => {
+      this.addr = addrObj;
+      this.addrKeys = Object.keys(addrObj);
+      console.log(this.addrKeys)
+      console.log(this.addr)
+    });
+  }
+
   
-  constructor(private _auth:AuthService,private router:Router,public loadingCtrl: NgxSpinnerService,private http: HttpClient) { 
+  constructor(private _auth:AuthService,public zone:NgZone,private router:Router,public loadingCtrl: NgxSpinnerService,private http: HttpClient) { 
 
 
   this.registeredUserData.gender = ''
@@ -49,17 +62,16 @@ export class RegisterComponent implements OnInit {
 
   post(){
     
-    
-   
     this.registeredUserData.status = "ACTIVE"
+    this.registeredUserData.address.city = this.addr
     this.loadingCtrl.show();
     this._auth.registerUser(this.registeredUserData)
       .subscribe( 
         res =>{
           this.loadingCtrl.hide();
            console.log(res)
-           console.log(res.user.phone)
-           console.log(res.user.privateIP)
+          //  console.log(res.user.phone)
+          //  console.log(res.user.privateIP)
            console.log(this.registeredUserData)
           //  alert(this.registeredUserData)
            localStorage.setItem('token',res.token)

@@ -14,6 +14,7 @@ import { FilterdataPipe } from './filterdata.pipe';
 import { ViewmoreComponent } from './viewmore/viewmore.component';
 import { PasswordValidatorDirective } from '../app/register/password.validator.directive';
 import { UserDealsEditComponent } from './user-deals-edit/user-deals-edit.component';
+import { DatePipe } from '@angular/common';
 // loader  
 import { NgxSpinnerModule } from 'ngx-spinner'; 
  //import {googlemaps} from '../../node_modules/';
@@ -81,7 +82,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
     })
 
   ],
-  providers: [AuthService,DealsService,AuthGuard,ViewcategoryComponent,
+  providers: [AuthService,DealsService,AuthGuard,ViewcategoryComponent,DatePipe,
   {
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,

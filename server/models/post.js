@@ -15,7 +15,8 @@ const postSchema = new Schema({
     date:String,
     categoryId:String,
     ipAddress:String,
-    validityTime:String,
+    validityTime:Date,
+    image:String,
     avlPlace:{
         lat:'',
         lng:'',

@@ -17,7 +17,7 @@ const URL = 'http://localhost:5000/api/upload';
 })
 export class CategoryComponent implements OnInit {
 
- public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
+  public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
   cateData={
     image:String
   }
@@ -38,7 +38,7 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
 
-     this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
+   this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
 
     //overide the onCompleteItem property of the uploader so we are 
     //able to deal with the server response.
@@ -57,7 +57,7 @@ export class CategoryComponent implements OnInit {
        res => {
         this.loadingCtrl.hide();
          this.categoryArr = res;
-         console.log(this.categoryArr)
+        // console.log(this.categoryArr)
 
          if(this.categoryArr.length == 0){
            this.errMsg = "No Category Added"
@@ -79,7 +79,7 @@ export class CategoryComponent implements OnInit {
     .subscribe(
       res=>{
         this.categoryArr = res
-         console.log(this.categoryArr)
+        // console.log(this.categoryArr)
         for(let i=0; i < this.categoryArr.length; i++){
           if(this.id == this.categoryArr[i]._id){
             this.deallistobj.productCategory = this.categoryArr[i].productCategory
@@ -112,7 +112,7 @@ export class CategoryComponent implements OnInit {
     this._adminService.addCate(this.cateData)
       .subscribe(
        res =>{
-          console.log(res);
+          //console.log(res);
          
           this.sucessMsg="Category Added";
           
@@ -131,7 +131,7 @@ export class CategoryComponent implements OnInit {
         }
 
       )
-      localStorage.removeItem('Image')
+     localStorage.removeItem('Image')
     }
 
     deleteuser(){
@@ -160,10 +160,12 @@ export class CategoryComponent implements OnInit {
   // }
 
     update(){
-      console.log(this.deallistobj)
+      this.deallistobj.image = JSON.parse(localStorage.getItem('Image'));
+      //  console.log(this.deallistobj)
       this._dealService.editCategory(this.deallistobj,this.id)
       .subscribe(
         res=>{
+          alert(this.deallistobj.image)
           console.log(this.deallistobj),
   
          // this.success = "Updated successfully!"

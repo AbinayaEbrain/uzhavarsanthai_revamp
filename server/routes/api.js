@@ -241,7 +241,7 @@ router.delete('/details/:id',(req,res)=>{
     Post.findByIdAndUpdate(req.params.id,
     {
         $set: {category : req.body.category, name : req.body.name, quantity : req.body.quantity,
-            qnty : req.body.qnty, price : req.body.price, description : req.body.description, avlPlace : req.body.avlPlace}
+            qnty : req.body.qnty,subQuantity : req.body.subQuantity,subqnty : req.body.subqnty, price : req.body.price, description : req.body.description,validityTime : req.body.validityTime, avlPlace : req.body.avlPlace,image : req.body.image}
     },
     {
         new: true
@@ -265,7 +265,7 @@ router.delete('/details/:id',(req,res)=>{
     // let User = new User(userData)
     Category.findByIdAndUpdate(req.params.id,
     {
-        $set: {productCategory : req.body.productCategory}
+        $set: {productCategory : req.body.productCategory ,image : req.body.image }
     },
     {
         new: true

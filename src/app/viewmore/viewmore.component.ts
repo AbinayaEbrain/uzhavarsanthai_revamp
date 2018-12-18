@@ -4,6 +4,8 @@ import { Router} from '@angular/router';
 import {ActivatedRoute, Params} from '@angular/router'
 // loader 
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-viewmore',
   templateUrl: './viewmore.component.html',
@@ -22,26 +24,20 @@ export class ViewmoreComponent implements OnInit {
     address:{
       addressLine:'',
       address1:'',
-      city:'',
-      location:'',
+      city:{
+        locality:'',
+        admin_area_l1:''
+      }
     }
   }
-  postProduct = {
-    category:'',
-    name:'',
-    quantity:'',
-    qnty:'',
-    price:'',
-    description:'',
-    accountId:'',
-    date:'',
-    avlPlace:{
-      locality:''
-    }
-  }
+  time:any
+  public postProduct: any = {};
+ // public register: any = {};
+  city:any
+  state:any
   userName = '';
 
-  constructor(private _dealsService:DealsService,private router:Router,private route:ActivatedRoute,public loadingCtrl: NgxSpinnerService) { }
+  constructor(private _dealsService:DealsService,private router:Router, private datePipe: DatePipe,private route:ActivatedRoute,public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
 
@@ -62,13 +58,18 @@ export class ViewmoreComponent implements OnInit {
                this.postProduct.name =  this.viewPost[i].name;
                this.postProduct.quantity = this.viewPost[i].quantity;
                this.postProduct.qnty = this.viewPost[i].qnty;
+               this.postProduct.subQuantity = this.viewPost[i].subQuantity
+               this.postProduct.subqnty = this.viewPost[i].subqnty
                this.postProduct.price = this.viewPost[i].price;
                this.postProduct.description = this.viewPost[i].description;
-               this.postProduct.avlPlace.locality = this.viewPost[i].avlPlace.locality;
+               this.postProduct.avlPlace = this.viewPost[i].avlPlace.locality;
                this.postProduct.accountId = this.viewPost[i].accountId;
+               this.postProduct.image = this.viewPost[i].image
+               this.time = this.viewPost[i].validityTime
               
               }
             }
+            this.postProduct.validityTime = this.datePipe.transform((this.time),'dd/MM/yyyy');
           },
           err=> console.log(err)
         )
@@ -90,11 +91,15 @@ export class ViewmoreComponent implements OnInit {
                this.register.phone = this.viewmore[i].phone;
                this.register.address.addressLine = this.viewmore[i].address.addressLine;
                this.register.address.address1 = this.viewmore[i].address.address1;
-               this.register.address.city = this.viewmore[i].address.city;
-               this.register.address.location = this.viewmore[i].address.location;
-              
+               this.city = this.viewmore[i].address.city;
+               //this.state = this.viewmore[i].address.location;
+               console.log(this.viewmore[i].address.city)
               }
             }
+            
+            console.log(this.city)
+            this.register.address.city.locality = this.city.locality
+            this.register.address.city.admin_area_l1 = this.city.admin_area_l1
           },
           err => console.log(err)
         )

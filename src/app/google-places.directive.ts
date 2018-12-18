@@ -34,7 +34,7 @@ export class GooglePlacesDirective implements OnInit {
       if(item['types'].indexOf("locality") > -1) {
         location_obj['locality'] = item['long_name']
       } else if (item['types'].indexOf("administrative_area_level_1") > -1) {
-        location_obj['admin_area_l1'] = item['short_name']
+        location_obj['admin_area_l1'] = item['long_name']
       } else if (item['types'].indexOf("street_number") > -1) {
         location_obj['street_number'] = item['short_name']
       } else if (item['types'].indexOf("route") > -1) {

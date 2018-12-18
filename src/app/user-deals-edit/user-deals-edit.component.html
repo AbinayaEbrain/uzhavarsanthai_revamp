@@ -101,8 +101,8 @@
                             <label class="lab english_wrd" for="category">Available Place</label>
                         <div class="form-group mb-5 mt-2">
                          
-                              <input google-place type="text" placeholder="Search" class="form-control"  #avlplaceName="ngModel" (onSelect)="setAddress($event)" name="avlplaceName" [class.is-invalid]="avlplaceName.invalid && avlplaceName.touched" ngModel [(ngModel)]="deallistobj.avlPlace" required>
-                              <span class="text-danger float-left error_word" [class.d-none] = "avlplaceName.valid || avlplaceName.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span> 
+                              <input google-place type="text" placeholder="Search" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="deallistobj.avlPlace" required>
+                              <span class="text-danger float-left error_word" [class.d-none] = "avlPlace.valid || avlPlace.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span> 
                           </div>
                     </div> 
                       <div class="col-md-4"></div>
@@ -115,12 +115,34 @@
                       </div> 
                       <div class="col-md-4">
                             <div class="form-group mb-5  mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
-                                <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="deallistobj.validityTime"  name="validityTime" class="form-control"   bsDatepicker  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
+                                <input type="text" #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  name="validityTime" class="form-control" [(ngModel)]="deallistobj.validityTime" bsDatepicker required>
                                 <label class="form-control-placeholder english_wrd" for="date">Expiration /<span style="font-size: 14px" class="tamil_word">காலாவதியாகும் தேதி</span></label>
                                 <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>  
                               </div>
                         </div> 
                     </div>
+                       <!-- last row -->
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <input type="file" style="color: white; width: 218px;" (change)="onSelectFile($event)" #image="ngModel" name="image" [(ngModel)]="deallistobj.image" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
+                        <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Image is required</span>  
+                        </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" style="font-size: 15px" class="btn btn-success btn-s" (click)="uploader.uploadAll()">
+                        Upload Image
+                    </button> 
+                </div>
+              
+                <div class="col-md-4 text-left">
+                        <img [src]="url" height="50" id="hide" style="display: none">
+                        <img style="height: 50px;width: 50px;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
+                   
+                </div>
+              </div> 
+
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-4 col-sm-6 col-6">

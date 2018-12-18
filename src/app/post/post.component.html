@@ -1,6 +1,6 @@
 
 
- <body class="bg1" style="overflow: scroll;">
+ <body class="bg1" style="overflow-x:hidden">
   <div class="text-center container mb-5 mt-5 pt-5">
       <div class="row">
           <div class="col-md-4"></div>
@@ -102,8 +102,8 @@
                 <div class="col-md-4">
                     <div class="form-group mb-5 mt-2">
                       
-                          <input google-place type="text" placeholder="Search" class="form-control"  #avlplaceName="ngModel" (onSelect)="setAddress($event)" name="avlplaceName" [class.is-invalid]="avlplaceName.invalid && avlplaceName.touched" ngModel [(ngModel)]="productData.avlPlace.avlplaceName" required>
-                          <span class="text-danger float-left error_word" [class.d-none] = "avlplaceName.valid || avlplaceName.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span> 
+                          <input google-place type="text" placeholder="Search" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="productData.avlPlace" required>
+                          <span class="text-danger float-left error_word" [class.d-none] = "avlPlace.valid || avlPlace.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span> 
                       </div>
                 </div> 
                 <div class="col-md-4"></div>
@@ -123,6 +123,28 @@
                       </div>
                 </div> 
               </div>
+
+              <!-- last row -->
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-2">
+                    <div class="form-group ">
+                        <input type="file" style="color: white; width: 218px;" (change)="onSelectFile($event)"  #image="ngModel" name="image" [(ngModel)]="productData.image" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
+                        <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Image is required</span>  
+                        
+                        </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" style="font-size: 15px" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                        Upload Image
+                    </button> 
+                </div>
+                <div class="col-md-4 text-left">
+                        <img [src]="url" id="hide" height="50" style="display: none"> 
+                </div>
+              </div> 
+             
+
                <div class="row" id="save">
                     <div class="col-md-4"></div>
                     <div class="col-md-4 col-sm-6 col-6">

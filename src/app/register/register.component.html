@@ -56,21 +56,24 @@
                           <span class="text-danger float-left error_word" [class.d-none] = "address1.valid || address1.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>  
                         </div>
                     </div>    
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                             <div class="form-group mb-5 mt-2">
-                                    <select required class="form-control slect"  #city="ngModel" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel  [(ngModel)]="registeredUserData.address.city">
+                                    <input google-place type="text" placeholder="Search" class="form-control"  #city="ngModel" (onSelect)="setAddress($event)" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="registeredUserData.address.city" required>
+                                    <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span> 
+
+                                    <!-- <select required class="form-control slect"  #city="ngModel" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel  [(ngModel)]="registeredUserData.address.city">
                                             <option value="" class="english_wrd">City</option>
                                             <option value="Trichy">Trichy</option>
                                             <option value="Thanjavur">Thanjavur</option>
                                             <option value="Chennai">Chennai</option>
                                             <option value="Karur">Karur</option>
                                             <option value="Coimbatore">Coimbatore</option>
-                                          </select>
+                                          </select> -->
 
                             </div>
-                            <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span>
+                            <!-- <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span> -->
                         </div>  
-                  <div class="col-md-2 ">
+                  <!-- <div class="col-md-2 ">
                       <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                          
                           <select required class="form-control slect"  #location="ngModel" name="location" [class.is-invalid]="location.invalid && location.touched" ngModel [(ngModel)]="registeredUserData.address.location">
@@ -81,7 +84,7 @@
                             
                         </div> 
                         <span class="text-danger float-left error_word "   [class.d-none] = "location.valid || location.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span>  
-                  </div>
+                  </div> -->
                   </div>
 
                       <!-- 5th row -->

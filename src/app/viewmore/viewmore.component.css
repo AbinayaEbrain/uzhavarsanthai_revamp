@@ -1,14 +1,14 @@
 .card{
     /* margin-left: 15%; */
-     border: solid black 2px;
-     border-radius: 0 20px;
+     /* border: solid black 2px;
+     border-radius: 0 20px; */
      background-color: #032b31;
      color: white
 }
 
 .card-tittle{
     height: 60px;
- padding-top: 24px;
+    padding-top: 24px;
     /* background-color: #5c6bc0!important; */
     background-color:#2d483e;
     /* opacity: 0.7; */
@@ -26,7 +26,7 @@
     color: white;
 }
 .card-body{
-    margin: auto;
+    /* margin: auto; */
     /* margin-right: -14px;
     margin-left: -14px; */
     

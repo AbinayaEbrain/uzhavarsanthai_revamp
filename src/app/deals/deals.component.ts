@@ -59,13 +59,13 @@ export class DealsComponent implements OnInit {
         res =>{ 
           this.loadingCtrl.hide();
           this.crdDeals = res
-          console.log(this.crdDeals)
-          console.log(this.crdDeals.length)
+          // console.log(this.crdDeals)
+          // console.log(this.crdDeals.length)
 
     if (this.crdDeals.length == 0){
         this.loadingCtrl.hide();
         this.errMsg = "Still you didn't post any deals"
-        document.getElementById('hideButton').style.display='none';
+        //document.getElementById('hideButton').style.display='none';
         document.getElementById('search_box').style.display='none';
         console.log(this.errMsg)
       }
@@ -89,8 +89,8 @@ export class DealsComponent implements OnInit {
         if(this.activeUsers[i]._id == this.crdDeals[j].accountId) {
             if(this.activeUsers[i].status == 'ACTIVE'){
               this.crdDeals1[k] = this.crdDeals[j]
-              console.log(this.crdDeals1[k])
-              console.log(this.crdDeals[j])
+              // console.log(this.crdDeals1[k])
+              // console.log(this.crdDeals[j])
               k++;
             }
         }

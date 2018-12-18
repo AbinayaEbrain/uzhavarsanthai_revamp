@@ -9,8 +9,15 @@ const userSchema = new Schema({
     address: {
         addressLine:String,
         address1:String,
-        city:String,
-        location:String,
+        city:{
+            lat:'',
+            lng:'',
+            formatted_address:'',
+            locality:'',
+            admin_area_l1:'',
+            country:'',
+            postal_code:''
+        },
     },
     password:String,
     confirmPassword:String,

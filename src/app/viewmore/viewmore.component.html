@@ -1,139 +1,139 @@
-
-  <body class="bg" style="overflow: hidden;">
-  <div class="register">
-    <div class="container mt-5 pt-5 ">
-      <button class="btn btn-primary btn1 button_word" routerLink="/deals">BACK</button>
-    </div>
-  </div>
-
-<div class="container mt-5">
-    <h2 style="color: white" class="text-center"></h2>
-<div class="row" style="margin-top: 30px">
-
-    <div class="col-md-6 col-xs-12 mb-3" >
-      <div class="card">
-        <!-- <div class="card-tittle"> -->
-          <h2 class="info mt-2" style="font-family: 'Oxygen', sans-serif;">Product Info</h2>
-        <!-- </div> -->
-        <div class="card-body">
-        
-            <table class="english_wrd">
-                <div class="table">
-              <tr>
-               <th class="product">Category</th>
-               <th>:</th>
-               <th class="info1">{{postProduct.category}}</th>
-              </tr>
-              <tr>
-                  <th class="product">Name</th>
-                  <th>:</th>
-                  <th class="info1">{{postProduct.name}}</th>
-                 </tr>
-                 <tr>
-                    <th class="product">Quantity</th>
-                    <th>:</th>
-                    <th class="info1">{{postProduct.quantity}} {{postProduct.qnty}}
-                    </th>
-                   </tr>
-                   <tr>
-                      <th class="product">Price</th>
-                      <th>:</th>
-                      <th class="info1">Rs. {{postProduct.price}}</th>
-                     </tr>
-                     <tr>
-                        <th class="product">Available Place</th>
-                        <th>:</th>
-                        <th class="info1">{{postProduct.avlPlace.locality}}</th>
-                    </tr>
-                    <tr>
-                        <th class="product">Description</th>
-                        <th>:</th>
-                        <th class="info1"> <button class="btn btn-primary btn2" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">View Description</button></th>
-                    </tr>
-                    </div>
-                    
-            </table>
-            
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
-                    
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                      <div class="modal-header">
-                          <h4 class="modal-title">Detailed Description</h4>
-                          <button type="button" class="close btn-danger" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                          <p>{{postProduct.description}}</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                      
-                    </div>
-                  </div>
-               
-     </div>
-     </div>
+<body class="bg" style="overflow: hidden;">
+    <div class="register">
+      <div class="container mt-5 pt-5">
+        <button class="btn btn-primary btn1 button_word" routerLink="/deals">BACK</button>
       </div>
-
-
-  <div class="col-md-6 col-xs-12">
-    <div class="card">
-      <!-- <div class="card-tittle"> -->
-        <h2 class="info mt-2" style="font-family: 'Oxygen', sans-serif;">Contact Info</h2>
-      <!-- </div> -->
-      <div class="card-body">
-      
-          <table class="english_wrd">
-              <div class="table">
-            <tr>
-             <th class="product">Name</th>
-             <th>:</th>
-             <th class="info1">{{register.firstName}} {{register.lastName}}</th>
-            </tr>
-            <tr>
-                <th class="product">Phone</th>
+    </div>
+<div class="container mt-3" style="background-color: white">
+   
+  <div class="row">
+    <div class="col-md-4 pt-3 mb-3"  >
+        <h4 style="text-align: center">Product Summary</h4>
+        <img class="card-img-top" style="border-radius: 5px;" src="{{postProduct.image}}" alt="Card image">
+        
+        <table class="english_wrd mx-auto">
+            <div class="table">
+          <tr>
+           <th class="product">Category</th>
+           <th>:</th>
+           <th class="info1">{{postProduct.category}}</th>
+          </tr>
+          <tr>
+              <th class="product">Name</th>
+              <th>:</th>
+              <th class="info1">{{postProduct.name}}</th>
+             </tr>
+             <tr>
+                <th class="product">Available Place</th>
                 <th>:</th>
-                <th class="info1">{{register.phone}}</th>
+                <th class="info1">{{postProduct.avlPlace}}</th>
+            </tr>
+                </div>
+                
+        </table> 
+    </div>
+    <div class="col-md-4"  style="background-color: lightgray;">
+        <table class="english_wrd">
+            <div class="table" style="margin-top: 40px">
+          <tr>
+           <th class="product">Name</th>
+           <th>:</th>
+           <th class="info1">{{register.firstName}} {{register.lastName}}</th>
+          </tr>
+             <tr>
+                <th class="product">Address1</th>
+                <th>:</th>
+                <th class="info1">{{register.address.addressLine}}</th>
                </tr>
                <tr>
-                  <th class="product">Address1</th>
+                  <th class="product">Address2</th>
                   <th>:</th>
-                  <th class="info1">{{register.address.addressLine}}</th>
+                  <th class="info1">{{register.address.address1}}</th>
                  </tr>
                  <tr>
-                    <th class="product">Address2</th>
+                    <th class="product">City</th>
                     <th>:</th>
-                    <th class="info1">{{register.address.address1}}</th>
+                    <th class="info1">{{register.address.city.locality}}</th>
                    </tr>
                    <tr>
-                      <th class="product">City</th>
+                      <th class="product">State</th>
                       <th>:</th>
-                      <th class="info1">{{register.address.city}}</th>
+                      <th class="info1">{{register.address.city.admin_area_l1}}</th>
                      </tr>
                      <tr>
-                        <th class="product">State</th>
+                        <th class="product">Phone</th>
                         <th>:</th>
-                        <th class="info1">{{register.address.location}}</th>
+                        <th class="info1">{{register.phone}}</th>
                        </tr>
-                 <!-- <tr>
-                    <th class="product">State</th>
-                    <th class="info1">:{{register.location}}</th>
-                   </tr> -->
-                  </div>
-                   <!-- <div class="des">
-                      <p> Address:</p>
-                      <p></p>
-                     </div> -->
-          </table>
-   </div>
-   </div>
+              
+                </div>
+            
+        </table>
     </div>
+    <div class="col-md-4"  style="background-color: lightgray;">
+        <table class="english_wrd" style="margin-top: 40px">
+            <div class="table">
+          <tr>
+           <th class="product">Category</th>
+           <th>:</th>
+           <th class="info1">{{postProduct.category}}</th>
+          </tr>
+          <tr>
+              <th class="product">Name</th>
+              <th>:</th>
+              <th class="info1">{{postProduct.name}}</th>
+             </tr>
+             <tr>
+                <th class="product">Quantity</th>
+                <th>:</th>
+                <th class="info1">{{postProduct.quantity}} {{postProduct.qnty}}
+                </th>
+               </tr>
+               <tr>
+                  <th class="product">Price</th>
+                  <th>:</th>
+                  <th class="info1">Rs. {{postProduct.price}}</th>
+                 </tr>
+                 <tr>
+                    <th class="product">Available Place</th>
+                    <th>:</th>
+                    <th class="info1">{{postProduct.avlPlace}}</th>
+                </tr>
+                <tr>
+                    <th class="product">Expiry Date</th>
+                    <th>:</th>
+                    <th class="info1">{{postProduct.validityTime}}</th>
+                </tr>
+                <tr>
+                    <th class="product">Description</th>
+                    <th>:</th>
+                    <th class="info1"> <button class="btn btn-primary btn2" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">View Description</button></th>
+                </tr>
+                </div>
+                
+        </table>
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Detailed Description</h4>
+                  <button type="button" class="close btn-danger" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <p>{{postProduct.description}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
 
     </div>
   </div>
+</div>
 </body>
-
-

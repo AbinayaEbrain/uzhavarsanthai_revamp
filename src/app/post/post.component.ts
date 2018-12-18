@@ -8,10 +8,23 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
 // import { MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps'
+import {  FileUploader } from 'ng2-file-upload';
 
+const URL = 'http://localhost:5000/api/upload';
 
 declare var $: any;
 declare let ClientIP: any;
+
+interface FileReaderEventTarget extends EventTarget {
+  result:string
+}
+
+// interface FileReaderEvent extends Event {
+//   target: FileReaderEventTarget;
+//   getMessage():string;
+// }
+
+interface EventTarget { result: any; }
 
 @Component({
   selector: 'app-post',
@@ -20,28 +33,34 @@ declare let ClientIP: any;
 })
 export class PostComponent implements OnInit {
 
+  public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
+  imageSrc: string;
   privateIP ;
   publicIP;
   private postform;
   deals = [];
   categoryArr :any;
   subCateArr = [];
-  productData = {
-    name:'',
-    quantity:'',
-    price:'',
-    accountId:'',
-    qnty:'',
-    subQuantity:'',
-    subqnty:'',
-    category:'',
-    categoryId:'',
-    date: new Date().getTime(),
-    ipAddress:'',
-    validityTime:'',
-    avlPlace:{},
-    description:''
-  };
+  time:any
+  // productData = {
+  //   name:'',
+  //   quantity:'',
+  //   price:'',
+  //   accountId:'',
+  //   qnty:'',
+  //   subQuantity:'',
+  //   subqnty:'',
+  //   category:'',
+  //   categoryId:'',
+  //   date: new Date().getTime(),
+  //   ipAddress:'',
+  //   validityTime:number,
+  //   avlPlace:{},
+  //   description:'',
+  //   image:''
+  // };
+ 
+  public productData: any = {};
   id:any;
   @ViewChild('avlplaceName') public searchElement: ElementRef
   dealslists = [];
@@ -53,7 +72,11 @@ export class PostComponent implements OnInit {
   showUnit:any
   submitted:boolean;
   public addrKeys: string[];
-  public addr: object;
+  public addr: {
+    formatted_address:''
+  };
+  files:any
+  url: ''
   
 
   setAddress(addrObj) {
@@ -67,6 +90,24 @@ export class PostComponent implements OnInit {
     });
   }
 
+  onSelectFile(event) { // called each time file input changes
+    
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = reader.result;
+      }
+    }
+
+    if(this.url !== null || this.url !== ''){
+      document.getElementById('hide').style.display='block';
+      //document.getElementById('show').style.display='none';
+    }
+}
+
   constructor(private _dealsService:DealsService,private http: HttpClient,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService,public zone:NgZone) {
     this.privateIP = ClientIP;
 
@@ -79,15 +120,26 @@ export class PostComponent implements OnInit {
    this.productData.subqnty = '';
   // this.productData.avlPlace.avlplaceName = ''
    this.productData.categoryId = ''
-   this.productData.validityTime = ''
+  
   
    }
 
-  
+   
   ngOnInit() {
 
   //  this.getDropDownDatas();
     this.id = this.router.snapshot.params['id']
+
+    this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
+
+    //overide the onCompleteItem property of the uploader so we are 
+    //able to deal with the server response.
+    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+         console.log("ImageUpload:uploaded:", item, status, response);
+
+         localStorage.setItem('Image', JSON.stringify(response));
+     };
+
 
     // if(this.id == null){
     //   //alert("dsfg");
@@ -158,15 +210,18 @@ export class PostComponent implements OnInit {
 
       
   postProduct(){
+
     console.log(this.productData)
-    // this.productData.avlPlace.latitude = JSON.parse(localStorage.getItem('Address'));
-    // this.productData.avlPlace.longtitude = JSON.parse(localStorage.getItem('Address1'));
+   
+    var time = this.productData.validityTime
+    this.productData.validityTime = time.getTime()
+    
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
+    this.productData.image = JSON.parse(localStorage.getItem('Image'));
     this.productData.ipAddress = this.privateIP;
     this.productData.avlPlace = this.addr
-    console.log(this.productData.avlPlace)
-  
    
+    console.log(this.productData.avlPlace)
     console.log(this.productData.categoryId)
 
     for(let i=0;i<this.categoryArr.length;i++){
@@ -176,27 +231,25 @@ export class PostComponent implements OnInit {
       }
     }
 
-    //alert(this.productData.ipAddress)
+    
     let curntDte = new Date().getTime();
     this.productData.date = curntDte
-    //  acntId = accountId;
+    
     this._dealsService.addPost(this.productData)
       .subscribe(
         res=>{
+          
        console.log(this.productData)
-       console.log(this.productData.categoryId)
-       console.log(new Date())
-        console.log(res);
+       console.log(res);
 
-        //this.route.navigate[('/deals')]
-
-        this.success = "Posted successfully!"
+      this.success = "Posted successfully!"
       console.log( this.productData.avlPlace)
         setTimeout(() => {
-          // swal.close();
+          
           this.loadingCtrl.show();
           this.route.navigate(['user-deals']);
           this.loadingCtrl.hide();
+
       }, 1000);
     },
       err =>{
@@ -210,6 +263,8 @@ export class PostComponent implements OnInit {
         }
 
       )
+
+      //localStorage.removeItem('Image')
   }
 
   getunits(){
@@ -239,11 +294,6 @@ export class PostComponent implements OnInit {
             });
         }
     }
-
-    // getLatitudeLongitude(){
-    //      let address =  this.productData.avlPlace.avlplaceName
-    //          this.getLatitudeLongitude1(this.showResult,address) 
-    // }
 
     showResult(result) {
       // this.latite=result.geometry.location.lat()
