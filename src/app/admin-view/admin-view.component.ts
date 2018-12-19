@@ -25,7 +25,10 @@ export class AdminViewComponent implements OnInit {
     address:{
       addressLine:'',
       address1:'',
-      city:'',
+      city:{
+        locality:'',
+        admin_area_l1:''
+      },
       location:'',
     }
   }
@@ -36,7 +39,7 @@ export class AdminViewComponent implements OnInit {
   locality:any
   admin_area_l1:any
 
-  
+
   constructor(private _dealsService:DealsService,private router:Router,private route:ActivatedRoute,public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
