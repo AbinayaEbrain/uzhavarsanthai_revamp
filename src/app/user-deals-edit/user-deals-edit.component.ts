@@ -3,6 +3,7 @@ import { Component, OnInit ,ViewChild, ElementRef,NgZone} from '@angular/core';
 import { DealsService } from '../deals.service';
 import {ActivatedRoute, Params} from '@angular/router'
 import { Router} from '@angular/router'
+
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatePipe } from '@angular/common';
 import {  FileUploader } from 'ng2-file-upload';
