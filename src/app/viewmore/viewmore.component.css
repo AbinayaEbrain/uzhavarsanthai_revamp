@@ -128,3 +128,12 @@ background-color: #032b31;
   .english_wrd{
     font-family: 'Mukta', sans-serif;
   }
+  .tableAlign{
+    margin-top: 40px;
+  }
+  @media screen and (min-width:320px) and (max-width:425px) {
+    .tableAlign{
+        margin-top: 0px;
+        margin: auto;
+      }
+  }

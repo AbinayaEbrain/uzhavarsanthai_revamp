@@ -7,7 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DatePipe } from '@angular/common';
 import {  FileUploader } from 'ng2-file-upload';
 
-const URL = 'http://localhost:5000/api/upload';
+const URL = 'https://farmers-market-ebrain.herokuapp.com/api/upload';
 
 interface FileReaderEventTarget extends EventTarget {
   result:string
@@ -44,6 +44,7 @@ export class UserDealsEditComponent implements OnInit {
   public address:any
  public formatted_address:any
  url: ''
+ dateNrml:any
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -121,7 +122,8 @@ export class UserDealsEditComponent implements OnInit {
         }
         
         this.deallistobj.avlPlace = this.address.formatted_address 
-        this.deallistobj.validityTime = this.datePipe.transform((this.time),'dd/MM/yyyy');
+        this.dateNrml = this.datePipe.transform((this.time),'dd/MM/yyyy');
+        this.deallistobj.validityTime = this.dateNrml
         localStorage.setItem('Image', JSON.stringify(this.deallistobj.image));
         console.log(this.deallistobj)
 
@@ -172,6 +174,7 @@ InitialCall() {
   console.log(this.deallistobj)
 }
 
+
   update(){
     
     let curntDte = new Date().toLocaleDateString();
@@ -182,6 +185,10 @@ InitialCall() {
     }
     else{
       this.deallistobj.avlPlace = this.addr
+    }
+
+    if(this.dateNrml == this.deallistobj.validityTime){
+      this.deallistobj.validityTime = this.time
     }
 
     this.deallistobj.image = JSON.parse(localStorage.getItem('Image'));
