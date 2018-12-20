@@ -115,7 +115,7 @@
                       </div> 
                       <div class="col-md-4">
                             <div class="form-group mb-5  mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
-                                <input type="text" #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  name="validityTime" class="form-control" [(ngModel)]="deallistobj.validityTime" bsDatepicker required>
+                                <input type="text" #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  name="validityTime" class="form-control" [(ngModel)]="deallistobj.validityTime" bsDatepicker  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
                                 <label class="form-control-placeholder english_wrd" for="date">Expiration /<span style="font-size: 14px" class="tamil_word">காலாவதியாகும் தேதி</span></label>
                                 <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>  
                               </div>

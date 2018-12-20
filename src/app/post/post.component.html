@@ -102,7 +102,7 @@
                 <div class="col-md-4">
                     <div class="form-group mb-5 mt-2">
                       
-                          <input google-place type="text" placeholder="Search" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="productData.avlPlace" required>
+                          <input google-place type="text" placeholder="Available Place" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="productData.avlPlace" required>
                           <span class="text-danger float-left error_word" [class.d-none] = "avlPlace.valid || avlPlace.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span> 
                       </div>
                 </div> 

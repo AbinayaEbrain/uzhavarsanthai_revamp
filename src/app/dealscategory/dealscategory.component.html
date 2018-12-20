@@ -6,12 +6,13 @@
     <div class="container-fluid">
         <h2 class="categoryHeading">Get Customized Category</h2>
     </div>
+    <p *ngIf="errMsg" style="color: red" class="text-center">{{errMsg}}</p>
     <div class="container">
             <div class="row">
               <div class="col-md-3" *ngFor="let deal of categoryArr">
                 <div class="card" style="cursor: pointer;" routerLink="/viewCategory/{{deal._id}}">
                    <!-- {{deal.image}} -->
-                  <img class="card-img-top" src="{{deal.image}}" alt="Card image cap">
+                  <img class="card-img-top"  height="150px" width="200px" src="{{deal.image}}" alt="Card image cap">
                      <div class="card-body">
                      <h5 class="card-title categoryName">{{deal.productCategory}}</h5>
                     </div>
