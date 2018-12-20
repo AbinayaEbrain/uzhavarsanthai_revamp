@@ -8,7 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DatePipe } from '@angular/common';
 import {  FileUploader } from 'ng2-file-upload';
 
-const URL = 'https://farmers-market-ebrain.herokuapp.com/api/upload';
+const URL = 'http://localhost:5000/api/upload';
 
 interface FileReaderEventTarget extends EventTarget {
   result:string

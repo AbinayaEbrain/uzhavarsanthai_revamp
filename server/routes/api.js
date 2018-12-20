@@ -149,6 +149,7 @@ router.get('/deals',(req,res)=>{
     Post.find(function (err,result){
         if(err){
             console.log('no data1')
+            console.log(err)
         }
         else{
          res.send(result)

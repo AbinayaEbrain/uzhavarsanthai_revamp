@@ -7,7 +7,7 @@ import { Router, ParamMap } from '@angular/router';
 import {  FileUploader } from 'ng2-file-upload';
 
 //const URL = 'http://localhost:3000/api/upload';
-const URL = 'https://farmers-market-ebrain.herokuapp.com/api/upload';
+const URL = 'http://localhost:5000/api/upload';
 
 
 @Component({
