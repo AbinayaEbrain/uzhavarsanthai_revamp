@@ -30,11 +30,12 @@ export class DealscategoryComponent implements OnInit {
           if(this.categoryArr.length == 0){
             this.errMsg = "No category added"
           }
-          this.imageSrc = require('https://farmers-market-ebrain.herokuapp.com/uploads' + this.categoryArr);
+          this.imageSrc = require('https://farmers-market-ebrain.herokuapp.com/server/uploads' + this.categoryArr);
+          
         },
         err => {
          this.loadingCtrl.hide();
-          
+           // this.categoryArr = [];
         });
 
         
