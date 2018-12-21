@@ -71,6 +71,7 @@ app.post('/api/upload',upload.single('photo'), function (req, res) {
     res.sendFile(path.join(__dirname+ '/farmers/index.html'));
     });
 
+    
 // app.get('/', function(req,res) {
 //     res.send("Hello");
 //  });
