@@ -59,8 +59,7 @@ export class DealsComponent implements OnInit {
         res =>{ 
           this.loadingCtrl.hide();
           this.crdDeals = res
-
-
+          
     if (this.crdDeals.length == 0){
         this.loadingCtrl.hide();
         this.errMsg = "Currently no deals available"
