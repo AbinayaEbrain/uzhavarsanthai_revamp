@@ -11,8 +11,6 @@ import { Http, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 export class AdminService {
 
   private _postCatUrl = "http://localhost:5000/api/category";
-  
-
   constructor(private http:HttpClient) { }
 
   addCate(data){
