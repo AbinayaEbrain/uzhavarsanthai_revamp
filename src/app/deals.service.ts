@@ -10,7 +10,6 @@ export class DealsService {
   private _postUrl ="http://localhost:5000/api/post";
   private _getUrl ="http://localhost:5000/api/details";
   private _getCategoryUrl ="http://localhost:5000/api/category";
-  private _getSubCategoryUrl ="http://localhost:5000/api/subcategory";
   //Deactivate URL
   private deactiveUrl ="http://localhost:5000/api/admin-user/deactive";
   //Active URL
@@ -55,9 +54,6 @@ export class DealsService {
     return this.http.get<any>(this._getCategoryUrl)
   }
 
-  getSubCategory(){
-    return this.http.get<any>(this._getSubCategoryUrl)
-  }
 
   //deactivate account
   deactivateAccount(data,id){

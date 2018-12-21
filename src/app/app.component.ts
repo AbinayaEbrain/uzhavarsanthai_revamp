@@ -1,7 +1,7 @@
 declare function require(string);
 import { Component ,ViewChild,OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
- var request = require("request");
+//  var request = require("request");
 var url = "https://geoip-db.com/json";
 
 @Component({

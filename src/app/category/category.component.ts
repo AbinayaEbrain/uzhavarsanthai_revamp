@@ -9,6 +9,9 @@ import {  FileUploader } from 'ng2-file-upload';
 //const URL = 'http://localhost:3000/api/upload';
 const URL = 'http://localhost:5000/api/upload';
 
+interface FileReaderEventTarget extends EventTarget {
+  result:string
+}
 
 @Component({
   selector: 'app-category',
@@ -35,6 +38,23 @@ export class CategoryComponent implements OnInit {
   submitted:any;
 
   constructor(private _adminService:AdminService,public loadingCtrl: NgxSpinnerService,private _dealService:DealsService,private route:ActivatedRoute,private router:Router) { }
+
+  onSelectFile(event) { // called each time file input changes
+    
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = reader.result;
+      }
+    }
+    if(this.url !== null || this.url !== ''){
+      document.getElementById('hide').style.display='block';
+      document.getElementById('show').style.display='none';
+    }
+}
 
   ngOnInit() {
 
@@ -165,7 +185,7 @@ export class CategoryComponent implements OnInit {
       this._dealService.editCategory(this.deallistobj,this.id)
       .subscribe(
         res=>{
-          alert(this.deallistobj.image)
+         // alert(this.deallistobj.image)
           console.log(this.deallistobj),
   
          // this.success = "Updated successfully!"

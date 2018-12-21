@@ -96,8 +96,8 @@ export class LocationdealsComponent implements OnInit {
             if(this.activeUsers[i].status == 'ACTIVE'){
              // alert("1")
               this.crdDeals1[k] = this.mapDeals[j]
-              console.log(this.crdDeals1[k])
-              console.log(this.mapDeals[j])
+              // console.log(this.crdDeals1[k])
+              // console.log(this.mapDeals[j])
               //alert("2")
               k++;
             }
@@ -108,11 +108,9 @@ export class LocationdealsComponent implements OnInit {
         err=>{}
       )
      
-        if(this.mapDeals.length ==0){
-         this.noLocationErr = "No deals based on your location"
-        }
+      
       },
-    
+  
       
       err => {
         this.loadingCtrl.hide();
@@ -120,12 +118,17 @@ export class LocationdealsComponent implements OnInit {
       }
     )
    
-    if (this.mapDeals == null){
-      this.loadingCtrl.hide();
-      this.errMsg = "Still you didn't post any deals"
+    if(this.mapDeals.length == 0){
+      this.noLocationErr = "No deals based on your location"
       document.getElementById('search_box').style.display='none';
-      console.log(this.errMsg)
-    }
+
+     }
+    // if (this.mapDeals == null){
+    //   this.loadingCtrl.hide();
+    //   this.errMsg = "Still you didn't post any deals"
+    //   document.getElementById('search_box').style.display='none';
+    //   console.log(this.errMsg)
+    // }
 
   }
 

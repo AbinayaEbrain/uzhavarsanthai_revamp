@@ -5,9 +5,9 @@
             <button type="button" class="btn btn-success button_word" routerLink="/post">New Post</button>
           </div>
             <div class="col-md-6 col-xs-12 search_div mt-2">
-                <div class="form-group has-search">
+                <div class="form-group has-search" id="search_box">
                     <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" class="srchBox form-control1 english_wrd" style="width: 100%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
+                    <input type="text" class="srchBox form-control1 english_wrd" style="width: 100%" placeholder="Search By Any Product Details...." [(ngModel)]="queryString" name="search" autocomplete="off">
                 </div>
             </div>
       </div>

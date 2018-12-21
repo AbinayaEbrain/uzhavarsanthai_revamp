@@ -64,7 +64,7 @@ export class DealsComponent implements OnInit {
 
     if (this.crdDeals.length == 0){
         this.loadingCtrl.hide();
-        this.errMsg = "Still you didn't post any deals"
+        this.errMsg = "Currently no deals available"
         //document.getElementById('hideButton').style.display='none';
         document.getElementById('search_box').style.display='none';
         console.log(this.errMsg)

@@ -9,6 +9,9 @@
     min-height: 100vh;
     width:100%
 }
+.card-img-top{
+    width: 150px !important
+}
 input[_ngcontent-c2] {
     background-color: transparent;
     border-bottom: 2px solid black !important;
