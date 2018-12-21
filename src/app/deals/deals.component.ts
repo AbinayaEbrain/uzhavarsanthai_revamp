@@ -59,8 +59,7 @@ export class DealsComponent implements OnInit {
         res =>{ 
           this.loadingCtrl.hide();
           this.crdDeals = res
-          // console.log(this.crdDeals)
-          // console.log(this.crdDeals.length)
+
 
     if (this.crdDeals.length == 0){
         this.loadingCtrl.hide();
