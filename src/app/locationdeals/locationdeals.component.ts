@@ -104,6 +104,11 @@ export class LocationdealsComponent implements OnInit {
         }
       }
       }
+      if(this.mapDeals.length == 0){
+        this.noLocationErr = "No deals based on your location"
+        document.getElementById('search_box').style.display='none';
+  
+       }
         },
         err=>{}
       )
@@ -118,11 +123,7 @@ export class LocationdealsComponent implements OnInit {
       }
     )
    
-    if(this.mapDeals.length == 0){
-      this.noLocationErr = "No deals based on your location"
-      document.getElementById('search_box').style.display='none';
-
-     }
+ 
     // if (this.mapDeals == null){
     //   this.loadingCtrl.hide();
     //   this.errMsg = "Still you didn't post any deals"
