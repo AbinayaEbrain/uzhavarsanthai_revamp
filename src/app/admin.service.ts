@@ -10,7 +10,7 @@ import { Http, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 })
 export class AdminService {
 
-  private _postCatUrl = "http://localhost:5000/api/category";
+  private _postCatUrl = "http://localhost:8080/api/category";
   
 
   constructor(private http:HttpClient) { }
