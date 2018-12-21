@@ -26,7 +26,6 @@ const postSchema = new Schema({
         country:'',
         postal_code:''
     },
-    
     expireAt: {
         type: Date, required: true,
         default: function() {
