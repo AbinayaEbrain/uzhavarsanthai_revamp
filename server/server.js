@@ -65,10 +65,10 @@ app.post('/api/upload',upload.single('photo'), function (req, res) {
 });
 
     // Serve only the static files form the dist directory
- app.use(express.static( '/src'));
+ app.use(express.static( 'src'));
 
  app.get('/', function(req,res) {
-    res.sendFile(path.join( '/src/index.html'));
+    res.sendFile(path.join( 'src/index.html'));
     });
 
     
