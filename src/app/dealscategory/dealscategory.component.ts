@@ -30,7 +30,7 @@ export class DealscategoryComponent implements OnInit {
           if(this.categoryArr.length == 0){
             this.errMsg = "No category added"
           }
-         // this.imageSrc = require('../../../server/uploads' + this.categoryArr);
+         this.imageSrc = require('../../../server/uploads' + this.categoryArr);
           
         },
         err => {

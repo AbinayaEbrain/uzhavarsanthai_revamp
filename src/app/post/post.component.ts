@@ -7,7 +7,7 @@ import {ActivatedRoute, Params} from '@angular/router'
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
 // import { MapsAPILoader } from '@agm/core';
-import {} from '@types/googlemaps'
+import {} from '@types/googlemaps';
 import {  FileUploader } from 'ng2-file-upload';
 
 const URL = 'http://localhost:5000/api/upload';
