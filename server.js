@@ -67,18 +67,17 @@ app.post('/api/upload',upload.single('photo'), function (req, res) {
 });
 
     // Serve only the static files form the dist directory
- app.use(express.static(__dirname + '/src'));
+//  app.use(express.static(__dirname + '/src'));
+app.use(express.static(path.join(__dirname, '/dist')));
 
- app.get('/*', function(req,res) {
-    res.sendFile(path.join((__dirname + '/src/index.html')));
-    });
 
-// app.use(express.static(__dirname + '/dist/farmers'));
+//  app.get('/*', function(req,res) {
+//     res.sendFile(path.join((__dirname + '/src/index.html')));
+//     });
 
-// app.get('/*', function(req,res) {
-    
-// res.sendFile(path.join(__dirname+'/dist/farmers/index.html'));
-// });
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/farmers/index.html'));
+});
 
     
 // app.get('/', function(req,res) {
