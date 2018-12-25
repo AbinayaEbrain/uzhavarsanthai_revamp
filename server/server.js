@@ -13,6 +13,8 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use('/api',api)
 
+console.log(__dirname)
+
 // Serve only the static files form the dist directory
 //  app.use(express.static('/farmers'));
 
@@ -65,10 +67,10 @@ app.post('/api/upload',upload.single('photo'), function (req, res) {
 });
 
     // Serve only the static files form the dist directory
- app.use(express.static('/dist/farmers'));
+ app.use(express.static( __dirname + '/src'));
 
- app.get('/*', function(req,res) {
-    res.sendFile(path.join(('/dist/farmers/index.html')));
+ app.get('/', function(req,res) {
+    res.sendFile(path.join((__dirname+'/src/index.html')));
     });
 
     
