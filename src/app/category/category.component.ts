@@ -1,3 +1,4 @@
+declare function require(path: string);
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -6,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router, ParamMap } from '@angular/router';
 import {  FileUploader } from 'ng2-file-upload';
 
-const URL = 'http://localhost:8080/api/upload';
+var URL = 'https://farmers-market-ebrain.herokuapp.com/api/upload';
 
 interface FileReaderEventTarget extends EventTarget {
   result:string
@@ -102,11 +103,10 @@ export class CategoryComponent implements OnInit {
         for(let i=0; i < this.categoryArr.length; i++){
           if(this.id == this.categoryArr[i]._id){
             this.deallistobj.productCategory = this.categoryArr[i].productCategory
-            this.deallistobj.image = this.categoryArr[i].image
-           // alert(this.deallistobj.image)
+            this.deallistobj.image = require('../../../server/uploads/' + this.categoryArr[i].image);
           }
         }
-
+        
       },
       err=>{
         console.log(err)

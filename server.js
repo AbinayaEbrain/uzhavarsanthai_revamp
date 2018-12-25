@@ -27,7 +27,7 @@ let storage = multer.diskStorage({
 });
 
 let upload = multer({storage: storage});
- 
+console.log("2")
 app.use(function(req, res, next) {
     //set headers to allow cross origin request.
         res.header("Access-Control-Allow-Origin", "*");
@@ -54,6 +54,7 @@ app.post('/api/upload',upload.single('photo'), function (req, res) {
         // }) 
        var path = ''
        path = req.file.filename;
+       console.log("1")
        var path1 =  ("Upload Completed for "+path); 
        return res.send(path)
       }
