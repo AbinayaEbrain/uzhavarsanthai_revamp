@@ -13,16 +13,9 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use('/api',api)
 
-console.log(__dirname , '/src')
 
-// Serve only the static files form the dist directory
-//  app.use(express.static('/farmers'));
+const DIR = './server/uploads';
 
-// app.get('/', function(req,res) {
-//     res.sendFile('/farmers/src','/index.html');
-//     });
-
-//const DIR = './uploads';
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, DIR);

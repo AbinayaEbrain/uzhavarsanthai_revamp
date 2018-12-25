@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import {} from '@types/googlemaps';
 import {  FileUploader } from 'ng2-file-upload';
 
-const URL = 'http://localhost:5000/api/upload';
+const URL = 'http://localhost:8080/api/upload';
 
 declare var $: any;
 declare let ClientIP: any;
@@ -42,24 +42,6 @@ export class PostComponent implements OnInit {
   categoryArr :any;
   subCateArr = [];
   time:any
-  // productData = {
-  //   name:'',
-  //   quantity:'',
-  //   price:'',
-  //   accountId:'',
-  //   qnty:'',
-  //   subQuantity:'',
-  //   subqnty:'',
-  //   category:'',
-  //   categoryId:'',
-  //   date: new Date().getTime(),
-  //   ipAddress:'',
-  //   validityTime:number,
-  //   avlPlace:{},
-  //   description:'',
-  //   image:''
-  // };
- 
   public productData: any = {};
   id:any;
   @ViewChild('avlplaceName') public searchElement: ElementRef

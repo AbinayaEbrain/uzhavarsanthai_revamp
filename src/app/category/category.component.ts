@@ -6,8 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router, ParamMap } from '@angular/router';
 import {  FileUploader } from 'ng2-file-upload';
 
-//const URL = 'http://localhost:3000/api/upload';
-const URL = 'http://localhost:5000/api/upload';
+const URL = 'http://localhost:8080/api/upload';
 
 interface FileReaderEventTarget extends EventTarget {
   result:string
@@ -104,6 +103,7 @@ export class CategoryComponent implements OnInit {
           if(this.id == this.categoryArr[i]._id){
             this.deallistobj.productCategory = this.categoryArr[i].productCategory
             this.deallistobj.image = this.categoryArr[i].image
+           // alert(this.deallistobj.image)
           }
         }
 

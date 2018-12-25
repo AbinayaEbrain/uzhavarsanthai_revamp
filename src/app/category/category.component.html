@@ -117,12 +117,12 @@
                       </div>
 
                       <div class="text-center mb-2">
-                            
+                        
                             <img height="150px" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
                             <img [src]="url" height="150px" class="card-img-top" id="hide" style="display: none">
                       </div>
 
-                      <input type="file"  #image="ngModel" name="image" [(ngModel)]="deallistobj.image" (change)="onSelectFile($event)" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
+                      <input type="file" value=""  #image="ngModel" name="image" (change)="onSelectFile($event)" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
                       <!-- button to trigger the file upload when submitted -->
                       <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
                         Upload Image
