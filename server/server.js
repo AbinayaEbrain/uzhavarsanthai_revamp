@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use('/api',api)
 
-console.log(__dirname)
+console.log(__dirname , '/src')
 
 // Serve only the static files form the dist directory
 //  app.use(express.static('/farmers'));
@@ -67,10 +67,10 @@ app.post('/api/upload',upload.single('photo'), function (req, res) {
 });
 
     // Serve only the static files form the dist directory
- app.use(express.static(__dirname , '../src'));
+ app.use(express.static(__dirname + '/src'));
 
  app.get('/*', function(req,res) {
-    res.sendFile(path.join((__dirname , '../src/index.html')));
+    res.sendFile(path.join((__dirname + '/src/index.html')));
     });
 
 // app.use(express.static(__dirname + '/dist/farmers'));
