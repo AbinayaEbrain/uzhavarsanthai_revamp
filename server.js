@@ -68,7 +68,7 @@ app.post('/api/upload',upload.single('photo'), function (req, res) {
 
     // Serve only the static files form the dist directory
 //  app.use(express.static(__dirname + '/src'));
-app.use(express.static(path.join(__dirname, '/dist/farmers')));
+app.use(express.static(path.join(__dirname, '/dist')));
 
 
 //  app.get('/*', function(req,res) {
@@ -76,7 +76,7 @@ app.use(express.static(path.join(__dirname, '/dist/farmers')));
 //     });
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/farmers/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
     
