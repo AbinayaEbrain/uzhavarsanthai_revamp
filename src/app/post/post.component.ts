@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import {} from '@types/googlemaps';
 import {  FileUploader } from 'ng2-file-upload';
 
-const URL = 'https://uzhavarsanthai.herokuapp.com/api/upload';
+const URL = 'http://localhost:8080/api/upload';
 
 declare var $: any;
 declare let ClientIP: any;

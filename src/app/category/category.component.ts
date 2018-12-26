@@ -7,7 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Router, ParamMap } from '@angular/router';
 import {  FileUploader } from 'ng2-file-upload';
 
-const URL = 'https://uzhavarsanthai.herokuapp.com/api/upload';
+//https://uzhavarsanthai.herokuapp.com
+const URL = 'http://localhost:8080/api/upload';
 
 interface FileReaderEventTarget extends EventTarget {
   result:string
@@ -58,10 +59,10 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
 
-   this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
+  this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
 
-    //overide the onCompleteItem property of the uploader so we are 
-    //able to deal with the server response.
+  //   //overide the onCompleteItem property of the uploader so we are 
+  //   //able to deal with the server response.
     this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
          console.log("ImageUpload:uploaded:", item, status, response);
 

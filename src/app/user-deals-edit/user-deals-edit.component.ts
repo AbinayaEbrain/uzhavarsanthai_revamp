@@ -8,7 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DatePipe } from '@angular/common';
 import {  FileUploader } from 'ng2-file-upload';
 
-const URL = 'http://localhost:8080api/upload';
+const URL = 'http://localhost:8080/api/upload';
 
 interface FileReaderEventTarget extends EventTarget {
   result:string

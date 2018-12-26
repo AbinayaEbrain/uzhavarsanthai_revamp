@@ -54,9 +54,7 @@ app.post('/api/upload',upload.single('photo'), function (req, res) {
         // }) 
        var path = ''
        path = req.file.filename;
-       console.log("1")
        var path1 =  ("Upload Completed for "+path); 
-       console.log(path1)
        return res.send(path)
       }
 });
