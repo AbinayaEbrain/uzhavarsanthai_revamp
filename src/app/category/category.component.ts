@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router, ParamMap } from '@angular/router';
 import {  FileUploader } from 'ng2-file-upload';
 
-const URL = 'http://localhost:8080/api/upload';
+const URL = 'https://uzhavarsanthai.herokuapp.com/api/upload';
 
 interface FileReaderEventTarget extends EventTarget {
   result:string

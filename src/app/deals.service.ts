@@ -6,14 +6,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DealsService {
   // https://farmers-market-ebrain.herokuapp.com
-  private _dealsUrl = "https://farmers-market-ebrain.herokuapp.com/api/deals";
-  private _postUrl ="https://farmers-market-ebrain.herokuapp.com/api/post";
-  private _getUrl ="https://farmers-market-ebrain.herokuapp.com/api/details";
-  private _getCategoryUrl ="https://farmers-market-ebrain.herokuapp.com/api/category";
+  private _dealsUrl = "https://uzhavarsanthai.herokuapp.com/api/deals";
+  private _postUrl ="https://uzhavarsanthai.herokuapp.com/api/post";
+  private _getUrl ="https://uzhavarsanthai.herokuapp.com/api/details";
+  private _getCategoryUrl ="https://uzhavarsanthai.herokuapp.com/api/category";
   //Deactivate URL
-  private deactiveUrl ="https://farmers-market-ebrain.herokuapp.com/api/admin-user/deactive";
+  private deactiveUrl ="https://uzhavarsanthai.herokuapp.com/api/admin-user/deactive";
   //Active URL
-  private activeUrl ="https://farmers-market-ebrain.herokuapp.com/api/admin-user/active";
+  private activeUrl ="https://uzhavarsanthai.herokuapp.com/api/admin-user/active";
 
   constructor(private http:HttpClient) { }
 
