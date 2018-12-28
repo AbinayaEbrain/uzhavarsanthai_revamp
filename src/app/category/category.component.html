@@ -122,11 +122,16 @@
                             <img [src]="url" height="150px" class="card-img-top" id="hide" style="display: none">
                       </div>
 
-                      <input type="file" value=""  #image="ngModel" name="image" [(ngModel)]="deallistobj.image" (change)="onSelectFile($event)" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
-                      <!-- button to trigger the file upload when submitted -->
+                      Category Image
+                      <label class="file-upload-container" for="file-upload" style="border: 2px solid green;padding: 5px;color: black">
+                        <input id="file-upload" type="file" style="display:none;">
+                        Select an Image
+                      </label>
+                      <!-- <input type="file" value=""  #image="ngModel" name="image" [(ngModel)]="deallistobj.image" (change)="onSelectFile($event)" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
+                     
                       <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
                         Upload Image
-                    </button> 
+                    </button>  -->
                       <div class="row">
                             <div class="col-md-6">
                                     <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit" (click)="update()"  routerLink="category" data-dismiss="modal">Update</button>
@@ -176,14 +181,21 @@
                       <span class="text-danger float-left" [class.d-none] = "productCategory.valid || productCategory.untouched">Category is required</span>  
                     </div>
 
-                    <div class="form-group mb-5 mt-4">
-                    <input type="file"  #image="ngModel" name="image" [(ngModel)]="cateData.image" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
+                    <div class="form-group mb-4 mt-4 mx-auto">
+                    <!-- <input type="file"  #image="ngModel" name="image" [(ngModel)]="cateData.image" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
                         
                         <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
                             Upload Image
                         </button> 
-                         <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Image is required</span>  
+                         <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Image is required</span>   -->
 
+                        
+                            Category Image
+                            <label class="file-upload-container" for="file-upload" style="border: 2px solid green;padding: 5px;color: black">
+                              <input id="file-upload" type="file" style="display:none;">
+                              Select an Image
+                            </label>
+                        
                     </div>
                     <!-- <img [src]="url" height="200"> <br/>
                         <input type='file' name="image" [(ngModel)]="cateData.image" (change)="onSelectFile($event)"> -->

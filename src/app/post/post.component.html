@@ -127,21 +127,28 @@
               <!-- last row -->
               <div class="row">
                 <div class="col-md-4"></div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <div class="form-group ">
-                        <input type="file" style="color: white; width: 218px;" (change)="onSelectFile($event)"  #image="ngModel" name="image" [(ngModel)]="productData.image" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
+                            <!-- <label class="file-upload-container" (change)="onSelectFile($event)" for="file-upload" style="color: white">
+                        <input type="file" id="file-upload" style="color: white; width: 218px;display: none" (change)="onSelectFile($event)"  #image="ngModel" name="image" [class.is-invalid]="image.invalid && image.touched" ngModel/>
                         <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Image is required</span>  
-                        
+                        Select an Image
+                    </label> -->
+                    <span style="color: white">Choose your product image</span>
+                        <label class="file-upload-container ml-2" for="file-upload" (change)="onSelectFile($event)" style="border: 2px solid green;padding: 5px;color: white">
+                            <input id="file-upload" class="mx-auto" type="file" style="display:none;">
+                            Select an Image
+                          </label>
                         </div>
                 </div>
-                <div class="col-md-2">
-                    <button type="button" style="font-size: 15px" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                <!-- <div class="col-md-2">
+                    <button type="button" for="file-upload" style="font-size: 15px" class="btn btn-success btn-s">
                         Upload Image
                     </button> 
-                </div>
-                <div class="col-md-4 text-left">
-                        <img [src]="url" id="hide" height="50" style="display: none"> 
-                </div>
+                </div> -->
+                <!-- <div class="col-md-4 text-left">
+                        <img [src]="img_post" id="hide" height="50" style="display: none"> 
+                </div> -->
               </div> 
              
 

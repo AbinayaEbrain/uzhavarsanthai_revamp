@@ -51,7 +51,7 @@ export class ViewmoreComponent implements OnInit {
           res=>{
             this.loadingCtrl.hide();
             this.viewPost = res
-           console.log(this.viewPost)
+          // console.log(this.viewPost)
             for(let i=0; i < this.viewPost.length; i++){
               if(this.id == this.viewPost[i]._id){
                this.postProduct.category =  this.viewPost[i].category;
@@ -80,12 +80,11 @@ export class ViewmoreComponent implements OnInit {
             this.loadingCtrl.hide();
             
             this.viewmore = res;
-            console.log(this.viewmore)
+           // console.log(this.viewmore)
             for(let i=0; i < this.viewmore.length; i++){
-              this.loadingCtrl.hide();
               if(this.postProduct.accountId == this.viewmore[i]._id){
-                console.log(this.viewmore[i]._id)
-                console.log(this.postProduct.accountId )
+                // console.log(this.viewmore[i]._id)
+                // console.log(this.postProduct.accountId )
                this.register.firstName =  this.viewmore[i].firstname;
                this.register.lastName =  this.viewmore[i].lastName;
                this.register.phone = this.viewmore[i].phone;
@@ -93,11 +92,11 @@ export class ViewmoreComponent implements OnInit {
                this.register.address.address1 = this.viewmore[i].address.address1;
                this.city = this.viewmore[i].address.city;
                //this.state = this.viewmore[i].address.location;
-               console.log(this.viewmore[i].address.city)
+               //console.log(this.viewmore[i].address.city)
               }
             }
             
-            console.log(this.city)
+           // console.log(this.city)
             this.register.address.city.locality = this.city.locality
             this.register.address.city.admin_area_l1 = this.city.admin_area_l1
           },

@@ -1,6 +1,8 @@
 declare function require(string);
 import { Component ,ViewChild,OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
+import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
+
 //  var request = require("request");
 var url = "https://geoip-db.com/json";
 
@@ -23,22 +25,35 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-  // var mapProp = {
-  //   center: new google.maps.LatLng(18.5793, 73.8143),
-  //   zoom: 15,
-  //   mapTypeId: google.maps.MapTypeId.ROADMAP
-  // };
-  // this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+    var CLOUDINARY_URL = 	'https://api.cloudinary.com/v1_1/uzhavar-image/upload'
+    var CLOUDINARY_UPLOAD_PRESET = 'm0xlfiw2'
+    var imgPreview = document.getElementById('img-preview')
+    var fileUpload = document.getElementById('file-upload')
 
-  //   // tracking location 
-  //   if (navigator.geolocation) {
+    fileUpload.addEventListener('change' , function(e : any){
+      var file = e.target.files[0];
+      var formData = new FormData();
+      formData.append('file',file);
+      formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+    
+      axios({
+        url : CLOUDINARY_URL,
+        method : 'POST',
+        headers : {
+          'Content-Type' : 'application/x-www-form-urlencoded'
+        },
+        data : formData
+      }).then(function(res){
+        console.log(res)
 
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       this.showPosition(position);
-  //     });
-  //   } else {
-  //     alert("Geolocation is not supported by this browser.");
-  //   }
+        // this.img_post = res.data.secure_url;
+        localStorage.setItem('Image', JSON.stringify(res.data.secure_url));
+        
+      }).catch(function(err){
+        console.log(err)
+      });
+    
+    });
   }
 
   // findMe(){

@@ -65,7 +65,7 @@ export class DealsComponent implements OnInit {
         this.errMsg = "Currently no deals available"
         //document.getElementById('hideButton').style.display='none';
         document.getElementById('search_box').style.display='none';
-        console.log(this.errMsg)
+       // console.log(this.errMsg)
       }
 
         },
@@ -79,7 +79,7 @@ export class DealsComponent implements OnInit {
       .subscribe(
         res =>{
           this.activeUsers = res
-          console.log(this.activeUsers)
+          //console.log(this.activeUsers)
       
       let k =0;
       for(let i=0;i<this.activeUsers.length;i++){
@@ -87,8 +87,6 @@ export class DealsComponent implements OnInit {
         if(this.activeUsers[i]._id == this.crdDeals[j].accountId) {
             if(this.activeUsers[i].status == 'ACTIVE'){
               this.crdDeals1[k] = this.crdDeals[j]
-              // console.log(this.crdDeals1[k])
-              // console.log(this.crdDeals[j])
               k++;
             }
         }

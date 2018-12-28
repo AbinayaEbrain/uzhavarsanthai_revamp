@@ -6,6 +6,9 @@ import { DealsService } from '../deals.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router, ParamMap } from '@angular/router';
 import {  FileUploader } from 'ng2-file-upload';
+import { AppComponent } from '../app.component'
+import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
+
 
 //https://uzhavarsanthai.herokuapp.com
 const URL = 'http://localhost:8080/api/upload';
@@ -104,7 +107,7 @@ export class CategoryComponent implements OnInit {
         for(let i=0; i < this.categoryArr.length; i++){
           if(this.id == this.categoryArr[i]._id){
             this.deallistobj.productCategory = this.categoryArr[i].productCategory
-            this.deallistobj.image = require('../../../server/uploads/' + this.categoryArr[i].image);
+            this.deallistobj.image = this.categoryArr[i].image
           }
         }
         
@@ -168,17 +171,6 @@ export class CategoryComponent implements OnInit {
       )
     }
 
-  //   onSelectFile(event) { // called each time file input changes
-  //     if (event.target.files && event.target.files[0]) {
-  //       var reader = new FileReader();
-  
-  //       reader.readAsDataURL(event.target.files[0]); // read file as data url
-  
-  //       reader.onload = (event) => { // called once readAsDataURL is completed
-  //         this.url = event.target.result;
-  //       }
-  //     }
-  // }
 
     update(){
       this.deallistobj.image = JSON.parse(localStorage.getItem('Image'));
@@ -201,6 +193,7 @@ export class CategoryComponent implements OnInit {
         err=>console.log(err),
   
       )
+      localStorage.removeItem('Image')
     }
 
     onSubmit(){

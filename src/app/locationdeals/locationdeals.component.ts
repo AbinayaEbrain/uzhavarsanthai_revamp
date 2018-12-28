@@ -19,7 +19,6 @@ export class LocationdealsComponent implements OnInit {
   marker: google.maps.Marker;
    isTracking = false;
    status:any;
-  //-------
   crdDeals = [{
     avlPlace:{
       lat:'',
@@ -55,10 +54,10 @@ export class LocationdealsComponent implements OnInit {
         this.lat2 = localStorage.getItem('googleLat')
         this.long = localStorage.getItem('googleLong')
 
-        if(this.lat2 == null){
-          document.getElementById('hideButton').style.display='none';
-          document.getElementById('showButton').style.display='block';
-        }
+        // if(this.lat2 == null){
+        //   document.getElementById('hideButton').style.display='none';
+        //   document.getElementById('showButton').style.display='block';
+        // }
        
         this.lat1 = this.lat2*1.009
        //alert(this.lat1)
@@ -66,8 +65,8 @@ export class LocationdealsComponent implements OnInit {
         this.latd = this.lat2/1.002
        // alert(this.latd)
 
-        console.log(this.crdDeals)
-        console.log(this.crdDeals.length)
+        // console.log(this.crdDeals)
+        // console.log(this.crdDeals.length)
         let j=0
         for(let i=0; i < this.crdDeals.length; i++){
           if(this.crdDeals[i].avlPlace.lat < this.lat1 && this.crdDeals[i].avlPlace.lng > this.latd){
@@ -79,12 +78,11 @@ export class LocationdealsComponent implements OnInit {
 
         // active deals
 
-        
       this._dealsService.getDetails()
       .subscribe(
         res =>{
           this.activeUsers = res
-          console.log(this.activeUsers)
+        //  console.log(this.activeUsers)
     
         let k =0;
 

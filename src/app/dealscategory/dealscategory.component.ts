@@ -31,7 +31,7 @@ export class DealscategoryComponent implements OnInit {
             this.errMsg = "No category added"
           }
         // this.imageSrc = require('../../../server/uploads' + this.categoryArr);
-          
+       // this.imageSrc = JSON.parse(localStorage.getItem('image_c'))
         },
         err => {
          this.loadingCtrl.hide();

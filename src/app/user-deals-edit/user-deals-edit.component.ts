@@ -83,13 +83,13 @@ export class UserDealsEditComponent implements OnInit {
     this.loadingCtrl.show();
     this.InitialCall();
 
-    this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
+    // this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
 
-    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-         console.log("ImageUpload:uploaded:", item, status, response);
+    // this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+    //      console.log("ImageUpload:uploaded:", item, status, response);
 
-         localStorage.setItem('Image', JSON.stringify(response));
-     };
+    //      localStorage.setItem('Image', JSON.stringify(response));
+    //  };
 
 
     this.id = this.route.snapshot.params['id']
@@ -116,7 +116,6 @@ export class UserDealsEditComponent implements OnInit {
             this.address = this.dealslists[i].avlPlace
             this.time = this.dealslists[i].validityTime
             this.showUnit = this.dealslists[i].qnty
-            
           }
         console.log(this.address)
         
@@ -214,6 +213,7 @@ InitialCall() {
       err=>console.log(err),
 
     )
+    localStorage.removeItem('Image')
   }
 
 

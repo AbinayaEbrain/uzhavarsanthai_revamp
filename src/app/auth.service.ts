@@ -49,6 +49,7 @@ export class AuthService {
       localStorage.removeItem('ipAddress')
       localStorage.removeItem('status')
       localStorage.removeItem('firstname')
+      localStorage.removeItem('Image')
     }
   }
 
@@ -70,6 +71,7 @@ export class AuthService {
     localStorage.removeItem('ipAddress')
     localStorage.removeItem('status')
     localStorage.removeItem('firstname')
+    localStorage.removeItem('Image')
     this.route.navigate(['/deals'])
   }
 

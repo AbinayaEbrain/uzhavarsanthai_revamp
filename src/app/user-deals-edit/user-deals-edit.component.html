@@ -1,6 +1,6 @@
 
  <div class="bg1">
-    <div class="text-center container mb-5 mt-5 pt-5">
+    <div class="text-center container mt-3">
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-8">
@@ -124,22 +124,25 @@
                        <!-- last row -->
               <div class="row">
                 <div class="col-md-4"></div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <input type="file" style="color: white; width: 218px;" (change)="onSelectFile($event)" #image="ngModel" name="image" [(ngModel)]="deallistobj.image" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
-                        <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Image is required</span>  
-                        </div>
+                <div class="col-md-4">
+                   <div class="form-group">
+                        <span style="color: white;" class="english_wrd">Choose your product image</span>
+                        <label class="file-upload-container ml-2" for="file-upload" (change)="onSelectFile($event)" style="font-weight: bold;border: 2px solid green;padding: 5px;color: white">
+                            <input id="file-upload" class="mx-auto" type="file" style="display:none;">
+                            Select an Image
+                          </label>
+                        <!--  <input type="file" style="color: white; width: 218px;" (change)="onSelectFile($event)" #image="ngModel" name="image" [(ngModel)]="deallistobj.image" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
+                        <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Image is required</span> --> 
+                        </div> 
                 </div>
-                <div class="col-md-2">
+                <!-- <div class="col-md-2">
                     <button type="button" style="font-size: 15px" class="btn btn-success btn-s" (click)="uploader.uploadAll()">
                         Upload Image
                     </button> 
-                </div>
+                </div> -->
               
                 <div class="col-md-4 text-left">
-                        <img [src]="url" height="50" id="hide" style="display: none">
                         <img style="height: 50px;width: 50px;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
-                   
                 </div>
               </div> 
 

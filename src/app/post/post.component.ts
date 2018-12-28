@@ -3,10 +3,10 @@ import { DealsService } from '../deals.service';
 import { Router} from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import {ActivatedRoute, Params} from '@angular/router'
+import { AppComponent } from '../app.component'
 // loader 
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
-// import { MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
 import {  FileUploader } from 'ng2-file-upload';
 
@@ -246,7 +246,7 @@ export class PostComponent implements OnInit {
 
       )
 
-      //localStorage.removeItem('Image')
+     localStorage.removeItem('Image')
   }
 
   getunits(){
