@@ -1,16 +1,6 @@
-/* .bg1{
-    
-    background: url(./images/A6.jpg)no-repeat center ;
-    height: 650px;
-    background-size: cover;
-    margin-top: 35px;
-    height: 100vh;
-    width: 100%;
-   
-} */
 
 .bg1{
-    background: url(./images/A3.jpg) no-repeat center center fixed ;
+    background: url(../../assets/Images/blur-blurred-background-bokeh-995043.jpg) no-repeat center center fixed ;
     background-position: center center;
     background-repeat:  no-repeat;
     background-attachment: fixed;
@@ -18,6 +8,9 @@
     background-color: #999;
     min-height: 100vh;
     width:100%
+}
+.userprof{
+    background-color: #0000007a;
 }
 label {
     position:absolute;
@@ -178,4 +171,9 @@ select{
   ::placeholder {
     font-size: 14px;
     font-family: 'Hind Madurai', sans-serif;
+  }
+  input[readonly].classname{
+    background-color:transparent;
+    border: 0;
+    font-size: 1em;
   }

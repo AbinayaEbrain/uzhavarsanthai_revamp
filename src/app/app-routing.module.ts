@@ -20,7 +20,8 @@ import { AdminIpComponent } from './admin-ip/admin-ip.component';
 import { DealscategoryComponent} from '../app/dealscategory/dealscategory.component'
 import {ViewcategoryComponent} from '../app/viewcategory/viewcategory.component';
 import {HotdealsComponent} from '../app/hotdeals/hotdeals.component'
-
+import {UserProfileComponent} from '../app/user-profile/user-profile.component';
+import {DeactiveDealsComponent} from '../app/deactive-deals/deactive-deals.component'
 const routes: Routes = [
   {
     path:'',
@@ -123,6 +124,14 @@ const routes: Routes = [
 {
   path: 'hotDeals/:id',
   component: HotdealsComponent
+},
+{
+  path: 'updateuser/:id',
+  component: UserProfileComponent
+},
+{
+  path: 'expired-products',
+  component: DeactiveDealsComponent
 }
  
 ];

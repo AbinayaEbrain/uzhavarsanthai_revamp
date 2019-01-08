@@ -1,11 +1,11 @@
 
 
  <body class="bg1" style="overflow-x:hidden">
-  <div class="text-center container mb-5 mt-5 pt-5">
+  <div class="text-center container onmobiview ">
       <div class="row">
           <div class="col-md-4"></div>
           <div class="col-md-8">
-              <h3 class="clr mb-5 mt-2 mt-sm-2 mt-md-5">Post Your Product Details</h3>
+              <h3 class="clr mb-5  mt-sm-2 mt-md-5">Post Your Product Details</h3>
               <div class="row mb-3" *ngIf = "success">
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
@@ -37,7 +37,7 @@
               <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                 <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)"  maxlength="20" [(ngModel)]="productData.name"  name="name" class="form-control"  autocomplete="off"  required>
          
-                <label class="form-control-placeholder english_wrd" for="name">Name /<span style="font-size: 14px" class="tamil_wrd"> பெயர்</span></label>
+                <label class="form-control-placeholder english_wrd floatinglabl" for="name"><span style="font-size: 14px" class="tamil_wrd">பொருளின் பெயர் </span>/ Product Name</label>
                 <span class="text-danger float-left error_word" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product Name is required</span> 
               </div>
             
@@ -49,7 +49,7 @@
                 <div class="col-md-2 col-sm-8 col-8">
                     <div class="form-group mb-5 mt-2">
                         <input type="text"  #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="productData.quantity"  name="quantity" class="form-control"  maxlength="5" autocomplete="off"  required>
-                        <label class="form-control-placeholder english_wrd" for="quantity">Quantity / <span style="font-size: 14px" class="tamil_wrd">அளவு</span></label>
+                        <label class="form-control-placeholder english_wrd floatinglabl" for="quantity"><span style="font-size: 14px" class="tamil_wrd">அளவு </span>/ Quantity </label>
                         <span class="text-danger float-left error_word" [class.d-none] = "quantity.valid || quantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>  
                       </div>
                 </div>
@@ -58,8 +58,10 @@
                       
                         <select required class="form-control slect"  #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel (change)="getunits()" [(ngModel)]="productData.qnty" >
                             <option value="">Unit</option>
-                            <option value="Kg">Kg</option>
-                            <option value="Ltre">Ltre</option>
+                            <option value="Kg">Kilogram</option>
+                            <option value="Gram">Gram</option>
+                            <option value="Litre">Litre</option>
+                            <option value="Millilitre">Millilitre</option>
                           </select>
                       </div>
                       <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span> 
@@ -67,14 +69,14 @@
                
                     <div class="col-md-2 col-sm-8 col-8">
                         <div class="form-group mb-5 mt-2">
-                            <input type="text"  #subQuantity="ngModel"  maxlength="5" [class.is-invalid]="subQuantity.invalid && subQuantity.touched" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="productData.subQuantity"  name="subQuantity" class="form-control" autocomplete="off"  required>
-                            <label class="form-control-placeholder english_wrd" for="quantity">Sub Quantity</label>
-                            <span class="text-danger float-left error_word" [class.d-none] = "subQuantity.valid || subQuantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span>  
+                            <input type="text"  #subQuantity="ngModel"  maxlength="5"  ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="productData.subQuantity"  name="subQuantity" class="form-control" autocomplete="off" required>
+                            <label class="form-control-placeholder english_wrd floatinglabl" for="quantity">Sub Quantity</label>
+                            <!-- <span class="text-danger float-left error_word" [class.d-none] = "subQuantity.valid || subQuantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span>   -->
                           </div>
                     </div>
                     <div class="col-md-2 col-sm-4 col-4">
                         <div class="form-group mb-5 mt-2">
-                            <select required class="form-control slect"  #subqnty="ngModel" name="subqnty" [class.is-invalid]="subqnty.invalid && subqnty.touched" ngModel  [(ngModel)]="productData.subqnty" >
+                            <select  class="form-control slect"  #subqnty="ngModel" name="subqnty" [class.is-invalid]="subqnty.invalid && subqnty.touched" ngModel  [(ngModel)]="productData.subqnty" >
                                 <option value="">Sub Unit</option>
                                 <option value="Grams">Grams</option>
                                 <option value="Millilitres">Millilitres</option>
@@ -94,7 +96,7 @@
                     <div class="form-group mb-5 mt-2">
                       <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="productData.price"  name="price" class="form-control" maxlength="5"  autocomplete="off"  required>
                
-                      <label class="form-control-placeholder english_wrd" for="name"><span style="font-size: 14px" class="tamil_wrd">விலை</span> / Price / {{showUnit}}</label>
+                      <label class="form-control-placeholder english_wrd floatinglabl" for="name"><span style="font-size: 14px" class="tamil_wrd">விலை</span> / Price / {{showUnit}}</label>
                       <span class="text-danger float-left error_word" [class.d-none] = "price.valid || price.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Price is required</span> 
                     </div>
                   
@@ -102,7 +104,7 @@
                 <div class="col-md-4">
                     <div class="form-group mb-5 mt-2">
                       
-                          <input google-place type="text" placeholder="Available Place" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="productData.avlPlace" required>
+                          <input google-place type="text" placeholder="கிடைக்குமிடம் / Available Place" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="productData.avlPlace" required>
                           <span class="text-danger float-left error_word" [class.d-none] = "avlPlace.valid || avlPlace.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span> 
                       </div>
                 </div> 
@@ -110,7 +112,7 @@
                 <div class="col-md-4">
                     <div class="form-group mb-5  mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                         <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="productData.description"  name="description" class="form-control"  autocomplete="off" maxlength="250" required>
-                        <label class="form-control-placeholder english_wrd" for="date">Description /<span style="font-size: 14px" class="tamil_wrd"> பொருளைப் பற்றி</span></label>
+                        <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_wrd"> பொருளைப் பற்றி </span>/ Description </label>
                         <span class="text-danger float-left error_word" [class.d-none] = "description.valid || description.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Description is required</span>  
                       </div>
                 </div> 
@@ -118,7 +120,7 @@
                     <div class="form-group mb-5  mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                          
                         <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="productData.validityTime"  name="validityTime" class="form-control"   bsDatepicker  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
-                        <label class="form-control-placeholder english_wrd" for="date">Expiration /<span style="font-size: 14px" class="tamil_wrd">காலாவதியாகும் தேதி</span></label>
+                        <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_wrd">காலாவதியாகும் தேதி </span>/ Expiry Date </label>
                         <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>  
                       </div>
                 </div> 

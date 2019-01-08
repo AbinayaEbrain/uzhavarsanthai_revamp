@@ -3,7 +3,7 @@ import { DealsService } from '../deals.service';
 import { Router} from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {} from '@types/googlemaps';
-
+declare var sweetAlert: any;
 
 // loader 
 
@@ -24,7 +24,9 @@ export class DealsComponent implements OnInit {
   marker: google.maps.Marker;
    isTracking = false;
    status:any;
-  //-------
+   categoryArr:any;
+   totalDeals1 = [];
+   userdetails=[];
   crdDeals = [{
     avlPlace:{
       latitude:'',
@@ -47,6 +49,8 @@ export class DealsComponent implements OnInit {
   p:any;
   getlat:any
   getlng:any
+  getSearchDeals=[]
+  querydetails:any;
 
   constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService){
    
@@ -63,9 +67,11 @@ export class DealsComponent implements OnInit {
     if (this.crdDeals.length == 0){
         this.loadingCtrl.hide();
         this.errMsg = "Currently no deals available"
-        //document.getElementById('hideButton').style.display='none';
-        document.getElementById('search_box').style.display='none';
-       // console.log(this.errMsg)
+        document.getElementById('hidePagination').style.display="none";
+        document.getElementById('hideSearchDiv').style.display="none";
+        document.getElementById('hideFilterButton').style.display="none";
+       
+      
       }
 
         },
@@ -118,7 +124,66 @@ export class DealsComponent implements OnInit {
     
   }
 
+  getCategory(){
+ //   alert('1')
+    this._dealsService.getCategory()
+    .subscribe(
+        res => {
+          this.categoryArr = res;
+          console.log(this.categoryArr)
+        },
+    
+        err => {
+            this.categoryArr = [];
+        });
+  }
 
+  filterDeal(){
+    // alert("2")
+    this.loadingCtrl.show();
+    this.totalDeals1 = [];
+    this.getSearchDeals = this.crdDeals
+    console.log(this.userdetails)
+    this.querydetails = this.userdetails
+    this.refreshGrid();
+    this.loadingCtrl.hide();
+  
+  }
+  refreshGrid(){
+    //alert("2")
+    //this.loadingCtrl.show();
+    let j =0;
+    console.log(this.getSearchDeals)
+    for(let i=0; i < this.getSearchDeals.length; i++){
+     // alert("3")
+    
+      console.log(this.getSearchDeals[i].quantity)
+    if(this.querydetails.searchCategory == this.getSearchDeals[i].categoryId || this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||  (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) || this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price))){
+    
+      //alert("4")
+      this.loadingCtrl.hide();
+      
+      console.log(this.getSearchDeals[i])
+      this.totalDeals1[j] = this.getSearchDeals[i]
+      console.log(this.totalDeals1[j])
+      j++;
+      
+    
+    }
+     
+    
+ 
+   this.loadingCtrl.hide();
+  }
+  if(this.totalDeals1.length == 0){
+    console.log('no deals')
+    sweetAlert("Currently no product available")
+    this.userdetails = [];
+  }
+ 
+  this.userdetails = [];
+  
+  }
 
   findMe(){
   //   setTimeout( function(){

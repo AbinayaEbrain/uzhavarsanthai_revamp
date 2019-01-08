@@ -12,3 +12,19 @@
 ul li a {
   font-family: 'Ubuntu', sans-serif;
 }
+.dropdown .dropdown-menu{
+  display: block; 
+opacity:0;
+-webkit-transition: all 200ms ease-in;
+-moz-transition: all 200ms ease-in;
+-ms-transition: all 200ms ease-in;
+-o-transition: all 200ms ease-in;
+transition: all 200ms ease-in;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+}
+
+
+

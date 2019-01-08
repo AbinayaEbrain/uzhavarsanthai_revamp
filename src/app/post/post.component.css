@@ -14,17 +14,7 @@
     min-height: 1300px; 
 }
  }
-/*  
-@media only screen and (max-width: 600px) {
-    .bg1{
-   
-     
-        background-size: cover;
-        margin-top: 35px;
-        height: 120vh;
-       
-    }
-} */
+
  
   input[type=text], input[type=password] {
      width: 100%;
@@ -177,7 +167,35 @@
         font-size: 15px;   
         font-family: 'Hind Madurai', sans-serif; 
        }
+       .onmobiview{
+           margin-top: 50px;
+       }
    }
    .error_word{
     font-family: 'Cabin', sans-serif;
+  }
+
+ .floatinglabl {
+    position:absolute;
+    pointer-events:none;
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+  }
+  
+  ::-webkit-input-placeholder {
+    font-family: 'Hind Madurai', sans-serif;
+    font-size: 14px;
+  }
+  ::-moz-placeholder {
+    font-size: 14px;
+    font-family: 'Hind Madurai', sans-serif;
+  }
+  :-ms-input-placeholder {
+    font-size: 14px;
+    font-family: 'Hind Madurai', sans-serif;
+  }
+  ::placeholder {
+    font-size: 14px;
+    font-family: 'Hind Madurai', sans-serif;
   }

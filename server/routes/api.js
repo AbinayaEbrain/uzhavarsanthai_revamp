@@ -77,6 +77,7 @@ router.post('/post',(req,res)=>{
     let userData = req.body
     let user = new Post(userData)
     user.save((error,productData)=>{
+        console.log('1'+ productData)
         if(error){
             console.log(error)
         }else{
@@ -89,7 +90,7 @@ router.post('/post',(req,res)=>{
             //before adding jwt
             
             res.status(200).send(productData)
-         
+         console.log(res)
            
             //after add jwt
         //    res.status(200).send({token})
@@ -153,7 +154,7 @@ router.get('/deals',(req,res)=>{
         }
         else{
          res.send(result)
-           //console.log(result)
+           console.log(result)
         }
     })
  })
@@ -238,6 +239,30 @@ router.delete('/details/:id',(req,res)=>{
     function(err,updatedUser){
         if(err){
             res.send("Error updating user");
+        }else{
+            res.json(updatedUser);
+        }
+    }
+
+    );
+});
+
+//update user
+router.put('/updateuser/:id', function(req, res){
+    console.log('Update a userprofile');
+    console.log(req.body)
+   
+    User.findByIdAndUpdate(req.params.id,
+    {
+        $set: {firstname : req.body.firstname, lastName : req.body.lastName, gender : req.body.gender,
+            address : req.body.address,password : req.body.password,confirmPassword : req.body.confirmPassword}
+    },
+    {
+        new: true
+    },
+    function(err,updatedUser){
+        if(err){
+            res.send("Error updating userprofile");
         }else{
             res.json(updatedUser);
         }

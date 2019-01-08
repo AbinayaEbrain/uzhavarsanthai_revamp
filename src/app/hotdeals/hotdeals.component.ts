@@ -18,7 +18,7 @@ export class HotdealsComponent implements OnInit {
   constructor(private _dealsService:DealsService,private route:Router,private router:ActivatedRoute,private catcomp:ViewcategoryComponent) { }
 
   ngOnInit() {
-    console.log(this.catcomp.querydetails)
+    // console.log(this.catcomp.querydetails)
     this.id = this.router.snapshot.params['id']
     this._dealsService.getDeals()
     .subscribe(

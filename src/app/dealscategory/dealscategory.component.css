@@ -14,5 +14,8 @@
 } 
 .categoryName{
   text-align: center;background-color: #0d4608;border:1px solid #0d4608;color: white;margin: auto;width: 150px;
-  font-family: 'Kanit', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 } 
+.tamil_wrd{
+  font-family: 'Hind Madurai', sans-serif; 
+}

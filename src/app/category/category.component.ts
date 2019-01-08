@@ -11,7 +11,7 @@ import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
 
 
 //https://uzhavarsanthai.herokuapp.com
-const URL = 'http://localhost:8080/api/upload';
+const URL = 'http://localhost:5000/api/upload';
 
 interface FileReaderEventTarget extends EventTarget {
   result:string
@@ -142,6 +142,7 @@ export class CategoryComponent implements OnInit {
           
           setTimeout(()=>{
             this.sucessMsg = ''
+            this.router.navigate[('/category')]
           },2000)
           
         

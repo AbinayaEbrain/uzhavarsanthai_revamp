@@ -7,20 +7,22 @@ import { HttpClient } from '@angular/common/http';
 export class DealsService {
   // https://farmers-market-ebrain.herokuapp.com
   private _dealsUrl = "https://uzhavarsanthai.herokuapp.com/api/deals";
-  private _postUrl ="https://uzhavarsanthai.herokuapp.com/api/post";
+  private _postUrl ="http://localhost:5000/api/post";
   private _getUrl ="https://uzhavarsanthai.herokuapp.com/api/details";
   private _getCategoryUrl ="https://uzhavarsanthai.herokuapp.com/api/category";
   //Deactivate URL
   private deactiveUrl ="https://uzhavarsanthai.herokuapp.com/api/admin-user/deactive";
   //Active URL
   private activeUrl ="https://uzhavarsanthai.herokuapp.com/api/admin-user/active";
-
+  private updateuserurl = "http://localhost:5000/api/updateuser";
   constructor(private http:HttpClient) { }
 
   getDeals(){
     return this.http.get<any>(this._dealsUrl)
   }
-
+  updateCustomer(data,id){
+    return this.http.put<any>(this.updateuserurl +  "/" + id ,data)
+  }
   addPost(data){
     return this.http.post<any>(this._postUrl,data)
   }

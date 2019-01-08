@@ -51,8 +51,9 @@ export class ViewmoreComponent implements OnInit {
           res=>{
             this.loadingCtrl.hide();
             this.viewPost = res
-          // console.log(this.viewPost)
+           console.log(this.viewPost)
             for(let i=0; i < this.viewPost.length; i++){
+              console.log(this.postProduct)
               if(this.id == this.viewPost[i]._id){
                this.postProduct.category =  this.viewPost[i].category;
                this.postProduct.name =  this.viewPost[i].name;
@@ -80,9 +81,10 @@ export class ViewmoreComponent implements OnInit {
             this.loadingCtrl.hide();
             
             this.viewmore = res;
-           // console.log(this.viewmore)
+         console.log(this.viewmore)
             for(let i=0; i < this.viewmore.length; i++){
               if(this.postProduct.accountId == this.viewmore[i]._id){
+                console.log(this.postProduct)
                 // console.log(this.viewmore[i]._id)
                 // console.log(this.postProduct.accountId )
                this.register.firstName =  this.viewmore[i].firstname;
@@ -92,7 +94,7 @@ export class ViewmoreComponent implements OnInit {
                this.register.address.address1 = this.viewmore[i].address.address1;
                this.city = this.viewmore[i].address.city;
                //this.state = this.viewmore[i].address.location;
-               //console.log(this.viewmore[i].address.city)
+               console.log(this.register.address.address1)
               }
             }
             

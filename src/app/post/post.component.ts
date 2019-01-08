@@ -7,6 +7,7 @@ import { AppComponent } from '../app.component'
 // loader 
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
+import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
 import {} from '@types/googlemaps';
 import {  FileUploader } from 'ng2-file-upload';
 
@@ -14,7 +15,7 @@ const URL = 'http://localhost:8080/api/upload';
 
 declare var $: any;
 declare let ClientIP: any;
-
+declare var swal: any;
 interface FileReaderEventTarget extends EventTarget {
   result:string
 }
@@ -39,6 +40,7 @@ export class PostComponent implements OnInit {
   publicIP;
   private postform;
   deals = [];
+  currentuserId:any;
   categoryArr :any;
   subCateArr = [];
   time:any
@@ -73,21 +75,26 @@ export class PostComponent implements OnInit {
   }
 
   onSelectFile(event) { // called each time file input changes
-    
+  
+   
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
-
+      alert('2')
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
         this.url = reader.result;
       }
+      
     }
 
     if(this.url !== null || this.url !== ''){
+      alert('3')
       document.getElementById('hide').style.display='block';
       //document.getElementById('show').style.display='none';
+      this.loadingCtrl.hide();
     }
+    alert('4')
 }
 
   constructor(private _dealsService:DealsService,private http: HttpClient,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService,public zone:NgZone) {
@@ -108,6 +115,51 @@ export class PostComponent implements OnInit {
 
    
   ngOnInit() {
+
+    this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
+    var CLOUDINARY_URL = 	'https://api.cloudinary.com/v1_1/uzhavar-image/upload'
+    var CLOUDINARY_UPLOAD_PRESET = 'm0xlfiw2'
+    var imgPreview = document.getElementById('img-preview')
+    var fileUpload = document.getElementById('file-upload')
+  
+    fileUpload.addEventListener('change' , function(e : any){
+      // alert('5')
+      var file = e.target.files[0];
+      var formData = new FormData();
+      formData.append('file',file);
+      formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+    
+      axios({
+        
+        url : CLOUDINARY_URL,
+        method : 'POST',
+        headers : {
+          'Content-Type' : 'application/x-www-form-urlencoded'
+        },
+        data : formData
+      }).then(function(res){
+        // alert('6')
+        console.log(res)
+        console.log(res.data.secure_url)
+       // alert('7')
+        swal({   
+          title: "Wow!",   
+          text: "Image choosed successfully",   
+          imageUrl:res.data.secure_url,
+          imageWidth: 400,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
+          animation: false
+         
+         
+     });
+        localStorage.setItem('Image', JSON.stringify(res.data.secure_url));
+       
+      }).catch(function(err){
+        console.log(err)
+      });
+    
+    });
 
   //  this.getDropDownDatas();
     this.id = this.router.snapshot.params['id']

@@ -4,7 +4,7 @@ import { DealsService } from '../deals.service';
 import { Router} from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 // import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
+declare var sweetAlert: any;
 @Component({
   selector: 'app-locationdeals',
   templateUrl: './locationdeals.component.html',
@@ -29,7 +29,6 @@ export class LocationdealsComponent implements OnInit {
   mapDeals=[];
   activeUsers=[]
   userName = {};
-  errMsg = "";
   lat2:any
   long:any
   lat1:any
@@ -38,8 +37,13 @@ export class LocationdealsComponent implements OnInit {
   longd:any
   noLocationErr:any;
   crdDeals1= []
+  userdetails=[];
   p:any;
   queryString:any;
+  categoryArr:any;
+  querydetails:any;
+  totalDeals1 = [];
+  getSearchDeals=[]
 
   constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService) { }
 
@@ -53,19 +57,18 @@ export class LocationdealsComponent implements OnInit {
 
         this.lat2 = localStorage.getItem('googleLat')
         this.long = localStorage.getItem('googleLong')
-
-        // if(this.lat2 == null){
-        //   document.getElementById('hideButton').style.display='none';
-        //   document.getElementById('showButton').style.display='block';
-        // }
-       
-        this.lat1 = this.lat2*1.009
+         this.lat1 = this.lat2*1.009
        //alert(this.lat1)
-       
+      //  let geocoder = new google.maps.Geocoder;
+      //   let latlng = {lat: this.lat2, lng: this.long};
+      //   geocoder.geocode({'location': latlng}, (results, status) => {
+      //     console.log(results); // read data from here
+      //     console.log(status);
+      //   });
         this.latd = this.lat2/1.002
        // alert(this.latd)
 
-        // console.log(this.crdDeals)
+        console.log(this.crdDeals)
         // console.log(this.crdDeals.length)
         let j=0
         for(let i=0; i < this.crdDeals.length; i++){
@@ -82,7 +85,7 @@ export class LocationdealsComponent implements OnInit {
       .subscribe(
         res =>{
           this.activeUsers = res
-        //  console.log(this.activeUsers)
+       console.log(this.activeUsers)
     
         let k =0;
 
@@ -94,8 +97,8 @@ export class LocationdealsComponent implements OnInit {
             if(this.activeUsers[i].status == 'ACTIVE'){
              // alert("1")
               this.crdDeals1[k] = this.mapDeals[j]
-              // console.log(this.crdDeals1[k])
-              // console.log(this.mapDeals[j])
+              console.log(this.crdDeals1[k])
+              console.log(this.mapDeals[j])
               //alert("2")
               k++;
             }
@@ -103,8 +106,10 @@ export class LocationdealsComponent implements OnInit {
       }
       }
       if(this.mapDeals.length == 0){
-        this.noLocationErr = "No deals based on your location"
-        document.getElementById('search_box').style.display='none';
+        this.noLocationErr = "No deals availble based on your location"
+        document.getElementById('hidePagination').style.display="none";
+        document.getElementById('hideSearchDiv').style.display="none";
+        document.getElementById('hideFilterButton').style.display="none";
   
        }
         },
@@ -130,7 +135,18 @@ export class LocationdealsComponent implements OnInit {
     // }
 
   }
-
+  getCategory(){
+    this._dealsService.getCategory()
+    .subscribe(
+        res => {
+          this.categoryArr = res;
+          console.log(this.categoryArr)
+        },
+    
+        err => {
+            this.categoryArr = [];
+        });
+  }
 
   trackMe() {
     alert("1")
@@ -166,5 +182,55 @@ export class LocationdealsComponent implements OnInit {
     else {
       this.marker.setPosition(location);
     }
+  }
+
+  filterDeal(){
+    // alert("1")
+
+    this.loadingCtrl.show();
+    this.totalDeals1 = [];
+    this.getSearchDeals = this.crdDeals1
+    console.log(this.userdetails)
+    this.querydetails = this.userdetails
+    this.refreshGrid();
+    this.loadingCtrl.hide();
+  
+  }
+
+  refreshGrid(){
+    //alert("2")
+    //this.loadingCtrl.show();
+    let j =0;
+    console.log(this.getSearchDeals)
+    for(let i=0; i < this.getSearchDeals.length; i++){
+     // alert("3")
+    
+      console.log(this.getSearchDeals[i].quantity)
+    if(this.querydetails.searchCategory == this.getSearchDeals[i].categoryId || this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||  (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) || this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price))){
+    
+      //alert("4")
+      this.loadingCtrl.hide();
+      
+      console.log(this.getSearchDeals[i])
+      this.totalDeals1[j] = this.getSearchDeals[i]
+      console.log(this.totalDeals1[j])
+      j++;
+      this.userdetails = [];
+    
+    }
+   
+    
+ 
+   this.loadingCtrl.hide();
+  }
+ if(this.totalDeals1.length == 0){
+    console.log('no deals')
+    sweetAlert("Currently no product available")
+    this.userdetails = [];
+  } 
+ 
+ 
+  this.userdetails = [];
+  
   }
 }

@@ -1,18 +1,14 @@
    
 <body class="bg" style="overflow: hidden;">
         <img class="card-img-top"  height="150px" width="200px" src="{{imageSrc}}" alt="Card image cap">
-
     <div class="container-fluid">
-        <h2 type="hidden" style="margin-top: 50px;text-align: center;color: white;font-weight: bold;padding: 10px;"></h2>
-    </div>
-    <div class="container-fluid">
-        <h2 class="categoryHeading">Get Customized Category</h2>
+        <h4 class="categoryHeading tamil_wrd">உங்களுக்கு தேவையானதை தேர்வுசெய்க</h4>
     </div>
     <p *ngIf="errMsg" style="color: red" class="text-center">{{errMsg}}</p>
     <div class="container">
             <div class="row">
-                    
-              <div class="col-md-3" *ngFor="let deal of categoryArr">
+                <div class="col-md-1"></div>    
+              <div class="col-md-3" *ngFor="let deal of categoryArr" style="margin-bottom: 10px;">
                 <div class="card" style="cursor: pointer;" routerLink="/viewCategory/{{deal._id}}">
                    <!-- {{deal.image}} -->
                    

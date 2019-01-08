@@ -2,10 +2,10 @@ declare function require(string);
 import { Component ,ViewChild,OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 //  var request = require("request");
 var url = "https://geoip-db.com/json";
-
+declare var swal: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,53 +20,16 @@ export class AppComponent implements OnInit {
   currentLong: any;
   marker: google.maps.Marker;
   isTracking:boolean
+  currentuserId:any;
 
-  constructor(public _authService:AuthService){}
+  constructor(public _authService:AuthService,public loadingCtrl: NgxSpinnerService){}
 
   ngOnInit() {
-
-    var CLOUDINARY_URL = 	'https://api.cloudinary.com/v1_1/uzhavar-image/upload'
-    var CLOUDINARY_UPLOAD_PRESET = 'm0xlfiw2'
-    var imgPreview = document.getElementById('img-preview')
-    var fileUpload = document.getElementById('file-upload')
-
-    fileUpload.addEventListener('change' , function(e : any){
-      var file = e.target.files[0];
-      var formData = new FormData();
-      formData.append('file',file);
-      formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-    
-      axios({
-        url : CLOUDINARY_URL,
-        method : 'POST',
-        headers : {
-          'Content-Type' : 'application/x-www-form-urlencoded'
-        },
-        data : formData
-      }).then(function(res){
-        console.log(res)
-
-        // this.img_post = res.data.secure_url;
-        localStorage.setItem('Image', JSON.stringify(res.data.secure_url));
-        
-      }).catch(function(err){
-        console.log(err)
-      });
-    
-    });
+   
+  
   }
 
-  // findMe(){
-
-  //     if (navigator.geolocation) {
-        
-  //       navigator.geolocation.getCurrentPosition((position) => {
-  //         this.showPosition(position);
-  //       });
-  //     } else {
-  //       alert("Geolocation is not supported by this browser.");
-  //     }
-  //   }
+  
 
   trackMe() {
     if (navigator.geolocation) {

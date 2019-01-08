@@ -1,30 +1,34 @@
 
 <body class="bg" style="overflow-x: hidden;">
 <div class="container mt-5 pt-5">
-    <div class="row mt-3 mb-3">
-        <div class="col-lg-3 col-sm-12 col-md-12">
-        <button class="btnnn btn-success" routerLink="/location">அருகிலுள்ள விற்பனை</button>
-            <!-- <button class="btn btn-success" routerLink="/location" style="display: none" id="showButton">Click here to continue</button> -->
-            <!-- <button class="btn" style="display: none;" routerLink="/location" id="showButton" >continue</button> -->
-        </div>
-       <div class="col-lg-3  col-md-3 col-sm-3 col-xs-3"></div>
-            <!-- <div class="col-lg-6 col-md-6 col-sm-6">
-                <span><input type="text" class="srchBox" style="width: 90%" placeholder="Search By Any Product Details...." id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off">
-                   </span>
-                                   
-        </div> -->
-        <div class="col-lg-6 col-md-6 col-sm-6">
-        <div class="form-group has-search" id="search_box">
-                <span class="fa fa-search form-control-feedback"></span>
-                <input type="text" class="srchBox form-control1" style="width: 90%" placeholder="Search By Any Product Details...."  [(ngModel)]="queryString" name="search" autocomplete="off">
-            </div>
-        </div>
+      <div class="row">
+          <div class="col-md-4">
+                <button class="btnnn btn-success" routerLink="/location"><i class="fa fa-map-marker" aria-hidden="true"></i> Nearby sale</button>
+                <button id="hideFilterButton" class="btn btn-primary btn1 button_word" (click)="getCategory()" data-toggle="modal" style="width:50%;margin-left: 10px;" data-target="#myModal">Filter <i class="fa fa-filter" aria-hidden="true"></i></button>
+               
+          </div>
+          <div class="col-md-2">
+             
+          </div>
+          <div class="col-md-6 onmobiviewpadding" id="hideSearchDiv">
+                <!-- <div class="form-group has-search" id="search_box"> -->
+                        <div class="inner-addon left-addon">
+                                <i class="fa fa-search glyphicon" aria-hidden="true"></i>    
+                                <input type="text" class="form-control" id="search_box"  [(ngModel)]="queryString" name="search" autocomplete="off" placeholder="Search by product name.." />
+                                 
+                              </div>
+                        <!-- <span class="fa fa-search form-control-feedback"></span>
+                        <input type="text" class="srchBox form-control1" style="width: 90%" placeholder="Search By Any Product Details...."  [(ngModel)]="queryString" name="search" autocomplete="off"> -->
+                    <!-- </div> -->
+          </div>
       </div>
-      <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
-
+      <div class="errDiv">
+            <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
+      </div>
+     
+<div  [ngStyle]="{'display':totalDeals1 == '' ? 'block' : 'none' }">
   <div class="row mt-5">
-
-    <div class="col-lg-6 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }">
+    <div class="col-lg-6 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'name' | paginate: { itemsPerPage:6,currentPage:p }">
             
         <div class="card">
               
@@ -79,12 +83,134 @@
    
       
   </div>
-  <div class="mx-auto">
+</div>
+<div  [ngStyle]="{'display':totalDeals1 == '' ? 'none' : 'block' }">
+  <div class="row mt-5">
+        <div class="col-lg-6 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name' | paginate: { itemsPerPage:6,currentPage:p }">
+                
+            <div class="card">
+                  
+               <table class="english_wrd">
+                  <div class="title">
+                    <tr>
+                      <th class="details">Product Details</th>
+                    </tr>
+                  </div>
+                  <div class="card-body">
+                      <tr>
+                          <td><strong>Category &nbsp; </strong></td>
+                          <td>:</td>
+                          <td>&nbsp;&nbsp;{{deal.category}}</td>
+                        </tr>
+                    <tr>
+                      <td><strong>Name &nbsp;</strong></td>
+                      <td>:</td>
+                      <td>&nbsp;&nbsp;{{deal.name}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quantity &nbsp;</strong></td>
+                        <td>:</td>
+                        <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Price / Quantity &nbsp;</strong></td>
+                        <td>:</td>
+                        <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Post Date &nbsp;</strong></td>
+                        <td>:</td>
+                        <td>&nbsp;&nbsp;{{deal.date | date:'dd/MM/yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Post Time &nbsp;</strong></td>
+                        <td>:</td>
+                        <td>&nbsp;&nbsp;{{deal.date | date:'hh:mm a'}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Available Place &nbsp;</strong></td>
+                            <td>:</td>
+                            <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
+                    </tr>
+                        
+              </div>
+              </table>
+                <a  class="btn btn-primary mb-3 button_word"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
+            </div>
+          </div>
+       
+          
+      </div>
+    </div>
+  <div class="mx-auto" id="hidePagination">
         <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
       </div>
 </div>
 
 </body>
 
-
+<div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+                <div class="modal-header">
+                        <h4 class="modal-title clr">Search Products</h4>
+                        <button type="button" class="close clr" data-dismiss="modal">&times;</button>
+                      </div>
+            <div class="modal-body">
+                    <form #searchform="ngForm" *ngIf ="!submitted" novalidate>
+                            <div class="row">
+                                    <div class="col-md-12">
+                                   <label style="color: black;font-weight: bold;" class="english_wrd"> Category</label>
+                                  <select class="form-control slect" #searchCategory="ngModel"  ngModel  name="searchCategory" class="form-control"  placeholder="Enter product category" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchCategory" >
+                                    <option *ngFor="let val of categoryArr" value="{{val._id}}">{{val.productCategory}}</option>
+                                  </select>
+                                    </div> 
+                              <div class="col-md-6">
+                                  <div class="form-group">
+                                      <label style="color: black;font-weight: bold;" class="english_wrd"> Min - Quantity</label>
+                                      <input type="text" #searchmainquantity="ngModel"  ngModel  name="searchmainquantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchmainquantity">
+                                    
+                                  </div>
+                               
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-group">
+                                      <label style="color: black;font-weight: bold;" class="english_wrd"> Unit</label>
+                                      <select  class="form-control" class="form-control"   placeholder="Enter unit" style="background-color: transparent;color: black;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
+                                            <option disabled >Choose unit..</option>
+                                            <option style="color: black" value="Kg">Kg</option>
+                                            <option style="color: black" value="Ltre">Ltre</option>
+                                        </select>
+                                       
+                                  </div>
+                                
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-group">
+                                      <label style="color: black;font-weight: bold;" class="english_wrd">Price Range - Min</label>
+                                      <input type="text" #frmAmt="ngModel"  ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.frmAmt">
+                                      
+                                  </div>
+                                 </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label style="color: black;font-weight: bold;" class="english_wrd"> Max</label>
+                                        <input type="text" #toCost="ngModel" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.toCost">
+                                       
+                                    </div>
+                                   </div>
+                             
+                            </div>
+                            <div class="text-center">
+                                <button type="submit"  class="btn btn-success mb-2 button_word" style="border: 1px solid white"  (click)="filterDeal()" data-dismiss="modal">Search</button>
+                            </div>
+                          </form>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
 

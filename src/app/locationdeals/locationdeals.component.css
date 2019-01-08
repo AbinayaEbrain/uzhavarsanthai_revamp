@@ -19,12 +19,13 @@
    /*background-color: #23dfe8;
      background-color: rgb(252, 176, 59); */
    background-color: #032b31;
-   height: 325px;
+   height: 355px;
     /* width: 300px; */
     color: aliceblue;
   }
+ 
   .btnnn {
-    width: 100%;
+    width: 25%;
      display: inline-block;
     font-weight: bold;
     text-align: center;
@@ -157,4 +158,38 @@
 .error_word{
   font-family: 'Cabin', sans-serif;
 }
+   .inner-addon {
+    position: relative;
+  }
   
+  /* style glyph */
+  .inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+  }
+  
+  /* align glyph */
+  .left-addon .glyphicon  { left:  0px;}
+  .right-addon .glyphicon { right: 0px;}
+  
+  /* add padding  */
+  .left-addon input  { padding-left:  30px; }
+  .right-addon input { padding-right: 30px; }
+  
+  @media only screen and (min-width: 320px) and (max-width:425px){
+    .no_deals_found{
+        text-align: center;
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        margin-top:20%
+    }
+    .errDiv{
+      background-color: white;
+      box-shadow: 7px 7px 7px grey;
+  }
+   .onmobiviewpadding{
+    padding: 10px;
+   }
+  }

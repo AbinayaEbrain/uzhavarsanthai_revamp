@@ -1,127 +1,212 @@
-<body class="bg" style="overflow: hidden;">
-  <div class="container" style="margin-top:100px;">
-    <!-- <h2 class="viewCatoryHeading">Search Your Requirement</h2> -->
-  </div>
-  <br>
-<div class="container" id="hidesearch">
- 
-    <div class="row">
-    <div class="center-block">
-    <h5 style="text-align: center;color: white; font-family:'Oxygen', sans-serif;"> Your Selected Category {{categeoryName}}!</h5>
-    <br>
-    <form #searchform="ngForm" *ngIf ="!submitted" novalidate>
-    <div class="row">
-      <div class="col-md-6">
-          <div class="form-group">
-              <label style="color: white;font-weight: bold;" class="english_wrd"> {{categeoryName}} Quantity</label>
-              <input type="text" #searchmainquantity="ngModel" [class.is-invalid]="searchmainquantity.invalid && searchmainquantity.touched" ngModel  name="searchmainquantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: white; font-family: 'Mukta', sans-serif;" required [(ngModel)]="userdetails.searchmainquantity">
-              <span style="color:whitesmoke;" class=" float-left error_word" [class.d-none] = "searchmainquantity.valid || searchmainquantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span> 
-          </div>
-       
-      </div>
-      <div class="col-md-6">
-          <div class="form-group">
-              <label style="color: white;font-weight: bold;" class="english_wrd"> {{categeoryName}} Unit</label>
-              <select required class="form-control" class="form-control"   placeholder="Enter unit" style="background-color: transparent;color: white;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
-                    <option disabled >Choose unit..</option>
-                    <option style="color: black" value="Kg">Kg</option>
-                    <option style="color: black" value="Ltre">Ltre</option>
-                </select>
-                <span style="color:whitesmoke" class=" float-left error_word" [class.d-none] = "searchqnty.valid || searchqnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Unit is required</span> 
-          </div>
-        
-      </div>
-      <div class="col-md-6">
-          <div class="form-group">
-              <label style="color: white;font-weight: bold;" class="english_wrd">Price search - From</label>
-              <input type="text" #frmAmt="ngModel" [class.is-invalid]="frmAmt.invalid && frmAmt.touched" ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: white; font-family: 'Mukta', sans-serif;" required [(ngModel)]="userdetails.frmAmt">
-                <span style="color:whitesmoke;" class=" float-left error_word" [class.d-none] = "frmAmt.valid || frmAmt.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span> 
-          </div>
-         </div>
-         <div class="col-md-6">
-            <div class="form-group">
-                <label style="color: white;font-weight: bold;" class="english_wrd"> To</label>
-                <input type="text" #toCost="ngModel" [class.is-invalid]="toCost.invalid && toCost.touched" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: white; font-family: 'Mukta', sans-serif;" required [(ngModel)]="userdetails.toCost">
-                  <span  style="color:whitesmoke;" class=" float-left error_word" [class.d-none] = "toCost.valid || toCost.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span> 
-            </div>
-           </div>
-     
-    </div>
-    <div class="text-center">
-        <button type="submit"  class="btn btn-success mb-2 button_word" style="border: 1px solid white"  [disabled] ="searchform.form.invalid" (click)="filterDeal()">Search</button>
-    </div>
-  </form>
-    </div>
-    </div>
-    </div>
-
-    
-    <div class="container">
-        <div class="col-md-2">
-                <button class="btnnn btn-success btn-sm button_word" (click)="showsearchdiv()" routerLink="/dealCategory" id="showButton"><i class="fas fa-angle-left"></i>&nbsp;&nbsp;Back</button>
-        </div>
-        <p style="text-align: center;color:white;font-weight: bold;margin-top: 100px;" class="display_msg" *ngIf="errMsg">{{errMsg}}</p>
-           
-           
-        <div class="row mt-5">
-               
-            <div class="col-lg-4 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of specifyCategory | paginate: { itemsPerPage:6,currentPage:p }">
-            
-                <div class="card">
-                      
-                   <table>
-                      <div class="title">
-                        <tr>
-                          <th class="details">Product Details</th>
-                        </tr>
-                      </div>
-                      <div class="card-body">
-                          <tr>
-                              <td><strong>Category &nbsp; </strong></td>
-                              <td>:</td>
-                              <td>&nbsp;&nbsp;{{deal.category}}</td>
-                            </tr>
-                        <tr>
-                          <td><strong>Name &nbsp;</strong></td>
-                          <td>:</td>
-                          <td>&nbsp;&nbsp;{{deal.name}}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Quantity &nbsp;</strong></td>
-                            <td>:</td>
-                            <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Price / Quantity &nbsp;</strong></td>
-                            <td>:</td>
-                            <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Post Date &nbsp;</strong></td>
-                            <td>:</td>
-                            <td>&nbsp;&nbsp;{{deal.date | date:'dd/MM/yyyy'}}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Post Time &nbsp;</strong></td>
-                            <td>:</td>
-                            <td>&nbsp;&nbsp;{{deal.date | date:'hh:mm a'}}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Available Place &nbsp;</strong></td>
-                                <td>:</td>
-                                <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
-                        </tr>
-                            
-                  </div>
-                  </table>
-                    <a  class="btn btn-primary mb-3"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
+<body class="backgrd">
+        <div class="container mt-5 pt-5">
+            <div class="row">
+                <div class="col-md-4">
+                        <button class="btn btn-primary btn1 button_word" style="width: 25%;margin-left: 10px;" routerLink="/dealCategory">Back</button>
+                        <button id="hideFilterButton" class="btn btn-primary btn1 button_word" data-toggle="modal" style="width: 50%;margin-left: 10px;" data-target="#myModal">Filter <i class="fa fa-filter" aria-hidden="true" ></i></button>
                 </div>
-              </div>
-          
+                <div class="col-md-2">
+                         
+                </div>
+                <div class="col-md-6 onmobiviewpadding" id="hideSearchDiv">
+                        <div class="inner-addon left-addon">
+                                <i class="fa fa-search glyphicon" aria-hidden="true"></i>    
+                                <input type="text" class="form-control"  [(ngModel)]="queryString" placeholder="Search by product name.." />
+                                 
+                              </div>
+                     </div>
               
-          </div>
-          <div class="mx-auto" id="hidePagination">
-                <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+            </div>
+           
+            <div [ngStyle]="{'display':totalDeals1 == '' ? 'block' : 'none' }" >
+                <div class="errDiv">
+                        <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
+                </div>
+                   
+                <div class="row mt-5" id="hideifNoData">
+                        
+                        <div class="col-lg-6 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of totalDeals | filterdata: queryString  : 'name' | paginate: { itemsPerPage:6,currentPage:p }">
+                                            
+                            <div class="card">
+                                
+                            <table class="english_wrd">
+                                <div class="title">
+                                    <tr>
+                                    <th class="details">Product Details</th>
+                                    </tr>
+                                </div>
+                                <div class="card-body">
+                                    <tr>
+                                        <td><strong>Category &nbsp; </strong></td>
+                                        <td>:</td>
+                                        <td>&nbsp;&nbsp;{{deal.category}}</td>
+                                        </tr>
+                                    <tr>
+                                    <td><strong>Name &nbsp;</strong></td>
+                                    <td>:</td>
+                                    <td>&nbsp;&nbsp;{{deal.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Quantity &nbsp;</strong></td>
+                                        <td>:</td>
+                                        <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Price / Quantity &nbsp;</strong></td>
+                                        <td>:</td>
+                                        <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Post Date &nbsp;</strong></td>
+                                        <td>:</td>
+                                        <td>&nbsp;&nbsp;{{deal.date | date:'dd/MM/yyyy'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Post Time &nbsp;</strong></td>
+                                        <td>:</td>
+                                        <td>&nbsp;&nbsp;{{deal.date | date:'hh:mm a'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Available Place &nbsp;</strong></td>
+                                            <td>:</td>
+                                            <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
+                                    </tr>
+                                        
+                            </div>
+                            </table>
+                                <a  class="btn btn-primary mb-3 button_word"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
+                            </div>
+                        </div>
+                    
+                        
+                    </div>
+            </div>
+            
+            <div [ngStyle]="{'display':totalDeals1 == '' ? 'none' : 'block' }" >
+                    <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
+                    <div class="row mt-5" id="hideifData">
+                          
+                            <div class="col-lg-6 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }">
+                                    
+                                <div class="card">
+                                      
+                                   <table class="english_wrd">
+                                      <div class="title">
+                                        <tr>
+                                          <th class="details">Product Details</th>
+                                        </tr>
+                                      </div>
+                                      <div class="card-body">
+                                          <tr>
+                                              <td><strong>Category &nbsp; </strong></td>
+                                              <td>:</td>
+                                              <td>&nbsp;&nbsp;{{deal.category}}</td>
+                                            </tr>
+                                        <tr>
+                                          <td><strong>Name &nbsp;</strong></td>
+                                          <td>:</td>
+                                          <td>&nbsp;&nbsp;{{deal.name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Quantity &nbsp;</strong></td>
+                                            <td>:</td>
+                                            <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Price / Quantity &nbsp;</strong></td>
+                                            <td>:</td>
+                                            <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Post Date &nbsp;</strong></td>
+                                            <td>:</td>
+                                            <td>&nbsp;&nbsp;{{deal.date | date:'dd/MM/yyyy'}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Post Time &nbsp;</strong></td>
+                                            <td>:</td>
+                                            <td>&nbsp;&nbsp;{{deal.date | date:'hh:mm a'}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Available Place &nbsp;</strong></td>
+                                                <td>:</td>
+                                                <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
+                                        </tr>
+                                            
+                                  </div>
+                                  </table>
+                                    <a  class="btn btn-primary mb-3 button_word"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
+                                </div>
+                              </div>
+                           
+                              
+                          </div>
+                        </div>
+              <div class="mx-auto" id="hidePagination" >
+                    <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+                  </div>
               </div>
-        </div>
 </body>
+
+<div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+                <div class="modal-header">
+                        <h4 class="modal-title clr">Search Products</h4>
+                        <button type="button" class="close clr" data-dismiss="modal">&times;</button>
+                      </div>
+            <div class="modal-body">
+                    <form #searchform="ngForm" *ngIf ="!submitted" novalidate>
+                            <div class="row">
+                                    <div class="col-md-12">
+                                   <label style="color: black;font-weight: bold;" class="english_wrd"> Location</label>
+                                   <input google-place type="text" placeholder="மாவட்டம் / City" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city"  ngModel [(ngModel)]="userdetails.address" >
+                                    </div>
+                              <div class="col-md-6">
+                                  <div class="form-group">
+                                      <label style="color: black;font-weight: bold;" class="english_wrd"> Min - Quantity</label>
+                                      <input type="text" #searchmainquantity="ngModel"  ngModel  name="searchmainquantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchmainquantity">
+                                    
+                                  </div>
+                               
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-group">
+                                      <label style="color: black;font-weight: bold;" class="english_wrd"> Unit</label>
+                                      <select  class="form-control" class="form-control"   placeholder="Enter unit" style="background-color: transparent;color: black;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
+                                            <option disabled >Choose unit..</option>
+                                            <option style="color: black" value="Kg">Kg</option>
+                                            <option style="color: black" value="Ltre">Ltre</option>
+                                        </select>
+                                       
+                                  </div>
+                                
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-group">
+                                      <label style="color: black;font-weight: bold;" class="english_wrd">Price Range - Min</label>
+                                      <input type="text" #frmAmt="ngModel"  ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.frmAmt">
+                                      
+                                  </div>
+                                 </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label style="color: black;font-weight: bold;" class="english_wrd"> Max</label>
+                                        <input type="text" #toCost="ngModel" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.toCost">
+                                       
+                                    </div>
+                                   </div>
+                             
+                            </div>
+                            <div class="text-center">
+                                <button type="submit"  class="btn btn-success mb-2 button_word" style="border: 1px solid white"  (click)="filterDeal()" data-dismiss="modal">Search</button>
+                            </div>
+                          </form>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>

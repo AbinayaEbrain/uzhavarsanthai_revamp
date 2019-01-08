@@ -1,12 +1,13 @@
-.bg{
+.backgrd{
     background-image:  url(../../assets/Images/Green_farms_of_Jats_in_Haryana.jpg);
     background-position: center center;
     background-repeat:  no-repeat;
     background-attachment: fixed;
     background-size:  cover;
-    background-color: #999;
     min-height: 100vh;
-    width:100%
+    width:100%;
+    margin-top:-30px;
+    overflow-x: auto;
   }
 .center-block {
     display: block;
@@ -17,26 +18,26 @@
     width:500px;
     height: 300px;
     padding:10px;
-    background-color:rgba(12, 4, 4, 0.39);
+    
     border-radius: 5px;
 }
 .viewCatoryHeading{
     text-align: center;color:rgb(255, 255, 255);font-weight: bold;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color:white;
-    opacity: 1; /* Firefox */
+  color: black !important;
+ 
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color:white;
+  color: black !important;
 }
 
 ::-ms-input-placeholder { /* Microsoft Edge */
-    color:white;
+  color: black !important;
 }
 .bootstrap-select {
- color:white;
+ color:black !important;
   }
 
   .card{
@@ -67,7 +68,8 @@
     text-align: center;
     color: #f2f2f3;
     font-weight: bold;
-    font-size: 18px
+    font-size: 20px;
+    margin-top:20%
   }
   textarea{
     overflow: hidden;
@@ -182,4 +184,46 @@
   }
   .error_word{
     font-family: 'Cabin', sans-serif;
+  }
+   .btn1{
+        font-weight: bold;
+        background-color: #1e7e34;
+        border-color: #1e7e34; 
+   }
+   .inner-addon {
+    position: relative;
+  }
+  
+  /* style glyph */
+  .inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+  }
+  
+  /* align glyph */
+  .left-addon .glyphicon  { left:  0px;}
+  .right-addon .glyphicon { right: 0px;}
+  
+  /* add padding  */
+  .left-addon input  { padding-left:  30px; }
+  .right-addon input { padding-right: 30px; }
+  
+  
+
+  @media only screen and (min-width: 320px) and (max-width:425px){
+    .no_deals_found{
+        text-align: center;
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        margin-top:20%
+    }
+    .errDiv{
+      background-color: white;
+      box-shadow: 7px 7px 7px grey;
+  }
+   .onmobiviewpadding{
+    padding: 10px;
+   }
   }

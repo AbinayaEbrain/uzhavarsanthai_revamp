@@ -15,6 +15,7 @@ import { ViewmoreComponent } from './viewmore/viewmore.component';
 import { PasswordValidatorDirective } from '../app/register/password.validator.directive';
 import { UserDealsEditComponent } from './user-deals-edit/user-deals-edit.component';
 import { DatePipe } from '@angular/common';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 // loader  
 import { NgxSpinnerModule } from 'ngx-spinner'; 
  //import {googlemaps} from '../../node_modules/';
@@ -41,6 +42,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 //file upload
 import { FileUploadModule } from 'ng2-file-upload';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { DeactiveDealsComponent } from './deactive-deals/deactive-deals.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +66,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     GooglePlacesDirective,
     ViewcategoryComponent,
     HotdealsComponent,
+    UserProfileComponent,
+    DeactiveDealsComponent,
     
   ],
   imports: [
@@ -75,6 +80,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     NgxPaginationModule,
     FileUploadModule,
     BsDatepickerModule,
+    SweetAlert2Module,
     BsDatepickerModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAmEuB6RfjEQdz9zqL_nYihfHkeWR-iq-Y',

@@ -46,7 +46,7 @@ export class UserDealsEditComponent implements OnInit {
  public formatted_address:any
  url: ''
  dateNrml:any
-
+ currentImg:any;
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
     //to the object in the DOM.
@@ -63,20 +63,28 @@ export class UserDealsEditComponent implements OnInit {
 
   onSelectFile(event) { // called each time file input changes
     
+   
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
+console.log(reader)
+
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
         this.url = reader.result;
+        console.log(this.url)
       }
     }
     if(this.url !== null || this.url !== ''){
       document.getElementById('hide').style.display='block';
       document.getElementById('show').style.display='none';
     }
+  
+    console.log(this.currentImg)
 }
+
+
 
   ngOnInit() {
 

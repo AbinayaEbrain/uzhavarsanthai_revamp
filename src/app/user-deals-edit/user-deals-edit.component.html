@@ -34,7 +34,7 @@
                     <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                       <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)" [(ngModel)]="deallistobj.name"  name="name" class="form-control" maxlength="20"  autocomplete="off"  required>
                
-                      <label class="form-control-placeholder english_wrd" for="name">Product Name</label>
+                      <label class="form-control-placeholder english_wrd floatinglabl" for="name"><span style="font-size: 14px" class="tamil_wrd">பொருளின் பெயர் </span>/ Product Name</label>
                       <span class="text-danger float-left error_word" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product Name is required</span> 
                     </div>
                   
@@ -46,7 +46,7 @@
                       <div class="col-md-2 col-sm-8 col-8">
                           <div class="form-group mb-5 mt-2">
                               <input type="text"  #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched"  maxlength="5" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="deallistobj.quantity"  name="quantity" class="form-control"  autocomplete="off"  required>
-                              <label class="form-control-placeholder english_wrd" for="quantity">Quantity</label>
+                              <label class="form-control-placeholder english_wrd floatinglabl" for="quantity"><span style="font-size: 14px" class="tamil_wrd">அளவு </span>/ Quantity</label>
                               <span class="text-danger float-left error_word" [class.d-none] = "quantity.valid || quantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>  
                             </div>
                       </div>
@@ -66,7 +66,7 @@
                           <div class="col-md-2 col-sm-8 col-8">
                               <div class="form-group mb-5 mt-2">
                                   <input type="text"  #subQuantity="ngModel" [class.is-invalid]="subQuantity.invalid && subQuantity.touched" maxlength="5" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="deallistobj.subQuantity"  name="subQuantity" class="form-control" value="0" autocomplete="off"  required>
-                                  <label class="form-control-placeholder english_wrd" for="quantity">Sub Quantity</label>
+                                  <label class="form-control-placeholder english_wrd floatinglabl" for="quantity">Sub Quantity</label>
                                   <span class="text-danger float-left error_word" [class.d-none] = "subQuantity.valid || subQuantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> required</span>  
                                 </div>
                           </div>
@@ -92,13 +92,13 @@
                       <div class="col-md-4">    
                           <div class="form-group mb-5 mt-2">
                             <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="deallistobj.price"  name="price" class="form-control" maxlength="5" autocomplete="off"  required>
-                            <label class="form-control-placeholder english_wrd" for="name">Price / {{showUnit}}</label>
+                            <label class="form-control-placeholder english_wrd floatinglabl" for="name"><span style="font-size: 14px" class="tamil_wrd">விலை </span>/ Price / {{showUnit}}</label>
                             <span class="text-danger float-left error_word" [class.d-none] = "price.valid || price.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Price is required</span> 
                           </div>
                     </div>  
                   
                     <div class="col-md-4">
-                            <label class="lab english_wrd" for="category">Available Place</label>
+                            <label class="lab english_wrd" for="category"><span style="font-size: 14px" class="tamil_wrd">கிடைக்குமிடம் </span>/ Available Place</label>
                         <div class="form-group mb-5 mt-2">
                          
                               <input google-place type="text" placeholder="Search" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="deallistobj.avlPlace" required>
@@ -109,14 +109,14 @@
                       <div class="col-md-4">
                           <div class="form-group mb-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                               <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="deallistobj.description"  name="description" class="form-control"  autocomplete="off" maxlength="250" required>
-                              <label class="form-control-placeholder english_wrd" for="date">Description</label>
+                              <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_wrd">பொருளைப் பற்றி </span>/ Description</label>
                               <span class="text-danger float-left error_word" [class.d-none] = "description.valid || description.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Description is required</span>  
                             </div>
                       </div> 
                       <div class="col-md-4">
                             <div class="form-group mb-5  mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                                 <input type="text" #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  name="validityTime" class="form-control" [(ngModel)]="deallistobj.validityTime" bsDatepicker  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
-                                <label class="form-control-placeholder english_wrd" for="date">Expiration /<span style="font-size: 14px" class="tamil_word">காலாவதியாகும் தேதி</span></label>
+                                <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_word">காலாவதியாகும் தேதி </span>/ Expiry Date </label>
                                 <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>  
                               </div>
                         </div> 
@@ -127,7 +127,7 @@
                 <div class="col-md-4">
                    <div class="form-group">
                         <span style="color: white;" class="english_wrd">Choose your product image</span>
-                        <label class="file-upload-container ml-2" for="file-upload" (change)="onSelectFile($event)" style="font-weight: bold;border: 2px solid green;padding: 5px;color: white">
+                        <label class="file-upload-container ml-2" for="file-upload"  (change)="onSelectFile($event)" style="font-weight: bold;border: 2px solid green;padding: 5px;color: white">
                             <input id="file-upload" class="mx-auto" type="file" style="display:none;">
                             Select an Image
                           </label>
@@ -141,8 +141,11 @@
                     </button> 
                 </div> -->
               
-                <div class="col-md-4 text-left">
-                        <img style="height: 50px;width: 50px;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
+                <div class="col-md-4 text-left" >
+                        <img data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
+
+                        
+                        
                 </div>
               </div> 
 
@@ -160,5 +163,25 @@
               </div>
   </div>
   
-  
+  <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content" >
+            <div class="modal-header">
+              <h5 class="modal-title ">Produt Image</h5>
+              <button type="button" class="close"  data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                    <img src="{{deallistobj.image}}" width= "100%" alt="Card image cap">
+            </div>
+            <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-danger"  data-dismiss="modal">Close</button>
+                </div> -->
+              
+          
+          </div>
+          
+        </div>
+      </div>
   

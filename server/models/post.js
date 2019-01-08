@@ -25,12 +25,7 @@ const postSchema = new Schema({
         admin_area_l1:'',
         country:'',
         postal_code:''
-    },
-    expireAt: {
-        type: Date, required: true,
-        default: function() {
-            return new Date(new Date(this.validityTime));
-        },expires : 60 
-    } 
+    }
+
 })
 module.exports = mongoose.model('post',postSchema,'post')
