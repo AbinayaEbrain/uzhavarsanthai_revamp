@@ -56,6 +56,8 @@ export class DealsComponent implements OnInit {
     formatted_address:'',
     locality : ''
   };
+  submitted:any;
+  panTo:any;
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -71,6 +73,7 @@ export class DealsComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.loadingCtrl.show();
     document.getElementById('showBackButton').style.display="none";
     
@@ -87,10 +90,13 @@ export class DealsComponent implements OnInit {
         document.getElementById('hidePagination').style.display="none";
         document.getElementById('hideSearchDiv').style.display="none";
         document.getElementById('hideFilterButton').style.display="none";
+<<<<<<< HEAD
         document.getElementById('hideNearByBtn').style.display="none";
         document.getElementById('showBackButton').style.display="block";
         this.loadingCtrl.hide();
       
+=======
+>>>>>>> 6deee98f43798e556b43c5fd61e186f6db35e19e
       }
 
         },
@@ -119,6 +125,7 @@ export class DealsComponent implements OnInit {
         }
       }
       }
+      console.log( this.crdDeals1)
         },
         err=>{}
       )
@@ -139,10 +146,6 @@ export class DealsComponent implements OnInit {
       } else {
         alert("Geolocation is not supported by this browser.");
       }
-
-
-    
-    
   }
 
   // getGoogleAddress(){

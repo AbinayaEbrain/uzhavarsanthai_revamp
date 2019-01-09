@@ -23,7 +23,7 @@
               
             </div>
            
-            <div [ngStyle]="{'display':totalDeals1 == '' ? 'block' : 'none' }" >
+            <!-- <div [ngStyle]="{'display':totalDeals1 == [] ? 'block' : 'none' }" > -->
                 <div class="errDiv">
                         <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
                 </div>
@@ -85,9 +85,9 @@
                     
                         
                     </div>
-            </div>
+            <!-- </div> -->
             
-            <div [ngStyle]="{'display':totalDeals1 == '' ? 'none' : 'block' }" >
+            <div [ngStyle]="{'display':totalDeals1 == [] ? 'none' : 'block' }" >
                     <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
                     <div class="row mt-5" id="hideifData">
                           
@@ -194,7 +194,6 @@
                                   <div class="form-group">
                                       <label style="color: black;font-weight: bold;" class="english_wrd">Price Range - Min</label>
                                       <input type="text" #frmAmt="ngModel"  ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.frmAmt">
-                                      
                                   </div>
                                  </div>
                                  <div class="col-md-6">
@@ -204,7 +203,6 @@
                                        
                                     </div>
                                    </div>
-                             
                             </div>
                             <div class="text-center">
                                 <button type="submit"  class="btn btn-success mb-2 button_word" style="border: 1px solid white"  (click)="filterDeal()" data-dismiss="modal">Search</button>

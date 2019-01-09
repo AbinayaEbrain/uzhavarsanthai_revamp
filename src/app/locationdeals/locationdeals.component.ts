@@ -43,7 +43,8 @@ export class LocationdealsComponent implements OnInit {
   categoryArr:any;
   querydetails:any;
   totalDeals1 = [];
-  getSearchDeals=[]
+  getSearchDeals=[];
+  submitted:any;
 
   constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService) { }
 
