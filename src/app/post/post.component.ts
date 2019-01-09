@@ -115,8 +115,6 @@ export class PostComponent implements OnInit {
 
    
   ngOnInit() {
-
-    this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
     var CLOUDINARY_URL = 	'https://api.cloudinary.com/v1_1/uzhavar-image/upload'
     var CLOUDINARY_UPLOAD_PRESET = 'm0xlfiw2'
     var imgPreview = document.getElementById('img-preview')

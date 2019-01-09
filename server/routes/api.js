@@ -1,12 +1,9 @@
 const express =require('express')
 const jwt = require('jsonwebtoken')
-
 const router = express.Router()
 const User = require('../models/user')
 const Post = require('../models/post')
 const Category = require('../models/category')
-
-
 const mongoose = require('mongoose')
 const db ="mongodb://user01:user01@ds023704.mlab.com:23704/farmersdb"
 
@@ -255,7 +252,7 @@ router.put('/updateuser/:id', function(req, res){
     User.findByIdAndUpdate(req.params.id,
     {
         $set: {firstname : req.body.firstname, lastName : req.body.lastName, gender : req.body.gender,
-            address : req.body.address,password : req.body.password,confirmPassword : req.body.confirmPassword}
+            address : req.body.address}
     },
     {
         new: true

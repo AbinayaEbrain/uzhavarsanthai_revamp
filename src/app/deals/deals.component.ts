@@ -51,12 +51,15 @@ export class DealsComponent implements OnInit {
   getlng:any
   getSearchDeals=[]
   querydetails:any;
+  submitted:any;
+  panTo:any;
 
   constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService){
    
   }
 
   ngOnInit() {
+    
     this.loadingCtrl.show();
    this._dealsService.getDeals()
       .subscribe(
@@ -70,8 +73,6 @@ export class DealsComponent implements OnInit {
         document.getElementById('hidePagination').style.display="none";
         document.getElementById('hideSearchDiv').style.display="none";
         document.getElementById('hideFilterButton').style.display="none";
-       
-      
       }
 
         },
@@ -98,6 +99,7 @@ export class DealsComponent implements OnInit {
         }
       }
       }
+      console.log( this.crdDeals1)
         },
         err=>{}
       )
@@ -118,10 +120,6 @@ export class DealsComponent implements OnInit {
       } else {
         alert("Geolocation is not supported by this browser.");
       }
-
-
-    
-    
   }
 
   getCategory(){

@@ -19,13 +19,21 @@ export class UserProfileComponent implements OnInit {
   success:any
   id:any;
   currentusername:any;
-  public crntUser: any = {};
+  public crntUser: any = {
+    address : {
+      addressLine:'',
+      city : {
+        formatted_address : '',
+      }
+    }
+  };
   public addrKeys: string[];
   public addr: {
     formatted_address:''
   };
   public address:any;
-  adrss:any
+  adrss:any;
+  addrs:any;
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
     //to the object in the DOM.
@@ -41,13 +49,9 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.loadingCtrl.show();
-    // alert("3")
     this.InitialCall();
    // console.log(this.InitialCall)
     this.id = this.route.snapshot.params['id']
-  
-    // this.InitialCall();
-    //this.currentusername = JSON.parse(localStorage.getItem('currentUser')).firstname
     this._users.getDetails()
     .subscribe(
       res=>{
@@ -57,15 +61,17 @@ export class UserProfileComponent implements OnInit {
         for(let i=0;i<this.loggedUser.length;i++){
          this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
           console.log(this.currentuserId)
-          if(this.loggedUser[i]._id == this.currentuserId){
-            this.crntUser = this.loggedUser[i]
-           this.adrss = this.crntUser.address
-           console.log(this.crntUser.address.addressLine)
+          if( this.currentuserId == this.loggedUser[i]._id){
+            this.crntUser.firstname = this.loggedUser[i].firstname;
+            this.crntUser.lastName = this.loggedUser[i].lastName;
+            this.crntUser.gender = this.loggedUser[i].gender;
+            this.crntUser.address.addressLine =  this.loggedUser[i].address.addressLine;
+            this.crntUser.address.address1 = this.loggedUser[i].address.address1;
+            this.crntUser.address.city.formatted_address = this.loggedUser[i].address.city.formatted_address;
+            this.crntUser.password = this.loggedUser[i].password;
+            this.crntUser.phone = this.loggedUser[i].phone;
           }
         }
-       
-       
-
       },
       err=>{
         console.log(err)
@@ -76,12 +82,13 @@ export class UserProfileComponent implements OnInit {
 
   updateUser(){
 
-    if(this.addr == null || this.addr == undefined){
-      this.crntUser.address.city = this.adrss 
-    }
-    else{
+    console.log(this.addr)
+    if(this.addr != undefined || this.addr != null){
       this.crntUser.address.city = this.addr
     }
+    console.log(this.crntUser)
+    console.log(this.id)
+   
     this._users.updateCustomer(this.crntUser,this.id)
     .subscribe(
       res=>{
@@ -107,24 +114,23 @@ export class UserProfileComponent implements OnInit {
   } 
   
   InitialCall() {
-    // alert("2")
     console.log(this.loggedUser)
     for(let i=0; i < this.loggedUser.length; i++){
       if(this.id == this.loggedUser[i]._id){
         console.log(this.loggedUser[i])
-        this.crntUser = this.loggedUser[i]
-      console.log(this.crntUser.firstname)
-      console.log(this.crntUser)
+        this.crntUser.firstname = this.loggedUser[i].firstname;
+        this.crntUser.lastName = this.loggedUser[i].lastName;
+        this.crntUser.gender = this.loggedUser[i].gender;
+        this.crntUser.address.addressLine =  this.loggedUser[i].address.addressLine;
+        this.crntUser.address.address1 = this.loggedUser[i].address.address1;
+        this.crntUser.address.city.formatted_address = this.loggedUser[i].address.city.formatted_address;
       }
-
-  
   }
 }
   onSubmit(){
     this.form.form.markAsPristine();
     this.form.form.markAsUntouched();
     this.form.form.updateValueAndValidity();
-  //  alert("1")
     this.InitialCall(); 
   }
 

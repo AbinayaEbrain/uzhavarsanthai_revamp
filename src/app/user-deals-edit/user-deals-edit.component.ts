@@ -66,7 +66,7 @@ export class UserDealsEditComponent implements OnInit {
    
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
-console.log(reader)
+      console.log(reader)
 
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url

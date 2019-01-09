@@ -130,6 +130,10 @@ const routes: Routes = [
   component: UserProfileComponent
 },
 {
+  path: 'updateuser',
+  component: UserProfileComponent
+},
+{
   path: 'expired-products',
   component: DeactiveDealsComponent
 }

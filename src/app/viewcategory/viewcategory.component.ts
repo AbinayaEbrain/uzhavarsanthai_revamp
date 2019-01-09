@@ -1,9 +1,10 @@
-import { Component, OnInit ,NgZone } from '@angular/core';
+import { Component, OnInit ,ElementRef,ViewChild,NgZone } from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import { DealsService } from '../deals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router} from '@angular/router';
-import {} from '@types/googlemaps';
+import { GooglePlacesDirective } from '../google-places.directive';
+// import {} from '@types/googlemaps';
 declare var sweetAlert: any;
 import { INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS } from '@angular/platform-browser-dynamic/src/platform_providers';
 
@@ -24,11 +25,14 @@ export class ViewcategoryComponent implements OnInit {
   querydetails:any;
   totalDeals1 = [];
   noSearchDealsErr:any
+  queryString:any;
+  p:any;
+  submitted:any;
   public addrKeys: string[];
   public addr: {
     formatted_address:''
   };
-
+ 
   setAddress(addrObj) {
     this.zone.run(() => {
       this.addr = addrObj;
@@ -81,7 +85,6 @@ export class ViewcategoryComponent implements OnInit {
      
   }
  
-
   filterDeal(){
     this.totalDeals1 = [];
     this.loadingCtrl.show();
