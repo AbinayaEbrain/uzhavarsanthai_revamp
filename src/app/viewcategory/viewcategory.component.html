@@ -1,9 +1,14 @@
+<style>
+      .pac-container {
+        z-index: 10000 !important;
+    }
+</style>
 <body class="backgrd">
         <div class="container mt-5 pt-5">
             <div class="row">
                 <div class="col-md-4">
-                        <button class="btn btn-primary btn1 button_word" style="width: 25%;margin-left: 10px;" routerLink="/dealCategory">Back</button>
-                        <button id="hideFilterButton" class="btn btn-primary btn1 button_word" data-toggle="modal" style="width: 50%;margin-left: 10px;" data-target="#myModal">Filter <i class="fa fa-filter" aria-hidden="true" ></i></button>
+                        <button class="btn btn-primary btn1 button_word" style="width: 25%;margin-left: 10px;" routerLink="/dealCategory"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
+                        <button id="hideFilterButton" (click)="getGoogleAddress()" class="btn btn-primary btn1 button_word" data-toggle="modal" style="width: 50%;margin-left: 10px;" data-target="#myModal" >Filter <i class="fa fa-filter" aria-hidden="true" ></i></button>
                 </div>
                 <div class="col-md-2">
                          
@@ -67,7 +72,7 @@
                                         <td>&nbsp;&nbsp;{{deal.date | date:'hh:mm a'}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Available Place &nbsp;</strong></td>
+                                        <td><strong>Location &nbsp;</strong></td>
                                             <td>:</td>
                                             <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
                                     </tr>
@@ -128,7 +133,7 @@
                                             <td>&nbsp;&nbsp;{{deal.date | date:'hh:mm a'}}</td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Available Place &nbsp;</strong></td>
+                                            <td><strong>Location &nbsp;</strong></td>
                                                 <td>:</td>
                                                 <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
                                         </tr>
@@ -162,7 +167,8 @@
                             <div class="row">
                                     <div class="col-md-12">
                                    <label style="color: black;font-weight: bold;" class="english_wrd"> Location</label>
-                                   <input google-place type="text" placeholder="மாவட்டம் / City" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city"  ngModel [(ngModel)]="userdetails.address" >
+                                   <!-- <input google-place type="text" id="searchGoogle" placeholder="மாவட்டம் / City" > -->
+                                   <input google-place type="text" id="searchLocation" placeholder="Search location" class="form-control addressplhldr" #searchLocation="ngModel"  ngModel  name="searchLocation" (onSelect)="setAddress($event)"  [(ngModel)]="userdetails.searchLocation">
                                     </div>
                               <div class="col-md-6">
                                   <div class="form-group">

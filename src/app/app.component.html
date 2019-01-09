@@ -18,14 +18,14 @@
          <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <a class="nav-link" routerLink="/deals" *ngIf="!_authService.loggedIn()" (click)="trackMe()" routerLinkActive="active">Deals</a>
          </li>
-         <li class="nav-item dropdown"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link dropdown-toggle" *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()" routerLinkActive="active">My Products</a>
-          <div class="dropdown-menu">
+         <li class="nav-item "  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="nav-link "  routerLink="/user-deals" *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()" routerLinkActive="active">My Products</a>
+          <!-- <div class="dropdown-menu">
             <a class="dropdown-item"  style="cursor: pointer;" 
             *ngIf="_authService.loggedIn()" routerLink="/user-deals">Active Products <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
             <a class="dropdown-item"  style="cursor: pointer;"
             *ngIf="_authService.loggedIn()" routerLink="/expired-products">Expired Products <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
-          </div>
+          </div> -->
         </li>
         <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <a class="nav-link" routerLink="/admin" *ngIf="_authService.roleAdmin() && _authService.loggedIn()" routerLinkActive="active">Admin</a>

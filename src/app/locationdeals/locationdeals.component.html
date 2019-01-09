@@ -20,7 +20,7 @@
                 </div>
             </div>
             
-            <div class="errDiv"> <p class="no_deals_found error_word">{{noLocationErr}}</p></div>
+          <p class="no_deals_found error_word" *ngIf="noLocationErr">{{noLocationErr}}</p>
          
        <div [ngStyle]="{'display':totalDeals1 == '' ? 'block' : 'none' }">  
       <div class="row mt-5">
@@ -66,7 +66,7 @@
                         <td>&nbsp;&nbsp;{{deal.date | date:'hh:mm a'}}</td>
                     </tr>
                     <tr>
-                        <td><strong>Available Place &nbsp;</strong></td>
+                        <td><strong>Location &nbsp;</strong></td>
                             <td>:</td>
                             <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
                         </tr>

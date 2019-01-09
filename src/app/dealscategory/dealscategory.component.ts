@@ -20,13 +20,14 @@ export class DealscategoryComponent implements OnInit {
   constructor(private _dealService:DealsService,public loadingCtrl: NgxSpinnerService,) { }
 
   ngOnInit() {
+    this.loadingCtrl.show();
     this._dealService.getCategory()
     .subscribe(
         res => {
-         this.loadingCtrl.hide();
+      
          
           this.categoryArr = res;
-          
+          this.loadingCtrl.hide();
           if(this.categoryArr.length == 0){
             this.errMsg = "No category added"
           }

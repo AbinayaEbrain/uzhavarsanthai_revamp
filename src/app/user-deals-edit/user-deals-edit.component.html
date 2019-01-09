@@ -141,12 +141,15 @@
                     </button> 
                 </div> -->
               
-                <div class="col-md-4 text-left" >
+                <div class="col-md-4 text-left" id="hideDisplayImg" >
                         <img data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
 
                         
                         
                 </div>
+                <!-- <div class="col-md-4 text-left" id="localStorageImg" >
+                       <img  id="localStorageImg"  style="height: 50px;width: 50px;cursor: pointer;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
+                 </div> -->
               </div> 
 
                     <div class="row">
@@ -173,7 +176,7 @@
               <button type="button" class="close"  data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                    <img src="{{deallistobj.image}}" width= "100%" alt="Card image cap">
+                    <img src="{{deallistobj.image}}" height="250px" width= "100%" alt="Card image cap">
             </div>
             <!-- <div class="modal-footer">
                   <button type="button" class="btn btn-danger"  data-dismiss="modal">Close</button>

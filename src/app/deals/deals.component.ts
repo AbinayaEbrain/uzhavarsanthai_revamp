@@ -1,10 +1,10 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild,NgZone} from '@angular/core';
 import { DealsService } from '../deals.service';
 import { Router} from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {} from '@types/googlemaps';
 declare var sweetAlert: any;
-
+declare var $: any;
 // loader 
 
 @Component({
@@ -51,26 +51,45 @@ export class DealsComponent implements OnInit {
   getlng:any
   getSearchDeals=[]
   querydetails:any;
+  public addrKeys: string[];
+  public addr: {
+    formatted_address:'',
+    locality : ''
+  };
 
-  constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService){
+  setAddress(addrObj) {
+    this.zone.run(() => {
+      this.addr = addrObj;
+      this.addrKeys = Object.keys(addrObj);
+      console.log(this.addrKeys)
+      console.log(this.addr)
+       console.log(this.addr.locality)
+    });
+  }
+  constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService,public zone:NgZone){
    
   }
 
   ngOnInit() {
     this.loadingCtrl.show();
+    document.getElementById('showBackButton').style.display="none";
+    
    this._dealsService.getDeals()
       .subscribe(
         res =>{ 
-          this.loadingCtrl.hide();
+          this.loadingCtrl.show();
+         
           this.crdDeals = res
-          
+        
     if (this.crdDeals.length == 0){
-        this.loadingCtrl.hide();
+      
         this.errMsg = "Currently no deals available"
         document.getElementById('hidePagination').style.display="none";
         document.getElementById('hideSearchDiv').style.display="none";
         document.getElementById('hideFilterButton').style.display="none";
-       
+        document.getElementById('hideNearByBtn').style.display="none";
+        document.getElementById('showBackButton').style.display="block";
+        this.loadingCtrl.hide();
       
       }
 
@@ -84,6 +103,7 @@ export class DealsComponent implements OnInit {
       this._dealsService.getDetails()
       .subscribe(
         res =>{
+          this.loadingCtrl.show();
           this.activeUsers = res
           //console.log(this.activeUsers)
       
@@ -94,6 +114,7 @@ export class DealsComponent implements OnInit {
             if(this.activeUsers[i].status == 'ACTIVE'){
               this.crdDeals1[k] = this.crdDeals[j]
               k++;
+              this.loadingCtrl.hide();
             }
         }
       }
@@ -124,12 +145,33 @@ export class DealsComponent implements OnInit {
     
   }
 
+  // getGoogleAddress(){
+  //   var pacContainerInitialized = false; 
+  //   $('#searchLocation').keypress(function() { 
+  //           if (!pacContainerInitialized) { 
+  //                   $('.pac-container').css('z-index', '9999'); 
+  //                   pacContainerInitialized = true; 
+  //           } 
+  //   }); 
+  // }
+
   getCategory(){
+
+    var pacContainerInitialized = false; 
+    $('#searchLocation').keypress(function() { 
+            if (!pacContainerInitialized) { 
+                    $('.pac-container').css('z-index', '9999'); 
+                    pacContainerInitialized = true; 
+            } 
+    });
  //   alert('1')
+ this.loadingCtrl.show();
     this._dealsService.getCategory()
     .subscribe(
         res => {
+          
           this.categoryArr = res;
+          this.loadingCtrl.hide();
           console.log(this.categoryArr)
         },
     
@@ -151,33 +193,35 @@ export class DealsComponent implements OnInit {
   }
   refreshGrid(){
     //alert("2")
-    //this.loadingCtrl.show();
+  this.loadingCtrl.show();
     let j =0;
     console.log(this.getSearchDeals)
     for(let i=0; i < this.getSearchDeals.length; i++){
      // alert("3")
     
       console.log(this.getSearchDeals[i].quantity)
-    if(this.querydetails.searchCategory == this.getSearchDeals[i].categoryId || this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||  (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) || this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price))){
+    if(this.addr.locality == this.getSearchDeals[i].avlPlace.locality || this.querydetails.searchCategory == this.getSearchDeals[i].categoryId || this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||  (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) || this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price))){
     
       //alert("4")
-      this.loadingCtrl.hide();
+     
       
       console.log(this.getSearchDeals[i])
       this.totalDeals1[j] = this.getSearchDeals[i]
       console.log(this.totalDeals1[j])
       j++;
-      
+      this.loadingCtrl.hide();
     
     }
      
     
  
-   this.loadingCtrl.hide();
+  
   }
   if(this.totalDeals1.length == 0){
+    this.loadingCtrl.show();
     console.log('no deals')
-    sweetAlert("Currently no product available")
+    sweetAlert("Sorry!","Currently no product available","error")
+    this.loadingCtrl.hide();
     this.userdetails = [];
   }
  

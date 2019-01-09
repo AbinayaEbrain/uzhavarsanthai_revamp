@@ -52,9 +52,8 @@ export class LocationdealsComponent implements OnInit {
     this._dealsService.getDeals()
     .subscribe(
       res =>{ 
-        this.loadingCtrl.hide();
+        
         this.crdDeals = res
-
         this.lat2 = localStorage.getItem('googleLat')
         this.long = localStorage.getItem('googleLong')
          this.lat1 = this.lat2*1.009
@@ -74,6 +73,7 @@ export class LocationdealsComponent implements OnInit {
         for(let i=0; i < this.crdDeals.length; i++){
           if(this.crdDeals[i].avlPlace.lat < this.lat1 && this.crdDeals[i].avlPlace.lng > this.latd){
               this.mapDeals[j]=this.crdDeals[i];
+              this.loadingCtrl.hide();
               console.log(this.mapDeals[j])
               j++
           }
@@ -84,6 +84,7 @@ export class LocationdealsComponent implements OnInit {
       this._dealsService.getDetails()
       .subscribe(
         res =>{
+          this.loadingCtrl.show();
           this.activeUsers = res
        console.log(this.activeUsers)
     
@@ -97,10 +98,12 @@ export class LocationdealsComponent implements OnInit {
             if(this.activeUsers[i].status == 'ACTIVE'){
              // alert("1")
               this.crdDeals1[k] = this.mapDeals[j]
+             
               console.log(this.crdDeals1[k])
               console.log(this.mapDeals[j])
               //alert("2")
               k++;
+              this.loadingCtrl.hide();
             }
         }
       }
@@ -136,14 +139,17 @@ export class LocationdealsComponent implements OnInit {
 
   }
   getCategory(){
+    this.loadingCtrl.show();
     this._dealsService.getCategory()
     .subscribe(
         res => {
           this.categoryArr = res;
+          this.loadingCtrl.hide();
           console.log(this.categoryArr)
         },
     
         err => {
+          this.loadingCtrl.hide();
             this.categoryArr = [];
         });
   }
@@ -199,7 +205,7 @@ export class LocationdealsComponent implements OnInit {
 
   refreshGrid(){
     //alert("2")
-    //this.loadingCtrl.show();
+    this.loadingCtrl.show();
     let j =0;
     console.log(this.getSearchDeals)
     for(let i=0; i < this.getSearchDeals.length; i++){
@@ -209,12 +215,14 @@ export class LocationdealsComponent implements OnInit {
     if(this.querydetails.searchCategory == this.getSearchDeals[i].categoryId || this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||  (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) || this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price))){
     
       //alert("4")
-      this.loadingCtrl.hide();
+      
       
       console.log(this.getSearchDeals[i])
       this.totalDeals1[j] = this.getSearchDeals[i]
+
       console.log(this.totalDeals1[j])
       j++;
+      this.loadingCtrl.hide();
       this.userdetails = [];
     
     }
@@ -225,11 +233,11 @@ export class LocationdealsComponent implements OnInit {
   }
  if(this.totalDeals1.length == 0){
     console.log('no deals')
-    sweetAlert("Currently no product available")
+    sweetAlert("Sorry!","Currently no product available","error")
     this.userdetails = [];
   } 
  
- 
+
   this.userdetails = [];
   
   }

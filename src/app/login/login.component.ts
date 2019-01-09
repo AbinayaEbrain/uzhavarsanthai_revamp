@@ -60,9 +60,8 @@ export class LoginComponent implements OnInit {
           
           if(this.user === "Admin"){
            
-            this.router.navigate(['/admin']);
+          this.router.navigate(['/admin']);
 
-           
           }
           else{
            

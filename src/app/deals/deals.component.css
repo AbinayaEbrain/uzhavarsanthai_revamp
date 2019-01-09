@@ -26,9 +26,17 @@
   }
   .no_deals_found{
     text-align: center;
-    color: #f2f2f3;
+    color: black;
     font-weight: bold;
-    font-size: 18px
+    font-size: 25px;
+    background-color: white;
+    width: fit-content;
+    margin: auto;
+    padding: 5px;
+    box-shadow: 7px 7px 7px grey;
+    border-radius: 5px;
+    margin-top: 10% !important;
+
   }
   textarea{
     overflow: hidden;
@@ -125,7 +133,7 @@
 }
 ::placeholder {
   text-align:left;
-  color: #04857e;
+  color: black;
     
   }
 .bg { 
@@ -181,12 +189,19 @@ input {
       color: black;
       font-weight: bold;
       font-size: 18px;
-      margin-top:20%
+      background-color: white;
+    width: fit-content;
+    margin: auto;
+    padding: 5px;
+    box-shadow: 7px 7px 7px grey;
+    border-radius: 5px;
+    margin-top: 20% !important;
   }
-  .errDiv{
+  /* .errDiv{
     background-color: white;
     box-shadow: 7px 7px 7px grey;
-}
+    border-radius: 5px;
+} */
  .onmobiviewpadding{
   padding: 10px;
  }

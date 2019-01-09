@@ -71,7 +71,7 @@
                         <div class="form-group mb-5 mt-2">
                             <input type="text"  #subQuantity="ngModel"  maxlength="5"  ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="productData.subQuantity"  name="subQuantity" class="form-control" autocomplete="off" required>
                             <label class="form-control-placeholder english_wrd floatinglabl" for="quantity">Sub Quantity</label>
-                            <!-- <span class="text-danger float-left error_word" [class.d-none] = "subQuantity.valid || subQuantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span>   -->
+                            <span class="text-danger float-left error_word" [class.d-none] = "subQuantity.valid || subQuantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span>  
                           </div>
                     </div>
                     <div class="col-md-2 col-sm-4 col-4">

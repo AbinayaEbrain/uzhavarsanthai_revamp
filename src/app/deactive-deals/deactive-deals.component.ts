@@ -56,9 +56,15 @@ export class DeactiveDealsComponent implements OnInit {
             }
             for(let j=0;j<this.userDeals.length;j++){
             if (this.userDeals[j].category == undefined){
+              this.loadingCtrl.show();
               this.errMsg = "No expired products found"
               document.getElementById('search_box').style.display='none';
               document.getElementById('hide').style.display='none';
+              document.getElementById('hideTable').style.display='none';
+              document.getElementById('hidePagination').style.display='none';
+             
+              this.loadingCtrl.hide();
+              
               console.log(this.errMsg)
             }
           }

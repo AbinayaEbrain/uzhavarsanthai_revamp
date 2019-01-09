@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Router} from '@angular/router';
 import {} from '@types/googlemaps';
 declare var sweetAlert: any;
+declare var $: any;
 import { INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS } from '@angular/platform-browser-dynamic/src/platform_providers';
 
 @Component({
@@ -26,7 +27,8 @@ export class ViewcategoryComponent implements OnInit {
   noSearchDealsErr:any
   public addrKeys: string[];
   public addr: {
-    formatted_address:''
+    formatted_address:'',
+    locality : ''
   };
 
   setAddress(addrObj) {
@@ -35,6 +37,7 @@ export class ViewcategoryComponent implements OnInit {
       this.addrKeys = Object.keys(addrObj);
       console.log(this.addrKeys)
       console.log(this.addr)
+       console.log(this.addr.locality)
     });
   }
   constructor(private route:ActivatedRoute,private _dealService:DealsService,public loadingCtrl: NgxSpinnerService,
@@ -42,6 +45,7 @@ export class ViewcategoryComponent implements OnInit {
 
   ngOnInit() {
     
+   
     this.loadingCtrl.show();
     this._dealService.getDeals()
        .subscribe(
@@ -81,6 +85,15 @@ export class ViewcategoryComponent implements OnInit {
      
   }
  
+  getGoogleAddress(){
+    var pacContainerInitialized = false; 
+    $('#searchLocation').keypress(function() { 
+            if (!pacContainerInitialized) { 
+                    $('.pac-container').css('z-index', '9999'); 
+                    pacContainerInitialized = true; 
+            } 
+    }); 
+  }
 
   filterDeal(){
     this.totalDeals1 = [];
@@ -90,13 +103,13 @@ export class ViewcategoryComponent implements OnInit {
     this.querydetails = this.userdetails
     this.refreshGrid();
     this.loadingCtrl.hide();
+   
   }
   refreshGrid(){
-   
     this.loadingCtrl.show();
     let j =0;
     for(let i=0; i < this.getSearchDeals.length; i++){
-    if(this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||  (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) || this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price))){
+    if(this.addr.locality == this.getSearchDeals[i].avlPlace.locality || this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||  (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) || this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price))){
       this.loadingCtrl.hide();
       //  alert("1")
       console.log(this.getSearchDeals[i])
@@ -113,7 +126,7 @@ export class ViewcategoryComponent implements OnInit {
       //   text: 'Something went wrong!',
       //   footer: '<a href>Why do I have this issue?</a>'
       // })
-      sweetAlert("Currently no product available")
+      sweetAlert("Sorry!","Currently no product available","error")
       this.userdetails = [];
     }
  

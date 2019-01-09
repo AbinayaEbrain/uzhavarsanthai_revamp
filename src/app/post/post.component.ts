@@ -115,7 +115,7 @@ export class PostComponent implements OnInit {
 
    
   ngOnInit() {
-
+this.loadingCtrl.show();
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
     var CLOUDINARY_URL = 	'https://api.cloudinary.com/v1_1/uzhavar-image/upload'
     var CLOUDINARY_UPLOAD_PRESET = 'm0xlfiw2'
@@ -123,7 +123,12 @@ export class PostComponent implements OnInit {
     var fileUpload = document.getElementById('file-upload')
   
     fileUpload.addEventListener('change' , function(e : any){
-      // alert('5')
+       //alert('5')
+       swal({   
+        title:"",
+        text: "Please wait a moment",     
+        imageUrl:"../../assets/Images/lg.sandglass-time-loading-gif.gif" 
+   });
       var file = e.target.files[0];
       var formData = new FormData();
       formData.append('file',file);
@@ -139,17 +144,16 @@ export class PostComponent implements OnInit {
         data : formData
       }).then(function(res){
         // alert('6')
+       // this.loadingCtrl.show();
         console.log(res)
         console.log(res.data.secure_url)
+        //this.loadingCtrl.hide();
        // alert('7')
         swal({   
           title: "Wow!",   
           text: "Image choosed successfully",   
           imageUrl:res.data.secure_url,
-          imageWidth: 400,
-          imageHeight: 200,
-          imageAlt: 'Custom image',
-          animation: false
+          
          
          
      });
@@ -244,7 +248,7 @@ export class PostComponent implements OnInit {
 
       
   postProduct(){
-
+    this.loadingCtrl.show();
     console.log(this.productData)
    
     var time = this.productData.validityTime
@@ -272,11 +276,12 @@ export class PostComponent implements OnInit {
     this._dealsService.addPost(this.productData)
       .subscribe(
         res=>{
-          
+          this.loadingCtrl.show();
        console.log(this.productData)
        console.log(res);
-
+     
       this.success = "Posted successfully!"
+      this.loadingCtrl.hide();
       console.log( this.productData.avlPlace)
         setTimeout(() => {
           

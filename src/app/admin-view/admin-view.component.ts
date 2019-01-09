@@ -22,6 +22,7 @@ export class AdminViewComponent implements OnInit {
     lastName:'',
     gender:'',
     phone:'',
+    privateIP:'',
     address:{
       addressLine:'',
       address1:'',
@@ -51,7 +52,7 @@ export class AdminViewComponent implements OnInit {
       res=>{
        this.loadingCtrl.hide();
        this.registerUser= res;
-
+console.log(this.registerUser)
        for(let i=0;i<this.registerUser.length;i++){
        if(this.id == this.registerUser[i]._id){
         this.register.firstName =  this.registerUser[i].firstname;
@@ -62,6 +63,8 @@ export class AdminViewComponent implements OnInit {
         this.register.address.address1 = this.registerUser[i].address.address1;
         this.register.address.city = this.registerUser[i].address.city;
         this.register.address.location = this.registerUser[i].address.location;
+        this.register.privateIP =this.registerUser[i].privateIP;
+        console.log(this.register.privateIP)
        }
       }
       },

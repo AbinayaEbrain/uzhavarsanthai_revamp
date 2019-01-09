@@ -71,8 +71,8 @@
 
                       <!-- 5th row -->
                       <div class="row">
-                            <div class="col-md-4 mt-5 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
-                                <div class="form-group  mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
+                            <div class="col-md-4 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
+                                <div class="form-group  mb-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                                     <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
                                     <label class="form-control-placeholder english_wrd" for="password"><span style="font-size: 14px" class="tamil_word">கடவுச்சொல் </span>/ Password</label>
                                     <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>  

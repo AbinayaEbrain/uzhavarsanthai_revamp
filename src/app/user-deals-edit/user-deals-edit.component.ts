@@ -3,11 +3,11 @@ import { Component, OnInit ,ViewChild, ElementRef,NgZone} from '@angular/core';
 import { DealsService } from '../deals.service';
 import {ActivatedRoute, Params} from '@angular/router'
 import { Router} from '@angular/router'
-
+import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatePipe } from '@angular/common';
 import {  FileUploader } from 'ng2-file-upload';
-
+declare var swal: any;
 const URL = 'http://localhost:8080/api/upload';
 
 interface FileReaderEventTarget extends EventTarget {
@@ -34,7 +34,8 @@ export class UserDealsEditComponent implements OnInit {
   dealslists = [];
   time:any
   public deallistobj: any = {};
-  success:any
+  success:any;
+  currentuserId:any;
   categoryArr = []
   showUnit:any
   submitted:boolean;
@@ -88,9 +89,60 @@ console.log(reader)
 
   ngOnInit() {
 
-    this.loadingCtrl.show();
-    this.InitialCall();
 
+    this.loadingCtrl.show();
+    //document.getElementById('localStorageImg').style.display="none";
+    this.InitialCall();
+   this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
+    var CLOUDINARY_URL = 	'https://api.cloudinary.com/v1_1/uzhavar-image/upload'
+    var CLOUDINARY_UPLOAD_PRESET = 'm0xlfiw2'
+    var imgPreview = document.getElementById('img-preview')
+    var fileUpload = document.getElementById('file-upload')
+  
+    fileUpload.addEventListener('change' , function(e : any){
+       //alert('5')
+       swal({   
+        title:"",
+        text: "Please wait a moment",     
+        imageUrl:"../../assets/Images/lg.sandglass-time-loading-gif.gif" 
+   });
+      var file = e.target.files[0];
+      var formData = new FormData();
+      formData.append('file',file);
+      formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+    
+      axios({
+        
+        url : CLOUDINARY_URL,
+        method : 'POST',
+        headers : {
+          'Content-Type' : 'application/x-www-form-urlencoded'
+        },
+        data : formData
+      }).then(function(res){
+        // alert('6')
+       // this.loadingCtrl.show();
+        console.log(res)
+        console.log(res.data.secure_url)
+        //this.loadingCtrl.hide();
+       // alert('7')
+        swal({   
+          title: "Wow!",   
+          text: "Image choosed successfully",   
+          imageUrl:res.data.secure_url,
+          
+         
+         
+     });
+        localStorage.setItem('Image', JSON.stringify(res.data.secure_url));
+       // alert('1')
+        document.getElementById('hideDisplayImg').style.display="none";
+        
+      }).catch(function(err){
+        console.log(err)
+      });
+    
+    });
     // this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
 
     // this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
