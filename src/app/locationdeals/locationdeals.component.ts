@@ -110,11 +110,12 @@ export class LocationdealsComponent implements OnInit {
       }
       }
       if(this.mapDeals.length == 0){
+        this.loadingCtrl.show();
         this.noLocationErr = "No deals availble based on your location"
         document.getElementById('hidePagination').style.display="none";
         document.getElementById('hideSearchDiv').style.display="none";
         document.getElementById('hideFilterButton').style.display="none";
-  
+        this.loadingCtrl.hide();
        }
         },
         err=>{}
@@ -233,8 +234,10 @@ export class LocationdealsComponent implements OnInit {
    this.loadingCtrl.hide();
   }
  if(this.totalDeals1.length == 0){
+  this.loadingCtrl.show();
     console.log('no deals')
     sweetAlert("Sorry!","Currently no product available","error")
+    this.loadingCtrl.hide();
     this.userdetails = [];
   } 
  

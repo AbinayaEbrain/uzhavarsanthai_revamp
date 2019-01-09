@@ -81,7 +81,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateUser(){
-
+this.loadingCtrl.show();
     console.log(this.addr)
     if(this.addr != undefined || this.addr != null){
       this.crntUser.address.city = this.addr
@@ -93,6 +93,7 @@ export class UserProfileComponent implements OnInit {
     .subscribe(
       res=>{
         console.log(res)
+        this.loadingCtrl.hide();
         this.success = "Updated successfully!"
         setTimeout(() => {
           this.success = ''

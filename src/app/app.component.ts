@@ -26,9 +26,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
    
-    // if(JSON.parse(localStorage.getItem('currentUser'))._id){
-    // this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
-    // }
+    if(JSON.parse(localStorage.getItem('currentUser'))._id){
+    this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
+    }
   }
 
   trackMe() {
