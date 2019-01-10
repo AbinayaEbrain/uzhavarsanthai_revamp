@@ -38,6 +38,7 @@ export class LocationdealsComponent implements OnInit {
   noLocationErr:any;
   crdDeals1= []
   userdetails=[];
+  errMsg1:any;
   p:any;
   queryString:any;
   categoryArr:any;
@@ -74,9 +75,10 @@ export class LocationdealsComponent implements OnInit {
         for(let i=0; i < this.crdDeals.length; i++){
           if(this.crdDeals[i].avlPlace.lat < this.lat1 && this.crdDeals[i].avlPlace.lng > this.latd){
               this.mapDeals[j]=this.crdDeals[i];
-              this.loadingCtrl.hide();
+             
               console.log(this.mapDeals[j])
               j++
+              this.loadingCtrl.hide();
           }
         }
 
@@ -224,6 +226,8 @@ export class LocationdealsComponent implements OnInit {
 
       console.log(this.totalDeals1[j])
       j++;
+      this.errMsg1 = ""
+      document.getElementById('hidePagination').style.display="block";
       this.loadingCtrl.hide();
       this.userdetails = [];
     
@@ -237,6 +241,8 @@ export class LocationdealsComponent implements OnInit {
   this.loadingCtrl.show();
     console.log('no deals')
     sweetAlert("Sorry!","Currently no product available","error")
+    this.errMsg1 = "Please search again"
+    document.getElementById('hidePagination').style.display="none";
     this.loadingCtrl.hide();
     this.userdetails = [];
   } 

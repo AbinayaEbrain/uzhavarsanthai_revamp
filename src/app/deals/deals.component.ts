@@ -38,6 +38,7 @@ export class DealsComponent implements OnInit {
   activeUsers=[]
   userName = {};
   errMsg = "";
+  errMsg1:any;
   lat:any
   long:any
   lat1:any
@@ -73,7 +74,7 @@ export class DealsComponent implements OnInit {
   }
 
   ngOnInit() {
-    //alert('1')
+   // alert('1')
     this.loadingCtrl.show();
    
     document.getElementById('showBackButton').style.display="none";
@@ -81,20 +82,20 @@ export class DealsComponent implements OnInit {
    this._dealsService.getDeals()
       .subscribe(
         res =>{ 
-          //alert('2')
+        //  alert('2')
          
           this.crdDeals = res
-         // alert('3')
+        //  alert('3')
           this.loadingCtrl.hide();
     if (this.crdDeals.length == 0){
-      
+      this.loadingCtrl.show();
         this.errMsg = "Currently no deals available"
         document.getElementById('hidePagination').style.display="none";
         document.getElementById('hideSearchDiv').style.display="none";
         document.getElementById('hideFilterButton').style.display="none";
         document.getElementById('hideNearByBtn').style.display="none";
         document.getElementById('showBackButton').style.display="block";
-     //   this.loadingCtrl.hide();
+       this.loadingCtrl.hide();
       
       }
 
@@ -108,6 +109,7 @@ export class DealsComponent implements OnInit {
       this._dealsService.getDetails()
       .subscribe(
         res =>{
+         // alert('4')
         this.loadingCtrl.show();
           this.activeUsers = res
           //console.log(this.activeUsers)
@@ -119,12 +121,15 @@ export class DealsComponent implements OnInit {
             if(this.activeUsers[i].status == 'ACTIVE'){
               this.crdDeals1[k] = this.crdDeals[j]
               k++;
-             this.loadingCtrl.hide();
+          //    alert('3')
+          this.loadingCtrl.hide();
+            
             }
         }
       }
       }
       console.log( this.crdDeals1)
+      this.loadingCtrl.hide();
         },
         err=>{}
       )
@@ -195,6 +200,8 @@ export class DealsComponent implements OnInit {
       this.totalDeals1[j] = this.getSearchDeals[i]
       console.log(this.totalDeals1[j])
       j++;
+      this.errMsg1 = ""
+      document.getElementById('hidePagination').style.display="block";
     this.loadingCtrl.hide();
     
     }
@@ -203,10 +210,17 @@ export class DealsComponent implements OnInit {
  
   
   }if(this.totalDeals1.length == 0){
-  //  this.loadingCtrl.show();
+    this.loadingCtrl.show();
     console.log('no deals')
     sweetAlert("Sorry!","Currently no product available","error")
-  //  this.loadingCtrl.hide();
+     document.getElementById('hidePagination').style.display="none";
+    // document.getElementById('hideSearchDiv').style.display="none";
+    // document.getElementById('hideFilterButton').style.display="none";
+    // document.getElementById('hideNearByBtn').style.display="none";
+    // document.getElementById('showBackButton').style.display="block";
+    
+    this.errMsg1 = "Please search again"
+    this.loadingCtrl.hide();
     this.userdetails = [];
   }
  

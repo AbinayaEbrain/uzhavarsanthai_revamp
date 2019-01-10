@@ -26,8 +26,11 @@
       <div class="errDiv">
             <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
       </div>
+      <div>
+        <p class="no_deals_found error_word" *ngIf="errMsg1">{{errMsg1}}</p>
+  </div>
      
-<div  [ngStyle]="{'display':totalDeals1 == '' ? 'block' : 'none' }">
+<div [style.display]="!totalDeals1 ? 'block' : 'none'">
   <div class="row mt-5">
     <div class="col-lg-6 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'name' | paginate: { itemsPerPage:6,currentPage:p }">
             
@@ -85,7 +88,7 @@
       
   </div>
 </div>
- <div  [ngStyle]="{'display':totalDeals1 == '' ? 'none' : 'block' }">
+ <div   [style.display]="totalDeals1 ? 'block' : 'none'" >
   <div class="row mt-5">
         <div class="col-lg-6 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name' | paginate: { itemsPerPage:6,currentPage:p }">
                 

@@ -29,6 +29,7 @@ export class ViewcategoryComponent implements OnInit {
   noSearchDealsErr:any
   queryString:any;
   p:any;
+  errMsg1:any;
   submitted:any;
   public addrKeys: string[];
   public addr: {
@@ -50,42 +51,45 @@ export class ViewcategoryComponent implements OnInit {
 
   ngOnInit() {
     
-   
-    this.loadingCtrl.show();
+  // alert('1')
+   this.loadingCtrl.show();
     this._dealService.getDeals()
        .subscribe(
          res =>{ 
           
            let j = 0;
            this.crdDeals = res
-           this.loadingCtrl.hide();
+         //  alert('2')
+        //   this.loadingCtrl.hide();
            this.id = this.route.snapshot.params['id']
            console.log(this.id)
           
            for(let i=0;i<this.crdDeals.length;i++){
            console.log(this.id)
            console.log(this.crdDeals)
-           this.loadingCtrl.show();
+          // this.loadingCtrl.show();
              if( this.id == this.crdDeals[i].categoryId){
               this.totalDeals[j] = this.crdDeals[i];
               console.log(this.totalDeals)
               j++;
-               this.loadingCtrl.hide();
+           //   alert('3')
+             this.loadingCtrl.hide();
              }
            }
            if (this.totalDeals.length == 0){
-            this.loadingCtrl.show();
+          //  this.loadingCtrl.show();
             this.errMsg = "Currently no deals available"
             console.log(this.errMsg)
            document.getElementById('hidePagination').style.display="none";
            document.getElementById('hideSearchDiv').style.display="none";
            document.getElementById('hideFilterButton').style.display="none";
-           this.loadingCtrl.hide();
+        //   this.loadingCtrl.hide();
+       // alert('4')
           }
           console.log(this.totalDeals)
          },
          err =>{
-           this.loadingCtrl.hide();
+       //    this.loadingCtrl.hide();
            console.log(err)
          } 
        )
@@ -105,12 +109,12 @@ export class ViewcategoryComponent implements OnInit {
   filterDeal(){
   //  alert('1')
     this.totalDeals1 = [];
-    //this.loadingCtrl.show();
+    this.loadingCtrl.show();
     console.log(this.userdetails)
     this.getSearchDeals = this.totalDeals
     this.querydetails = this.userdetails
     this.refreshGrid();
-   // this.loadingCtrl.hide();
+   this.loadingCtrl.hide();
    
   }
   refreshGrid(){
@@ -120,7 +124,7 @@ export class ViewcategoryComponent implements OnInit {
     }
     console.log(this.querydetails.searchLocation)
    // alert('2')
-    //this.loadingCtrl.show();
+   this.loadingCtrl.show();
     // alert(this.addr.locality)
     let j =0;
     // if(this.addr != null || this.addr != undefined){
@@ -139,15 +143,19 @@ export class ViewcategoryComponent implements OnInit {
   // alert('3')
       console.log(this.totalDeals1[j])
       j++;
+      this.errMsg1 = ""
+      document.getElementById('hidePagination').style.display="block";
       this.userdetails = [];
     }
  
-    this.loadingCtrl.hide();
+  //  this.loadingCtrl.hide();
   }
    if(this.totalDeals1.length == 0){
    //  alert("4")
     console.log('no deals')
     sweetAlert("Sorry!","Currently no product available","error")
+    this.errMsg1 = "Please search again"
+    document.getElementById('hidePagination').style.display="none";
     this.userdetails = [];
   }
  
