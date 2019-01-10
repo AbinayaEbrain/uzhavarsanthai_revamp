@@ -55,30 +55,32 @@ export class ViewcategoryComponent implements OnInit {
     this._dealService.getDeals()
        .subscribe(
          res =>{ 
-           this.loadingCtrl.hide();
+          
            let j = 0;
            this.crdDeals = res
+           this.loadingCtrl.hide();
            this.id = this.route.snapshot.params['id']
            console.log(this.id)
           
            for(let i=0;i<this.crdDeals.length;i++){
            console.log(this.id)
            console.log(this.crdDeals)
+           this.loadingCtrl.show();
              if( this.id == this.crdDeals[i].categoryId){
               this.totalDeals[j] = this.crdDeals[i];
               console.log(this.totalDeals)
               j++;
-              
+               this.loadingCtrl.hide();
              }
            }
            if (this.totalDeals.length == 0){
-            this.loadingCtrl.hide();
+            this.loadingCtrl.show();
             this.errMsg = "Currently no deals available"
             console.log(this.errMsg)
            document.getElementById('hidePagination').style.display="none";
            document.getElementById('hideSearchDiv').style.display="none";
            document.getElementById('hideFilterButton').style.display="none";
-           
+           this.loadingCtrl.hide();
           }
           console.log(this.totalDeals)
          },

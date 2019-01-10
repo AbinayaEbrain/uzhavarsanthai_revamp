@@ -236,7 +236,7 @@ InitialCall() {
 
 
   update(){
-    
+    this.loadingCtrl.show();
     let curntDte = new Date().toLocaleDateString();
     this.deallistobj.date = curntDte
 
@@ -260,13 +260,13 @@ InitialCall() {
       res=>{
 
         console.log(res),
-
+        this.loadingCtrl.hide();
         this.success = "Updated successfully!"
         setTimeout(() => {
           
-         // this.loadingCtrl.show();
+          this.loadingCtrl.show();
           this.router.navigate(['/user-deals']);
-         // this.loadingCtrl.hide();
+          this.loadingCtrl.hide();
       }, 2000);
       
       },

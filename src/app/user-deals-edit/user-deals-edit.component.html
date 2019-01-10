@@ -43,34 +43,36 @@
       
                   <div class="row ">
                       <div class="col-md-4"></div>
-                      <div class="col-md-2 col-sm-8 col-8">
+                      <div class="col-md-4">
                           <div class="form-group mb-5 mt-2">
                               <input type="text"  #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched"  maxlength="5" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="deallistobj.quantity"  name="quantity" class="form-control"  autocomplete="off"  required>
                               <label class="form-control-placeholder english_wrd floatinglabl" for="quantity"><span style="font-size: 14px" class="tamil_wrd">அளவு </span>/ Quantity</label>
                               <span class="text-danger float-left error_word" [class.d-none] = "quantity.valid || quantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>  
                             </div>
                       </div>
-                      <div class="col-md-2 col-sm-4 col-4">
+                      <div class="col-md-4">
                             <label class="lab" for="category">Unit</label>
                           <div class="form-group mb-5 mt-2">
                             
                               <select required class="form-control slect"  #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel (change)="getunits()" [(ngModel)]="deallistobj.qnty" >
                                   <option value="">Unit</option>
-                                  <option value="Kg">Kg</option>
-                                  <option value="Ltre">Ltre</option>
+                                  <option value="Kg">Kilogram</option>
+                            <option value="Gram">Gram</option>
+                            <option value="Litre">Litre</option>
+                            <option value="Millilitre">Millilitre</option>
                                 </select>
                             </div>
                             <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> required</span> 
                           </div> 
                      
-                          <div class="col-md-2 col-sm-8 col-8">
+                          <!-- <div class="col-md-2 col-sm-8 col-8">
                               <div class="form-group mb-5 mt-2">
                                   <input type="text"  #subQuantity="ngModel" [class.is-invalid]="subQuantity.invalid && subQuantity.touched" maxlength="5" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="deallistobj.subQuantity"  name="subQuantity" class="form-control" value="0" autocomplete="off"  required>
                                   <label class="form-control-placeholder english_wrd floatinglabl" for="quantity">Sub Quantity</label>
                                   <span class="text-danger float-left error_word" [class.d-none] = "subQuantity.valid || subQuantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> required</span>  
                                 </div>
-                          </div>
-                          <div class="col-md-2 col-sm-4 col-4">
+                          </div> -->
+                          <!-- <div class="col-md-2 col-sm-4 col-4">
                                 <label class="lab" for="category">Sub Unit</label>
                               <div class="form-group mb-5 mt-2">
                                   <select required class="form-control slect"  #subqnty="ngModel" name="subqnty" [class.is-invalid]="subqnty.invalid && subqnty.touched" ngModel  [(ngModel)]="deallistobj.subqnty" >
@@ -82,7 +84,7 @@
                                 </div>
                                 <span class="text-danger float-left error_word" [class.d-none] = "subqnty.valid || subqnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> required</span> 
                                
-                              </div> 
+                              </div>  -->
                    
                   </div>
       

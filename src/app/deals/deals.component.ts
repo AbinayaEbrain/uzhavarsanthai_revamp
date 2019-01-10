@@ -73,6 +73,7 @@ export class DealsComponent implements OnInit {
   }
 
   ngOnInit() {
+    //alert('1')
     this.loadingCtrl.show();
    
     document.getElementById('showBackButton').style.display="none";
@@ -80,9 +81,10 @@ export class DealsComponent implements OnInit {
    this._dealsService.getDeals()
       .subscribe(
         res =>{ 
-       
+          //alert('2')
          
           this.crdDeals = res
+         // alert('3')
           this.loadingCtrl.hide();
     if (this.crdDeals.length == 0){
       
@@ -106,7 +108,7 @@ export class DealsComponent implements OnInit {
       this._dealsService.getDetails()
       .subscribe(
         res =>{
-       //   this.loadingCtrl.show();
+        this.loadingCtrl.show();
           this.activeUsers = res
           //console.log(this.activeUsers)
       
@@ -117,7 +119,7 @@ export class DealsComponent implements OnInit {
             if(this.activeUsers[i].status == 'ACTIVE'){
               this.crdDeals1[k] = this.crdDeals[j]
               k++;
-           //   this.loadingCtrl.hide();
+             this.loadingCtrl.hide();
             }
         }
       }
