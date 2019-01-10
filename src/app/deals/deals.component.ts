@@ -25,7 +25,7 @@ export class DealsComponent implements OnInit {
    isTracking = false;
    status:any;
    categoryArr:any;
-   totalDeals1 = [];
+   totalDeals1 :any;
    userdetails=[];
   crdDeals = [{
     avlPlace:{

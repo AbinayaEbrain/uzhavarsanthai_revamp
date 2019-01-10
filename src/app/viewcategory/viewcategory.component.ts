@@ -25,7 +25,7 @@ export class ViewcategoryComponent implements OnInit {
   specifyCategory=[]
   getSearchDeals=[]
   querydetails : any = {};
-  totalDeals1 = [];
+  totalDeals1:any;
   noSearchDealsErr:any
   queryString:any;
   p:any;

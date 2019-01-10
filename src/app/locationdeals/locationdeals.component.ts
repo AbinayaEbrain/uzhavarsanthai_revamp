@@ -42,7 +42,7 @@ export class LocationdealsComponent implements OnInit {
   queryString:any;
   categoryArr:any;
   querydetails:any;
-  totalDeals1 = [];
+  totalDeals1:any;
   getSearchDeals=[];
   submitted:any;
 
