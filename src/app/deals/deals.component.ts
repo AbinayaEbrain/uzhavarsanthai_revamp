@@ -73,35 +73,32 @@ export class DealsComponent implements OnInit {
   }
 
   ngOnInit() {
-    
     this.loadingCtrl.show();
+   
     document.getElementById('showBackButton').style.display="none";
     
    this._dealsService.getDeals()
       .subscribe(
         res =>{ 
-          this.loadingCtrl.show();
+       
          
           this.crdDeals = res
-        
+          this.loadingCtrl.hide();
     if (this.crdDeals.length == 0){
       
         this.errMsg = "Currently no deals available"
         document.getElementById('hidePagination').style.display="none";
         document.getElementById('hideSearchDiv').style.display="none";
         document.getElementById('hideFilterButton').style.display="none";
-<<<<<<< HEAD
         document.getElementById('hideNearByBtn').style.display="none";
         document.getElementById('showBackButton').style.display="block";
-        this.loadingCtrl.hide();
+     //   this.loadingCtrl.hide();
       
-=======
->>>>>>> 6deee98f43798e556b43c5fd61e186f6db35e19e
       }
 
         },
         err =>{
-          this.loadingCtrl.hide();
+         // this.loadingCtrl.hide();
           console.log(err)
         } 
       )
@@ -109,7 +106,7 @@ export class DealsComponent implements OnInit {
       this._dealsService.getDetails()
       .subscribe(
         res =>{
-          this.loadingCtrl.show();
+       //   this.loadingCtrl.show();
           this.activeUsers = res
           //console.log(this.activeUsers)
       
@@ -120,7 +117,7 @@ export class DealsComponent implements OnInit {
             if(this.activeUsers[i].status == 'ACTIVE'){
               this.crdDeals1[k] = this.crdDeals[j]
               k++;
-              this.loadingCtrl.hide();
+           //   this.loadingCtrl.hide();
             }
         }
       }
@@ -148,16 +145,6 @@ export class DealsComponent implements OnInit {
       }
   }
 
-  // getGoogleAddress(){
-  //   var pacContainerInitialized = false; 
-  //   $('#searchLocation').keypress(function() { 
-  //           if (!pacContainerInitialized) { 
-  //                   $('.pac-container').css('z-index', '9999'); 
-  //                   pacContainerInitialized = true; 
-  //           } 
-  //   }); 
-  // }
-
   getCategory(){
 
     var pacContainerInitialized = false; 
@@ -167,8 +154,6 @@ export class DealsComponent implements OnInit {
                     pacContainerInitialized = true; 
             } 
     });
- //   alert('1')
- this.loadingCtrl.show();
     this._dealsService.getCategory()
     .subscribe(
         res => {
@@ -184,7 +169,6 @@ export class DealsComponent implements OnInit {
   }
 
   filterDeal(){
-    // alert("2")
     this.loadingCtrl.show();
     this.totalDeals1 = [];
     this.getSearchDeals = this.crdDeals
@@ -192,39 +176,35 @@ export class DealsComponent implements OnInit {
     this.querydetails = this.userdetails
     this.refreshGrid();
     this.loadingCtrl.hide();
-  
   }
+
   refreshGrid(){
-    //alert("2")
-  this.loadingCtrl.show();
+    this.loadingCtrl.show();
+    console.log(this.querydetails.searchLocation)
+    if(this.addr != null || this.addr != undefined){
+    this.querydetails.searchLocation = this.addr.locality
+    }
     let j =0;
     console.log(this.getSearchDeals)
     for(let i=0; i < this.getSearchDeals.length; i++){
-     // alert("3")
-    
       console.log(this.getSearchDeals[i].quantity)
-    if(this.addr.locality == this.getSearchDeals[i].avlPlace.locality || this.querydetails.searchCategory == this.getSearchDeals[i].categoryId || this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||  (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) || this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price))){
-    
-      //alert("4")
-     
-      
+    if(this.querydetails.searchCategory == this.getSearchDeals[i].categoryId || this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||  (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) || this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price))  || this.querydetails.searchLocation == this.getSearchDeals[i].avlPlace.locality){
       console.log(this.getSearchDeals[i])
       this.totalDeals1[j] = this.getSearchDeals[i]
       console.log(this.totalDeals1[j])
       j++;
-      this.loadingCtrl.hide();
+    this.loadingCtrl.hide();
     
     }
      
     
  
   
-  }
-  if(this.totalDeals1.length == 0){
-    this.loadingCtrl.show();
+  }if(this.totalDeals1.length == 0){
+  //  this.loadingCtrl.show();
     console.log('no deals')
     sweetAlert("Sorry!","Currently no product available","error")
-    this.loadingCtrl.hide();
+  //  this.loadingCtrl.hide();
     this.userdetails = [];
   }
  

@@ -23,7 +23,7 @@
               
             </div>
            
-            <!-- <div [ngStyle]="{'display':totalDeals1 == [] ? 'block' : 'none' }" > -->
+            <div [ngStyle]="{'display':totalDeals1 == '' ? 'block' : 'none' }" >
                 <div class="errDiv">
                         <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
                 </div>
@@ -85,9 +85,9 @@
                     
                         
                     </div>
-            <!-- </div> -->
+            </div>
             
-            <div [ngStyle]="{'display':totalDeals1 == [] ? 'none' : 'block' }" >
+            <div [ngStyle]="{'display':totalDeals1 == '' ? 'none' : 'block' }" >
                     <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
                     <div class="row mt-5" id="hideifData">
                           

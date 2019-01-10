@@ -61,6 +61,9 @@ export class UserDealsComponent implements OnInit {
             this.errMsg = "Still you haven't post any deals"
             document.getElementById('search_box').style.display='none';
             document.getElementById('hide').style.display='none';
+            document.getElementById('hideTable').style.display='none';
+            document.getElementById('hidePagination').style.display='none';
+            
             console.log(this.errMsg)
           }
         }

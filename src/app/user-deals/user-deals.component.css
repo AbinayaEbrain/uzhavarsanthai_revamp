@@ -45,9 +45,17 @@
   }
   .no_deals_found{
     text-align: center;
-    color: #f2f2f3;
+    color: black;
     font-weight: bold;
-    font-size: 18px
+    font-size: 25px;
+    background-color: white;
+    width: fit-content;
+    margin: auto;
+    padding: 5px;
+    box-shadow: 7px 7px 7px grey;
+    border-radius: 5px;
+    margin-top: 20% !important;
+  
   }
 
   .btn-primary1{ 
@@ -225,3 +233,20 @@ input {
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
 
+@media only screen and (min-width: 320px) and (max-width:425px){
+  .no_deals_found{
+      text-align: center;
+      color: black;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top:20% !important;
+      background-color: white;
+      box-shadow: 7px 7px 7px grey;
+      border-radius: 5px;
+
+  }
+
+ .onmobiviewpadding{
+  padding: 10px;
+ }
+}

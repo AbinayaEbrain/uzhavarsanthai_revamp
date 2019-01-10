@@ -8,6 +8,7 @@ import { GooglePlacesDirective } from '../google-places.directive';
 declare var sweetAlert: any;
 declare var $: any;
 import { INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS } from '@angular/platform-browser-dynamic/src/platform_providers';
+import { parse } from 'path';
 
 @Component({
   selector: 'app-viewcategory',
@@ -23,7 +24,7 @@ export class ViewcategoryComponent implements OnInit {
   userdetails=[];
   specifyCategory=[]
   getSearchDeals=[]
-  querydetails:any;
+  querydetails : any = {};
   totalDeals1 = [];
   noSearchDealsErr:any
   queryString:any;
@@ -100,41 +101,52 @@ export class ViewcategoryComponent implements OnInit {
   }
 
   filterDeal(){
+  //  alert('1')
     this.totalDeals1 = [];
-    this.loadingCtrl.show();
+    //this.loadingCtrl.show();
     console.log(this.userdetails)
     this.getSearchDeals = this.totalDeals
     this.querydetails = this.userdetails
     this.refreshGrid();
-    this.loadingCtrl.hide();
+   // this.loadingCtrl.hide();
    
   }
   refreshGrid(){
-    this.loadingCtrl.show();
+    console.log(this.querydetails.searchLocation)
+    if(this.addr != null || this.addr != undefined){
+    this.querydetails.searchLocation = this.addr.locality
+    }
+    console.log(this.querydetails.searchLocation)
+   // alert('2')
+    //this.loadingCtrl.show();
+    // alert(this.addr.locality)
     let j =0;
+    // if(this.addr != null || this.addr != undefined){
+    //   this.addr.locality = this.addr.locality;
+    // }else{
+    //   this.addr.locality = 'hh';
+    // }
+
     for(let i=0; i < this.getSearchDeals.length; i++){
-    if(this.addr.locality == this.getSearchDeals[i].avlPlace.locality || this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||  (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) || this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price))){
+    if(this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty || (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price)) ||(this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price)) || this.querydetails.searchLocation == this.getSearchDeals[i].avlPlace.locality){
+     
       this.loadingCtrl.hide();
       //  alert("1")
       console.log(this.getSearchDeals[i])
       this.totalDeals1[j] = this.getSearchDeals[i]
+  // alert('3')
       console.log(this.totalDeals1[j])
       j++;
-      this.userdetails = [];
-    }else if(this.totalDeals1.length == 0){
-      // alert("2")
-      console.log('no deals')
-      // Swal({
-      //   type: 'error',
-      //   title: 'Oops...',
-      //   text: 'Something went wrong!',
-      //   footer: '<a href>Why do I have this issue?</a>'
-      // })
-      sweetAlert("Sorry!","Currently no product available","error")
       this.userdetails = [];
     }
  
     this.loadingCtrl.hide();
+  }
+   if(this.totalDeals1.length == 0){
+   //  alert("4")
+    console.log('no deals')
+    sweetAlert("Sorry!","Currently no product available","error")
+    this.userdetails = [];
   }
  
  

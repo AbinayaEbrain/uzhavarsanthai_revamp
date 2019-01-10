@@ -49,7 +49,7 @@ export class ViewmoreComponent implements OnInit {
       this._dealsService.getDeals()
         .subscribe(
           res=>{
-            this.loadingCtrl.hide();
+           
             this.viewPost = res
            console.log(this.viewPost)
             for(let i=0; i < this.viewPost.length; i++){
@@ -67,7 +67,7 @@ export class ViewmoreComponent implements OnInit {
                this.postProduct.accountId = this.viewPost[i].accountId;
                this.postProduct.image = this.viewPost[i].image
                this.time = this.viewPost[i].validityTime
-              
+               this.loadingCtrl.hide();
               }
             }
             this.postProduct.validityTime = this.datePipe.transform((this.time),'dd/MM/yyyy');
@@ -78,7 +78,7 @@ export class ViewmoreComponent implements OnInit {
         this._dealsService.getDetails()
         .subscribe(
           res => {
-            this.loadingCtrl.hide();
+           
             
             this.viewmore = res;
          console.log(this.viewmore)
@@ -95,6 +95,7 @@ export class ViewmoreComponent implements OnInit {
                this.city = this.viewmore[i].address.city;
                //this.state = this.viewmore[i].address.location;
                console.log(this.register.address.address1)
+                this.loadingCtrl.hide();
               }
             }
             
