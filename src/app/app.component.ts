@@ -21,11 +21,11 @@ export class AppComponent implements OnInit {
   marker: google.maps.Marker;
   isTracking:boolean
   currentuserId:any;
-  firstName:any;
+
   constructor(public _authService:AuthService,public loadingCtrl: NgxSpinnerService){}
 
   ngOnInit() {
-   this.firstName = JSON.parse(localStorage.getItem('firstname'))
+   
     if(JSON.parse(localStorage.getItem('currentUser'))._id){
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
     }
