@@ -1,25 +1,26 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <nav class="navbar navbar-expand-md fixed-top navbar-dark mb-5 nav_clr">
     <a class="navbar-brand apptitle" routerLink="/home">உழவர் சந்தை</a>
+    <a style="margin-left: 20%;"> <p class="every clr tamil_word hideMobile">உணவூட்டும் விவசாயத்திற்கு உயிரூட்டுவோம்!</p></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link" routerLink="/login" *ngIf="!_authService.loggedIn() || !_authService.findActive()" routerLinkActive="active">Login</a>
+          <a class="nav-link" routerLink="/register" *ngIf="!_authService.loggedIn() || !_authService.findActive()" routerLinkActive="active">Register</a>
         </li>
         <!-- <li class="nav-item">
             <a class="nav-link" routerLink="/home" *ngIf="!_authService.loggedIn()" routerLinkActive="active">Home</a>
           </li> -->
-         <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+         <!-- <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <a class="nav-link" routerLink="/post" *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()"  routerLinkActive="active">Post</a>
-         </li>
+         </li> -->
          <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <a class="nav-link" routerLink="/deals" *ngIf="!_authService.loggedIn()" (click)="trackMe()" routerLinkActive="active">Deals</a>
          </li>
          <li class="nav-item "  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link "  routerLink="/user-deals" *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()" routerLinkActive="active">My Products</a>
+          <a class="nav-link "  routerLink="/products" *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()" routerLinkActive="active">My Products</a>
           <!-- <div class="dropdown-menu">
             <a class="dropdown-item"  style="cursor: pointer;" 
             *ngIf="_authService.loggedIn()" routerLink="/user-deals">Active Products <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
@@ -34,7 +35,7 @@
           <a class="nav-link dropdown-toggle" style="cursor: pointer;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" *ngIf="_authService.loggedIn()" routerLinkActive="active">My Profile <i class="fa fa-user-circle" aria-hidden="true"></i></a>
           <div class="dropdown-menu">
             <a class="dropdown-item" routerLink="/updateuser/{{currentuserId}}" style="cursor: pointer;" 
-            *ngIf="_authService.loggedIn()">Edit Profile <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            *ngIf="_authService.loggedIn() && !_authService.roleAdmin() ">Edit Profile <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
             <a class="dropdown-item"  style="cursor: pointer;"
             *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a>
           </div>

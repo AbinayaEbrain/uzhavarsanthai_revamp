@@ -27,8 +27,8 @@
           <div class="col-md-4">
               <div class="form-group mb-5 mt-2">
                   <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.categoryId" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
-                      <option selected="" disabled="" value="">Category</option>
-                      <option *ngFor="let val of categoryArr" value="{{val._id}}">{{val.productCategory}}</option>
+                      <option selected="" disabled="" value="" >Category</option>
+                      <option *ngFor="let val of categoryArr" class="categoryOption" value="{{val._id}}">{{val.productCategory}}</option>
                     </select>
                 </div>
                 <span class="text-danger float-left error_word" [class.d-none] = "category.valid || category.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span> 
@@ -57,11 +57,11 @@
                     <div class="form-group mb-5 mt-2">
                       
                         <select required class="form-control slect"  #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel (change)="getunits()" [(ngModel)]="productData.qnty" >
-                            <option value="">Unit</option>
-                            <option value="Kg">Kilogram</option>
-                            <option value="Gram">Gram</option>
-                            <option value="Litre">Litre</option>
-                            <option value="Millilitre">Millilitre</option>
+                            <option disabled="" value="" >Unit</option>
+                            <option value="Kg" class="categoryOption">Kilogram</option>
+                            <option value="Gram" class="categoryOption">Gram</option>
+                            <option value="Litre" class="categoryOption">Litre</option>
+                            <option value="Millilitre" class="categoryOption">Millilitre</option>
                           </select>
                       </div>
                       <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span> 
@@ -109,14 +109,14 @@
                 </div> 
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <div class="form-group mb-5  mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
+                    <div class="form-group mb-5 mt-2">
                         <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="productData.description"  name="description" class="form-control"  autocomplete="off" maxlength="250" required>
                         <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_wrd"> பொருளைப் பற்றி </span>/ Description </label>
                         <span class="text-danger float-left error_word" [class.d-none] = "description.valid || description.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Description is required</span>  
                       </div>
                 </div> 
                 <div class="col-md-4">
-                    <div class="form-group mb-5  mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
+                    <div class="form-group mb-5 mt-2">
                          
                         <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="productData.validityTime"  name="validityTime" class="form-control"   bsDatepicker  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
                         <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_wrd">காலாவதியாகும் தேதி </span>/ Expiry Date </label>
@@ -129,34 +129,22 @@
               <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <div class="form-group ">
-                            <!-- <label class="file-upload-container" (change)="onSelectFile($event)" for="file-upload" style="color: white">
-                        <input type="file" id="file-upload" style="color: white; width: 218px;display: none" (change)="onSelectFile($event)"  #image="ngModel" name="image" [class.is-invalid]="image.invalid && image.touched" ngModel/>
-                        <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Image is required</span>  
-                        Select an Image
-                    </label> -->
-                    <span style="color: white">Choose your product image</span>
-                        <label class="file-upload-container ml-2" for="file-upload" (change)="onSelectFile($event)" style="border: 2px solid green;padding: 5px;color: white">
-                            <input id="file-upload" class="mx-auto" type="file" style="display:none;">
-                            Select an Image
-                          </label>
+                    <div class="form-group  mb-5 mt-2">
+                        <div class="upload-btn-wrapper">
+                          <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
+                          <input type="file" id="Image" name="Image" class="upload"(change)="onFileChange($event)" #fileInput>
                         </div>
+                       
+                   </div>
                 </div>
-                <!-- <div class="col-md-2">
-                    <button type="button" for="file-upload" style="font-size: 15px" class="btn btn-success btn-s">
-                        Upload Image
-                    </button> 
-                </div> -->
-                <!-- <div class="col-md-4 text-left">
-                        <img [src]="img_post" id="hide" height="50" style="display: none"> 
-                </div> -->
+           
               </div> 
              
 
                <div class="row" id="save">
                     <div class="col-md-4"></div>
                     <div class="col-md-4 col-sm-6 col-6">
-                        <button class="btn mt-4 button_word" type="submit" [disabled]="postform.form.invalid" (click)="postProduct(result)">Submit</button>
+                        <button  class="btn mt-4 button_word" type="submit" [disabled]="postform.form.invalid" (click)="postProduct(result)">Submit</button>
                       </div>
                    
                       <div class="col-md-4 col-sm-6 col-6">

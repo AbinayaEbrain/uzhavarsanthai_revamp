@@ -11,7 +11,7 @@ import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
 import {} from '@types/googlemaps';
 import {  FileUploader } from 'ng2-file-upload';
 
-const URL = 'http://localhost:8080/api/upload';
+// const URL = 'http://localhost:8080/api/upload';
 
 declare var $: any;
 declare let ClientIP: any;
@@ -33,8 +33,11 @@ interface EventTarget { result: any; }
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-
-  public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
+  @ViewChild("fileInput") fileInput: ElementRef;
+  loading: boolean = false;
+  valid: boolean = false;
+  message: string = "";
+  Image: File;
   imageSrc: string;
   privateIP ;
   publicIP;
@@ -74,28 +77,6 @@ export class PostComponent implements OnInit {
     });
   }
 
-  onSelectFile(event) { // called each time file input changes
-  
-   
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      alert('2')
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = reader.result;
-      }
-      
-    }
-
-    if(this.url !== null || this.url !== ''){
-      alert('3')
-      document.getElementById('hide').style.display='block';
-      //document.getElementById('show').style.display='none';
-      this.loadingCtrl.hide();
-    }
-    alert('4')
-}
 
   constructor(private _dealsService:DealsService,private http: HttpClient,private route:Router,private router:ActivatedRoute,public loadingCtrl: NgxSpinnerService,public zone:NgZone) {
     this.privateIP = ClientIP;
@@ -112,82 +93,86 @@ export class PostComponent implements OnInit {
   
   
    }
+   onFileChange(event) { //Method to set the value of the file to the selected file by the user
+    this.Image = event.target.files[0]; //To get the image selected by the user
+    this.valid = true;
+ }
 
    
   ngOnInit() {
 this.loadingCtrl.show();
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
-    var CLOUDINARY_URL = 	'https://api.cloudinary.com/v1_1/uzhavar-image/upload'
-    var CLOUDINARY_UPLOAD_PRESET = 'm0xlfiw2'
-    var imgPreview = document.getElementById('img-preview')
-    var fileUpload = document.getElementById('file-upload')
+  //   var CLOUDINARY_URL = 	'https://api.cloudinary.com/v1_1/uzhavar-image/upload'
+  //   var CLOUDINARY_UPLOAD_PRESET = 'm0xlfiw2'
+  //   var imgPreview = document.getElementById('img-preview')
+  //   var fileUpload = document.getElementById('file-upload')
   
-    fileUpload.addEventListener('change' , function(e : any){
-       //alert('5')
-       swal({   
-        title:"",
-        text: "Please wait a moment",     
-        imageUrl:"../../assets/Images/lg.sandglass-time-loading-gif.gif" 
-   });
-      var file = e.target.files[0];
-      var formData = new FormData();
-      formData.append('file',file);
-      formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+  //   fileUpload.addEventListener('change' , function(e : any){
+  //      //alert('5')
+  //      swal({   
+  //       title:"",
+  //       text: "Please wait a moment",     
+  //       imageUrl:"../../assets/Images/lg.sandglass-time-loading-gif.gif" 
+  //  });
+  //     var file = e.target.files[0];
+  //     var formData = new FormData();
+  //     formData.append('file',file);
+  //     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
     
-      axios({
+  //     axios({
         
-        url : CLOUDINARY_URL,
-        method : 'POST',
-        headers : {
-          'Content-Type' : 'application/x-www-form-urlencoded'
-        },
-        data : formData
-      }).then(function(res){
-        // alert('6')
-       // this.loadingCtrl.show();
-        console.log(res)
-        console.log(res.data.secure_url)
-        //this.loadingCtrl.hide();
-       // alert('7')
-        swal({   
-          title: "Wow!",   
-          text: "Image choosed successfully",   
-          imageUrl:res.data.secure_url,
+  //       url : CLOUDINARY_URL,
+  //       method : 'POST',
+  //       headers : {
+  //         'Content-Type' : 'application/x-www-form-urlencoded'
+  //       },
+  //       data : formData
+  //     }).then(function(res){
+  //       // alert('6')
+  //      // this.loadingCtrl.show();
+  //       console.log(res)
+  //       console.log(res.data.secure_url)
+  //       //this.loadingCtrl.hide();
+  //      // alert('7')
+  //       swal({   
+  //         title: "Wow!",   
+  //         text: "Image choosed successfully",   
+  //         imageUrl:res.data.secure_url,
           
          
          
-     });
-        localStorage.setItem('Image', JSON.stringify(res.data.secure_url));
+  //    });
+  //       localStorage.setItem('Image', JSON.stringify(res.data.secure_url));
        
-      }).catch(function(err){
-        console.log(err)
-      });
+  //     }).catch(function(err){
+  //       console.log(err)
+  //     });
     
-    });
+  //   });
 
-  //  this.getDropDownDatas();
-    this.id = this.router.snapshot.params['id']
+  // //  this.getDropDownDatas();
+  //   this.id = this.router.snapshot.params['id']
 
-    this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
+  //   this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
 
-    //overide the onCompleteItem property of the uploader so we are 
-    //able to deal with the server response.
-    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-         console.log("ImageUpload:uploaded:", item, status, response);
+  //   //overide the onCompleteItem property of the uploader so we are 
+  //   //able to deal with the server response.
+  //   this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+  //        console.log("ImageUpload:uploaded:", item, status, response);
 
-         localStorage.setItem('Image', JSON.stringify(response));
-     };
+  //        localStorage.setItem('Image', JSON.stringify(response));
+  //    };
 
 
     // if(this.id == null){
     //   //alert("dsfg");
     //   document.getElementById('update').style.display='none';
     // }
-    this.loadingCtrl.show();
-    setTimeout(() => {
-      // swal.close();
-      this.loadingCtrl.hide();
-  }, 1000);
+  //   this.loadingCtrl.show();
+  //   setTimeout(() => {
+  //     // swal.close();
+  //     this.loadingCtrl.hide();
+  // }, 1000);
   //   this._dealsService.getDeals()
   // .subscribe(
   //   res=>{
@@ -223,32 +208,29 @@ this.loadingCtrl.show();
       .subscribe(
           res => {
             this.categoryArr = res;
+            this.loadingCtrl.hide();
             console.log(this.categoryArr)
           },
       
           err => {
               this.categoryArr = [];
           });
-
-
-//subcategory
-  //  this._dealsService.getSubCategory()
-  //      .subscribe(
-  //          res => {
-  //            this.subCateArr = res;
-  //            console.log(this.subCateArr)
-  //           },
-          
-  //            err => {
-  //              this.subCateArr = [];
-  //            });
-    
-              
+             
 }
-
-      
+  
   postProduct(){
     this.loadingCtrl.show();
+    alert('1')
+    var image = new FormData(); //FormData creation
+    image.append('Image', this.Image); //Adding the image to the form data to be sent
+    this._dealsService //Sending the rquest from the service function
+      .sendImage(image)
+      .subscribe((res: any) => {
+        console.log(res);
+        alert('2')
+        localStorage.setItem('Image', JSON.stringify(res));
+     });
+   
     console.log(this.productData)
    
     var time = this.productData.validityTime
@@ -256,12 +238,13 @@ this.loadingCtrl.show();
     
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.productData.image = JSON.parse(localStorage.getItem('Image'));
+    console.log(this.productData.image)
     this.productData.ipAddress = this.privateIP;
     this.productData.avlPlace = this.addr
    
     console.log(this.productData.avlPlace)
     console.log(this.productData.categoryId)
-
+    console.log(this.productData.image)
     for(let i=0;i<this.categoryArr.length;i++){
       if(this.productData.categoryId == this.categoryArr[i]._id){
         this.productData.category = this.categoryArr[i].productCategory
@@ -276,17 +259,18 @@ this.loadingCtrl.show();
     this._dealsService.addPost(this.productData)
       .subscribe(
         res=>{
-          this.loadingCtrl.show();
+          
        console.log(this.productData)
        console.log(res);
      
       this.success = "Posted successfully!"
+     //localStorage.removeItem('Image')
       this.loadingCtrl.hide();
       console.log( this.productData.avlPlace)
         setTimeout(() => {
           
           this.loadingCtrl.show();
-          this.route.navigate(['user-deals']);
+          this.route.navigate(['products']);
           this.loadingCtrl.hide();
 
       }, 1000);

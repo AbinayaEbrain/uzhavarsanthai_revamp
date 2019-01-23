@@ -128,11 +128,15 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                    <div class="form-group">
-                        <span style="color: white;" class="english_wrd">Choose your product image</span>
+                        <!-- <span style="color: white;" class="english_wrd">Choose your product image</span>
                         <label class="file-upload-container ml-2" for="file-upload"  (change)="onSelectFile($event)" style="font-weight: bold;border: 2px solid green;padding: 5px;color: white">
                             <input id="file-upload" class="mx-auto" type="file" style="display:none;">
                             Select an Image
-                          </label>
+                          </label> -->
+                          <div class="upload-btn-wrapper">
+                                <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
+                                <input type="file" id="Image" name="Image" class="upload"(change)="onFileChange($event)" #fileInput>
+                              </div>
                         <!--  <input type="file" style="color: white; width: 218px;" (change)="onSelectFile($event)" #image="ngModel" name="image" [(ngModel)]="deallistobj.image" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
                         <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Image is required</span> --> 
                         </div> 

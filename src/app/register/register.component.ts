@@ -80,14 +80,17 @@ export class RegisterComponent implements OnInit {
            localStorage.setItem('status', JSON.stringify(res.user.status));
            //this.router.navigate(['/login'])
            this.success = "Registered successfully!"
-          document.getElementById('hideButton').style.display ='none'
-          document.getElementById('hideRestButton').style.display ='none'
+           this.router.navigate(['/post']);
+          //  document.getElementById('hideButton').style.display ='none'
+          //  document.getElementById('hideRestButton').style.display ='none'
           
-           setTimeout(() => {
-            // swal.close();
-            this.loadingCtrl.hide();
-            this.router.navigate(['/post']);
-        }, 2000);
+         
+          
+        //    setTimeout(() => {
+        //     // swal.close();
+        //     this.loadingCtrl.hide();
+          
+        // }, 2000);
 
         if(res.statusText == 'Unauthorized'){
           //console.log('Ooops!');

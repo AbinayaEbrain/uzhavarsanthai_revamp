@@ -22,6 +22,7 @@ import {ViewcategoryComponent} from '../app/viewcategory/viewcategory.component'
 import {HotdealsComponent} from '../app/hotdeals/hotdeals.component'
 import {UserProfileComponent} from '../app/user-profile/user-profile.component';
 import {DeactiveDealsComponent} from '../app/deactive-deals/deactive-deals.component'
+import {UserProductsComponent} from '../app/user-products/user-products.component'
 const routes: Routes = [
   {
     path:'',
@@ -130,14 +131,17 @@ const routes: Routes = [
   component: UserProfileComponent
 },
 {
-  path: 'updateuser',
-  component: UserProfileComponent
-},
-{
   path: 'expired-products',
   component: DeactiveDealsComponent
+},
+{
+  path: 'products',
+  component: UserProductsComponent
+},
+{
+  path: 'products/:id',
+  component: UserProductsComponent
 }
- 
 ];
 
 @NgModule({

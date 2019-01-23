@@ -170,3 +170,9 @@ select{
   .error_word{
     font-family: 'Cabin', sans-serif;
   }
+  .upload {
+    color: white;
+    background-color: transparent;
+    font-weight: bold;
+    border: none !important;
+  }

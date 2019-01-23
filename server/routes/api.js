@@ -5,6 +5,9 @@ const User = require('../models/user')
 const Post = require('../models/post')
 const Category = require('../models/category')
 const mongoose = require('mongoose')
+var multer = require('multer');
+const  cloudinary = require('cloudinary')
+const cloudinaryStorage = require('multer-storage-cloudinary')
 const db ="mongodb://user01:user01@ds023704.mlab.com:23704/farmersdb"
 
 mongoose.connect(db, err=>{
@@ -313,6 +316,18 @@ router.put('/admin-user/deactive/:id', function(req, res){
 
     );
 });
+
+router.post("/sendImage",
+multer({storage: cloudinaryStorage({
+ cloudinary: cloudinary,
+ allowedFormats: ['jpg', 'png'],
+ destination: function (req, file, callback) { callback(null, './uploads');},
+}) //MyImage is the name of the image which will be uploaded to your Cloudinary storage
+}).single('Image'), function(req, res){ //To return OK status to the user after uploading
+    let path = JSON.stringify(req.file.secure_url)
+    return res.send(path)
+	
+} );
 
 //activate account 
 router.put('/admin-user/active/:id', function(req, res){

@@ -25,11 +25,20 @@ transition: all 200ms ease-in;
   display: block;
   opacity: 1;
 }
-/* @media screen and (min-width: 320px) and (max-width:425px) {
-  .dropdown:hover .dropdown-menu { 
-    display: block;
-  }
-} */
 
+.tamil_word{
+  font-family: 'Hind Madurai', sans-serif;
+  font-weight: bold;
+}
+.clr{
+  color: white;
+  text-align: center;
+  margin: auto;
+}
+@media screen and (min-width: 320px) and (max-width:425px) {
+  .hideMobile{ 
+    display: none;
+  }
+}
 
 

@@ -44,6 +44,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FileUploadModule } from 'ng2-file-upload';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DeactiveDealsComponent } from './deactive-deals/deactive-deals.component';
+import { UserProductsComponent } from './user-products/user-products.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { DeactiveDealsComponent } from './deactive-deals/deactive-deals.componen
     HotdealsComponent,
     UserProfileComponent,
     DeactiveDealsComponent,
+    UserProductsComponent,
     
   ],
   imports: [
@@ -84,7 +86,8 @@ import { DeactiveDealsComponent } from './deactive-deals/deactive-deals.componen
     BsDatepickerModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAmEuB6RfjEQdz9zqL_nYihfHkeWR-iq-Y',
-      libraries: ["places"]
+      libraries: ['geometry', 'places'],
+      language: 'en'
     })
 
   ],

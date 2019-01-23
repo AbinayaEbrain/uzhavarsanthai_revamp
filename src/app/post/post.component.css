@@ -199,3 +199,16 @@
     font-size: 14px;
     font-family: 'Hind Madurai', sans-serif;
   }
+ .categoryOption{
+     background-color: white !important;
+     color: #0d4608 !important;
+     font-weight: bold;
+ }
+ .upload {
+    color: white;
+    background-color: transparent;
+    font-weight: bold;
+    border: none !important;
+  }
+  
+

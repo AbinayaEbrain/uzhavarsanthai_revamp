@@ -16,49 +16,58 @@
      <div class="col-md-4 well">
         <div class="form-group mb-5 mt-2">
             <input type="text"  #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="crntUser.firstname" autocomplete="off" required>
-            <label class="form-control-placeholder english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ First Name</label>
+            <label class="form-control-placeholder english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
             <span class="text-danger float-left error_word" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> First Name is required</span>  
           </div>
      </div>
      <div class="col-md-4 well">
-        <div class="form-group mb-5 mt-2">
+        <div class="form-group  mb-5 mt-2">
+            <input type="text"  #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control" [(ngModel)]="crntUser?.address.addressLine" autocomplete="off" required>
+            <label class="form-control-placeholder english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
+            <span class="text-danger float-left error_word" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>  
+          </div> 
+        <!-- <div class="form-group mb-5 mt-2">
             <input type="text"  #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched" ngModel (keypress)="handleInput($event)" name="lastName" class="form-control" [(ngModel)]="crntUser.lastName" autocomplete="off"  required>
             <label class="form-control-placeholder english_wrd" for="lastName"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Last Name</label>
             <span class="text-danger float-left error_word" [class.d-none] = "lastName.valid || lastName.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Last Name is required</span>  
-          </div>
+          </div> -->
      </div>
      <div class="col-md-4 well">
-        <div class="form-group  mb-5 mt-2">
+        <div class="form-group mb-5 mt-2">
+            <input google-place type="text" placeholder="மாவட்டம் / City" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="crntUser.address.city.formatted_address" required>
+            <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span> 
+    </div>
+        <!-- <div class="form-group  mb-5 mt-2">
             <select required class="form-control slect english_wrd"  #gender="ngModel" name="gender" [class.is-invalid]="gender.invalid && gender.touched" ngModel [(ngModel)]="crntUser.gender">
               <option value="" ><span style="font-size: 14px" class="tamil_word ">பாலினம் </span><span style="font-size: 16px !important" class="english_wrd">/ Gender</span></option>
               <option value="Male"  class="english_wrd">Male</option>
               <option value="Female"  class="english_wrd">Female</option>
             </select>
            
-          </div>
-          <span class="text-danger float-left error_word" [class.d-none] = "gender.valid || gender.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Gender is required</span>  
+          </div> -->
+          <!-- <span class="text-danger float-left error_word" [class.d-none] = "gender.valid || gender.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Gender is required</span>   -->
      </div>
     </div>
     <div class="row">
       <div class="col-md-4">
-           <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
+           <!-- <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
               <input type="text"  #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control" [(ngModel)]="crntUser?.address.addressLine" autocomplete="off" required>
               <label class="form-control-placeholder english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி 1 </span>/ AddressLine 1</label>
               <span class="text-danger float-left error_word" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>  
-            </div> 
+            </div>  -->
       </div>
       <div class="col-md-4">
-          <div class="form-group mb-5 mt-2">
+          <!-- <div class="form-group mb-5 mt-2">
               <input type="text"  #address1="ngModel" [class.is-invalid]="address1.invalid && address1.touched" ngModel name="address1" class="form-control" [(ngModel)]="crntUser.address.address1" autocomplete="off" required>
               <label class="form-control-placeholder english_wrd" for="address1"><span style="font-size: 14px" class="tamil_word">முகவரி 2 </span>/ AddressLine 2</label>
               <span class="text-danger float-left error_word" [class.d-none] = "address1.valid || address1.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>  
-            </div>
+            </div> -->
       </div>
       <div class="col-md-4">
-          <div class="form-group mb-5 mt-2">
+          <!-- <div class="form-group mb-5 mt-2">
               <input google-place type="text" placeholder="மாவட்டம் / City" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="crntUser.address.city.formatted_address" required>
               <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span> 
-      </div>
+      </div> -->
     </div>  
     </div>
     <div class="row">

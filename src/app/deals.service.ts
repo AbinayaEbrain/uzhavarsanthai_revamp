@@ -15,8 +15,12 @@ export class DealsService {
   //Active URL
   private activeUrl ="https://uzhavarsanthai.herokuapp.com/api/admin-user/active";
   private updateuserurl = "https://uzhavarsanthai.herokuapp.com/api/updateuser";
+  private uploadUrl = "http://localhost:5000/api/sendImage";
   constructor(private http:HttpClient) { }
 
+  sendImage(Image: FormData) {
+    return this.http.post(this.uploadUrl,Image);
+  }
   getDeals(){
     return this.http.get<any>(this._dealsUrl)
   }

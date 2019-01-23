@@ -8,11 +8,19 @@ const path = require('path');
 const api = require('./server/routes/api')
 var multer = require('multer');
 const app = express()
-
+const  cloudinary = require('cloudinary')
+const cloudinaryStorage = require('multer-storage-cloudinary')
 app.use(bodyParser.json())
 app.use(cors())
 app.use('/api',api)
 
+
+	//Configuring Cloduinary API
+	cloudinary.config({  //Your Cloudinary API Data
+	  cloud_name: 'uzhavar-image',
+	  api_key: '358719619665496',
+	  api_secret: '4GhqUn7TJW1TRPMucTo0MFvg3m4'
+	});
 
 const DIR = './server/uploads';
 
@@ -77,6 +85,6 @@ app.get('/*', (req, res) => {
 //     res.send("Hello");
 //  });
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 5000);
 
 

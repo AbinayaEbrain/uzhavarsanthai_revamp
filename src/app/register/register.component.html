@@ -1,5 +1,5 @@
 <body class="bg1" style="overflow: hidden;">
-    <div class="text-center container mb-5 mt-5 pt-5">
+    <!-- <div class="text-center container mb-5 mt-5 pt-5">
       <h2 class="clr mb-5" >Registration</h2>
       <div class="row mb-3" *ngIf = "success">
         <div class="col-md-4"></div>
@@ -29,7 +29,6 @@
           </div>  
               <div class="col-md-4">
                   <div class="form-group  mb-5 mt-2">
-                      <!-- <label for="sel1">Select</label> -->
                       <select required class="form-control slect english_wrd"  #gender="ngModel" name="gender" [class.is-invalid]="gender.invalid && gender.touched" ngModel [(ngModel)]="registeredUserData.gender">
                         <option value="" ><span style="font-size: 14px" class="tamil_word ">பாலினம் </span><span style="font-size: 16px !important" class="english_wrd">/ Gender</span></option>
                         <option value="Male"  class="english_wrd">Male</option>
@@ -39,8 +38,6 @@
                     <span class="text-danger float-left error_word" [class.d-none] = "gender.valid || gender.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Gender is required</span>  
               </div>
               </div>
-
-              <!-- 3rd row -->
               <div class="row">
                   <div class="col-md-4">
                       <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
@@ -64,12 +61,10 @@
                                   
 
                             </div>
-                            <!-- <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span> -->
                         </div>  
              
                   </div>
 
-                      <!-- 5th row -->
                       <div class="row">
                             <div class="col-md-4 mt-xl-0 mt-lg-0 mt-md-0 mt-sm-5">
                                 <div class="form-group  mb-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
@@ -111,7 +106,76 @@
                 </div>
             </div>
           </form>
-              </div>
-      
+              </div> -->
+              <div class="container">
+                    
+                            <!-- <h2 class=" pt-5 d-sm-block clr sent_font text-left tamil_word"> உணவூட்டும் விவசாயத்திற்கு உயிரூட்டுவோம் -<br class="greetmsg"> விவசாயம் காப்போம்
+                            </h2> -->
+              </div> 
+              <div class="container">  
+      <div class="row mt-5">
+          <div class="col-md-1">
+
+          </div>
+          <div class="col-md-4">
+                <div class="alert alert-success english_wrd" *ngIf = "success">
+                        {{success}}
+                </div>
+            <form   #postform="ngForm" *ngIf ="!submitted" novalidate >
+                  
+                    <h1 class="h3 mb-5 font-weight-normal mt-1 clr">Registration</h1>
+                    <div class="form-group mb-5 "     style="margin-top: -20px;">
+                            <input type="text"  #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="registeredUserData.firstname" autocomplete="off" required>
+                            <label class="form-control-placeholder english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
+                            <span class="text-danger float-left error_word" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> First Name is required</span>  
+                    </div>
+                    <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
+                                <input type="text"  #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control"  [(ngModel)]="registeredUserData.address.addressLine" autocomplete="off" required>
+                                <label class="form-control-placeholder english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி  </span>/ Address</label>
+                                <span class="text-danger float-left error_word" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>  
+                     </div>
+                     <div class="form-group mb-5 mt-2">
+                            <input google-place type="text" placeholder="மாவட்டம் / City" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="registeredUserData.address.city" required>
+                            <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span> 
+                    </div>
+                    <div class="form-group  mb-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
+                            <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" (change)="phnTen()" [(ngModel)]="registeredUserData.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
+                            <label class="form-control-placeholder english_wrd" for="phone"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
+
+                            <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
+                                <span class="text-danger float-left error_word" *ngIf="phone.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone Number is required</span>
+                            </div>
+
+                            <span class="text-danger float-left"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="errormsg">{{errormsg}}</span>
+                            <span class="text-danger float-left error_word" *ngIf="phnErr">{{phnErr}}</span>
+                            <!-- <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
+                            <label class="form-control-placeholder english_wrd" for="password"><span style="font-size: 14px" class="tamil_word">கடவுச்சொல் </span>/ Password</label>
+                            <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>   -->
+                     </div>
+                     <div class="form-group mt-2">
+                            <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
+                            <label class="form-control-placeholder english_wrd" for="password"><span style="font-size: 14px" class="tamil_word">கடவுச்சொல் </span>/ Password</label>
+                            <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>  
+                      
+                        </div>
+                        <div class="row">
+                                <div class="col-md-12 ">
+                                    <button id="hideButton" class="btn btn-block button_word" [disabled]="postform.form.invalid" type="submit" (click)="post()"><span style="font-size: 14px" class="tamil_word">பதிவு செய்க</span> / SignUp</button>
+                                </div>
+                                <!-- <div class="col-md-6 col-sm-6 col-6">
+                                    <button id="hideRestButton" type="reset" class="btn mt-4 btn1 button_word">Reset</button>
+                                </div> -->
+                            </div>
+                      
+            </form>
+            <br>
+            <p class="clr mt-1 english_wrd " style="font-size: 18px;">Already have account? <span routerLink="/login" class="span_clr"  style="cursor: pointer;font-size: 18px;">Login</span> </p>
+        </div>
+        <div class="col-md-6">
+              
+        </div>
+      </div>
+    </div> 
+
             </body>
   

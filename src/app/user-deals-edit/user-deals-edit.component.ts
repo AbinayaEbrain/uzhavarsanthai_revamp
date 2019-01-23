@@ -48,6 +48,8 @@ export class UserDealsEditComponent implements OnInit {
  url: ''
  dateNrml:any
  currentImg:any;
+ valid: boolean = false;
+ Image: File;
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
     //to the object in the DOM.
@@ -62,29 +64,10 @@ export class UserDealsEditComponent implements OnInit {
   constructor(private  _dealsService:DealsService,private route:ActivatedRoute,private router:Router,public zone:NgZone,public loadingCtrl:NgxSpinnerService
   , private datePipe: DatePipe) {}
 
-  onSelectFile(event) { // called each time file input changes
-    
-   
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      console.log(reader)
-
-
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = reader.result;
-        console.log(this.url)
-      }
-    }
-    if(this.url !== null || this.url !== ''){
-      document.getElementById('hide').style.display='block';
-      document.getElementById('show').style.display='none';
-    }
-  
-    console.log(this.currentImg)
-}
-
+  onFileChange(event) { //Method to set the value of the file to the selected file by the user
+    this.Image = event.target.files[0]; //To get the image selected by the user
+    this.valid = true;
+ }
 
 
   ngOnInit() {
@@ -94,55 +77,7 @@ export class UserDealsEditComponent implements OnInit {
     //document.getElementById('localStorageImg').style.display="none";
     this.InitialCall();
    this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
-    var CLOUDINARY_URL = 	'https://api.cloudinary.com/v1_1/uzhavar-image/upload'
-    var CLOUDINARY_UPLOAD_PRESET = 'm0xlfiw2'
-    var imgPreview = document.getElementById('img-preview')
-    var fileUpload = document.getElementById('file-upload')
-  
-    fileUpload.addEventListener('change' , function(e : any){
-       //alert('5')
-       swal({   
-        title:"",
-        text: "Please wait a moment",     
-        imageUrl:"../../assets/Images/lg.sandglass-time-loading-gif.gif" 
-   });
-      var file = e.target.files[0];
-      var formData = new FormData();
-      formData.append('file',file);
-      formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
     
-      axios({
-        
-        url : CLOUDINARY_URL,
-        method : 'POST',
-        headers : {
-          'Content-Type' : 'application/x-www-form-urlencoded'
-        },
-        data : formData
-      }).then(function(res){
-        // alert('6')
-       // this.loadingCtrl.show();
-        console.log(res)
-        console.log(res.data.secure_url)
-        //this.loadingCtrl.hide();
-       // alert('7')
-        swal({   
-          title: "Wow!",   
-          text: "Image choosed successfully",   
-          imageUrl:res.data.secure_url,
-          
-         
-         
-     });
-        localStorage.setItem('Image', JSON.stringify(res.data.secure_url));
-       // alert('1')
-        document.getElementById('hideDisplayImg').style.display="none";
-        
-      }).catch(function(err){
-        console.log(err)
-      });
-    
-    });
     // this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
 
     // this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
@@ -184,7 +119,7 @@ export class UserDealsEditComponent implements OnInit {
         this.deallistobj.avlPlace = this.address.formatted_address 
         this.dateNrml = this.datePipe.transform((this.time),'dd/MM/yyyy');
         this.deallistobj.validityTime = this.dateNrml
-        localStorage.setItem('Image', JSON.stringify(this.deallistobj.image));
+        //localStorage.setItem('Image', JSON.stringify(this.deallistobj.image));
         console.log(this.deallistobj)
 
       },
@@ -237,6 +172,16 @@ InitialCall() {
 
   update(){
     this.loadingCtrl.show();
+    var image = new FormData(); //FormData creation
+    image.append('Image', this.Image); //Adding the image to the form data to be sent
+    this._dealsService //Sending the rquest from the service function
+      .sendImage(image)
+      .subscribe((res: any) => {
+        console.log(res);
+        alert('2')
+        localStorage.setItem('Image', JSON.stringify(res));
+      
+     });
     let curntDte = new Date().toLocaleDateString();
     this.deallistobj.date = curntDte
 
