@@ -218,26 +218,29 @@ this.loadingCtrl.show();
              
 }
   
+postImage(){
+  console.log(this.productData)
+  var image = new FormData(); //FormData creation
+  image.append('Image', this.Image);
+  //Adding the image to the form data to be sent
+  this._dealsService.sendImage(image)
+    .subscribe((res) => {
+      console.log(res);
+      // localStorage.setItem('Image', JSON.stringify(res));
+      this.productData.image = res;
+   });
+   
+    this.postProduct();
+ 
+}
   postProduct(){
     this.loadingCtrl.show();
-    alert('1')
-    var image = new FormData(); //FormData creation
-    image.append('Image', this.Image); //Adding the image to the form data to be sent
-    this._dealsService //Sending the rquest from the service function
-      .sendImage(image)
-      .subscribe((res: any) => {
-        console.log(res);
-        alert('2')
-        localStorage.setItem('Image', JSON.stringify(res));
-     });
-   
     console.log(this.productData)
-   
     var time = this.productData.validityTime
     this.productData.validityTime = time.getTime()
     
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
-    this.productData.image = JSON.parse(localStorage.getItem('Image'));
+   // this.productData.image = JSON.parse(localStorage.getItem('Image'));
     console.log(this.productData.image)
     this.productData.ipAddress = this.privateIP;
     this.productData.avlPlace = this.addr
@@ -286,8 +289,6 @@ this.loadingCtrl.show();
         }
 
       )
-
-     localStorage.removeItem('Image')
   }
 
   getunits(){

@@ -210,7 +210,7 @@ InitialCall() {
         setTimeout(() => {
           
           this.loadingCtrl.show();
-          this.router.navigate(['/user-deals']);
+          this.router.navigate(['/products']);
           this.loadingCtrl.hide();
       }, 2000);
       

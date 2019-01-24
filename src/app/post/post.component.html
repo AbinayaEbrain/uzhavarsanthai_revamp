@@ -54,7 +54,7 @@
                       </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="form-group mb-5 mt-2">
+                    <div class="form-group mb-5 mt-3 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                       
                         <select required class="form-control slect"  #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel (change)="getunits()" [(ngModel)]="productData.qnty" >
                             <option disabled="" value="" >Unit</option>
@@ -93,7 +93,7 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">    
-                    <div class="form-group mb-5 mt-2">
+                    <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2">
                       <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="productData.price"  name="price" class="form-control" maxlength="5"  autocomplete="off"  required>
                
                       <label class="form-control-placeholder english_wrd floatinglabl" for="name"><span style="font-size: 14px" class="tamil_wrd">விலை</span> / Price / {{showUnit}}</label>
@@ -144,7 +144,7 @@
                <div class="row" id="save">
                     <div class="col-md-4"></div>
                     <div class="col-md-4 col-sm-6 col-6">
-                        <button  class="btn mt-4 button_word" type="submit" [disabled]="postform.form.invalid" (click)="postProduct(result)">Submit</button>
+                        <button  class="btn mt-4 button_word" type="submit" [disabled]="postform.form.invalid" (click)="postImage(result)">Submit</button>
                       </div>
                    
                       <div class="col-md-4 col-sm-6 col-6">

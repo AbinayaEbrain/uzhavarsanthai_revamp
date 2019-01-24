@@ -77,13 +77,13 @@ export class ViewcategoryComponent implements OnInit {
              }
            }
            if (this.totalDeals.length == 0){
-          //  this.loadingCtrl.show();
+            this.loadingCtrl.show();
             this.errMsg = "Currently no deals available"
             console.log(this.errMsg)
            document.getElementById('hidePagination').style.display="none";
            document.getElementById('hideSearchDiv').style.display="none";
            document.getElementById('hideFilterButton').style.display="none";
-        //   this.loadingCtrl.hide();
+       this.loadingCtrl.hide();
        // alert('4')
           }
           console.log(this.totalDeals)
