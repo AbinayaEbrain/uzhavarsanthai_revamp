@@ -94,12 +94,7 @@
                           <th>:</th>
                           <th class="info1">{{register.address.address1}}</th>
                          </tr> -->
-                         <tr *ngIf="register.address.city.formatted_address">
-                            <th class="product">Location</th>
-                            <th>:</th>
-                            <th class="info1">{{register.address.city.formatted_address}}</th>
-                           </tr>
-                           <tr *ngIf="register.address.city.locality">
+                           <tr>
                                 <th class="product">Location</th>
                                 <th>:</th>
                                 <th class="info1">{{register.address.city.locality}}</th>
