@@ -48,7 +48,8 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.loadingCtrl.show();
     this.InitialCall();
-    this.id = this.route.snapshot.params['id']
+   // this.id = this.route.snapshot.params['id']
+   this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
     this._users.getDetails()
     .subscribe(
       res=>{

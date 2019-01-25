@@ -25,10 +25,6 @@ export class AppComponent implements OnInit {
   constructor(public _authService:AuthService,public loadingCtrl: NgxSpinnerService){}
 
   ngOnInit() {
-   
-   if(JSON.parse(localStorage.getItem('currentUser'))._id){
-    this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
-     }
   }
 
   trackMe() {

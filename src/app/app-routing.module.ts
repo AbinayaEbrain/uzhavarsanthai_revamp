@@ -127,10 +127,6 @@ const routes: Routes = [
   component: HotdealsComponent
 },
 {
-  path: 'updateuser/:id',
-  component: UserProfileComponent
-},
-{
   path: 'updateuser',
   component: UserProfileComponent
 },
