@@ -44,16 +44,13 @@ export class ViewmoreComponent implements OnInit {
    //this.userName = JSON.parse(localStorage.getItem('currentUser')).firstname;
 
     this.id = this.route.snapshot.params['id']
-    console.log( this.id)
     this.loadingCtrl.show();
       this._dealsService.getDeals()
         .subscribe(
           res=>{
            
             this.viewPost = res
-           console.log(this.viewPost)
             for(let i=0; i < this.viewPost.length; i++){
-              console.log(this.postProduct)
               if(this.id == this.viewPost[i]._id){
                this.postProduct.category =  this.viewPost[i].category;
                this.postProduct.name =  this.viewPost[i].name;
@@ -81,25 +78,17 @@ export class ViewmoreComponent implements OnInit {
            
             
             this.viewmore = res;
-         console.log(this.viewmore)
             for(let i=0; i < this.viewmore.length; i++){
               if(this.postProduct.accountId == this.viewmore[i]._id){
-                console.log(this.postProduct)
-                // console.log(this.viewmore[i]._id)
-                // console.log(this.postProduct.accountId )
                this.register.firstName =  this.viewmore[i].firstname;
                this.register.lastName =  this.viewmore[i].lastName;
                this.register.phone = this.viewmore[i].phone;
                this.register.address.addressLine = this.viewmore[i].address.addressLine;
                this.register.address.address1 = this.viewmore[i].address.address1;
                this.city = this.viewmore[i].address.city;
-               //this.state = this.viewmore[i].address.location;
-               console.log(this.register.address.address1)
                 this.loadingCtrl.hide();
               }
             }
-            
-           // console.log(this.city)
             this.register.address.city.locality = this.city.locality
             this.register.address.city.admin_area_l1 = this.city.admin_area_l1
           },

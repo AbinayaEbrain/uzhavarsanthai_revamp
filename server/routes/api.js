@@ -77,7 +77,6 @@ router.post('/post',(req,res)=>{
     let userData = req.body
     let user = new Post(userData)
     user.save((error,productData)=>{
-        console.log('1'+ productData)
         if(error){
             console.log(error)
         }else{
@@ -90,7 +89,6 @@ router.post('/post',(req,res)=>{
             //before adding jwt
             
             res.status(200).send(productData)
-         console.log(res)
            
             //after add jwt
         //    res.status(200).send({token})
@@ -149,12 +147,11 @@ router.post('/login',(req,res)=>{
 router.get('/deals',(req,res)=>{
     Post.find(function (err,result){
         if(err){
-            console.log('no data1')
+            // console.log('no data1')
             console.log(err)
         }
         else{
          res.send(result)
-           console.log(result)
         }
     })
  })
@@ -224,8 +221,8 @@ router.delete('/details/:id',(req,res)=>{
 
  //update deals
  router.put('/deals/:id', function(req, res){
-    console.log('Update a user');
-    console.log(req.body)
+    // console.log('Update a user');
+    // console.log(req.body)
      //let userData = req.body
     // let User = new User(userData)
     Post.findByIdAndUpdate(req.params.id,
@@ -249,8 +246,8 @@ router.delete('/details/:id',(req,res)=>{
 
 //update user
 router.put('/updateuser/:id', function(req, res){
-    console.log('Update a userprofile');
-    console.log(req.body)
+    // console.log('Update a userprofile');
+    // console.log(req.body)
    
     User.findByIdAndUpdate(req.params.id,
     {
@@ -273,8 +270,8 @@ router.put('/updateuser/:id', function(req, res){
 
  //update deals
  router.put('/category/:id', function(req, res){
-    console.log('Update a user');
-    console.log(req.body)
+    // console.log('Update a user');
+    // console.log(req.body)
      //let userData = req.body
     // let User = new User(userData)
     Category.findByIdAndUpdate(req.params.id,
@@ -297,8 +294,8 @@ router.put('/updateuser/:id', function(req, res){
 
 //Deactivate account 
 router.put('/admin-user/deactive/:id', function(req, res){
-    console.log('Update a user');
-    console.log(req.body)
+    // console.log('Update a user');
+    // console.log(req.body)
     User.findByIdAndUpdate(req.params.id,
     {
         $set: {status : 'DEACTIVE'}
@@ -331,8 +328,8 @@ multer({storage: cloudinaryStorage({
 
 //activate account 
 router.put('/admin-user/active/:id', function(req, res){
-    console.log('Update a user');
-    console.log(req.body)
+    //console.log('Update a user');
+    // console.log(req.body)
     User.findByIdAndUpdate(req.params.id,
     {
         $set: {status : 'ACTIVE'}

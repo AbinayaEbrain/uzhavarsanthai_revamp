@@ -40,8 +40,6 @@ export class UserProfileComponent implements OnInit {
     this.zone.run(() => {
       this.addr = addrObj;
       this.addrKeys = Object.keys(addrObj);
-      console.log(this.addrKeys)
-      console.log(this.addr)
     });
   }
 
@@ -50,17 +48,14 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.loadingCtrl.show();
     this.InitialCall();
-   // console.log(this.InitialCall)
     this.id = this.route.snapshot.params['id']
     this._users.getDetails()
     .subscribe(
       res=>{
         this.loggedUser = res
         this.loadingCtrl.hide();
-        console.log(this.loggedUser)
         for(let i=0;i<this.loggedUser.length;i++){
          this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
-          console.log(this.currentuserId)
           if( this.currentuserId == this.loggedUser[i]._id){
             this.crntUser.firstname = this.loggedUser[i].firstname;
             this.crntUser.lastName = this.loggedUser[i].lastName;
@@ -81,18 +76,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateUser(){
-this.loadingCtrl.show();
-    console.log(this.addr)
+    this.loadingCtrl.show();
     if(this.addr != undefined || this.addr != null){
       this.crntUser.address.city = this.addr
     }
-    console.log(this.crntUser)
-    console.log(this.id)
-   
     this._users.updateCustomer(this.crntUser,this.id)
     .subscribe(
       res=>{
-        console.log(res)
         this.loadingCtrl.hide();
         this.success = "Updated successfully!"
         setTimeout(() => {
@@ -118,10 +108,8 @@ this.loadingCtrl.show();
   } 
   
   InitialCall() {
-    console.log(this.loggedUser)
     for(let i=0; i < this.loggedUser.length; i++){
       if(this.id == this.loggedUser[i]._id){
-        console.log(this.loggedUser[i])
         this.crntUser.firstname = this.loggedUser[i].firstname;
         this.crntUser.lastName = this.loggedUser[i].lastName;
         this.crntUser.gender = this.loggedUser[i].gender;

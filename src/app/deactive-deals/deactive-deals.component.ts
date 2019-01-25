@@ -28,7 +28,6 @@ export class DeactiveDealsComponent implements OnInit {
     ngOnInit() {
 
       this.userName = JSON.parse(localStorage.getItem('currentUser'));
-      console.log(this.userName)
       this.loadingCtrl.show();
       this._dealsService.getDeals()
         .subscribe(
@@ -38,17 +37,10 @@ export class DeactiveDealsComponent implements OnInit {
             let j = 0;
             
             this.crdDeals = res
-            console.log(this.crdDeals)
             let CurrentDate = new Date().toISOString();
-            console.log(CurrentDate)
-            console.log(new Date().toISOString())
-            console.log(this.crdDeals)
             for(let i=0 ; i < this.crdDeals.length ; i++){
-              console.log(this.crdDeals[i].validityTime)
               if((acntID == this.crdDeals[i].accountId) && (this.crdDeals[i].validityTime < CurrentDate)){
                 this.userDeals[j] = this.crdDeals[i];
-               console.log(this.userDeals)
-            
             j++;
               }
              
@@ -64,8 +56,6 @@ export class DeactiveDealsComponent implements OnInit {
               document.getElementById('hidePagination').style.display='none';
              
               this.loadingCtrl.hide();
-              
-              console.log(this.errMsg)
             }
           }
           

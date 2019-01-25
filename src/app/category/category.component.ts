@@ -46,17 +46,6 @@ export class CategoryComponent implements OnInit {
  }
 
   ngOnInit() {
-
-  this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
-
-  //   //overide the onCompleteItem property of the uploader so we are 
-  //   //able to deal with the server response.
-    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-         console.log("ImageUpload:uploaded:", item, status, response);
-
-         localStorage.setItem('Image', JSON.stringify(response));
-     };
-
     this.loadingCtrl.show();
     this.InitialCall();
    //category
@@ -66,8 +55,6 @@ export class CategoryComponent implements OnInit {
        res => {
         this.loadingCtrl.hide();
          this.categoryArr = res;
-        console.log(this.categoryArr)
-
          if(this.categoryArr.length == 0){
            this.errMsg = "No Category Added"
 
@@ -83,12 +70,10 @@ export class CategoryComponent implements OnInit {
        //update
 
        this.id = this.route.snapshot.params['id']
-    // console.log(this.id)
     this._dealService.getCategory()
     .subscribe(
       res=>{
         this.categoryArr = res
-        // console.log(this.categoryArr)
         for(let i=0; i < this.categoryArr.length; i++){
           if(this.id == this.categoryArr[i]._id){
             this.deallistobj.productCategory = this.categoryArr[i].productCategory
@@ -150,7 +135,6 @@ export class CategoryComponent implements OnInit {
     this._adminService.addCate(this.cateData)
       .subscribe(
        res =>{
-          //console.log(res);
          
           this.sucessMsg="Category Added";
           
@@ -188,14 +172,9 @@ export class CategoryComponent implements OnInit {
 
 
     update(){
-     
-      //  console.log(this.deallistobj)
       this._dealService.editCategory(this.deallistobj,this.id)
       .subscribe(
         res=>{
-         // alert(this.deallistobj.image)
-          console.log(this.deallistobj),
-  
          // this.success = "Updated successfully!"
           setTimeout(() => {
             // swal.close();

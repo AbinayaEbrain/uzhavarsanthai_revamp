@@ -29,7 +29,6 @@ export class UserDealsComponent implements OnInit {
   ngOnInit() {
 
     this.userName = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.userName)
     this.loadingCtrl.show();
     this._dealsService.getDeals()
       .subscribe(
@@ -39,22 +38,12 @@ export class UserDealsComponent implements OnInit {
           let j = 0;
           
           this.crdDeals = res
-          console.log(this.crdDeals)
           let CurrentDate = new Date().toISOString();
-          // console.log("1")
           for(let i=0 ; i < this.crdDeals.length ; i++){
             if((acntID == this.crdDeals[i].accountId) && (this.crdDeals[i].validityTime > CurrentDate)){
               this.userDeals[j] = this.crdDeals[i];
-             
-          // console.log(this.crdDeals[i]);
-          // console.log(this.userDeals[j]);
-          j++;
+            j++;
             }
-            // else{
-            //   alert(this.userDeals.length)
-            //   alert(this.userDeals[j].category)
-            // }
-            
           }
           for(let j=0;j<this.userDeals.length;j++){
           if (this.userDeals[j].category == undefined){
@@ -63,19 +52,8 @@ export class UserDealsComponent implements OnInit {
             document.getElementById('hide').style.display='none';
             document.getElementById('hideTable').style.display='none';
             document.getElementById('hidePagination').style.display='none';
-            
-            console.log(this.errMsg)
           }
         }
-          // alert(this.userDeals.length)
-          // if (this.userDeals.length == 0){
-          //   this.errMsg = "Still you haven't post any deals"
-         
-          //   document.getElementById('hideTable').style.display='none';
-          //   document.getElementById('search_box').style.display='none';
-          //   console.log(this.errMsg)
-          // }
-     
         },
         err =>{
           this.loadingCtrl.hide();
