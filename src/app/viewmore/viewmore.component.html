@@ -33,44 +33,6 @@
         </table> 
     </div>
     <div class="col-md-4"  style="background-color: #e7e9e7;">
-        <table class="english_wrd tableAlign">
-            <div class="table" >
-          <tr>
-           <th class="product">Name</th>
-           <th>:</th>
-           <th class="info1">{{register.firstName}} {{register.lastName}}</th>
-          </tr>
-             <tr>
-                <th class="product">Address1</th>
-                <th>:</th>
-                <th class="info1">{{register.address.addressLine}}</th>
-               </tr>
-               <tr>
-                  <th class="product">Address2</th>
-                  <th>:</th>
-                  <th class="info1">{{register.address.address1}}</th>
-                 </tr>
-                 <tr>
-                    <th class="product">City</th>
-                    <th>:</th>
-                    <th class="info1">{{register.address.city.locality}}</th>
-                   </tr>
-                   <tr>
-                      <th class="product">State</th>
-                      <th>:</th>
-                      <th class="info1">{{register.address.city.admin_area_l1}}</th>
-                     </tr>
-                     <tr>
-                        <th class="product">Phone</th>
-                        <th>:</th>
-                        <th class="info1">{{register.phone}}</th>
-                       </tr>
-              
-                </div>
-            
-        </table>
-    </div>
-    <div class="col-md-4"  style="background-color: #e7e9e7;">
         <table class="english_wrd tableAlign" >
             <div class="table">
           <tr>
@@ -111,6 +73,44 @@
                 </tr>
                 </div>
                 
+        </table>
+    </div>
+    <div class="col-md-4"  style="background-color: #e7e9e7;">
+        <table class="english_wrd tableAlign">
+            <div class="table" >
+          <tr>
+           <th class="product">Name</th>
+           <th>:</th>
+           <th class="info1">{{register.firstName}} {{register.lastName}}</th>
+          </tr>
+             <tr>
+                <th class="product">Address</th>
+                <th>:</th>
+                <th class="info1">{{register.address.addressLine}}</th>
+               </tr>
+               <!-- <tr>
+                  <th class="product">Address2</th>
+                  <th>:</th>
+                  <th class="info1">{{register.address.address1}}</th>
+                 </tr> -->
+                 <tr>
+                    <th class="product">City</th>
+                    <th>:</th>
+                    <th class="info1">{{register.address.city.locality}}</th>
+                   </tr>
+                   <tr>
+                      <th class="product">State</th>
+                      <th>:</th>
+                      <th class="info1">{{register.address.city.admin_area_l1}}</th>
+                     </tr>
+                     <tr>
+                        <th class="product">Phone</th>
+                        <th>:</th>
+                        <th class="info1">{{register.phone}}</th>
+                       </tr>
+              
+                </div>
+            
         </table>
 
         <div class="modal fade" id="myModal" role="dialog">
