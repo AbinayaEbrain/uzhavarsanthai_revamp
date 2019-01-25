@@ -169,8 +169,6 @@ export class CategoryComponent implements OnInit {
       
       )
     }
-
-
     update(){
       this._dealService.editCategory(this.deallistobj,this.id)
       .subscribe(
