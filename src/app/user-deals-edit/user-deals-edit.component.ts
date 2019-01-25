@@ -169,19 +169,23 @@ InitialCall() {
   console.log(this.deallistobj)
 }
 
+postImage(){
+  this.loadingCtrl.show();
+  var image = new FormData(); //FormData creation
+  image.append('Image', this.Image);
+  //Adding the image to the form data to be sent
+  this._dealsService.sendImage(image)
+    .subscribe((res) => {
+      console.log(res);
+      this.loadingCtrl.hide();
+      // localStorage.setItem('Image', JSON.stringify(res));
+      this.deallistobj.image = res;
+      console.log(this.deallistobj.image)
+   });
+}
 
   update(){
     this.loadingCtrl.show();
-    var image = new FormData(); //FormData creation
-    image.append('Image', this.Image); //Adding the image to the form data to be sent
-    this._dealsService //Sending the rquest from the service function
-      .sendImage(image)
-      .subscribe((res: any) => {
-        console.log(res);
-        alert('2')
-        localStorage.setItem('Image', JSON.stringify(res));
-      
-     });
     let curntDte = new Date().toLocaleDateString();
     this.deallistobj.date = curntDte
 
@@ -196,7 +200,7 @@ InitialCall() {
       this.deallistobj.validityTime = this.time
     }
 
-    this.deallistobj.image = JSON.parse(localStorage.getItem('Image'));
+    //this.deallistobj.image = JSON.parse(localStorage.getItem('Image'));
     
     console.log(this.deallistobj)
 

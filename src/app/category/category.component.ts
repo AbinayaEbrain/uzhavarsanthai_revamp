@@ -25,40 +25,25 @@ interface FileReaderEventTarget extends EventTarget {
 export class CategoryComponent implements OnInit {
 
   public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
-  cateData={
-    image:String
-  }
+  public cateData: any = {};
   @ViewChild('cateform') form
   categoryArr=[]
   id:any
   errMsg:any;
-  deallistobj={
-    productCategory:'',
-    image:''
-  }
+  public deallistobj: any = {};
   sucessMsg:any;
   p:any;
   url:any
   submitted:any;
+  valid: boolean = false;
+  Image: File;
 
-  constructor(private _adminService:AdminService,public loadingCtrl: NgxSpinnerService,private _dealService:DealsService,private route:ActivatedRoute,private router:Router) { }
+  constructor(private _dealsService:DealsService,private _adminService:AdminService,public loadingCtrl: NgxSpinnerService,private _dealService:DealsService,private route:ActivatedRoute,private router:Router) { }
 
-  onSelectFile(event) { // called each time file input changes
-    
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = reader.result;
-      }
-    }
-    if(this.url !== null || this.url !== ''){
-      document.getElementById('hide').style.display='block';
-      document.getElementById('show').style.display='none';
-    }
-}
+  onFileChange(event) { //Method to set the value of the file to the selected file by the user
+    this.Image = event.target.files[0]; //To get the image selected by the user
+    this.valid = true;
+ }
 
   ngOnInit() {
 
@@ -81,7 +66,7 @@ export class CategoryComponent implements OnInit {
        res => {
         this.loadingCtrl.hide();
          this.categoryArr = res;
-        // console.log(this.categoryArr)
+        console.log(this.categoryArr)
 
          if(this.categoryArr.length == 0){
            this.errMsg = "No Category Added"
@@ -128,11 +113,40 @@ export class CategoryComponent implements OnInit {
       }
     }
   }
+    postImage(){
+      this.loadingCtrl.show();
+      var image = new FormData(); //FormData creation
+      image.append('Image', this.Image);
+      //Adding the image to the form data to be sent
+      this._dealsService.sendImage(image)
+        .subscribe((res) => {
+          console.log(res);
+          this.loadingCtrl.hide();
+          // localStorage.setItem('Image', JSON.stringify(res));
+          this.cateData.image = res;
+          console.log(this.cateData.image)
+       });
+    }
 
+    updateImage(){
+      this.loadingCtrl.show();
+      var image = new FormData(); //FormData creation
+      image.append('Image', this.Image);
+      //Adding the image to the form data to be sent
+      this._dealsService.sendImage(image)
+        .subscribe((res) => {
+          console.log(res);
+          this.loadingCtrl.hide();
+          // localStorage.setItem('Image', JSON.stringify(res));
+          this.deallistobj.image = res;
+          console.log(this.deallistobj.image)
+       });
+    }
+    
   addCategory(){
     
     this.loadingCtrl.show();
-    this.cateData.image = JSON.parse(localStorage.getItem('Image'));
+    //this.cateData.image =  this.cateData.image
     this._adminService.addCate(this.cateData)
       .subscribe(
        res =>{
@@ -174,7 +188,7 @@ export class CategoryComponent implements OnInit {
 
 
     update(){
-      this.deallistobj.image = JSON.parse(localStorage.getItem('Image'));
+     
       //  console.log(this.deallistobj)
       this._dealService.editCategory(this.deallistobj,this.id)
       .subscribe(

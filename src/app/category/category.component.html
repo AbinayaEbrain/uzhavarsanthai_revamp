@@ -122,11 +122,16 @@
                             <img [src]="url" height="150px" class="card-img-top" id="hide" style="display: none">
                       </div>
 
-                      Category Image
+                      <div class="upload-btn-wrapper">
+                        <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
+                        <input type="file" id="Image" name="Image" class="upload"(change)="onFileChange($event)" #fileInput>
+                        <button class="btn" [disabled]="cateform.form.invalid " (click)="updateImage()">Upload</button>
+                    </div>
+                      <!-- Category Image
                       <label class="file-upload-container" for="file-upload" style="border: 2px solid green;padding: 5px;color: black">
                         <input id="file-upload" type="file" style="display:none;">
                         Select an Image
-                      </label>
+                      </label> -->
                       <!-- <input type="file" value=""  #image="ngModel" name="image" [(ngModel)]="deallistobj.image" (change)="onSelectFile($event)" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
                      
                       <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
@@ -192,7 +197,9 @@
                          <div class="upload-btn-wrapper">
                             <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
                             <input type="file" id="Image" name="Image" class="upload"(change)="onFileChange($event)" #fileInput>
-                          </div>
+                            <button class="btn" [disabled]="cateform.form.invalid " (click)="postImage()">Upload</button>
+                        </div>
+                       
                             <!-- Category Image
                             <label class="file-upload-container" for="file-upload" style="border: 2px solid green;padding: 5px;color: black">
                               <input id="file-upload" type="file" style="display:none;">

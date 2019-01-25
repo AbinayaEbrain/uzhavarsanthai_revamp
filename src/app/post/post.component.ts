@@ -219,19 +219,18 @@ this.loadingCtrl.show();
 }
   
 postImage(){
-  console.log(this.productData)
+  this.loadingCtrl.show();
   var image = new FormData(); //FormData creation
   image.append('Image', this.Image);
   //Adding the image to the form data to be sent
   this._dealsService.sendImage(image)
     .subscribe((res) => {
       console.log(res);
+      this.loadingCtrl.hide();
       // localStorage.setItem('Image', JSON.stringify(res));
       this.productData.image = res;
+      console.log(this.productData.image)
    });
-   
-    this.postProduct();
- 
 }
   postProduct(){
     this.loadingCtrl.show();
@@ -258,7 +257,7 @@ postImage(){
     
     let curntDte = new Date().getTime();
     this.productData.date = curntDte
-    
+    console.log(this.productData)
     this._dealsService.addPost(this.productData)
       .subscribe(
         res=>{

@@ -96,13 +96,16 @@ this.loadingCtrl.show();
         this.loadingCtrl.hide();
         this.success = "Updated successfully!"
         setTimeout(() => {
-          this.success = ''
+          this.success = '';
+          this.router.navigate[('/post')];
        }, 1000);
+       this.router.navigate[('/post')];
       },
       err =>{
         console.log(err)
       }
     )
+  
   }
  
   handleInput(evt)
