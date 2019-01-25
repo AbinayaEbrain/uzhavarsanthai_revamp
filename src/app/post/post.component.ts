@@ -233,7 +233,6 @@ postImage(){
    });
 }
   postProduct(){
-    alert("3")
     this.loadingCtrl.show();
     console.log(this.productData)
     var time = this.productData.validityTime
