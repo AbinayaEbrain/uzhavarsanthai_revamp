@@ -18,7 +18,6 @@ export class HotdealsComponent implements OnInit {
   constructor(private _dealsService:DealsService,private route:Router,private router:ActivatedRoute,private catcomp:ViewcategoryComponent) { }
 
   ngOnInit() {
-    // console.log(this.catcomp.querydetails)
     this.id = this.router.snapshot.params['id']
     this._dealsService.getDeals()
     .subscribe(
@@ -26,12 +25,8 @@ export class HotdealsComponent implements OnInit {
         this.crdDeals = res
       let j =0;
         for(let i=0; i < this.crdDeals.length; i++){
-          console.log(this.crdDeals[i])
-          console.log(this.id)
           if(this.id == this.crdDeals[i].categoryId){
-            console.log(this.id)
             this.viewCategory[j] = this.crdDeals[i]
-            console.log(this.viewCategory[j])
             j++;
           }
         }

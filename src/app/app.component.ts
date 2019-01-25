@@ -49,8 +49,6 @@ export class AppComponent implements OnInit {
 
     localStorage.setItem('googleLat', JSON.stringify(this.currentLat));
     localStorage.setItem('googleLong', JSON.stringify(this.currentLong));
-    // console.log(this.currentLat)
-    // console.log(this.currentLong)
     let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     this.map.panTo(location);
 
@@ -66,28 +64,4 @@ export class AppComponent implements OnInit {
     }
   }
 
-    // showPosition(position) {
-      
-    //   this.currentLat = position.coords.latitude;
-    //   this.currentLong = position.coords.longitude;
-  
-    //   console.log(this.currentLat)
-    //   console.log(this.currentLong)
-    //   localStorage.setItem('googleLat', JSON.stringify(this.currentLat));
-    //   localStorage.setItem('googleLong', JSON.stringify(this.currentLong));
-  
-    //   let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    //   this.map.panTo(location);
-  
-    //   if (!this.marker) {
-    //     this.marker = new google.maps.Marker({
-    //       position: location,
-    //       map: this.map,
-    //       title: 'Got you!'
-    //     });
-    //   }
-    //   else {
-    //     this.marker.setPosition(location);
-    //   }
-    // }
 }

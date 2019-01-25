@@ -56,8 +56,6 @@ export class UserDealsEditComponent implements OnInit {
     this.zone.run(() => {
       this.addr = addrObj;
       this.addrKeys = Object.keys(addrObj);
-      console.log(this.addrKeys)
-      console.log(this.addr)
     });
   }
 
@@ -77,16 +75,6 @@ export class UserDealsEditComponent implements OnInit {
     //document.getElementById('localStorageImg').style.display="none";
     this.InitialCall();
    this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
-    
-    // this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false};
-
-    // this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-    //      console.log("ImageUpload:uploaded:", item, status, response);
-
-    //      localStorage.setItem('Image', JSON.stringify(response));
-    //  };
-
-
     this.id = this.route.snapshot.params['id']
 
     //edit deals
@@ -96,7 +84,6 @@ export class UserDealsEditComponent implements OnInit {
       res=>{
         this.loadingCtrl.hide();
         this.dealslists = res
-        console.log(this.dealslists)
         for(let i=0; i < this.dealslists.length; i++){
           if(this.id == this.dealslists[i]._id){
             this.deallistobj.category = this.dealslists[i].category
@@ -112,16 +99,11 @@ export class UserDealsEditComponent implements OnInit {
             this.time = this.dealslists[i].validityTime
             this.showUnit = this.dealslists[i].qnty
           }
-        console.log(this.address)
-        
         }
         
         this.deallistobj.avlPlace = this.address.formatted_address 
         this.dateNrml = this.datePipe.transform((this.time),'dd/MM/yyyy');
         this.deallistobj.validityTime = this.dateNrml
-        //localStorage.setItem('Image', JSON.stringify(this.deallistobj.image));
-        console.log(this.deallistobj)
-
       },
       err=>{
         this.loadingCtrl.hide();
@@ -134,7 +116,6 @@ export class UserDealsEditComponent implements OnInit {
   .subscribe(
       res => {
         this.categoryArr = res;
-        console.log(this.categoryArr)
       },
   
       err => {
@@ -166,7 +147,6 @@ InitialCall() {
     }
   }
   this.deallistobj.validityTime = this.datePipe.transform((this.time),'MM/dd/yyyy');
-  console.log(this.deallistobj)
 }
 
 postImage(){
@@ -176,11 +156,9 @@ postImage(){
   //Adding the image to the form data to be sent
   this._dealsService.sendImage(image)
     .subscribe((res) => {
-      console.log(res);
       this.loadingCtrl.hide();
       // localStorage.setItem('Image', JSON.stringify(res));
       this.deallistobj.image = res;
-      console.log(this.deallistobj.image)
    });
 }
 
@@ -199,16 +177,9 @@ postImage(){
     if(this.dateNrml == this.deallistobj.validityTime){
       this.deallistobj.validityTime = this.time
     }
-
-    //this.deallistobj.image = JSON.parse(localStorage.getItem('Image'));
-    
-    console.log(this.deallistobj)
-
     this._dealsService.editDeals(this.deallistobj,this.id)
     .subscribe(
       res=>{
-
-        console.log(res),
         this.loadingCtrl.hide();
         this.success = "Updated successfully!"
         setTimeout(() => {

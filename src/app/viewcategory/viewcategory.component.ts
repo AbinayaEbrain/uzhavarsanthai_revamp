@@ -41,9 +41,6 @@ export class ViewcategoryComponent implements OnInit {
     this.zone.run(() => {
       this.addr = addrObj;
       this.addrKeys = Object.keys(addrObj);
-      console.log(this.addrKeys)
-      console.log(this.addr)
-       console.log(this.addr.locality)
     });
   }
   constructor(private route:ActivatedRoute,private _dealService:DealsService,public loadingCtrl: NgxSpinnerService,
@@ -59,34 +56,23 @@ export class ViewcategoryComponent implements OnInit {
           
            let j = 0;
            this.crdDeals = res
-         //  alert('2')
-        //   this.loadingCtrl.hide();
            this.id = this.route.snapshot.params['id']
-           console.log(this.id)
-          
            for(let i=0;i<this.crdDeals.length;i++){
-           console.log(this.id)
-           console.log(this.crdDeals)
-          // this.loadingCtrl.show();
              if( this.id == this.crdDeals[i].categoryId){
               this.totalDeals[j] = this.crdDeals[i];
-              console.log(this.totalDeals)
               j++;
-           //   alert('3')
              this.loadingCtrl.hide();
              }
            }
            if (this.totalDeals.length == 0){
             this.loadingCtrl.show();
             this.errMsg = "Currently no deals available"
-            console.log(this.errMsg)
            document.getElementById('hidePagination').style.display="none";
            document.getElementById('hideSearchDiv').style.display="none";
            document.getElementById('hideFilterButton').style.display="none";
        this.loadingCtrl.hide();
        // alert('4')
           }
-          console.log(this.totalDeals)
          },
          err =>{
        //    this.loadingCtrl.hide();
@@ -110,7 +96,6 @@ export class ViewcategoryComponent implements OnInit {
   //  alert('1')
     this.totalDeals1 = [];
     this.loadingCtrl.show();
-    console.log(this.userdetails)
     this.getSearchDeals = this.totalDeals
     this.querydetails = this.userdetails
     this.refreshGrid();
@@ -118,30 +103,16 @@ export class ViewcategoryComponent implements OnInit {
    
   }
   refreshGrid(){
-    console.log(this.querydetails.searchLocation)
     if(this.addr != null || this.addr != undefined){
     this.querydetails.searchLocation = this.addr.locality
     }
-    console.log(this.querydetails.searchLocation)
-   // alert('2')
    this.loadingCtrl.show();
-    // alert(this.addr.locality)
     let j =0;
-    // if(this.addr != null || this.addr != undefined){
-    //   this.addr.locality = this.addr.locality;
-    // }else{
-    //   this.addr.locality = 'hh';
-    // }
-
     for(let i=0; i < this.getSearchDeals.length; i++){
     if(this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty || (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price)) ||(this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price)) || this.querydetails.searchLocation == this.getSearchDeals[i].avlPlace.locality){
      
       this.loadingCtrl.hide();
-      //  alert("1")
-      console.log(this.getSearchDeals[i])
       this.totalDeals1[j] = this.getSearchDeals[i]
-  // alert('3')
-      console.log(this.totalDeals1[j])
       j++;
       this.errMsg1 = ""
       document.getElementById('hidePagination').style.display="block";
@@ -151,8 +122,6 @@ export class ViewcategoryComponent implements OnInit {
   //  this.loadingCtrl.hide();
   }
    if(this.totalDeals1.length == 0){
-   //  alert("4")
-    console.log('no deals')
     sweetAlert("Sorry!","Currently no product available","error")
     this.errMsg1 = "Please search again"
     document.getElementById('hidePagination').style.display="none";

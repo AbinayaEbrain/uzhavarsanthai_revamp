@@ -34,12 +34,9 @@ export class AdminIpComponent implements OnInit {
             if(vari == this.crdDeals[i].ipAddress){
               // alert("1")
             }
-            console.log(vari)
-            console.log(this.crdDeals[i].ipAddress)
           }
         }
 
-        console.log(this.crdDeals)
         if(this.crdDeals.length == 0){
           this.errMsg = "No Posts Found"
 

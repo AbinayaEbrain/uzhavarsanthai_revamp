@@ -59,24 +59,11 @@ export class LocationdealsComponent implements OnInit {
         this.lat2 = localStorage.getItem('googleLat')
         this.long = localStorage.getItem('googleLong')
          this.lat1 = this.lat2*1.009
-       //alert(this.lat1)
-      //  let geocoder = new google.maps.Geocoder;
-      //   let latlng = {lat: this.lat2, lng: this.long};
-      //   geocoder.geocode({'location': latlng}, (results, status) => {
-      //     console.log(results); // read data from here
-      //     console.log(status);
-      //   });
         this.latd = this.lat2/1.002
-       // alert(this.latd)
-
-        console.log(this.crdDeals)
-        // console.log(this.crdDeals.length)
         let j=0
         for(let i=0; i < this.crdDeals.length; i++){
           if(this.crdDeals[i].avlPlace.lat < this.lat1 && this.crdDeals[i].avlPlace.lng > this.latd){
               this.mapDeals[j]=this.crdDeals[i];
-             
-              console.log(this.mapDeals[j])
               j++
               this.loadingCtrl.hide();
           }
@@ -89,22 +76,13 @@ export class LocationdealsComponent implements OnInit {
         res =>{
           this.loadingCtrl.show();
           this.activeUsers = res
-       console.log(this.activeUsers)
-    
         let k =0;
 
       for(let i=0;i<this.activeUsers.length;i++){
         for(let j=0;j<this.mapDeals.length;j++){
         if(this.activeUsers[i]._id == this.mapDeals[j].accountId) {
-            // alert("3")
-            // alert(this.activeUsers[i].status)
             if(this.activeUsers[i].status == 'ACTIVE'){
-             // alert("1")
               this.crdDeals1[k] = this.mapDeals[j]
-             
-              console.log(this.crdDeals1[k])
-              console.log(this.mapDeals[j])
-              //alert("2")
               k++;
               this.loadingCtrl.hide();
             }
@@ -132,15 +110,6 @@ export class LocationdealsComponent implements OnInit {
         console.log(err)
       }
     )
-   
- 
-    // if (this.mapDeals == null){
-    //   this.loadingCtrl.hide();
-    //   this.errMsg = "Still you didn't post any deals"
-    //   document.getElementById('search_box').style.display='none';
-    //   console.log(this.errMsg)
-    // }
-
   }
   getCategory(){
     this.loadingCtrl.show();
@@ -149,9 +118,7 @@ export class LocationdealsComponent implements OnInit {
         res => {
           this.categoryArr = res;
           this.loadingCtrl.hide();
-          console.log(this.categoryArr)
         },
-    
         err => {
           this.loadingCtrl.hide();
             this.categoryArr = [];
@@ -177,8 +144,6 @@ export class LocationdealsComponent implements OnInit {
 
     localStorage.setItem('googleLat', JSON.stringify(this.currentLat));
     localStorage.setItem('googleLong', JSON.stringify(this.currentLong));
-    // console.log(this.currentLat)
-    // console.log(this.currentLong)
     let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     this.map.panTo(location);
 
@@ -200,7 +165,6 @@ export class LocationdealsComponent implements OnInit {
     this.loadingCtrl.show();
     this.totalDeals1 = [];
     this.getSearchDeals = this.crdDeals1
-    console.log(this.userdetails)
     this.querydetails = this.userdetails
     this.refreshGrid();
     this.loadingCtrl.hide();
@@ -211,20 +175,10 @@ export class LocationdealsComponent implements OnInit {
     //alert("2")
     this.loadingCtrl.show();
     let j =0;
-    console.log(this.getSearchDeals)
     for(let i=0; i < this.getSearchDeals.length; i++){
-     // alert("3")
-    
-      console.log(this.getSearchDeals[i].quantity)
     if(this.querydetails.searchCategory == this.getSearchDeals[i].categoryId || this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||  (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) || this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price))){
-    
-      //alert("4")
-      
-      
-      console.log(this.getSearchDeals[i])
-      this.totalDeals1[j] = this.getSearchDeals[i]
 
-      console.log(this.totalDeals1[j])
+      this.totalDeals1[j] = this.getSearchDeals[i]
       j++;
       this.errMsg1 = ""
       document.getElementById('hidePagination').style.display="block";
@@ -239,7 +193,6 @@ export class LocationdealsComponent implements OnInit {
   }
  if(this.totalDeals1.length == 0){
   this.loadingCtrl.show();
-    console.log('no deals')
     sweetAlert("Sorry!","Currently no product available","error")
     this.errMsg1 = "Please search again"
     document.getElementById('hidePagination').style.display="none";

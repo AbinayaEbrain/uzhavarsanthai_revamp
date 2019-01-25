@@ -41,11 +41,8 @@ data:any;
          res=>{
           this.loadingCtrl.hide();
           this.registerUser= res;
-
-          console.log( this.registerUser)
             for(let i=0;i<this.registerUser.length;i++){
               if(this.registerUser[i].firstname == "Admin"){
-               console.log(this.registerUser)
                 this.registerUser.splice(this.registerUser.indexOf(this.registerUser[i]), 1);
                }
             }
@@ -66,12 +63,9 @@ data:any;
   //Deactivate Account
   deactiveAccount(data,id){
     this.id = this.route.snapshot.params['id']
-    // alert(this.id)
-    console.log(this.id)
     this._dealService.deactivateAccount(data,this.id)
     .subscribe(
        res=>{ 
-         console.log(res)
          this.deactiveMsg ='Account Deactivated!'
             setTimeout(()=>{
               this.deactiveMsg = ''
@@ -88,12 +82,9 @@ data:any;
    //activate Account
   activeAccount(data,id){
     this.id = this.route.snapshot.params['id']
-    // alert(this.id)
-    console.log(this.id)
     this._dealService.activateAccount(data,this.id)
     .subscribe(
        res=>{ 
-         console.log(res)
          this.activeMsg ='Account Activated!'
         //  alert(this.activeMsg)
          setTimeout(()=>{

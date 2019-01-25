@@ -28,23 +28,13 @@ export class LoginComponent implements OnInit {
       // swal.close();
       this.loadingCtrl.hide();
   }, 1000);
-   
-  // console.log("ip");
-  // this._auth.getIpAddress().subscribe(data => {
-  //   console.log(data);
-  // });
   }
   
   logform(){
-    // console.log(this.loginUserData);
     this.loadingCtrl.show();
     this._auth.logInUser(this.userData)
       .subscribe(
        res =>{
-         
-          console.log(this.userData)
-          console.log(res.payload)
-          console.log(res);
           localStorage.setItem('currentUser', JSON.stringify(res.user));
           localStorage.setItem('status', JSON.stringify(res.user.status));
           localStorage.setItem('firstname', JSON.stringify(res.user.firstname));
@@ -53,15 +43,8 @@ export class LoginComponent implements OnInit {
 
           this.wholedata = JSON.parse(localStorage.getItem('status'))
           this.user =  JSON.parse(localStorage.getItem('firstname'));
-          console.log(this.wholedata)
-          console.log(this.user)
-          // localStorage.setItem('id',data._id)
-          //  localStorage.setItem('userDeviceId', btoa(data));
-          
           if(this.user === "Admin"){
-           
-          this.router.navigate(['/admin']);
-
+            this.router.navigate(['/admin']);
           }
           else{
            
@@ -85,7 +68,6 @@ export class LoginComponent implements OnInit {
         err =>{
           this.loadingCtrl.hide();
           if(err.statusText === 'Unauthorized'){
-            console.log('Ooops!');
              this.errormsg ='Invalid Phone Number and Password !'
            }
         }

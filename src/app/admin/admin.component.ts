@@ -32,7 +32,6 @@ export class AdminComponent implements OnInit {
   .subscribe(
     res=>{
       this.totalDetail = res
-      console.log(this.totalDetail.length)
       let variabl = (this.totalDetail.length)-1
       this.length = variabl
     },
@@ -46,7 +45,6 @@ export class AdminComponent implements OnInit {
   .subscribe(
     res=>{
       this.totalDeals = res
-      console.log(this.totalDeals.length)
       this.dealsLength = this.totalDeals.length
     },
     err=>{

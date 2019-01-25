@@ -52,7 +52,6 @@ export class AdminViewComponent implements OnInit {
       res=>{
        this.loadingCtrl.hide();
        this.registerUser= res;
-console.log(this.registerUser)
        for(let i=0;i<this.registerUser.length;i++){
        if(this.id == this.registerUser[i]._id){
         this.register.firstName =  this.registerUser[i].firstname;
@@ -64,7 +63,6 @@ console.log(this.registerUser)
         this.register.address.city = this.registerUser[i].address.city;
         this.register.address.location = this.registerUser[i].address.location;
         this.register.privateIP =this.registerUser[i].privateIP;
-        console.log(this.register.privateIP)
        }
       }
       },
@@ -79,17 +77,12 @@ console.log(this.registerUser)
       res=>{
         this.loadingCtrl.hide();
         this.viewPost = res
-       console.log(this.viewPost.length)
-       console.log(this.viewPost)
        let j=0
         for(let i=0; i < this.viewPost.length; i++){
           if(this.id == this.viewPost[i].accountId){
             this.postProduct[j] =  this.viewPost[i];
-            console.log(this.postProduct[j])
             //length
-            
             this.productId = this.postProduct[j]._id
-            console.log(this.productId)
             j++
           }
         }
@@ -111,8 +104,6 @@ console.log(this.registerUser)
     for(let i=0; i < this.postProduct.length; i++){
       if(_id == this.postProduct[i]._id){
         this.descrip =  this.postProduct[i].description;
-        console.log(this.postProduct[i].description)
-        console.log(this.descrip)
       }
     }
   }

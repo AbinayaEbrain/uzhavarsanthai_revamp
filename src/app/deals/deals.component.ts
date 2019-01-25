@@ -64,9 +64,6 @@ export class DealsComponent implements OnInit {
     this.zone.run(() => {
       this.addr = addrObj;
       this.addrKeys = Object.keys(addrObj);
-      console.log(this.addrKeys)
-      console.log(this.addr)
-       console.log(this.addr.locality)
     });
   }
   constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService,public zone:NgZone){
@@ -112,8 +109,6 @@ export class DealsComponent implements OnInit {
          // alert('4')
         this.loadingCtrl.show();
           this.activeUsers = res
-          //console.log(this.activeUsers)
-      
       let k =0;
       for(let i=0;i<this.activeUsers.length;i++){
         for(let j=0;j<this.crdDeals.length;j++){
@@ -128,7 +123,6 @@ export class DealsComponent implements OnInit {
         }
       }
       }
-      console.log( this.crdDeals1)
       this.loadingCtrl.hide();
         },
         err=>{}
@@ -167,7 +161,6 @@ export class DealsComponent implements OnInit {
           
           this.categoryArr = res;
           this.loadingCtrl.hide();
-          console.log(this.categoryArr)
         },
     
         err => {
@@ -179,7 +172,6 @@ export class DealsComponent implements OnInit {
     this.loadingCtrl.show();
     this.totalDeals1 = [];
     this.getSearchDeals = this.crdDeals
-    console.log(this.userdetails)
     this.querydetails = this.userdetails
     this.refreshGrid();
     this.loadingCtrl.hide();
@@ -187,18 +179,13 @@ export class DealsComponent implements OnInit {
 
   refreshGrid(){
     this.loadingCtrl.show();
-    console.log(this.querydetails.searchLocation)
     if(this.addr != null || this.addr != undefined){
     this.querydetails.searchLocation = this.addr.locality
     }
     let j =0;
-    console.log(this.getSearchDeals)
     for(let i=0; i < this.getSearchDeals.length; i++){
-      console.log(this.getSearchDeals[i].quantity)
     if(this.querydetails.searchCategory == this.getSearchDeals[i].categoryId || this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||  (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) || this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price))  || this.querydetails.searchLocation == this.getSearchDeals[i].avlPlace.locality){
-      console.log(this.getSearchDeals[i])
       this.totalDeals1[j] = this.getSearchDeals[i]
-      console.log(this.totalDeals1[j])
       j++;
       this.errMsg1 = ""
       document.getElementById('hidePagination').style.display="block";
@@ -211,7 +198,6 @@ export class DealsComponent implements OnInit {
   
   }if(this.totalDeals1.length == 0){
     this.loadingCtrl.show();
-    console.log('no deals')
     sweetAlert("Sorry!","Currently no product available","error")
      document.getElementById('hidePagination').style.display="none";
     // document.getElementById('hideSearchDiv').style.display="none";
@@ -250,9 +236,6 @@ export class DealsComponent implements OnInit {
   showPosition(position) {
     this.currentLat = position.coords.latitude;
     this.currentLong = position.coords.longitude;
-
-    console.log(this.currentLat)
-    console.log(this.currentLong)
     localStorage.setItem('googleLat', JSON.stringify(this.currentLat));
     localStorage.setItem('googleLong', JSON.stringify(this.currentLong));
 

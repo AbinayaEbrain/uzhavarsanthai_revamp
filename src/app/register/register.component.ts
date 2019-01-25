@@ -37,8 +37,6 @@ export class RegisterComponent implements OnInit {
     this.zone.run(() => {
       this.addr = addrObj;
       this.addrKeys = Object.keys(addrObj);
-      console.log(this.addrKeys)
-      console.log(this.addr)
     });
   }
 
@@ -69,11 +67,6 @@ export class RegisterComponent implements OnInit {
       .subscribe( 
         res =>{
           this.loadingCtrl.hide();
-           console.log(res)
-          //  console.log(res.user.phone)
-          //  console.log(res.user.privateIP)
-           console.log(this.registeredUserData)
-          //  alert(this.registeredUserData)
            localStorage.setItem('token',res.token)
            localStorage.setItem('currentUser',JSON.stringify(res.user));
            localStorage.setItem('firstname',JSON.stringify(res.user.firstname));
@@ -93,7 +86,6 @@ export class RegisterComponent implements OnInit {
         // }, 2000);
 
         if(res.statusText == 'Unauthorized'){
-          //console.log('Ooops!');
           this.errormsg ='Check Email and Password !'
           this.loadingCtrl.hide();
         }
@@ -101,7 +93,6 @@ export class RegisterComponent implements OnInit {
         err =>{
           console.log(err)
           if(err.statusText == 'Unauthorized'){
-            console.log('Ooops!');
             this.errormsg ='Phone Number already exist!'
             setTimeout(()=>{
              this.errormsg=''

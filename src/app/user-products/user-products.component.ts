@@ -39,10 +39,7 @@ export class UserProductsComponent implements OnInit {
           let j = 0;
           
           this.crdDeals = res
-          
-          console.log(this.crdDeals)
           let CurrentDate = new Date().toISOString();
-          // console.log("1")
           for(let i=0 ; i < this.crdDeals.length ; i++){
             if((acntID == this.crdDeals[i].accountId) && (this.crdDeals[i].validityTime > CurrentDate)){
               this.userDeals[j] = this.crdDeals[i];
@@ -58,7 +55,6 @@ export class UserProductsComponent implements OnInit {
             document.getElementById('hideEditBtn').style.display="none"
             document.getElementById('hideDeleteBtn').style.display="none"
             document.getElementById('hideSearchDiv').style.display="none"
-            console.log(this.errMsg)
           }
         }
          
@@ -81,21 +77,12 @@ export class UserProductsComponent implements OnInit {
           let j = 0;
           
           this.crdDeals = res
-          console.log(this.crdDeals)
           let CurrentDate = new Date().toISOString();
-          console.log(CurrentDate)
-          console.log(new Date().toISOString())
-          console.log(this.crdDeals)
           for(let i=0 ; i < this.crdDeals.length ; i++){
-            console.log(this.crdDeals[i].validityTime)
             if((acntID == this.crdDeals[i].accountId) && (this.crdDeals[i].validityTime < CurrentDate)){
               this.userDeals1[j] = this.crdDeals[i];
-             console.log(this.userDeals1)
-          
           j++;
             }
-           
-            
           }
           for(let j=0;j<this.userDeals1.length;j++){
           if (this.userDeals1[j].category == undefined){
@@ -104,10 +91,7 @@ export class UserProductsComponent implements OnInit {
             document.getElementById('hideEditBtn1').style.display="none"
             document.getElementById('hideDeleteBtn1').style.display="none"
             document.getElementById('hideSearchDiv').style.display="none"
-            
              this.loadingCtrl.hide();
-            
-            console.log(this.errMsg1)
           }
         }
         
