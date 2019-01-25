@@ -33,85 +33,91 @@
         </table> 
     </div>
     <div class="col-md-4"  style="background-color: #e7e9e7;">
-        <table class="english_wrd tableAlign">
-            <div class="table" >
-          <tr>
-           <th class="product">Name</th>
-           <th>:</th>
-           <th class="info1">{{register.firstName}} {{register.lastName}}</th>
-          </tr>
-             <tr>
-                <th class="product">Address1</th>
-                <th>:</th>
-                <th class="info1">{{register.address.addressLine}}</th>
-               </tr>
-               <tr>
-                  <th class="product">Address2</th>
-                  <th>:</th>
-                  <th class="info1">{{register.address.address1}}</th>
-                 </tr>
-                 <tr>
-                    <th class="product">City</th>
-                    <th>:</th>
-                    <th class="info1">{{register.address.city.locality}}</th>
-                   </tr>
-                   <tr>
-                      <th class="product">State</th>
+            <table class="english_wrd tableAlign" >
+                    <div class="table">
+                  <tr>
+                   <th class="product">Category</th>
+                   <th>:</th>
+                   <th class="info1">{{postProduct.category}}</th>
+                  </tr>
+                  <tr>
+                      <th class="product">Name</th>
                       <th>:</th>
-                      <th class="info1">{{register.address.city.admin_area_l1}}</th>
+                      <th class="info1">{{postProduct.name}}</th>
                      </tr>
                      <tr>
-                        <th class="product">Phone</th>
+                        <th class="product">Quantity</th>
                         <th>:</th>
-                        <th class="info1">{{register.phone}}</th>
+                        <th class="info1">{{postProduct.quantity}} {{postProduct.qnty}}
+                        </th>
                        </tr>
-              
-                </div>
-            
-        </table>
+                       <tr>
+                          <th class="product">Price</th>
+                          <th>:</th>
+                          <th class="info1">Rs. {{postProduct.price}}</th>
+                         </tr>
+                         <tr>
+                            <th class="product">Location</th>
+                            <th>:</th>
+                            <th class="info1">{{postProduct.avlPlace}}</th>
+                        </tr>
+                        <tr>
+                            <th class="product">Expiry Date</th>
+                            <th>:</th>
+                            <th class="info1">{{postProduct.validityTime}}</th>
+                        </tr>
+                        <tr>
+                            <th class="product">Description</th>
+                            <th>:</th>
+                            <th class="info1"> <button class="btn btn-primary btn-sm btn2" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">View</button></th>
+                        </tr>
+                        </div>
+                        
+                </table>
+      
     </div>
     <div class="col-md-4"  style="background-color: #e7e9e7;">
-        <table class="english_wrd tableAlign" >
-            <div class="table">
-          <tr>
-           <th class="product">Category</th>
-           <th>:</th>
-           <th class="info1">{{postProduct.category}}</th>
-          </tr>
-          <tr>
-              <th class="product">Name</th>
-              <th>:</th>
-              <th class="info1">{{postProduct.name}}</th>
-             </tr>
-             <tr>
-                <th class="product">Quantity</th>
-                <th>:</th>
-                <th class="info1">{{postProduct.quantity}} {{postProduct.qnty}}
-                </th>
-               </tr>
-               <tr>
-                  <th class="product">Price</th>
-                  <th>:</th>
-                  <th class="info1">Rs. {{postProduct.price}}</th>
-                 </tr>
-                 <tr>
-                    <th class="product">Location</th>
-                    <th>:</th>
-                    <th class="info1">{{postProduct.avlPlace}}</th>
-                </tr>
-                <tr>
-                    <th class="product">Expiry Date</th>
-                    <th>:</th>
-                    <th class="info1">{{postProduct.validityTime}}</th>
-                </tr>
-                <tr>
-                    <th class="product">Description</th>
-                    <th>:</th>
-                    <th class="info1"> <button class="btn btn-primary btn-sm btn2" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">View</button></th>
-                </tr>
-                </div>
-                
-        </table>
+            <table class="english_wrd tableAlign">
+                    <div class="table" >
+                  <tr>
+                   <th class="product">Name</th>
+                   <th>:</th>
+                   <th class="info1">{{register.firstName}} {{register.lastName}}</th>
+                  </tr>
+                     <tr>
+                        <th class="product">Address</th>
+                        <th>:</th>
+                        <th class="info1">{{register.address.addressLine}}</th>
+                       </tr>
+                       <!-- <tr>
+                          <th class="product">Address2</th>
+                          <th>:</th>
+                          <th class="info1">{{register.address.address1}}</th>
+                         </tr> -->
+                         <tr *ngIf="register.address.city.formatted_address">
+                            <th class="product">Location</th>
+                            <th>:</th>
+                            <th class="info1">{{register.address.city.formatted_address}}</th>
+                           </tr>
+                           <tr *ngIf="register.address.city.locality">
+                                <th class="product">Location</th>
+                                <th>:</th>
+                                <th class="info1">{{register.address.city.locality}}</th>
+                               </tr>
+                           <tr>
+                              <th class="product">State</th>
+                              <th>:</th>
+                              <th class="info1">{{register.address.city.admin_area_l1}}</th>
+                             </tr>
+                             <tr>
+                                <th class="product">Phone</th>
+                                <th>:</th>
+                                <th class="info1">{{register.phone}}</th>
+                               </tr>
+                      
+                        </div>
+                    
+                </table>
 
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">

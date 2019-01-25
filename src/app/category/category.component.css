@@ -149,3 +149,10 @@ input-placeholder{
   .error_word{
     font-family: 'Cabin', sans-serif;
   }
+  .upload {
+    color: black;
+    background-color: white;
+    font-weight: bold;
+    border: none !important;
+  }
+  

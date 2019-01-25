@@ -189,12 +189,15 @@
                         </button> 
                          <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Image is required</span>   -->
 
-                        
-                            Category Image
+                         <div class="upload-btn-wrapper">
+                            <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
+                            <input type="file" id="Image" name="Image" class="upload"(change)="onFileChange($event)" #fileInput>
+                          </div>
+                            <!-- Category Image
                             <label class="file-upload-container" for="file-upload" style="border: 2px solid green;padding: 5px;color: black">
                               <input id="file-upload" type="file" style="display:none;">
                               Select an Image
-                            </label>
+                            </label> -->
                         
                     </div>
                     <!-- <img [src]="url" height="200"> <br/>
