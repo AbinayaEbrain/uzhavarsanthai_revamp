@@ -126,7 +126,7 @@
                        <!-- last row -->
               <div class="row">
                 <div class="col-md-4"></div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                    <div class="form-group">
                         <!-- <span style="color: white;" class="english_wrd">Choose your product image</span>
                         <label class="file-upload-container ml-2" for="file-upload"  (change)="onSelectFile($event)" style="font-weight: bold;border: 2px solid green;padding: 5px;color: white">
@@ -141,13 +141,13 @@
                         <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Image is required</span> --> 
                         </div> 
                 </div>
-                <!-- <div class="col-md-2">
-                    <button type="button" style="font-size: 15px" class="btn btn-success btn-s" (click)="uploader.uploadAll()">
-                        Upload Image
+                <div class="col-md-2 mt-4">
+                    <button type="button" style="font-size: 15px" class="btn btn-success btn-s" (click)="postImage()">
+                        Upload
                     </button> 
-                </div> -->
+                </div>
               
-                <div class="col-md-4 text-left" id="hideDisplayImg" >
+                <div class="col-md-4 text-left mt-1" id="hideDisplayImg" >
                         <img data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
 
                         
