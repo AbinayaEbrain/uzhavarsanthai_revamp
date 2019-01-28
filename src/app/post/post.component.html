@@ -129,16 +129,14 @@
                     <div class="form-group  mb-5 mt-2">
                         <div class="upload-btn-wrapper">
                           <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
-                          <input type="file" id="Image" name="Image" class="upload"(change)="onFileChange($event)" #fileInput>
+                          <input type="file" id="Image" name="Image" class="upload" (change)="onFileChange($event)" #fileInput>
                         </div>
-                      
                    </div>
                 </div>
                 <div class="col-md-2 mt-5">
-                    <button class="btn" (click)="postImage()">Upload</button>
+                    <button class="btn" (click)="postImage()" [disabled]="!this.Image">Upload</button>
                 </div>
               </div> 
-             
 
                <div class="row" id="save">
                     <div class="col-md-4"></div>

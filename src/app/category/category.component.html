@@ -125,7 +125,7 @@
                       <div class="upload-btn-wrapper">
                         <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
                         <input type="file" id="Image" name="Image" class="upload"(change)="onFileChange($event)" #fileInput>
-                        <button class="btn" [disabled]="cateform.form.invalid " (click)="updateImage()">Upload</button>
+                        <button class="btn" [disabled]="cateform.form.invalid " (click)="updateImage()" [disabled]="!this.Image">Upload</button>
                     </div>
                       <!-- Category Image
                       <label class="file-upload-container" for="file-upload" style="border: 2px solid green;padding: 5px;color: black">
@@ -197,7 +197,7 @@
                          <div class="upload-btn-wrapper">
                             <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
                             <input type="file" id="Image" name="Image" class="upload"(change)="onFileChange($event)" #fileInput>
-                            <button class="btn" [disabled]="cateform.form.invalid " (click)="postImage()">Upload</button>
+                            <button class="btn" [disabled]="cateform.form.invalid " (click)="postImage()" [disabled]="!this.Image">Upload</button>
                         </div>
                        
                             <!-- Category Image
