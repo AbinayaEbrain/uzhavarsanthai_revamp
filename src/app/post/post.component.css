@@ -148,6 +148,9 @@
   .button_word{
     font-family: 'Kanit', sans-serif;
   }
+  .forMobiviewPost{
+    margin-top: 6%;
+  }
 
    @media screen and (min-width: 320px) and (max-width: 425px) {
        body{
@@ -169,6 +172,9 @@
        }
        .onmobiview{
            margin-top: 50px;
+       }
+       .forMobiviewPost{
+           margin-top: -19%;
        }
    }
    .error_word{
@@ -210,5 +216,5 @@
     font-weight: bold;
     border: none !important;
   }
-  
+
 
