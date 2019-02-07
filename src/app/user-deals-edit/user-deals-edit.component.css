@@ -17,20 +17,22 @@
     -moz-transition:0.2s ease all; 
     -webkit-transition:0.2s ease all;
   }
-/* @media only screen and (max-width: 600px) {
-   .bg1{
-  
-    
-       background-size: cover;
-       margin-top: 35px;
-       height: 165vh;
-      
-   }
-} */
+.uploadButton{
+    margin-top: 4%;
+}
 
 @media screen and (min-width: 320px) and (max-width: 425px) {
     .bg1{
         min-height: 1300px; 
+    }
+    .onMobiview{
+        margin-top: 25px;
+      }
+      .uploadButton{
+        margin-top: -15%;
+    }
+    #hideDisplayImg{
+        text-align: center !important;
     }
 }
 
@@ -176,3 +178,4 @@ select{
     font-weight: bold;
     border: none !important;
   }
+

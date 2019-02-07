@@ -64,34 +64,13 @@
                             </div>
                             <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> required</span> 
                           </div> 
-                     
-                          <!-- <div class="col-md-2 col-sm-8 col-8">
-                              <div class="form-group mb-5 mt-2">
-                                  <input type="text"  #subQuantity="ngModel" [class.is-invalid]="subQuantity.invalid && subQuantity.touched" maxlength="5" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="deallistobj.subQuantity"  name="subQuantity" class="form-control" value="0" autocomplete="off"  required>
-                                  <label class="form-control-placeholder english_wrd floatinglabl" for="quantity">Sub Quantity</label>
-                                  <span class="text-danger float-left error_word" [class.d-none] = "subQuantity.valid || subQuantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> required</span>  
-                                </div>
-                          </div> -->
-                          <!-- <div class="col-md-2 col-sm-4 col-4">
-                                <label class="lab" for="category">Sub Unit</label>
-                              <div class="form-group mb-5 mt-2">
-                                  <select required class="form-control slect"  #subqnty="ngModel" name="subqnty" [class.is-invalid]="subqnty.invalid && subqnty.touched" ngModel  [(ngModel)]="deallistobj.subqnty" >
-                                      <option value="">Sub Unit</option>
-                                      <option value="Grams">Grams</option>
-                                      <option value="Millilitres">Millilitres</option>
-                                    </select>
-                                   
-                                </div>
-                                <span class="text-danger float-left error_word" [class.d-none] = "subqnty.valid || subqnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> required</span> 
-                               
-                              </div>  -->
                    
                   </div>
       
                   <!-- 3rd row -->
                   <div class="row">
                       <div class="col-md-4"></div>
-                      <div class="col-md-4">    
+                      <div class="col-md-4 onMobiview">    
                           <div class="form-group mb-5 mt-2">
                             <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="deallistobj.price"  name="price" class="form-control" maxlength="5" autocomplete="off"  required>
                             <label class="form-control-placeholder english_wrd floatinglabl" for="name"><span style="font-size: 14px" class="tamil_wrd">விலை </span>/ Price / {{showUnit}}</label>
@@ -126,33 +105,32 @@
                        <!-- last row -->
               <div class="row">
                 <div class="col-md-4"></div>
-                <div class="col-md-2">
-                   <div class="form-group">
-                        <!-- <span style="color: white;" class="english_wrd">Choose your product image</span>
-                        <label class="file-upload-container ml-2" for="file-upload"  (change)="onSelectFile($event)" style="font-weight: bold;border: 2px solid green;padding: 5px;color: white">
-                            <input id="file-upload" class="mx-auto" type="file" style="display:none;">
-                            Select an Image
-                          </label> -->
-                          <div class="upload-btn-wrapper">
-                                <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
-                                <input type="file" id="Image" name="Image" class="upload"(change)="onFileChange($event)" #fileInput>
-                              </div>
-                        <!--  <input type="file" style="color: white; width: 218px;" (change)="onSelectFile($event)" #image="ngModel" name="image" [(ngModel)]="deallistobj.image" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
-                        <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Image is required</span> --> 
-                        </div> 
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-3">
+                                <div class="form-group ">
+                
+                                        <div class="upload-btn-wrapper">
+                                              <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
+                                              <input type="file" id="Image" name="Image" class="upload"(change)="onFileChange($event)" #fileInput>
+                                            </div>
+                              
+                                      </div> 
+                        </div>
+                        <div class="col-md-2 uploadButton">
+                                <button type="button" [disabled]="!this.Image" style="font-size: 15px" class="btn btn-success btn-s" (click)="postImage()">
+                                        Upload
+                                    </button> 
+                        </div>
+                        <div class="col-md-4 text-left mt-1" id="hideDisplayImg" >
+                                <img data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
+        
+                                
+                                
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-2 mt-4">
-                    <button type="button" style="font-size: 15px" class="btn btn-success btn-s" (click)="postImage()">
-                        Upload
-                    </button> 
-                </div>
-              
-                <div class="col-md-4 text-left mt-1" id="hideDisplayImg" >
-                        <img data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
-
-                        
-                        
-                </div>
+               
                 <!-- <div class="col-md-4 text-left" id="localStorageImg" >
                        <img  id="localStorageImg"  style="height: 50px;width: 50px;cursor: pointer;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
                  </div> -->
