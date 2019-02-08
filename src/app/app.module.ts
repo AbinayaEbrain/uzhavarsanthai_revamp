@@ -46,6 +46,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DeactiveDealsComponent } from './deactive-deals/deactive-deals.component';
 import { UserProductsComponent } from './user-products/user-products.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
