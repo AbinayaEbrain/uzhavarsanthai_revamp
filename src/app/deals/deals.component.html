@@ -1,12 +1,11 @@
 
-<body class="bg" style="overflow-x: hidden;">
+<body  class="bg" style="overflow-x: hidden;">
 <div class="container mt-5 pt-5">
       <div class="row">
           <div class="col-md-4">
-                <button class="btnnn btn-success" id="showBackButton" routerLink="/dealCategory" ><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
-                <button class="btnnn btn-success" id="hideNearByBtn" routerLink="/location"><i class="fa fa-map-marker" aria-hidden="true"></i> Nearby sale</button>
-                <button id="hideFilterButton"  class="btn btn-primary btn1 button_word" (click)="getCategory()" data-toggle="modal" style="width:50%;margin-left: 10px;" data-target="#myModal">Filter <i class="fa fa-filter" aria-hidden="true"></i></button>
-               
+                <button type="button"  id="showBackButton" routerLink="/dealCategory"  class="btn btn-outline-success text-center viewMoreBtn" ><i class="fa fa-chevron-left" aria-hidden="true"></i>   Back</button>  
+                <button type="button" class="btn btn-outline-success text-center viewMoreBtn" id="hideNearByBtn" routerLink="/location"><i class="fa fa-map-marker" aria-hidden="true"></i>Nearby Sale</button> &nbsp;  
+                <button type="button" id="hideFilterButton" (click)="getCategory()" class="btn btn-outline-success text-center viewMoreBtn " data-target="#myModal" data-toggle="modal"> <i class="fa fa-filter" aria-hidden="true"></i>Filter</button>       
           </div>
           <div class="col-md-2">
              
@@ -15,12 +14,9 @@
                 <!-- <div class="form-group has-search" id="search_box"> -->
                         <div class="inner-addon left-addon">
                                 <i class="fa fa-search glyphicon" aria-hidden="true"></i>    
-                                <input type="text" class="form-control" id="search_box"  [(ngModel)]="queryString" name="search" autocomplete="off" placeholder="Search by product name.." />
+                                <input type="text" class="form-control searchDiv" id="search_box"  [(ngModel)]="queryString" name="search" autocomplete="off" placeholder="Search by product name.." />
                                  
                               </div>
-                        <!-- <span class="fa fa-search form-control-feedback"></span>
-                        <input type="text" class="srchBox form-control1" style="width: 90%" placeholder="Search By Any Product Details...."  [(ngModel)]="queryString" name="search" autocomplete="off"> -->
-                    <!-- </div> -->
           </div>
       </div>
       <div class="errDiv">
@@ -29,60 +25,39 @@
       <div>
         <p class="no_deals_found error_word" *ngIf="errMsg1">{{errMsg1}}</p>
   </div>
-     
+
 <div [style.display]="!totalDeals1 ? 'block' : 'none'">
   <div class="row mt-5">
-    <div class="col-lg-6 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'name' | paginate: { itemsPerPage:6,currentPage:p }">
-            
-        <div class="card">
-              
-           <table class="english_wrd">
-              <div class="title">
-                <tr>
-                  <th class="details">Product Details</th>
-                </tr>
-              </div>
-              <div class="card-body">
-                  <tr>
-                      <td><strong>Category &nbsp; </strong></td>
-                      <td>:</td>
-                      <td>&nbsp;&nbsp;{{deal.category}}</td>
-                    </tr>
-                <tr>
-                  <td><strong>Name &nbsp;</strong></td>
-                  <td>:</td>
-                  <td>&nbsp;&nbsp;{{deal.name}}</td>
-                </tr>
-                <tr>
-                    <td><strong>Quantity &nbsp;</strong></td>
-                    <td>:</td>
-                    <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
-                </tr>
-                <tr>
-                    <td><strong>Price / Quantity &nbsp;</strong></td>
-                    <td>:</td>
-                    <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
-                </tr>
-                <tr>
-                    <td><strong>Post Date &nbsp;</strong></td>
-                    <td>:</td>
-                    <td>&nbsp;&nbsp;{{deal.date | date:'dd/MM/yyyy'}}</td>
-                </tr>
-                <tr>
-                    <td><strong>Expiry Date &nbsp;</strong></td>
-                    <td>:</td>
-                    <td>&nbsp;&nbsp;{{deal.validityTime | date:'dd/MM/yyyy'}}</td>
-                </tr>
-                <tr>
-                    <td><strong>Location &nbsp;</strong></td>
-                        <td>:</td>
-                        <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
-                </tr>
-                    
-          </div>
-          </table>
-            <a  class="btn btn-primary mb-3 button_word"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
-        </div>
+    <div class="col-md-3"  *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'name' | paginate: { itemsPerPage:6,currentPage:p }">
+            <div class="card">
+                    <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
+                    <table class="tableContent">
+                            <tr>
+                               <td><strong>Product &nbsp; </strong></td>
+                               <td>:</td>
+                               <td>&nbsp;&nbsp;{{deal.name}}</td>
+                           </tr>
+                           <tr>
+                               <td><strong>Category &nbsp; </strong></td>
+                               <td>:</td>
+                               <td>&nbsp;&nbsp;{{deal.category}}</td>
+                            </tr>
+                            <tr>
+                               <td><strong>Quantity &nbsp;</strong></td>
+                               <td>:</td>
+                               <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
+                           </tr>
+                           <tr>
+                               <td><strong>Location &nbsp;</strong></td>
+                               <td>:</td>
+                               <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
+                           </tr>
+                          
+                       </table>
+                       <br> 
+                       <button type="button" class="btn btn-outline-success text-center viewMoreBtn"  routerLink= "/viewmore/{{deal._id}}">View More</button>  
+                       <br>  
+                  </div>
       </div>
    
       
@@ -91,8 +66,33 @@
  <div   [style.display]="totalDeals1 ? 'block' : 'none'" >
   <div class="row mt-5">
         <div class="col-lg-6 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name' | paginate: { itemsPerPage:6,currentPage:p }">
-                
-            <div class="card">
+                <div class="card">
+                        <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
+                        <table class="tableContent">
+                                <tr>
+                                   <td><strong>Product &nbsp; </strong></td>
+                                   <td>:</td>
+                                   <td>&nbsp;&nbsp;{{deal.name}}</td>
+                               </tr>
+                               <tr>
+                                   <td><strong>Category &nbsp; </strong></td>
+                                   <td>:</td>
+                                   <td>&nbsp;&nbsp;{{deal.category}}</td>
+                                </tr>
+                                <tr>
+                                   <td><strong>Quantity &nbsp;</strong></td>
+                                   <td>:</td>
+                                   <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
+                               </tr>
+                               <tr>
+                                   <td><strong>Location &nbsp;</strong></td>
+                                   <td>:</td>
+                                   <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
+                               </tr>
+                               <br>
+                           </table>    
+                      </div>
+            <!-- <div class="card">
                   
                <table class="english_wrd">
                   <div class="title">
@@ -140,7 +140,7 @@
               </div>
               </table>
                 <a  class="btn btn-primary mb-3 button_word"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
-            </div>
+            </div> -->
           </div>
        
           

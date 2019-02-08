@@ -115,6 +115,7 @@ export class DealsComponent implements OnInit {
         if(this.activeUsers[i]._id == this.crdDeals[j].accountId) {
             if(this.activeUsers[i].status == 'ACTIVE'){
               this.crdDeals1[k] = this.crdDeals[j]
+              console.log(this.crdDeals1)
               k++;
           //    alert('3')
           this.loadingCtrl.hide();
