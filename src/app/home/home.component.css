@@ -1,16 +1,23 @@
 .bg {
-  /* background-image: url(../../assets/Images/agri.jpeg);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #999;
-  min-height: 100vh;
-  width: 100%; */
   background-color: whitesmoke;
   height: -webkit-fill-available;
 }
+.wellcomeHeading{
+ text-align: center; 
+ margin-top: 5%;
+ font-size: 25px;
+}  
 
+@media only screen and (min-width: 320px) and (max-width:425px){
+  .wellcomeHeading{
+    text-align: center;
+    margin-top: 14%;
+    font-size: 20px;
+   }
+   .mainRow{
+    margin-top: -10%;
+  } 
+}
 .tamil_word {
   font-family: 'Hind Madurai', sans-serif;
   font-weight: bold;

@@ -1,18 +1,65 @@
 
 .bg1{
-    background: url(../../assets/Images/blur-blurred-background-bokeh-995043.jpg) no-repeat center center fixed ;
     background-position: center center;
     background-repeat:  no-repeat;
     background-attachment: fixed;
     background-size:  cover;
-    background-color: #999;
+    background-color: whitesmoke;
     min-height: 100vh;
     width:100%
 }
-.userprof{
-    background-color: #0000007a;
-}
-label {
+.card {
+    margin-top: 5%;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    text-align: center;
+    margin-bottom: 5px;
+    transition: all 0.25s;
+  }
+  .dummyLable{
+    margin-top: -6%;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 14px;
+    font-family: 'Hind Madurai', sans-serif;
+    color: #0d4608;
+    font-weight: bold;
+  }
+  .updateProfile{
+    color: #0d4608;text-align: center;margin-top:5px; padding-top: 10px;font-size: 20px;font-weight: bold;  font-family: 'Oxygen', sans-serif;
+  }
+  .welcomeUser{
+    color: #0d4608;text-align: left;margin-bottom: 5%;
+  }
+  .viewMoreBtn{
+    margin: auto;
+    font-weight: bold;
+    color: #0d4608;
+    border-color: #0d4608;
+  }
+  .viewMoreBtn:hover{
+    background-color: #0d4608;
+    color: white;
+  }
+  @media only screen and (min-width: 320px) and (max-width:425px){
+    .card {
+        margin-top: 10%;
+        border-radius: 8px;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+        overflow: hidden;
+        position: relative;
+        top: 0;
+        text-align: center;
+        margin-bottom: 5px;
+        transition: all 0.25s;
+      }
+      .welcomeUser{
+        color: #0d4608;text-align: left;margin-bottom: 10%;
+      }
+  }
+  label {
     position:absolute;
     pointer-events:none;
     transition:0.2s ease all; 
@@ -35,7 +82,7 @@ input:focus{
 select option {
     margin: 40px;
     background: rgba(0, 0, 0, 0.3);
-    color: #fff;
+    color:#0d4608;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
    
 }
@@ -50,7 +97,7 @@ select:focus{
 input{
     background-color: transparent;
     /* border: 1px solid #79828b; */
-    border-bottom: 2px solid white !important;
+    border-bottom: 1px solid #0d4608 !important;
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
@@ -59,13 +106,14 @@ input{
 select{
     background-color: transparent;
     /* border: 1px solid #79828b; */
-    border-bottom: 2px solid white !important;
+    border-bottom: 1px solid #0d4608 !important;
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
 }
 ::placeholder {
-    color: white;
+    color: #0d4608;
+    font-weight: bold;
     opacity: 1; /* Firefox */
    
 }
@@ -76,19 +124,14 @@ select{
     padding: 20px;
     width: 50%;
 }
-.btn1{
-    float: left !important;
-    width: 90px;
-}
 .btn{
     font-size: 18px;
-    background-color: white;
-    /* color: white; */
+    background-color: #0d4608;
     border: none;
-    color: #0d4608;
-    font-weight: bold;
-    float: right;
+    color: white;
+    font-weight: bold; 
 }
+
 
 .form-group {
     position: relative;
@@ -96,7 +139,7 @@ select{
   }
   
   .form-control{
-    color: white !important;
+    color: #0d4608 !important;
 }
 
 .slect{
@@ -106,7 +149,7 @@ select{
     transition: all 200ms;
     /* opacity: 0.5; */
     font-size: 14px;
-    color: white;
+    color: #0d4608;
 }
   .form-control-placeholder {
     position: absolute;
@@ -117,7 +160,8 @@ select{
     left: -12px;
     font-weight: 500;
     font-size: 17px;
-    color: white;
+    font-weight: bold;
+    color:#0d4608;
   }
   
   .form-control:focus + .form-control-placeholder,
@@ -125,11 +169,12 @@ select{
     font-size: 100%;
     transform: translate3d(0, -100%, 0);
     opacity: 1;
-    color: rgb(255, 254, 254);
+    color: #0d4608;
+    font-weight: bold;
   }
  
   .clr{
-      color: white;
+      color: #0d4608;
       font-family: 'Oxygen', sans-serif;
   }
 
@@ -159,18 +204,22 @@ select{
   ::-webkit-input-placeholder {
     font-family: 'Hind Madurai', sans-serif;
     font-size: 14px;
+    font-weight: bold;
   }
   ::-moz-placeholder {
     font-size: 14px;
     font-family: 'Hind Madurai', sans-serif;
+    font-weight: bold;
   }
   :-ms-input-placeholder {
     font-size: 14px;
     font-family: 'Hind Madurai', sans-serif;
+    font-weight: bold;
   }
   ::placeholder {
     font-size: 14px;
     font-family: 'Hind Madurai', sans-serif;
+    font-weight: bold;
   }
   input[readonly].classname{
     background-color:transparent;

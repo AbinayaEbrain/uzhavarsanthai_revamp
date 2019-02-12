@@ -13,53 +13,50 @@
             <div class="col-md-12">
                 <div class="col-md-12 card">
                     <p class="pageHeading">Product</p>
-                    <table class="tableContent">
-                            <tr>
-                               <td ><strong>Product Name&nbsp; </strong></td>
-                               <td>:</td>
-                               <td>{{postProduct.name}}</td>
-                           </tr>
-                           <tr>
-                              <td><strong>Quantity</strong></td>
-                              <td>:</td>
-                              <td>{{postProduct.quantity}} {{postProduct.qnty}}</td>
-                            </tr>
-                            <tr>
+                    <table class="table table-borderless" style="text-align: justify;">
+                            <tbody>
+                              <tr>
+                                <td><strong>Product Name</strong></td>
+                                <td>: {{postProduct.name}}</td>
+                              </tr>
+                              <tr>
+                                <td><strong>Quantity</strong></td>
+                                <td>: {{postProduct.quantity}} {{postProduct.qnty}}</td>
+                              </tr>
+                              <tr>
                                 <td><strong>Price</strong></td>
-                                <td>:</td>
-                                <td>Rs.{{postProduct.price}}</td>
+                                <td>: Rs.{{postProduct.price}}</td>
                             </tr>
                             <tr>
                                 <td><strong>Expiry Date</strong></td>
-                                <td>:</td>
-                                <td>{{postProduct.validityTime}}</td>
-                             </tr>
-                             <tr>
-                                    <td><strong>Location</strong></td>
-                                    <td>:</td>
-                                    <td>{{postProduct.avlPlace}}</td>
-                                 </tr>
-                       </table> 
-                </div>
-                <div class="col-md-12 card" style="margin-top:2%;">
-                    <p class="pageHeading">Contact Details</p>
-                    <table class="tableContent">
-                            <tr>
-                               <td><strong>Contact Person &nbsp; </strong></td>
-                               <td>:</td>
-                               <td>{{register.firstName}} {{register.lastName}}</td>
-                           </tr>
-                           <tr>
-                                <td><strong>Contact Number &nbsp; </strong></td>
-                                <td>:</td>
-                                <td>{{register.phone}}</td>
+                                <td>: {{postProduct.validityTime}}</td>
                             </tr>
                             <tr>
-                                <td><strong>Address &nbsp; </strong></td>
-                                <td>:</td>
-                                <td>{{register.address.city.formatted_address}}</td>
-                                </tr>
-                       </table> 
+                                <td><strong>Location</strong></td>
+                                <td>: {{postProduct.avlPlace}}</td>
+                            </tr>
+                            </tbody>
+                          </table>
+                </div>
+                <div class="col-md-12 card" style="margin-top:0% !important;">
+                    <p class="pageHeading">Contact Details</p>
+                    <table class="table table-borderless" style="text-align: justify;">
+                            <tbody>
+                              <tr>
+                                <td><strong>Contact Person</strong></td>
+                                <td>: {{register.firstName}} {{register.lastName}}</td>
+                              </tr>
+                              <tr>
+                                <td><strong>Contact Number</strong></td>
+                                <td>: {{register.phone}}</td>
+                              </tr>
+                              <tr>
+                                <td><strong>Address</strong></td>
+                                <td>: {{register.address.addressLine}}</td>
+                            </tr>
+                            
+                            </tbody>
+                          </table>
                 </div>
             </div>
         </div>
@@ -73,12 +70,3 @@
       
 </div>
 </div>
-<!-- <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body">
-                <img src="{{postProduct.image}}" height="300px;" width= "465px;" >
-            </div>
-          </div>
-        </div>
-      </div> -->
