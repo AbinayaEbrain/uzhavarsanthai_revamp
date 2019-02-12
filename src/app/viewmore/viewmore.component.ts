@@ -26,7 +26,8 @@ export class ViewmoreComponent implements OnInit {
       address1:'',
       city:{
         locality:'',
-        admin_area_l1:''
+        admin_area_l1:'',
+        formatted_address:''
       }
     }
   }
@@ -91,6 +92,11 @@ export class ViewmoreComponent implements OnInit {
             }
             this.register.address.city.locality = this.city.locality
             this.register.address.city.admin_area_l1 = this.city.admin_area_l1
+            this.register.address.city.formatted_address = this.city.formatted_address
+            console.log(this.viewmore)
+            console.log(this.register.address.city.locality )
+            console.log(this.register.address.city.formatted_address )
+            console.log(this.register.address.city.admin_area_l1 )
           },
           err => console.log(err)
         )

@@ -18,7 +18,7 @@
            </div>
       </div>
       <div class="col-md-2">
-         <button type="button" class="btn btn-success button_word" routerLink="/post">New Product <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+         <button type="button" class="btn btn-outline-success text-center viewMoreBtn button_word" routerLink="/post">New Product <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
       </div>
     </div>
     <div class="container mt-2">
@@ -33,7 +33,7 @@
                                    <th>Category</th>
                                    <th>Name</th>
                                    <th>Quantity</th>
-                                   <th> &#8377; Price/ Quantity</th>
+                                   <th><i class="fa fa-inr" aria-hidden="true"></i> Price/ Quantity</th>
                                    <th>Post Date & Time</th>
                                    <th>Expiry Date</th>
                                    <th class="disabled-sorting">Action</th>
@@ -53,12 +53,12 @@
                                    <td>{{deal.date | date: 'dd/MM/yyyy'}} - {{deal.date | date: 'hh:mm a'}}</td>
                                    <td> {{deal.validityTime | date: 'dd/MM/yyyy'}} </td>
                                    <td style="display: flex;">
-                                       <button id="hideEditBtn" class="btn btn-simple btn-warning btn-icon edit button_word" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}">
+                                       <button id="hideEditBtn" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}"><i class="fa fa-pencil" aria-hidden="true"></i>
                                         Edit
                                        </button> &nbsp;
-                                       <button id="hideDeleteBtn" class="btn btn-simple btn-danger btn-icon remove button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
+                                       <button id="hideDeleteBtn" class="btn btn-outline-success text-center viewMoreBtn button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
                                         data-keyboard="false" routerLink="/products/{{deal._id}}">
-                                         Delete
+                                        <i class="fa fa-trash" aria-hidden="true"></i> Delete
                                        </button>
                                    </td>
                                   
@@ -107,12 +107,12 @@
                            <td>{{deal.date | date: 'dd/MM/yyyy'}} - {{deal.date | date: 'hh:mm a'}}</td>
                            <td> {{deal.validityTime | date: 'dd/MM/yyyy'}} </td>
                            <td style="display: flex;">
-                               <button  id="hideEditBtn1" class="btn btn-simple btn-warning btn-icon edit button_word" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}">
-                                Edit
+                               <button  id="hideEditBtn1" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}">
+                                <i class="fa fa-pencil" aria-hidden="true"></i> Edit
                                </button> &nbsp;
-                               <button id="hideDeleteBtn1" class="btn btn-simple btn-danger btn-icon remove button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
+                               <button id="hideDeleteBtn1" class="btn btn-outline-success text-center viewMoreBtn button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
                                 data-keyboard="false" routerLink="/products/{{deal._id}}">
-                                 Delete
+                                <i class="fa fa-trash" aria-hidden="true"></i> Delete
                                </button>
                            </td>
                        </tr>

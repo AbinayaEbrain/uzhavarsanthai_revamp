@@ -1,6 +1,5 @@
    
 <body class="bg" style="overflow: hidden;">
-        <img class="card-img-top"  height="150px" width="200px" src="{{imageSrc}}" alt="Card image cap">
     <div class="container-fluid">
         <h4 class="categoryHeading tamil_wrd">உங்களுக்கு தேவையானதை தேர்வுசெய்க</h4>
     </div>
@@ -9,12 +8,11 @@
             <div class="row">
                 <div class="col-md-1"></div>    
               <div class="col-md-3" *ngFor="let deal of categoryArr" style="margin-bottom: 10px;">
-                <div class="card" style="cursor: pointer;" routerLink="/viewCategory/{{deal._id}}">
-                   <!-- {{deal.image}} -->
-                   
+                <div class="card" style="cursor: pointer;border: 1px solid #0d4608;" routerLink="/viewCategory/{{deal._id}}">
                   <img class="card-img-top"  height="150px" width="200px" src="{{deal.image}}" alt="Card image cap">
-                     <div class="card-body">
-                     <h5 class="card-title categoryName">{{deal.productCategory}}</h5>
+                     <div class="card-body text-center">
+                     <button type="button" class="btn btn-outline-success text-center viewMoreBtn" >
+                         {{deal.productCategory}}</button>
                     </div>
                 </div> 
               </div>

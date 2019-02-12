@@ -1,15 +1,35 @@
 .bg1{
-    
-    background: url(../../assets/Images/P2.jpeg)no-repeat center ;
     background-position: center center;
     background-repeat:  no-repeat;
     background-attachment: fixed;
     background-size:  cover;
-    background-color: #999;
+    background-color: whitesmoke;
     width:100%;
     min-height: 900px;  
 }
-
+.card {
+    margin-top: 5% !important;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    text-align: center;
+    margin-bottom: 5px;
+    transition: all 0.25s;
+  }
+  .card:nth-child(2) {
+    margin: 0 50px;
+  }
+  .viewMoreBtn{
+    margin: auto;
+    font-weight: bold;
+    color: #0d4608;
+    border-color: #0d4608;
+  }
+ .viewMoreBtn{
+    margin-top: 65%;
+ }
 .floatinglabl {
     position:absolute;
     pointer-events:none;
@@ -20,10 +40,29 @@
 .uploadButton{
     margin-top: 4%;
 }
-
+.upload{
+    color: #0d4608 !important;
+    background-color: transparent;
+    font-weight: bold;
+    border: none !important;
+    margin-top: -20%;
+}
+.card-img-top{
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    margin-top: -20%;
+    margin-left: 85%;
+}
 @media screen and (min-width: 320px) and (max-width: 425px) {
     .bg1{
         min-height: 1300px; 
+    }
+    .clr{
+        font-size: 20px;
+        margin-top: 10px;
+        color: #0d4608;
+        font-weight: bold;
     }
     .onMobiview{
         margin-top: 25px;
@@ -33,6 +72,20 @@
     }
     #hideDisplayImg{
         text-align: center !important;
+    }
+    .card:nth-child(2) {
+        margin: 0 0px;
+        padding: 20px;
+      }
+      .viewMoreBtn{
+        margin-top: -20%;
+     } 
+     .card-img-top{
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        margin-top: -20%;
+        margin-left: 45%;
     }
 }
 
@@ -63,8 +116,7 @@ select:focus{
 
 input{
     background-color: transparent;
-    /* border: 1px solid #79828b; */
-    border-bottom: 2px solid white !important;
+    border-bottom: 1px solid #0d4608  !important;
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
@@ -73,13 +125,14 @@ input{
 select{
     background-color: transparent;
     /* border: 1px solid #79828b; */
-    border-bottom: 2px solid white !important;
+    border-bottom: 1px solid #0d4608  !important;
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
 }
 ::placeholder {
-    color: white;
+    color: #0d4608;
+    border-bottom: 1px solid #0d4608  !important;
     opacity: 1; /* Firefox */
    
 }
@@ -87,15 +140,13 @@ select{
     float: left !important;
     width: 90px;
 }
-
 .btn{
     font-size: 18px;
-    background-color: white;
-    /* color: white; */
+    background-color: #0d4608;
     border: none;
-    color: #0d4608;
+    color: white;
     font-weight: bold;
-    float: right;
+   
 }
 
 .form-group {
@@ -104,18 +155,19 @@ select{
   }
   
   .form-control{
-    color: white !important;
+    color: #0d4608 !important;
+    border-bottom-color: 2px solid #0d4608 !important;
 }
-
+ 
 .slect{
     position: absolute;
     top: 0;
     padding: 7px 0 0 0px;
     transition: all 200ms;
     /* opacity: 0.5; */
-    font-weight: 500;
     font-size: 17px;
-    color: white;
+    color: #0d4608;
+    border-bottom-color: 2px solid #0d4608 !important;
 }
   .form-control-placeholder {
     position: absolute;
@@ -126,11 +178,12 @@ select{
     left: -12px;
     font-weight: 500;
     font-size: 17px;
-    color: white;
+    color: #0d4608;
+   
   }
 
   .lab{
-    color: white;
+    color: #0d4608;
     float: left;
     font-weight: 500;
     margin-top: -17px;
@@ -141,12 +194,16 @@ select{
     font-size: 100%;
     transform: translate3d(0, -100%, 0);
     opacity: 1;
-    color: rgb(255, 254, 254);
+    color: #0d4608;
+  
   }
  
   .clr{
-      color: white;
-      font-family: 'Oxygen', sans-serif;
+    color: #0d4608;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 5px;
   }
 
   .sent_font{
