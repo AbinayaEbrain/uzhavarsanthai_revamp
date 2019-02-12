@@ -2,23 +2,24 @@
  <body class="bg1" style="overflow-x:hidden">
   <div class="text-center container onmobiview ">
       <div class="row">
-          <div class="col-md-12">
-              <!-- <h3 class="clr mb-5  mt-sm-2 mt-md-5">Post Your Product Details</h3> -->
-              <div class="row mb-3" *ngIf = "success">
-                            <div class="alert alert-success english_wrd">
-                                    {{success}}
-                                  </div>
-                  </div>
-          </div>
    </div>
       <form  #postform="ngForm" *ngIf ="!submitted" novalidate class="card">
           <p class="clr">Post Your Product Details</p>
+          <div class="row">
+              <div class="col-md-4"></div>
+            <div class="col-md-4 mb-3" *ngIf = "success" style="margin: auto">
+                          <div class="alert alert-success english_wrd">
+                                  {{success}}
+                          </div>
+                </div>
+                <div class="col-md-4"></div>
+        </div>
       <div class="row" style="margin-top: 1%;">
             <div class="col-md-1"></div>
           <div class="col-md-5">
               <div class="form-group mb-5 mt-2">
                   <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.categoryId" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
-                      <option selected="" disabled="" value="" >Category</option>
+                      <option class="opt" selected="" disabled="" value="" >Category</option>
                       <option *ngFor="let val of categoryArr" class="categoryOption" value="{{val._id}}">{{val.productCategory}}</option>
                     </select>
                 </div>
@@ -39,7 +40,7 @@
             <div class="row ">
                     <div class="col-md-1"></div>
                 <div class="col-md-5">
-                    <div class="form-group mb-5 mt-2">
+                    <div class="form-group mb-4 mt-2 mb-xl-5 mb-md-5">
                         <input type="text"  #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="productData.quantity"  name="quantity" class="form-control"  maxlength="5" autocomplete="off"  required>
                         <label class="form-control-placeholder english_wrd floatinglabl" for="quantity"><span style="font-size: 14px" class="tamil_wrd">அளவு </span>/ Quantity </label>
                         <span class="text-danger float-left error_word" [class.d-none] = "quantity.valid || quantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>  
@@ -105,7 +106,7 @@
                   <div class="col-md-3">
                             <div class="form-group mb-5 mt-2">
                                     <div class="upload-btn-wrapper">
-                                      <label for="ImageUpload" style="color:#0d4608;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
+                                      <label for="ImageUpload" style="color:#0d4608;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;font-weight: bolder">Upload product image</label>
                                       <input type="file" id="Image" name="Image" class="upload" (change)="onFileChange($event)" #fileInput>
                                     </div>
                                    
