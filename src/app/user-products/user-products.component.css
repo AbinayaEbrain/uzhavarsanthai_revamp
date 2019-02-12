@@ -45,7 +45,7 @@ section .section-title {
     color: white !important;
     background-color: #0d4608;
     border-color: transparent transparent white;
-    border-bottom: 4px solid white !important;
+    border-bottom: 4px solid #0d4608 !important;
     font-size: 1rem;
     font-weight: bold;
 }
@@ -59,7 +59,7 @@ section .section-title {
     font-size: 1rem;
 }
 .nav-tabs .nav-link {
-    border: 1px solid transparent;
+    border: 1px solid #0d4608;
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
     color: white;
@@ -110,8 +110,10 @@ section .section-title {
   .right-addon .glyphicon { right: 0px;}
   
   /* add padding  */
-  .left-addon input  { padding-left:  30px; }
-  .right-addon input { padding-right: 30px; }
+  .left-addon input  { padding-left:  30px;
+    border: 1px solid #0d4608; }
+  .right-addon input { padding-right: 30px;
+    border: 1px solid #0d4608; }
   
   
 @media only screen and (min-width: 320px) and (max-width:425px){
