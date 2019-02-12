@@ -1,44 +1,41 @@
-
-.nav_clr{
-    background-color: #0d4608;
-    
+.nav_clr {
+  background-color: #0d4608;
 }
-.loading{
+.loading {
   background-color: transparent;
 }
-.apptitle{
+.apptitle {
   font-family: 'Baloo Thambi', cursive;
 }
 ul li a {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
-.dropdown .dropdown-menu{
-  display: block; 
-opacity:0;
--webkit-transition: all 200ms ease-in;
--moz-transition: all 200ms ease-in;
--ms-transition: all 200ms ease-in;
--o-transition: all 200ms ease-in;
-transition: all 200ms ease-in;
+
+.dropdown .dropdown-menu {
+  display: block;
+  opacity: 0;
+  -webkit-transition: all 200ms ease-in;
+  -moz-transition: all 200ms ease-in;
+  -ms-transition: all 200ms ease-in;
+  -o-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
 }
 .dropdown:hover .dropdown-menu {
   display: block;
   opacity: 1;
 }
 
-.tamil_word{
+.tamil_word {
   font-family: 'Hind Madurai', sans-serif;
   font-weight: bold;
 }
-.clr{
+.clr {
   color: white;
   text-align: center;
   margin: auto;
 }
-@media screen and (min-width: 320px) and (max-width:425px) {
-  .hideMobile{ 
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .hideMobile {
     display: none;
   }
 }
-
-

@@ -23,7 +23,8 @@
           <a class="nav-link" routerLink="/admin" *ngIf="_authService.roleAdmin() && _authService.loggedIn()"  (click)="_authService.logoutUser()" routerLinkActive="active">Logout</a>
         </li>
         <li class="nav-item dropdown"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link dropdown-toggle" style="cursor: pointer;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" *ngIf="_authService.loggedIn() && !_authService.roleAdmin()" routerLinkActive="active">My Profile <i class="fa fa-user-circle" aria-hidden="true"></i></a>
+          <a class="nav-link dropdown-toggle" style="cursor: pointer;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+           *ngIf="_authService.loggedIn() && !_authService.roleAdmin()" routerLinkActive="active">My products</a>
           <div class="dropdown-menu">
             <a class="dropdown-item" routerLink="/updateuser" style="cursor: pointer;">Edit Profile</a>
             <a class="dropdown-item"  style="cursor: pointer;" (click)="_authService.logoutUser()">Logout</a>
