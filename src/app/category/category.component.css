@@ -1,75 +1,75 @@
-.bg{
-    /* The image used */
-    background: url(../../assets/Images/A2.jpg);
-    background-position: center center;
-    background-repeat:  no-repeat;
-    background-attachment: fixed;
-    background-size:  cover;
-    background-color: #999;
-    min-height: 100vh;
-    width:100%
+.bg {
+  /* The image used */
+  background: url(../../assets/Images/A2.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #999;
+  min-height: 100vh;
+  width: 100%;
 }
-.card-img-top{
-    width: 150px !important
+.card-img-top {
+  width: 150px !important;
 }
 input[_ngcontent-c2] {
-    background-color: transparent;
-    border-bottom: 2px solid black !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
+  background-color: transparent;
+  border-bottom: 2px solid black !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
 }
 .form-control-placeholder[_ngcontent-c2] {
-    position: absolute;
-    top: 0;
-    padding: 7px 0 0 13px;
-    transition: all 200ms;
-    left: -12px;
-    font-weight: 500;
-    font-size: 17px;
-    color: black !important; 
+  position: absolute;
+  top: 0;
+  padding: 7px 0 0 13px;
+  transition: all 200ms;
+  left: -12px;
+  font-weight: 500;
+  font-size: 17px;
+  color: black !important;
 }
 
-
-.modal-header{
-    border-bottom: 2px solid black !important;  
+.modal-header {
+  border-bottom: 2px solid black !important;
 }
 
-.bg1{
-    /* The image used */
-    background: url(../../assets/Images/P2.jpeg);
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    background-attachment: fixed;
+.bg1 {
+  /* The image used */
+  background: url(../../assets/Images/2.jpeg);
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  background-attachment: fixed;
 }
 
- input[type=text], input[type=password] {
-    width: 100%;
-    display: inline-block;
-    box-sizing: border-box;
+input[type='text'],
+input[type='password'] {
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
 }
 
-input:focus{
-    background-color: transparent;
-    box-shadow: none;
-    border: none;
+input:focus {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
 }
 
-input{
-    background-color: transparent;
-    /* border: 1px solid #79828b; */
-    border-bottom: 2px solid white !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
-} 
+input {
+  background-color: transparent;
+  /* border: 1px solid #79828b; */
+  border-bottom: 2px solid white !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
 ::placeholder {
-    color: white;
-    opacity: 1; /* Firefox */ 
+  color: white;
+  opacity: 1; /* Firefox */
 }
 /* .btn{
     font-size: 18px;
@@ -81,78 +81,76 @@ input{
 } */
 
 .form-group {
-    position: relative;
-    margin-bottom: 1.5rem;
-  }
-  input{
-    background-color: transparent;
-    border-bottom: 2px solid black !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
+  position: relative;
+  margin-bottom: 1.5rem;
 }
-input-placeholder{
-    color: aquamarine;
+input {
+  background-color: transparent;
+  border-bottom: 2px solid black !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
 }
-  .form-control-placeholder {
-    position: absolute;
-    top: 0;
-    padding: 7px 0 0 13px;
-    transition: all 200ms;
-    /* opacity: 0.5; */
-    left: -12px;
-    font-weight: 500;
-    font-size: 17px;
-   
-  }
-  .bot{
-      background-color: aqua;
-  }
-  
-  .form-control:focus + .form-control-placeholder,
-  .form-control:valid + .form-control-placeholder {
-    font-size: 100%;
-    transform: translate3d(0, -100%, 0);
-    opacity: 1;
-    color:black
-  }
- 
-  .clr{
-      color: black;
-      font-family: 'Oxygen', sans-serif;
-  }
+input-placeholder {
+  color: aquamarine;
+}
+.form-control-placeholder {
+  position: absolute;
+  top: 0;
+  padding: 7px 0 0 13px;
+  transition: all 200ms;
+  /* opacity: 0.5; */
+  left: -12px;
+  font-weight: 500;
+  font-size: 17px;
+}
+.bot {
+  background-color: aqua;
+}
 
-  .sent_font{
-    font-family: cursive;
-    font-weight: bold;
-    color: white
-  }
-  .span_clr{
-      text-decoration: underline;
-      cursor: pointer;
-  }
-  .button_word{
-    font-family: 'Kanit', sans-serif;
-  }
-  th{
-    font-family: 'Oxygen', sans-serif;
-  }
-  td{
-    font-family: 'Oxygen', sans-serif;
-  }
-  .english_wrd{
-    font-family: 'Mukta', sans-serif;
-  }
-  input {
-    font-family: 'Nunito', sans-serif;
-  }
-  .error_word{
-    font-family: 'Cabin', sans-serif;
-  }
-  .upload {
-    color: black;
-    background-color: white;
-    font-weight: bold;
-    border: none !important;
-  }
-  
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  font-size: 100%;
+  transform: translate3d(0, -100%, 0);
+  opacity: 1;
+  color: black;
+}
+
+.clr {
+  color: black;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.sent_font {
+  font-family: cursive;
+  font-weight: bold;
+  color: white;
+}
+.span_clr {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.button_word {
+  font-family: 'Kanit', sans-serif;
+}
+th {
+  font-family: 'Oxygen', sans-serif;
+}
+td {
+  font-family: 'Oxygen', sans-serif;
+}
+.english_wrd {
+  font-family: 'Mukta', sans-serif;
+}
+input {
+  font-family: 'Nunito', sans-serif;
+}
+.error_word {
+  font-family: 'Cabin', sans-serif;
+}
+.upload {
+  color: black;
+  background-color: white;
+  font-weight: bold;
+  border: none !important;
+}

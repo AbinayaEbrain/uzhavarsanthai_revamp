@@ -1,13 +1,13 @@
 .bg {
-  /* background-image: url(../../assets/Images/agri.jpeg);
+  background-image: url(../../assets/Images/home1.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-color: #999;
   min-height: 100vh;
-  width: 100%; */
-  background-color: whitesmoke;
+  width: 100%;
+  /* background-color: whitesmoke; */
   height: -webkit-fill-available;
 }
 
