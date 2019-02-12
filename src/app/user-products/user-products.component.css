@@ -60,7 +60,7 @@ section .section-title {
   font-size: 1rem;
 }
 .nav-tabs .nav-link {
-  border: 1px solid transparent;
+  border: 1px solid #0d4608;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
   color: white;
