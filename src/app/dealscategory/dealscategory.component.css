@@ -1,15 +1,14 @@
 .bg{
-    background-image:  url(../../assets/Images/grass-wallpapers-hd-68478-7563383.png);
     background-position: center center;
     background-repeat:  no-repeat;
     background-attachment: fixed;
     background-size:  cover;
-    background-color: #999;
+    background-color: whitesmoke;
     min-height: 100vh;
     width:100%
   }
 .categoryHeading{
-  margin-top: 50px;text-align: center;color: white;font-weight: bold;padding: 10px;
+  margin-top: 50px;text-align: center;color: #0d4608;font-weight: bold;padding: 10px;
   font-family: 'Oxygen', sans-serif;
 } 
 .categoryName{
@@ -18,4 +17,14 @@
 } 
 .tamil_wrd{
   font-family: 'Hind Madurai', sans-serif; 
+}
+.viewMoreBtn{
+  margin: auto;
+  font-weight: bold;
+  color: #0d4608;
+  border-color: #0d4608;
+}
+.viewMoreBtn:hover{
+  background-color: #0d4608;
+  color: white;
 }

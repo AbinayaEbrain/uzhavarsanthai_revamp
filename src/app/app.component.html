@@ -10,23 +10,11 @@
         <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <a class="nav-link" routerLink="/register" *ngIf="!_authService.loggedIn() || !_authService.findActive()" routerLinkActive="active">Register</a>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link" routerLink="/home" *ngIf="!_authService.loggedIn()" routerLinkActive="active">Home</a>
-          </li> -->
-         <!-- <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <a class="nav-link" routerLink="/post" *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()"  routerLinkActive="active">Post</a>
-         </li> -->
          <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <a class="nav-link" routerLink="/deals" *ngIf="!_authService.loggedIn()" (click)="trackMe()" routerLinkActive="active">Deals</a>
          </li>
          <li class="nav-item "  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <a class="nav-link "  routerLink="/products" *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()" routerLinkActive="active">My Products</a>
-          <!-- <div class="dropdown-menu">
-            <a class="dropdown-item"  style="cursor: pointer;" 
-            *ngIf="_authService.loggedIn()" routerLink="/user-deals">Active Products <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-            <a class="dropdown-item"  style="cursor: pointer;"
-            *ngIf="_authService.loggedIn()" routerLink="/expired-products">Expired Products <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
-          </div> -->
         </li>
         <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <a class="nav-link" routerLink="/admin" *ngIf="_authService.roleAdmin() && _authService.loggedIn()" routerLinkActive="active">Admin</a>
@@ -37,8 +25,8 @@
         <li class="nav-item dropdown"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <a class="nav-link dropdown-toggle" style="cursor: pointer;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" *ngIf="_authService.loggedIn() && !_authService.roleAdmin()" routerLinkActive="active">My Profile <i class="fa fa-user-circle" aria-hidden="true"></i></a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" routerLink="/updateuser" style="cursor: pointer;">Edit Profile <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-            <a class="dropdown-item"  style="cursor: pointer;" (click)="_authService.logoutUser()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            <a class="dropdown-item" routerLink="/updateuser" style="cursor: pointer;">Edit Profile</a>
+            <a class="dropdown-item"  style="cursor: pointer;" (click)="_authService.logoutUser()">Logout</a>
           </div>
         </li>
      
@@ -55,21 +43,7 @@
               </p>
              
           </div>
-          
-   
-        
        </ngx-spinner>
-      <!-- <div class="m-page-loader m-page-loader--non-block" style="margin-left: -80px; margin-top: -20px;">
-        <div class="m-blockui">
-          <span>
-            Please wait...
-          </span>
-          <span>
-            <div class="m-loader m-loader--brand"></div>
-          </span>
-        </div>
-      </div> -->
-      
       <div class="card">
         
         <label class="file-upload-container" for="file-upload">

@@ -1,15 +1,33 @@
 .bg {
-    background: url(../../assets/Images/6.jpg); 
     background-position: center center;
      background-repeat:  no-repeat;
      background-attachment: fixed;
      background-size:  cover;
-     background-color: #999;
+     background-color: whitesmoke;
      min-height: 100vh;
      width:100%;
      min-height: -webkit-fill-available;
   }
-
+  .viewMoreBtn{
+    margin: auto;
+    font-weight: bold;
+    color: #0d4608;
+    border-color: #0d4608;
+  }
+  .viewMoreBtn:hover{
+    background-color: #0d4608;
+    color: white;
+  }
+  .card {
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    text-align: center;
+    margin-bottom: 5px;
+    transition: all 0.25s;
+  }
 section .section-title {
     text-align: center;
     margin-bottom: 50px;
@@ -24,13 +42,14 @@ section .section-title {
 }
 
 #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-    color: white;
+    color: white !important;
     background-color: #0d4608;
     border-color: transparent transparent white;
     border-bottom: 4px solid white !important;
     font-size: 1rem;
     font-weight: bold;
 }
+
 #tabs .nav-tabs .nav-link {
     border: 1px solid transparent;
     border-top-left-radius: .25rem;
@@ -73,6 +92,7 @@ section .section-title {
   }
   .tabTitle{
     font-size: 14px;
+    color: #0d4608 !important;
   }
   .inner-addon {
     position: relative;
@@ -97,6 +117,7 @@ section .section-title {
 @media only screen and (min-width: 320px) and (max-width:425px){
     .tabTitle{
         font-size: 12px !important;
+        color: #0d4608 !important;
     }
     .onmobiviewpadding{
         padding: 10px;

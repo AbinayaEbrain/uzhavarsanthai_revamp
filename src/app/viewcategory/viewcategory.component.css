@@ -1,13 +1,43 @@
 .backgrd{
-    background-image:  url(../../assets/Images/Green_farms_of_Jats_in_Haryana.jpg);
     background-position: center center;
     background-repeat:  no-repeat;
     background-attachment: fixed;
     background-size:  cover;
+    background-color: whitesmoke;
     min-height: 100vh;
     width:100%;
     margin-top:-30px;
     overflow-x: auto;
+  }
+  .card {
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    text-align: center;
+    margin-bottom: 5px;
+    transition: all 0.25s;
+  }
+  .card:nth-child(2) {
+    margin: 0 50px;
+  }
+  .card:hover {
+    top: -15px;
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+  }
+  .viewMoreBtn{
+    margin: auto;
+    font-weight: bold;
+    color: #0d4608;
+    border-color: #0d4608;
+  }
+  .viewMoreBtn:hover{
+    background-color: #0d4608;
+    color: white;
+  }
+  .tableContent{
+    color: #0d4608;
   }
 .center-block {
     display: block;
@@ -25,31 +55,21 @@
     text-align: center;color:rgb(255, 255, 255);font-weight: bold;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: black !important;
+  color: #0d4608 !important;
  
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: black !important;
+  color: #0d4608 !important;
 }
 
 ::-ms-input-placeholder { /* Microsoft Edge */
-  color: black !important;
+  color: #0d4608 !important;
 }
 .bootstrap-select {
- color:black !important;
+ color:#0d4608 !important;
   }
 
-  .card{
-    /* margin: 10px; */
-   border-radius: 0px 20px;
-   /*background-color: #23dfe8;
-     background-color: rgb(252, 176, 59); */
-   background-color: #032b31;
-    height: 325px;
-    /* width: 300px; */
-    color: aliceblue;
-  }
   .title{
     border-radius: 0px 20px 0px 20px;
     height: 45px;
@@ -97,24 +117,6 @@
   .btn-primary:hover{
     border: 1px solid #04857e;
     background-color:  green;
-  }
-  .btnnn {
-    width: 100%;
-     display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   }
 
   .card-body{
@@ -174,7 +176,7 @@
 }
 ::placeholder {
   text-align:left;
-  color: white;
+  color:#0d4608;
     
   }
   .english_wrd{

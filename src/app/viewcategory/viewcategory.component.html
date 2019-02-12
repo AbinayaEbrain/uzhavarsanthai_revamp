@@ -7,11 +7,10 @@
         <div class="container mt-5 pt-5">
             <div class="row">
                 <div class="col-md-4">
-                        <button class="btn btn-primary btn1 button_word" style="width: 25%;margin-left: 10px;" routerLink="/dealCategory"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
-                        <button id="hideFilterButton" (click)="getGoogleAddress()" class="btn btn-primary btn1 button_word" data-toggle="modal" style="width: 50%;margin-left: 10px;" data-target="#myModal" >Filter <i class="fa fa-filter" aria-hidden="true" ></i></button>
+                        <button class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 25%;margin-left: 10px;" routerLink="/dealCategory"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
+                        <button id="hideFilterButton" (click)="getGoogleAddress()" class="btn btn-outline-success text-center viewMoreBtn button_word" data-toggle="modal" style="width: 50%;margin-left: 10px;" data-target="#myModal" >Filter <i class="fa fa-filter" aria-hidden="true" ></i></button>
                 </div>
-                <div class="col-md-2">
-                         
+                <div class="col-md-2">     
                 </div>
                 <div class="col-md-6 onmobiviewpadding" id="hideSearchDiv">
                         <div class="inner-addon left-addon">
@@ -30,123 +29,75 @@
     </div>
             <div  [style.display]="!totalDeals1 ? 'block' : 'none'" >
                 <div class="row mt-5" id="hideifNoData">
-                        
-                        <div class="col-lg-6 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of totalDeals | filterdata: queryString  : 'name' | paginate: { itemsPerPage:6,currentPage:p }">
-                                            
-                            <div class="card">
-                                
-                            <table class="english_wrd">
-                                <div class="title">
-                                    <tr>
-                                    <th class="details">Product Details</th>
-                                    </tr>
-                                </div>
-                                <div class="card-body">
-                                    <tr>
-                                        <td><strong>Category &nbsp; </strong></td>
-                                        <td>:</td>
-                                        <td>&nbsp;&nbsp;{{deal.category}}</td>
-                                        </tr>
-                                    <tr>
-                                    <td><strong>Name &nbsp;</strong></td>
-                                    <td>:</td>
-                                    <td>&nbsp;&nbsp;{{deal.name}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Quantity &nbsp;</strong></td>
-                                        <td>:</td>
-                                        <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Price / Quantity &nbsp;</strong></td>
-                                        <td>:</td>
-                                        <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Post Date &nbsp;</strong></td>
-                                        <td>:</td>
-                                        <td>&nbsp;&nbsp;{{deal.date | date:'dd/MM/yyyy'}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Expiry Date &nbsp;</strong></td>
-                                        <td>:</td>
-                                        <td>&nbsp;&nbsp;{{deal.validityTime | date:'dd/MM/yyyy'}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Location &nbsp;</strong></td>
-                                            <td>:</td>
-                                            <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
-                                    </tr>
-                                        
-                            </div>
-                            </table>
-                                <a  class="btn btn-primary mb-3 button_word"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
-                            </div>
-                        </div>
-                    
-                        
+                        <div class="col-md-3"  *ngFor = "let deal of totalDeals | filterdata: queryString  : 'name' | paginate: { itemsPerPage:6,currentPage:p }">
+                                <div class="card">
+                                        <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
+                                        <table class="tableContent">
+                                                <tr>
+                                                   <td><strong>Product &nbsp; </strong></td>
+                                                   <td>:</td>
+                                                   <td>&nbsp;&nbsp;{{deal.name}}</td>
+                                               </tr>
+                                               <tr>
+                                                    <td><strong>Price &nbsp; </strong></td>
+                                                    <td>:</td>
+                                                    <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
+                                                 </tr>
+                                                <tr>
+                                                   <td><strong>Quantity &nbsp;</strong></td>
+                                                   <td>:</td>
+                                                   <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
+                                               </tr>
+                                               <tr>
+                                                   <td><strong>Location &nbsp;</strong></td>
+                                                   <td>:</td>
+                                                   <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
+                                               </tr>
+                                               <br>
+                                           </table>  
+                                           <button type="button" class="btn btn-outline-success text-center viewMoreBtn"  routerLink= "/viewmore/{{deal._id}}">View More</button>  
+                                           <br>  
+                                      </div>               
+                           
+                        </div> 
                     </div>
             </div>
             
             <div [style.display]="totalDeals1 ? 'block' : 'none'" >
                     <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
                     <div class="row mt-5" id="hideifData">
-                          
-                            <div class="col-lg-6 col-md-6 col-12 col-sm-12 mr-md-0 mr-lg-0 mr-sm-0 mr-0 mb-3"  *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }">
-                                    
+                           <div class="col-md-3"  *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }">
                                 <div class="card">
-                                      
-                                   <table class="english_wrd">
-                                      <div class="title">
-                                        <tr>
-                                          <th class="details">Product Details</th>
-                                        </tr>
-                                      </div>
-                                      <div class="card-body">
-                                          <tr>
-                                              <td><strong>Category &nbsp; </strong></td>
-                                              <td>:</td>
-                                              <td>&nbsp;&nbsp;{{deal.category}}</td>
-                                            </tr>
-                                        <tr>
-                                          <td><strong>Name &nbsp;</strong></td>
-                                          <td>:</td>
-                                          <td>&nbsp;&nbsp;{{deal.name}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Quantity &nbsp;</strong></td>
-                                            <td>:</td>
-                                            <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Price / Quantity &nbsp;</strong></td>
-                                            <td>:</td>
-                                            <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Post Date &nbsp;</strong></td>
-                                            <td>:</td>
-                                            <td>&nbsp;&nbsp;{{deal.date | date:'dd/MM/yyyy'}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Expiry Date &nbsp;</strong></td>
-                                            <td>:</td>
-                                            <td>&nbsp;&nbsp;{{deal.validityTime | date:'dd/MM/yyyy'}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Location &nbsp;</strong></td>
-                                                <td>:</td>
-                                                <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
-                                        </tr>
-                                            
-                                  </div>
-                                  </table>
-                                    <a  class="btn btn-primary mb-3 button_word"  routerLink= "/viewmore/{{deal._id}}"><strong>View Details</strong></a>
-                                </div>
+                                        <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
+                                        <table class="tableContent">
+                                                <tr>
+                                                   <td><strong>Product &nbsp; </strong></td>
+                                                   <td>:</td>
+                                                   <td>&nbsp;&nbsp;{{deal.name}}</td>
+                                               </tr>
+                                               <tr>
+                                                    <td><strong>Price &nbsp; </strong></td>
+                                                    <td>:</td>
+                                                    <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
+                                                 </tr>
+                                                <tr>
+                                                   <td><strong>Quantity &nbsp;</strong></td>
+                                                   <td>:</td>
+                                                   <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
+                                               </tr>
+                                               <tr>
+                                                   <td><strong>Location &nbsp;</strong></td>
+                                                   <td>:</td>
+                                                   <td>&nbsp;&nbsp;{{deal.avlPlace.locality}}</td>
+                                               </tr>
+                                               <br>
+                                           </table>  
+                                           <button type="button" class="btn btn-outline-success text-center viewMoreBtn"  routerLink= "/viewmore/{{deal._id}}">View More</button>  
+                                           <br>  
+                                      </div> 
+                             
                               </div>
-                           
-                              
-                          </div>
+                            </div>
                         </div>
               <div class="mx-auto" id="hidePagination" >
                     <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
@@ -206,7 +157,7 @@
                                    </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit"  class="btn btn-success mb-2 button_word" style="border: 1px solid white"  (click)="filterDeal()" data-dismiss="modal">Search</button>
+                                <button type="submit"  class="btn btn-outline-success text-center viewMoreBtn"   (click)="filterDeal()" data-dismiss="modal">Search</button>
                             </div>
                           </form>
             </div>

@@ -1,27 +1,21 @@
 
-
  <body class="bg1" style="overflow-x:hidden">
   <div class="text-center container onmobiview ">
       <div class="row">
-          <div class="col-md-4"></div>
-          <div class="col-md-8">
-              <h3 class="clr mb-5  mt-sm-2 mt-md-5">Post Your Product Details</h3>
+          <div class="col-md-12">
+              <!-- <h3 class="clr mb-5  mt-sm-2 mt-md-5">Post Your Product Details</h3> -->
               <div class="row mb-3" *ngIf = "success">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
                             <div class="alert alert-success english_wrd">
                                     {{success}}
                                   </div>
-                    </div>
-                    <div class="col-md-4"></div>
                   </div>
           </div>
    </div>
-      <form  #postform="ngForm" *ngIf ="!submitted" novalidate>
-   
-      <div class="row">
-        <div class="col-md-4"></div>
-          <div class="col-md-4">
+      <form  #postform="ngForm" *ngIf ="!submitted" novalidate class="card">
+          <p class="clr">Post Your Product Details</p>
+      <div class="row" style="margin-top: 1%;">
+            <div class="col-md-1"></div>
+          <div class="col-md-5">
               <div class="form-group mb-5 mt-2">
                   <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.categoryId" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
                       <option selected="" disabled="" value="" >Category</option>
@@ -30,7 +24,7 @@
                 </div>
                 <span class="text-danger float-left error_word" [class.d-none] = "category.valid || category.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span> 
               </div> 
-      <div class="col-md-4">    
+      <div class="col-md-5">    
               <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                 <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)"  maxlength="20" [(ngModel)]="productData.name"  name="name" class="form-control"  autocomplete="off"  required>
          
@@ -38,19 +32,20 @@
                 <span class="text-danger float-left error_word" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product Name is required</span> 
               </div>
             
-        </div>  
+        </div> 
+        <div class="col-md-1"></div> 
             </div>
 
             <div class="row ">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
+                    <div class="col-md-1"></div>
+                <div class="col-md-5">
                     <div class="form-group mb-5 mt-2">
                         <input type="text"  #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="productData.quantity"  name="quantity" class="form-control"  maxlength="5" autocomplete="off"  required>
                         <label class="form-control-placeholder english_wrd floatinglabl" for="quantity"><span style="font-size: 14px" class="tamil_wrd">அளவு </span>/ Quantity </label>
                         <span class="text-danger float-left error_word" [class.d-none] = "quantity.valid || quantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>  
                       </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="form-group mb-5 mt-3 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                       
                         <select required class="form-control slect"  #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel (change)="getunits()" [(ngModel)]="productData.qnty" >
@@ -63,33 +58,13 @@
                       </div>
                       <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span> 
                     </div> 
-               
-                    <!-- <div class="col-md-2 col-sm-8 col-8">
-                        <div class="form-group mb-5 mt-2">
-                            <input type="text"  #subQuantity="ngModel"  maxlength="5"  ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="productData.subQuantity"  name="subQuantity" class="form-control" autocomplete="off" required>
-                            <label class="form-control-placeholder english_wrd floatinglabl" for="quantity">Sub Quantity</label>
-                            <span class="text-danger float-left error_word" [class.d-none] = "subQuantity.valid || subQuantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span>  
-                          </div>
-                    </div> -->
-                    <!-- <div class="col-md-2 col-sm-4 col-4">
-                        <div class="form-group mb-5 mt-2">
-                            <select  class="form-control slect"  #subqnty="ngModel" name="subqnty" [class.is-invalid]="subqnty.invalid && subqnty.touched" ngModel  [(ngModel)]="productData.subqnty" >
-                                <option value="">Sub Unit</option>
-                                <option value="Grams">Grams</option>
-                                <option value="Millilitres">Millilitres</option>
-                              </select>
-                             
-                          </div>
-                          <span class="text-danger float-left error_word" [class.d-none] = "subqnty.valid || subqnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span> 
-                         
-                        </div>  -->
-             
+                    <div class="col-md-1"></div>
             </div>
 
             <!-- 3rd row -->
             <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">    
+                    <div class="col-md-1"></div>
+                <div class="col-md-5">    
                     <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2">
                       <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="productData.price"  name="price" class="form-control" maxlength="5"  autocomplete="off"  required>
                
@@ -98,61 +73,58 @@
                     </div>
                   
               </div>  
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="form-group mb-5 mt-2">
                           <input google-place type="text" placeholder="கிடைக்குமிடம் / Available Place" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="productData.avlPlace" required>
                           <span class="text-danger float-left error_word" [class.d-none] = "avlPlace.valid || avlPlace.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span> 
                       </div>
                 </div> 
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <div class="form-group mb-5 mt-2">
-                        <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="productData.description"  name="description" class="form-control"  autocomplete="off" maxlength="250" required>
-                        <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_wrd"> பொருளைப் பற்றி </span>/ Description </label>
-                        <span class="text-danger float-left error_word" [class.d-none] = "description.valid || description.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Description is required</span>  
-                      </div>
-                </div> 
-                <div class="col-md-4">
-                    <div class="form-group mb-5 mt-2">
+              </div>
+              <div class="row">
+                    <div class="col-md-1"></div>
+                <div class="col-md-5">    
+                        <div class="form-group mb-5 mt-2">
+                                <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="productData.description"  name="description" class="form-control"  autocomplete="off" maxlength="250" required>
+                                <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_wrd"> பொருளைப் பற்றி </span>/ Description </label>
+                                <span class="text-danger float-left error_word" [class.d-none] = "description.valid || description.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Description is required</span>  
+                              </div>
+              </div>  
+                <div class="col-md-5">
+                        <div class="form-group mb-5 mt-2">
                          
-                        <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="productData.validityTime"  name="validityTime" class="form-control"   bsDatepicker  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
-                        <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_wrd">காலாவதியாகும் தேதி </span>/ Expiry Date </label>
-                        <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>  
-                      </div>
+                                <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="productData.validityTime"  name="validityTime" class="form-control"   bsDatepicker  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
+                                <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_wrd">காலாவதியாகும் தேதி </span>/ Expiry Date </label>
+                                <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>  
+                              </div>
                 </div> 
               </div>
 
               <!-- last row -->
               <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-6">
-                    <div class="row">
-                    <div class="col-md-5 ">
+                  <div class="col-md-1"></div>
+                  <div class="col-md-3">
                             <div class="form-group mb-5 mt-2">
                                     <div class="upload-btn-wrapper">
-                                      <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
+                                      <label for="ImageUpload" style="color:#0d4608;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
                                       <input type="file" id="Image" name="Image" class="upload" (change)="onFileChange($event)" #fileInput>
                                     </div>
-                               </div>
-                    </div>
-                    <div class="col-md-3 forMobiviewPost">
-                            <button class="btn" (click)="postImage()" [disabled]="!this.Image">Upload</button>
-                    </div>
-                </div>
-                </div>
-              </div> 
-               <div class="row" id="save">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4 col-sm-6 col-6">
-                        <button  class="btn mt-4 button_word" type="submit" [disabled]="postform.form.invalid" (click)="postProduct(result)">Submit</button>
-                      </div>
-                   
-                      <div class="col-md-4 col-sm-6 col-6">
-                        <button type="reset" class="btn mt-4 btn1 button_word">Reset</button>
-                      </div>
-                     
-             </div>
-         
+                                   
+                               </div>          
+                  </div>
+                  <div class="col-md-1">
+                        <button class="btn btn-outline-success text-center viewMoreBtn" (click)="postImage()" [disabled]="!this.Image">Upload</button>
+                   </div>
+              </div>
+              <div class="row">
+                    <div class="col-md-12">
+                            <div class="text-center">
+                             <button  class="btn btn-outline-success text-center button_word" type="submit" [disabled]="postform.form.invalid" (click)="postProduct(result)">Submit</button>&nbsp;
+                             <button type="reset" class="btn button_word">Reset</button>
+                              </div>
+                        </div>
+              </div>
+             <br>
+            
         </form>
       </div>
     </body>

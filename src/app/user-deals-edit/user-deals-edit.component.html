@@ -1,12 +1,6 @@
 
  <div class="bg1">
     <div class="text-center container mt-3">
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-8">
-                <h2 class="clr mb-5 mt-2 mt-sm-2 mt-md-5">Edit Your Product Details</h2>
-            </div>
-     </div>
      <div class="row mb-3" *ngIf = "success">
             <div class="col-md-6"></div>
             <div class="col-md-4">
@@ -15,12 +9,12 @@
                           </div>
             </div>
             <div class="col-md-2"></div>
-          </div>
-          <form  #postform="ngForm" *ngIf ="!submitted" novalidate>
-   
-            <div class="row">
-              <div class="col-md-4"></div>
-                <div class="col-md-4">
+          </div> 
+          <form  #postform="ngForm" *ngIf ="!submitted" novalidate class="card">
+                <p class="clr">Edit Your Product Details</p>
+            <div class="row" style="margin-top: 1%;">
+                    <div class="col-md-1"></div>
+                <div class="col-md-5">
                         <label class="lab" for="category">Category</label>
                     <div class="form-group mb-5 mt-2">
                         <select required class="form-control slect"  #category="ngModel" [(ngModel)]="deallistobj.category" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel (change)="onCategoryChange()">
@@ -30,7 +24,7 @@
                       </div>
                       <span class="text-danger float-left error_word" [class.d-none] = "category.valid || category.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span> 
                     </div> 
-            <div class="col-md-4">    
+            <div class="col-md-5">    
                     <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                       <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)" [(ngModel)]="deallistobj.name"  name="name" class="form-control" maxlength="20"  autocomplete="off"  required>
                
@@ -38,19 +32,20 @@
                       <span class="text-danger float-left error_word" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product Name is required</span> 
                     </div>
                   
-              </div>  
+              </div> 
+              <div class="col-md-1"></div>  
                   </div>
       
                   <div class="row ">
-                      <div class="col-md-4"></div>
-                      <div class="col-md-4">
+                        <div class="col-md-1"></div>
+                      <div class="col-md-5">
                           <div class="form-group mb-5 mt-2">
                               <input type="text"  #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched"  maxlength="5" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="deallistobj.quantity"  name="quantity" class="form-control"  autocomplete="off"  required>
                               <label class="form-control-placeholder english_wrd floatinglabl" for="quantity"><span style="font-size: 14px" class="tamil_wrd">அளவு </span>/ Quantity</label>
                               <span class="text-danger float-left error_word" [class.d-none] = "quantity.valid || quantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>  
                             </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-5">
                             <label class="lab" for="category">Unit</label>
                           <div class="form-group mb-5 mt-2">
                             
@@ -64,13 +59,13 @@
                             </div>
                             <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> required</span> 
                           </div> 
-                   
+                          <div class="col-md-1"></div>
                   </div>
       
                   <!-- 3rd row -->
                   <div class="row">
-                      <div class="col-md-4"></div>
-                      <div class="col-md-4 onMobiview">    
+                        <div class="col-md-1"></div>
+                      <div class="col-md-5 onMobiview">    
                           <div class="form-group mb-5 mt-2">
                             <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="deallistobj.price"  name="price" class="form-control" maxlength="5" autocomplete="off"  required>
                             <label class="form-control-placeholder english_wrd floatinglabl" for="name"><span style="font-size: 14px" class="tamil_wrd">விலை </span>/ Price / {{showUnit}}</label>
@@ -78,7 +73,7 @@
                           </div>
                     </div>  
                   
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                             <label class="lab english_wrd" for="category"><span style="font-size: 14px" class="tamil_wrd">கிடைக்குமிடம் </span>/ Available Place</label>
                         <div class="form-group mb-5 mt-2">
                          
@@ -86,74 +81,60 @@
                               <span class="text-danger float-left error_word" [class.d-none] = "avlPlace.valid || avlPlace.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span> 
                           </div>
                     </div> 
-                      <div class="col-md-4"></div>
-                      <div class="col-md-4">
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                        <div class="col-md-1"></div>
+                      <div class="col-md-5">
                           <div class="form-group mb-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                               <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="deallistobj.description"  name="description" class="form-control"  autocomplete="off" maxlength="250" required>
                               <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_wrd">பொருளைப் பற்றி </span>/ Description</label>
                               <span class="text-danger float-left error_word" [class.d-none] = "description.valid || description.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Description is required</span>  
                             </div>
                       </div> 
-                      <div class="col-md-4">
+                      <div class="col-md-5">
                             <div class="form-group mb-5  mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                                 <input type="text" #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  name="validityTime" class="form-control" [(ngModel)]="deallistobj.validityTime" bsDatepicker  [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
                                 <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_word">காலாவதியாகும் தேதி </span>/ Expiry Date </label>
                                 <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>  
                               </div>
                         </div> 
+                        <div class="col-md-1"></div>
                     </div>
                        <!-- last row -->
-              <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-3">
-                                <div class="form-group ">
-                
-                                        <div class="upload-btn-wrapper">
-                                              <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
-                                              <input type="file" id="Image" name="Image" class="upload"(change)="onFileChange($event)" #fileInput>
-                                            </div>
-                              
-                                      </div> 
+                       <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                      <div class="form-group mb-5 mt-2">
+                                              <div class="upload-btn-wrapper">
+                                                <label for="ImageUpload" style="color:#0d4608;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
+                                                <input type="file" id="Image" name="Image" class="upload" (change)="onFileChange($event)" #fileInput>
+                                              </div>
+                                                <img data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;margin-top: -20%;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">   
+                                      
+                                         </div>          
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" [disabled]="!this.Image" style="font-size: 15px" class="btn btn-outline-success text-center viewMoreBtn"  (click)="postImage()">
+                                    Upload
+                                </button> 
+                             </div>
                         </div>
-                        <div class="col-md-2 uploadButton">
-                                <button type="button" [disabled]="!this.Image" style="font-size: 15px" class="btn btn-success btn-s" (click)="postImage()">
-                                        Upload
-                                    </button> 
-                        </div>
-                        <div class="col-md-4 text-left mt-1" id="hideDisplayImg" >
-                                <img data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
-        
-                                
-                                
-                        </div>
-                    </div>
-                </div>
-               
-                <!-- <div class="col-md-4 text-left" id="localStorageImg" >
-                       <img  id="localStorageImg"  style="height: 50px;width: 50px;cursor: pointer;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
-                 </div> -->
-              </div> 
-
-                    <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4 col-sm-6 col-6">
-                            <button class="btn mt-4 button_word" [disabled]="postform.form.invalid" type="submit" (click)="update()">Update</button>
+                        <div class="row">
+                                <div class="col-md-12">
+                                        <div class="text-center">
+                                         <button  class="btn btn-outline-success text-center button_word" type="submit" [disabled]="postform.form.invalid" type="submit" (click)="update()">Update</button>&nbsp;
+                                         <button type="submit" class="btn button_word" (click)="onSubmit()">Reset</button>
+                                          </div>
+                                    </div>
                           </div>
-                          <div class="col-md-4 col-sm-6 col-6">
-                              <button type="submit" class="btn mt-4 btn1 button_word" (click)="onSubmit()">Reset</button>
-                          </div>
-                 </div>
-               
+                         <br>
               </form>
               </div>
   </div>
   
   <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-        
-          <!-- Modal content-->
           <div class="modal-content" >
             <div class="modal-header">
               <h5 class="modal-title ">Product Image</h5>
@@ -162,13 +143,7 @@
             <div class="modal-body">
                     <img src="{{deallistobj.image}}" height="250px" width= "100%" alt="Card image cap">
             </div>
-            <!-- <div class="modal-footer">
-                  <button type="button" class="btn btn-danger"  data-dismiss="modal">Close</button>
-                </div> -->
-              
-          
-          </div>
-          
+          </div>  
         </div>
       </div>
   
