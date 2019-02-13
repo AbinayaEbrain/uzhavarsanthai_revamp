@@ -34,23 +34,11 @@
       </ul>
     </div>
   </nav>
-  
-  
-      <ngx-spinner> 
-       
-          <div style="background-color: whitesmoke;margin-top:-80px;border-radius: 5px;">
-              <p style="color:#0d4608;font-weight: bold; font-family: 'Mukta', sans-serif;">&nbsp;&nbsp;&nbsp;Please wait
-                  <img class="loading" width="50px" height="50px" src="./assets/Images/loader (2).gif"/>
-              </p>
-             
-          </div>
-       </ngx-spinner>
-      <div class="card">
-        
-        <label class="file-upload-container" for="file-upload">
-          <input id="file-upload" type="file" style="display:none;">
-          Select an Image
-        </label>
-    </div>
   <router-outlet></router-outlet>
-  
+  <ngx-spinner> 
+    <div style="background-color: whitesmoke;margin-top:-80px;border-radius: 5px;">
+        <p style="color:#0d4608;font-weight: bold; font-family: 'Mukta', sans-serif;">&nbsp;&nbsp;&nbsp;Please wait
+            <img class="loading" width="50px" height="50px" src="./assets/Images/loader (2).gif"/>
+        </p>
+    </div>
+ </ngx-spinner>

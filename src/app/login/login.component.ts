@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
       this.loadingCtrl.hide();
   }, 1000);
   }
-  
   logform(){
     this.loadingCtrl.show();
     this._auth.logInUser(this.userData)
