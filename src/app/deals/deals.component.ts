@@ -72,34 +72,28 @@ export class DealsComponent implements OnInit {
   }
 
   ngOnInit() {
-   // alert('1')
     this.loadingCtrl.show();
-   
     document.getElementById('showBackButton').style.display="none";
-    
    this._dealsService.getDeals()
       .subscribe(
         res =>{ 
-        //  alert('2')
-         
           this.crdDeals = res
-        //  alert('3')
-          this.loadingCtrl.hide();
-    if (this.crdDeals.length == 0){
-      this.loadingCtrl.show();
+          // this.loadingCtrl.hide();
+      if (this.crdDeals.length == 0){
+      // this.loadingCtrl.show();
         this.errMsg = "Currently no deals available"
         document.getElementById('hidePagination').style.display="none";
         document.getElementById('hideSearchDiv').style.display="none";
         document.getElementById('hideFilterButton').style.display="none";
         document.getElementById('hideNearByBtn').style.display="none";
         document.getElementById('showBackButton').style.display="block";
-       this.loadingCtrl.hide();
+      // this.loadingCtrl.hide();
       
       }
 
         },
         err =>{
-         // this.loadingCtrl.hide();
+          this.loadingCtrl.hide();
           console.log(err)
         } 
       )
@@ -107,7 +101,6 @@ export class DealsComponent implements OnInit {
       this._dealsService.getDetails()
       .subscribe(
         res =>{
-         // alert('4')
         this.loadingCtrl.show();
           this.activeUsers = res
       let k =0;
@@ -116,11 +109,8 @@ export class DealsComponent implements OnInit {
         if(this.activeUsers[i]._id == this.crdDeals[j].accountId) {
             if(this.activeUsers[i].status == 'ACTIVE'){
               this.crdDeals1[k] = this.crdDeals[j]
-              console.log(this.crdDeals1)
+              // console.log(this.crdDeals1)
               k++;
-          //    alert('3')
-          this.loadingCtrl.hide();
-            
             }
         }
       }
