@@ -1,23 +1,22 @@
 .bg {
   /* background-color: whitesmoke; */
   background-image: url('../../assets/Images/Slider-3.jpg');
-  height: -webkit-fill-available;
+  height: auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  width: 100%;
 }
 .wellcomeHeading {
   text-align: center;
-  margin-top: 5%;
   font-size: 25px;
   color: white;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 425px) {
-  .wellcomeHeading {
-    text-align: center;
-    margin-top: 14%;
-    font-size: 20px;
-  }
-  .mainRow {
-    margin-top: -10%;
+  .bg {
+    height: fit-content;
   }
 }
 .tamil_word {

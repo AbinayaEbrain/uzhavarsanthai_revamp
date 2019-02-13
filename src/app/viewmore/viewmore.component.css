@@ -9,20 +9,33 @@
   transition: all 0.25s;
 }
 
+.backClr {
+  background-color: #c0881787;
+}
+.colPad {
+  /* flex: 0 0 0% !important; */
+  max-width: 95% !important;
+}
 
-.viewMoreBtn{
-  margin-top:1% !important;
+.cardPad {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.viewMoreBtn {
+  margin-top: 1% !important;
   margin: auto;
   font-weight: bold;
-  color: #0d4608;
+  color: white;
   border-color: #0d4608;
+  background-color: #0d4608;
 }
-.viewMoreBtn:hover{
+.viewMoreBtn:hover {
   background-color: #0d4608;
   color: white;
 }
-.pageHeading{
-  margin-top:1%;
+.pageHeading {
+  margin-top: 1%;
   color: #0d4608;
   font-family: 'Oxygen', sans-serif;
   font-weight: bold;
@@ -30,20 +43,30 @@
   text-align: center;
 }
 .pageHeadingDescription {
-  margin-top:1%;
+  margin-top: 1%;
   color: #0d4608;
   font-family: 'Oxygen', sans-serif;
   font-weight: bold;
   font-size: 20px;
   float: left !important;
 }
-.viewImage{
-  height:320px;
-  width:380px;
+.viewImage {
+  height: 360px;
+  width: 368px;
 }
 tr {
   line-height: 5px;
 }
+
+@media screen and (max-width: 330px) {
+  td {
+    font-size: 12px;
+  }
+  .fontSize{
+    font-size: 12px;
+  }
+}
+
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .card {
     margin-top: 10%;
@@ -59,9 +82,8 @@ tr {
   .card:nth-child(2) {
     margin: 0 0px !important;
   }
-  .viewImage{
-    height:320px;
+  .viewImage {
+    height: 320px;
     width: 280px;
   }
-  
 }

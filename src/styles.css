@@ -12,6 +12,7 @@
   overflow: hidden;
   justify-content: center;
   display: flex;
+  margin-top: 15px;
 }
 dl,
 ol,

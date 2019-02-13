@@ -1,18 +1,22 @@
-<div class="container card">
-    <div class="col-md-12">
+<div class="container">
+<div class="card">
+    <div class="col-md-12 container-fluid backClr">
             <button type="button" class="btn btn-outline-success float-left viewMoreBtn" routerLink="/deals"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
         <p class="pageHeading">Product Details</p>
     </div>
-<hr style="margin-top:1%;">
+<!-- <hr style="margin-top:1%;"> -->
 <br>
+<div class="container">
 <div class="row">
         <div class="col-md-4">
                 <img src="{{postProduct.image}}" style="cursor: pointer;" class="viewImage"  data-toggle="modal" data-target="#myModal">
         </div>
         <div class="col-md-8" style="margin-top: -4%;">
             <div class="col-md-12">
-                <div class="col-md-12 card">
-                    <p class="pageHeading">Product</p>
+                <div class="col-md-12 card" style="padding-left: 0px;padding-right: 0px;">
+                    <div class="container-fluid" style="background-color: #145b0e12">
+                        <p class="pageHeading">Product</p>
+                    </div>
                     <table class="table table-borderless" style="text-align: justify;">
                             <tbody>
                               <tr>
@@ -38,8 +42,10 @@
                             </tbody>
                           </table>
                 </div>
-                <div class="col-md-12 card" style="margin-top:0% !important;">
-                    <p class="pageHeading">Contact Details</p>
+                <div class="col-md-12 card" style="margin-top:1% !important;padding-left: 0px;padding-right: 0px">
+                        <div class="container-fluid" style="background-color: #145b0e12">
+                            <p class="pageHeading">Contact Details</p>
+                        </div>
                     <table class="table table-borderless" style="text-align: justify;">
                             <tbody>
                               <tr>
@@ -60,13 +66,19 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12 card" style="margin-top:1%;">
+        <!-- <div class="col-md-1"></div> -->
+        <div class="col-md-12 colPad card" style="margin-top:1%;margin-left: 27px;
+        margin-right: 27px;">
+            
                 <p  class="pageHeadingDescription">Product Description</p>
-                <p> {{postProduct.description}}</p>
+                <p class="fontSize"> {{postProduct.description}}</p>
         </div>
+        <!-- <div class="col-md-1"></div> -->
         <div class="col-md-12 text-center" style="margin-bottom: 1%;">
                 <button type="button" class="btn btn-outline-success viewMoreBtn" routerLink="/deals"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
         </div>
       
+</div>
+</div>
 </div>
 </div>
