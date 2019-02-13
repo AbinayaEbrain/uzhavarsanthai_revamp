@@ -40,6 +40,7 @@ export class LocationdealsComponent implements OnInit {
   userdetails=[];
   errMsg1:any;
   p:any;
+  e:any;
   queryString:any;
   categoryArr:any;
   querydetails:any;

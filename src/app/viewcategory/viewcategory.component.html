@@ -15,7 +15,7 @@
                 <div class="col-md-6 onmobiviewpadding" id="hideSearchDiv">
                         <div class="inner-addon left-addon">
                                 <i class="fa fa-search glyphicon" aria-hidden="true"></i>    
-                                <input type="text" class="form-control"  [(ngModel)]="queryString" placeholder="Search by product name.." />
+                                <input type="text" class="form-control searchBorder"  [(ngModel)]="queryString" placeholder="Search by product name.." />
                                  
                               </div>
                      </div>
@@ -29,7 +29,7 @@
     </div>
             <div  [style.display]="!totalDeals1 ? 'block' : 'none'" >
                 <div class="row mt-5" id="hideifNoData">
-                        <div class="col-md-3"  *ngFor = "let deal of totalDeals | filterdata: queryString  : 'name' | paginate: { itemsPerPage:6,currentPage:p }">
+                        <div class="col-md-3"  *ngFor = "let deal of totalDeals |paginate: {id: 'foo1', itemsPerPage:6,currentPage:e } | filterdata: queryString  : 'name'">
                                 <div class="card">
                                         <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                                         <table class="tableContent">
@@ -61,12 +61,15 @@
                            
                         </div> 
                     </div>
+                    <div class="mx-auto" id="hidePagination" >
+                            <pagination-controls id="foo1" class="ngx-pagination" (pageChange)="e=$event"></pagination-controls>
+                          </div>
             </div>
             
             <div [style.display]="totalDeals1 ? 'block' : 'none'" >
                     <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
                     <div class="row mt-5" id="hideifData">
-                           <div class="col-md-3"  *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }">
+                           <div class="col-md-3"  *ngFor = "let deal of totalDeals1 | paginate: {id: 'foo', itemsPerPage:6,currentPage:p } | filterdata: queryString  : 'name'">
                                 <div class="card">
                                         <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                                         <table class="tableContent">
@@ -98,10 +101,11 @@
                              
                               </div>
                             </div>
+                            <div class="mx-auto" id="hidePagination" >
+                                    <pagination-controls id="foo" class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+                                  </div>
                         </div>
-              <div class="mx-auto" id="hidePagination" >
-                    <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
-                  </div>
+              
               </div>
 </body>
 

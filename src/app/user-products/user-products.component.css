@@ -35,7 +35,9 @@ section .section-title {
   color: white;
   background-color: #0d4608;
 }
-
+.searchBorder{
+  border:1px solid #0d4608;
+}
 #tabs h6.section-title {
   color: white;
   background-color: #0d4608;
@@ -46,7 +48,7 @@ section .section-title {
   color: white !important;
   background-color: #0d4608;
   border-color: transparent transparent white;
-  border-bottom: 4px solid white !important;
+  border-bottom: 4px solid #0d4608 !important;
   font-size: 1rem;
   font-weight: bold;
 }

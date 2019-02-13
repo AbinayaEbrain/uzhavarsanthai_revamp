@@ -48,6 +48,7 @@ export class DealsComponent implements OnInit {
   crdDeals1 = []
   queryString:any;
   p:any;
+  e:any;
   getlat:any
   getlng:any
   getSearchDeals=[]

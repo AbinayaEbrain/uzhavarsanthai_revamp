@@ -29,6 +29,7 @@ export class ViewcategoryComponent implements OnInit {
   noSearchDealsErr:any
   queryString:any;
   p:any;
+  e:any;
   errMsg1:any;
   submitted:any;
   public addrKeys: string[];

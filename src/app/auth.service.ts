@@ -23,6 +23,11 @@ export class AuthService {
     return !!localStorage.getItem('token')
   }
 
+  getUserName(){
+    let username = JSON.parse(localStorage.getItem('firstname'));
+    return username;
+  }
+
   roleAdmin(){
     
     let role = JSON.parse(localStorage.getItem('firstname'));

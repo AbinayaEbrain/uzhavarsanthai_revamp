@@ -9,6 +9,10 @@
     margin-top:-30px;
     overflow-x: auto;
   }
+
+  .searchBorder{
+    border: 1px solid #0d4608;
+  }
   .card {
     border-radius: 8px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);

@@ -28,7 +28,7 @@
        <div [style.display]="!totalDeals1 ? 'block' : 'none'">  
       <div class="row mt-5">
     
-        <div class="col-md-3"  *ngFor = "let deal of mapDeals | filterdata: queryString  : 'name'  | paginate: { itemsPerPage:6,currentPage:p }">
+        <div class="col-md-3"  *ngFor = "let deal of mapDeals | filterdata: queryString  : 'name'  |paginate: {id: 'foo', itemsPerPage:8,currentPage:e }">
                 <div class="card">
                         <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                         <table class="tableContent">
@@ -61,11 +61,14 @@
           </div>
          
       </div>
+      <div class="mx-auto" id="hidePagination">
+        <pagination-controls id="foo" class="ngx-pagination" (pageChange)="e = $event"></pagination-controls>
+      </div>
       </div>
       <div   [style.display]="totalDeals1 ? 'block' : 'none'">  
         <div class="row mt-5">
       
-          <div class="col-md-3"  *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name'  | paginate: { itemsPerPage:6,currentPage:p }">
+          <div class="col-md-3"  *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name'  | paginate: {id:'foo1' ,itemsPerPage:8,currentPage:p }">
                 <div class="card">
                         <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                         <table class="tableContent">
@@ -97,10 +100,10 @@
                       </div>
             </div> 
         </div>
+        <div class="mx-auto" id="hidePagination">
+            <pagination-controls id="foo1" class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+          </div>
         </div>
-      <div class="mx-auto page" id="hidePagination">
-        <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
-      </div>
     </div>
     </div>
     <div class="modal fade" id="myModal" role="dialog">
