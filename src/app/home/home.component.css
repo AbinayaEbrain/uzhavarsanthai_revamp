@@ -1,7 +1,7 @@
 .bg {
   /* background-color: whitesmoke; */
   background-image: url('../../assets/Images/Slider-3.jpg');
-  height: auto;
+  height: -webkit-fill-available;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -12,6 +12,12 @@
   text-align: center;
   font-size: 25px;
   color: white;
+}
+
+@media only screen and (min-width: 1023px) and (max-width: 1330px) {
+  .bg {
+    height: auto;
+  }
 }
 
 @media only screen and (min-width: 320px) and (max-width: 425px) {
