@@ -5,6 +5,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 // loader
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatePipe } from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-viewmore',
@@ -36,13 +37,15 @@ export class ViewmoreComponent implements OnInit {
   state: any;
   userName = '';
   adrsArray: any;
+  public previousUrl: any;
 
   constructor(
     private _dealsService: DealsService,
     private router: Router,
     private datePipe: DatePipe,
     private route: ActivatedRoute,
-    public loadingCtrl: NgxSpinnerService
+    public loadingCtrl: NgxSpinnerService,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -106,5 +109,9 @@ export class ViewmoreComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  goToBack() {
+    this.location.back();
   }
 }

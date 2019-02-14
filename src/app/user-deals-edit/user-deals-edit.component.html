@@ -26,7 +26,7 @@
                     </div> 
               <div class="col-md-5  mb-4 mb-md-5 mt-4 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">    
                     <div class="form-group">
-                      <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)" [(ngModel)]="deallistobj.name"  name="name" class="form-control" maxlength="20"  autocomplete="off"  required>
+                      <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)" [(ngModel)]="deallistobj.name"  name="name" class="form-control" maxlength="50"  autocomplete="off"  required>
                
                       <label class="form-control-placeholder english_wrd floatinglabl" for="name"><span class="tamil_wrd">பொருளின் பெயர் </span>/ Product Name</label>
                       <span class="text-danger float-left error_word" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product Name is required</span> 
@@ -87,7 +87,7 @@
                         <div class="col-md-1"></div>
                       <div class="col-md-5  mb-4 mb-md-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-3">
                           <div class="form-group">
-                              <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="deallistobj.description"  name="description" class="form-control"  autocomplete="off" maxlength="250" required>
+                              <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="deallistobj.description"  name="description" class="form-control"  autocomplete="off" maxlength="500" required>
                               <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span class="tamil_wrd">பொருளைப் பற்றி </span>/ Description</label>
                               <span class="text-danger float-left error_word" [class.d-none] = "description.valid || description.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Description is required</span>  
                             </div>

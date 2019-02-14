@@ -1,14 +1,15 @@
 import { Component, OnInit ,ElementRef,ViewChild,NgZone } from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params,RoutesRecognized} from '@angular/router';
 import { DealsService } from '../deals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router} from '@angular/router';
 import { GooglePlacesDirective } from '../google-places.directive';
 // import {} from '@types/googlemaps';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/pairwise';
+
 declare var sweetAlert: any;
 declare var $: any;
-import { INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS } from '@angular/platform-browser-dynamic/src/platform_providers';
-import { parse } from 'path';
 
 @Component({
   selector: 'app-viewcategory',
@@ -21,7 +22,7 @@ export class ViewcategoryComponent implements OnInit {
   id:any;
   errMsg:any
   noSearchDeals:any
-  userdetails=[];
+  public userdetails: any = [];
   specifyCategory=[]
   getSearchDeals=[]
   querydetails : any = {};
@@ -37,6 +38,7 @@ export class ViewcategoryComponent implements OnInit {
     formatted_address:'',
     locality : ''
   };
+  getCategory:any;
  
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -45,7 +47,9 @@ export class ViewcategoryComponent implements OnInit {
     });
   }
   constructor(private route:ActivatedRoute,private _dealService:DealsService,public loadingCtrl: NgxSpinnerService,
-  private router:Router,public zone:NgZone) { }
+  private router:Router,public zone:NgZone) { 
+    this.userdetails.searchqnty = ''
+  }
 
   ngOnInit() {
     
@@ -61,6 +65,7 @@ export class ViewcategoryComponent implements OnInit {
            for(let i=0;i<this.crdDeals.length;i++){
              if( this.id == this.crdDeals[i].categoryId){
               this.totalDeals[j] = this.crdDeals[i];
+              this.getCategory = this.totalDeals[j].category
               j++;
              this.loadingCtrl.hide();
              }
@@ -72,11 +77,9 @@ export class ViewcategoryComponent implements OnInit {
            document.getElementById('hideSearchDiv').style.display="none";
            document.getElementById('hideFilterButton').style.display="none";
        this.loadingCtrl.hide();
-       // alert('4')
           }
          },
          err =>{
-       //    this.loadingCtrl.hide();
            console.log(err)
          } 
        )
@@ -125,13 +128,16 @@ export class ViewcategoryComponent implements OnInit {
    if(this.totalDeals1.length == 0){
     sweetAlert("Sorry!","Currently no product available","error")
     this.errMsg1 = "Please search again"
+    document.getElementById('hideSelectedCategory').style.display="none";
     document.getElementById('hidePagination').style.display="none";
     this.userdetails = [];
   }
- 
- 
   this.userdetails = [];
-  
   }
+
+  goToView(id){
+    this.router.navigate(['/viewmore',id],this.id);
+  }
+
 
 }

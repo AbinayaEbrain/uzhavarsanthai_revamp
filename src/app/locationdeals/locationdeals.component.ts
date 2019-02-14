@@ -37,7 +37,7 @@ export class LocationdealsComponent implements OnInit {
   longd:any
   noLocationErr:any;
   crdDeals1= []
-  userdetails=[];
+  public userdetails: any = [];
   errMsg1:any;
   p:any;
   e:any;
@@ -48,7 +48,10 @@ export class LocationdealsComponent implements OnInit {
   getSearchDeals=[];
   submitted:any;
 
-  constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService) { }
+  constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService) { 
+    this.userdetails.searchqnty = ''
+    this.userdetails.searchCategory =''
+  }
 
   ngOnInit() {
     this.loadingCtrl.show();

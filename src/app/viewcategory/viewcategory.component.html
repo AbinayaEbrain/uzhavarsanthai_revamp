@@ -4,7 +4,7 @@
     }
 </style>
 <body class="backgrd">
-        <div class="container" style="margin-top: 9%;">
+        <div class="container mainCntainer">
             <div class="row">
                 <div class="col-md-4">
                         <button class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 25%;margin-left: 10px;" routerLink="/dealCategory"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
@@ -26,18 +26,21 @@
         </div>
         <div >
             <p class="no_deals_found error_word" *ngIf="errMsg1">{{errMsg1}}</p>
-    </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 2%;" id="hideSelectedCategory">
+            <p>Your selected category is : <span class="printCategory">{{getCategory}}</span></p>
+        </div>
             <div  [style.display]="!totalDeals1 ? 'block' : 'none'" >
                 <div class="row mt-5" id="hideifNoData">
                         <div class="col-md-3"  *ngFor = "let deal of totalDeals |paginate: {id: 'foo1', itemsPerPage:6,currentPage:e } | filterdata: queryString  : 'name'">
                                 <div class="card">
                                         <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                                         <table class="tableContent">
-                                                <tr>
-                                                   <td><strong>Product &nbsp; </strong></td>
-                                                   <td>:</td>
-                                                   <td>&nbsp;&nbsp;{{deal.name}}</td>
-                                               </tr>
+                                            <tr>
+                                                <td><strong>Product &nbsp; </strong></td>
+                                                <td>:</td>
+                                                <div class="productFullName">&nbsp;&nbsp;{{deal.name}}</div>
+                                            </tr>
                                                <tr>
                                                     <td><strong>Price &nbsp; </strong></td>
                                                     <td>:</td>
@@ -73,11 +76,11 @@
                                 <div class="card">
                                         <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                                         <table class="tableContent">
-                                                <tr>
-                                                   <td><strong>Product &nbsp; </strong></td>
-                                                   <td>:</td>
-                                                   <td>&nbsp;&nbsp;{{deal.name}}</td>
-                                               </tr>
+                                            <tr>
+                                                <td><strong>Product &nbsp; </strong></td>
+                                                <td>:</td>
+                                                <div class="productFullName">&nbsp;&nbsp;{{deal.name}}</div>
+                                            </tr>
                                                <tr>
                                                     <td><strong>Price &nbsp; </strong></td>
                                                     <td>:</td>
@@ -95,7 +98,7 @@
                                                </tr>
                                                <br>
                                            </table>  
-                                           <button type="button" class="btn btn-outline-success text-center viewMoreBtn"  routerLink= "/viewmore/{{deal._id}}">View More</button>  
+                                           <button type="button" class="btn btn-outline-success text-center viewMoreBtn" (click)="goToView(deal._id)">View More</button>  
                                            <br>  
                                       </div> 
                              
@@ -114,48 +117,43 @@
         
           <!-- Modal content-->
           <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header headingTitle">
                         <h4 class="modal-title clr">Search Products</h4>
-                        <button type="button" class="close clr" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                       </div>
             <div class="modal-body">
                     <form #searchform="ngForm" *ngIf ="!submitted" novalidate>
                             <div class="row">
                                     <div class="col-md-12">
                                    <label style="color: black;font-weight: bold;" class="english_wrd"> Location</label>
-                                   <!-- <input google-place type="text" id="searchGoogle" placeholder="மாவட்டம் / City" > -->
                                    <input google-place type="text" id="searchLocation" placeholder="Search location" class="form-control addressplhldr" #searchLocation="ngModel"  ngModel  name="searchLocation" (onSelect)="setAddress($event)"  [(ngModel)]="userdetails.searchLocation">
                                     </div>
-                              <div class="col-md-6">
+                              <div class="col-md-6" style="margin-top: 3%;">
                                   <div class="form-group">
                                       <label style="color: black;font-weight: bold;" class="english_wrd"> Min - Quantity</label>
                                       <input type="text" #searchmainquantity="ngModel"  ngModel  name="searchmainquantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchmainquantity">
-                                    
-                                  </div>
-                               
-                              </div>
-                              <div class="col-md-6">
+                                    </div>
+                                </div>
+                              <div class="col-md-6" style="margin-top: 3%;">
                                   <div class="form-group">
                                       <label style="color: black;font-weight: bold;" class="english_wrd"> Unit</label>
-                                      <select  class="form-control" class="form-control"   placeholder="Enter unit" style="background-color: transparent;color: black;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
-                                            <option disabled >Choose unit..</option>
+                                      <select  class="form-control" class="form-control"  style="background-color: transparent;color: black;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
+                                            <option style="color: black" value="" disabled >Choose unit..</option>
                                             <option style="color: black" value="Kg">Kg</option>
                                             <option style="color: black" value="Ltre">Ltre</option>
-                                        </select>
-                                       
+                                        </select>  
                                   </div>
-                                
                               </div>
                               <div class="col-md-6">
                                   <div class="form-group">
                                       <label style="color: black;font-weight: bold;" class="english_wrd">Price Range - Min</label>
-                                      <input type="text" #frmAmt="ngModel"  ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.frmAmt">
+                                      <input type="text" #frmAmt="ngModel"  ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter min price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.frmAmt">
                                   </div>
                                  </div>
                                  <div class="col-md-6">
                                     <div class="form-group">
                                         <label style="color: black;font-weight: bold;" class="english_wrd"> Max</label>
-                                        <input type="text" #toCost="ngModel" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.toCost">
+                                        <input type="text" #toCost="ngModel" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter max price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.toCost">
                                        
                                     </div>
                                    </div>

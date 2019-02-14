@@ -6,12 +6,16 @@
   background-color: #d3efe680;
 }
 .black-overlay {
-  position:fixed !important;
+  position: fixed !important;
 }
 .la-ball-scale-multiple {
   color: transparent !important;
 }
-.ngx-pagination{
+.modal-header {
+  background-color: #0d4608;
+  color: white;
+}
+.ngx-pagination {
   position: sticky;
   bottom: 0;
   overflow: hidden;

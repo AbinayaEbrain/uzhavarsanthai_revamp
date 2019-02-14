@@ -18,6 +18,15 @@
   background-color: #0d4608;
   color: white;
 }
+.table td {
+  border-top: none;
+}
+.productFullName {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 129px;
+  overflow: hidden;
+}
 .card {
   border-radius: 8px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
@@ -35,8 +44,8 @@ section .section-title {
   color: white;
   background-color: #0d4608;
 }
-.searchBorder{
-  border:1px solid #0d4608;
+.searchBorder {
+  border: 1px solid #0d4608;
 }
 #tabs h6.section-title {
   color: white;

@@ -47,7 +47,9 @@
                                     </tr>
                                <tr  id="hide" *ngFor="let deal of userDeals | paginate: {id: 'foo', itemsPerPage:6,currentPage:p} | filterdata: queryString  : 'category'"  >
                                    <td>{{deal.category}}</td>
-                                   <td>{{deal.name}}</td>
+                                   <td>
+                                   <div class="productFullName">{{deal.name}}</div>
+                                    </td>
                                    <td>{{deal.quantity}}{{deal.qnty}} </td>
                                   <td>{{deal.price}}</td>
                                    <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
@@ -101,7 +103,7 @@
                             </tr>
                        <tr id="hide1" *ngFor="let deal of userDeals1 | paginate: {id: 'foo1', itemsPerPage:6,currentPage:d} | filterdata: queryString  : 'category'"  >
                            <td>{{deal.category}}</td>
-                           <td>{{deal.name}}</td>
+                           <div class="productFullName">{{deal.name}}</div>
                            <td>{{deal.quantity}}{{deal.qnty}} </td>
                           <td>{{deal.price}}</td>
                            <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>

@@ -6,7 +6,7 @@
             <div class="row mt-5 pt-5">
                 <div class="col-md-4 col-xs-6">
                     <button class="btn btn-outline-success text-center viewMoreBtn" routerLink="/deals" ><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
-                    <button id="hideFilterButton" class="btn btn-outline-success text-center viewMoreBtn button_word" (click)="getCategory()" data-toggle="modal" style="width:50%;margin-left: 10px;" data-target="#myModal">Filter <i class="fa fa-filter" aria-hidden="true"></i></button>
+                    <button id="hideFilterButton" class="btn btn-outline-success text-center viewMoreBtn button_word" (click)="getCategory()" data-toggle="modal" style="margin-left: 10px;" data-target="#myModal">Filter <i class="fa fa-filter" aria-hidden="true"></i></button>
                 </div>
                 <div class="col-md-2">
              
@@ -14,7 +14,7 @@
                 <div class="col-md-6 onmobiviewpadding" id="hideSearchDiv">
                         <div class="inner-addon left-addon">
                                 <i class="fa fa-search glyphicon" aria-hidden="true"></i>    
-                                <input type="text" class="form-control"  id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off" placeholder="Search by product name.." />
+                                <input type="text" class="form-control searchDiv"  id="search_box" [(ngModel)]="queryString" name="search" autocomplete="off" placeholder="Search by product.." />
                                  
                               </div>
                 </div>
@@ -35,7 +35,7 @@
                                 <tr>
                                    <td><strong>Product &nbsp; </strong></td>
                                    <td>:</td>
-                                   <td>&nbsp;&nbsp;{{deal.name}}</td>
+                                   <div class="productFullName">&nbsp;&nbsp;{{deal.name}}</div>
                                </tr>
                                <tr>
                                    <td><strong>Price &nbsp; </strong></td>
@@ -75,7 +75,7 @@
                                 <tr>
                                    <td><strong>Product &nbsp; </strong></td>
                                    <td>:</td>
-                                   <td>&nbsp;&nbsp;{{deal.name}}</td>
+                                   <div class="productFullName">&nbsp;&nbsp;{{deal.name}}</div>
                                </tr>
                                <tr>
                                    <td><strong>Price &nbsp; </strong></td>
@@ -109,7 +109,7 @@
     <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
               <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header headingTitle">
                             <h4 class="modal-title clr">Search Products</h4>
                             <button type="button" class="close clr" data-dismiss="modal">&times;</button>
                           </div>
@@ -119,10 +119,11 @@
                                         <div class="col-md-12">
                                        <label style="color: black;font-weight: bold;" class="english_wrd"> Category</label>
                                       <select class="form-control slect" #searchCategory="ngModel"  ngModel  name="searchCategory" class="form-control"  placeholder="Enter product category" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchCategory" >
+                                            <option style="color: black" value="" disabled >Choose category</option>
                                         <option *ngFor="let val of categoryArr" value="{{val._id}}">{{val.productCategory}}</option>
                                       </select>
                                         </div> 
-                                  <div class="col-md-6">
+                                  <div class="col-md-6"  style="margin-top: 3%;">
                                       <div class="form-group">
                                           <label style="color: black;font-weight: bold;" class="english_wrd"> Min - Quantity</label>
                                           <input type="text" #searchmainquantity="ngModel"  ngModel  name="searchmainquantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchmainquantity">
@@ -130,11 +131,11 @@
                                       </div>
                                    
                                   </div>
-                                  <div class="col-md-6">
+                                  <div class="col-md-6"  style="margin-top: 3%;">
                                       <div class="form-group">
                                           <label style="color: black;font-weight: bold;" class="english_wrd"> Unit</label>
-                                          <select  class="form-control" class="form-control"   placeholder="Enter unit" style="background-color: transparent;color: black;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
-                                                <option disabled >Choose unit..</option>
+                                          <select  class="form-control" class="form-control" style="background-color: transparent;color: black;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
+                                                <option style="color: black" value="" disabled >Choose unit</option>
                                                 <option style="color: black" value="Kg">Kg</option>
                                                 <option style="color: black" value="Ltre">Ltre</option>
                                             </select>
@@ -145,14 +146,14 @@
                                   <div class="col-md-6">
                                       <div class="form-group">
                                           <label style="color: black;font-weight: bold;" class="english_wrd">Price Range - Min</label>
-                                          <input type="text" #frmAmt="ngModel"  ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.frmAmt">
+                                          <input type="text" #frmAmt="ngModel"  ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter min price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.frmAmt">
                                           
                                       </div>
                                      </div>
                                      <div class="col-md-6">
                                         <div class="form-group">
                                             <label style="color: black;font-weight: bold;" class="english_wrd"> Max</label>
-                                            <input type="text" #toCost="ngModel" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.toCost">
+                                            <input type="text" #toCost="ngModel" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter max price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.toCost">
                                            
                                         </div>
                                        </div>

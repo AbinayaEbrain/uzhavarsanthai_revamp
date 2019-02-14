@@ -8,7 +8,10 @@
   margin-bottom: 5px;
   transition: all 0.25s;
 }
-
+.mainrowDiv {
+  margin-top: 7%;
+  margin-bottom: 2%;
+}
 .backClr {
   background-color: #c0881787;
 }
@@ -62,7 +65,7 @@ tr {
   td {
     font-size: 12px;
   }
-  .fontSize{
+  .fontSize {
     font-size: 12px;
   }
 }
@@ -79,11 +82,17 @@ tr {
     margin-bottom: 5px;
     transition: all 0.25s;
   }
+  .mainrowDiv {
+    margin-top: 20%;
+  }
   .card:nth-child(2) {
     margin: 0 0px !important;
   }
   .viewImage {
     height: 320px;
     width: 280px;
+  }
+  strong {
+    font-size: 14px !important;
   }
 }

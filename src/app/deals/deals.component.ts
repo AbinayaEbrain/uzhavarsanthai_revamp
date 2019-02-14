@@ -26,7 +26,7 @@ export class DealsComponent implements OnInit {
    status:any;
    categoryArr:any;
    totalDeals1 :any;
-   userdetails=[];
+   public userdetails: any = [];
   crdDeals = [{
     avlPlace:{
       latitude:'',
@@ -68,7 +68,8 @@ export class DealsComponent implements OnInit {
     });
   }
   constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService,public zone:NgZone){
-   
+    this.userdetails.searchqnty = ''
+    this.userdetails.searchCategory =''
   }
 
   ngOnInit() {

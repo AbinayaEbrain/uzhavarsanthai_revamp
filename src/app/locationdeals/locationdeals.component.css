@@ -9,6 +9,24 @@
     margin-bottom: 5px;
     transition: all 0.25s;
   }
+  .productFullName {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+    overflow: hidden;
+  }
+  .searchDiv {
+    border: 1px solid #0d4608;
+    background-color: #fff;
+    color: #0d4608;
+  }
+  .close {
+    color: white !important;
+  }
+  .headingTitle{
+    background-color: #072304;
+    color: white;
+  }
   .card:nth-child(2) {
     margin: 0 50px;
   }

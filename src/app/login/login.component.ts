@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
           else{
            
             if(this.wholedata ==="ACTIVE"){
-              this.router.navigate(['/post']);
+              this.router.navigate(['/products']);
             }else{
            
               this.deactiveErrorMsg ='Your account has been deactivated !'

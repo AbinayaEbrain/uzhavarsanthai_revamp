@@ -1,5 +1,4 @@
-
- <body class="bg1" style="overflow-x:hidden">
+<body class="bg1" style="overflow-x:hidden">
   <div class="text-center container onmobiview mt-4 mb-4">
       <div class="row">
    </div>
@@ -8,11 +7,11 @@
           <div class="row">
               <div class="col-md-4"></div>
             <div class="col-md-4 mb-3" *ngIf = "success" style="margin: auto">
-                          <div class="alert alert-success english_wrd">
-                                  {{success}}
-                          </div>
-                </div>
-                <div class="col-md-4"></div>
+              <div class="alert alert-success english_wrd">
+                      {{success}}
+              </div>
+            </div>
+          <div class="col-md-4"></div>
         </div>
       <div class="row" style="margin-top: 1%;">
             <div class="col-md-1"></div>
@@ -27,7 +26,7 @@
               </div> 
       <div class="col-md-5">    
               <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
-                <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)"  maxlength="20" [(ngModel)]="productData.name"  name="name" class="form-control"  autocomplete="off"  required>
+                <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)"  maxlength="50" [(ngModel)]="productData.name"  name="name" class="form-control"  autocomplete="off"  required>
          
                 <label class="form-control-placeholder english_wrd floatinglabl" for="name"><span style="font-size: 14px" class="tamil_wrd">பொருளின் பெயர் </span>/ Product Name</label>
                 <span class="text-danger float-left error_word" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product Name is required</span> 
@@ -85,7 +84,7 @@
                     <div class="col-md-1"></div>
                 <div class="col-md-5">    
                         <div class="form-group mb-5 mt-2">
-                                <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="productData.description"  name="description" class="form-control"  autocomplete="off" maxlength="250" required>
+                                <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="productData.description"  name="description" class="form-control"  autocomplete="off" maxlength="500" required>
                                 <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_wrd"> பொருளைப் பற்றி </span>/ Description </label>
                                 <span class="text-danger float-left error_word" [class.d-none] = "description.valid || description.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Description is required</span>  
                               </div>

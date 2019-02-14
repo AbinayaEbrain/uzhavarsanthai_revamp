@@ -1,8 +1,8 @@
-<div class="container" style="margin-top: 7%;margin-bottom: 2%">
+<div class="container mainrowDiv">
 <div class="card">
     <div class="col-md-12 container-fluid backClr">
-            <button type="button" class="btn btn-outline-success float-left viewMoreBtn" routerLink="/deals"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
-        <p class="pageHeading">Product Details</p>
+        <button type="button" class="btn btn-outline-success float-left viewMoreBtn" (click)="goToBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
+            <p class="pageHeading">Product Details</p>
     </div>
 <!-- <hr style="margin-top:1%;"> -->
 <br>
@@ -21,23 +21,28 @@
                             <tbody>
                               <tr>
                                 <td><strong>Product Name</strong></td>
-                                <td>: {{postProduct.name}}</td>
+                                <td>:</td>
+                                <td>{{postProduct.name}}</td>
                               </tr>
                               <tr>
                                 <td><strong>Quantity</strong></td>
-                                <td>: {{postProduct.quantity}} {{postProduct.qnty}}</td>
+                                <td>:</td>
+                                <td>{{postProduct.quantity}} {{postProduct.qnty}}</td>
                               </tr>
                               <tr>
                                 <td><strong>Price</strong></td>
-                                <td>: Rs.{{postProduct.price}}</td>
+                                <td>:</td>
+                                <td>Rs.{{postProduct.price}}</td>
                             </tr>
                             <tr>
                                 <td><strong>Expiry Date</strong></td>
-                                <td>: {{postProduct.validityTime}}</td>
+                                <td>:</td>
+                                <td>{{postProduct.validityTime}}</td>
                             </tr>
                             <tr>
                                 <td><strong>Location</strong></td>
-                                <td>: {{postProduct.avlPlace}}</td>
+                                <td>:</td>
+                                <td>{{postProduct.avlPlace}}</td>
                             </tr>
                             </tbody>
                           </table>
@@ -50,15 +55,18 @@
                             <tbody>
                               <tr>
                                 <td><strong>Contact Person</strong></td>
-                                <td>: {{register.firstName}} {{register.lastName}}</td>
+                                <td>:</td>
+                                <td>{{register.firstName}} {{register.lastName}}</td>
                               </tr>
                               <tr>
                                 <td><strong>Contact Number</strong></td>
-                                <td>: {{register.phone}}</td>
+                                <td>:</td>
+                                <td>{{register.phone}}</td>
                               </tr>
                               <tr>
                                 <td><strong>Address</strong></td>
-                                <td>: {{register.address.city.formatted_address}}</td>
+                                <td>:</td>
+                                <td>{{register.address.city.formatted_address}}</td>
                             </tr>
                             
                             </tbody>
@@ -75,7 +83,7 @@
         </div>
         <!-- <div class="col-md-1"></div> -->
         <div class="col-md-12 text-center" style="margin-bottom: 1%;">
-                <button type="button" class="btn btn-outline-success viewMoreBtn" routerLink="/deals"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
+                <button type="button" class="btn btn-outline-success viewMoreBtn" (click)="goToBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
         </div>
       
 </div>

@@ -2,7 +2,7 @@
   background-color: whitesmoke;
   height: -webkit-fill-available;
 }
- .card {
+.card {
   border-radius: 8px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
   overflow: hidden;
@@ -12,6 +12,19 @@
   margin-bottom: 5px;
   transition: all 0.25s;
 }
+.close {
+  color: white !important;
+}
+.headingTitle {
+  background-color: #072304;
+  color: white;
+}
+.productFullName {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 150px;
+  overflow: hidden;
+}
 .card:nth-child(2) {
   margin: 0 50px;
 }
@@ -19,157 +32,156 @@
   top: -15px;
   box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
 }
-.tableContent{
+.tableContent {
   color: #0d4608;
 }
-.viewMoreBtn{
+.viewMoreBtn {
   margin: auto;
   font-weight: bold;
   color: #0d4608;
   border-color: #0d4608;
 }
-.viewMoreBtn:hover{
+.viewMoreBtn:hover {
   background-color: #0d4608;
   color: white;
 }
 
-.prdName{
+.prdName {
   text-align: center;
   font-family: 'Mukta', sans-serif;
 }
-.cardImageDetails{
+.cardImageDetails {
   margin-bottom: -30px;
 }
 
-  .title{
-    border-radius: 0px 20px 0px 20px;
-    height: 45px;
-    color: #dee2e6;
-    padding-left: 30%;
-    background-color: #23dfe8;  
-  }
-  .details{
-    padding-top: 5px;
-    color: #fff;
-    font-family: 'Oxygen', sans-serif;
-  }
+.title {
+  border-radius: 0px 20px 0px 20px;
+  height: 45px;
+  color: #dee2e6;
+  padding-left: 30%;
+  background-color: #23dfe8;
+}
+.details {
+  padding-top: 5px;
+  color: #fff;
+  font-family: 'Oxygen', sans-serif;
+}
 
-  .no_deals_found{
-    text-align: center;
-    color: black;
-    font-weight: bold;
-    font-size: 25px;
-    background-color: white;
-    width: fit-content;
-    margin: auto;
-    padding: 5px;
-    box-shadow: 7px 7px 7px grey;
-    border-radius: 5px;
-    margin-top: 10% !important;
+.no_deals_found {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: white;
+  width: fit-content;
+  margin: auto;
+  padding: 5px;
+  box-shadow: 7px 7px 7px grey;
+  border-radius: 5px;
+  margin-top: 10% !important;
+}
+textarea {
+  overflow: hidden;
+  background-color: transparent;
+  border: none;
+  color: white;
+  margin-top: 30px;
+  height: 50px;
+}
+.btnnn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+tr {
+  text-align: left;
+}
+table {
+  margin: auto;
+}
 
-  }
-  textarea{
-    overflow: hidden;
-    background-color: transparent;
-    border: none;
-    color: white;
-    margin-top: 30px;
-    height: 50px;
-  }
-  .btnnn {
-     display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-  }
-  tr{
-    text-align: left;
-  }
-  table{
-    margin: auto;
-  }
-
-  .has-search .form-control1 {
-    padding-left: 2.375rem;
+.has-search .form-control1 {
+  padding-left: 2.375rem;
 }
 
 .has-search .form-control-feedback {
-    position: absolute;
-    z-index: 2;
-    display: block;
-    width: 2.375rem;
-    height: 2.375rem;
-    line-height: 2.375rem;
-    text-align: center;
-    pointer-events: none;
-    color: #aaa;
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
 }
-  .icon{
-    /* margin: auto; */
-    background: white;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius:5px; 
-/*    
+.icon {
+  /* margin: auto; */
+  background: white;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  /*    
     font-weight: 400; */
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    float: right;
-  }
- .srchBox {
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  float: right;
+}
+.srchBox {
   background: white;
   border-left: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-top-right-radius: 5px;
-  border-bottom-right-radius:5px; 
+  border-bottom-right-radius: 5px;
   display: inline-block;
   font-weight: 400;
   border: 1px solid transparent;
-  padding: .375rem .75rem;
+  padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
 }
 ::placeholder {
-  text-align:left;
+  text-align: left;
   color: black;
-    
-  }
-  .searchDiv{
-    border: 1px solid #0d4608;
-    background-color: #fff;
-    color: #0d4608
-  }
-.tamil_word{
+}
+.searchDiv {
+  border: 1px solid #0d4608;
+  background-color: #fff;
+  color: #0d4608;
+}
+.tamil_word {
   font-family: 'Hind Madurai', sans-serif;
 }
-.english_wrd{
+.english_wrd {
   font-family: 'Mukta', sans-serif;
 }
 input {
   font-family: 'Nunito', sans-serif;
 }
-.english_wrd{
+.english_wrd {
   font-family: 'Mukta', sans-serif;
 }
-.button_word{
+.button_word {
   font-family: 'Kanit', sans-serif;
 }
-.error_word{
+.error_word {
   font-family: 'Cabin', sans-serif;
 }
 .inner-addon {
@@ -184,20 +196,28 @@ input {
 }
 
 /* align glyph */
-.left-addon .glyphicon  { left:  0px;}
-.right-addon .glyphicon { right: 0px;}
+.left-addon .glyphicon {
+  left: 0px;
+}
+.right-addon .glyphicon {
+  right: 0px;
+}
 
 /* add padding  */
-.left-addon input  { padding-left:  30px; }
-.right-addon input { padding-right: 30px; }
+.left-addon input {
+  padding-left: 30px;
+}
+.right-addon input {
+  padding-right: 30px;
+}
 
-@media only screen and (min-width: 320px) and (max-width:425px){
-  .no_deals_found{
-      text-align: center;
-      color: black;
-      font-weight: bold;
-      font-size: 18px;
-      background-color: white;
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .no_deals_found {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: white;
     width: fit-content;
     margin: auto;
     padding: 5px;
@@ -210,7 +230,7 @@ input {
     box-shadow: 7px 7px 7px grey;
     border-radius: 5px;
 } */
- .onmobiviewpadding{
-  padding: 10px;
- }
+  .onmobiviewpadding {
+    padding: 10px;
+  }
 }

@@ -1,10 +1,11 @@
 declare function require(string);
-import { Component ,ViewChild,OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router, RoutesRecognized } from '@angular/router';
 //  var request = require("request");
-var url = "https://geoip-db.com/json";
+var url = 'https://geoip-db.com/json';
 declare var swal: any;
 @Component({
   selector: 'app-root',
@@ -12,42 +13,60 @@ declare var swal: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
   title = 'app';
-  @ViewChild('gmap')gmapElement: any;
+  @ViewChild('gmap') gmapElement: any;
   map: google.maps.Map;
   currentLat: any;
   currentLong: any;
   marker: google.maps.Marker;
-  isTracking:boolean
-  currentuserId:any;
-  username:any;
+  isTracking: boolean;
+  currentuserId: any;
+  username: any;
+  public previousUrl: any;
 
-  constructor(public _authService:AuthService,public loadingCtrl: NgxSpinnerService){}
+  constructor(
+    public _authService: AuthService,
+    public loadingCtrl: NgxSpinnerService,
+    private router: Router
+  ) {
+    this.router.events
+      .filter(event => event instanceof RoutesRecognized)
+      .pairwise()
+      .subscribe((event: any[]) => {
+        this.previousUrl = event[0].urlAfterRedirects;
+      });
+  }
 
   ngOnInit() {
-   this.username = this._authService.getUserName()
+    this.username = this._authService.getUserName();
   }
 
   trackMe() {
     if (navigator.geolocation) {
       this.isTracking = true;
-      navigator.geolocation.watchPosition((position) => {
+      navigator.geolocation.watchPosition(position => {
         this.showTrackingPosition(position);
       });
     } else {
-      alert("Geolocation is not supported by this browser.");
+      alert('Geolocation is not supported by this browser.');
     }
   }
 
   showTrackingPosition(position) {
-    console.log(`tracking postion:  ${position.coords.latitude} - ${position.coords.longitude}`);
+    console.log(
+      `tracking postion:  ${position.coords.latitude} - ${
+        position.coords.longitude
+      }`
+    );
     this.currentLat = position.coords.latitude;
     this.currentLong = position.coords.longitude;
 
     localStorage.setItem('googleLat', JSON.stringify(this.currentLat));
     localStorage.setItem('googleLong', JSON.stringify(this.currentLong));
-    let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    let location = new google.maps.LatLng(
+      position.coords.latitude,
+      position.coords.longitude
+    );
     this.map.panTo(location);
 
     if (!this.marker) {
@@ -56,10 +75,8 @@ export class AppComponent implements OnInit {
         map: this.map,
         title: 'Got you!'
       });
-    }
-    else {
+    } else {
       this.marker.setPosition(location);
     }
   }
-
 }
