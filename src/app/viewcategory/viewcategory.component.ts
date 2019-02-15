@@ -75,6 +75,7 @@ export class ViewcategoryComponent implements OnInit {
             this.errMsg = "Currently no deals available"
            document.getElementById('hidePagination').style.display="none";
            document.getElementById('hideSearchDiv').style.display="none";
+           document.getElementById('hideSelectedCategory').style.display="none";
            document.getElementById('hideFilterButton').style.display="none";
        this.loadingCtrl.hide();
           }
