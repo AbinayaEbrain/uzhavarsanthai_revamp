@@ -26,7 +26,7 @@
               </div> 
       <div class="col-md-5">    
               <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
-                <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel (keypress)="handleInput($event)"  maxlength="50" [(ngModel)]="productData.name"  name="name" class="form-control"  autocomplete="off"  required>
+                <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel  maxlength="50" [(ngModel)]="productData.name"  name="name" class="form-control"  autocomplete="off"  required>
          
                 <label class="form-control-placeholder english_wrd floatinglabl" for="name"><span style="font-size: 14px" class="tamil_wrd">பொருளின் பெயர் </span>/ Product Name</label>
                 <span class="text-danger float-left error_word" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product Name is required</span> 
