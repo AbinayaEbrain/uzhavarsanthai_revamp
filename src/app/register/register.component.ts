@@ -73,7 +73,7 @@ export class RegisterComponent implements OnInit {
            localStorage.setItem('status', JSON.stringify(res.user.status));
            //this.router.navigate(['/login'])
            this.success = "Registered successfully!"
-           this.router.navigate(['/post']);
+           this.router.navigate(['/products']);
           //  document.getElementById('hideButton').style.display ='none'
           //  document.getElementById('hideRestButton').style.display ='none'
           
