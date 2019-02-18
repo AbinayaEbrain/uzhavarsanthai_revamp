@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>உழவன் - உணவூட்டும் விவசாயத்திற்கு உயிரூட்டுவோம்</title>
+  <base href="./">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="image" type="image/png" href="./assets/Images/web_hi_res_512.png"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="உழவன், உழவர் சந்தை, உழவர் மையம், உழவன் நண்பன்">
+  <meta name="Distribution" content="" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <!-- //for fontstyles -->
+  <!-- for apptitle -->
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi" rel="stylesheet">
+  <!-- for navbar links -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <!-- for page headings -->
+  <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+  <!-- for english words in form -->
+  <link href="https://fonts.googleapis.com/css?family=Mukta" rel="stylesheet">
+  <!-- for tamil words in form -->
+  <link href="https://fonts.googleapis.com/css?family=Hind+Madurai" rel="stylesheet">
+  <!-- for error -->
+  <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+  <!-- user typings -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <!-- button title -->
+  <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+  <!-- display messages -->
+  <link href="https://fonts.googleapis.com/css?family=Headland+One" rel="stylesheet">
+ 
+
+<link rel="stylesheet" href="styles.69674ff9251582283374.css"></head>
+<script>
+
+  var ClientIP = "";
+  function getUserIP(onNewIP) { 
+    var myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+    var pc = new myPeerConnection({
+        iceServers: []
+      }),
+      noop = function () {
+      },
+      localIPs = {},
+      ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g,
+      key;
+    function iterateIP(ip) {
+      if (!localIPs[ip]) onNewIP(ip);
+      localIPs[ip] = true;
+    }
+    //create a bogus data channel
+    pc.createDataChannel("");
+    // create offer and set local description
+    pc.createOffer().then(function (sdp) {
+      sdp.sdp.split('\n').forEach(function (line) {
+        if (line.indexOf('candidate') < 0) return;
+        line.match(ipRegex).forEach(iterateIP);
+      });
+      pc.setLocalDescription(sdp, noop, noop);
+    }).catch(function (reason) {
+      // An error occurred, so handle the failure to connect
+    });
+    //listen for candidate events
+    pc.onicecandidate = function (ice) {
+      if (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) return;
+      ice.candidate.candidate.match(ipRegex).forEach(iterateIP);
+    };
+  }
+  getUserIP(function (ip) {
+    if (ip.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/))
+      ClientIP = ip;
+  });
+</script>
+<body>
+  <app-root></app-root>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1VnLEm11P03E2vd7ah80qeeFMh5dB5TE&libraries=places" async defer></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script type="text/javascript" src="runtime.a66f828dca56eeb90e02.js"></script><script type="text/javascript" src="polyfills.7fb637d055581aa28d51.js"></script><script type="text/javascript" src="main.11fada12584f82b11f3b.js"></script></body>
+</html>

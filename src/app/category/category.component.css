@@ -34,18 +34,6 @@ input[_ngcontent-c2] {
   border-bottom: 2px solid black !important;
 }
 
-.bg1 {
-  /* The image used */
-  background: url(../../assets/Images/2.jpeg);
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  background-attachment: fixed;
-}
-
 input[type='text'],
 input[type='password'] {
   width: 100%;
@@ -74,7 +62,7 @@ input {
 /* .btn{
     font-size: 18px;
     background-color: white;
-   
+
     border: none;
     color: #0d4608;
     font-weight: bold;

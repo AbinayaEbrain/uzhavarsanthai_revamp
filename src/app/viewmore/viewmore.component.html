@@ -15,14 +15,14 @@
             <div class="col-md-12">
                 <div class="col-md-12 card" style="padding-left: 0px;padding-right: 0px;">
                     <div class="container-fluid" style="background-color: #145b0e12">
-                        <p class="pageHeading">Product</p>
+                        <p class="pageHeading">Product Details</p>
                     </div>
                     <table class="table table-borderless" style="text-align: justify;">
                             <tbody>
                               <tr>
-                                <td><strong>Product Name</strong></td>
+                                <td><strong>Name</strong></td>
                                 <td>:</td>
-                                <td>{{postProduct.name}}</td>
+                                <td class="prdtName">{{postProduct.name}}</td>
                               </tr>
                               <tr>
                                 <td><strong>Quantity</strong></td>
@@ -35,40 +35,40 @@
                                 <td>Rs.{{postProduct.price}}</td>
                             </tr>
                             <tr>
-                                <td><strong>Expiry Date</strong></td>
+                                <td><strong>Expiry</strong></td>
                                 <td>:</td>
                                 <td>{{postProduct.validityTime}}</td>
                             </tr>
                             <tr>
                                 <td><strong>Location</strong></td>
                                 <td>:</td>
-                                <td>{{postProduct.avlPlace}}</td>
+                                <td class="prdtName">{{postProduct.avlPlace}}</td>
                             </tr>
                             </tbody>
                           </table>
                 </div>
                 <div class="col-md-12 card" style="margin-top:1% !important;padding-left: 0px;padding-right: 0px">
                         <div class="container-fluid" style="background-color: #145b0e12">
-                            <p class="pageHeading">Contact Details</p>
+                            <p class="pageHeading">Contact Person Details</p>
                         </div>
                     <table class="table table-borderless" style="text-align: justify;">
                             <tbody>
                               <tr>
-                                <td><strong>Contact Person</strong></td>
+                                <td><strong>Name</strong></td>
                                 <td>:</td>
-                                <td>{{register.firstName}} {{register.lastName}}</td>
+                                <td class="prdtName">{{register.firstName}} {{register.lastName}}</td>
                               </tr>
                               <tr>
-                                <td><strong>Contact Number</strong></td>
+                                <td><strong>Number</strong></td>
                                 <td>:</td>
                                 <td>{{register.phone}}</td>
                               </tr>
                               <tr>
                                 <td><strong>Address</strong></td>
                                 <td>:</td>
-                                <td>{{register.address.city.formatted_address}}</td>
+                                <td class="prdtName">{{register.address.city.formatted_address}}</td>
                             </tr>
-                            
+
                             </tbody>
                           </table>
                 </div>
@@ -77,7 +77,7 @@
         <!-- <div class="col-md-1"></div> -->
         <div class="col-md-12 colPad card" style="margin-top:1%;margin-left: 27px;
         margin-right: 27px;">
-            
+
                 <p  class="pageHeadingDescription">Product Description</p>
                 <p class="fontSize"> {{postProduct.description}}</p>
         </div>
@@ -85,7 +85,7 @@
         <div class="col-md-12 text-center" style="margin-bottom: 1%;">
                 <button type="button" class="btn btn-outline-success viewMoreBtn" (click)="goToBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
         </div>
-      
+
 </div>
 </div>
 </div>
