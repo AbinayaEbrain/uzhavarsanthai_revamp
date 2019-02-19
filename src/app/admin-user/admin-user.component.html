@@ -31,8 +31,9 @@
                                     <tr  id="dltHide" *ngFor="let deal of registerUser | paginate: { itemsPerPage:5,currentPage:p};">
                                         <td>{{deal.firstname}} {{deal.lastName}}</td>
                                         <td>{{deal.phone}}</td>
+                                        <td>{{deal.address.city.formatted_address}}</td>
                                         <td>{{deal.address.city.locality}}</td>
-                                        <td>{{deal.address.city.admin_area_l1}}</td>
+                                        <!-- <td>{{deal.address.city.admin_area_l1}}</td> -->
                                         <td style="font-weight: bold;" [ngStyle]="{'color':deal.status === 'ACTIVE' ? 'green' : 'red' }">{{deal.status}}</td>
                                         <td>
                                             <button class="btn btn-simple btn-success button_word"  [ngStyle]="{'display':deal.status === 'ACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal2" data-backdrop="static"
