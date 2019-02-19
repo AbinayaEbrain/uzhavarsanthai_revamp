@@ -8,14 +8,14 @@
             <div class="row">
                 <div class="col-md-4">
                         <button class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 25%;margin-left: 10px;" routerLink="/dealCategory"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
-                        <button id="hideFilterButton" (click)="getGoogleAddress()" class="btn btn-outline-success text-center viewMoreBtn button_word" data-toggle="modal" style="width: auto;margin-left: 10px;" data-target="#myModal" ><i class="fa fa-filter" aria-hidden="true" ></i> Filter</button>
+                        <button id="hideFilterButton" (click)="getGoogleAddress()" class="btn btn-outline-success text-center mobiviewFilterBtn viewMoreBtn button_word" data-toggle="modal" style="width: auto;margin-left: 10px;" data-target="#myModal" ><i class="fa fa-filter" aria-hidden="true" ></i> Filter</button>
                 </div>
                 <div class="col-md-2">     
                 </div>
                 <div class="col-md-6 onmobiviewpadding" id="hideSearchDiv">
                         <div class="inner-addon left-addon">
                                 <i class="fa fa-search glyphicon" aria-hidden="true"></i>    
-                                <input type="text" class="form-control searchBorder"  [(ngModel)]="queryString" placeholder="Search by product name.." />
+                                <input type="text" class="form-control searchBorder"  [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
                                  
                               </div>
                      </div>

@@ -7,30 +7,28 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link" routerLink="/register" *ngIf="!_authService.loggedIn() || !_authService.findActive()" routerLinkActive="active">Register</a>
+        <li *ngIf="!_authService.loggedIn() || !_authService.findActive()" class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
         </li>
-         <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <a class="nav-link" routerLink="/deals" *ngIf="!_authService.loggedIn()" (click)="trackMe()" routerLinkActive="active">Deals</a>
+         <li *ngIf="!_authService.loggedIn()" class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="nav-link" routerLink="/deals" (click)="trackMe()" routerLinkActive="active">Deals</a>
          </li>
-         <li class="nav-item "  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link "  routerLink="/products" *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()" routerLinkActive="active">My Products</a>
+         <li  *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()" class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="nav-link" routerLink="/products" routerLinkActive="active">My Products</a>
         </li>
-        <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link" routerLink="/admin" *ngIf="_authService.roleAdmin() && _authService.loggedIn()" routerLinkActive="active">Admin</a>
+        <li  *ngIf="_authService.roleAdmin() && _authService.loggedIn()" class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
         </li>
-        <li class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link" routerLink="/admin" *ngIf="_authService.roleAdmin() && _authService.loggedIn()"  (click)="_authService.logoutUser()" routerLinkActive="active">Logout</a>
+        <li *ngIf="_authService.roleAdmin() && _authService.loggedIn()" class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="nav-link" routerLink="/admin"  (click)="_authService.logoutUser()" routerLinkActive="active">Logout</a>
         </li>
-        <li class="nav-item dropdown"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link dropdown-toggle" style="cursor: pointer;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
-           *ngIf="_authService.loggedIn() && !_authService.roleAdmin()" routerLinkActive="active">My Profile</a>
-          <div class="dropdown-menu">
+        <li *ngIf="_authService.loggedIn() && !_authService.roleAdmin()" class="nav-item dropdown"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="nav-link dropdown-toggle" style="cursor: pointer;" routerLinkActive="active" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Profile</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown03">
             <a class="dropdown-item" routerLink="/updateuser" style="cursor: pointer;">Edit Profile</a>
             <a class="dropdown-item"  style="cursor: pointer;" (click)="_authService.logoutUser()">Logout</a>
           </div>
         </li>
-     
       </ul>
     </div>
   </nav>

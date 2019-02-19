@@ -15,6 +15,7 @@
 .close {
   color: white !important;
 }
+
 .headingTitle {
   background-color: #072304;
   color: white;
@@ -233,4 +234,8 @@ input {
   .onmobiviewpadding {
     padding: 10px;
   }
+
+  /* .mobiviewFilterBtn {
+    float: right !important;
+  } */
 }

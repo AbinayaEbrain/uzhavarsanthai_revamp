@@ -167,7 +167,7 @@ table {
   background-color: #072304;
   color: white;
 }
-.close{
+.close {
   color: white !important;
 }
 .icon {
@@ -266,9 +266,13 @@ input {
     border-radius: 5px;
   }
   .mainCntainer {
-    margin-top: 25%;
+    margin-top: 31%;
   }
   .onmobiviewpadding {
     padding: 10px;
+  }
+
+  .mobiviewFilterBtn {
+    float: right !important;
   }
 }

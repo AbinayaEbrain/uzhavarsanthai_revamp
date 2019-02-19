@@ -87,6 +87,12 @@ export class ViewcategoryComponent implements OnInit {
      
   }
  
+  case() {
+    // console.log(this.queryString);
+    this.queryString = this.queryString.toLowerCase();
+    // console.log(this.queryString);
+  }
+  
   getGoogleAddress(){
     var pacContainerInitialized = false; 
     $('#searchLocation').keypress(function() { 

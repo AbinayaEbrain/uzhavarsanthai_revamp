@@ -3,22 +3,21 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule, Response } from '@angular/http';
-import { AppRoutingModule,routingComponents } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './auth.service';
 import { DealsService } from './deals.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
-import { UserDealsComponent } from './user-deals/user-deals.component';
 import { FilterdataPipe } from './filterdata.pipe';
 import { ViewmoreComponent } from './viewmore/viewmore.component';
 import { PasswordValidatorDirective } from '../app/register/password.validator.directive';
 import { UserDealsEditComponent } from './user-deals-edit/user-deals-edit.component';
 import { DatePipe } from '@angular/common';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
-// loader  
-import { NgxSpinnerModule } from 'ngx-spinner'; 
- //import {googlemaps} from '../../node_modules/';
+// loader
+import { NgxSpinnerModule } from 'ngx-spinner';
+//import {googlemaps} from '../../node_modules/';
 //pagination
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminComponent } from './admin/admin.component';
@@ -31,7 +30,6 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
 import { AdminIpComponent } from './admin-ip/admin-ip.component';
 import { DealscategoryComponent } from './dealscategory/dealscategory.component';
 import { ViewcategoryComponent } from './viewcategory/viewcategory.component';
-import { HotdealsComponent } from './hotdeals/hotdeals.component';
 
 //address
 import { AgmCoreModule } from '@agm/core';
@@ -39,19 +37,16 @@ import { GooglePlacesDirective } from './google-places.directive';
 //datepicker
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
-
 //file upload
 import { FileUploadModule } from 'ng2-file-upload';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DeactiveDealsComponent } from './deactive-deals/deactive-deals.component';
 import { UserProductsComponent } from './user-products/user-products.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    UserDealsComponent,
     FilterdataPipe,
     ViewmoreComponent,
     PasswordValidatorDirective,
@@ -67,11 +62,9 @@ import { UserProductsComponent } from './user-products/user-products.component';
     DealscategoryComponent,
     GooglePlacesDirective,
     ViewcategoryComponent,
-    HotdealsComponent,
     UserProfileComponent,
     DeactiveDealsComponent,
-    UserProductsComponent,
-    
+    UserProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -90,16 +83,19 @@ import { UserProductsComponent } from './user-products/user-products.component';
       libraries: ['geometry', 'places'],
       language: 'en'
     })
-
   ],
-  providers: [AuthService,DealsService,AuthGuard,ViewcategoryComponent,DatePipe,
-  {
-    provide:HTTP_INTERCEPTORS,
-    useClass:TokenInterceptorService,
-    multi:true
-  }],
+  providers: [
+    AuthService,
+    DealsService,
+    AuthGuard,
+    ViewcategoryComponent,
+    DatePipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  
- }
+export class AppModule {}

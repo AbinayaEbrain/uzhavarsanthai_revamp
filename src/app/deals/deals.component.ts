@@ -1,65 +1,65 @@
-import { Component, OnInit,ViewChild,NgZone} from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { DealsService } from '../deals.service';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import {} from '@types/googlemaps';
 declare var sweetAlert: any;
 declare var $: any;
-// loader 
+// loader
 
 @Component({
   selector: 'app-deals',
   templateUrl: './deals.component.html',
   styleUrls: ['./deals.component.css']
 })
-
 export class DealsComponent implements OnInit {
- 
-  
-  //for location 
-  @ViewChild('gmap')gmapElement: any;
+  //for location
+  @ViewChild('gmap') gmapElement: any;
   map: google.maps.Map;
   currentLat: any;
   currentLong: any;
   marker: google.maps.Marker;
-   isTracking = false;
-   status:any;
-   categoryArr:any;
-   totalDeals1 :any;
-   public userdetails: any = [];
-  crdDeals = [{
-    avlPlace:{
-      latitude:'',
-      longitude:''
-    },
-    accountId:''
-  }];
-  mapDeals=[];
-  activeUsers=[]
+  isTracking = false;
+  status: any;
+  categoryArr: any;
+  public userdetails: any = [];
+  public crdDeals: any = [];
+  public totalDeals1: any = [];
+  public showDeals = true;
+  // public crdDeals = [
+  //   {
+  //     avlPlace: {
+  //       latitude: '',
+  //       longitude: ''
+  //     },
+  //     accountId: ''
+  //   }
+  // ];
+  mapDeals = [];
+  activeUsers = [];
   userName = {};
-  errMsg = "";
-  errMsg1:any;
-  lat:any
-  long:any
-  lat1:any
-  long1:any
-  latd:any
-  longd:any
-  crdDeals1 = []
-  queryString:any;
-  p:any;
-  e:any;
-  getlat:any
-  getlng:any
-  getSearchDeals=[]
-  querydetails:any;
+  errMsg = '';
+  errMsg1: any;
+  lat: any;
+  long: any;
+  lat1: any;
+  long1: any;
+  latd: any;
+  longd: any;
+  crdDeals1 = [];
+  queryString: any;
+  p: any;
+  e: any;
+  getlat: any;
+  getlng: any;
+  getSearchDeals = [];
+  querydetails: any;
   public addrKeys: string[];
   public addr: {
-    formatted_address:'',
-    locality : ''
+    formatted_address: '';
+    locality: '';
   };
-  submitted:any;
-  panTo:any;
+  submitted: any;
+  panTo: any;
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -67,183 +67,162 @@ export class DealsComponent implements OnInit {
       this.addrKeys = Object.keys(addrObj);
     });
   }
-  constructor(private _dealsService:DealsService,private route:Router,public loadingCtrl: NgxSpinnerService,public zone:NgZone){
-    this.userdetails.searchqnty = ''
-    this.userdetails.searchCategory =''
+  constructor(
+    private _dealsService: DealsService,
+    private route: Router,
+    public loadingCtrl: NgxSpinnerService,
+    public zone: NgZone
+  ) {
+    this.userdetails.searchqnty = '';
+    this.userdetails.searchCategory = '';
+    this.showDeals = true;
+    this.loadingCtrl.show();
   }
 
   ngOnInit() {
     this.loadingCtrl.show();
-    document.getElementById('showBackButton').style.display="none";
-   this._dealsService.getDeals()
-      .subscribe(
-        res =>{ 
-          this.crdDeals = res
-          // this.loadingCtrl.hide();
-      if (this.crdDeals.length == 0){
-      // this.loadingCtrl.show();
-        this.errMsg = "Currently no deals available"
-        document.getElementById('hidePagination').style.display="none";
-        document.getElementById('hideSearchDiv').style.display="none";
-        document.getElementById('hideFilterButton').style.display="none";
-        document.getElementById('hideNearByBtn').style.display="none";
-        document.getElementById('showBackButton').style.display="block";
-      // this.loadingCtrl.hide();
-      
-      }
-
-        },
-        err =>{
-          this.loadingCtrl.hide();
-          console.log(err)
-        } 
-      )
-
-      this._dealsService.getDetails()
-      .subscribe(
-        res =>{
-        this.loadingCtrl.show();
-          this.activeUsers = res
-      let k =0;
-      for(let i=0;i<this.activeUsers.length;i++){
-        for(let j=0;j<this.crdDeals.length;j++){
-        if(this.activeUsers[i]._id == this.crdDeals[j].accountId) {
-            if(this.activeUsers[i].status == 'ACTIVE'){
-              this.crdDeals1[k] = this.crdDeals[j]
-              // console.log(this.crdDeals1)
-              k++;
-            }
+    this.showDeals = true;
+    this._dealsService.getDeals().subscribe(
+      res => {
+        this.showDeals = true;
+        this.crdDeals = res;
+        if (this.crdDeals.length == 0) {
+          // this.loadingCtrl.show();
+          this.errMsg = 'Currently no deals available';
+          document.getElementById('hidePagination').style.display = 'none';
+          document.getElementById('hideSearchDiv').style.display = 'none';
+          document.getElementById('hideFilterButton').style.display = 'none';
+          document.getElementById('hideNearByBtn').style.display = 'none';
+          document.getElementById('showBackButton').style.display = 'block';
         }
+        // this.loadingCtrl.hide();
+        this.showDeals = true;
+      },
+      err => {
+        this.loadingCtrl.hide();
+        console.log(err);
       }
-      }
-      this.loadingCtrl.hide();
-        },
-        err=>{}
-      )
-     
-       var mapProp = {
-      center: new google.maps.LatLng(18.5793, 73.8143),
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+    );
 
-      // tracking location 
-      if (navigator.geolocation) {
-
-        navigator.geolocation.getCurrentPosition((position) => {
-          this.showPosition(position);
-        });
-      } else {
-        alert("Geolocation is not supported by this browser.");
-      }
+    this._dealsService.getDetails().subscribe(
+      res => {
+        // this.loadingCtrl.show();
+        this.showDeals = true;
+        this.activeUsers = res;
+        let k = 0;
+        for (let i = 0; i < this.activeUsers.length; i++) {
+          for (let j = 0; j < this.crdDeals.length; j++) {
+            if (this.activeUsers[i]._id == this.crdDeals[j].accountId) {
+              if (this.activeUsers[i].status == 'ACTIVE') {
+                this.crdDeals1[k] = this.crdDeals[j];
+                // console.log(this.crdDeals1)
+                k++;
+              }
+            }
+          }
+        }
+        this.showDeals = true;
+        this.loadingCtrl.hide();
+      },
+      err => {}
+    );
   }
 
-  getCategory(){
+  case() {
+    // console.log(this.queryString);
+    this.queryString = this.queryString.toLowerCase();
+    // console.log(this.queryString);
+  }
 
-    var pacContainerInitialized = false; 
-    $('#searchLocation').keypress(function() { 
-            if (!pacContainerInitialized) { 
-                    $('.pac-container').css('z-index', '9999'); 
-                    pacContainerInitialized = true; 
-            } 
+  getCategory() {
+    var pacContainerInitialized = false;
+    $('#searchLocation').keypress(function() {
+      if (!pacContainerInitialized) {
+        $('.pac-container').css('z-index', '9999');
+        pacContainerInitialized = true;
+      }
     });
-    this._dealsService.getCategory()
-    .subscribe(
-        res => {
-          
-          this.categoryArr = res;
-          this.loadingCtrl.hide();
-        },
-    
-        err => {
-            this.categoryArr = [];
-        });
+    this._dealsService.getCategory().subscribe(
+      res => {
+        this.categoryArr = res;
+        this.loadingCtrl.hide();
+      },
+
+      err => {
+        this.categoryArr = [];
+      }
+    );
   }
 
-  filterDeal(){
+  filterDeal() {
     this.loadingCtrl.show();
     this.totalDeals1 = [];
-    this.getSearchDeals = this.crdDeals
-    this.querydetails = this.userdetails
+    this.getSearchDeals = this.crdDeals;
+    this.querydetails = this.userdetails;
     this.refreshGrid();
     this.loadingCtrl.hide();
   }
 
-  refreshGrid(){
+  refreshGrid() {
     this.loadingCtrl.show();
-    if(this.addr != null || this.addr != undefined){
-    this.querydetails.searchLocation = this.addr.locality
+    if (this.addr != null || this.addr != undefined) {
+      this.querydetails.searchLocation = this.addr.locality;
     }
-    let j =0;
-    for(let i=0; i < this.getSearchDeals.length; i++){
-    if(this.querydetails.searchCategory == this.getSearchDeals[i].categoryId || this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||  (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) || this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price))  || this.querydetails.searchLocation == this.getSearchDeals[i].avlPlace.locality){
-      this.totalDeals1[j] = this.getSearchDeals[i]
-      j++;
-      this.errMsg1 = ""
-      document.getElementById('hidePagination').style.display="block";
-    this.loadingCtrl.hide();
-    
+    let j = 0;
+    for (let i = 0; i < this.getSearchDeals.length; i++) {
+      if (
+        this.querydetails.searchCategory == this.getSearchDeals[i].categoryId ||
+        this.querydetails.searchmainquantity <=
+          this.getSearchDeals[i].quantity ||
+        this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||
+        this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||
+        (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) ||
+          this.querydetails.toCost >=
+            parseFloat(this.getSearchDeals[i].price)) ||
+        this.querydetails.searchLocation ==
+          this.getSearchDeals[i].avlPlace.locality
+      ) {
+        this.totalDeals1[j] = this.getSearchDeals[i];
+        j++;
+        this.errMsg1 = '';
+        document.getElementById('hidePagination').style.display = 'block';
+        this.loadingCtrl.hide();
+      }
+      this.showDeals = false;
     }
-     
-    
- 
-  
-  }if(this.totalDeals1.length == 0){
-    this.loadingCtrl.show();
-    sweetAlert("Sorry!","Currently no product available","error")
-     document.getElementById('hidePagination').style.display="none";
-    // document.getElementById('hideSearchDiv').style.display="none";
-    // document.getElementById('hideFilterButton').style.display="none";
-    // document.getElementById('hideNearByBtn').style.display="none";
-    // document.getElementById('showBackButton').style.display="block";
-    
-    this.errMsg1 = "Please search again"
-    this.loadingCtrl.hide();
+    this.showDeals = false;
+    if (this.totalDeals1.length == 0) {
+      this.loadingCtrl.show();
+      sweetAlert('Sorry!', 'Currently no product available', 'error');
+      document.getElementById('hidePagination').style.display = 'none';
+      this.errMsg1 = 'Please search again';
+      this.loadingCtrl.hide();
+      this.userdetails = [];
+    }
+
     this.userdetails = [];
   }
- 
-  this.userdetails = [];
-  
-  }
 
-  findMe(){
-  //   setTimeout( function(){
-  //     location.reload()
-  // }, 2000 );
+  // showPosition(position) {
+  //   this.currentLat = position.coords.latitude;
+  //   this.currentLong = position.coords.longitude;
+  //   localStorage.setItem('googleLat', JSON.stringify(this.currentLat));
+  //   localStorage.setItem('googleLong', JSON.stringify(this.currentLong));
 
-  document.getElementById('hideButton').style.display='block';
-  document.getElementById('showButton').style.display='block';
-  // this.route.navigate[('/post')]
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.showPosition(position);
-      
-       
-      });
-    } else {
-      alert("Geolocation is not supported by this browser.");
-    }
-  }
+  //   let location = new google.maps.LatLng(
+  //     position.coords.latitude,
+  //     position.coords.longitude
+  //   );
+  //   this.map.panTo(location);
 
-  showPosition(position) {
-    this.currentLat = position.coords.latitude;
-    this.currentLong = position.coords.longitude;
-    localStorage.setItem('googleLat', JSON.stringify(this.currentLat));
-    localStorage.setItem('googleLong', JSON.stringify(this.currentLong));
-
-    let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    this.map.panTo(location);
-
-    if (!this.marker) {
-      this.marker = new google.maps.Marker({
-        position: location,
-        map: this.map,
-        title: 'Got you!'
-      });
-    }
-    else {
-      this.marker.setPosition(location);
-    }
-  }
+  //   if (!this.marker) {
+  //     this.marker = new google.maps.Marker({
+  //       position: location,
+  //       map: this.map,
+  //       title: 'Got you!'
+  //     });
+  //   } else {
+  //     this.marker.setPosition(location);
+  //   }
+  // }
 }

@@ -24,8 +24,7 @@
   margin-top: 15px;
 }
 dl,
-ol,
-ul {
+ol {
   margin-left: -35px !important;
 }
 .ngx-pagination .disabled {

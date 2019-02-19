@@ -11,7 +11,7 @@ ul li a {
   font-family: 'Mukta', sans-serif;
 }
 
-.dropdown .dropdown-menu {
+/* .dropdown .dropdown-menu {
   display: block;
   opacity: 0;
   -webkit-transition: all 200ms ease-in;
@@ -23,7 +23,7 @@ ul li a {
 .dropdown:hover .dropdown-menu {
   display: block;
   opacity: 1;
-}
+} */
 
 .tamil_word {
   font-family: 'Hind Madurai', sans-serif;
@@ -37,5 +37,11 @@ ul li a {
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .hideMobile {
     display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dropdown-menu {
+    margin-left: -52px;
   }
 }

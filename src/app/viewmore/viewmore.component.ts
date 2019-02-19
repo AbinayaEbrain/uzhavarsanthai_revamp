@@ -56,6 +56,7 @@ export class ViewmoreComponent implements OnInit {
     this._dealsService.getDeals().subscribe(
       res => {
         this.viewPost = res;
+        console.log(this.viewPost);
         for (let i = 0; i < this.viewPost.length; i++) {
           if (this.id == this.viewPost[i]._id) {
             this.postProduct.category = this.viewPost[i].category;
@@ -83,7 +84,9 @@ export class ViewmoreComponent implements OnInit {
 
     this._dealsService.getDetails().subscribe(
       res => {
+        this.loadingCtrl.show();
         this.viewmore = res;
+        console.log(this.viewmore);
         for (let i = 0; i < this.viewmore.length; i++) {
           if (this.postProduct.accountId == this.viewmore[i]._id) {
             this.register.firstName = this.viewmore[i].firstname;
@@ -95,17 +98,15 @@ export class ViewmoreComponent implements OnInit {
             this.city = this.viewmore[i].address.city;
           }
         }
-
         console.log(this.register);
         console.log(this.city);
-        // this.register.address.city.locality = this.city.locality
-        // this.register.address.city.admin_area_l1 = this.city.admin_area_l1
         this.adrsArray = this.city.formatted_address;
         console.log(this.adrsArray);
         this.register.address.city.formatted_address = this.adrsArray.split(
           ','
         )[1];
         console.log(this.register.address.city.formatted_address);
+        this.loadingCtrl.hide();
       },
       err => console.log(err)
     );

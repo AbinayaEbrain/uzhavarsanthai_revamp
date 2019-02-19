@@ -201,4 +201,8 @@
    .onmobiviewpadding{
     padding: 10px;
    }
+
+   .mobiviewFilterBtn{
+    float: right !important;
+  }
   }

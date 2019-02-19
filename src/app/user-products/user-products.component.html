@@ -13,7 +13,7 @@
       <div class="col-md-4 onmobiviewpadding" >
          <div class="inner-addon left-addon" id="hideSearchDiv">
              <i class="fa fa-search glyphicon" aria-hidden="true"></i>    
-             <input type="text" class="form-control searchBorder"   [(ngModel)]="queryString" name="search" autocomplete="off" placeholder="Search by product category..." />
+             <input type="text" class="form-control searchBorder"   [(ngModel)]="queryString" name="search" (keyup)="case()" autocomplete="off" placeholder="Search by product category..." />
               
            </div>
       </div>
@@ -144,7 +144,7 @@
       <div class="modal-content">
         <div class="modal-header">
         
-          <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;">Delete Confirmation</h4>
+          <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;color: white;">Delete Confirmation</h4>
         </div>
         <div class="modal-body">
           <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete?</h6>
