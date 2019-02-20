@@ -67,7 +67,7 @@ export class ViewmoreComponent implements OnInit {
             this.postProduct.subqnty = this.viewPost[i].subqnty;
             this.postProduct.price = this.viewPost[i].price;
             this.postProduct.description = this.viewPost[i].description;
-            this.postProduct.avlPlace = this.viewPost[i].avlPlace.locality;
+            this.postProduct.avlPlace = this.viewPost[i].avlPlace.formatted_address;
             this.postProduct.accountId = this.viewPost[i].accountId;
             this.postProduct.image = this.viewPost[i].image;
             this.time = this.viewPost[i].validityTime;
@@ -96,15 +96,16 @@ export class ViewmoreComponent implements OnInit {
               i
             ].address.addressLine;
             this.city = this.viewmore[i].address.city;
+            this.register.address.city.formatted_address = this.viewmore[i].address.city.formatted_address;
           }
         }
         console.log(this.register);
         console.log(this.city);
-        this.adrsArray = this.city.formatted_address;
-        console.log(this.adrsArray);
-        this.register.address.city.formatted_address = this.adrsArray.split(
-          ','
-        )[1];
+        // this.adrsArray = this.city.formatted_address;
+        // console.log(this.adrsArray);
+        // this.register.address.city.formatted_address = this.adrsArray.split(
+        //   ','
+        // )[1];
         console.log(this.register.address.city.formatted_address);
         this.loadingCtrl.hide();
       },
