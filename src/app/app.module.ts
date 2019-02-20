@@ -42,6 +42,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DeactiveDealsComponent } from './deactive-deals/deactive-deals.component';
 import { UserProductsComponent } from './user-products/user-products.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { UserProductsComponent } from './user-products/user-products.component';
     ViewcategoryComponent,
     UserProfileComponent,
     DeactiveDealsComponent,
-    UserProductsComponent
+    UserProductsComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

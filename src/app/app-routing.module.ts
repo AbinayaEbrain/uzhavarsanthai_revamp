@@ -21,6 +21,8 @@ import { ViewcategoryComponent } from '../app/viewcategory/viewcategory.componen
 import { UserProfileComponent } from '../app/user-profile/user-profile.component';
 import { DeactiveDealsComponent } from '../app/deactive-deals/deactive-deals.component';
 import { UserProductsComponent } from '../app/user-products/user-products.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 const routes: Routes = [
   {
     path: '',
@@ -127,6 +129,14 @@ const routes: Routes = [
   {
     path: 'products/:id',
     component: UserProductsComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
   }
 ];
 
