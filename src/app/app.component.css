@@ -10,21 +10,6 @@
 ul li a {
   font-family: 'Mukta', sans-serif;
 }
-
-/* .dropdown .dropdown-menu {
-  display: block;
-  opacity: 0;
-  -webkit-transition: all 200ms ease-in;
-  -moz-transition: all 200ms ease-in;
-  -ms-transition: all 200ms ease-in;
-  -o-transition: all 200ms ease-in;
-  transition: all 200ms ease-in;
-}
-.dropdown:hover .dropdown-menu {
-  display: block;
-  opacity: 1;
-} */
-
 .tamil_word {
   font-family: 'Hind Madurai', sans-serif;
   font-weight: bold;
@@ -57,4 +42,17 @@ ul li a {
 .navbar-dark .navbar-nav .nav-link.active {
   color: white;
   font-weight: bold;
+}
+.uzhavarsanthaiFooter{
+  background-color: #0d4608 !important;
+  color: white;
+}
+.EbrainTechnologies{
+  color: white !important;
+}
+.footerOptions{
+      margin-top: 3% !important; 
+      cursor: pointer !important;
+      font-weight: bold !important;
+      text-align: center !important;
 }
