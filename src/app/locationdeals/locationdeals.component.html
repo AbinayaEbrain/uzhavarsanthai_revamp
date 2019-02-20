@@ -22,10 +22,10 @@
             
           <p class="no_deals_found error_word" *ngIf="noLocationErr">{{noLocationErr}}</p>
       
-            <p class="no_deals_found error_word" *ngIf="errMsg1">{{errMsg1}}</p>
+            <!-- <p class="no_deals_found error_word" *ngIf="errMsg1">{{errMsg1}}</p> -->
    
-         
-       <div [style.display]="!totalDeals1 ? 'block' : 'none'">  
+            <!-- [style.display]="!totalDeals1 ? 'block' : 'none'" -->
+       <div *ngIf="showDeals">  
       <div class="row mt-5">
     
         <div class="col-md-3"  *ngFor = "let deal of mapDeals | filterdata: queryString  : 'name'  |paginate: {id: 'foo', itemsPerPage:8,currentPage:e }">
@@ -65,7 +65,8 @@
         <pagination-controls id="foo" class="ngx-pagination" (pageChange)="e = $event"></pagination-controls>
       </div>
       </div>
-      <div   [style.display]="totalDeals1 ? 'block' : 'none'">  
+      <!-- [style.display]="totalDeals1 ? 'block' : 'none'" -->
+      <div *ngIf="!showDeals">  
         <div class="row mt-5">
       
           <div class="col-md-3"  *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name'  | paginate: {id:'foo1' ,itemsPerPage:8,currentPage:p }">
@@ -137,7 +138,7 @@
                                           <select  class="form-control" class="form-control" style="background-color: transparent;color: black;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
                                                 <option style="color: black" value="" disabled >Choose unit</option>
                                                 <option style="color: black" value="Kg">Kg</option>
-                                                <option style="color: black" value="Ltre">Ltre</option>
+                                                <option style="color: black" value="Litre">Ltre</option>
                                             </select>
                                            
                                       </div>

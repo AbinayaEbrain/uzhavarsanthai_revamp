@@ -170,11 +170,11 @@ export class DealsComponent implements OnInit {
     }
     let j = 0;
     for (let i = 0; i < this.getSearchDeals.length; i++) {
+      console.log(this.getSearchDeals[i].qnty);
       if (
         this.querydetails.searchCategory == this.getSearchDeals[i].categoryId ||
         this.querydetails.searchmainquantity <=
           this.getSearchDeals[i].quantity ||
-        this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||
         this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||
         (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) ||
           this.querydetails.toCost >=
@@ -184,45 +184,29 @@ export class DealsComponent implements OnInit {
       ) {
         this.totalDeals1[j] = this.getSearchDeals[i];
         j++;
-        this.errMsg1 = '';
-        document.getElementById('hidePagination').style.display = 'block';
-        this.loadingCtrl.hide();
       }
-      this.showDeals = false;
     }
     this.showDeals = false;
+    document.getElementById('hidePagination').style.display = 'block';
+    this.clear();
+
     if (this.totalDeals1.length == 0) {
       this.loadingCtrl.show();
       sweetAlert('Sorry!', 'Currently no product available', 'error');
-      document.getElementById('hidePagination').style.display = 'none';
-      this.errMsg1 = 'Please search again';
-      this.loadingCtrl.hide();
-      this.userdetails = [];
+      this.showDeals = true;
     }
 
-    this.userdetails = [];
+    this.loadingCtrl.hide();
+    this.clear();
   }
 
-  // showPosition(position) {
-  //   this.currentLat = position.coords.latitude;
-  //   this.currentLong = position.coords.longitude;
-  //   localStorage.setItem('googleLat', JSON.stringify(this.currentLat));
-  //   localStorage.setItem('googleLong', JSON.stringify(this.currentLong));
-
-  //   let location = new google.maps.LatLng(
-  //     position.coords.latitude,
-  //     position.coords.longitude
-  //   );
-  //   this.map.panTo(location);
-
-  //   if (!this.marker) {
-  //     this.marker = new google.maps.Marker({
-  //       position: location,
-  //       map: this.map,
-  //       title: 'Got you!'
-  //     });
-  //   } else {
-  //     this.marker.setPosition(location);
-  //   }
-  // }
+  clear() {
+    this.querydetails = [];
+    this.userdetails = [];
+    this.userdetails.searchqnty = '';
+    this.userdetails.searchCategory = '';
+    if (this.addr != undefined) {
+      this.addr.locality = '';
+    }
+  }
 }

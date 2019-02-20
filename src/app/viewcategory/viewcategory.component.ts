@@ -17,6 +17,7 @@ declare var $: any;
   styleUrls: ['./viewcategory.component.css']
 })
 export class ViewcategoryComponent implements OnInit {
+  public showDeals = true;
   crdDeals=[]
   totalDeals=[]
   id:any;
@@ -48,19 +49,19 @@ export class ViewcategoryComponent implements OnInit {
   }
   constructor(private route:ActivatedRoute,private _dealService:DealsService,public loadingCtrl: NgxSpinnerService,
   private router:Router,public zone:NgZone) { 
-    this.userdetails.searchqnty = ''
+    this.userdetails.searchqnty = '';
+    this.showDeals = true;
   }
 
   ngOnInit() {
-    
-  // alert('1')
    this.loadingCtrl.show();
+   this.showDeals = true;
     this._dealService.getDeals()
        .subscribe(
          res =>{ 
-          
            let j = 0;
-           this.crdDeals = res
+           this.crdDeals = res;
+           this.showDeals = true;
            this.id = this.route.snapshot.params['id']
            for(let i=0;i<this.crdDeals.length;i++){
              if( this.id == this.crdDeals[i].categoryId){
@@ -77,14 +78,14 @@ export class ViewcategoryComponent implements OnInit {
            document.getElementById('hideSearchDiv').style.display="none";
            document.getElementById('hideSelectedCategory').style.display="none";
            document.getElementById('hideFilterButton').style.display="none";
-       this.loadingCtrl.hide();
+          this.loadingCtrl.hide();
           }
+          this.showDeals = true;
          },
          err =>{
            console.log(err)
          } 
        )
-     
   }
  
   case() {
@@ -121,30 +122,32 @@ export class ViewcategoryComponent implements OnInit {
     let j =0;
     for(let i=0; i < this.getSearchDeals.length; i++){
     if(this.querydetails.searchmainquantity <= this.getSearchDeals[i].quantity ||  this.querydetails.searchqnty == this.getSearchDeals[i].qnty || this.querydetails.searchqnty == this.getSearchDeals[i].qnty || (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price)) ||(this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price)) || this.querydetails.searchLocation == this.getSearchDeals[i].avlPlace.locality){
-     
-      this.loadingCtrl.hide();
       this.totalDeals1[j] = this.getSearchDeals[i]
       j++;
-      this.errMsg1 = ""
-      document.getElementById('hidePagination').style.display="block";
-      this.userdetails = [];
     }
- 
-  //  this.loadingCtrl.hide();
   }
+  this.showDeals = false;
+  document.getElementById('hidePagination').style.display="block";
+
    if(this.totalDeals1.length == 0){
-    sweetAlert("Sorry!","Currently no product available","error")
-    this.errMsg1 = "Please search again"
-    document.getElementById('hideSelectedCategory').style.display="none";
-    document.getElementById('hidePagination').style.display="none";
-    this.userdetails = [];
+    sweetAlert("Sorry!","Currently no product available","error");
+    this.showDeals = true;
   }
-  this.userdetails = [];
+  this.loadingCtrl.hide();
+  this.clear();
   }
 
   goToView(id){
     this.router.navigate(['/viewmore',id],this.id);
   }
-
+  clear() {
+    this.querydetails = [];
+    this.userdetails = [];
+    this.userdetails.searchqnty = '';
+    this.userdetails.searchCategory = '';
+    if (this.addr != undefined) {
+      this.addr.locality = '';
+    }
+  }
 
 }

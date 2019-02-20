@@ -234,8 +234,7 @@ input {
   .onmobiviewpadding {
     padding: 10px;
   }
-
-  /* .mobiviewFilterBtn {
+  .mobiviewFilterBtn {
     float: right !important;
-  } */
+  }
 }

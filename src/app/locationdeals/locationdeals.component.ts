@@ -11,6 +11,7 @@ declare var sweetAlert: any;
 })
 export class LocationdealsComponent implements OnInit {
   status: any;
+  public showDeals = true;
   crdDeals = [
     {
       avlPlace: {
@@ -49,10 +50,12 @@ export class LocationdealsComponent implements OnInit {
   ) {
     this.userdetails.searchqnty = '';
     this.userdetails.searchCategory = '';
+    this.showDeals = true;
   }
 
   ngOnInit() {
     this.loadingCtrl.show();
+    this.showDeals = true;
     this._dealsService.getDeals().subscribe(
       res => {
         this.crdDeals = res;
@@ -77,6 +80,7 @@ export class LocationdealsComponent implements OnInit {
         this._dealsService.getDetails().subscribe(
           res => {
             this.loadingCtrl.show();
+            this.showDeals = true;
             this.activeUsers = res;
             let k = 0;
 
@@ -100,6 +104,7 @@ export class LocationdealsComponent implements OnInit {
                 'none';
               this.loadingCtrl.hide();
             }
+            this.showDeals = true;
           },
           err => {}
         );
@@ -156,21 +161,24 @@ export class LocationdealsComponent implements OnInit {
       ) {
         this.totalDeals1[j] = this.getSearchDeals[i];
         j++;
-        this.errMsg1 = '';
-        document.getElementById('hidePagination').style.display = 'block';
-        this.loadingCtrl.hide();
-        this.userdetails = [];
       }
-      this.loadingCtrl.hide();
     }
+      this.showDeals = false;
+      document.getElementById('hidePagination').style.display = 'block';
+
     if (this.totalDeals1.length == 0) {
       this.loadingCtrl.show();
       sweetAlert('Sorry!', 'Currently no product available', 'error');
-      this.errMsg1 = 'Please search again';
-      document.getElementById('hidePagination').style.display = 'none';
-      this.loadingCtrl.hide();
-      this.userdetails = [];
+      this.showDeals = true;
     }
+    this.loadingCtrl.hide();
+    this.clear();
+  }
+
+  clear() {
+    this.querydetails = [];
     this.userdetails = [];
+    this.userdetails.searchqnty = '';
+    this.userdetails.searchCategory = '';
   }
 }

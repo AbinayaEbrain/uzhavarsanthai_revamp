@@ -18,9 +18,9 @@
       <div class="errDiv">
             <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
       </div>
-      <div>
+      <!-- <div>
         <p class="no_deals_found error_word" *ngIf="errMsg1">{{errMsg1}}</p>
-  </div>
+  </div> -->
   
 <div *ngIf="showDeals">
   <div class="row mt-5">
@@ -144,7 +144,7 @@
                                       <select  class="form-control" class="form-control"   placeholder="Enter unit" style="background-color: transparent;color: black;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
                                             <option style="color: black" value="" disabled >Choose unit</option>
                                             <option style="color: black" value="Kg">Kg</option>
-                                            <option style="color: black" value="Ltre">Ltre</option>
+                                            <option style="color: black" value="Litre">Ltre</option>
                                         </select>
                                        
                                   </div>

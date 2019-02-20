@@ -1,46 +1,157 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <nav class="navbar navbar-expand-md fixed-top navbar-dark nav_clr">
-    <a class="navbar-brand apptitle" routerLink="/home">உழவர் சந்தை</a>
-    <a style="margin-left: 20%;"> <p class="every clr tamil_word hideMobile">உணவூட்டும் விவசாயத்திற்கு உயிரூட்டுவோம்!</p></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav ml-auto">
-        <li *ngIf="!_authService.loggedIn() || !_authService.findActive()" class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
-        </li>
-         <li *ngIf="!_authService.loggedIn()" class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <a class="nav-link" routerLink="/deals" (click)="trackMe()" routerLinkActive="active">Deals</a>
-         </li>
-         <li  *ngIf="_authService.loggedIn() && !_authService.roleAdmin() && _authService.findActive()" class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link" routerLink="/products" routerLinkActive="active">My Products</a>
-        </li>
-        <li  *ngIf="_authService.roleAdmin() && _authService.loggedIn()" class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
-        </li>
-        <li *ngIf="_authService.roleAdmin() && _authService.loggedIn()" class="nav-item"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link" routerLink="/admin"  (click)="_authService.logoutUser()" routerLinkActive="active">Logout</a>
-        </li>
-        <li *ngIf="_authService.loggedIn() && !_authService.roleAdmin()" class="nav-item dropdown"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link dropdown-toggle" style="cursor: pointer;" routerLinkActive="active" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Profile</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown03">
-            <a class="dropdown-item" routerLink="/updateuser" style="cursor: pointer;">Edit Profile</a>
-            <a class="dropdown-item"  style="cursor: pointer;" (click)="_authService.logoutUser()">Logout</a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <router-outlet></router-outlet>
-  <ngx-spinner> 
-    <div style="background-color: whitesmoke;margin-top:-80px;border-radius: 5px;">
-        <p style="color:#0d4608;font-weight: bold; font-family: 'Mukta', sans-serif;">&nbsp;&nbsp;&nbsp;Please wait
-            <img class="loading" width="50px" height="50px" src="./assets/Images/loader (2).gif"/>
-        </p>
-    </div>
- </ngx-spinner>
+  <a class="navbar-brand apptitle" routerLink="/home">உழவர் சந்தை</a>
+  <a style="margin-left: 20%;">
+    <p class="every clr tamil_word hideMobile">
+      உணவூட்டும் விவசாயத்திற்கு உயிரூட்டுவோம்!
+    </p></a
+  >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarCollapse"
+    aria-controls="navbarCollapse"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto">
+      <li
+        *ngIf="!_authService.loggedIn() || !_authService.findActive()"
+        class="nav-item"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <a class="nav-link" routerLink="/register" routerLinkActive="active"
+          >Register</a
+        >
+      </li>
+      <li
+        *ngIf="!_authService.loggedIn()"
+        class="nav-item"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <a
+          class="nav-link"
+          routerLink="/deals"
+          (click)="trackMe()"
+          routerLinkActive="active"
+          >Deals</a
+        >
+      </li>
+      <li
+        *ngIf="
+          _authService.loggedIn() &&
+          !_authService.roleAdmin() &&
+          _authService.findActive()
+        "
+        class="nav-item"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <a class="nav-link" routerLink="/products" routerLinkActive="active"
+          >My Products</a
+        >
+      </li>
+      <li
+        *ngIf="_authService.roleAdmin() && _authService.loggedIn()"
+        class="nav-item"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <a class="nav-link" routerLink="/admin" routerLinkActive="active"
+          >Admin</a
+        >
+      </li>
+      <li
+        *ngIf="_authService.roleAdmin() && _authService.loggedIn()"
+        class="nav-item"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <a
+          class="nav-link"
+          routerLink="/admin"
+          (click)="_authService.logoutUser()"
+          routerLinkActive="active"
+          >Logout</a
+        >
+      </li>
+      <li
+        *ngIf="_authService.loggedIn() && !_authService.roleAdmin()"
+        class="nav-item dropdown"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <a
+          class="nav-link dropdown-toggle"
+          style="cursor: pointer;"
+          routerLinkActive="active"
+          id="dropdown03"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >My Profile</a
+        >
+        <div class="dropdown-menu" aria-labelledby="dropdown03">
+          <a
+            class="dropdown-item"
+            routerLink="/updateuser"
+            style="cursor: pointer;"
+            >Edit Profile</a
+          >
+          <a
+            class="dropdown-item"
+            style="cursor: pointer;"
+            (click)="_authService.logoutUser()"
+            >Logout</a
+          >
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+<ngx-spinner>
+  <div
+    style="background-color: whitesmoke;margin-top:-80px;border-radius: 5px;"
+  >
+    <p
+      style="color:#0d4608;font-weight: bold; font-family: 'Mukta', sans-serif;"
+    >
+      &nbsp;&nbsp;&nbsp;Please wait
+      <img
+        class="loading"
+        width="50px"
+        height="50px"
+        src="./assets/Images/loader (2).gif"
+      />
+    </p>
+  </div>
+</ngx-spinner>
 
- <!-- <footer>
+<!-- <footer>
   FB.AppEvents.logPageView();
  </footer> -->
