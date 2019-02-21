@@ -43,3 +43,15 @@
     font-size: medium;
   }
 }
+
+.viewMoreBtn1 {
+  margin: auto;
+  font-weight: bold;
+  color: white;
+  background-color: #0d4608;
+  border-color: #0d4608;
+}
+.viewMoreBtn1:hover {
+  border-color: #0d4608;
+  color: white;
+}

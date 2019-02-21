@@ -1,12 +1,12 @@
-<div class="container mt-5 pt-5">
-  <h3 class="text-center clr english_wrd">Contact Us</h3>
+<div class="container mt-5 pt-5 mb-5">
+  <h3 class="text-center clr english_wrd mb-5">Contact Us</h3>
   <div class="row mt-5">
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-6">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-2 col-2">
           <span class="fa fa-home icon" aria-hidden="true"></span>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 col-sm-10 col-10">
           <h5 class="heading english_wrd">Visit Us</h5>
           <p class="para english_wrd">
             #21, First Floor, Mannar Sarefoji Nagar, Neelagiri Therkuthottam,
@@ -15,23 +15,25 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-6">
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-2 col-2">
           <span class="fa fa-envelope icon" aria-hidden="true"></span>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 col-sm-10 col-10">
           <h5 class="heading english_wrd">Mail Us</h5>
           <p class="para english_wrd">support@ebraintechnologies.com</p>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-12 d-lg-block d-md-none d-block">
       <div class="row">
-        <div class="col-md-2">
-          <span class="fa fa-phone icon" aria-hidden="true"></span>
+        <!-- <div class="col-lg-0 col-md-4"></div> -->
+        <div class="col-lg-2 col-md-6 col-sm-2 col-2">
+          <!-- <span class="fa fa-phone icon" aria-hidden="true"></span> -->
+          <button class="button btn1 button5"><i class="fa fa-phone" style="font-size:25px;color:white"></i></button>
         </div>
-        <div class="col-md-10">
+        <div class="col-lg-10 col-md-6 col-sm-10 col-10">
           <h5 class="heading english_wrd">Call Us</h5>
           <p class="para english_wrd">
             (+91) 9944007339 , (04362) 226988
@@ -39,25 +41,58 @@
         </div>
       </div>
     </div>
+    <div class="col-lg-4 col-md-12 d-lg-none d-md-block d-none">
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-1">
+            <button class="button btn1 button5 float-left"><i class="fa fa-phone" style="font-size:25px;color:white"></i></button>
+          </div>
+          <div class="col-md-3">
+            <h5 class="heading english_wrd">Call Us</h5>
+            <p class="para english_wrd">
+              (+91) 9944007339 , (04362) 226988
+            </p>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+      </div>
   </div>
 
+  <form  #contactform="ngForm" *ngIf ="!submitted" novalidate>
   <div class="row mt-3">
     <div class="col-md-6">
-      <input type="text" name="name" placeholder="Your Name" required="" />
+      <div style="margin-bottom: 20px">
+        <input type="text" name="name" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel
+         [(ngModel)]="contact.name" autocomplete="off" placeholder="Your Name" required="" />
+         <span class="text-danger float-left error_word mb-2" [class.d-none] = "name.valid || name.untouched">
+           <i class="fa fa-info-circle" aria-hidden="true"></i> Name is required</span> 
+      </div>
 
-      <input type="text" name="email" placeholder="Email" required="" />
+      <div style="margin-bottom: 20px">
+         <input type="email" name="email" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" ngModel
+         [(ngModel)]="contact.email" autocomplete="off" placeholder="Email" required="" />
+         <span class="text-danger float-left error_word mb-2" [class.d-none] = "email.valid || email.untouched">
+            <i class="fa fa-info-circle" aria-hidden="true"></i> Email is required</span> 
+      </div>
 
-      <input
-        type="text"
-        name="phone"
+      <div style="margin-bottom: 20px">
+        <input
+        type="text" name="phone" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel
         oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
-        placeholder="Phone Number"
-        required=""
-      />
+        [(ngModel)]="contact.phone" placeholder="Phone Number" required="" />
+        <span class="text-danger float-left error_word" [class.d-none] = "phone.valid || phone.untouched">
+            <i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span> 
+      </div>
     </div>
     <div class="col-md-6">
-      <textarea name="Message" placeholder="Message" required=""></textarea>
-      <button class="btn btnClr btn-block">Submit</button>
+      <textarea name="message" #message="ngModel" [class.is-invalid]="message.invalid && message.touched" ngModel
+      [(ngModel)]="contact.message" autocomplete="off" placeholder="Message" required=""></textarea>
+
+      <span class="text-danger float-left error_word mb-2" [class.d-none] = "message.valid || message.untouched">
+          <i class="fa fa-info-circle" aria-hidden="true"></i> Message is required</span>
+
+      <button type="submit" class="btn btnClr btn-block" [disabled]="contactform.form.invalid" (click)="contactDetail()">Submit</button>
     </div>
   </div>
+</form>
 </div>

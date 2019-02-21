@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <nav class="navbar navbar-expand-md fixed-top navbar-dark nav_clr">
-  <a class="navbar-brand apptitle" routerLink="/home">உழவர் சந்தை</a>
+  <a class="navbar-brand apptitle">உழவர் சந்தை</a>
   <a style="margin-left: 20%;">
     <p class="every clr tamil_word hideMobile">
       உணவூட்டும் விவசாயத்திற்கு உயிரூட்டுவோம்!
@@ -19,8 +19,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav ml-auto">
-      <li
-        *ngIf="!_authService.loggedIn() || !_authService.findActive()"
+        <li
         class="nav-item"
         data-toggle="collapse"
         data-target="#navbarCollapse"
@@ -28,9 +27,21 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <a class="nav-link" routerLink="/register" routerLinkActive="active"
-          >Register</a
+        <a class="nav-link" routerLink="/home" routerLinkActive="active"
+          >Home</a
         >
+      </li>
+      <li
+      class="nav-item"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      >
+      <a class="nav-link" routerLink="/blog" routerLinkActive="active"
+        >Blog</a
+      >
       </li>
       <li
         *ngIf="!_authService.loggedIn()"
@@ -49,30 +60,19 @@
           >Deals</a
         >
       </li>
-      <li
-      class="nav-item"
-      data-toggle="collapse"
-      data-target="#navbarCollapse"
-      aria-controls="navbarCollapse"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <a class="nav-link" routerLink="/about" routerLinkActive="active"
-        >About Us</a
-      >
-    </li>
     <li
-    class="nav-item"
-    data-toggle="collapse"
-    data-target="#navbarCollapse"
-    aria-controls="navbarCollapse"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <a class="nav-link" routerLink="/contact" routerLinkActive="active"
-      >Contact Us</a
-    >
-  </li>
+        *ngIf="!_authService.loggedIn() || !_authService.findActive()"
+        class="nav-item"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <a class="nav-link" routerLink="/login" routerLinkActive="active"
+          >Login / Signup</a
+        >
+      </li>
       <li
         *ngIf="
           _authService.loggedIn() &&
@@ -189,7 +189,7 @@
         <p class="footerOptions" routerLink="/about">Privacy Policy</p>
       </div>
       <div class="col-md-3">
-        <p class="footerOptions" routerLink="/about">About Us</p>
+        <p class="footerOptions" routerLink="/about">Terms Of Use</p>
       </div>
     </div>
   </div>

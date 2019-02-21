@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AdminService } from '../admin.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -6,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+  public contact: any = {};
+  @ViewChild('contactform') mytemplateForm: NgForm;
 
-  public contact :any = {};
-  constructor() { }
+  constructor(private adminService: AdminService) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  contactDetail() {
+    this.adminService.addContact(this.contact);
+    this.mytemplateForm.reset();
   }
-
 }
