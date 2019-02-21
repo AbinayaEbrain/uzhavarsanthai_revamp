@@ -4,6 +4,7 @@ const router = express.Router()
 const User = require('../models/user')
 const Post = require('../models/post')
 const Category = require('../models/category')
+const Blog = require('../models/blog')
 const mongoose = require('mongoose')
 var multer = require('multer');
 const  cloudinary = require('cloudinary')
@@ -102,6 +103,19 @@ router.post('/category',(req,res)=>{
     let categoryData = req.body
     let category = new Category(categoryData)
     category.save((error,productData)=>{
+        if(error){
+            console.log(error)
+        }else{
+            
+            res.status(200).send(productData)
+
+        }
+    })
+})
+router.post('/blog',(req,res)=>{
+    let blogData = req.body
+    let blog = new Blog(blogData)
+    blog.save((error,productData)=>{
         if(error){
             console.log(error)
         }else{

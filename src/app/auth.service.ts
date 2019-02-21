@@ -8,6 +8,7 @@ import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
 export class AuthService {
   private _registerUrl = "https://uzhavarsanthai.herokuapp.com/api/register";
   private _logInUrl = "https://uzhavarsanthai.herokuapp.com/api/login";
+  private _blogrUrl = "http://localhost:5000/api/register";
 
   constructor(private http:HttpClient,private route:Router) { }
 
@@ -27,6 +28,11 @@ export class AuthService {
     let username = JSON.parse(localStorage.getItem('firstname'));
     return username;
   }
+  // blogUserData(){
+  //   return this.http.post<any>(this._registerUrl,user)
+  // }
+  
+  
 
   roleAdmin(){
     
