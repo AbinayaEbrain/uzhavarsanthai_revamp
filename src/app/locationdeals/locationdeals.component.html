@@ -71,7 +71,12 @@
         <div class="row mt-5">
 
           <div class="col-md-3"  *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name'  | paginate: {id:'foo1' ,itemsPerPage:8,currentPage:p }">
-                <div class="card">
+            <div class="row" *ngIf="deal === -1" style="margin-left:auto;margin-right:auto;text-align:center">
+              <div class="col-md-12">
+                {{errMsg1}}
+              </div>
+            </div>
+                <div class="card" *ngIf="deal !== -1">
                         <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                         <table class="tableContent">
                                 <tr>
