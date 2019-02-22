@@ -253,3 +253,11 @@ input {
     margin-left: -5px !important;
   }
 }
+
+.errDesign {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+  color: #0d4608;
+}
