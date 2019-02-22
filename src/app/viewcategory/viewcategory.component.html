@@ -5,14 +5,14 @@
 </style>
 <body class="backgrd">
         <div class="container mainCntainer">
-            <div class="row">
-                <div class="col-md-4">
-                        <button class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 25%;margin-left: 10px;" routerLink="/dealCategory"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
+            <div class="row mt-5 pt-5">
+                <div class="col-md-4 col-xs-6">
+                        <button class="btn btn-outline-success text-center viewMoreBtn button_word" routerLink="/dealCategory"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
                         <button id="hideFilterButton" (click)="getGoogleAddress()" class="btn btn-outline-success text-center mobiviewFilterBtn viewMoreBtn button_word" data-toggle="modal" style="width: auto;margin-left: 10px;" data-target="#myModal" ><i class="fa fa-filter" aria-hidden="true" ></i> Filter</button>
                 </div>
                 <div class="col-md-2">
                 </div>
-                <div class="col-md-6 onmobiviewpadding" id="hideSearchDiv">
+                <div class="col-md-6 onmobiviewpadding mt-md-0 mt-2" id="hideSearchDiv">
                         <div class="inner-addon left-addon">
                                 <i class="fa fa-search glyphicon" aria-hidden="true"></i>
                                 <input type="text" class="form-control searchBorder"  [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
@@ -29,8 +29,8 @@
             <p>Your selected category is : <span class="printCategory">{{getCategory}}</span></p>
         </div>
             <div *ngIf="showDeals">
-                <div class="row mt-5" id="hideifNoData">
-                        <div class="col-md-3"  *ngFor = "let deal of totalDeals |paginate: {id: 'foo1', itemsPerPage:6,currentPage:e } | filterdata: queryString  : 'name'">
+                <div class="row mt-3" id="hideifNoData">
+                        <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of totalDeals |paginate: {id: 'foo1', itemsPerPage:6,currentPage:e } | filterdata: queryString  : 'name'">
                           <div class="row" *ngIf="deal === -1" style="margin-left:auto;margin-right:auto;text-align:center">
                             <div class="col-md-12">
                               {{errMsg1}}
@@ -74,8 +74,8 @@
 
             <div *ngIf="!showDeals">
                     <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
-                    <div class="row mt-5" id="hideifData">
-                           <div class="col-md-3"  *ngFor = "let deal of totalDeals1 | paginate: {id: 'foo', itemsPerPage:6,currentPage:p } | filterdata: queryString  : 'name'">
+                    <div class="row mt-3" id="hideifData">
+                           <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of totalDeals1 | paginate: {id: 'foo', itemsPerPage:6,currentPage:p } | filterdata: queryString  : 'name'">
                              <div class="row" *ngIf="deal === -1" style="margin-left:auto;margin-right:auto;text-align:center">
                                <div class="col-md-12">
                                  {{errMsg1}}
