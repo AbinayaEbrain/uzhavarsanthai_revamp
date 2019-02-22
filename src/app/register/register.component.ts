@@ -1,7 +1,7 @@
 import { Component, OnInit ,ViewChild, ElementRef,NgZone } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router} from '@angular/router';
-// loader 
+// loader
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
 
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
   public addr: {
     formatted_address:''
   };
- 
+
   setAddress(addrObj) {
     this.zone.run(() => {
       this.addr = addrObj;
@@ -40,8 +40,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  
-  constructor(private _auth:AuthService,public zone:NgZone,private router:Router,public loadingCtrl: NgxSpinnerService,private http: HttpClient) { 
+
+  constructor(private _auth:AuthService,public zone:NgZone,private router:Router,public loadingCtrl: NgxSpinnerService,private http: HttpClient) {
 
 
   this.registeredUserData.gender = ''
@@ -59,12 +59,12 @@ export class RegisterComponent implements OnInit {
 
 
   post(){
-    
+
     this.registeredUserData.status = "ACTIVE"
     this.registeredUserData.address.city = this.addr
     this.loadingCtrl.show();
     this._auth.registerUser(this.registeredUserData)
-      .subscribe( 
+      .subscribe(
         res =>{
           this.loadingCtrl.hide();
            localStorage.setItem('token',res.token)
@@ -76,13 +76,13 @@ export class RegisterComponent implements OnInit {
            this.router.navigate(['/products']);
           //  document.getElementById('hideButton').style.display ='none'
           //  document.getElementById('hideRestButton').style.display ='none'
-          
-         
-          
+
+
+
         //    setTimeout(() => {
         //     // swal.close();
         //     this.loadingCtrl.hide();
-          
+
         // }, 2000);
 
         if(res.statusText == 'Unauthorized'){
@@ -96,12 +96,12 @@ export class RegisterComponent implements OnInit {
             this.errormsg ='Phone Number already exist!'
             setTimeout(()=>{
              this.errormsg=''
-            },3000)
-            
+           },15000)
+
              this.loadingCtrl.hide();
            }
         }
-      
+
       )
   }
 
@@ -119,11 +119,9 @@ export class RegisterComponent implements OnInit {
   handleInput(evt)
 			{
 				var charCode = (evt.which) ? evt.which : evt.keyCode;
-				if (charCode != 46 && charCode > 31 
+				if (charCode != 46 && charCode > 31
 				&& (charCode < 48 || charCode > 57))
 				return true;
 				return false;
-			} 
+			}
 }
-
-
