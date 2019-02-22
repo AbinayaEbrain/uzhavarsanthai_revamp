@@ -1,5 +1,5 @@
 <body class="bg1" style="overflow: hidden;">
-    <div class="container mt-5 pt-1">  
+    <div class="container mt-5 pt-1">
       <div class="row mt-5">
           <div class="col-md-1"></div>
           <div class="col-md-4">
@@ -11,17 +11,17 @@
                     <div class="form-group mb-5 "     style="margin-top: -20px;">
                             <input type="text"  #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="registeredUserData.firstname" autocomplete="off" required>
                             <label class="form-control-placeholder english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
-                            <span class="text-danger float-left error_word" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> First Name is required</span>  
+                            <span class="text-danger float-left error_word" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> First Name is required</span>
                     </div>
                     <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                                 <input type="text"  #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control"  [(ngModel)]="registeredUserData.address.addressLine" autocomplete="off" required>
-                                <label class="form-control-placeholder english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி  </span>/ Address</label>
+                                <label class="form-control-placeholder english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
                                 <span class="text-danger float-left error_word" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>  
                      </div>
                      <div class="form-group mb-5 mt-2">
                             <input google-place type="text" placeholder="" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="registeredUserData.address.city" required>
                             <label class="form-control-placeholder english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">மாவட்டம்  </span>/ City</label>
-                            <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span> 
+                            <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
                     </div>
                     <div class="form-group  mb-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
                             <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" (change)="phnTen()" [(ngModel)]="registeredUserData.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
@@ -40,8 +40,8 @@
                      <div class="form-group mt-2">
                             <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
                             <label class="form-control-placeholder english_wrd" for="password"><span style="font-size: 14px" class="tamil_word">கடவுச்சொல் </span>/ Password</label>
-                            <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>  
-                      
+                            <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
+
                         </div>
                         <div class="row">
                                 <div class="col-md-12 ">
@@ -51,16 +51,15 @@
                                     <button id="hideRestButton" type="reset" class="btn mt-4 btn1 button_word">Reset</button>
                                 </div> -->
                             </div>
-                      
+
             </form>
             <br>
             <p class="clr mt-1 english_wrd " style="font-size: 18px;">Already have account? <span routerLink="/login" class="span_clr"  style="cursor: pointer;font-size: 18px;">Login</span> </p>
         </div>
         <div class="col-md-6">
-              
+
         </div>
       </div>
-    </div> 
+    </div>
 
             </body>
-  
