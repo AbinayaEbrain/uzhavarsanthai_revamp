@@ -9,68 +9,28 @@
                     <button id="hideFilterButton" class="btn btn-outline-success text-center viewMoreBtn button_word mobiviewFilterBtn" (click)="getCategory()" data-toggle="modal" style="margin-left: 10px;" data-target="#myModal">Filter <i class="fa fa-filter" aria-hidden="true"></i></button>
                 </div>
                 <div class="col-md-2">
-             
+
                     </div>
                 <div class="col-md-6 onmobiviewpadding mt-md-0 mt-2" id="hideSearchDiv">
                         <div class="inner-addon left-addon">
-                                <i class="fa fa-search glyphicon" aria-hidden="true"></i>    
+                                <i class="fa fa-search glyphicon" aria-hidden="true"></i>
                                 <input type="text" class="form-control searchDiv"  id="search_box" [(ngModel)]="queryString" (keyup)="case()" name="search" autocomplete="off" placeholder="Search by product.." />
-                                 
+
                               </div>
                 </div>
             </div>
-            
+
           <p class="no_deals_found error_word" *ngIf="noLocationErr">{{noLocationErr}}</p>
-      
-            <!-- <p class="no_deals_found error_word" *ngIf="errMsg1">{{errMsg1}}</p> -->
-   
-            <!-- [style.display]="!totalDeals1 ? 'block' : 'none'" -->
-       <div *ngIf="showDeals">  
+       <div *ngIf="showDeals">
       <div class="row mt-3">
-    
+
         <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of mapDeals | filterdata: queryString  : 'name'  |paginate: {id: 'foo', itemsPerPage:8,currentPage:e }">
-                <div class="card">
-                        <img src="{{deal.image}}" alt="uzhavarsanthai" class="cardImg" style="margin-bottom: 10px;">
-                        <table class="tableContent">
-                                <tr>
-                                   <td><strong>Product &nbsp; </strong></td>
-                                   <td>:</td>
-                                   <div class="productFullName">&nbsp;&nbsp;{{deal.name}}</div>
-                               </tr>
-                               <tr>
-                                   <td><strong>Price &nbsp; </strong></td>
-                                   <td>:</td>
-                                   <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
-                                </tr>
-                                <tr>
-                                   <td><strong>Quantity &nbsp;</strong></td>
-                                   <td>:</td>
-                                   <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
-                               </tr>
-                               <tr>
-                                   <td><strong>Location &nbsp;</strong></td>
-                                   <td>:</td>
-                                   <div class="productFullName">&nbsp;&nbsp;{{deal.avlPlace.locality}}</div>
-                               </tr>
-                              
-                           </table>
-                           <br> 
-                           <button type="button" class="btn btn-outline-success text-center viewMoreBtn"  routerLink= "/viewmore/{{deal._id}}">View More</button>  
-                           <br>  
-                      </div>
+          <div class="row" *ngIf="deal === -1" style="margin-left:auto;margin-right:auto;text-align:center">
+            <div class="col-md-12">
+              {{errMsg1}}
+            </div>
           </div>
-         
-      </div>
-      <div class="mx-auto" id="hidePagination">
-        <pagination-controls id="foo" class="ngx-pagination" (pageChange)="e = $event"></pagination-controls>
-      </div>
-      </div>
-      <!-- [style.display]="totalDeals1 ? 'block' : 'none'" -->
-      <div *ngIf="!showDeals">  
-        <div class="row mt-3">
-      
-          <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name'  | paginate: {id:'foo1' ,itemsPerPage:8,currentPage:p }">
-                <div class="card">
+                <div class="card" *ngIf="deal !== -1">
                         <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                         <table class="tableContent">
                                 <tr>
@@ -93,13 +53,59 @@
                                    <td>:</td>
                                    <div class="productFullName">&nbsp;&nbsp;{{deal.avlPlace.locality}}</div>
                                </tr>
-                              
+
                            </table>
-                           <br> 
-                           <button type="button" class="btn btn-outline-success text-center viewMoreBtn"  routerLink= "/viewmore/{{deal._id}}">View More</button>  
-                           <br>  
+                           <br>
+                           <button type="button" class="btn btn-outline-success text-center viewMoreBtn"  routerLink= "/viewmore/{{deal._id}}">View More</button>
+                           <br>
                       </div>
-            </div> 
+          </div>
+
+      </div>
+      <div class="mx-auto" id="hidePagination">
+        <pagination-controls id="foo" class="ngx-pagination" (pageChange)="e = $event"></pagination-controls>
+      </div>
+      </div>
+      <!-- [style.display]="totalDeals1 ? 'block' : 'none'" -->
+      <div *ngIf="!showDeals">
+        <div class="row mt-3">
+
+          <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name'  | paginate: {id:'foo1' ,itemsPerPage:8,currentPage:p }">
+            <div class="row" *ngIf="deal === -1" style="margin-left:auto;margin-right:auto;text-align:center">
+              <div class="col-md-12">
+                {{errMsg1}}
+              </div>
+            </div>
+                <div class="card" *ngIf="deal !== -1">
+                        <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
+                        <table class="tableContent">
+                                <tr>
+                                   <td><strong>Product &nbsp; </strong></td>
+                                   <td>:</td>
+                                   <div class="productFullName">&nbsp;&nbsp;{{deal.name}}</div>
+                               </tr>
+                               <tr>
+                                   <td><strong>Price &nbsp; </strong></td>
+                                   <td>:</td>
+                                   <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
+                                </tr>
+                                <tr>
+                                   <td><strong>Quantity &nbsp;</strong></td>
+                                   <td>:</td>
+                                   <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
+                               </tr>
+                               <tr>
+                                   <td><strong>Location &nbsp;</strong></td>
+                                   <td>:</td>
+                                   <div class="productFullName">&nbsp;&nbsp;{{deal.avlPlace.locality}}</div>
+                               </tr>
+
+                           </table>
+                           <br>
+                           <button type="button" class="btn btn-outline-success text-center viewMoreBtn"  routerLink= "/viewmore/{{deal._id}}">View More</button>
+                           <br>
+                      </div>
+            </div>
         </div>
         <div class="mx-auto" id="hidePagination">
             <pagination-controls id="foo1" class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
@@ -123,14 +129,14 @@
                                             <option style="color: black" value="" disabled >Choose category</option>
                                         <option *ngFor="let val of categoryArr" value="{{val._id}}">{{val.productCategory}}</option>
                                       </select>
-                                        </div> 
+                                        </div>
                                   <div class="col-md-6"  style="margin-top: 3%;">
                                       <div class="form-group">
                                           <label style="color: black;font-weight: bold;" class="english_wrd"> Min - Quantity</label>
                                           <input type="text" #searchmainquantity="ngModel"  ngModel  name="searchmainquantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchmainquantity">
-                                        
+
                                       </div>
-                                   
+
                                   </div>
                                   <div class="col-md-6"  style="margin-top: 3%;">
                                       <div class="form-group">
@@ -140,34 +146,33 @@
                                                 <option style="color: black" value="Kg">Kg</option>
                                                 <option style="color: black" value="Litre">Ltre</option>
                                             </select>
-                                           
+
                                       </div>
-                                    
+
                                   </div>
                                   <div class="col-md-6">
                                       <div class="form-group">
                                           <label style="color: black;font-weight: bold;" class="english_wrd">Price Range - Min</label>
                                           <input type="text" #frmAmt="ngModel"  ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter min price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.frmAmt">
-                                          
+
                                       </div>
                                      </div>
                                      <div class="col-md-6">
                                         <div class="form-group">
                                             <label style="color: black;font-weight: bold;" class="english_wrd"> Max</label>
                                             <input type="text" #toCost="ngModel" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter max price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.toCost">
-                                           
+
                                         </div>
                                        </div>
-                                 
+
                                 </div>
                                 <div class="text-center">
                                     <button type="submit"  class="btn btn-outline-success text-center viewMoreBtn button_word mb-2"   (click)="filterDeal()" data-dismiss="modal">Search</button>
                                 </div>
                               </form>
                 </div>
-                
+
               </div>
-              
+
             </div>
           </div>
-    

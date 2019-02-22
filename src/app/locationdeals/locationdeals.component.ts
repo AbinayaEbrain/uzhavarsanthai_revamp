@@ -43,7 +43,7 @@ export class LocationdealsComponent implements OnInit {
   totalDeals1: any;
   getSearchDeals = [];
   submitted: any;
-
+  getPrdtName=[];
   constructor(
     private _dealsService: DealsService,
     private route: Router,
@@ -86,13 +86,16 @@ export class LocationdealsComponent implements OnInit {
             this.loadingCtrl.show();
             this.showDeals = true;
             this.activeUsers = res;
+            let l = 0;
             let k = 0;
             for (let i = 0; i < this.activeUsers.length; i++) {
               for (let j = 0; j < this.mapDeals.length; j++) {
                 if (this.activeUsers[i]._id == this.mapDeals[j].accountId) {
                   if (this.activeUsers[i].status == 'ACTIVE') {
                     this.crdDeals1[k] = this.mapDeals[j];
+                      this.getPrdtName[l] = this.crdDeals1[k].name;
                     k++;
+                    l++;
                     this.loadingCtrl.hide();
                   }
                 }
@@ -123,7 +126,13 @@ export class LocationdealsComponent implements OnInit {
   case() {
     // console.log(this.queryString);
     this.queryString = this.queryString.toLowerCase();
-    // console.log(this.queryString);
+    for (let i = 0; i < this.getPrdtName.length; i++) {
+      if (this.queryString != this.getPrdtName[i]){
+          console.log('no data')
+          this.errMsg1 = 'Product Unavailable';
+        
+      }
+    }
   }
 
   getCategory() {
