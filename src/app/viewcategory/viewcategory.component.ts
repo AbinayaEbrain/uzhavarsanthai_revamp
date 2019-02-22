@@ -46,6 +46,7 @@ export class ViewcategoryComponent implements OnInit {
     locality: '';
   };
   getCategory: any;
+  getPrdtName = [];
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -69,6 +70,7 @@ export class ViewcategoryComponent implements OnInit {
     this.showDeals = true;
     this._dealService.getDeals().subscribe(
       res => {
+
         let j = 0;
         this.crdDeals = res;
         console.log(this.crdDeals);
@@ -83,7 +85,10 @@ export class ViewcategoryComponent implements OnInit {
             console.log(this.crdDeals[i].validityTime);
             this.totalDeals[j] = this.crdDeals[i];
             this.getCategory = this.totalDeals[j].category;
+            this.getPrdtName = this.totalDeals[j].name;
+          console.log(this.getCategory)
             j++;
+
             this.loadingCtrl.hide();
           }
         }
@@ -108,7 +113,13 @@ export class ViewcategoryComponent implements OnInit {
   case() {
     // console.log(this.queryString);
     this.queryString = this.queryString.toLowerCase();
-    // console.log(this.queryString);
+    for (let i = 0; i < this.getPrdtName.length; i++) {
+      if (this.queryString != this.getPrdtName[i]){
+          console.log('no data')
+          this.errMsg1 = 'Product Unavailable';
+
+      }
+    }
   }
 
   getGoogleAddress() {

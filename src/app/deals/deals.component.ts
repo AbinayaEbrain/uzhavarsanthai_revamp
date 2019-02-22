@@ -146,7 +146,7 @@ export class DealsComponent implements OnInit {
       if (this.queryString != this.getPrdtName[i]){
           console.log('no data')
           this.errMsg1 = 'Product Unavailable';
-          document.getElementById('hidePagination').style.display = "none";
+          // document.getElementById('hidePagination').style.display = "none";
       }
     }
   }
