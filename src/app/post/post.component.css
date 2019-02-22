@@ -52,7 +52,8 @@ input:focus {
 
 .opt {
   font-size: 14px !important;
-  font-weight: bolder !important;
+  font-weight: bold !important;
+  font-family: 'Hind Madurai', sans-serif;
 }
 
 select option {
@@ -116,18 +117,15 @@ select {
   background-color: white;
   color: #000;
 } */
-
-.opt {
-  font-weight: bolder;
-}
 .slect {
   position: absolute;
   top: 0;
   padding: 7px 0 0 0px;
   transition: all 200ms;
-  /* opacity: 0.5; */
-  font-size: 16px;
+  font-weight: bold;
+  font-size: 15px;
   color: #0d4608;
+  font-family: 'Hind Madurai', sans-serif;
   border-bottom-color: 1px solid #0d4608 !important;
 }
 .form-control-placeholder {
@@ -249,7 +247,8 @@ input {
 .categoryOption {
   background-color: white !important;
   color: #0d4608 !important;
-  font-weight: bold;
+  font-weight: bold !important;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .upload {
   color: #0d4608;

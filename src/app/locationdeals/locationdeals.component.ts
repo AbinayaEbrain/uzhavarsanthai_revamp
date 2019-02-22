@@ -18,7 +18,8 @@ export class LocationdealsComponent implements OnInit {
         lat: '',
         lng: ''
       },
-      accountId: ''
+      accountId: '',
+      validityTime: ''
     }
   ];
   mapDeals = [];
@@ -64,12 +65,15 @@ export class LocationdealsComponent implements OnInit {
         this.lat1 = this.lat2 * 1.009;
         this.latd = this.lat2 / 1.002;
         let j = 0;
+        let CurrentDate = new Date().toISOString();
         for (let i = 0; i < this.crdDeals.length; i++) {
           if (
             this.crdDeals[i].avlPlace.lat < this.lat1 &&
-            this.crdDeals[i].avlPlace.lng > this.latd
+            this.crdDeals[i].avlPlace.lng > this.latd &&
+            this.crdDeals[i].validityTime > CurrentDate
           ) {
             this.mapDeals[j] = this.crdDeals[i];
+            console.log(this.mapDeals[j]);
             j++;
             this.loadingCtrl.hide();
           }
@@ -83,7 +87,6 @@ export class LocationdealsComponent implements OnInit {
             this.showDeals = true;
             this.activeUsers = res;
             let k = 0;
-
             for (let i = 0; i < this.activeUsers.length; i++) {
               for (let j = 0; j < this.mapDeals.length; j++) {
                 if (this.activeUsers[i]._id == this.mapDeals[j].accountId) {
@@ -122,7 +125,7 @@ export class LocationdealsComponent implements OnInit {
     this.queryString = this.queryString.toLowerCase();
     // console.log(this.queryString);
   }
-  
+
   getCategory() {
     this.loadingCtrl.show();
     this._dealsService.getCategory().subscribe(
@@ -163,8 +166,8 @@ export class LocationdealsComponent implements OnInit {
         j++;
       }
     }
-      this.showDeals = false;
-      document.getElementById('hidePagination').style.display = 'block';
+    this.showDeals = false;
+    document.getElementById('hidePagination').style.display = 'block';
 
     if (this.totalDeals1.length == 0) {
       this.loadingCtrl.show();

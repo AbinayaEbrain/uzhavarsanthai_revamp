@@ -26,6 +26,10 @@
   white-space: nowrap;
   width: 129px;
   overflow: hidden;
+  font-family: 'Hind Madurai', sans-serif !important;
+}
+.table tr {
+  font-family: 'Hind Madurai', sans-serif !important;
 }
 .card {
   border-radius: 8px;
