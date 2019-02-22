@@ -196,6 +196,7 @@ select {
   /* opacity: 0.5; */
   font-size: 17px;
   color: #0d4608;
+  font-family: 'Hind Madurai', sans-serif;
   border-bottom-color: 2px solid #0d4608 !important;
 }
 .form-control-placeholder {
@@ -208,14 +209,16 @@ select {
   font-weight: 500;
   font-size: 17px;
   color: #0d4608;
+  font-family: 'Hind Madurai', sans-serif;
 }
 
 .lab {
   color: #0d4608;
   float: left;
-  font-size: 15px;
-  font-weight: bolder;
+  font-size: 14px;
+  font-weight: bold;
   margin-top: -25px;
+  font-family: 'Hind Madurai', sans-serif;
 }
 
 .form-control:focus + .form-control-placeholder,

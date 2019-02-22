@@ -15,7 +15,7 @@
             <div class="row marginTop">
               <div class="col-md-1"></div>
                 <div class="col-md-5 mb-5 mt-2">
-                        <label class="lab" for="category">Category</label>
+                        <label class="lab" for="category">பொருளின் வகை / Category</label>
                     <div class="form-group">
                         <select required class="form-control slect"  #category="ngModel" [(ngModel)]="deallistobj.category" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel (change)="onCategoryChange()">
                             <option selected="" value="">Category</option>
@@ -46,7 +46,7 @@
                             </div>
                       </div>
                       <div class="col-md-5  mb-5">
-                            <label class="lab" for="category">Unit</label>
+                            <label class="lab" for="category">அலகு / Unit</label>
                           <div class="form-group">
                             
                               <select required class="form-control slect"  #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel (change)="getunits()" [(ngModel)]="deallistobj.qnty" >

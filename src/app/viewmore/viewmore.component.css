@@ -61,12 +61,17 @@
 tr {
   line-height: 5px;
 }
-.mobileIcon{
+.mobileIcon {
   color: #0d4608 !important;
   font-weight: bold;
 }
-.contactNumber{
-    padding-top: 8px !important;
+.contactNumber {
+  padding-top: 8px !important;
+}
+.prdtName {
+  word-break: break-all;
+  line-height: 15px;
+  padding-top: 1%;
 }
 @media screen and (max-width: 330px) {
   td {
@@ -102,7 +107,7 @@ tr {
   strong {
     font-size: 14px !important;
   }
-  .prdtName{
+  .prdtName {
     word-break: break-all;
     line-height: 15px;
     padding-top: 3%;

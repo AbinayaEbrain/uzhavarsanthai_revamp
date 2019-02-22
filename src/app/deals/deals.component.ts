@@ -88,6 +88,7 @@ export class DealsComponent implements OnInit {
       res => {
         this.showDeals = true;
         this.crdDeals = res;
+        console.log(this.crdDeals);
         if (this.crdDeals.length == 0) {
           // this.loadingCtrl.show();
           this.errMsg = 'Currently no deals available';
@@ -114,9 +115,13 @@ export class DealsComponent implements OnInit {
         this.activeUsers = res;
         let l = 0;
         let k = 0;
+        let CurrentDate = new Date().toISOString();
         for (let i = 0; i < this.activeUsers.length; i++) {
           for (let j = 0; j < this.crdDeals.length; j++) {
-            if (this.activeUsers[i]._id == this.crdDeals[j].accountId) {
+            if (
+              this.activeUsers[i]._id == this.crdDeals[j].accountId &&
+              this.crdDeals[j].validityTime > CurrentDate
+            ) {
               if (this.activeUsers[i].status == 'ACTIVE') {
                 this.crdDeals1[k] = this.crdDeals[j];
                   this.getPrdtName[l] = this.crdDeals1[k].name;

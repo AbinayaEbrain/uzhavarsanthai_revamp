@@ -83,7 +83,6 @@ export class UserProductsComponent implements OnInit {
         this.loadingCtrl.hide();
         let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
         let j = 0;
-
         this.crdDeals = res;
         let CurrentDate = new Date().toISOString();
         for (let i = 0; i < this.crdDeals.length; i++) {
