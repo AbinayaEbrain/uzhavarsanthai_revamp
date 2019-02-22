@@ -227,3 +227,11 @@ table {
 .cardImg {
   height: 150px;
 }
+
+.errDesign {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+  color: #0d4608;
+}
