@@ -61,9 +61,14 @@ ul li a {
 }
 .EbrainTechnologies {
   color: white !important;
+  font-family: 'Mukta', sans-serif;
+}
+.footer-copyright{
+    font-family: 'Mukta', sans-serif;
 }
 .footerOptions {
   margin-top: 3% !important;
+  font-family: 'Mukta', sans-serif;
   cursor: pointer !important;
   font-weight: bold !important;
   text-align: center !important;
