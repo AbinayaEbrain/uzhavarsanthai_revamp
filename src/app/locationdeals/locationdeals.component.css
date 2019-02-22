@@ -1,156 +1,153 @@
-
-  .card {
-    border-radius: 8px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
-    overflow: hidden;
-    position: relative;
-    top: 0;
-    text-align: center;
-    margin-bottom: 5px;
-    transition: all 0.25s;
-  }
-  .productFullName {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 150px;
-    overflow: hidden;
-  }
-  .searchDiv {
-    border: 1px solid #0d4608;
-    background-color: #fff;
-    color: #0d4608;
-  }
-  .close {
-    color: white !important;
-  }
-  .headingTitle{
-    background-color: #072304;
-    color: white;
-  }
-  .card:nth-child(2) {
-    margin: 0 50px;
-  }
-  .card:hover {
-    top: -15px;
-    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
-  }
-  .tableContent{
-    color: #0d4608;
-  }
-  .viewMoreBtn{
-    margin: auto;
-    font-weight: bold;
-    color: #0d4608;
-    border-color: #0d4608;
-  }
-  .viewMoreBtn:hover{
-    background-color: #0d4608;
-    color: white;
-  }
-  .title{
-    border-radius: 0px 20px 0px 20px;
-    height: 45px;
-    color: #dee2e6;
-    padding-left: 30%;
-    background-color: #23dfe8;  
-  }
-  .details{
-    padding-top: 5px;
-    color: #fff;
-  }
-  .card-body{
-    font-size: 17px;
-  }
-  .no_deals_found{
-    text-align: center;
-    color: black;
-    font-weight: bold;
-    font-size: 20px;
-    background-color: white;
-        width: fit-content;
-        margin: auto;
-        padding: 5px;
-        box-shadow: 7px 7px 7px grey;
-        border-radius: 5px;
-        margin-top: 10% !important;
-  }
-  textarea{
-    overflow: hidden;
-    background-color: transparent;
-    border: none;
-    color: white;
-    margin-top: 30px;
-    height: 50px;
-  }
-  .btn-primary{ 
-    margin: auto;
-    border-radius: 5px 5px 5px 5px  ;
-  
-    color: #fff;
-    background-color: rgb(242, 101, 50);
-    border: 1px solid  #9d0a18;
-  }
-  .btn-primary1{ 
-    margin: auto;
-    border-radius: 5px 5px 5px 5px  ;
-    width: 100%;
-    color: #fff;
-    background-color: rgb(6, 75, 23);
-    
-  }
-  .btn-primary:hover{
-    border: 1px solid #04857e;
-    background-color:  green;
-  }
-
-  .card-body{
-    
+.card {
+  border-radius: 8px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  text-align: center;
+  margin-bottom: 5px;
+  transition: all 0.25s;
+}
+.productFullName {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 150px;
+  overflow: hidden;
+}
+.searchDiv {
+  border: 1px solid #0d4608;
+  background-color: #fff;
+  color: #0d4608;
+}
+.close {
+  color: white !important;
+}
+.headingTitle {
+  background-color: #072304;
+  color: white;
+}
+.card:nth-child(2) {
+  margin: 0 50px;
+}
+.card:hover {
+  top: -15px;
+  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+}
+.tableContent {
+  color: #0d4608;
+}
+.viewMoreBtn {
+  margin: auto;
+  font-weight: bold;
+  color: #0d4608;
+  border-color: #0d4608;
+}
+.viewMoreBtn:hover {
+  background-color: #0d4608;
+  color: white;
+}
+.title {
+  border-radius: 0px 20px 0px 20px;
+  height: 45px;
+  color: #dee2e6;
+  padding-left: 30%;
+  background-color: #23dfe8;
+}
+.details {
+  padding-top: 5px;
+  color: #fff;
+}
+.card-body {
   font-size: 17px;
-  }
-  tr{
-    text-align: left;
-  }
-  table{
-    margin: auto;
-  }
- .srchBox{
+}
+.no_deals_found {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: white;
+  width: fit-content;
+  margin: auto;
+  padding: 5px;
+  box-shadow: 7px 7px 7px grey;
+  border-radius: 5px;
+  margin-top: 10% !important;
+}
+textarea {
+  overflow: hidden;
+  background-color: transparent;
+  border: none;
+  color: white;
+  margin-top: 30px;
+  height: 50px;
+}
+.btn-primary {
+  margin: auto;
+  border-radius: 5px 5px 5px 5px;
+
+  color: #fff;
+  background-color: rgb(242, 101, 50);
+  border: 1px solid #9d0a18;
+}
+.btn-primary1 {
+  margin: auto;
+  border-radius: 5px 5px 5px 5px;
+  width: 100%;
+  color: #fff;
+  background-color: rgb(6, 75, 23);
+}
+.btn-primary:hover {
+  border: 1px solid #04857e;
+  background-color: green;
+}
+
+.card-body {
+  font-size: 17px;
+}
+tr {
+  text-align: left;
+}
+table {
+  margin: auto;
+}
+.srchBox {
   border-radius: 50px;
   border-color: #f26532;
- } 
- .icon{
+}
+.icon {
   /* margin: auto; */
   background: white;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   border-top-right-radius: 5px;
-  border-bottom-right-radius:5px; 
-/*    
+  border-bottom-right-radius: 5px;
+  /*    
   font-weight: 400; */
   border: 1px solid transparent;
-  padding: .375rem .75rem;
+  padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
   float: right;
 }
 
- .srchBox {
+.srchBox {
   background: white;
   border-left: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-top-right-radius: 0px;
-  border-bottom-right-radius:0px; 
+  border-bottom-right-radius: 0px;
   display: inline-block;
   font-weight: 400;
   border: 1px solid transparent;
-  padding: .375rem .75rem;
+  padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
 }
 .srchBox:focus {
   width: 200px;
 }
-.bg { 
+.bg {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -158,51 +155,75 @@
   background-size: cover;
   min-height: -webkit-fill-available;
 }
-.error_word{
+.error_word {
   font-family: 'Cabin', sans-serif;
 }
-   .inner-addon {
-    position: relative;
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align glyph */
+.left-addon .glyphicon {
+  left: 0px;
+}
+.right-addon .glyphicon {
+  right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+  padding-left: 30px;
+}
+.right-addon input {
+  padding-right: 30px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .no_deals_found {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: white;
+    width: fit-content;
+    margin: auto;
+    padding: 5px;
+    box-shadow: 7px 7px 7px grey;
+    border-radius: 5px;
+    margin-top: 20% !important;
   }
-  
-  /* style glyph */
-  .inner-addon .glyphicon {
-    position: absolute;
-    padding: 10px;
-    pointer-events: none;
-  }
-  
-  /* align glyph */
-  .left-addon .glyphicon  { left:  0px;}
-  .right-addon .glyphicon { right: 0px;}
-  
-  /* add padding  */
-  .left-addon input  { padding-left:  30px; }
-  .right-addon input { padding-right: 30px; }
-  
-  @media only screen and (min-width: 320px) and (max-width:425px){
-    .no_deals_found{
-        text-align: center;
-        color: black;
-        font-weight: bold;
-        font-size: 18px;
-        background-color: white;
-        width: fit-content;
-        margin: auto;
-        padding: 5px;
-        box-shadow: 7px 7px 7px grey;
-        border-radius: 5px;
-        margin-top: 20% !important;
-    }
-    /* .errDiv{
+  /* .errDiv{
       background-color: white;
       box-shadow: 7px 7px 7px grey;
   } */
-   .onmobiviewpadding{
+  .onmobiviewpadding {
     padding: 10px;
-   }
+  }
 
-   .mobiviewFilterBtn{
+  .mobiviewFilterBtn {
     float: right !important;
   }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .mobiviewFilterBtn {
+    float: right !important;
   }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .mobiviewFilterBtn {
+    margin-left: 5px !important;
+  }
+}
+
+.cardImg {
+  height: 150px;
+}
