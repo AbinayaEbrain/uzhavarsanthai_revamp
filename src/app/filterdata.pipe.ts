@@ -9,6 +9,11 @@ export class FilterdataPipe implements PipeTransform {
     if (!items) return [];
     if (!value) return  items;
     if (value == '' || value == null) return ("No results found");
-    return items.filter(e => e[label].toLowerCase().indexOf(value) > -1 );
+    let data = items.filter(e => e[label].toLowerCase().indexOf(value) > -1 );
+    if(data.length === 0){
+      return [-1];
+    }else{
+   return data;
+ }
   }
 }

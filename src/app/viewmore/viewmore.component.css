@@ -1,5 +1,4 @@
 .card {
-  margin-top: 5%;
   border-radius: 8px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
   overflow: hidden;
@@ -55,7 +54,7 @@
   float: left !important;
 }
 .viewImage {
-  height: 360px;
+  height: 376px;
   width: 368px;
 }
 tr {
@@ -100,10 +99,6 @@ tr {
   .card:nth-child(2) {
     margin: 0 0px !important;
   }
-  .viewImage {
-    height: 320px;
-    width: 280px;
-  }
   strong {
     font-size: 14px !important;
   }
@@ -111,5 +106,33 @@ tr {
     word-break: break-all;
     line-height: 15px;
     padding-top: 3%;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 767px) {
+  .margTop {
+    margin-top: 3%;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .viewImage {
+    height: inherit;
+    width: inherit;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .viewImage {
+    max-width: 228px;
+    max-height: 391px;
+    height: 398px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .viewImage {
+    /* height: inherit; */
+    width: 310px;
   }
 }
