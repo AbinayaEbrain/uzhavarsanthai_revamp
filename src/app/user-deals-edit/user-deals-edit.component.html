@@ -17,7 +17,7 @@
                 <div class="col-md-5 mb-5 mt-2">
                         <label class="lab" for="category">பொருளின் வகை / Category</label>
                     <div class="form-group">
-                        <select required class="form-control slect"  #category="ngModel" [(ngModel)]="deallistobj.category" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel (change)="onCategoryChange()">
+                        <select required class="form-control slect"  #category="ngModel" [(ngModel)]="deallistobj.category" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
                             <option selected="" value="">Category</option>
                             <option *ngFor="let val of categoryArr" value="{{val.productCategory}}">{{val.productCategory}}</option>
                           </select>
