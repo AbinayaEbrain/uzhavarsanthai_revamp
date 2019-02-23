@@ -18,7 +18,7 @@
           <div class="col-md-5">
               <div class="form-group mb-5 mt-2">
                   <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.categoryId" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
-                      <option class="opt" selected="" disabled="" value="" >பொருளின் வகை / Category</option>
+                      <option class="opt" selected="" disabled="" value="" >பொருளின் வகை /<span class="english_wrd"> Category</span> </option>
                       <option *ngFor="let val of categoryArr" class="categoryOption" value="{{val._id}}">{{val.productCategory}}</option>
                     </select>
                 </div>

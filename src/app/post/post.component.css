@@ -54,6 +54,7 @@ input:focus {
   font-size: 14px !important;
   font-weight: bold !important;
   font-family: 'Hind Madurai', sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 
 select option {
@@ -243,12 +244,14 @@ input {
   font-size: 14px;
   left: -12;
   font-family: 'Hind Madurai', sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 .categoryOption {
   background-color: white !important;
   color: #0d4608 !important;
   font-weight: bold !important;
   font-family: 'Hind Madurai', sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 .upload {
   color: #0d4608;

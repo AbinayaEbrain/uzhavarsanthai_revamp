@@ -100,6 +100,7 @@ today : Date;
             this.showUnit = this.dealslists[i].qnty
           }
         }
+        console.log(this.deallistobj)
 
         this.deallistobj.avlPlace = this.address.formatted_address
         this.dateNrml = this.datePipe.transform((this.time),'dd/MM/yyyy');

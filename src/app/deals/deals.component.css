@@ -1,7 +1,9 @@
 .bg {
   background-color: whitesmoke;
   height: -webkit-fill-available;
-    width: 100%;
+}
+::-webkit-scrollbar {
+  display: none;
 }
 .card {
   border-radius: 8px;
