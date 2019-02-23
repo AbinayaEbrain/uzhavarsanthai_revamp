@@ -2,13 +2,14 @@
     <div class="container  pt-5">
       <div class="row mt-2 mb-2">
           <div class="col-md-12 mt-5 card">
-            <h3 class="head mt-2">Blogs</h3>
+            <h4 class="head mt-2"><span class="tamil_word" style="font-size: 20px">வலைப்பதிவுகள்</span>/Blogs</h4>
                 <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr">
                   <div class="card-header" style="color:#0d4608;padding: 5px;">
-                    <p class="blogcard hedngBox"><strong >{{blog.username}} </strong>
-                    <button type="button" class="btn viewmrebtn btnmed"  data-toggle="collapse" [attr.data-target]="'#'+blog._id" aria-expanded="false" [attr.aria-controls]="blog._id">View More</button>
+                    <p class="blogcard hedngBox productFullName prdctFlNme1 prd2 prd3"><strong >{{blog.username}} </strong>
                   </p>
-                      <p class="blogcard1 a productFullName">{{blog.commenttext}} </p>
+                      <p class="blogcard1 a productFullName prdctFlNme1 prd2 prd3">{{blog.commenttext}} </p>
+                      <button type="button" class="btn viewmrebtn btnmed btn1"  data-toggle="collapse" [attr.data-target]="'#'+blog._id" aria-expanded="false" [attr.aria-controls]="blog._id">Read Blog</button>
+
                   
                     <!-- <button class="btn btnstl"   data-toggle="modal" data-target="#myModal" data-backdrop="static"
                   data-keyboard="false" routerLink="/blog-view/{{blog._id}}">

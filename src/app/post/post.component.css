@@ -52,7 +52,6 @@ input:focus {
 
 .opt {
   font-size: 14px !important;
-  font-weight: bold !important;
   font-family: 'Hind Madurai', sans-serif;
   font-family: 'Mukta', sans-serif;
 }
@@ -61,7 +60,7 @@ select option {
   padding: 10px;
   width: 100px;
   background: rgba(0, 0, 0, 0.3);
-  color: #0d4608;
+  color: white;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
   font-family: 'Hind Madurai', sans-serif !important;
 }
@@ -83,9 +82,8 @@ input {
 
 select {
   background-color: transparent;
-  /* border: 1px solid #79828b; */
+  font-family: 'Hind Madurai', sans-serif;
   border: 1px solid #0d4608 !important;
-
 }
 ::placeholder {
   color: #0d4608 !important;
@@ -126,7 +124,7 @@ select {
   padding: 7px 0 0 0px;
   transition: all 200ms;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 14px;
   color: #0d4608;
   font-family: 'Hind Madurai', sans-serif;
   border: 1px solid #0d4608 !important;
@@ -141,7 +139,7 @@ select {
   font-family: 'Mukta', sans-serif !important;
   left: -12px;
   font-size: 17px;
-    color: #0d4608 !important;
+  color: #0d4608 !important;
 }
 
 option {
@@ -153,8 +151,7 @@ option {
   font-size: 100%;
   transform: translate3d(0, -100%, 0);
   opacity: 1;
-    color: #0d4608 !important;
-
+  color: #0d4608 !important;
 }
 
 .clr {
@@ -235,32 +232,31 @@ input {
 ::-webkit-input-placeholder {
   font-family: 'Hind Madurai', sans-serif;
   font-size: 14px;
-    color: #0d4608 !important;
+  color: #0d4608 !important;
 }
 ::-moz-placeholder {
   font-size: 14px;
   font-family: 'Hind Madurai', sans-serif;
-    color: #0d4608 !important;
+  color: #0d4608 !important;
 }
 :-ms-input-placeholder {
   font-size: 14px;
   font-family: 'Hind Madurai', sans-serif;
 }
-label{
+label {
   float: left;
   color: #0d4608;
 }
-.prdtOption{
+.prdtOption {
   font-family: 'Mukta', sans-serif !important;
   font-weight: bold;
 }
 ::placeholder {
-  font-weight: bolder;
-  font-size: 14px;
+  font-size: 15px;
   left: -12;
   font-family: 'Hind Madurai', sans-serif;
   font-family: 'Mukta', sans-serif;
-    color: #0d4608 !important;
+  color: #0d4608 !important;
 }
 .categoryOption {
   background-color: white !important;
@@ -275,9 +271,9 @@ label{
   font-weight: bold;
   border: none !important;
 }
-.postLble{
+.postLble {
   float: left;
 }
-.tamil_word{
+.tamil_word {
   font-family: 'Hind Madurai', sans-serif;
 }
