@@ -59,13 +59,16 @@ input:focus {
 
 select option {
   padding: 10px;
-  /* margin: 40px; */
   width: 100px;
   background: rgba(0, 0, 0, 0.3);
   color: #0d4608;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  font-family: 'Hind Madurai', sans-serif !important;
 }
-
+select{
+  font-family: 'Hind Madurai', sans-serif !important;
+  font-family: 'Mukta', sans-serif !important;
+}
 select:focus {
   background-color: transparent;
   box-shadow: none;
@@ -108,7 +111,8 @@ select {
 .form-control {
   border-bottom: 1px solid #0d4608 !important;
   font-weight: bold;
-  font-family: 'Mukta', sans-serif;
+  font-family: 'Hind Madurai', sans-serif !important;
+  font-family: 'Mukta', sans-serif !important;
 
 }
 
@@ -133,6 +137,8 @@ select {
   padding: 7px 0 0 13px;
   transition: all 200ms;
   /* opacity: 0.5; */
+  font-family: 'Hind Madurai', sans-serif !important;
+  font-family: 'Mukta', sans-serif !important;
   left: -12px;
   font-size: 17px;
     color: #0d4608 !important;
@@ -260,8 +266,8 @@ label{
   background-color: white !important;
   color: #0d4608 !important;
   font-weight: bold !important;
-  font-family: 'Hind Madurai', sans-serif;
-  font-family: 'Mukta', sans-serif;
+  font-family: 'Hind Madurai', sans-serif !important;
+  font-family: 'Mukta', sans-serif !important;
 }
 .upload {
   color: #0d4608;
