@@ -11,30 +11,30 @@
           <form  #editForm="ngForm" *ngIf ="!submitted" novalidate class="mt-3">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-group mb-5 mt-2">
-                        <input type="text"  #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="crntUser.firstname" autocomplete="off" required>
-                        <label class="form-control-placeholder english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
-                        <span class="text-danger float-left error_word" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> First Name is required</span>  
+                    <div class="form-group  mt-2">
+                        <label class=" english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
+                        <input type="text" placeholder="Enter your name" #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="crntUser.firstname" autocomplete="off" required>
+                        <span class="text-danger float-left error_word" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> First Name is required</span>
                       </div>
                  </div>
                  <div class="col-md-12">
                     <div class="form-group  mb-5 mt-2">
-                        <input type="text"  #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control" [(ngModel)]="crntUser?.address.addressLine" autocomplete="off" required>
-                        <label class="form-control-placeholder english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
-                        <span class="text-danger float-left error_word" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>  
-                      </div> 
+                          <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
+                        <input type="text" placeholder="Enter your address" #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control" [(ngModel)]="crntUser?.address.addressLine" autocomplete="off" required>
+                        <span class="text-danger float-left error_word" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
+                      </div>
                  </div>
                  <div class="col-md-12 well">
                     <div class="form-group mb-5 mt-2">
                       <label class="dummyLable">மாவட்டம் / City</label>
-                        <input google-place type="text" placeholder="மாவட்டம் / City" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="crntUser.address.city.formatted_address" required>
-                        <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span> 
+                        <input google-place type="text" placeholder="Enter your city" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="crntUser.address.city.formatted_address" required>
+                        <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
                 </div>
                  </div>
                  <div class="col-md-12 text-center">
                     <button class="btn btn-outline-success viewMoreBtn button_word" type="submit" [disabled]="editForm.form.invalid" (click)="updateUser()">Update Profile</button>&nbsp;
                     <button type="submit" class="btn btn-outline-success text-center viewMoreBtn button_word" (click)="onSubmit()">Reset</button>
-                 </div>  
+                 </div>
             </div>
             <br>
           </form>

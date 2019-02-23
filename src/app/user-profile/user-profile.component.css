@@ -59,13 +59,7 @@
         color: #0d4608;text-align: left;margin-bottom: 10%;
       }
   }
-  label {
-    position:absolute;
-    pointer-events:none;
-    transition:0.2s ease all; 
-    -moz-transition:0.2s ease all; 
-    -webkit-transition:0.2s ease all;
-  }
+
 
  input[type=text], input[type=password] {
     width: 100%;
@@ -84,9 +78,13 @@ select option {
     background: rgba(0, 0, 0, 0.3);
     color:#0d4608;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-   
-}
 
+}
+label{
+  float: left;
+  font-weight: bold;
+  color: #0d4608;
+}
 
 select:focus{
     background-color: transparent;
@@ -97,10 +95,8 @@ select:focus{
 input{
     background-color: transparent;
     /* border: 1px solid #79828b; */
-    border-bottom: 1px solid #0d4608 !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
+    border: 1px solid #0d4608 !important;
+
 }
 
 select{
@@ -115,7 +111,7 @@ select{
     color: #0d4608;
     font-weight: bold;
     opacity: 1; /* Firefox */
-   
+
 }
 .modal_sccess{
     border: 2px solid black;
@@ -129,7 +125,7 @@ select{
     background-color: #0d4608;
     border: none;
     color: white;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 
@@ -137,7 +133,7 @@ select{
     position: relative;
     margin-bottom: 1.5rem;
   }
-  
+
   .form-control{
     color: #0d4608 !important;
 }
@@ -163,7 +159,7 @@ select{
     font-weight: bold;
     color:#0d4608;
   }
-  
+
   .form-control:focus + .form-control-placeholder,
   .form-control:valid + .form-control-placeholder {
     font-size: 100%;
@@ -172,7 +168,7 @@ select{
     color: #0d4608;
     font-weight: bold;
   }
- 
+
   .clr{
       color: #0d4608;
       font-family: 'Oxygen', sans-serif;
