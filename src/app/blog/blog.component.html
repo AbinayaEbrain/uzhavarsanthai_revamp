@@ -1,0 +1,42 @@
+
+<!-- <div class="container">
+    <div class="row ">
+        <div class="col-md-6 offset-md-3">
+    <div class="card" style="margin-top: 15px;">
+  <h2 class="text-center mt-5" style="color:#0d4608;">
+    Blog
+  </h2>
+  <div class="col-md-10 offset-md-1">
+   </div>
+  </div>
+</div>
+</div>
+</div> -->
+
+
+<div class="container-fluid bg1">
+    <div class="container  pt-5">
+      <div class="row mt-5 mb-5">
+          <div class="col-md-3"></div>
+          <div class="col-md-6 card">
+            <h3 style="color:#0d4608;text-align: center">Blog</h3>
+            <div class="col-md-10 offset-md-1">
+            <form #usrform="ngForm"  action="/action_page.php" id="usrform">
+              <div class="form-group" style="color:#0d4608;">
+                <label for="usr"  >Blog Title:</label>
+                <input type="text" #username="ngModel" style="border-color: #0d4608;" class="form-control" [(ngModel)]="blogUserData.username" autocomplete="off" id="usr" name="username" >
+              </div>
+            <div class="form-group" style="color:#0d4608;">
+              <label for="comment" >Blog:</label>
+              <textarea  class="form-control" #commenttext="ngModel" id="comment" [(ngModel)]="blogUserData.commenttext" autocomplete="off" style="height: 220px;border-color: #0d4608;"  name="commenttext"></textarea>
+            </div>
+            <div style="text-align:center">
+                <button type="button" class="btn btn-outline-success text-center viewMoreBtn" style="margin-bottom: 10px;"  type="submit" (click)="post()">Submit</button>
+              </div>
+            </form></div>
+          </div>
+          <div class="col-md-3"></div>
+      </div>
+    </div>
+  </div>
+  

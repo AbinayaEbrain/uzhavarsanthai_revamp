@@ -23,6 +23,8 @@ import { DeactiveDealsComponent } from '../app/deactive-deals/deactive-deals.com
 import { UserProductsComponent } from '../app/user-products/user-products.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { BlogComponent } from 'src/app/blog/blog.component';
+import { BlogViewComponent } from 'src/app/blog-view/blog-view.component';
 const routes: Routes = [
   {
     path: '',
@@ -137,6 +139,22 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactComponent
+  },
+  {
+    path: 'blog',
+    component: BlogComponent
+  },
+  {
+    path: 'blog-view',
+    component: BlogViewComponent
+  },
+  {
+    path: 'blog/:id',
+    component: BlogComponent
+  },
+  {
+    path: 'blog-view/:id',
+    component: BlogViewComponent
   },
 ];
 

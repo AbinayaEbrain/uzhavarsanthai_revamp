@@ -1,0 +1,58 @@
+<div class="container-fluid bg1">
+    <div class="container  pt-5">
+      <div class="row mt-2 mb-2">
+          <div class="col-md-12 mt-5 card">
+            <h3 class="head mt-2">Blogs</h3>
+                <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr">
+                  <div class="card-header" style="color:#0d4608;padding: 5px;">
+                    <p class="blogcard hedngBox"><strong >{{blog.username}} </strong>
+                    <button type="button" class="btn viewmrebtn btnmed btn1"  data-toggle="collapse" [attr.data-target]="'#'+blog._id" aria-expanded="false" [attr.aria-controls]="blog._id">View More</button>
+                  </p>
+                      <p class="blogcard1 a productFullName ">{{blog.commenttext}} </p>
+                  
+                    <!-- <button class="btn btnstl"   data-toggle="modal" data-target="#myModal" data-backdrop="static"
+                  data-keyboard="false" routerLink="/blog-view/{{blog._id}}">
+                    <i class="fa fa-trash-o" style="font-size:24px"></i>
+                 </button> -->
+                    <!-- <button class="btn btnst2"  routerLink="/blog/{{blog._id}}"><i class="fa fa-pencil-square-o" style="font-size:24px"></i></button> -->
+                  </div>
+                  <div>
+                      <!-- <input type="checkbox" class="read-more-state" id="post-1" /> -->
+                    <!-- <label for="post-1" class="read-more-trigger"></label> -->
+                    <div [attr.id]="blog._id" class="collapse a ">{{blog.commenttext}}</div>
+
+                  </div>
+
+                 
+                </div>
+             </div>
+      </div>
+    
+    </div>
+  </div>
+  
+ <!-- modal -->
+
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+        
+          <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;">Delete Confirmation</h4>
+        </div>
+        <div class="modal-body">
+          <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete?</h6>
+          <div class="text-center">
+         
+           <button type="button" class="btn btn-primary button_word" (click)="deleteblog()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btn-danger button_word" routerLink="/blog-view" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      
+      </div>
+      
+    </div>
+  </div>
+  

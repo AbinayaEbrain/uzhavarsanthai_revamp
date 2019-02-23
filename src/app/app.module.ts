@@ -44,6 +44,9 @@ import { DeactiveDealsComponent } from './deactive-deals/deactive-deals.componen
 import { UserProductsComponent } from './user-products/user-products.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { BlogComponent } from './blog/blog.component';
+import { BlogViewComponent } from './blog-view/blog-view.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +71,8 @@ import { ContactComponent } from './contact/contact.component';
     UserProductsComponent,
     AboutComponent,
     ContactComponent,
+    BlogComponent,
+    BlogViewComponent
   ],
   imports: [
     BrowserModule,
