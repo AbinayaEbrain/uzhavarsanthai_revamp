@@ -7,6 +7,12 @@
   width: 100%;
   min-height: 900px;
 }
+
+label {
+  float: left;
+  color: #0d4608;
+}
+
 .card {
   /* margin-top: 5% !important; */
   border-radius: 8px;
@@ -147,24 +153,16 @@ select:focus {
 
 input {
   background-color: transparent;
-  border-bottom: 1px solid #0d4608 !important;
-  border-top: none !important;
-  border-left: none !important;
-  border-right: none !important;
+  border: 1px solid #0d4608 !important;
 }
 
 select {
+  font-family: 'Hind Madurai', sans-serif;
   background-color: transparent;
-  /* border: 1px solid #79828b; */
-  border-bottom: 1px solid #0d4608 !important;
-  border-top: none !important;
-  border-left: none !important;
-  border-right: none !important;
+  border: 1px solid #0d4608 !important;
 }
 ::placeholder {
   color: #0d4608;
-  border-bottom: 1px solid #0d4608 !important;
-  /*opacity: 1;  Firefox */
 }
 .btn1 {
   float: left !important;
@@ -192,10 +190,11 @@ select {
   position: absolute;
   top: 0;
   /* padding: 7px 0 0 0px; */
-  transition: all 200ms;
+  /* transition: all 200ms; */
   /* opacity: 0.5; */
   font-size: 17px;
   color: #0d4608;
+  font-family: 'Hind Madurai', sans-serif;
   border-bottom-color: 2px solid #0d4608 !important;
 }
 .form-control-placeholder {
@@ -208,14 +207,15 @@ select {
   font-weight: 500;
   font-size: 17px;
   color: #0d4608;
+  font-family: 'Hind Madurai', sans-serif;
 }
 
 .lab {
   color: #0d4608;
   float: left;
-  font-size: 15px;
-  font-weight: bolder;
-  margin-top: -25px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Hind Madurai', sans-serif;
 }
 
 .form-control:focus + .form-control-placeholder,
@@ -254,7 +254,7 @@ input {
   font-family: 'Nunito', sans-serif;
 }
 .tamil_wrd {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bolder;
   font-family: 'Hind Madurai', sans-serif;
 }

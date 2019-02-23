@@ -20,11 +20,22 @@ ul li a {
   text-align: center;
   margin: auto;
 }
-@media screen and (min-width: 320px) and (max-width: 500px) {
+
+.textAlign{
+  margin-left: 20%;
+}
+
+ @media screen and (min-width: 991px) and (max-width: 1150px) {
+  .textAlign{
+    margin-left: 10%;
+  }
+}
+
+/* @media screen and (min-width: 425px) and (max-width: 768px) {
   .hideMobile {
     display: none;
   }
-}
+}  */
 
 @media screen and (min-width: 768px) {
   .dropdown-menu {
@@ -45,14 +56,19 @@ ul li a {
   font-weight: bold;
 }
 .uzhavarsanthaiFooter {
-  background-color: #0d4608 !important;
+  background-color: #072904 !important;
   color: white;
 }
 .EbrainTechnologies {
   color: white !important;
+  font-family: 'Mukta', sans-serif;
+}
+.footer-copyright{
+    font-family: 'Mukta', sans-serif;
 }
 .footerOptions {
   margin-top: 3% !important;
+  font-family: 'Mukta', sans-serif;
   cursor: pointer !important;
   font-weight: bold !important;
   text-align: center !important;

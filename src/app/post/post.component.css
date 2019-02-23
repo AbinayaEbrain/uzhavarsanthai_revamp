@@ -52,7 +52,9 @@ input:focus {
 
 .opt {
   font-size: 14px !important;
-  font-weight: bolder !important;
+  font-weight: bold !important;
+  font-family: 'Hind Madurai', sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 
 select option {
@@ -73,19 +75,14 @@ select:focus {
 input {
   background-color: transparent;
   /* border: 1px solid #79828b; */
-  border-bottom: 1px solid white !important;
-  border-top: none !important;
-  border-left: none !important;
-  border-right: none !important;
+  border: 1px solid #0d4608 !important;
 }
 
 select {
   background-color: transparent;
   /* border: 1px solid #79828b; */
-  border-bottom: 2px solid white !important;
-  border-top: none !important;
-  border-left: none !important;
-  border-right: none !important;
+  border: 1px solid #0d4608 !important;
+
 }
 ::placeholder {
   color: #0d4608 !important;
@@ -116,19 +113,16 @@ select {
   background-color: white;
   color: #000;
 } */
-
-.opt {
-  font-weight: bolder;
-}
 .slect {
   position: absolute;
   top: 0;
   padding: 7px 0 0 0px;
   transition: all 200ms;
-  /* opacity: 0.5; */
-  font-size: 16px;
+  font-weight: bold;
+  font-size: 15px;
   color: #0d4608;
-  border-bottom-color: 1px solid #0d4608 !important;
+  font-family: 'Hind Madurai', sans-serif;
+  border: 1px solid #0d4608 !important;
 }
 .form-control-placeholder {
   position: absolute;
@@ -138,7 +132,7 @@ select {
   /* opacity: 0.5; */
   left: -12px;
   font-size: 17px;
-  color: #0d4608;
+    color: #0d4608 !important;
 }
 
 option {
@@ -150,7 +144,8 @@ option {
   font-size: 100%;
   transform: translate3d(0, -100%, 0);
   opacity: 1;
-  color: #0d4608;
+    color: #0d4608 !important;
+
 }
 
 .clr {
@@ -231,29 +226,49 @@ input {
 ::-webkit-input-placeholder {
   font-family: 'Hind Madurai', sans-serif;
   font-size: 14px;
+    color: #0d4608 !important;
 }
 ::-moz-placeholder {
   font-size: 14px;
   font-family: 'Hind Madurai', sans-serif;
+    color: #0d4608 !important;
 }
 :-ms-input-placeholder {
   font-size: 14px;
   font-family: 'Hind Madurai', sans-serif;
+}
+label{
+  float: left;
+  color: #0d4608;
+}
+.prdtOption{
+  font-family: 'Mukta', sans-serif !important;
+  font-weight: bold;
 }
 ::placeholder {
   font-weight: bolder;
   font-size: 14px;
   left: -12;
   font-family: 'Hind Madurai', sans-serif;
+  font-family: 'Mukta', sans-serif;
+    color: #0d4608 !important;
 }
 .categoryOption {
   background-color: white !important;
   color: #0d4608 !important;
-  font-weight: bold;
+  font-weight: bold !important;
+  font-family: 'Hind Madurai', sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 .upload {
   color: #0d4608;
   background-color: transparent;
   font-weight: bold;
   border: none !important;
+}
+.postLble{
+  float: left;
+}
+.tamil_word{
+  font-family: 'Hind Madurai', sans-serif;
 }

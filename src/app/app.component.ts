@@ -4,6 +4,8 @@ import { AuthService } from './auth.service';
 import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, RoutesRecognized } from '@angular/router';
+import { AgmCoreModule, GoogleMapsAPIWrapper, AgmInfoWindow, AgmDataLayer, CircleManager, AgmCircle } from '@agm/core';
+
 //  var request = require("request");
 var url = 'https://geoip-db.com/json';
 declare var swal: any;
@@ -14,6 +16,7 @@ declare var swal: any;
 })
 export class AppComponent implements OnInit {
   title = 'app';
+  @ViewChild(GoogleMapsAPIWrapper) private gmapWrapper: GoogleMapsAPIWrapper;
   @ViewChild('gmap') gmapElement: any;
   map: google.maps.Map;
   currentLat: any;
@@ -67,7 +70,7 @@ export class AppComponent implements OnInit {
       position.coords.latitude,
       position.coords.longitude
     );
-    this.map.panTo(location);
+    this.gmapWrapper.panTo(position);
 
     if (!this.marker) {
       this.marker = new google.maps.Marker({

@@ -50,6 +50,7 @@ export class UserDealsEditComponent implements OnInit {
  currentImg:any;
  valid: boolean = false;
  Image: File;
+today : Date;
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
     //to the object in the DOM.
@@ -69,14 +70,11 @@ export class UserDealsEditComponent implements OnInit {
 
 
   ngOnInit() {
-
-
     this.loadingCtrl.show();
-    //document.getElementById('localStorageImg').style.display="none";
+  this.today = new Date();
     this.InitialCall();
    this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
     this.id = this.route.snapshot.params['id']
-
     //edit deals
 
     this._dealsService.getDeals()
@@ -100,8 +98,9 @@ export class UserDealsEditComponent implements OnInit {
             this.showUnit = this.dealslists[i].qnty
           }
         }
-        
-        this.deallistobj.avlPlace = this.address.formatted_address 
+        console.log(this.deallistobj)
+
+        this.deallistobj.avlPlace = this.address.formatted_address
         this.dateNrml = this.datePipe.transform((this.time),'dd/MM/yyyy');
         this.deallistobj.validityTime = this.dateNrml
       },
@@ -117,12 +116,12 @@ export class UserDealsEditComponent implements OnInit {
       res => {
         this.categoryArr = res;
       },
-  
+
       err => {
           this.categoryArr = [];
       });
 
- 
+
   }
 
 
@@ -142,11 +141,12 @@ InitialCall() {
       this.deallistobj.subqnty = this.dealslists[i].subqnty
       this.deallistobj.price = this.dealslists[i].price
       this.deallistobj.description = this.dealslists[i].description
-      this.deallistobj.avlPlace = this.dealslists[i].avlPlace
+      this.deallistobj.avlPlace = this.dealslists[i].avlPlace.formatted_address
       this.time = this.dealslists[i].validityTime
     }
   }
-  this.deallistobj.validityTime = this.datePipe.transform((this.time),'MM/dd/yyyy');
+  this.dateNrml = this.datePipe.transform((this.time),'dd/MM/yyyy');
+  this.deallistobj.validityTime = this.dateNrml;
 }
 
 postImage(){
@@ -168,7 +168,7 @@ postImage(){
     this.deallistobj.date = curntDte
 
     if(this.addr == null || this.addr == undefined){
-      this.deallistobj.avlPlace = this.address 
+      this.deallistobj.avlPlace = this.address
     }
     else{
       this.deallistobj.avlPlace = this.addr
@@ -183,12 +183,12 @@ postImage(){
         this.loadingCtrl.hide();
         this.success = "Updated successfully!"
         setTimeout(() => {
-          
+
           this.loadingCtrl.show();
           this.router.navigate(['/products']);
           this.loadingCtrl.hide();
       }, 2000);
-      
+
       },
       err=>console.log(err),
 
@@ -200,17 +200,17 @@ postImage(){
   // handleInput(evt)
 	// 		{
 	// 			var charCode = (evt.which) ? evt.which : evt.keyCode;
-	// 			if (charCode != 46 && charCode > 31 
+	// 			if (charCode != 46 && charCode > 31
 	// 			&& (charCode < 48 || charCode > 57))
 	// 			return true;
 	// 			return false;
-  //     } 
-      
+  //     }
+
       onSubmit(){
         this.form.form.markAsPristine();
         this.form.form.markAsUntouched();
         this.form.form.updateValueAndValidity();
-       
-        this.InitialCall(); 
+
+        this.InitialCall();
       }
 }

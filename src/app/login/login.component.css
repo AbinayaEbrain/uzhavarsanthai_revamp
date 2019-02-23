@@ -1,147 +1,103 @@
-
-
 .bg {
-    /* The image used */
-    background: url(./images/A5.jpg);
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    width: 100%;
-    background-attachment: fixed;
-    margin-top: -80px;
-      
+  background: url(./images/A5.jpg);
 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  background-attachment: fixed;
+  margin-top: -80px;
+}
+input[type='text'],
+input[type='password'] {
+  width: 100%;
+  color: white;
+  display: inline-block;
+  box-sizing: border-box;
+  background-color: transparent !important;
+  border: 1px solid white !important;
 }
 
- input[type=text], input[type=password] {
-    width: 100%;
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-input:focus{
-    background-color: transparent;
-    box-shadow: none;
-    border: none;
-}
-
-input{
-    background-color: transparent;
-    /* border: 1px solid #79828b; */
-    border-bottom: 2px solid white !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
-} 
 ::placeholder {
-    color: white;
-    opacity: 1; /* Firefox */ 
+  color: white;
+  opacity: 1;
 }
-.btn{
-    font-size: 18px;
-    background-color: white;
-    /* color: white; */
-    border: none;
-    color: #0d4608;
-    font-weight: bold;
+.btn {
+  font-size: 18px;
+  background-color: white;
+  /* / color: white; / */
+  border: none;
+  color: #0d4608;
+  font-weight: bold;
 }
 
 .form-group {
-    position: relative;
-    margin-bottom: 1.5rem;
-  }
-  
-  .form-control{
-    color: white !important;
+  position: relative;
+  margin-bottom: 1.5rem;
 }
-  .form-control-placeholder {
-    position: absolute;
-    top: 0;
-    padding: 7px 0 0 13px;
-    transition: all 200ms;
-    /* opacity: 0.5; */
-    left: -12px;
-    font-weight: 500;
-    font-size: 17px;
-    color: white;
-  }
-  
-  .form-control:focus + .form-control-placeholder,
-  .form-control:valid + .form-control-placeholder {
-    font-size: 100%;
-    transform: translate3d(0, -100%, 0);
-    opacity: 1;
-    color: rgb(255, 254, 254);
-  }
- 
-  .clr{
-      color: white;
-      font-family: 'Oxygen', sans-serif;
-  }
-  .sent_font{
-    font-weight: bold;
-    color: white;
-    font-size: 20px;
-  }
-  .span_clr{
-      text-decoration: underline;
-      cursor: pointer;
-  }
-.greetmsg{
+
+.form-control {
+  background-color: transparent !important;
+}
+.form-control-placeholder {
+  position: absolute;
+  top: 0;
+  padding: 7px 0 0 13px;
+  transition: all 200ms;
+  /* / opacity: 0.5; / */
+  left: -12px;
+  font-weight: 500;
+  font-size: 17px;
+  color: white;
+}
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  font-size: 100%;
+  transform: translate3d(0, -100%, 0);
+  opacity: 1;
+  color: rgb(255, 254, 254);
+}
+
+.clr {
+  color: white;
+  font-family: 'Oxygen', sans-serif;
+}
+.sent_font {
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+}
+.span_clr {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.greetmsg {
   display: none;
 }
-  .english_wrd{
-    font-family: 'Mukta', sans-serif;
+.english_wrd {
+  font-family: 'Mukta', sans-serif;
+  color: white;
+  float: left;
+}
+.tamil_word {
+  font-family: 'Hind Madurai', sans-serif;
+}
+.error_word {
+  font-family: 'Cabin', sans-serif;
+}
+input {
+  font-family: 'Nunito', sans-serif;
+}
+.button_word {
+  font-family: 'Kanit', sans-serif;
+}
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .sent_font {
+    font-size: 15px;
   }
-  .tamil_word{
-    font-family: 'Hind Madurai', sans-serif;
+  .greetmsg {
+    display: block;
   }
-  .error_word{
-    font-family: 'Cabin', sans-serif;
-  }
-  input {
-    font-family: 'Nunito', sans-serif;
-  }
-  .button_word{
-    font-family: 'Kanit', sans-serif;
-  }
-  @media screen and (min-width: 320px) and (max-width: 425px) {
-    .sent_font{
-      font-size: 15px;
-    }
-    .greetmsg{
-      display: block;
-    }
-  }
-
-  .floating-label { 
-    position:relative; 
-    margin-bottom:20px; 
-  }
-  .floating-input , .floating-select {
-    font-size:14px;
-    padding:4px 4px;
-    display:block;
-    width:100%;
-    height:30px;
-    background-color: transparent;
-    border:none;
-    border-bottom:1px solid #757575;
-  }
-  
-  .floating-input:focus , .floating-select:focus {
-       outline:none;
-       border-bottom:2px solid #5264AE; 
-  }
-  
-  label {
-    position:absolute;
-    pointer-events:none;
-    transition:0.2s ease all; 
-    -moz-transition:0.2s ease all; 
-    -webkit-transition:0.2s ease all;
-  }
-  
-  
+}

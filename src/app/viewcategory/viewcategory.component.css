@@ -13,6 +13,7 @@
 .printCategory {
   font-weight: bold;
   color: #0d4608;
+  font-family: 'Hind Madurai', sans-serif;
 }
 
 .productFullName {
@@ -251,7 +252,7 @@ input {
 }
 
 .mainCntainer {
-  margin-top: 9%;
+  margin-top: 6%;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 425px) {
@@ -265,9 +266,7 @@ input {
     box-shadow: 7px 7px 7px grey;
     border-radius: 5px;
   }
-  .mainCntainer {
-    margin-top: 31%;
-  }
+
   .onmobiviewpadding {
     padding: 10px;
   }
@@ -275,4 +274,23 @@ input {
   .mobiviewFilterBtn {
     float: right !important;
   }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .mobiviewFilterBtn {
+    float: right !important;
+  }
+
+  .mainCntainer {
+    margin-top: 10% !important;
+  }
+}
+
+
+.errDesign {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+  color: #0d4608;
 }

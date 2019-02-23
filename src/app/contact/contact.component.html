@@ -1,4 +1,4 @@
-<div class="container mt-5 pt-5 mb-5">
+<div class="container mt-5 pt-5 mb-5 pb-1">
   <h3 class="text-center clr english_wrd mb-5">Contact Us</h3>
   <div class="row mt-5">
     <div class="col-lg-4 col-md-6">
@@ -59,29 +59,29 @@
   </div>
 
   <form  #contactform="ngForm" *ngIf ="!submitted" novalidate>
-  <div class="row mt-3">
+  <div class="row mt-4">
     <div class="col-md-6">
       <div style="margin-bottom: 20px">
         <input type="text" name="name" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel
          [(ngModel)]="contact.name" autocomplete="off" placeholder="Your Name" required="" />
          <span class="text-danger float-left error_word mb-2" [class.d-none] = "name.valid || name.untouched">
-           <i class="fa fa-info-circle" aria-hidden="true"></i> Name is required</span> 
+           <i class="fa fa-info-circle" aria-hidden="true"></i> Name is required</span>
       </div>
 
       <div style="margin-bottom: 20px">
-         <input type="email" name="email" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" ngModel
+         <input type="email" name="email" [email]="true" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" ngModel
          [(ngModel)]="contact.email" autocomplete="off" placeholder="Email" required="" />
          <span class="text-danger float-left error_word mb-2" [class.d-none] = "email.valid || email.untouched">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> Email is required</span> 
+            <i class="fa fa-info-circle" aria-hidden="true"></i> Email is required</span>
       </div>
 
       <div style="margin-bottom: 20px">
         <input
-        type="text" name="phone" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel
+        type="text" name="phone" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched"  maxlength="10" ngModel
         oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
         [(ngModel)]="contact.phone" placeholder="Phone Number" required="" />
         <span class="text-danger float-left error_word" [class.d-none] = "phone.valid || phone.untouched">
-            <i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span> 
+            <i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
       </div>
     </div>
     <div class="col-md-6">

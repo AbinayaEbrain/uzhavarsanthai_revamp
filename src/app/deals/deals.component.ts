@@ -38,7 +38,7 @@ export class DealsComponent implements OnInit {
   activeUsers = [];
   userName = {};
   errMsg = '';
-  errMsg1: any;
+  errMsg1:any;
   lat: any;
   long: any;
   lat1: any;
@@ -60,6 +60,8 @@ export class DealsComponent implements OnInit {
   };
   submitted: any;
   panTo: any;
+  getPrdtName=[];
+  showErr = true;
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -86,6 +88,7 @@ export class DealsComponent implements OnInit {
       res => {
         this.showDeals = true;
         this.crdDeals = res;
+        console.log(this.crdDeals);
         if (this.crdDeals.length == 0) {
           // this.loadingCtrl.show();
           this.errMsg = 'Currently no deals available';
@@ -97,6 +100,7 @@ export class DealsComponent implements OnInit {
         }
         // this.loadingCtrl.hide();
         this.showDeals = true;
+
       },
       err => {
         this.loadingCtrl.hide();
@@ -109,18 +113,26 @@ export class DealsComponent implements OnInit {
         // this.loadingCtrl.show();
         this.showDeals = true;
         this.activeUsers = res;
+        let l = 0;
         let k = 0;
+        let CurrentDate = new Date().toISOString();
         for (let i = 0; i < this.activeUsers.length; i++) {
           for (let j = 0; j < this.crdDeals.length; j++) {
-            if (this.activeUsers[i]._id == this.crdDeals[j].accountId) {
+            if (
+              this.activeUsers[i]._id == this.crdDeals[j].accountId &&
+              this.crdDeals[j].validityTime > CurrentDate
+            ) {
               if (this.activeUsers[i].status == 'ACTIVE') {
                 this.crdDeals1[k] = this.crdDeals[j];
-                // console.log(this.crdDeals1)
+                  this.getPrdtName[l] = this.crdDeals1[k].name;
                 k++;
+                l++;
               }
+
             }
           }
         }
+        console.log(this.getPrdtName)
         this.showDeals = true;
         this.loadingCtrl.hide();
       },
@@ -129,9 +141,13 @@ export class DealsComponent implements OnInit {
   }
 
   case() {
-    // console.log(this.queryString);
     this.queryString = this.queryString.toLowerCase();
-    // console.log(this.queryString);
+    for (let i = 0; i < this.getPrdtName.length; i++) {
+      if (this.queryString != this.getPrdtName[i]){
+          console.log('no data')
+          this.errMsg1 = 'Product Unavailable';
+      }
+    }
   }
 
   getCategory() {
@@ -192,7 +208,7 @@ export class DealsComponent implements OnInit {
 
     if (this.totalDeals1.length == 0) {
       this.loadingCtrl.show();
-      sweetAlert('Sorry!', 'Currently no product available', 'error');
+      //sweetAlert('Sorry!', 'Currently no product available', 'error');
       this.showDeals = true;
     }
 

@@ -18,7 +18,8 @@ export class LocationdealsComponent implements OnInit {
         lat: '',
         lng: ''
       },
-      accountId: ''
+      accountId: '',
+      validityTime: ''
     }
   ];
   mapDeals = [];
@@ -42,7 +43,7 @@ export class LocationdealsComponent implements OnInit {
   totalDeals1: any;
   getSearchDeals = [];
   submitted: any;
-
+  getPrdtName=[];
   constructor(
     private _dealsService: DealsService,
     private route: Router,
@@ -64,12 +65,15 @@ export class LocationdealsComponent implements OnInit {
         this.lat1 = this.lat2 * 1.009;
         this.latd = this.lat2 / 1.002;
         let j = 0;
+        let CurrentDate = new Date().toISOString();
         for (let i = 0; i < this.crdDeals.length; i++) {
           if (
             this.crdDeals[i].avlPlace.lat < this.lat1 &&
-            this.crdDeals[i].avlPlace.lng > this.latd
+            this.crdDeals[i].avlPlace.lng > this.latd &&
+            this.crdDeals[i].validityTime > CurrentDate
           ) {
             this.mapDeals[j] = this.crdDeals[i];
+            console.log(this.mapDeals[j]);
             j++;
             this.loadingCtrl.hide();
           }
@@ -82,14 +86,16 @@ export class LocationdealsComponent implements OnInit {
             this.loadingCtrl.show();
             this.showDeals = true;
             this.activeUsers = res;
+            let l = 0;
             let k = 0;
-
             for (let i = 0; i < this.activeUsers.length; i++) {
               for (let j = 0; j < this.mapDeals.length; j++) {
                 if (this.activeUsers[i]._id == this.mapDeals[j].accountId) {
                   if (this.activeUsers[i].status == 'ACTIVE') {
                     this.crdDeals1[k] = this.mapDeals[j];
+                      this.getPrdtName[l] = this.crdDeals1[k].name;
                     k++;
+                    l++;
                     this.loadingCtrl.hide();
                   }
                 }
@@ -120,9 +126,15 @@ export class LocationdealsComponent implements OnInit {
   case() {
     // console.log(this.queryString);
     this.queryString = this.queryString.toLowerCase();
-    // console.log(this.queryString);
+    for (let i = 0; i < this.getPrdtName.length; i++) {
+      if (this.queryString != this.getPrdtName[i]){
+          console.log('no data')
+          this.errMsg1 = 'Product Unavailable';
+        
+      }
+    }
   }
-  
+
   getCategory() {
     this.loadingCtrl.show();
     this._dealsService.getCategory().subscribe(
@@ -163,8 +175,8 @@ export class LocationdealsComponent implements OnInit {
         j++;
       }
     }
-      this.showDeals = false;
-      document.getElementById('hidePagination').style.display = 'block';
+    this.showDeals = false;
+    document.getElementById('hidePagination').style.display = 'block';
 
     if (this.totalDeals1.length == 0) {
       this.loadingCtrl.show();

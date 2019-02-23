@@ -4,7 +4,7 @@ import { Router} from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import {ActivatedRoute, Params} from '@angular/router'
 import { AppComponent } from '../app.component'
-// loader 
+// loader
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
 import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
@@ -64,7 +64,9 @@ export class PostComponent implements OnInit {
   };
   files:any
   url: ''
-  
+  today : Date;
+
+
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -88,32 +90,35 @@ export class PostComponent implements OnInit {
    this.productData.subqnty = '';
   // this.productData.avlPlace.avlplaceName = ''
    this.productData.categoryId = ''
-  
-  
+
    }
    onFileChange(event) { //Method to set the value of the file to the selected file by the user
     this.Image = event.target.files[0]; //To get the image selected by the user
     this.valid = true;
  }
 
-   
+
   ngOnInit() {
 this.loadingCtrl.show();
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id
   //category
+  this.today = new Date();
   this._dealsService.getCategory()
       .subscribe(
           res => {
             this.categoryArr = res;
             this.loadingCtrl.hide();
           },
-      
+
           err => {
               this.categoryArr = [];
           });
-             
+
+
+
+
 }
-  
+
 postImage(){
   this.loadingCtrl.show();
   var image = new FormData(); //FormData creation
@@ -124,26 +129,26 @@ postImage(){
       this.loadingCtrl.hide();
       // localStorage.setItem('Image', JSON.stringify(res));
       this.productData.image = res;
-      
+
    });
 }
   postProduct(){
     this.loadingCtrl.show();
     var time = this.productData.validityTime
     this.productData.validityTime = time.getTime()
-    
+
     this.productData.accountId = JSON.parse(localStorage.getItem('currentUser'))._id;
    // this.productData.image = JSON.parse(localStorage.getItem('Image'));
     this.productData.ipAddress = this.privateIP;
     this.productData.avlPlace = this.addr
-   
+
     for(let i=0;i<this.categoryArr.length;i++){
       if(this.productData.categoryId == this.categoryArr[i]._id){
         this.productData.category = this.categoryArr[i].productCategory
       }
     }
 
-    
+
     let curntDte = new Date().getTime();
     this.productData.date = curntDte
     this._dealsService.addPost(this.productData)
@@ -153,7 +158,7 @@ postImage(){
      //localStorage.removeItem('Image')
       this.loadingCtrl.hide();
         setTimeout(() => {
-          
+
           this.loadingCtrl.show();
           this.route.navigate(['products']);
           this.loadingCtrl.hide();
@@ -175,7 +180,7 @@ postImage(){
 
   getunits(){
     this.showUnit =this.productData.qnty
-   
+
   }
 
   getLatitudeLongitude1(callback, address) {
@@ -224,14 +229,14 @@ postImage(){
 
     )
   }
-  
+
 //restrict numbers on product name
   // handleInput(evt)
 	// 		{
 	// 			var charCode = (evt.which) ? evt.which : evt.keyCode;
-	// 			if (charCode != 46 && charCode > 31 
+	// 			if (charCode != 46 && charCode > 31
 	// 			&& (charCode < 48 || charCode > 57))
 	// 			return true;
 	// 			return false;
-  //     }     
+  //     }
 }
