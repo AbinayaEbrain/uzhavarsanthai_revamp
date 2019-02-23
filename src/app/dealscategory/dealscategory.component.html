@@ -2,6 +2,14 @@
   <div class="container-fluid mt-5 pt-1">
     <h4 class="categoryHeading tamil_wrd">உங்களுக்கு தேவையானதை தேர்வுசெய்க</h4>
   </div>
+  <div class="container">
+    <button
+      class="btn btn-outline-success text-center viewMoreBtn1"
+      routerLink="/home"
+    >
+      <i class="fa fa-chevron-left" aria-hidden="true"></i> Back
+    </button>
+  </div>
   <p *ngIf="errMsg" style="color: red" class="text-center">{{ errMsg }}</p>
   <div class="container mt-4">
     <div class="row">

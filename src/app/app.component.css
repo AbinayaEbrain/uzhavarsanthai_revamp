@@ -5,6 +5,7 @@
   background-color: transparent;
 }
 .apptitle {
+  color: white !important;
   font-family: 'Baloo Thambi', cursive;
 }
 ul li a {
@@ -43,16 +44,16 @@ ul li a {
   color: white;
   font-weight: bold;
 }
-.uzhavarsanthaiFooter{
+.uzhavarsanthaiFooter {
   background-color: #0d4608 !important;
   color: white;
 }
-.EbrainTechnologies{
+.EbrainTechnologies {
   color: white !important;
 }
-.footerOptions{
-      margin-top: 3% !important; 
-      cursor: pointer !important;
-      font-weight: bold !important;
-      text-align: center !important;
+.footerOptions {
+  margin-top: 3% !important;
+  cursor: pointer !important;
+  font-weight: bold !important;
+  text-align: center !important;
 }

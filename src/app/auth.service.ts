@@ -8,7 +8,12 @@ import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
 export class AuthService {
   private _registerUrl = "https://uzhavarsanthai.herokuapp.com/api/register";
   private _logInUrl = "https://uzhavarsanthai.herokuapp.com/api/login";
-  private _blogrUrl = "http://localhost:5000/api/register";
+  private _blogUrl = "http://localhost:5000/api/blog";
+  private _blogViewUrl = "http://localhost:5000/api/blogview";
+  private _blogEditUrl = "http://localhost:5000/api/blogedit";
+  private _blogGetOneUrl = "http://localhost:5000/api/blogetone";
+  private _blogDeleteUrl = "http://localhost:5000/api/blogdel";
+
 
   constructor(private http:HttpClient,private route:Router) { }
 
@@ -28,9 +33,22 @@ export class AuthService {
     let username = JSON.parse(localStorage.getItem('firstname'));
     return username;
   }
-  // blogUserData(){
-  //   return this.http.post<any>(this._registerUrl,user)
-  // }
+  blogUserData(data){
+    return this.http.post<any>(this._blogUrl,data)
+  }
+  blogGetData(){
+    return this.http.get<any>(this._blogViewUrl)
+  }
+  blogGetOneData(id){
+    return this.http.get<any>(this._blogGetOneUrl + "/" + id)
+  }
+  blogEditData(data,id){
+    console.log(data)
+    return this.http.put<any>(this._blogEditUrl + "/" + id ,data)
+  }
+  blogDeleteData(id){
+    return this.http.delete<any>(this._blogDeleteUrl + "/" + id )
+  }
   
   
 
