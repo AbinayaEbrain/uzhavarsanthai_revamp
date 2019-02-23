@@ -6,7 +6,7 @@
                 <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr">
                   <div class="card-header" style="color:#0d4608;padding: 5px;">
                     <p class="blogcard hedngBox"><strong >{{blog.username}} </strong>
-                    <button type="button" class="btn viewmrebtn btnmed btn1"  data-toggle="collapse" [attr.data-target]="'#'+blog._id" aria-expanded="false" [attr.aria-controls]="blog._id">View More</button>
+                    <button type="button" class="btn viewmrebtn btnmed btn1"  data-toggle="collapse" [attr.data-target]="'#'+blog._id" aria-expanded="false" [attr.aria-controls]="blog._id">Read Blog</button>
                   </p>
                       <p class="blogcard1 a productFullName ">{{blog.commenttext}} </p>
                   
