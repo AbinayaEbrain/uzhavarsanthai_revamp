@@ -55,12 +55,12 @@ input:focus {
   font-family: 'Hind Madurai', sans-serif;
   font-family: 'Mukta', sans-serif;
 }
-
 select option {
   padding: 10px;
   width: 100px;
-  background: rgba(0, 0, 0, 0.3);
-  color: white;
+  background-color: white;
+  color:#0d4608 ;
+  font-weight: bold;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
   font-family: 'Hind Madurai', sans-serif !important;
 }
