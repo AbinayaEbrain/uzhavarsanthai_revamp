@@ -16,22 +16,21 @@
       <div class="row" style="margin-top: 1%;">
             <div class="col-md-1"></div>
           <div class="col-md-5">
-              <div class="form-group mb-5 mt-2">
-                  <select required class="form-control slect"  #category="ngModel" [(ngModel)]="productData.categoryId" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
-                      <option class="opt" selected="" disabled="" value="" >பொருளின் வகை /<span class="english_wrd"> Category</span> </option>
+             <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> பொருளின் வகை </span>/ Category</label>
+              <div class="form-group mb-4">
+                  <select required class="form-control" placeholder="Choose product name"  #category="ngModel" [(ngModel)]="productData.categoryId" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
+                    <option  selected="" disabled="" value="" >Choose product category</option>
                       <option *ngFor="let val of categoryArr" class="categoryOption" value="{{val._id}}">{{val.productCategory}}</option>
                     </select>
+                    <span class="text-danger float-left error_word" [class.d-none] = "category.valid || category.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span>
+                  </div>
                 </div>
-                <span class="text-danger float-left error_word" [class.d-none] = "category.valid || category.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span>
-              </div>
       <div class="col-md-5">
-              <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
-                <input type="text"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel  maxlength="50" [(ngModel)]="productData.name"  name="name" class="form-control"  autocomplete="off"  required>
-
-                <label class="form-control-placeholder english_wrd floatinglabl" for="name"><span style="font-size: 14px" class="tamil_wrd">பொருளின் பெயர் </span>/ Product Name</label>
+         <label class="english_wrd postLble" for="phone" ><span style="font-size: 14px" class="tamil_word"> பொருளின் பெயர் </span>/ Product Name</label>
+              <div class="form-group mb-4">
+                <input type="text" placeholder="Enter product name"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel  maxlength="50" [(ngModel)]="productData.name"  name="name" class="form-control"  autocomplete="off"  required>
                 <span class="text-danger float-left error_word" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product Name is required</span>
               </div>
-
         </div>
         <div class="col-md-1"></div>
             </div>
@@ -39,24 +38,25 @@
             <div class="row ">
                     <div class="col-md-1"></div>
                 <div class="col-md-5">
-                    <div class="form-group mb-4 mt-2 mb-xl-5 mb-md-5">
-                        <input type="text"  #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="productData.quantity"  name="quantity" class="form-control"  maxlength="5" autocomplete="off"  required>
-                        <label class="form-control-placeholder english_wrd floatinglabl" for="quantity"><span style="font-size: 14px" class="tamil_wrd">அளவு </span>/ Quantity </label>
+                   <label class="english_wrd postLble" for="phone" ><span style="font-size: 14px" class="tamil_word"> அளவு் </span>/ Quantity</label>
+                    <div class="form-group mb-4">
+                        <input type="text"  placeholder="Enter product quantity" #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="productData.quantity"  name="quantity" class="form-control"  maxlength="5" autocomplete="off"  required>
                         <span class="text-danger float-left error_word" [class.d-none] = "quantity.valid || quantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>
                       </div>
                 </div>
                 <div class="col-md-5">
-                    <div class="form-group mb-5 mt-3 mt-xl-2 mt-lg-2 mt-md-2 mt-sm-5">
-
-                        <select required class="form-control slect"  #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel (change)="getunits()" [(ngModel)]="productData.qnty" >
-                            <option selected="" disabled="" value="" >அலகு / Unit</option>
-                            <option value="Kg" class="categoryOption">Kilogram</option>
-                            <option value="Gram" class="categoryOption">Gram</option>
-                            <option value="Litre" class="categoryOption">Litre</option>
+                   <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">அலகு </span>/ Unit</label>
+                    <div class="form-group mb-4">
+                        <select required class="form-control" placeholder="Choose unit" #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel (change)="getunits()" [(ngModel)]="productData.qnty" >
+                            <option class="prdtOption" selected="" disabled="" value="" >Choose product unit</option>
                             <option value="Millilitre" class="categoryOption">Millilitre</option>
+                            <option value="Litre" class="categoryOption">Litre</option>
+                            <option value="Gram" class="categoryOption">Gram</option>
+                            <option value="Kg" class="categoryOption">Kilogram</option>
                           </select>
+                              <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span>
                       </div>
-                      <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span>
+
                     </div>
                     <div class="col-md-1"></div>
             </div>
@@ -65,17 +65,17 @@
             <div class="row">
                     <div class="col-md-1"></div>
                 <div class="col-md-5">
-                    <div class="form-group mb-5 mt-5 mt-xl-2 mt-lg-2">
-                      <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="productData.price"  name="price" class="form-control" maxlength="5"  autocomplete="off"  required>
-
-                      <label class="form-control-placeholder english_wrd floatinglabl" for="name"><span style="font-size: 14px" class="tamil_wrd">விலை</span> / Price / {{showUnit}}</label>
+                  <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">விலை </span>/ Price / {{showUnit}}</label>
+                    <div class="form-group mb-4">
+                      <input type="text" placeholder="Enter price" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="productData.price"  name="price" class="form-control" maxlength="5"  autocomplete="off"  required>
                       <span class="text-danger float-left error_word" [class.d-none] = "price.valid || price.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Price is required</span>
                     </div>
 
               </div>
                 <div class="col-md-5">
-                    <div class="form-group mb-5 mt-2">
-                          <input google-place type="text" placeholder="கிடைக்குமிடம் / Available Place" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="productData.avlPlace" required>
+                  <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">கிடைக்குமிடம் </span>/ Available Place</label>
+                    <div class="form-group mb-4">
+                          <input google-place type="text" placeholder="Enter your city" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="productData.avlPlace" required>
                           <span class="text-danger float-left error_word" [class.d-none] = "avlPlace.valid || avlPlace.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
                       </div>
                 </div>
@@ -83,16 +83,16 @@
               <div class="row">
                     <div class="col-md-1"></div>
                 <div class="col-md-5">
-                        <div class="form-group mb-5 mt-2">
-                                <input type="text"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="productData.description"  name="description" class="form-control"  autocomplete="off" maxlength="500" required>
-                                <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_wrd"> பொருளைப் பற்றி </span>/ Description </label>
+                  <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">பொருளைப் பற்றி </span>/ Description</label>
+                        <div class="form-group mb-4">
+                                <input type="text"  placeholder="Enter description"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="productData.description"  name="description" class="form-control"  autocomplete="off" maxlength="500" required>
                                 <span class="text-danger float-left error_word" [class.d-none] = "description.valid || description.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Description is required</span>
                               </div>
               </div>
                 <div class="col-md-5">
-                        <div class="form-group mb-5 mt-2">
-                                <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="productData.validityTime"  name="validityTime" class="form-control" autocomplete="off"  bsDatepicker [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
-                                <label class="form-control-placeholder english_wrd floatinglabl" for="date"><span style="font-size: 14px" class="tamil_wrd">காலாவதியாகும் தேதி </span>/ Expiry Date </label>
+                  <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">காலாவதியாகும் தேதி் </span>/ Expiry Date</label>
+                        <div class="form-group mb-4">
+                                <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="productData.validityTime" placeholder="Enter expiry date" name="validityTime" class="form-control" autocomplete="off"  bsDatepicker [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
                                 <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>
                               </div>
                 </div>
@@ -102,7 +102,7 @@
               <div class="row">
                   <div class="col-md-1"></div>
                   <div class="col-md-3">
-                            <div class="form-group mb-5 mt-2">
+                            <div class="form-group mb-4">
                                     <div class="upload-btn-wrapper">
                                       <label for="ImageUpload" style="color:#0d4608;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;font-weight: bolder">Upload product image</label>
                                       <input type="file" id="Image" name="Image" class="upload" (change)="onFileChange($event)" #fileInput>
