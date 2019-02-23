@@ -1,11 +1,12 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const router = express.Router();
-const User = require('../models/user');
-const Post = require('../models/post');
-const Category = require('../models/category');
+const express =require('express')
+const jwt = require('jsonwebtoken')
+const router = express.Router()
+const User = require('../models/user')
+const Post = require('../models/post')
+const Category = require('../models/category')
+const Blog = require('../models/blog')
 const Contact = require('../models/contact');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 var multer = require('multer');
 const cloudinary = require('cloudinary');
 const cloudinaryStorage = require('multer-storage-cloudinary');
@@ -98,17 +99,122 @@ router.post('/post', (req, res) => {
 
 //admin
 
-router.post('/category', (req, res) => {
-  let categoryData = req.body;
-  let category = new Category(categoryData);
-  category.save((error, productData) => {
-    if (error) {
-      console.log(error);
+router.post('/category',(req,res)=>{
+    let categoryData = req.body
+    let category = new Category(categoryData)
+    category.save((error,productData)=>{
+        if(error){
+            console.log(error)
+        }else{
+            
+            res.status(200).send(productData)
+
+        }
+    })
+})
+router.post('/blog',(req,res)=>{
+    let blogData = req.body
+    let blog = new Blog(blogData)
+    blog.save((error,blogData)=>{
+        if(error){
+            console.log(error)
+        }else{
+            
+            res.status(200).send(blogData)
+
+        }
+    })
+})
+router.get('/blogview', (req, res) => {
+  Blog.find(function(err, result) {
+    if (err) {
+      console.log('no blog');
     } else {
-      res.status(200).send(productData);
+      res.send(result);
+      //console.log(result)
     }
   });
 });
+//update blogs
+router.put('/blogedit/:id', function(req, res) {
+  Blog.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: { username: req.body.username,commenttext: req.body.commenttext}
+    },
+    {
+      new: true
+    },
+    function(err, updatedBlog) {
+      if (err) {
+        res.send('Error updating blog');
+      } else {
+        res.json(updatedBlog);
+      }
+    }
+  );
+});
+router.get('/blogetone/:id', (req, res) => {
+  Blog.findById(req.params.id, function(errors, getoneuser) {
+    if (errors) {
+      console.log('Error updating' + errors);
+    } else {
+      res.json(getoneuser);
+    }
+  });
+});
+//delete blog
+router.delete('/blogdel/:id', (req, res) => {
+  Blog.findByIdAndRemove(req.params.id, function(errors, deleteblog) {
+    if (errors) {
+      console.log('Error deleting' + errors);
+    } else {
+      res.json(deleteblog);
+    }
+  });
+});
+
+router.post('/login',(req,res)=>{
+    let userData = req.body
+
+    User.findOne({phone: userData.phone},(error,user)=>{
+        if(error){
+            console.log(error)
+
+        }else{
+            if(!user){
+                res.status(401).send('Invalid Phone Number')
+               
+            }else{
+                if(user.password !== userData.password){
+                    res.status(401).send('Invalid Password')
+                }else{
+                //add jwt
+                 let payload={subject:user._id}
+                 let token =jwt.sign(payload,'secretKey')
+                    //before add jwt
+                   // res.status(200).send(user)
+
+                    //after add jwt
+                    
+                 res.status(200).send({token,payload,user})
+                
+                }
+            }
+        }
+    })
+})
+// router.post('/category', (req, res) => {
+//   let categoryData = req.body;
+//   let category = new Category(categoryData);
+//   category.save((error, productData) => {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       res.status(200).send(productData);
+//     }
+//   });
+// });
 
 //contact
 router.post('/contact', (req, res) => {
