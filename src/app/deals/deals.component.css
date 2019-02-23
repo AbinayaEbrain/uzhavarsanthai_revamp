@@ -1,6 +1,6 @@
 .bg {
   background-color: whitesmoke;
-  height: -webkit-fill-available;
+  min-height: -webkit-fill-available;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -263,4 +263,5 @@ input {
   text-align: center;
   font-weight: bold;
   color: #0d4608;
+  /* height: -webkit-fill-available; */
 }

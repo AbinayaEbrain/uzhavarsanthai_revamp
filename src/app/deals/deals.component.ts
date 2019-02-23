@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { DealsService } from '../deals.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-declare var swal: any;
+declare var sweetAlert: any;
 declare var $: any;
 // loader
 

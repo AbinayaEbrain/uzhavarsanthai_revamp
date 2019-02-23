@@ -70,8 +70,6 @@ today : Date;
 
 
   ngOnInit() {
-
-
     this.loadingCtrl.show();
   this.today = new Date();
     this.InitialCall();
@@ -143,11 +141,12 @@ InitialCall() {
       this.deallistobj.subqnty = this.dealslists[i].subqnty
       this.deallistobj.price = this.dealslists[i].price
       this.deallistobj.description = this.dealslists[i].description
-      this.deallistobj.avlPlace = this.dealslists[i].avlPlace
+      this.deallistobj.avlPlace = this.dealslists[i].avlPlace.formatted_address
       this.time = this.dealslists[i].validityTime
     }
   }
-  this.deallistobj.validityTime = this.datePipe.transform((this.time),'MM/dd/yyyy');
+  this.dateNrml = this.datePipe.transform((this.time),'dd/MM/yyyy');
+  this.deallistobj.validityTime = this.dateNrml;
 }
 
 postImage(){
