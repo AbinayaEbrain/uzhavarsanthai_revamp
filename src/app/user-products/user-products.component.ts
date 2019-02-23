@@ -58,7 +58,7 @@ export class UserProductsComponent implements OnInit {
             this.errMsg = "Still you haven't post any deals";
             document.getElementById('hideEditBtn').style.display = 'none';
             document.getElementById('hideDeleteBtn').style.display = 'none';
-            document.getElementById('hideSearchDiv').style.display = 'none';
+            // document.getElementById('hideSearchDiv').style.display = 'none';
             document.getElementById('hide').style.display = 'none';
           }
         }
@@ -100,7 +100,7 @@ export class UserProductsComponent implements OnInit {
             this.errMsg1 = 'No expired products found';
             document.getElementById('hideEditBtn1').style.display = 'none';
             document.getElementById('hideDeleteBtn1').style.display = 'none';
-            document.getElementById('hideSearchDiv').style.display = 'none';
+            // document.getElementById('hideSearchDiv').style.display = 'none';
             document.getElementById('hide1').style.display = 'none';
             this.loadingCtrl.hide();
           }

@@ -107,6 +107,9 @@ select {
 
 .form-control {
   border-bottom: 1px solid #0d4608 !important;
+  font-weight: bold;
+  font-family: 'Mukta', sans-serif;
+
 }
 
 /* option:not(:checked) {
