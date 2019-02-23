@@ -208,7 +208,7 @@ export class DealsComponent implements OnInit {
 
     if (this.totalDeals1.length == 0) {
       this.loadingCtrl.show();
-      sweetAlert('Sorry!', 'Currently no product available', 'error');
+      //sweetAlert('Sorry!', 'Currently no product available', 'error');
       this.showDeals = true;
     }
 
