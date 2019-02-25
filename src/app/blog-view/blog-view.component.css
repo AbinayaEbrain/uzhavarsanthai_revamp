@@ -129,7 +129,7 @@
   .prdctFlNme1 {
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 250px !important;
+    width: 850px !important;
     overflow: hidden;
   }
 }
@@ -192,3 +192,6 @@ button{
   .example-item {
      height: 100px;
   }
+.collapse{
+  font-family: 'Hind Madurai', sans-serif !important;
+}

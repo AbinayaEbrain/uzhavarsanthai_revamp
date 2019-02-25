@@ -53,3 +53,76 @@ input {
 textarea {
   font-family: 'Hind Madurai', sans-serif !important;
 }
+.productFullName{
+    font-family: 'Hind Madurai', sans-serif !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 800px !important;
+    overflow: hidden;
+    font-size: 15px !important;
+}
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .hedngBox {
+    font-size: 13px;
+  }
+  .btnmed {
+    font-size: 13px;
+  }
+  .prd3 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 200px !important;
+    overflow: hidden;
+  }
+}
+@media screen and (min-width: 990px) and (max-width: 1440px) {
+  .btn1 {
+    margin-top: 40px;
+  }
+  .prdctFlNme1 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 850px !important;
+    overflow: hidden;
+  }
+}
+@media screen and (min-width: 426px) and (max-width: 475px) {
+  .prd3 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 200px !important;
+    overflow: hidden;
+  }
+}
+@media screen and (min-width: 476px) and (max-width: 767px) {
+  .prd3 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 400px !important;
+    overflow: hidden;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+  .prd2 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 650px !important;
+    overflow: hidden;
+  }
+}
+.btnstl{
+  background-color: whitesmoke;
+color: #0d4608;
+font-weight: bold;
+}
+.collapse{
+    font-family: 'Hind Madurai', sans-serif !important;
+}
+.btnmed{
+    font-family: 'Hind Madurai', sans-serif !important;
+  background-color: whitesmoke;
+color: #0d4608;
+font-weight: bold;
+border: 1px solid #0d4608;
+}
