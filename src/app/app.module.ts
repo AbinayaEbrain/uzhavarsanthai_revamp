@@ -48,6 +48,7 @@ import { BlogComponent } from './blog/blog.component';
 import { BlogViewComponent } from './blog-view/blog-view.component';
 // Infinite Scroll
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     SweetAlert2Module,
     BsDatepickerModule.forRoot(),
     InfiniteScrollModule,
+    ScrollingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAmEuB6RfjEQdz9zqL_nYihfHkeWR-iq-Y',
       libraries: ['geometry', 'places'],

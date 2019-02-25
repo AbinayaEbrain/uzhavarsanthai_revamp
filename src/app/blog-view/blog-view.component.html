@@ -18,8 +18,7 @@
                     <button class="btn writeBlog" (click)="addBlog()">Write Blog</button>
                   </div>
                 </div> 
-                <div style="height: 500px; overflow-y: scroll;" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false">
-                <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr">
+            <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr">
                   <div class="card-header" style="color:#0d4608;padding: 5px;">
                       <p style="float:right" class="blogAuthor">#{{blog.bloggerName}}</p>
                     <p class="blogcard hedngBox productFullName prdctFlNme1 prd2 prd3"><strong >{{blog.username}} </strong>
@@ -43,7 +42,6 @@
 
                  
                 </div>
-              </div>
              </div>
       </div>
     
