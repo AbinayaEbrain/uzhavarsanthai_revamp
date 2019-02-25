@@ -81,7 +81,7 @@ export class UserProductsComponent implements OnInit {
     for (let i = 0; i < this.getPrdtName.length; i++) {
       if (this.queryString != this.getPrdtName[i]){
           console.log('no data')
-          this.errMsg2 = 'Product Unavailable';
+          // this.errMsg = 'Product Unavailable';
       }
     }
   }

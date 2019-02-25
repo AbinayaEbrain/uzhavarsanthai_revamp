@@ -75,4 +75,9 @@ export class BlogViewComponent implements OnInit {
 
   //   )
   // }
+
+openblog(){
+document.getElementById('hide').innerHTML = '';
+  }
 }
+
