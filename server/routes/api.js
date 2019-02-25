@@ -124,17 +124,19 @@ router.post('/blog',(req,res)=>{
 
         }
     })
-})
+});
+
 router.get('/blogview', (req, res) => {
   Blog.find(function(err, result) {
     if (err) {
       console.log('no blog');
     } else {
       res.send(result);
-    //  console.log(result)
     }
-  });
+  }).sort({createdAt : -1});
+  
 });
+
 //update blogs
 router.put('/blogedit/:id', function(req, res) {
   Blog.findByIdAndUpdate(
@@ -154,6 +156,7 @@ router.put('/blogedit/:id', function(req, res) {
     }
   );
 });
+
 router.get('/blogetone/:id', (req, res) => {
   Blog.findById(req.params.id, function(errors, getoneuser) {
     if (errors) {
@@ -231,16 +234,16 @@ router.post('/contact', (req, res) => {
 
 router.post('/sendMail', (req, res) => {
   var server = email.server.connect({
-    user: 'support@ebraintechnologies.com',
-    password: 'Ji#993te',
+    user: 'abishakshi1496@gmail.com',
+    password: 'abiyuva1438',
     host: 'smtp.gmail.com',
     ssl: true
   });
   server.send(
     {
       text: 'You have signed up',
-      from: 'support@ebraintechnologies.com',
-      to: 'support@ebraintechnologies.com',
+      from: 'abishakshi1496@gmail.com',
+      to: 'abishakshi1496@gmail.com',
       subject: 'Welcome to my app',
       attachment: [
         {

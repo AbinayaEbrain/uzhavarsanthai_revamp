@@ -14,6 +14,7 @@ export class BlogViewComponent implements OnInit {
   public bloglistobj: any = {};
   errMsg: any;
   success: any;
+  page: number = 1;
 
   constructor(
     private _auth: AuthService,
@@ -22,15 +23,20 @@ export class BlogViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this._auth.blogGetData().subscribe(
-      res => {
-        this.blogArr = res;
-      },
-      err => {
-        this.blogArr = [];
-      }
-    );
+    this.getAllBlog();
   }
+
+  getAllBlog(){
+  this._auth.blogGetData().subscribe(
+    res => {
+      this.blogArr = res;
+    },
+    err => {
+      this.blogArr = [];
+    }
+  );
+}
+
   deleteblog() {
     this.id = this.route.snapshot.params['id'];
     this._auth.blogDeleteData(this.id).subscribe(
@@ -60,24 +66,15 @@ export class BlogViewComponent implements OnInit {
       }, 2000);
     }
   }
-  // update(){
-  //   this._auth.blogEditData(this.bloglistobj,this.id)
-  //   .subscribe(
-  //     res=>{
-  //       console.log(res);
-  //      // this.success = "Updated successfully!"
-  //       setTimeout(() => {
-  //         this.router.navigate(['/blog-view']);
-  //     }, 3000);
-
-  //     },
-  //     err=>console.log(err),
-
-  //   )
-  // }
-
-openblog(){
-document.getElementById('hide').innerHTML = '';
-  }
+  
+  onScroll()  
+  {  
+    console.log("Scrolled");  
+    this.page = this.page + 1;  
+    this.getAllBlog();  
+  } 
+ openblog(){
+   document.getElementById('hide').innerHTML = '';
+}
 }
 

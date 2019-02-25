@@ -95,7 +95,7 @@
 .writeBlog {
   float: right;
   color: white;
-  padding: 3px;
+  padding: 7px;
   background-color: #0d4608;
 }
 
@@ -139,4 +139,9 @@
     width: 650px !important;
     overflow: hidden;
   }
+}
+
+.blogAuthor {
+  font-size: 20px;
+  font-weight: bold;
 }
