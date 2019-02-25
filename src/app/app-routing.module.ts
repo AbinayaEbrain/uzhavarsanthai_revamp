@@ -155,7 +155,7 @@ const routes: Routes = [
   {
     path: 'blog-view/:id',
     component: BlogViewComponent
-  },
+  }
 ];
 
 @NgModule({

@@ -1,6 +1,5 @@
 .bg {
-  /* background-color: whitesmoke; */
-  background-image: url('../../assets/Images/Slider-3.jpg');
+  background-image: url('../../assets/Images/home.jpg');
   height: -webkit-fill-available;
   background-position: center center;
   background-repeat: no-repeat;
@@ -16,7 +15,7 @@
 
 .slogan {
   font-weight: bold !important;
-  color: #0d4608;
+  color: white;
 }
 
 @media only screen and (min-width: 1023px) and (max-width: 1330px) {
@@ -60,7 +59,7 @@
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.63); */
 }
 .profile-card-5 h5 {
-  color: #4e5e30;
+  color: white;
   font-weight: 600;
 }
 .profile-card-5 p {
@@ -73,6 +72,10 @@
 }
 
 .cardClr {
+  background-color: #0d4608;
+}
+
+.cardClr1 {
   border-top: 2px solid #0d4608;
 }
 

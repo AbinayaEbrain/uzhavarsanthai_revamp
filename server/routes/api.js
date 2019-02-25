@@ -131,7 +131,7 @@ router.get('/blogview', (req, res) => {
       console.log('no blog');
     } else {
       res.send(result);
-      //console.log(result)
+    //  console.log(result)
     }
   });
 });
