@@ -1,11 +1,12 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const Schema= mongoose.Schema
+const Schema = mongoose.Schema;
 
 const blogSchema = new Schema({
-    //productId:String,
-    username:String,
-    commenttext:String
-})
+  bloggerName: String,
+  username: String,
+  commenttext: String,
+  createdAt: Date
+});
 
-module.exports = mongoose.model('blog',blogSchema,'blog')
+module.exports = mongoose.model('blog', blogSchema, 'blog');
