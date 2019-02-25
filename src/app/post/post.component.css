@@ -28,6 +28,7 @@
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .bg1 {
     min-height: 1300px;
+    margin-top: 7%;
   }
   .card:nth-child(2) {
     margin: 0 0px;
@@ -42,6 +43,7 @@ input[type='password'] {
   width: 100%;
   display: inline-block;
   box-sizing: border-box;
+  font-family: 'Hind Madurai', sans-serif;
 }
 
 input:focus {
@@ -76,8 +78,8 @@ select:focus {
 
 input {
   background-color: transparent;
-  /* border: 1px solid #79828b; */
   border: 1px solid #0d4608 !important;
+  font-family: 'Hind Madurai', sans-serif !important;
 }
 
 select {
@@ -108,10 +110,8 @@ select {
 
 .form-control {
   border-bottom: 1px solid #0d4608 !important;
-  font-weight: bold;
-  font-family: 'Hind Madurai', sans-serif !important;
-  font-family: 'Mukta', sans-serif !important;
-
+  font-family: 'Hind Madurai', sans-serif ;
+  font-family: 'Mukta', sans-serif ;
 }
 .slect {
   position: absolute;
@@ -177,6 +177,7 @@ option {
 }
 input {
   font-family: 'Nunito', sans-serif;
+  font-family: 'Hind Madurai', sans-serif !important;
 }
 .button_word {
   font-family: 'Kanit', sans-serif;
