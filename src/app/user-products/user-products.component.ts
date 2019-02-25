@@ -21,6 +21,7 @@ export class UserProductsComponent implements OnInit {
   queryString: any;
   p: any;
   d: any;
+  errMsg2:any;
   constructor(
     private _dealsService: DealsService,
     private route: ActivatedRoute,
@@ -73,6 +74,7 @@ export class UserProductsComponent implements OnInit {
     );
   }
 
+
   case() {
     // console.log(this.queryString);
     this.queryString = this.queryString.toLowerCase();
@@ -86,6 +88,7 @@ export class UserProductsComponent implements OnInit {
 
   getExpiredDeals() {
     this.loadingCtrl.show();
+    this.queryString = '';
     this._dealsService.getDeals().subscribe(
       res => {
         this.loadingCtrl.hide();

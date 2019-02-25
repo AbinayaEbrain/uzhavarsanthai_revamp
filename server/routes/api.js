@@ -106,7 +106,7 @@ router.post('/category',(req,res)=>{
         if(error){
             console.log(error)
         }else{
-            
+
             res.status(200).send(productData)
 
         }
@@ -119,7 +119,7 @@ router.post('/blog',(req,res)=>{
         if(error){
             console.log(error)
         }else{
-            
+
             res.status(200).send(blogData)
 
         }
@@ -184,7 +184,7 @@ router.post('/login',(req,res)=>{
         }else{
             if(!user){
                 res.status(401).send('Invalid Phone Number')
-               
+
             }else{
                 if(user.password !== userData.password){
                     res.status(401).send('Invalid Password')
@@ -196,9 +196,9 @@ router.post('/login',(req,res)=>{
                    // res.status(200).send(user)
 
                     //after add jwt
-                    
+
                  res.status(200).send({token,payload,user})
-                
+
                 }
             }
         }
@@ -234,7 +234,7 @@ router.post('/sendMail', (req, res) => {
     user: 'support@ebraintechnologies.com',
     password: 'Ji#993te',
     host: 'smtp.gmail.com',
-    ssl: true
+    ssl: true 
   });
   server.send(
     {

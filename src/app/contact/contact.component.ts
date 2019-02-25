@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 })
 export class ContactComponent implements OnInit {
   public contact: any = {};
+  successMsg : any;
   @ViewChild('contactform') mytemplateForm: NgForm;
 
   constructor(private adminService: AdminService) {}
@@ -17,6 +18,11 @@ export class ContactComponent implements OnInit {
 
   contactDetail() {
     this.adminService.addContact(this.contact);
+    this.successMsg = 'Your message received successfully';
     this.mytemplateForm.reset();
+    setTimeout(() => {
+  this.successMsg = '';
+}, 3000);
+
   }
 }
