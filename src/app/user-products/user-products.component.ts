@@ -13,6 +13,7 @@ export class UserProductsComponent implements OnInit {
   crdDeals1 = [];
   userDeals = [];
   userDeals1 = [];
+  getPrdtName=[];
   id: any;
   errMsg: any;
   errMsg1: any;
@@ -41,7 +42,7 @@ export class UserProductsComponent implements OnInit {
         this.loadingCtrl.hide();
         let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
         let j = 0;
-
+        let l = 0;
         this.crdDeals = res;
         let CurrentDate = new Date().toISOString();
         for (let i = 0; i < this.crdDeals.length; i++) {
@@ -50,7 +51,9 @@ export class UserProductsComponent implements OnInit {
             this.crdDeals[i].validityTime > CurrentDate
           ) {
             this.userDeals[j] = this.crdDeals[i];
+              this.getPrdtName[l] = this.userDeals[j].name;
             j++;
+            l++;
           }
         }
         for (let j = 0; j < this.userDeals.length; j++) {
@@ -73,7 +76,12 @@ export class UserProductsComponent implements OnInit {
   case() {
     // console.log(this.queryString);
     this.queryString = this.queryString.toLowerCase();
-    // console.log(this.queryString);
+    for (let i = 0; i < this.getPrdtName.length; i++) {
+      if (this.queryString != this.getPrdtName[i]){
+          console.log('no data')
+          this.errMsg2 = 'Product Unavailable';
+      }
+    }
   }
 
   getExpiredDeals() {
