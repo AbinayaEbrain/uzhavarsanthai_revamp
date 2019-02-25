@@ -116,4 +116,27 @@
   .btn1 {
     margin-top: 40px;
   }
+  .prdctFlNme1 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 250px !important;
+    overflow: hidden;
+  }
+}
+@media screen and (min-width: 425px) and (max-width: 767px) {
+  .prd3 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 400px !important;
+    overflow: hidden;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+  .prd2 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 650px !important;
+    overflow: hidden;
+  }
 }
