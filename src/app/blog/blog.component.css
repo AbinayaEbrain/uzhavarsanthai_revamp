@@ -35,3 +35,9 @@
   background-color: white;
   font-weight: bold;
 }
+input{
+    font-family: 'Hind Madurai', sans-serif !important;
+}
+textarea{
+      font-family: 'Hind Madurai', sans-serif !important;
+}

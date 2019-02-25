@@ -5,7 +5,7 @@
               <div class="row">
                   <div class="col-md-12 text-center">
                       <h4 class="head mt-2">
-                          <span class="tamil_word" style="font-size: 20px">வலைப்பதிவுகள்</span>/Blogs</h4>
+                          <span class="tamil_word" style="font-size: 20px">வலைப்பதிவுகள் </span>/ Blogs</h4>
                     <div class="row">
                       <div class="col-md-4"></div>
                       <div class="col-md-4">
@@ -21,18 +21,11 @@
                 <div style="height: 500px; overflow-y: scroll;" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false">
                 <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr">
                   <div class="card-header" style="color:#0d4608;padding: 5px;">
-                      <p style="float:right" class="blogAuthor">#{{blog.bloggerName}}</p>
-                    <p class="blogcard hedngBox productFullName prdctFlNme1 prd2 prd3"><strong >{{blog.username}} </strong>
+                      <p style="float:right" class="blogAuthor"># {{blog.bloggerName}}</p>
+                    <p class="blogcard hedngBox productFullName prdctFlNme1 prd2 prd3"><strong>{{blog.username}} </strong>
                   </p>
                       <p class="blogcard1 a productFullName prdctFlNme1 prd2 prd3" id="hide">{{blog.commenttext}} </p>
-                      <button type="button" class="btn viewmrebtn btnmed btn1"  data-toggle="collapse" [attr.data-target]="'#'+blog._id" aria-expanded="false" (click)="openblog()" [attr.aria-controls]="blog._id">Read Blog</button>
-
-
-                    <!-- <button class="btn btnstl"   data-toggle="modal" data-target="#myModal" data-backdrop="static"
-                  data-keyboard="false" routerLink="/blog-view/{{blog._id}}">
-                    <i class="fa fa-trash-o" style="font-size:24px"></i>
-                 </button> -->
-                    <!-- <button class="btn btnst2"  routerLink="/blog/{{blog._id}}"><i class="fa fa-pencil-square-o" style="font-size:24px"></i></button> -->
+                      <button type="button" class="btn viewmrebtn btnmed btn1"  data-toggle="collapse" [attr.data-target]="'#'+blog._id" aria-expanded="false" (click)="openblog()" [attr.aria-controls]="blog._id">மேலும் வாசிக்க</button>
                   </div>
                   <div>
                       <!-- <input type="checkbox" class="read-more-state" id="post-1" /> -->
