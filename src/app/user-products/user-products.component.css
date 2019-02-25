@@ -179,3 +179,9 @@ section .section-title {
 .modal-title {
   color: #0d4608;
 }
+.prdUnavil{
+  text-align: center !important;
+     font-weight: bold;
+     color: #0d4608;
+     font-family: 'Mukta', sans-serif;
+}

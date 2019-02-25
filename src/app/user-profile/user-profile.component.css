@@ -65,6 +65,7 @@
     width: 100%;
     display: inline-block;
     box-sizing: border-box;
+    font-family: 'Hind Madurai', sans-serif;
 }
 
 input:focus{
@@ -94,8 +95,8 @@ select:focus{
 
 input{
     background-color: transparent;
-    /* border: 1px solid #79828b; */
     border: 1px solid #0d4608 !important;
+    font-family: 'Hind Madurai', sans-serif;
 
 }
 
@@ -193,6 +194,7 @@ select{
   }
   input {
     font-family: 'Nunito', sans-serif;
+    font-family: 'Hind Madurai', sans-serif;
   }
   .button_word{
     font-family: 'Kanit', sans-serif;

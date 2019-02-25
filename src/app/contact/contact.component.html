@@ -57,7 +57,9 @@
         </div>
       </div>
   </div>
-
+<div *ngIf="successMsg">
+  <p class="successemailMsg">{{successMsg}}</p>
+</div>
   <form  #contactform="ngForm" *ngIf ="!submitted" novalidate>
   <div class="row mt-4">
     <div class="col-md-6">
@@ -91,7 +93,7 @@
       <span class="text-danger float-left error_word mb-2" [class.d-none] = "message.valid || message.untouched">
           <i class="fa fa-info-circle" aria-hidden="true"></i> Message is required</span>
 
-      <button type="submit" class="btn btnClr btn-block" [disabled]="contactform.form.invalid" (click)="contactDetail()">Submit</button>
+      <button type="submit" class="btn btnClr btn-block" [disabled]="contactform.form.invalid" (click)="contactDetail()">Send</button>
     </div>
   </div>
 </form>
