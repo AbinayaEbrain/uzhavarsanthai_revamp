@@ -5,6 +5,7 @@
             <h4 class="head mt-2"><span class="tamil_word" style="font-size: 20px">வலைப்பதிவுகள்</span>/Blogs</h4>
                 <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr">
                   <div class="card-header" style="color:#0d4608;padding: 5px;">
+                      <p style="float:right">#{{blog.bloggerName}}</p>
                     <p class="blogcard hedngBox productFullName prdctFlNme1 prd2 prd3"><strong >{{blog.username}} </strong>
                   </p>
                       <p class="blogcard1 a productFullName prdctFlNme1 prd2 prd3" id="hide">{{blog.commenttext}} </p>
