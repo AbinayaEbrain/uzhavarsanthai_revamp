@@ -2,10 +2,26 @@
     <div class="container  pt-5">
       <div class="row mt-2 mb-2">
           <div class="col-md-12 mt-5 card">
-            <h4 class="head mt-2"><span class="tamil_word" style="font-size: 20px">வலைப்பதிவுகள் </span>/ Blogs</h4>
+              <div class="row">
+                  <div class="col-md-12 text-center">
+                      <h4 class="head mt-2">
+                          <span class="tamil_word" style="font-size: 20px">வலைப்பதிவுகள்</span>/Blogs</h4>
+                    <div class="row">
+                      <div class="col-md-4"></div>
+                      <div class="col-md-4">
+                        <div class="alert alert-danger" *ngIf="errMsg">
+                          {{errMsg}}
+                        </div>
+                      </div>
+                      <div class="col-md-4"></div>
+                    </div>
+                    <button class="btn writeBlog" (click)="addBlog()">Write Blog</button>
+                  </div>
+                </div>
+                <div style="height: 500px; overflow-y: scroll;" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false">
                 <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr">
                   <div class="card-header" style="color:#0d4608;padding: 5px;">
-                      <p class="blogTitle" style="float:right">#{{blog.bloggerName}}</p>
+                      <p style="float:right" class="blogAuthor">#{{blog.bloggerName}}</p>
                     <p class="blogcard hedngBox productFullName prdctFlNme1 prd2 prd3"><strong >{{blog.username}} </strong>
                   </p>
                       <p class="blogcard1 a productFullName prdctFlNme1 prd2 prd3" id="hide">{{blog.commenttext}} </p>
@@ -27,6 +43,7 @@
 
 
                 </div>
+              </div>
              </div>
       </div>
 
