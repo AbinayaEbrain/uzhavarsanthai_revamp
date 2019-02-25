@@ -113,11 +113,6 @@ select {
   font-family: 'Mukta', sans-serif !important;
 
 }
-
-/* option:not(:checked) {
-  background-color: white;
-  color: #000;
-} */
 .slect {
   position: absolute;
   top: 0;
