@@ -15,6 +15,7 @@ export class UserProductsComponent implements OnInit {
   userDeals1 = [];
   getPrdtName=[];
   id: any;
+  deal:any;
   errMsg: any;
   errMsg1: any;
   success: any;

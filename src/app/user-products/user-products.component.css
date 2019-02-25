@@ -185,3 +185,16 @@ section .section-title {
      color: #0d4608;
      font-family: 'Mukta', sans-serif;
 }
+@media only screen and (min-width: 768px) and (max-width: 1100px) {
+.nav-item{
+  font-size: 10px;
+}
+.nav-tabs .nav-link.active {
+  color: white !important;
+  background-color: #0d4608;
+  border-color: transparent transparent white;
+  border-bottom: 4px solid #0d4608 !important;
+  font-size: 10px;
+  font-weight: bold;
+}
+}

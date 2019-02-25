@@ -10,6 +10,7 @@ import { NgForm } from '@angular/forms';
 export class ContactComponent implements OnInit {
   public contact: any = {};
   successMsg : any;
+  submitted:any;
   @ViewChild('contactform') mytemplateForm: NgForm;
 
   constructor(private adminService: AdminService) {}

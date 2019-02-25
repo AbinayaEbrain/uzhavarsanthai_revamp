@@ -19,3 +19,37 @@
     height: fit-content;
   }
 }
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 10px;
+}
+.blogTitle {
+  color: #0d4608;
+  text-align: center;
+  font-family: 'Hind Madurai', sans-serif !important;
+  font-size: 20px;
+  font-weight: bold;
+}
+.blgtitle {
+  font-family: 'Hind Madurai', sans-serif !important;
+  font-weight: bold;
+}
+.viewMoreBtn {
+  color: #0d4608 !important;
+  border: 2px solid #0d4608;
+  background-color: white;
+  font-weight: bold;
+}
+input {
+  font-family: 'Hind Madurai', sans-serif !important;
+}
+textarea {
+  font-family: 'Hind Madurai', sans-serif !important;
+}

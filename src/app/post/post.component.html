@@ -16,7 +16,7 @@
       <div class="row" style="margin-top: 1%;">
             <div class="col-md-1"></div>
           <div class="col-md-5  mb-3">
-             <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> பொருளின் வகை </span>/ Category</label>
+             <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> பொருள் வகை </span>/ Category</label>
               <div class="form-group">
                   <select required class="form-control"  #category="ngModel" [(ngModel)]="productData.categoryId" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
                     <option class="opt" selected="" disabled="" value="" >Choose product category</option>
@@ -26,7 +26,7 @@
                   </div>
                 </div>
       <div class="col-md-5  mb-3">
-         <label class="english_wrd postLble" for="phone" ><span style="font-size: 14px" class="tamil_word"> பொருளின் பெயர் </span>/ Product Name</label>
+         <label class="english_wrd postLble" for="phone" ><span style="font-size: 14px" class="tamil_word"> பொருள் பெயர் </span>/ Product Name</label>
               <div class="form-group">
                 <input type="text" placeholder="Enter product name"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel  maxlength="50" [(ngModel)]="productData.name"  name="name" class="form-control"  autocomplete="off"  required>
                 <span class="text-danger float-left error_word" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product Name is required</span>
@@ -89,7 +89,7 @@
                               </div>
               </div>
                 <div class="col-md-5 mb-3">
-                  <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">காலாவதியாகும் தேதி் </span>/ Expiry Date</label>
+                  <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">காலாவதி தேதி் </span>/ Expiry Date</label>
                         <div class="form-group">
                                 <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="productData.validityTime" placeholder="Enter expiry date" name="validityTime" class="form-control" autocomplete="off"  bsDatepicker [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
                                 <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>
