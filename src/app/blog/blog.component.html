@@ -19,21 +19,21 @@
       <div class="row mt-5 mb-5">
           <div class="col-md-2"></div>
           <div class="col-md-8 card">
-            <h3 style="color:#0d4608;text-align: center">Blog</h3>
-            <div class="col-md-10 offset-md-1">
+            <p class="blogTitle mt-3">வலைப்பதிவு / Blog</p>
+            <div class="col-md-10 offset-md-1 mt-2">
             <form #usrform="ngForm"  action="/action_page.php" id="usrform" novalidate>
               <div class="form-group" style="color:#0d4608;">
-                <label for="usr">Blog Title:</label>
+                <label class="blgtitle" for="usr">தலைப்பு / Title</label>
                 <input type="text" #username="ngModel" style="border-color: #0d4608;" [class.is-invalid]="username.invalid && username.touched" class="form-control" [(ngModel)]="blogUserData.username" autocomplete="off" id="usr" name="username" required >
                 <span class="text-danger float-left error_word" [class.d-none] = "username.valid || username.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Blog title is required</span>
               </div>
-            <div class="form-group mt-4" style="color:#0d4608;">
-              <label for="comment" >Blog:</label>
+            <div class="form-group mt-5" style="color:#0d4608;">
+              <label class="blgtitle" for="comment" >கருத்து / Comment</label>
               <textarea  class="form-control" #commenttext="ngModel" id="comment" [class.is-invalid]="commenttext.invalid && commenttext.touched"  [(ngModel)]="blogUserData.commenttext" autocomplete="off" style="height: 150px;border-color: #0d4608;"  name="commenttext" required></textarea>
               <span class="text-danger float-left error_word" [class.d-none] = "commenttext.valid || commenttext.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Blog is required</span>
             </div>
-            <div class="mt-4" style="text-align:center">
-                <button type="button" [disabled]="usrform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn" style="margin-bottom: 10px;"  type="submit" (click)="post()">Submit</button>
+            <div class="mt-5 mb-3" style="text-align:center">
+                <button type="button" [disabled]="usrform.form.invalid " class="btn btn-outline text-center viewMoreBtn" style="margin-bottom: 10px;"  type="submit" (click)="post()">Submit</button>
               </div>
             </form></div>
           </div>

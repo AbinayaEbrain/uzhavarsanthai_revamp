@@ -19,6 +19,8 @@
 .head {
   color: #0d4608;
   text-align: center;
+  font-weight: bold;
+  font-family: 'Mukta', sans-serif !important;
 }
 .blogcard {
   text-align: justify;
@@ -139,4 +141,12 @@
     width: 650px !important;
     overflow: hidden;
   }
+}
+.tamil_word{
+    font-family: 'Hind Madurai', sans-serif !important;
+    font-weight: bold;
+}
+.blogTitle{
+  font-family: 'Hind Madurai', sans-serif !important;
+  font-family: 'Mukta', sans-serif !important;
 }
