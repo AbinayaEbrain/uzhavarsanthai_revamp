@@ -49,6 +49,7 @@
         >
       </li>
       <li
+        *ngIf="!_authService.loggedIn()"
         class="nav-item"
         data-toggle="collapse"
         data-target="#navbarCollapse"
@@ -60,6 +61,19 @@
           >Blog</a
         >
       </li>
+      <li
+      *ngIf="_authService.loggedIn()"
+      class="nav-item"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <a class="nav-link" routerLink="/blog" routerLinkActive="active"
+        >Blog</a
+      >
+    </li>
       <li
         *ngIf="!_authService.loggedIn() || !_authService.findActive()"
         class="nav-item"

@@ -1,19 +1,3 @@
-
-<!-- <div class="container">
-    <div class="row ">
-        <div class="col-md-6 offset-md-3">
-    <div class="card" style="margin-top: 15px;">
-  <h2 class="text-center mt-5" style="color:#0d4608;">
-    Blog
-  </h2>
-  <div class="col-md-10 offset-md-1">
-   </div>
-  </div>
-</div>
-</div>
-</div> -->
-
-
 <div class="container-fluid bg1">
     <div class="container  pt-5">
       <div class="row mt-5 mb-5">
@@ -39,5 +23,61 @@
           </div>
           <div class="col-md-2"></div>
       </div>
+
+      <div>
+          <div class="card mb-2 panel panel-default"   *ngFor="let blog of loggedInBlog">
+              <div class="card-header" style="color:#0d4608;padding: 5px;">
+                <div class="row">
+                  <div class="col-md-10"></div>
+                  <div class="col-md-1">
+                      <button class="btn btnstl float-right" data-toggle="modal" data-target="#myModal" data-backdrop="static"
+                      data-keyboard="false" routerLink="/blog/{{blog._id}}">
+                        <i class="fa fa-trash-o" style="font-size:24px"></i>
+                     </button>
+                  </div>
+                  <div class="col-md-1">
+                      <button class="btn btnst2"  routerLink="/blog/{{blog._id}}"><i class="fa fa-pencil-square-o" style="font-size:24px">
+                      </i></button> 
+                  </div>
+                </div>
+                <p class="blogcard hedngBox productFullName prdctFlNme1 prd2 prd3"><strong >{{blog.username}} </strong>
+              </p>
+                  <p class="blogcard1 a productFullName prdctFlNme1 prd2 prd3" id="hide">{{blog.commenttext}} </p>
+                  <button type="button" class="btn viewmrebtn btnmed btn1 float-right"  data-toggle="collapse" [attr.data-target]="'#'+blog._id" aria-expanded="false" (click)="openblog()" [attr.aria-controls]="blog._id">Read Blog</button>
+              </div>
+              <div>
+                
+                <label for="post-1" class="read-more-trigger"></label>
+                <div [attr.id]="blog._id" class="collapse a " id="show">{{blog.commenttext}}</div>
+
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- modal -->
+
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+        
+          <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;">Delete Confirmation</h4>
+        </div>
+        <div class="modal-body">
+          <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete?</h6>
+          <div class="text-center">
+         
+           <button type="button" class="btn btn-primary button_word" (click)="deleteblog()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btn-danger button_word" routerLink="/blog-view" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      
+      </div>
+      
     </div>
   </div>
