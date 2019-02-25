@@ -19,7 +19,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav ml-auto">
-        <li
+      <li
         class="nav-item"
         data-toggle="collapse"
         data-target="#navbarCollapse"
@@ -30,18 +30,6 @@
         <a class="nav-link" routerLink="/home" routerLinkActive="active"
           >Home</a
         >
-      </li>
-      <li
-      class="nav-item"
-      data-toggle="collapse"
-      data-target="#navbarCollapse"
-      aria-controls="navbarCollapse"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      >
-      <a class="nav-link" routerLink="/blog" routerLinkActive="active"
-        >Blog</a
-      >
       </li>
       <li
         *ngIf="!_authService.loggedIn()"
@@ -60,7 +48,19 @@
           >Deals</a
         >
       </li>
-    <li
+      <li
+        class="nav-item"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <a class="nav-link" routerLink="/blog-view" routerLinkActive="active"
+          >Blog</a
+        >
+      </li>
+      <li
         *ngIf="!_authService.loggedIn() || !_authService.findActive()"
         class="nav-item"
         data-toggle="collapse"
@@ -177,13 +177,22 @@
 </ngx-spinner>
 
 <footer class="footer uzhavarsanthaiFooter">
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
-      <div class="col-md-8 mt-1">
-        <p style="text-align:justify;"><span class="footerOptions" routerLink="/about">About Us &nbsp;&nbsp;|</span>
-          <span class="footerOptions" routerLink="/contact">&nbsp;&nbsp;Contact Us &nbsp;&nbsp;|</span>
-          <span class="footerOptions" routerLink="/about">&nbsp;&nbsp;Privacy Policy &nbsp;&nbsp;|</span>
-          <span class="footerOptions" routerLink="/about">&nbsp;&nbsp;Terms Of Use</span>
+      <div class="col-lg-8 col-md-6 col-sm-12 col-12 textCenter" style="margin-top: 1%;">
+        <p >
+          <span class="footerOptions" routerLink="/about"
+            >About Us &nbsp;&nbsp;|</span
+          >
+          <span class="footerOptions" routerLink="/contact"
+            >&nbsp;&nbsp;Contact Us &nbsp;&nbsp;|</span
+          >
+          <span class="footerOptions" routerLink="/about"
+            >&nbsp;&nbsp;Privacy Policy &nbsp;&nbsp;|</span
+          >
+          <span class="footerOptions" routerLink="/about"
+            >&nbsp;&nbsp;Terms Of Use</span
+          >
         </p>
       </div>
       <!-- <div class="col-md-2 mt-1">
@@ -195,12 +204,16 @@
       <div class="col-md-2 mt-1">
         <p class="footerOptions" routerLink="/about">Terms Of Use</p>
       </div> -->
-      <div class="col-md-4 float-right mt-1">
-          <div class="footer-copyright text-center mt-1">© 2019 Copyright
-              <a href="http://www.ebraintechnologies.com/" class="EbrainTechnologies">EbrainTechnologies.com</a>
-            </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 col-12 float-right">
+        <div class="footer-copyright text-center" style="margin-top: 3%;">
+          © 2019 Copyright
+          <a
+            href="http://www.ebraintechnologies.com/"
+            class="EbrainTechnologies"
+            >EbrainTechnologies.com</a
+          >
+        </div>
       </div>
     </div>
   </div>
-
-  </footer>
+</footer>

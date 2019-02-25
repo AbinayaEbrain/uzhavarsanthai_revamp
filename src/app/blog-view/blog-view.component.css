@@ -1,52 +1,51 @@
-.bg1{
-    background-position: center center;
-    background-repeat:  no-repeat;
-    background-attachment: fixed;
-    background-size:  cover;
-    background-color: whitesmoke;
-    min-height: 100vh;
-    width:100%
+.bg1 {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: whitesmoke;
+  min-height: 100vh;
+  width: 100%;
 }
 .card {
-    margin-top: 2%;
-    border-radius: 8px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
-    overflow: hidden;
-    position: relative;
-    top: 0;
-    transition: all 0.25s;
-  }
-  .head{
-    color:#0d4608;
-    text-align: center
-  }
-  .blogcard{
-    text-align: justify;
-    font-weight: bold;
-    font-size: 20px;
-  }
-  .blogcard1{
-    text-align: justify;
-    color:#0d4608 ;
-    margin-bottom: 0px;
-    margin-top: -10px;
-
-  }
-  .btnstl{
-    /* width: 10%;
+  margin-top: 2%;
+  border-radius: 8px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  transition: all 0.25s;
+}
+.head {
+  color: #0d4608;
+  text-align: center;
+}
+.blogcard {
+  text-align: justify;
+  font-weight: bold;
+  font-size: 20px;
+}
+.blogcard1 {
+  text-align: justify;
+  color: #0d4608;
+  margin-bottom: 0px;
+  margin-top: -10px;
+}
+.btnstl {
+  /* width: 10%;
     padding: 2px;
     margin-top: -25px; */
-    float: right !important;
-    background-color:white ;
-    color: #cc1224e0;
-  } 
-  .btnst2{
+  float: right !important;
+  background-color: white;
+  color: #cc1224e0;
+}
+.btnst2 {
   margin-right: 6px !important;
   float: right !important;
-  background-color:white ;
-    color: #12126f;
- }
- .productFullName {
+  background-color: white;
+  color: #12126f;
+}
+.productFullName {
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 800px !important;
@@ -65,7 +64,7 @@
   opacity: 0;
   max-height: 0;
   font-size: 0;
-  transition: .25s ease;
+  transition: 0.25s ease;
 }
 
 .read-more-state:checked ~ .read-more-wrap .read-more-target {
@@ -85,25 +84,37 @@
 .read-more-trigger {
   cursor: pointer;
   display: inline-block;
-  padding: 0 .5em;
+  padding: 0 0.5em;
   color: #666;
-  font-size: .9em;
+  font-size: 0.9em;
   line-height: 2;
   border: 1px solid #ddd;
-  border-radius: .25em;
+  border-radius: 0.25em;
 }
-.viewmrebtn{
-  float: right;
-    color: #0d4608;
-    padding: 3px;
-}
-@media screen and (min-width: 320px) and (max-width:425px) {
 
-  .hedngBox{
+.writeBlog {
+  float: right;
+  color: white;
+  padding: 3px;
+  background-color: #0d4608;
+}
+
+.viewmrebtn {
+  float: right;
+  color: #0d4608;
+  padding: 3px;
+}
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .hedngBox {
     font-size: 13px;
   }
-  .btnmed{
+  .btnmed {
     font-size: 13px;
+  }
+}
+@media screen and (min-width: 990px) and (max-width: 1440px) {
+  .btn1 {
+    margin-top: 40px;
   }
   .prdctFlNme1 {
     text-overflow: ellipsis;
@@ -111,9 +122,8 @@
     width: 250px !important;
     overflow: hidden;
   }
-  
 }
-@media screen and (min-width: 425px) and (max-width:767px) {
+@media screen and (min-width: 425px) and (max-width: 767px) {
   .prd3 {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -122,7 +132,7 @@
   }
 }
 
-@media screen and (min-width: 768px) and (max-width:990px) {
+@media screen and (min-width: 768px) and (max-width: 990px) {
   .prd2 {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -130,4 +140,3 @@
     overflow: hidden;
   }
 }
-
