@@ -18,7 +18,7 @@
                     <button class="btn writeBlog" (click)="addBlog()">Write Blog</button>
                   </div>
                 </div>
-            <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr | paginate: {id: 'foo', itemsPerPage:3,currentPage:p} ">
+            <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr">
                   <div class="card-header" style="color:#0d4608;padding: 5px;">
                       <p style="float:right" class="blogAuthor"># {{blog.bloggerName}}</p>
                     <p class="blogcard hedngBox productFullName prdctFlNme1 prd2 prd3"><strong>{{blog.username}} </strong>
@@ -34,9 +34,6 @@
                   </div>
                   
 
-                </div>
-                <div class="mx-auto mt-3">
-                  <pagination-controls id="foo" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
                 </div>
              </div>
       </div>
