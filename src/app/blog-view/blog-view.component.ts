@@ -15,6 +15,8 @@ export class BlogViewComponent implements OnInit {
   errMsg: any;
   success: any;
   page: number = 1;
+  queryString: any;
+  getPrdtName=[];
 
   constructor(
     private _auth: AuthService,
@@ -76,5 +78,16 @@ export class BlogViewComponent implements OnInit {
  openblog(){
    document.getElementById('hide').innerHTML = '';
 }
+case() {
+  // console.log(this.queryString);
+  this.queryString = this.queryString.toLowerCase();
+  for (let i = 0; i < this.getPrdtName.length; i++) {
+    if (this.queryString != this.getPrdtName[i]){
+        console.log('no data')
+        // this.errMsg = 'Product Unavailable';
+    }
+  }
+}
+
 }
 
