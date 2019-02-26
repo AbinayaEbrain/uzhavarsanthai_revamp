@@ -25,6 +25,7 @@ export class BlogComponent implements OnInit {
   id: any;
   public bloglistobj: any = {};
   show = 5;
+  noBlog: any;
 
   constructor(
     private _auth: AuthService,
@@ -64,6 +65,9 @@ export class BlogComponent implements OnInit {
             this.loggedInBlog[j] = this.blogArr[i];
             j++;
           }
+        }
+        if (this.loggedInBlog.length == 0) {
+          this.noBlog = 'No blogs added';
         }
         console.log(this.loggedInBlog);
       },
@@ -115,6 +119,7 @@ export class BlogComponent implements OnInit {
       )._id;
 
       this._auth.blogUserData(this.blogUserData).subscribe(data => {
+        this.noBlog = '';
         this.success = 'Saved successfully!';
         this.getAllBlog();
         document.getElementById('cardFocus').scrollIntoView();

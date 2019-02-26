@@ -15,6 +15,7 @@ export class BlogViewComponent implements OnInit {
   errMsg: any;
   success: any;
   show = 5;
+  noBlog: any;
 
   constructor(
     private _auth: AuthService,
@@ -26,20 +27,23 @@ export class BlogViewComponent implements OnInit {
     this.getAllBlog();
   }
 
-  getAllBlog(){
-  this._auth.blogGetData().subscribe(
-    res => {
-      this.blogArr = res;
-    },
-    err => {
-      this.blogArr = [];
-    }
-  );
-}
+  getAllBlog() {
+    this._auth.blogGetData().subscribe(
+      res => {
+        this.blogArr = res;
+        if (this.blogArr.length == 0) {
+          this.noBlog = 'No blogs added';
+        }
+      },
+      err => {
+        this.blogArr = [];
+      }
+    );
+  }
 
-increaseShow() {
-  this.show += 5; 
-}
+  increaseShow() {
+    this.show += 5;
+  }
 
   deleteblog() {
     this.id = this.route.snapshot.params['id'];
@@ -70,10 +74,8 @@ increaseShow() {
       }, 2000);
     }
   }
-  
- openblog(){
-   document.getElementById('hide').innerHTML = '';
-}
 
+  openblog() {
+    document.getElementById('hide').innerHTML = '';
+  }
 }
-
