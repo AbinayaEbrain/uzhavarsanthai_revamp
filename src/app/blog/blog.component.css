@@ -8,15 +8,34 @@
   height: fit-content;
 }
 
+.icon {
+  font-size: 24px;
+}
+
 @media only screen and (min-width: 1023px) and (max-width: 1330px) {
   .bg1 {
     height: auto;
   }
 }
 
+@media only screen and (min-width: 320px) and (max-width: 375px) {
+  .btnEdit {
+    margin-left: -18px;
+  }
+  .btnDlt {
+    margin-left: -14px;
+  }
+}
+
 @media only screen and (min-width: 320px) and (max-width: 425px) {
   .bg1 {
     height: fit-content;
+  }
+  .icon {
+    font-size: 20px !important;
+  }
+  .btnDlt {
+    margin-left: -10px;
   }
 }
 .card {
@@ -53,13 +72,13 @@ input {
 textarea {
   font-family: 'Hind Madurai', sans-serif !important;
 }
-.productFullName{
-    font-family: 'Hind Madurai', sans-serif !important;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 800px !important;
-    overflow: hidden;
-    font-size: 15px !important;
+.productFullName {
+  font-family: 'Hind Madurai', sans-serif !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 800px !important;
+  overflow: hidden;
+  font-size: 15px !important;
 }
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .hedngBox {
@@ -76,9 +95,6 @@ textarea {
   }
 }
 @media screen and (min-width: 990px) and (max-width: 1440px) {
-  .btn1 {
-    margin-top: 40px;
-  }
   .prdctFlNme1 {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -111,18 +127,26 @@ textarea {
     overflow: hidden;
   }
 }
-.btnstl{
-  background-color: whitesmoke;
-color: #0d4608;
-font-weight: bold;
+.btnstl {
+  background-color: transparent;
+  color: #0d4608;
+  font-weight: bold;
 }
-.collapse{
-    font-family: 'Hind Madurai', sans-serif !important;
+.collapse {
+  font-family: 'Hind Madurai', sans-serif !important;
 }
-.btnmed{
-    font-family: 'Hind Madurai', sans-serif !important;
+.btnmed {
+  font-family: 'Hind Madurai', sans-serif !important;
   background-color: whitesmoke;
-color: #0d4608;
-font-weight: bold;
-border: 1px solid #0d4608;
+  color: #0d4608;
+  font-weight: bold;
+  border: 1px solid #0d4608;
+}
+
+.cardBorder {
+  border-radius: 0px;
+}
+
+.card-header {
+  border-bottom: none;
 }

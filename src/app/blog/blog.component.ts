@@ -23,6 +23,7 @@ export class BlogComponent implements OnInit {
 
   id: any;
   public bloglistobj: any = {};
+  show = 5;
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -68,6 +69,10 @@ export class BlogComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  increaseShow() {
+    this.show += 5; 
   }
 
   post() {

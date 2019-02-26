@@ -25,38 +25,37 @@
       </div>
 
       <div>
-          <div class="card mb-2 panel panel-default"   *ngFor="let blog of loggedInBlog">
-              <div class="card-header" style="color:#0d4608;padding: 5px;">
+          <div class="card mb-2 cardBorder " *ngFor="let blog of loggedInBlog | slice:0:show; let i=index">
+              <div class="card-header" style="color:#0d4608;padding: 20px;background-color: white;">
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-10 col-9">
                 </div>
-                <div class="col-md-2">
-                  <div class="row">
-                    <div class="col-md-6 col-xs-6">
-                      <button class="btn btnstl float-right" data-toggle="modal" data-target="#myModal" data-backdrop="static"
-                     data-keyboard="false" routerLink="/blog/{{blog._id}}">
-                       <i class="fa fa-trash-o" style="font-size:24px"></i>
-                    </button>
-                    </div>
-                      <div class="col-md-6 col-xs-6">
-                        <button class="btn btnstl"  routerLink="/blog/{{blog._id}}"><i class="fa fa-pencil-square-o" style="font-size:24px">
-                     </i></button>
-                      </div>
+                <div class="col-md-2 col-3">
+                  <div class="row" style="display: inline-block;">
+                    <!-- <div class="col-md-6 col-xs-6"> -->
+                        <button class="btn btnstl btnEdit"  routerLink="/blog/{{blog._id}}">
+                          <i class="fa fa-pencil-square-o icon">
+                          </i></button>
+                        <button class="btn btnstl btnDlt" data-toggle="modal" data-target="#myModal" data-backdrop="static"
+                          data-keyboard="false" routerLink="/blog/{{blog._id}}">
+                            <i class="fa fa-trash-o text-danger icon"></i>
+                         </button>
                   </div>
                 </div>
             </div>
                 <p class="blogcard hedngBox productFullName prdctFlNme1 prd2 prd3"><strong >{{blog.username}} </strong>
               </p>
                   <p class="blogcard1 a productFullName prdctFlNme1 prd2 prd3" id="hide">{{blog.commenttext}} </p>
-                  <button type="button" class="btn viewmrebtn btnmed btn1 float-right"  data-toggle="collapse" [attr.data-target]="'#'+blog._id" aria-expanded="false" (click)="openblog()" [attr.aria-controls]="blog._id">மேலும் வாசிக்க</button>
+                  <button type="button" class="btn viewmrebtn btnmed btn1 float-right"  data-toggle="collapse" [attr.data-target]="'#'+blog._id" 
+                  aria-expanded="false" (click)="openblog()" [attr.aria-controls]="blog._id">மேலும் வாசிக்க</button>
               </div>
-              <div>
-
+              <!-- <div>
                 <label for="post-1" class="read-more-trigger"></label>
                 <div class="productFullName" [attr.id]="blog._id" class="collapse a " id="show">{{blog.commenttext}}</div>
-
-              </div>
+              </div> -->
+             
             </div>
+            <div *ngIf="show < loggedInBlog.length"  class="mx-auto" style="color: #0d4608;font-weight: bold" (click)="increaseShow()">Load More...</div>
       </div>
     </div>
   </div>

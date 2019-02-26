@@ -14,7 +14,7 @@ export class BlogViewComponent implements OnInit {
   public bloglistobj: any = {};
   errMsg: any;
   success: any;
-  page: number = 1;
+  show = 5;
 
   constructor(
     private _auth: AuthService,
@@ -35,6 +35,10 @@ export class BlogViewComponent implements OnInit {
       this.blogArr = [];
     }
   );
+}
+
+increaseShow() {
+  this.show += 5; 
 }
 
   deleteblog() {
@@ -67,12 +71,6 @@ export class BlogViewComponent implements OnInit {
     }
   }
   
-  onScroll()  
-  {  
-    console.log("Scrolled");  
-    this.page = this.page + 1;  
-    this.getAllBlog();  
-  } 
  openblog(){
    document.getElementById('hide').innerHTML = '';
 }
