@@ -38,7 +38,7 @@ export class DealsComponent implements OnInit {
   activeUsers = [];
   userName = {};
   errMsg = '';
-  errMsg1:any;
+  errMsg1: any;
   lat: any;
   long: any;
   lat1: any;
@@ -60,7 +60,7 @@ export class DealsComponent implements OnInit {
   };
   submitted: any;
   panTo: any;
-  getPrdtName=[];
+  getPrdtName = [];
   showErr = true;
 
   setAddress(addrObj) {
@@ -100,7 +100,6 @@ export class DealsComponent implements OnInit {
         }
         // this.loadingCtrl.hide();
         this.showDeals = true;
-
       },
       err => {
         this.loadingCtrl.hide();
@@ -124,15 +123,14 @@ export class DealsComponent implements OnInit {
             ) {
               if (this.activeUsers[i].status == 'ACTIVE') {
                 this.crdDeals1[k] = this.crdDeals[j];
-                  this.getPrdtName[l] = this.crdDeals1[k].name;
+                this.getPrdtName[l] = this.crdDeals1[k].name;
                 k++;
                 l++;
               }
-
             }
           }
         }
-        console.log(this.getPrdtName)
+        console.log(this.getPrdtName);
         this.showDeals = true;
         this.loadingCtrl.hide();
       },
@@ -143,9 +141,9 @@ export class DealsComponent implements OnInit {
   case() {
     this.queryString = this.queryString.toLowerCase();
     for (let i = 0; i < this.getPrdtName.length; i++) {
-      if (this.queryString != this.getPrdtName[i]){
-          console.log('no data')
-          this.errMsg1 = 'Product Unavailable';
+      if (this.queryString != this.getPrdtName[i]) {
+        console.log('no data');
+        this.errMsg1 = 'Product Unavailable';
       }
     }
   }
@@ -184,23 +182,26 @@ export class DealsComponent implements OnInit {
     if (this.addr != null || this.addr != undefined) {
       this.querydetails.searchLocation = this.addr.locality;
     }
+    let CurrentDate = new Date().toISOString();
     let j = 0;
     for (let i = 0; i < this.getSearchDeals.length; i++) {
-      console.log(this.getSearchDeals[i].qnty);
-      if (
-        this.querydetails.searchCategory == this.getSearchDeals[i].categoryId ||
-        this.querydetails.searchmainquantity <=
-          this.getSearchDeals[i].quantity ||
-        this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||
-        (this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) ||
-          this.querydetails.toCost >=
-            parseFloat(this.getSearchDeals[i].price)) ||
-        this.querydetails.searchLocation ==
-          this.getSearchDeals[i].avlPlace.locality
-      ) {
-        this.totalDeals1[j] = this.getSearchDeals[i];
-        j++;
-      }
+      if (this.getSearchDeals[i].validityTime > CurrentDate)
+        if (
+          this.querydetails.searchCategory ==
+            this.getSearchDeals[i].categoryId ||
+          this.querydetails.searchmainquantity <=
+            this.getSearchDeals[i].quantity ||
+          this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||
+          (this.querydetails.frmAmt <=
+            parseFloat(this.getSearchDeals[i].price) ||
+            this.querydetails.toCost >=
+              parseFloat(this.getSearchDeals[i].price)) ||
+          this.querydetails.searchLocation ==
+            this.getSearchDeals[i].avlPlace.locality
+        ) {
+          this.totalDeals1[j] = this.getSearchDeals[i];
+          j++;
+        }
     }
     this.showDeals = false;
     document.getElementById('hidePagination').style.display = 'block';

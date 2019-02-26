@@ -24,14 +24,14 @@
     <div class="container mt-4">
        <div class="tab-content" id="nav-tabContent">
            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-             <div class="mt-5" *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'name'">
+             <!-- <div class="mt-5" *ngFor = "let deal of userDeals | filterdata: queryString  : 'category'">
                      <div *ngIf="deal === -1">
                      <div class="col-md-12 text-center prdUnavil">
                                      {{errMsg2}}
                      </div>
                  </div>
-                 </div>
-           <div class="card"  id="hideTable" *ngIf="deal !== -1">
+                 </div> -->
+           <div class="card"  id="hideTable" >
                <div class="card-content">
                  <div class="fresh-table table-responsive">
                        <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
@@ -54,7 +54,12 @@
                                     </tr>
 
                                <tr  id="hide" *ngFor="let deal of userDeals | paginate: {id: 'foo', itemsPerPage:6,currentPage:p} | filterdata: queryString  : 'category'"  >
-                                   <td>{{deal.category}}</td>
+                                   
+                                            <td *ngIf="deal === -1" class="prdUnavil" style="text-align: center">
+                                               {{errMsg2}}
+                                            </td>
+                                     
+                                <td>{{deal.category}}</td>
                                    <td>
                                    <div class="productFullName">{{deal.name}}</div>
                                     </td>
@@ -62,7 +67,7 @@
                                   <td>{{deal.price}}</td>
                                    <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
                                    <td> {{deal.validityTime | date: 'dd/MM/yyyy'}} </td>
-                                   <td style="display: flex;">
+                                   <td style="display: flex;" *ngIf="deal !== -1" >
                                        <button id="hideEditBtn" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}"><i class="fa fa-pencil" aria-hidden="true"></i>
                                         Edit
                                        </button> &nbsp;
@@ -110,7 +115,10 @@
                                 </td>
                             </tr>
                        <tr id="hide1" *ngFor="let deal of userDeals1 | paginate: {id: 'foo1', itemsPerPage:6,currentPage:d} | filterdata: queryString  : 'category'"  >
-                           <td>{{deal.category}}</td>
+                            <td *ngIf="deal === -1" style="text-align: center">
+                                    {{errMsg2}}
+                                 </td>
+                        <td>{{deal.category}}</td>
                            <div class="productFullName">{{deal.name}}</div>
                            <td>{{deal.quantity}}{{deal.qnty}} </td>
                           <td>{{deal.price}}</td>

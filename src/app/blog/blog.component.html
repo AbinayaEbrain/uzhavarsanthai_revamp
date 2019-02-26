@@ -1,10 +1,17 @@
 <div class="container-fluid bg1">
-    <div class="container  pt-5">
-      <div class="row mt-5 mb-5">
+    <div class="container pt-4">
+      <div class="row mt-5 mb-3" id="focus">
           <div class="col-md-2"></div>
           <div class="col-md-8 card">
             <p class="blogTitle mt-3">வலைப்பதிவு / Blog</p>
-            <div class="col-md-10 offset-md-1 mt-2">
+            <div class="row" *ngIf="success">
+              <div class="col-md-4"></div>
+              <div class="col-md-4 text-center">
+                  <div class="alert alert-success text-center">{{success}}</div>
+              </div>
+              <div class="col-md-4"></div>
+            </div>
+            <div class="col-md-10 offset-md-1 mt-1">
             <form #usrform="ngForm"  action="/action_page.php" id="usrform" novalidate>
               <div class="form-group" style="color:#0d4608;">
                 <label class="blgtitle" for="usr">தலைப்பு / Title</label>
@@ -25,15 +32,16 @@
       </div>
 
       <div>
-          <div class="card mb-2 cardBorder " *ngFor="let blog of loggedInBlog | slice:0:show; let i=index">
+          <p class="blogTitle mt-3">பதிவுகள்</p>
+          <div id="cardFocus" class="card mb-2 cardBorder" *ngFor="let blog of loggedInBlog | slice:0:show; let i=index">
               <div class="card-header" style="color:#0d4608;padding: 20px;background-color: white;">
             <div class="row">
                 <div class="col-md-10 col-9">
                 </div>
                 <div class="col-md-2 col-3">
-                  <div class="row" style="display: inline-block;">
+                  <div class="row float" style="display: inline-block;">
                     <!-- <div class="col-md-6 col-xs-6"> -->
-                        <button class="btn btnstl btnEdit"  routerLink="/blog/{{blog._id}}">
+                        <button class="btn btnstl btnEdit" (click)="edit(blog._id)">
                           <i class="fa fa-pencil-square-o icon">
                           </i></button>
                         <button class="btn btnstl btnDlt" data-toggle="modal" data-target="#myModal" data-backdrop="static"
@@ -55,9 +63,9 @@
               </div> -->
              
             </div>
-            <div *ngIf="show < loggedInBlog.length"  class="mx-auto" style="color: #0d4608;font-weight: bold" (click)="increaseShow()">Load More...</div>
       </div>
     </div>
+    <div *ngIf="show < loggedInBlog.length"  class="mx-auto" style="color: #0d4608;font-weight: bold;cursor: pointer;" (click)="increaseShow()">Load More...</div>
   </div>
 
 

@@ -13,16 +13,17 @@ export class UserProductsComponent implements OnInit {
   crdDeals1 = [];
   userDeals = [];
   userDeals1 = [];
-  getPrdtName=[];
+  getPrdtName = [];
   id: any;
-  deal:any;
+  deal: any;
   errMsg: any;
   errMsg1: any;
   success: any;
   queryString: any;
   p: any;
   d: any;
-  errMsg2:any;
+  errMsg2: any;
+  hideProduct = true;
   constructor(
     private _dealsService: DealsService,
     private route: ActivatedRoute,
@@ -53,7 +54,7 @@ export class UserProductsComponent implements OnInit {
             this.crdDeals[i].validityTime > CurrentDate
           ) {
             this.userDeals[j] = this.crdDeals[i];
-              this.getPrdtName[l] = this.userDeals[j].name;
+            this.getPrdtName[l] = this.userDeals[j].name;
             j++;
             l++;
           }
@@ -75,14 +76,12 @@ export class UserProductsComponent implements OnInit {
     );
   }
 
-
   case() {
     // console.log(this.queryString);
     this.queryString = this.queryString.toLowerCase();
     for (let i = 0; i < this.getPrdtName.length; i++) {
-      if (this.queryString != this.getPrdtName[i]){
-          console.log('no data')
-          // this.errMsg = 'Product Unavailable';
+      if (this.queryString != this.getPrdtName[i]) {
+        this.errMsg2 = 'Category is not available';
       }
     }
   }

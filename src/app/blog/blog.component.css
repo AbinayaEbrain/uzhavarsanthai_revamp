@@ -27,7 +27,7 @@
   }
 }
 
-@media only screen and (min-width: 320px) and (max-width: 425px) {
+@media only screen and (min-width: 320px) and (max-width: 451px) {
   .bg1 {
     height: fit-content;
   }
@@ -56,6 +56,11 @@
   font-size: 20px;
   font-weight: bold;
 }
+
+.float {
+  float: right;
+}
+
 .blgtitle {
   font-family: 'Hind Madurai', sans-serif !important;
   font-weight: bold;
