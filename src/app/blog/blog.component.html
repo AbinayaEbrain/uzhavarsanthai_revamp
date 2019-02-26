@@ -1,95 +1,175 @@
 <div class="container-fluid bg1">
-    <div class="container pt-4">
-      <div class="row mt-5 mb-3" id="focus">
-          <div class="col-md-2"></div>
-          <div class="col-md-8 card">
-            <p class="blogTitle mt-3">வலைப்பதிவு / Blog</p>
-            <div class="row" *ngIf="success">
-              <div class="col-md-4"></div>
-              <div class="col-md-4 text-center">
-                  <div class="alert alert-success text-center">{{success}}</div>
-              </div>
-              <div class="col-md-4"></div>
+  <div class="container pt-4">
+    <div class="row mt-5 mb-3" id="focus">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 card">
+        <p class="blogTitle mt-3">வலைப்பதிவு / Blog</p>
+        <div class="row" *ngIf="success">
+          <div class="col-md-4"></div>
+          <div class="col-md-4 text-center">
+            <div class="alert alert-success text-center">{{ success }}</div>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+        <div class="col-md-10 offset-md-1 mt-1">
+          <form
+            #usrform="ngForm"
+            action="/action_page.php"
+            id="usrform"
+            novalidate
+          >
+            <div class="form-group" style="color:#0d4608;">
+              <label class="blgtitle" for="usr">தலைப்பு / Title</label>
+              <input
+                type="text"
+                #username="ngModel"
+                style="border-color: #0d4608;"
+                [class.is-invalid]="username.invalid && username.touched"
+                class="form-control"
+                [(ngModel)]="blogUserData.username"
+                autocomplete="off"
+                id="usr"
+                name="username"
+                required
+              />
+              <span
+                class="text-danger float-left error_word"
+                [class.d-none]="username.valid || username.untouched"
+                ><i class="fa fa-info-circle" aria-hidden="true"></i> Blog title
+                is required</span
+              >
             </div>
-            <div class="col-md-10 offset-md-1 mt-1">
-            <form #usrform="ngForm"  action="/action_page.php" id="usrform" novalidate>
-              <div class="form-group" style="color:#0d4608;">
-                <label class="blgtitle" for="usr">தலைப்பு / Title</label>
-                <input type="text" #username="ngModel" style="border-color: #0d4608;" [class.is-invalid]="username.invalid && username.touched" class="form-control" [(ngModel)]="blogUserData.username" autocomplete="off" id="usr" name="username" required >
-                <span class="text-danger float-left error_word" [class.d-none] = "username.valid || username.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Blog title is required</span>
-              </div>
             <div class="form-group mt-5" style="color:#0d4608;">
-              <label class="blgtitle" for="comment" >கருத்து / Comment</label>
-              <textarea  class="form-control" #commenttext="ngModel" id="comment" [class.is-invalid]="commenttext.invalid && commenttext.touched"  [(ngModel)]="blogUserData.commenttext" autocomplete="off" style="height: 150px;border-color: #0d4608;"  name="commenttext" required></textarea>
-              <span class="text-danger float-left error_word" [class.d-none] = "commenttext.valid || commenttext.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Blog is required</span>
+              <label class="blgtitle" for="comment">கருத்து / Comment</label>
+              <textarea
+                class="form-control"
+                #commenttext="ngModel"
+                id="comment"
+                [class.is-invalid]="commenttext.invalid && commenttext.touched"
+                [(ngModel)]="blogUserData.commenttext"
+                autocomplete="off"
+                style="height: 150px;border-color: #0d4608;"
+                name="commenttext"
+                required
+              ></textarea>
+              <span
+                class="text-danger float-left error_word"
+                [class.d-none]="commenttext.valid || commenttext.untouched"
+                ><i class="fa fa-info-circle" aria-hidden="true"></i> Blog is
+                required</span
+              >
             </div>
             <div class="mt-5 mb-3" style="text-align:center">
-                <button type="button" [disabled]="usrform.form.invalid " class="btn btn-outline text-center viewMoreBtn" style="margin-bottom: 10px;"  type="submit" (click)="post()">Save Blog</button>
-              </div>
-            </form></div>
-          </div>
-          <div class="col-md-2"></div>
-      </div>
-
-      <div>
-          <p class="blogTitle mt-3">பதிவுகள்</p>
-          <div id="cardFocus" class="card mb-2 cardBorder" *ngFor="let blog of loggedInBlog | slice:0:show; let i=index">
-              <div class="card-header" style="color:#0d4608;padding: 20px;background-color: white;">
-            <div class="row">
-                <div class="col-md-10 col-9">
-                </div>
-                <div class="col-md-2 col-3">
-                  <div class="row float" style="display: inline-block;">
-                    <!-- <div class="col-md-6 col-xs-6"> -->
-                        <button class="btn btnstl btnEdit" (click)="edit(blog._id)">
-                          <i class="fa fa-pencil-square-o icon">
-                          </i></button>
-                        <button class="btn btnstl btnDlt" data-toggle="modal" data-target="#myModal" data-backdrop="static"
-                          data-keyboard="false" routerLink="/blog/{{blog._id}}">
-                            <i class="fa fa-trash-o text-danger icon"></i>
-                         </button>
-                  </div>
-                </div>
+              <button
+                type="button"
+                [disabled]="usrform.form.invalid"
+                class="btn btn-outline text-center viewMoreBtn"
+                style="margin-bottom: 10px;"
+                type="submit"
+                (click)="post()"
+              >
+                Save Blog
+              </button>
             </div>
-                <p class="blogcard hedngBox productFullName prdctFlNme1 prd2 prd3"><strong >{{blog.username}} </strong>
-              </p>
-                  <p class="blogcard1 a productFullName prdctFlNme1 prd2 prd3" id="hide">{{blog.commenttext}} </p>
-                  <button type="button" class="btn viewmrebtn btnmed btn1 float-right"  data-toggle="collapse" [attr.data-target]="'#'+blog._id" 
-                  aria-expanded="false" (click)="openblog()" [attr.aria-controls]="blog._id">மேலும் வாசிக்க</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <div>
+      <p class="blogTitle mt-3">பதிவுகள்</p>
+      <div
+        id="cardFocus"
+        class="card mb-2 cardBorder"
+        *ngFor="let blog of (loggedInBlog | slice: 0:show); let i = index"
+      >
+        <div
+          class="card-header"
+          style="color:#0d4608;padding: 20px;background-color: white;"
+        >
+          <div class="row">
+            <div class="col-md-10 col-9"></div>
+            <div class="col-md-2 col-3">
+              <div class="row float" style="display: inline-block;">
+                <!-- <div class="col-md-6 col-xs-6"> -->
+                <button class="btn btnstl btnEdit" (click)="edit(blog._id)">
+                  <i class="fa fa-pencil-square-o icon"> </i>
+                </button>
+                <button
+                  class="btn btnstl btnDlt"
+                  data-toggle="modal"
+                  data-target="#myModal"
+                  data-backdrop="static"
+                  data-keyboard="false"
+                  routerLink="/blog/{{ blog._id }}"
+                >
+                  <i class="fa fa-trash-o text-danger icon"></i>
+                </button>
               </div>
-              <!-- <div>
+            </div>
+          </div>
+          <p class="blogcard hedngBox productFullName prdctFlNme1 prd2 prd3">
+            <strong>{{ blog.username }} </strong>
+          </p>
+          <!-- <p class="blogcard1 a" id="hide">
+            {{ blog.commenttext }}
+          </p> -->
+          <!-- <button type="button" class="btn viewmrebtn btnmed btn1 float-right"  data-toggle="collapse" [attr.data-target]="'#'+blog._id" 
+                  aria-expanded="false" (click)="openblog()" [attr.aria-controls]="blog._id">மேலும் வாசிக்க</button> -->
+          <app-read-more class="mt-2" [text]="blog.commenttext" [maxLength]="200"></app-read-more>
+        </div>
+        <!-- <div>
                 <label for="post-1" class="read-more-trigger"></label>
                 <div class="productFullName" [attr.id]="blog._id" class="collapse a " id="show">{{blog.commenttext}}</div>
               </div> -->
-             
-            </div>
       </div>
     </div>
-    <div *ngIf="show < loggedInBlog.length"  class="mx-auto" style="color: #0d4608;font-weight: bold;cursor: pointer;" (click)="increaseShow()">Load More...</div>
   </div>
+  <div
+    *ngIf="show < loggedInBlog.length"
+    class="mx-auto"
+    style="color: #0d4608;font-weight: bold;cursor: pointer;"
+    (click)="increaseShow()"
+  >
+    Load More...
+  </div>
+</div>
 
+<!-- modal -->
 
-  <!-- modal -->
-
- <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-
-          <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;">Delete Confirmation</h4>
-        </div>
-        <div class="modal-body">
-          <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete?</h6>
-          <div class="text-center">
-
-           <button type="button" class="btn btn-primary button_word" (click)="deleteblog()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" class="btn btn-danger button_word" routerLink="/blog-view" data-dismiss="modal">No</button>
-          </div>
-        </div>
-
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;">
+          Delete Confirmation
+        </h4>
       </div>
-
+      <div class="modal-body">
+        <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">
+          Are you sure want to delete?
+        </h6>
+        <div class="text-center">
+          <button
+            type="button"
+            class="btn btn-primary button_word"
+            (click)="deleteblog()"
+            data-dismiss="modal"
+          >
+            Yes</button
+          >&nbsp;&nbsp;&nbsp;
+          <button
+            type="button"
+            class="btn btn-danger button_word"
+            routerLink="/blog-view"
+            data-dismiss="modal"
+          >
+            No
+          </button>
+        </div>
+      </div>
     </div>
   </div>
+</div>

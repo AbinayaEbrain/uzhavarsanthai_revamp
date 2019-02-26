@@ -1,0 +1,13 @@
+.btnmed {
+  font-family: 'Hind Madurai', sans-serif !important;
+  background-color: whitesmoke;
+  color: #0d4608;
+  font-weight: bold;
+  border: 1px solid #0d4608;
+}
+
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .btnmed {
+    font-size: 13px;
+  }
+}

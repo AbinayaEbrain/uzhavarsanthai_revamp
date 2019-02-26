@@ -49,6 +49,7 @@ import { BlogViewComponent } from './blog-view/blog-view.component';
 // Infinite Scroll
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ReadMoreComponent } from './read-more/read-more.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     AboutComponent,
     ContactComponent,
     BlogComponent,
-    BlogViewComponent
+    BlogViewComponent,
+    ReadMoreComponent
   ],
   imports: [
     BrowserModule,
