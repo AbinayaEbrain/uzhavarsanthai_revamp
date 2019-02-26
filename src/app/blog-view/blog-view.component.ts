@@ -74,5 +74,6 @@ increaseShow() {
  openblog(){
    document.getElementById('hide').innerHTML = '';
 }
+
 }
 
