@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-blog-view',
@@ -20,10 +21,12 @@ export class BlogViewComponent implements OnInit {
   constructor(
     private _auth: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public loadingCtrl: NgxSpinnerService
   ) {}
 
   ngOnInit() {
+    this.loadingCtrl.show();
     this.getAllBlog();
   }
 
@@ -31,6 +34,7 @@ export class BlogViewComponent implements OnInit {
     this._auth.blogGetData().subscribe(
       res => {
         this.blogArr = res;
+        this.loadingCtrl.hide();
         if (this.blogArr.length == 0) {
           this.noBlog = 'No blogs added';
         }

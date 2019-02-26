@@ -1,14 +1,9 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  AfterViewInit
-} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router, Params } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-blog',
@@ -30,10 +25,12 @@ export class BlogComponent implements OnInit {
   constructor(
     private _auth: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public loadingCtrl: NgxSpinnerService
   ) {}
 
   ngOnInit() {
+    this.loadingCtrl.show();
     this.id = this.route.snapshot.params['id'];
 
     this.getAllBlog();
@@ -42,14 +39,13 @@ export class BlogComponent implements OnInit {
       res => {
         console.log(res);
         this.blogUserData = res;
+        this.loadingCtrl.hide();
       },
-      err => console.log(err)
+      err => {
+        console.log(err);
+        this.loadingCtrl.hide();
+      }
     );
-  }
-
-  edit(id) {
-    this.router.navigate(['/blog', id]);
-    document.getElementById('focus').scrollIntoView();
   }
 
   getAllBlog() {
@@ -58,6 +54,7 @@ export class BlogComponent implements OnInit {
     this._auth.blogGetData().subscribe(
       data => {
         this.blogArr = data;
+        this.loadingCtrl.hide();
         console.log(this.blogArr);
         let j = 0;
         for (let i = 0; i < this.blogArr.length; i++) {
@@ -73,17 +70,25 @@ export class BlogComponent implements OnInit {
       },
       err => {
         console.log(err);
+        this.loadingCtrl.hide();
       }
     );
+  }
+
+  edit(id) {
+    this.router.navigate(['/blog', id]);
+    document.getElementById('focus').scrollIntoView();
   }
 
   deleteblog() {
     this.id = this.route.snapshot.params['id'];
     this._auth.blogDeleteData(this.id).subscribe(
       res => {
+        this.loadingCtrl.show();
         setTimeout(() => {
           // swal.close();
           this.router.navigate(['/blog']);
+          this.loadingCtrl.hide();
         }, 1000);
       },
       err => {
