@@ -102,11 +102,11 @@ export class BlogComponent implements OnInit {
         res => {
           this.success = 'Updated successfully!';
           this.getAllBlog();
-          document.getElementById('cardFocus').scrollIntoView();
           setTimeout(() => {
             this.success = '';
             this.router.navigate(['/blog']);
-          }, 1000);
+            document.getElementById('cardFocus').scrollIntoView();
+          }, 2000);
           this.mytemplateForm.reset();
         },
         err => console.log(err)
@@ -122,9 +122,9 @@ export class BlogComponent implements OnInit {
         this.noBlog = '';
         this.success = 'Saved successfully!';
         this.getAllBlog();
-        document.getElementById('cardFocus').scrollIntoView();
         setTimeout(() => {
           this.success = '';
+          document.getElementById('cardFocus').scrollIntoView();
         }, 2000);
       });
       this.mytemplateForm.reset();
