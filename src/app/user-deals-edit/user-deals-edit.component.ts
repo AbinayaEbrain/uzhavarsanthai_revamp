@@ -13,7 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DatePipe } from '@angular/common';
 import { FileUploader } from 'ng2-file-upload';
 declare var swal: any;
-const URL = 'http://localhost:8080/api/upload';
+const URL = 'https://uzhavarsanthai.herokuapp.com/api/upload';
 
 interface FileReaderEventTarget extends EventTarget {
   result: string;
