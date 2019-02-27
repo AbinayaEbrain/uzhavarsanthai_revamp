@@ -84,9 +84,6 @@ router.post('/post', (req, res) => {
       //jwt
       //  let payload={subject:productData._id}
       //  let token =jwt.sign(payload,'secretKey')
-      // console.log(user);
-      // console.log(userData)
-      // console.log(accountId)
       //before adding jwt
 
       res.status(200).send(productData);
@@ -111,7 +108,8 @@ router.post('/category',(req,res)=>{
 
         }
     })
-})
+});
+
 router.post('/blog',(req,res)=>{
     let blogData = req.body
     let blog = new Blog(blogData)
@@ -207,17 +205,6 @@ router.post('/login',(req,res)=>{
         }
     })
 })
-// router.post('/category', (req, res) => {
-//   let categoryData = req.body;
-//   let category = new Category(categoryData);
-//   category.save((error, productData) => {
-//     if (error) {
-//       console.log(error);
-//     } else {
-//       res.status(200).send(productData);
-//     }
-//   });
-// });
 
 //contact
 router.post('/contact', (req, res) => {
@@ -234,16 +221,16 @@ router.post('/contact', (req, res) => {
 
 router.post('/sendMail', (req, res) => {
   var server = email.server.connect({
-    user: 'abishakshi1496@gmail.com',
-    password: 'abiyuva1438',
+    user: 'support@ebraintechnologies.com',
+    password: 'Ji#993te',
     host: 'smtp.gmail.com',
     ssl: true 
   });
   server.send(
     {
       text: 'You have signed up',
-      from: 'abishakshi1496@gmail.com',
-      to: 'abishakshi1496@gmail.com',
+      from: 'support@ebraintechnologies.com',
+      to: 'support@ebraintechnologies.com',
       subject: 'Welcome to my app',
       attachment: [
         {

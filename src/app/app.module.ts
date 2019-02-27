@@ -46,9 +46,6 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { BlogComponent } from './blog/blog.component';
 import { BlogViewComponent } from './blog-view/blog-view.component';
-// Infinite Scroll
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ReadMoreComponent } from './read-more/read-more.component';
 
 @NgModule({
@@ -91,13 +88,6 @@ import { ReadMoreComponent } from './read-more/read-more.component';
     BsDatepickerModule,
     SweetAlert2Module,
     BsDatepickerModule.forRoot(),
-    InfiniteScrollModule,
-    ScrollingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAmEuB6RfjEQdz9zqL_nYihfHkeWR-iq-Y',
-      libraries: ['geometry', 'places'],
-      language: 'en'
-    })
   ],
   providers: [
     AuthService,

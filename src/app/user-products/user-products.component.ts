@@ -128,8 +128,6 @@ export class UserProductsComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this._dealsService.deletedeal(this.id).subscribe(
       res => {
-        console.log(res);
-
         this.success = 'Deleted successfully!';
 
         setTimeout(() => {

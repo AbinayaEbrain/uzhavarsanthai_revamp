@@ -25,15 +25,6 @@ export class DealsComponent implements OnInit {
   public crdDeals: any = [];
   public totalDeals1: any = [];
   public showDeals = true;
-  // public crdDeals = [
-  //   {
-  //     avlPlace: {
-  //       latitude: '',
-  //       longitude: ''
-  //     },
-  //     accountId: ''
-  //   }
-  // ];
   mapDeals = [];
   activeUsers = [];
   userName = {};
@@ -77,20 +68,16 @@ export class DealsComponent implements OnInit {
   ) {
     this.userdetails.searchqnty = '';
     this.userdetails.searchCategory = '';
-    this.showDeals = true;
-    this.loadingCtrl.show();
   }
 
   ngOnInit() {
     this.loadingCtrl.show();
-    this.showDeals = true;
     this._dealsService.getDeals().subscribe(
       res => {
         this.showDeals = true;
         this.crdDeals = res;
         console.log(this.crdDeals);
         if (this.crdDeals.length == 0) {
-          // this.loadingCtrl.show();
           this.errMsg = 'Currently no deals available';
           document.getElementById('hidePagination').style.display = 'none';
           document.getElementById('hideSearchDiv').style.display = 'none';
@@ -98,7 +85,6 @@ export class DealsComponent implements OnInit {
           document.getElementById('hideNearByBtn').style.display = 'none';
           document.getElementById('showBackButton').style.display = 'block';
         }
-        // this.loadingCtrl.hide();
         this.showDeals = true;
       },
       err => {
@@ -109,7 +95,6 @@ export class DealsComponent implements OnInit {
 
     this._dealsService.getDetails().subscribe(
       res => {
-        // this.loadingCtrl.show();
         this.showDeals = true;
         this.activeUsers = res;
         let l = 0;
