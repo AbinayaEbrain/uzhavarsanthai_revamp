@@ -60,6 +60,7 @@ export class UserDealsEditComponent implements OnInit {
   valid: boolean = false;
   Image: File;
   today: Date;
+  changedTime: any;
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
     //to the object in the DOM.
@@ -113,8 +114,8 @@ export class UserDealsEditComponent implements OnInit {
           }
         }
         this.deallistobj.avlPlace = this.address.formatted_address;
-        this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
-        this.deallistobj.validityTime = this.dateNrml;
+        // this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
+        this.deallistobj.validityTime = this.time;
       },
       err => {
         this.loadingCtrl.hide();
@@ -154,8 +155,9 @@ export class UserDealsEditComponent implements OnInit {
         this.time = this.dealslists[i].validityTime;
       }
     }
-    this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
-    this.deallistobj.validityTime = this.dateNrml;
+    // this.dateNrml = this.datePipe.transform(this.time, 'mm/dd/yyyy');
+    // console.log(this.dateNrml);
+    this.deallistobj.validityTime = this.time;
   }
 
   postImage() {
@@ -170,6 +172,11 @@ export class UserDealsEditComponent implements OnInit {
     });
   }
 
+  dateChange(event) {
+    this.changedTime = event.target.value;
+    this.deallistobj.validityTime = this.changedTime; 
+  }
+
   update() {
     this.loadingCtrl.show();
     let curntDte = new Date().toLocaleDateString();
@@ -179,10 +186,6 @@ export class UserDealsEditComponent implements OnInit {
       this.deallistobj.avlPlace = this.address;
     } else {
       this.deallistobj.avlPlace = this.addr;
-    }
-
-    if (this.dateNrml == this.deallistobj.validityTime) {
-      this.deallistobj.validityTime = this.time;
     }
 
     this.deallistobj.username = JSON.parse(
