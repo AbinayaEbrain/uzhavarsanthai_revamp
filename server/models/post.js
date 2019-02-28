@@ -30,6 +30,7 @@ const postSchema = new Schema({
   lastname: String,
   userNumber: Number,
   userAddressLine: String,
-  userAddress: String
+  userAddress: String,
+  status: String
 });
 module.exports = mongoose.model('post', postSchema, 'post');

@@ -108,14 +108,14 @@
 }
 .no_deals_found {
   text-align: center;
-  color: black;
+  color: #0d4608;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 20px;
   background-color: white;
   width: fit-content;
   margin: auto;
   padding: 5px;
-  box-shadow: 7px 7px 7px grey;
+  /* box-shadow: 7px 7px 7px grey; */
   border-radius: 5px;
   margin-top: 10% !important;
 }
@@ -259,12 +259,12 @@ input {
 @media only screen and (min-width: 320px) and (max-width: 425px) {
   .no_deals_found {
     text-align: center;
-    color: black;
+    color: #0d4608;
     font-weight: bold;
     font-size: 18px;
     margin-top: 20% !important;
     background-color: white;
-    box-shadow: 7px 7px 7px grey;
+    /* box-shadow: 7px 7px 7px grey; */
     border-radius: 5px;
   }
 
@@ -287,11 +287,20 @@ input {
   }
 }
 
-
 .errDesign {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
   font-weight: bold;
   color: #0d4608;
+}
+.inline { 
+  display: inline-block; 
+  border: 1px solid red; 
+  margin:10px;
+  }
+  @media screen and (max-width: 767px) {
+    .container { display: flex; flex-flow: column; }
+    .two { order: 1; }
+    .one { order: 2 }
 }

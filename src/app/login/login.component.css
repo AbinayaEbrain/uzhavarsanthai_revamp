@@ -1,14 +1,26 @@
 .bg {
   background: url(./images/A5.jpg);
-
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 105vh;
   width: 100%;
   background-attachment: fixed;
   margin-top: -80px;
 }
+
+@media only screen and (min-width: 1023px) and (max-width: 1330px) {
+  .bg {
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .bg {
+    height: fit-content;
+  }
+}
+
 input[type='text'],
 input[type='password'] {
   width: 100%;

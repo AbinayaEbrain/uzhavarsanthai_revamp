@@ -6,70 +6,68 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DealsService {
   // https://farmers-market-ebrain.herokuapp.com
-  private _dealsUrl = "https://uzhavarsanthai.herokuapp.com/api/deals";
-  private _postUrl ="https://uzhavarsanthai.herokuapp.com/api/post";
-  private _getUrl ="https://uzhavarsanthai.herokuapp.com/api/details";
-  private _getCategoryUrl ="https://uzhavarsanthai.herokuapp.com/api/category";
+  private _dealsUrl = 'https://uzhavarsanthai.herokuapp.com/api/deals';
+  private _postUrl = 'https://uzhavarsanthai.herokuapp.com/api/post';
+  private _getUrl = 'https://uzhavarsanthai.herokuapp.com/api/details';
+  private _getCategoryUrl = 'https://uzhavarsanthai.herokuapp.com/api/category';
   //Deactivate URL
-  private deactiveUrl ="https://uzhavarsanthai.herokuapp.com/api/admin-user/deactive";
+  private deactiveUrl =
+    'https://uzhavarsanthai.herokuapp.com/api/admin-user/deactive';
   //Active URL
-  private activeUrl ="https://uzhavarsanthai.herokuapp.com/api/admin-user/active";
-  private updateuserurl = "https://uzhavarsanthai.herokuapp.com/api/updateuser";
-  private uploadUrl = "https://uzhavarsanthai.herokuapp.com/api/sendImage";
-  constructor(private http:HttpClient) { }
+  private activeUrl =
+    'https://uzhavarsanthai.herokuapp.com/api/admin-user/active';
+  private updateuserurl = 'https://uzhavarsanthai.herokuapp.com/api/updateuser';
+  private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
+  constructor(private http: HttpClient) {}
 
   sendImage(Image: FormData) {
-    return this.http.post(this.uploadUrl,Image);
+    return this.http.post(this.uploadUrl, Image);
   }
-  getDeals(){
-    return this.http.get<any>(this._dealsUrl)
+  getDeals() {
+    return this.http.get<any>(this._dealsUrl);
   }
-  updateCustomer(data,id){
-    return this.http.put<any>(this.updateuserurl +  "/" + id ,data)
+  updateCustomer(data, id) {
+    return this.http.put<any>(this.updateuserurl + '/' + id, data);
   }
-  addPost(data){
-    return this.http.post<any>(this._postUrl,data)
+  addPost(data) {
+    return this.http.post<any>(this._postUrl, data);
   }
 
-  getDetails(){
+  getDetails() {
     return this.http.get<any>(this._getUrl);
   }
 
-  editDeals(data,id){
-    return this.http.put<any>(this._dealsUrl + "/" + id ,data)
+  editDeals(data, id) {
+    return this.http.put<any>(this._dealsUrl + '/' + id, data);
   }
 
-  editCategory(data,id){
-    return this.http.put<any>(this._getCategoryUrl + "/" + id ,data)
+  editCategory(data, id) {
+    return this.http.put<any>(this._getCategoryUrl + '/' + id, data);
   }
 
-  deletedeal(id){
-    return this.http.delete<any>(this._dealsUrl + "/" + id )
+  deletedeal(id) {
+    return this.http.delete<any>(this._dealsUrl + '/' + id);
   }
 
-  deleteCate(id){
-    return this.http.delete<any>(this._getCategoryUrl + "/" + id )
+  deleteCate(id) {
+    return this.http.delete<any>(this._getCategoryUrl + '/' + id);
   }
 
-  deleteUser(id){
-    return this.http.delete<any>(this._getUrl + "/" + id )
+  deleteUser(id) {
+    return this.http.delete<any>(this._getUrl + '/' + id);
   }
 
-
-  getCategory(){
-    return this.http.get<any>(this._getCategoryUrl)
+  getCategory() {
+    return this.http.get<any>(this._getCategoryUrl);
   }
-
 
   //deactivate account
-  deactivateAccount(data,id){
-    return this.http.put<any>(this.deactiveUrl + "/" + id ,data)
+  deactivateAccount(data, id) {
+    return this.http.put<any>(this.deactiveUrl + '/' + id, data);
   }
 
-    //activate account
-    activateAccount(data,id){
-      return this.http.put<any>(this.activeUrl + "/" + id ,data)
-    }
-  
-
+  //activate account
+  activateAccount(data, id) {
+    return this.http.put<any>(this.activeUrl + '/' + id, data);
+  }
 }

@@ -12,22 +12,27 @@
                 </div>
                 <div class="col-md-2">
                 </div>
-                <div class="col-md-6 onmobiviewpadding mt-md-0 mt-2" id="hideSearchDiv">
-                        <div class="inner-addon left-addon">
+        <div class="col-md-6 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">                  
+       
+                        <div class="inner-addon left-addon" >
                                 <i class="fa fa-search glyphicon" aria-hidden="true"></i>
                                 <input type="text" class="form-control searchBorder"  [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
-
-                              </div>
+ </div>
                      </div>
+                     <div class="stunning-header stunning-header-bg-green mt-3 two">
+                            <div class="stunning-header-content" >
+                                 <ul class="breadcrumbs" style=" list-style-type: none;cursor: pointer;color:#072304;margin-left: -25px;">
+                                    <li class="breadcrumbs-item" ><span routerLink="/home" >Home</span>&nbsp;<i class="fa fa-arrow-right" style="font-weight: normal;"></i>&nbsp;<span class="printCategory">{{getCategory}}</span></li>
+                                </ul>
+                            </div>
+                        </div>
 
             </div>
             <div class="errDiv">
                 <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
         </div>
 
-        <div class="col-md-12" style="margin-top: 2%;" id="hideSelectedCategory">
-            <p>Your selected category is : <span class="printCategory">{{getCategory}}</span></p>
-        </div>
+
             <div *ngIf="showDeals">
                     <div class="mt-5" *ngFor = "let deal of totalDeals | filterdata: queryString  : 'name'">
                             <div *ngIf="deal === -1">
@@ -38,7 +43,7 @@
                             <div class="col-md-4 col-lg-5 col-12"></div>
                         </div>
                         </div>
-                <div class="row mt-4" id="hideifNoData">
+                <div class="row " id="hideifNoData" style="margin-top: -30px;">
                         <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of totalDeals |paginate: {id: 'foo1', itemsPerPage:6,currentPage:e } | filterdata: queryString  : 'name'">
                                 <div class="card" *ngIf="deal !== -1">
                                         <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">

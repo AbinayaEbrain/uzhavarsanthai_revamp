@@ -20,7 +20,7 @@
                      </div>
                      <div class="form-group">
                          <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">மாவட்டம்  </span>/ City</label>
-                            <input google-place type="text" placeholder="Enter your name" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="registeredUserData.address.city" required>
+                            <input google-place type="text" placeholder="Enter your city" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="registeredUserData.address.city" required>
                             <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
                     </div>
                     <div class="form-group ">

@@ -21,7 +21,7 @@
                     <button class="btn writeBlog" (click)="addBlog()">Write Blog</button>
                   </div>
                 </div>
-            <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr | slice:0:show; let i=index">
+            <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr | slice:0:show;">
                   <div class="card-header" style="color:#0d4608;padding: 5px;">
                       <p style="float:right" class="blogAuthor"># {{blog.bloggerName}}</p>
                     <h3 class="blogcard hedngBox productFullName prdctFlNme1 prd2 prd3 mt-3"><strong>{{blog.username}} </strong>
