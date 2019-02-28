@@ -294,3 +294,13 @@ input {
   font-weight: bold;
   color: #0d4608;
 }
+.inline { 
+  display: inline-block; 
+  border: 1px solid red; 
+  margin:10px;
+  }
+  @media screen and (max-width: 767px) {
+    .container { display: flex; flex-flow: column; }
+    .two { order: 1; }
+    .one { order: 2 }
+}
