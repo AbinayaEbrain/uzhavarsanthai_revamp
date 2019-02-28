@@ -141,8 +141,8 @@ export class PostComponent implements OnInit {
 
   postProduct() {
     this.loadingCtrl.show();
-    var time = this.productData.validityTime;
-    this.productData.validityTime = time.getTime();
+    // var time = this.productData.validityTime;
+    // this.productData.validityTime = time.getTime();
 
     this.productData.accountId = JSON.parse(
       localStorage.getItem('currentUser')

@@ -91,7 +91,7 @@
                       <div class="col-md-5 mb-3">
                           <label class="english_wrd" for="date"><span class="tamil_wrd">காலாவதியாகும் தேதி </span>/ Expiry Date </label>
                             <div class="form-group">
-                                <input type="text"  placeholder="Date" #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  name="validityTime" class="form-control" [(ngModel)]="deallistobj.validityTime" bsDatepicker autocomplete="off" [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
+                                <input type="date"  placeholder="Date" #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  name="validityTime" class="form-control" [(ngModel)]="deallistobj.validityTime" required>
                                 <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>
                               </div>
                         </div>

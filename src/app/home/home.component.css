@@ -13,6 +13,18 @@
   color: white;
 }
 
+.bg1{
+	background-image: url('../../assets/Images/jjj.jpeg');
+	height:150px;
+	width:150px;
+}
+
+.bg2{
+	background-image: url('../../assets/Images/sell1.png');
+	height:150px;
+	width:150px;
+}
+
 .slogan {
   font-weight: bold !important;
   color: white;
