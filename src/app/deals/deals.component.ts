@@ -76,8 +76,19 @@ export class DealsComponent implements OnInit {
       res => {
         this.showDeals = true;
         this.crdDeals = res;
-        console.log(this.crdDeals);
-        if (this.crdDeals.length == 0) {
+        let CurrentDate = new Date().toISOString();
+        let j = 0, k =0;
+        for(let i=0;i < this.crdDeals.length ; i++){
+          if(this.crdDeals[i].status == 'ACTIVE'){
+            if(this.crdDeals[i].validityTime > CurrentDate){
+              this.crdDeals1[j] = this.crdDeals[i];
+              this.getPrdtName[k] = this.crdDeals1[j].name;
+              j++;
+              k++;
+            }
+          }
+        }
+        if (this.crdDeals1.length == 0) {
           this.errMsg = 'Currently no deals available';
           document.getElementById('hidePagination').style.display = 'none';
           document.getElementById('hideSearchDiv').style.display = 'none';
@@ -86,6 +97,7 @@ export class DealsComponent implements OnInit {
           document.getElementById('showBackButton').style.display = 'block';
         }
         this.showDeals = true;
+        this.loadingCtrl.hide();
       },
       err => {
         this.loadingCtrl.hide();
@@ -93,34 +105,34 @@ export class DealsComponent implements OnInit {
       }
     );
 
-    this._dealsService.getDetails().subscribe(
-      res => {
-        this.showDeals = true;
-        this.activeUsers = res;
-        let l = 0;
-        let k = 0;
-        let CurrentDate = new Date().toISOString();
-        for (let i = 0; i < this.activeUsers.length; i++) {
-          for (let j = 0; j < this.crdDeals.length; j++) {
-            if (
-              this.activeUsers[i]._id == this.crdDeals[j].accountId &&
-              this.crdDeals[j].validityTime > CurrentDate
-            ) {
-              if (this.activeUsers[i].status == 'ACTIVE') {
-                this.crdDeals1[k] = this.crdDeals[j];
-                this.getPrdtName[l] = this.crdDeals1[k].name;
-                k++;
-                l++;
-              }
-            }
-          }
-        }
-        console.log(this.getPrdtName);
-        this.showDeals = true;
-        this.loadingCtrl.hide();
-      },
-      err => {}
-    );
+    // this._dealsService.getDetails().subscribe(
+    //   res => {
+    //     this.showDeals = true;
+    //     this.activeUsers = res;
+    //     let l = 0;
+    //     let k = 0;
+    //     let CurrentDate = new Date().toISOString();
+    //     for (let i = 0; i < this.activeUsers.length; i++) {
+    //       for (let j = 0; j < this.crdDeals.length; j++) {
+    //         if (
+    //           this.activeUsers[i]._id == this.crdDeals[j].accountId &&
+    //           this.crdDeals[j].validityTime > CurrentDate
+    //         ) {
+    //           if (this.activeUsers[i].status == 'ACTIVE') {
+    //             this.crdDeals1[k] = this.crdDeals[j];
+    //             this.getPrdtName[l] = this.crdDeals1[k].name;
+    //             k++;
+    //             l++;
+    //           }
+    //         }
+    //       }
+    //     }
+    //     console.log(this.getPrdtName);
+    //     this.showDeals = true;
+    //     this.loadingCtrl.hide();
+    //   },
+    //   err => {}
+    // );
   }
 
   case() {
@@ -194,7 +206,7 @@ export class DealsComponent implements OnInit {
 
     if (this.totalDeals1.length == 0) {
       this.loadingCtrl.show();
-      //sweetAlert('Sorry!', 'Currently no product available', 'error');
+      sweetAlert('Sorry!', 'Currently no product available', 'error');
       this.showDeals = true;
     }
 

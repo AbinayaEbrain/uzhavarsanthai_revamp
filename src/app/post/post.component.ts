@@ -162,6 +162,9 @@ export class PostComponent implements OnInit {
     this.productData.userAddress = JSON.parse(
       localStorage.getItem('currentUser')
     ).address.city.formatted_address;
+    this.productData.status = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).status;
     // this.productData.image = JSON.parse(localStorage.getItem('Image'));
     this.productData.ipAddress = this.privateIP;
     this.productData.avlPlace = this.addr;
@@ -176,6 +179,8 @@ export class PostComponent implements OnInit {
     this.productData.date = curntDte;
     this._dealsService.addPost(this.productData).subscribe(
       res => {
+        console.log(this.productData);
+        console.log(res);
         this.success = 'Posted successfully!';
         //localStorage.removeItem('Image')
         this.loadingCtrl.hide();

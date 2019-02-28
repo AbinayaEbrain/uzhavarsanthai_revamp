@@ -71,7 +71,6 @@ export class LoginComponent implements OnInit {
             }
           } else {
             this.deactiveErrorMsg = 'Your account has been deactivated !';
-
             setTimeout(() => {
               this.deactiveErrorMsg = '';
             }, 3000);
@@ -85,6 +84,9 @@ export class LoginComponent implements OnInit {
         this.loadingCtrl.hide();
         if (err.statusText === 'Unauthorized') {
           this.errormsg = 'Invalid Phone Number and Password !';
+          setTimeout(() => {
+            this.errormsg = '';
+          }, 3000);
         }
       }
     );

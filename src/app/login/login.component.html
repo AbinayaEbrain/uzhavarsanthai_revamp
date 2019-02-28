@@ -1,13 +1,18 @@
 <body class="bg" style="overflow: hidden;">
   <div class="container mt-5 pt-1">
+      <h2 class="mt-5 pt-5 d-sm-block clr sent_font text-left tamil_word">உழவு என்பது தொழில் மட்டுமல்ல <br class="greetmsg"> - அது உயிரின் ஆதாரம்
+      </h2>
     <div class="row mt-5">
         <div class="col-md-1"></div>
         <div class="col-md-4">
-              <div class="alert alert-success english_wrd" *ngIf = "success">
-                      {{success}}
+            <div class="alert alert-danger text-center error_word"  *ngIf="errormsg">
+                {{errormsg}}
+              </div>
+              <div class="alert alert-danger text-center error_word"  *ngIf="deactiveErrorMsg">
+                {{deactiveErrorMsg}}
               </div>
               <form #loginform="ngForm" *ngIf ="!submitted" novalidate>
-                <h1 class="h3 mb-5 font-weight-normal mt-3 pt-5 clr" style="text-align: center;">Login</h1>
+                <h1 class="h3 mb-5 font-weight-normal mt-3 clr" style="text-align: center;">Login</h1>
            <div class="form-group mt-2">
                <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> தொலைபேசி எண் </span>/ Phone Number</label>
                     <input type="text" placeholder="Enter your mobile number" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>

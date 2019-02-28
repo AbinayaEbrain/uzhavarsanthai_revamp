@@ -43,7 +43,7 @@ export class LocationdealsComponent implements OnInit {
   totalDeals1: any;
   getSearchDeals = [];
   submitted: any;
-  getPrdtName=[];
+  getPrdtName = [];
   constructor(
     private _dealsService: DealsService,
     private route: Router,
@@ -93,7 +93,7 @@ export class LocationdealsComponent implements OnInit {
                 if (this.activeUsers[i]._id == this.mapDeals[j].accountId) {
                   if (this.activeUsers[i].status == 'ACTIVE') {
                     this.crdDeals1[k] = this.mapDeals[j];
-                      this.getPrdtName[l] = this.crdDeals1[k].name;
+                    this.getPrdtName[l] = this.crdDeals1[k].name;
                     k++;
                     l++;
                     this.loadingCtrl.hide();
@@ -101,8 +101,9 @@ export class LocationdealsComponent implements OnInit {
                 }
               }
             }
-            if (this.mapDeals.length == 0) {
-              this.loadingCtrl.show();
+            this.loadingCtrl.hide();
+            if (this.crdDeals1.length == 0) {
+              this.loadingCtrl.hide();
               this.noLocationErr = 'No deals availble based on your location';
               document.getElementById('hidePagination').style.display = 'none';
               document.getElementById('hideSearchDiv').style.display = 'none';
@@ -127,10 +128,9 @@ export class LocationdealsComponent implements OnInit {
     // console.log(this.queryString);
     this.queryString = this.queryString.toLowerCase();
     for (let i = 0; i < this.getPrdtName.length; i++) {
-      if (this.queryString != this.getPrdtName[i]){
-          console.log('no data')
-          this.errMsg1 = 'Product Unavailable';
-        
+      if (this.queryString != this.getPrdtName[i]) {
+        console.log('no data');
+        this.errMsg1 = 'Product Unavailable';
       }
     }
   }

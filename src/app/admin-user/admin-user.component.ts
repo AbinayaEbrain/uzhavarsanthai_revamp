@@ -52,13 +52,13 @@ export class AdminUserComponent implements OnInit {
               1
             );
           }
-          if (this.registerUser[i].address.city.formatted_address) {
-            let city = this.registerUser[i].address.city.formatted_address;
-            this.registerUser[i].address.city.formatted_address = city.split(
-              ','
-            )[0];
-            this.registerUser[i].address.city.locality = city.split(',')[1];
-          }
+          // if (this.registerUser[i].address.city.formatted_address) {
+          //   let city = this.registerUser[i].address.city.formatted_address;
+          //   this.registerUser[i].address.city.formatted_address = city.split(
+          //     ','
+          //   )[0];
+          //   this.registerUser[i].address.city.locality = city.split(',')[1];
+          // }
         }
         if (this.registerUser.length == 0) {
           this.errMsg = 'No users found';
@@ -76,6 +76,7 @@ export class AdminUserComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this._dealService.deactivateAccount(data, this.id).subscribe(
       res => {
+        console.log(res);
         this.deactiveMsg = 'Account Deactivated!';
         setTimeout(() => {
           this.deactiveMsg = '';

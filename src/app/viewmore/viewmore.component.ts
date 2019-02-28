@@ -16,23 +16,8 @@ export class ViewmoreComponent implements OnInit {
   id = '';
   viewmore = [];
   viewPost = [];
-  register = {
-    firstName: '',
-    lastName: '',
-    phone: '',
-    address: {
-      addressLine: '',
-      address1: '',
-      city: {
-        locality: '',
-        admin_area_l1: '',
-        formatted_address: ''
-      }
-    }
-  };
   time: any;
   public postProduct: any = {};
-  // public register: any = {};
   city: any;
   state: any;
   userName = '';
@@ -67,10 +52,17 @@ export class ViewmoreComponent implements OnInit {
             this.postProduct.subqnty = this.viewPost[i].subqnty;
             this.postProduct.price = this.viewPost[i].price;
             this.postProduct.description = this.viewPost[i].description;
-            this.postProduct.avlPlace = this.viewPost[i].avlPlace.formatted_address;
+            this.postProduct.avlPlace = this.viewPost[
+              i
+            ].avlPlace.formatted_address;
             this.postProduct.accountId = this.viewPost[i].accountId;
             this.postProduct.image = this.viewPost[i].image;
             this.time = this.viewPost[i].validityTime;
+            this.postProduct.firstName = this.viewPost[i].username;
+            this.postProduct.lastName = this.viewPost[i].lastname;
+            this.postProduct.phone = this.viewPost[i].userNumber;
+            this.postProduct.userAddressLine = this.viewPost[i].userAddressLine;
+            this.postProduct.address = this.viewPost[i].userAddress;
             this.loadingCtrl.hide();
           }
         }
@@ -78,36 +70,6 @@ export class ViewmoreComponent implements OnInit {
           this.time,
           'dd/MM/yyyy'
         );
-      },
-      err => console.log(err)
-    );
-
-    this._dealsService.getDetails().subscribe(
-      res => {
-        this.loadingCtrl.show();
-        this.viewmore = res;
-        console.log(this.viewmore);
-        for (let i = 0; i < this.viewmore.length; i++) {
-          if (this.postProduct.accountId == this.viewmore[i]._id) {
-            this.register.firstName = this.viewmore[i].firstname;
-            this.register.lastName = this.viewmore[i].lastName;
-            this.register.phone = this.viewmore[i].phone;
-            this.register.address.addressLine = this.viewmore[
-              i
-            ].address.addressLine;
-            this.city = this.viewmore[i].address.city;
-            this.register.address.city.formatted_address = this.viewmore[i].address.city.formatted_address;
-          }
-        }
-        console.log(this.register);
-        console.log(this.city);
-        // this.adrsArray = this.city.formatted_address;
-        // console.log(this.adrsArray);
-        // this.register.address.city.formatted_address = this.adrsArray.split(
-        //   ','
-        // )[1];
-        console.log(this.register.address.city.formatted_address);
-        this.loadingCtrl.hide();
       },
       err => console.log(err)
     );

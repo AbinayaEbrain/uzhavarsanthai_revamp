@@ -450,7 +450,22 @@ router.put('/admin-user/deactive/:id', function(req, res) {
         res.json(updatedUser);
       }
     }
-  );
+  ),
+  Post.update({
+    'accountId':req.params.id
+  },{
+    $set: { status: 'DEACTIVE' }
+  },
+  {
+    new: true
+  },
+  function(err, updatedUser) {
+    if (err) {
+      res.send('Error updating user');
+    } else {
+      res.json(updatedUser);
+    }
+  });
 });
 
 router.post(
@@ -490,7 +505,23 @@ router.put('/admin-user/active/:id', function(req, res) {
         res.json(updatedUser);
       }
     }
-  );
+  ),
+  Post.update({
+    'accountId':req.params.id
+  },{
+    $set: { status: 'ACTIVE' }
+  },
+  {
+    new: true
+  },
+  function(err, updatedUser) {
+    if (err) {
+      res.send('Error updating user');
+    } else {
+       res.json(updatedUser);
+      // res.status(200).json({ message: 'Marked all messages as read',updatedUser });
+    }
+  });
 });
 
 module.exports = router;

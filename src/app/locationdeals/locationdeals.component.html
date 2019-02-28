@@ -22,7 +22,7 @@
 
           <p class="no_deals_found error_word" *ngIf="noLocationErr">{{noLocationErr}}</p>
     <div *ngIf="showDeals">
-            <div class="mt-5" *ngFor = "let deal of mapDeals | filterdata: queryString  : 'name'">
+            <div class="mt-5" *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'name'">
                     <div *ngIf="deal === -1">
                     <div class="col-md-4 col-lg-5 col-12"></div>
                     <div class="col-md-4 col-lg-2 col-12 errDesign">
@@ -33,7 +33,7 @@
                 </div>
       <div class="row mt-4">
 
-        <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of mapDeals | filterdata: queryString  : 'name'  |paginate: {id: 'foo', itemsPerPage:8,currentPage:e }">
+        <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'name'  |paginate: {id: 'foo', itemsPerPage:8,currentPage:e }">
                 <div class="card" *ngIf="deal !== -1">
                         <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                         <table class="tableContent">

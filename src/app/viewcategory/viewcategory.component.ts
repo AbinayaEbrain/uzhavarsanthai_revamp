@@ -70,7 +70,6 @@ export class ViewcategoryComponent implements OnInit {
     this.showDeals = true;
     this._dealService.getDeals().subscribe(
       res => {
-
         let j = 0;
         this.crdDeals = res;
         console.log(this.crdDeals);
@@ -80,13 +79,12 @@ export class ViewcategoryComponent implements OnInit {
         for (let i = 0; i < this.crdDeals.length; i++) {
           if (
             this.id == this.crdDeals[i].categoryId &&
-            this.crdDeals[i].validityTime > CurrentDate
+            this.crdDeals[i].validityTime > CurrentDate && this.crdDeals[i].status == 'ACTIVE'
           ) {
             console.log(this.crdDeals[i].validityTime);
             this.totalDeals[j] = this.crdDeals[i];
             this.getCategory = this.totalDeals[j].category;
             this.getPrdtName = this.totalDeals[j].name;
-          console.log(this.getCategory)
             j++;
 
             this.loadingCtrl.hide();
