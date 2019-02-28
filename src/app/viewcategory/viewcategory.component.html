@@ -19,7 +19,7 @@
                                 <input type="text" class="form-control searchBorder"  [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
  </div>
                      </div>
-                     <div class="stunning-header stunning-header-bg-green mt-3 two">
+                     <div class="stunning-header stunning-header-bg-green mt-3 two" id="hideSelectedCategory">
                             <div class="stunning-header-content" >
                                  <ul class="breadcrumbs" style=" list-style-type: none;cursor: pointer;color:#072304;margin-left: -25px;">
                                     <li class="breadcrumbs-item" ><span routerLink="/home" >Home</span>&nbsp;<i class="fa fa-arrow-right" style="font-weight: normal;"></i>&nbsp;<span class="printCategory">{{getCategory}}</span></li>
