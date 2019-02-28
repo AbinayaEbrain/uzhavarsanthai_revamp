@@ -11,7 +11,7 @@ import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
 
 
 //https://uzhavarsanthai.herokuapp.com
-const URL = 'http://localhost:5000/api/upload';
+const URL = 'https://uzhavarsanthai.herokuapp.com/api/upload';
 
 interface FileReaderEventTarget extends EventTarget {
   result:string

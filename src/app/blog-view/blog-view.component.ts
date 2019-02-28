@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-blog-view',
@@ -15,31 +16,38 @@ export class BlogViewComponent implements OnInit {
   errMsg: any;
   success: any;
   show = 5;
+  noBlog: any;
 
   constructor(
     private _auth: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public loadingCtrl: NgxSpinnerService
   ) {}
 
   ngOnInit() {
+    this.loadingCtrl.show();
     this.getAllBlog();
   }
 
-  getAllBlog(){
-  this._auth.blogGetData().subscribe(
-    res => {
-      this.blogArr = res;
-    },
-    err => {
-      this.blogArr = [];
-    }
-  );
-}
+  getAllBlog() {
+    this._auth.blogGetData().subscribe(
+      res => {
+        this.blogArr = res;
+        this.loadingCtrl.hide();
+        if (this.blogArr.length == 0) {
+          this.noBlog = 'No blogs added';
+        }
+      },
+      err => {
+        this.blogArr = [];
+      }
+    );
+  }
 
-increaseShow() {
-  this.show += 5; 
-}
+  increaseShow() {
+    this.show += 5;
+  }
 
   deleteblog() {
     this.id = this.route.snapshot.params['id'];
@@ -70,10 +78,8 @@ increaseShow() {
       }, 2000);
     }
   }
-  
- openblog(){
-   document.getElementById('hide').innerHTML = '';
-}
 
+  openblog() {
+    document.getElementById('hide').innerHTML = '';
+  }
 }
-

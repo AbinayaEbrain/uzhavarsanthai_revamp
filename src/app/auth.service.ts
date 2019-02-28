@@ -8,11 +8,11 @@ import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
 export class AuthService {
   private _registerUrl = "https://uzhavarsanthai.herokuapp.com/api/register";
   private _logInUrl = "https://uzhavarsanthai.herokuapp.com/api/login";
-  private _blogUrl = "http://localhost:5000/api/blog";
-  private _blogViewUrl = "http://localhost:5000/api/blogview";
-  private _blogEditUrl = "http://localhost:5000/api/blogedit";
-  private _blogGetOneUrl = "http://localhost:5000/api/blogetone";
-  private _blogDeleteUrl = "http://localhost:5000/api/blogdel";
+  private _blogUrl = "https://uzhavarsanthai.herokuapp.com/api/blog";
+  private _blogViewUrl = "https://uzhavarsanthai.herokuapp.com/api/blogview";
+  private _blogEditUrl = "https://uzhavarsanthai.herokuapp.com/api/blogedit";
+  private _blogGetOneUrl = "https://uzhavarsanthai.herokuapp.com/api/blogetone";
+  private _blogDeleteUrl = "https://uzhavarsanthai.herokuapp.com/api/blogdel";
 
 
   constructor(private http:HttpClient,private route:Router) { }

@@ -71,6 +71,13 @@
   background-color: white;
   font-weight: bold;
 }
+
+.noBlog {
+  font-weight: bold;
+  font-size: 18px;
+  color: #0d4608;
+}
+
 input {
   font-family: 'Hind Madurai', sans-serif !important;
 }

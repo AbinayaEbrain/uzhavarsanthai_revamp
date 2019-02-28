@@ -6,9 +6,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AdminService {
   //https://uzhavarsanthai.herokuapp.com/api/category
-  private _postCatUrl = 'http://localhost:5000/api/category';
-  private _postContact = 'http://localhost:5000/api/contact';
-  private sendMail = 'http://localhost:5000/api/sendMail';
+  private _postCatUrl = 'https://uzhavarsanthai.herokuapp.com/api/category';
+  private _postContact = 'https://uzhavarsanthai.herokuapp.com/api/contact';
+  private sendMail = 'https://uzhavarsanthai.herokuapp.com/api/sendMail';
   constructor(private http: HttpClient) {}
 
   addCate(data) {

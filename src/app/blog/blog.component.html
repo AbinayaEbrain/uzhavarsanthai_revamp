@@ -78,7 +78,10 @@
     </div>
 
     <div>
-      <p class="blogTitle mt-3">பதிவுகள்</p>
+        <div class="mb-2 noBlog" style="text-align: center" *ngIf="noBlog">
+            {{noBlog}}
+          </div>
+      <p *ngIf="!noBlog" class="blogTitle mt-3">பதிவுகள்</p>
       <div
         id="cardFocus"
         class="card mb-2 cardBorder"
@@ -128,8 +131,8 @@
   </div>
   <div
     *ngIf="show < loggedInBlog.length"
-    class="mx-auto"
-    style="color: #0d4608;font-weight: bold;cursor: pointer;"
+    class="mx-auto mb-3"
+    style="color: #0d4608;font-weight: bold;cursor: pointer;text-align: center"
     (click)="increaseShow()"
   >
     Load More...
