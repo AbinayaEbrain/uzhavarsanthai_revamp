@@ -1,36 +1,33 @@
-<body class="bg">
-    <div class="text-center mb-5  container" style="margin-top: 110px">
-      <!-- <h2 class="mt-5 pt-5 d-sm-block d-none clr sent_font text-left">The more one sows the greater the harvest</h2> -->
-      <h2 class="mt-5 pt-5 d-sm-block clr sent_font text-left tamil_word">உழவு என்பது தொழில் மட்டுமல்ல <br class="greetmsg"> - அது உயிரின் ஆதாரம்
-      </h2>
-    <div class="row mt-4">
-    <div class="col-md-1"></div>
-    <div class="col-md-4">
-        <div class="alert alert-danger error_word"  *ngIf="errormsg">
-            {{errormsg}}
-          </div>
-          <div class="alert alert-danger error_word"  *ngIf="deactiveErrorMsg">
-            {{deactiveErrorMsg}}
-          </div>
-        <form #loginform="ngForm" *ngIf ="!submitted" novalidate>
-            <h1 class="h3 mb-5 font-weight-normal mt-3 pt-2 clr">Login</h1>
-       <div class="form-group mt-2">
-           <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> தொலைபேசி எண் </span>/ Phone Number</label>
-                <input type="text" placeholder="Enter your mobile number" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
-                <span class="text-danger float-left error_word" [class.d-none] = "phone.valid || phone.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone Number is required</span>
+<body class="bg" style="overflow: hidden;">
+  <div class="container mt-5 pt-1">
+    <div class="row mt-5">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+              <div class="alert alert-success english_wrd" *ngIf = "success">
+                      {{success}}
               </div>
-            <div class="form-group mb-5">
-                <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> கடவுச்சொல் </span>/ Password</label>
-              <input type="password" placeholder="Enter your password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="userData.password" autocomplete="off"  required>
-              <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
-            </div>
+              <form #loginform="ngForm" *ngIf ="!submitted" novalidate>
+                <h1 class="h3 mb-5 font-weight-normal mt-3 pt-5 clr" style="text-align: center;">Login</h1>
+           <div class="form-group mt-2">
+               <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> தொலைபேசி எண் </span>/ Phone Number</label>
+                    <input type="text" placeholder="Enter your mobile number" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
+                    <span class="text-danger float-left error_word" [class.d-none] = "phone.valid || phone.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone Number is required</span>
+                  </div>
+                <div class="form-group mb-5">
+                    <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> கடவுச்சொல் </span>/ Password</label>
+                  <input type="password" placeholder="Enter your password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="userData.password" autocomplete="off"  required>
+                  <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
+                </div>
+    
+                <button [disabled]="loginform.form.invalid " class="btn mt-3 mb-5 btn-block button_word" type="submit" (click)="logform()"><span style="font-size: 14px" class="tamil_word">உள் நுழைக </span> / LOGIN</button>
+    
+              </form>
+     
+          <p class="clr english_wrd " style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Register</span> </p>      </div>
+      <div class="col-md-6">
 
-            <button [disabled]="loginform.form.invalid " class="btn mt-3 mb-5 btn-block button_word" type="submit" (click)="logform()"><span style="font-size: 14px" class="tamil_word">உள் நுழைக </span> / LOGIN</button>
+      </div>
+    </div>
+  </div>
 
-          </form>
-          <p class="clr english_wrd " style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Register</span> </p>
-    </div>
-    <div class="col-md-1"></div>
-    </div>
-    </div>
-    </body>
+          </body>
