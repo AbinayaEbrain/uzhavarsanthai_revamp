@@ -116,16 +116,16 @@
                                     <img data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;margin-top: -20%;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
                                </div>
                             </div>
-                            <div class="col-md-1">
+                            <!-- <div class="col-md-1">
                                 <button type="button" [disabled]="!this.Image" style="font-size: 15px" class="btn btn-outline-success text-center viewMoreBtn"  (click)="postImage()">
                                     Upload
                                 </button>
-                             </div>
+                             </div> -->
                         </div>
                         <div class="row">
                                 <div class="col-md-12">
                                         <div class="text-center">
-                                         <button  class="btn btn-outline-success text-center button_word" type="submit" [disabled]="postform.form.invalid" type="submit" (click)="update()">Update</button>&nbsp;
+                                         <button  class="btn btn-outline-success text-center button_word" type="submit" [disabled]="postform.form.invalid" type="submit"  (click)="postImage()">Update</button>&nbsp;
                                          <button type="submit" class="btn button_word" (click)="onSubmit()">Reset</button>
                                           </div>
                                     </div>
