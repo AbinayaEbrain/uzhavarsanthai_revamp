@@ -37,7 +37,7 @@
             <div class="row ">
                     <div class="col-md-1"></div>
                 <div class="col-md-5  mb-3">
-                   <label class="english_wrd postLble" for="phone" ><span style="font-size: 14px" class="tamil_word"> அளவு் </span>/ Quantity</label>
+                   <label class="english_wrd postLble" for="phone" ><span style="font-size: 14px" class="tamil_word"> அளவு </span>/ Quantity</label>
                     <div class="form-group">
                         <input type="text"  placeholder="Enter product quantity" #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="productData.quantity"  name="quantity" class="form-control"  maxlength="5" autocomplete="off"  required>
                         <span class="text-danger float-left error_word" [class.d-none] = "quantity.valid || quantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>
@@ -89,14 +89,13 @@
                               </div>
               </div>
                 <div class="col-md-5 mb-3">
-                  <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">காலாவதி தேதி் </span>/ Expiry Date</label>
+                  <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">காலாவதி தேதி </span>/ Expiry Date</label>
                         <div class="form-group">
-                                <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="productData.validityTime" placeholder="Enter expiry date" name="validityTime" class="form-control" autocomplete="off"  bsDatepicker [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
+                                <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="productData.validityTime" placeholder="Enter expiry date" name="validityTime" class="form-control" autocomplete="off"  bsDatepicker [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"  required>
                                 <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>
                               </div>
                 </div>
               </div>
-
               <!-- last row -->
               <div class="row">
                   <div class="col-md-1"></div>
@@ -109,14 +108,14 @@
 
                                </div>
                   </div>
-                  <div class="col-md-1">
-                        <button class="btn btn-outline-success text-center viewMoreBtn" (click)="postImage()" [disabled]="!this.Image">Upload</button>
-                   </div>
+                  <!-- <div class="col-md-1">
+                        <button class="btn btn-outline-success text-center viewMoreBtn"  [disabled]="!this.Image">Upload</button>
+                   </div> -->
               </div>
               <div class="row">
                     <div class="col-md-12">
                             <div class="text-center">
-                             <button  class="btn btn-outline-success text-center button_word" type="submit" [disabled]="postform.form.invalid" (click)="postProduct(result)">Submit</button>&nbsp;
+                             <button  class="btn btn-outline-success text-center button_word" type="submit" [disabled]="postform.form.invalid" (click)="postImage()" >Submit</button>&nbsp;
                              <button type="reset" class="btn button_word">Reset</button>
                               </div>
                         </div>

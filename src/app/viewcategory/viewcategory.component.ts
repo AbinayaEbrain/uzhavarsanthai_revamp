@@ -79,7 +79,8 @@ export class ViewcategoryComponent implements OnInit {
         for (let i = 0; i < this.crdDeals.length; i++) {
           if (
             this.id == this.crdDeals[i].categoryId &&
-            this.crdDeals[i].validityTime > CurrentDate && this.crdDeals[i].status == 'ACTIVE'
+            this.crdDeals[i].validityTime > CurrentDate &&
+            this.crdDeals[i].status == 'ACTIVE'
           ) {
             console.log(this.crdDeals[i].validityTime);
             this.totalDeals[j] = this.crdDeals[i];
@@ -100,6 +101,7 @@ export class ViewcategoryComponent implements OnInit {
           document.getElementById('hideFilterButton').style.display = 'none';
           this.loadingCtrl.hide();
         }
+        
         this.showDeals = true;
       },
       err => {
@@ -112,10 +114,9 @@ export class ViewcategoryComponent implements OnInit {
     // console.log(this.queryString);
     this.queryString = this.queryString.toLowerCase();
     for (let i = 0; i < this.getPrdtName.length; i++) {
-      if (this.queryString != this.getPrdtName[i]){
-          console.log('no data')
-          this.errMsg1 = 'Product Unavailable';
-
+      if (this.queryString != this.getPrdtName[i]) {
+        console.log('no data');
+        this.errMsg1 = 'Product Unavailable';
       }
     }
   }

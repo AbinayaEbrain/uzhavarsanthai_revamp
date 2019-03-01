@@ -91,10 +91,17 @@
                       <div class="col-md-5 mb-3">
                           <label class="english_wrd" for="date"><span class="tamil_wrd">காலாவதியாகும் தேதி </span>/ Expiry Date </label>
                             <div class="form-group">
-                                <input type="text"  placeholder="Date" #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  name="validityTime" class="form-control" [(ngModel)]="deallistobj.validityTime" bsDatepicker autocomplete="off" [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }" required>
+                                <input type="text"  placeholder="Date" #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  name="validityTime" class="form-control" [(ngModel)]="deallistobj.validityTime" bsDatepicker autocomplete="off" [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" required>
                                 <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>
                               </div>
                         </div>
+                        <!-- <div class="col-md-5 mb-3">
+                            <label class="english_wrd" for="date"><span class="tamil_wrd">காலாவதியாகும் தேதி </span>/ Expiry Date </label>
+                            <div class="form-group">
+                                  <input type="date" placeholder="Date" #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  name="validityTime" class="form-control" (change)="dateChange($event)" [ngModel]="deallistobj.validityTime | date:'yyyy-MM-dd'" required>
+                                  <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>
+                                </div>
+                          </div> -->
                         <div class="col-md-1"></div>
                     </div>
                        <!-- last row -->
@@ -109,16 +116,16 @@
                                     <img data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;margin-top: -20%;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
                                </div>
                             </div>
-                            <div class="col-md-1">
+                            <!-- <div class="col-md-1">
                                 <button type="button" [disabled]="!this.Image" style="font-size: 15px" class="btn btn-outline-success text-center viewMoreBtn"  (click)="postImage()">
                                     Upload
                                 </button>
-                             </div>
+                             </div> -->
                         </div>
                         <div class="row">
                                 <div class="col-md-12">
                                         <div class="text-center">
-                                         <button  class="btn btn-outline-success text-center button_word" type="submit" [disabled]="postform.form.invalid" type="submit" (click)="update()">Update</button>&nbsp;
+                                         <button  class="btn btn-outline-success text-center button_word" type="submit" [disabled]="postform.form.invalid" type="submit"  (click)="postImage()">Update</button>&nbsp;
                                          <button type="submit" class="btn button_word" (click)="onSubmit()">Reset</button>
                                           </div>
                                     </div>
