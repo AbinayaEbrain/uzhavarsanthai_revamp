@@ -1,5 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {
+  timeout,
+  retryWhen,
+  take,
+  concat,
+  share,
+  delayWhen
+} from 'rxjs/operators';
+import { timer, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +30,13 @@ export class DealsService {
   constructor(private http: HttpClient) {}
 
   sendImage(Image: FormData) {
-    return this.http.post(this.uploadUrl, Image);
+    return this.http.post(this.uploadUrl, Image).pipe(
+      timeout(2500),
+      retryWhen(errors => errors.pipe(delayWhen(val => timer(val * 1000)))),
+      take(2),
+      // concat(throwError('This is an error!')),
+      share()
+    );
   }
   getDeals() {
     return this.http.get<any>(this._dealsUrl);
