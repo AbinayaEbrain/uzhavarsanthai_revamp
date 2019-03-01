@@ -48,7 +48,6 @@ export class UserDealsEditComponent implements OnInit {
   categoryArr = [];
   showUnit: any;
   submitted: boolean;
-  actualTime:any;
   public addrKeys: string[];
   public addr: {
     formatted_address: '';
@@ -61,6 +60,7 @@ export class UserDealsEditComponent implements OnInit {
   valid: boolean = false;
   Image: File;
   today: Date;
+  changedTime: any;
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
     //to the object in the DOM.
@@ -97,7 +97,6 @@ export class UserDealsEditComponent implements OnInit {
       res => {
         this.loadingCtrl.hide();
         this.dealslists = res;
-        console.log(this.dealslists)
         for (let i = 0; i < this.dealslists.length; i++) {
           if (this.id == this.dealslists[i]._id) {
             this.deallistobj.category = this.dealslists[i].category;
@@ -109,16 +108,14 @@ export class UserDealsEditComponent implements OnInit {
             this.deallistobj.price = this.dealslists[i].price;
             this.deallistobj.description = this.dealslists[i].description;
             this.deallistobj.image = this.dealslists[i].image;
-            this.deallistobj.validityTime = this.dealslists[i].validityTime;
-            this.actualTime = this.deallistobj.validityTime.toString("yyyy-MM-dd'T'HH:mm:ss");;
-            console.log(this.actualTime)
             this.address = this.dealslists[i].avlPlace;
+            this.time = this.dealslists[i].validityTime;
             this.showUnit = this.dealslists[i].qnty;
           }
         }
         this.deallistobj.avlPlace = this.address.formatted_address;
         // this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
-        // this.deallistobj.validityTime = this.dateNrml;
+        this.deallistobj.validityTime = this.time;
       },
       err => {
         this.loadingCtrl.hide();
@@ -158,8 +155,9 @@ export class UserDealsEditComponent implements OnInit {
         this.time = this.dealslists[i].validityTime;
       }
     }
-    this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
-    this.deallistobj.validityTime = this.dateNrml;
+    // this.dateNrml = this.datePipe.transform(this.time, 'mm/dd/yyyy');
+    // console.log(this.dateNrml);
+    this.deallistobj.validityTime = this.time;
   }
 
   postImage() {
@@ -174,6 +172,11 @@ export class UserDealsEditComponent implements OnInit {
     });
   }
 
+  dateChange(event) {
+    this.changedTime = event.target.value;
+    this.deallistobj.validityTime = this.changedTime;
+  }
+
   update() {
     this.loadingCtrl.show();
     let curntDte = new Date().toLocaleDateString();
@@ -183,10 +186,6 @@ export class UserDealsEditComponent implements OnInit {
       this.deallistobj.avlPlace = this.address;
     } else {
       this.deallistobj.avlPlace = this.addr;
-    }
-
-    if (this.dateNrml == this.deallistobj.validityTime) {
-      this.deallistobj.validityTime = this.time;
     }
 
     this.deallistobj.username = JSON.parse(
