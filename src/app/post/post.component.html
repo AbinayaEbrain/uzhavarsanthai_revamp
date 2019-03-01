@@ -48,12 +48,12 @@
                     <div class="form-group">
                         <select required class="form-control" placeholder="Choose unit" #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel (change)="getunits()" [(ngModel)]="productData.qnty" >
                             <option class="prdtOption" selected="" disabled="" value="" >Choose product unit</option>
-                            <option value="Millilitre" class="categoryOption">Milli litre</option>
+                            <option value="Millilitre" class="categoryOption">Millilitre</option>
                             <option value="Litre" class="categoryOption">Litre</option>
                             <option value="Gram" class="categoryOption">Gram</option>
                             <option value="Kg" class="categoryOption">Kilogram</option>
                           </select>
-                              <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Required</span>
+                              <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i>Unit is required</span>
                       </div>
 
                     </div>
@@ -74,7 +74,7 @@
                 <div class="col-md-5 mb-3">
                   <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">கிடைக்குமிடம் </span>/ Available Place</label>
                     <div class="form-group">
-                          <input google-place type="text" placeholder="Enter your city" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="productData.avlPlace" required>
+                          <input google-place type="text" placeholder="Enter your address" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="productData.avlPlace" required>
                           <span class="text-danger float-left error_word" [class.d-none] = "avlPlace.valid || avlPlace.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
                       </div>
                 </div>
