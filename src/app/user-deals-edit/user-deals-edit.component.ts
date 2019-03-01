@@ -160,6 +160,9 @@ export class UserDealsEditComponent implements OnInit {
 
   postImage() {
     this.loadingCtrl.show();
+    setTimeout(() => {
+    this.update();
+  },3000);
     var image = new FormData(); //FormData creation
     image.append('Image', this.Image);
     //Adding the image to the form data to be sent

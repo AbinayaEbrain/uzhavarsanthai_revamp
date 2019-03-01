@@ -129,6 +129,9 @@ export class PostComponent implements OnInit {
 
   postImage() {
     this.loadingCtrl.show();
+    setTimeout(() => {
+    this.postProduct();
+  },3000);
     var image = new FormData(); //FormData creation
     image.append('Image', this.Image);
     //Adding the image to the form data to be sent
@@ -136,13 +139,15 @@ export class PostComponent implements OnInit {
       this.loadingCtrl.hide();
       // localStorage.setItem('Image', JSON.stringify(res));
       this.productData.image = res;
+      console.log(this.productData.image)
     });
+
   }
 
   postProduct() {
     this.loadingCtrl.show();
-    var time = this.productData.validityTime;
-    this.productData.validityTime = time.getTime();
+    // var time = this.productData.validityTime;
+    // this.productData.validityTime = time.getTime();
 
     this.productData.accountId = JSON.parse(
       localStorage.getItem('currentUser')
