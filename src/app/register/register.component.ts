@@ -93,7 +93,7 @@ export class RegisterComponent implements OnInit {
         err =>{
           console.log(err)
           if(err.statusText == 'Unauthorized'){
-            this.errormsg ='Phone Number already exist!'
+            this.errormsg ='Phone number already exist!'
             setTimeout(()=>{
              this.errormsg=''
            },15000)

@@ -82,6 +82,7 @@ export class UserProductsComponent implements OnInit {
     for (let i = 0; i < this.getPrdtName.length; i++) {
       if (this.queryString != this.getPrdtName[i]) {
         this.errMsg2 = 'Category is not available';
+      
       }
     }
   }

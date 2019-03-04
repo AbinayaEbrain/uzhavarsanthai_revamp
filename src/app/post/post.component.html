@@ -29,7 +29,7 @@
          <label class="english_wrd postLble" for="phone" ><span style="font-size: 14px" class="tamil_word"> பொருள் பெயர் </span>/ Product Name</label>
               <div class="form-group">
                 <input type="text" placeholder="Enter product name"  #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel  maxlength="50" [(ngModel)]="productData.name"  name="name" class="form-control"  autocomplete="off"  required>
-                <span class="text-danger float-left error_word" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product Name is required</span>
+                <span class="text-danger float-left error_word" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product name is required</span>
               </div>
         </div>
         <div class="col-md-1"></div>
@@ -48,12 +48,12 @@
                     <div class="form-group">
                         <select required class="form-control" placeholder="Choose unit" #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel (change)="getunits()" [(ngModel)]="productData.qnty" >
                             <option class="prdtOption" selected="" disabled="" value="" >Choose product unit</option>
-                            <option value="Millilitre" class="categoryOption">Millilitre</option>
+                            <option value="Milli litre" class="categoryOption">Milli litre</option>
                             <option value="Litre" class="categoryOption">Litre</option>
                             <option value="Gram" class="categoryOption">Gram</option>
                             <option value="Kg" class="categoryOption">Kilogram</option>
                           </select>
-                              <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i>Unit is required</span>
+                              <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Unit is required</span>
                       </div>
 
                     </div>

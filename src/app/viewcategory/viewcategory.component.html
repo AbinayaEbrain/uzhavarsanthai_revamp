@@ -6,22 +6,22 @@
 <body class="backgrd">
         <div class="container mainCntainer">
             <div class="row mt-5 pt-5">
-                <div class="col-md-4 col-xs-6">
+                <div class=" col-md-4 col-xs-6 first">
                         <button class="btn btn-outline-success text-center viewMoreBtn button_word" routerLink="/dealCategory"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
                         <button id="hideFilterButton" (click)="getGoogleAddress()" class="btn btn-outline-success text-center mobiviewFilterBtn viewMoreBtn button_word" data-toggle="modal" style="width: auto;margin-left: 10px;" data-target="#myModal" ><i class="fa fa-filter" aria-hidden="true" ></i> Filter</button>
                 </div>
                 <div class="col-md-2">
                 </div>
-        <div class="col-md-6 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">                  
+        <div class="col-md-6 onmobiviewpadding mt-md-0 mt-2 one " id="hideSearchDiv">                  
        
-                        <div class="inner-addon left-addon" >
+                        <div class="inner-addon left-addon " >
                                 <i class="fa fa-search glyphicon" aria-hidden="true"></i>
-                                <input type="text" class="form-control searchBorder"  [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
+                                <input type="text" class="form-control searchBorder searchtop"  [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
  </div>
                      </div>
                      <div class="stunning-header stunning-header-bg-green mt-3 two" id="hideSelectedCategory">
                             <div class="stunning-header-content" >
-                                 <ul class="breadcrumbs" style=" list-style-type: none;cursor: pointer;color:#072304;margin-left: -25px;">
+                                 <ul class="breadcrumbs" style=" list-style-type: none;cursor: pointer;color:#072304;margin-left: -25px;margin-bottom: -10px;">
                                     <li class="breadcrumbs-item" ><span routerLink="/home" >Home</span>&nbsp;<i class="fa fa-arrow-right" style="font-weight: normal;"></i>&nbsp;<span class="printCategory">{{getCategory}}</span></li>
                                 </ul>
                             </div>
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                     <div class="mx-auto" id="hidePagination" >
-                            <pagination-controls id="foo1" class="ngx-pagination" (pageChange)="e=$event"></pagination-controls>
+                            <pagination-controls id="foo1"  class="ngx-pagination" style="margin-right: 40px;" (pageChange)="e=$event"></pagination-controls>
                           </div>
             </div>
 
@@ -126,11 +126,15 @@
                               </div>
                             </div>
                             <div class="mx-auto" id="hidePagination" >
-                                    <pagination-controls id="foo" class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+                                    <pagination-controls id="foo" class="ngx-pagination" style="margin-right: 40px;" (pageChange)="p=$event"></pagination-controls>
                                   </div>
                         </div>
 
               </div>
+              <div class="second">
+              <button class="float1" style="float:left"  routerLink="/dealCategory"><i class="fa fa-arrow-left"></i> </button>
+           <button id="hideFilterButton" style="float:right" (click)="getGoogleAddress()" class="float" data-toggle="modal"  data-target="#myModal" > <i class="fa fa-filter "></i></button>
+        </div>
 </body>
 
 <div class="modal fade" id="myModal" role="dialog">
