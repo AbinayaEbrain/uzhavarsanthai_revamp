@@ -101,7 +101,7 @@ export class ViewcategoryComponent implements OnInit {
           document.getElementById('hideFilterButton').style.display = 'none';
           this.loadingCtrl.hide();
         }
-        
+
         this.showDeals = true;
       },
       err => {
