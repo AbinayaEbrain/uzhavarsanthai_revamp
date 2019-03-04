@@ -165,7 +165,6 @@ export class UserDealsEditComponent implements OnInit {
     var image = new FormData(); //FormData creation
     image.append('Image', this.Image);
     //Adding the image to the form data to be sent
-    console.log(this.Image);
     if (this.Image != undefined) {
       this._dealsService.sendImage(image).subscribe(res => {
         this.loadingCtrl.hide();

@@ -103,7 +103,10 @@
                             <div class="form-group">
                                     <div class="upload-btn-wrapper">
                                       <label for="ImageUpload" style="color:#0d4608;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;font-weight: bolder">Upload product image</label>
-                                      <input type="file" id="Image" name="Image" class="upload" (change)="onFileChange($event)" #fileInput>
+                                      <input type="file" id="Image" #Image="ngModel" [class.is-invalid]="Image.invalid && Image.touched" class="upload" (change)="onFileChange($event)" #fileInput
+                                       ngModel  [(ngModel)]="productData.Image" name="Image" autocomplete="off" required>
+                                      <span class="text-danger float-left error_word" [class.d-none] = "Image.valid || Image.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Image is required</span>
+                                      <!-- <input type="file" id="Image" name="Image" class="upload" (change)="onFileChange($event)" #fileInput required> -->
                                     </div>
 
                                </div>
@@ -115,7 +118,7 @@
               <div class="row">
                     <div class="col-md-12">
                             <div class="text-center">
-                             <button  class="btn btn-outline-success text-center button_word" type="submit" [disabled]="postform.form.invalid" (click)="postImage()" >Submit</button>&nbsp;
+                             <button  class="btn btn-outline-success text-center button_word" id="submitBtn" type="submit"  [disabled]="postform.form.invalid" (click)="postImage()" >Submit</button>&nbsp;
                              <button type="reset" class="btn button_word">Reset</button>
                               </div>
                         </div>

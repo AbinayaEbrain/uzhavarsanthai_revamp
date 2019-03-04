@@ -106,7 +106,8 @@ export class PostComponent implements OnInit {
   }
   onFileChange(event) {
     //Method to set the value of the file to the selected file by the user
-    this.Image = event.target.files[0]; //To get the image selected by the user
+    this.Image = event.target.files[0];
+    console.log(this.Image.name)//To get the image selected by the user
     this.valid = true;
   }
 
@@ -128,6 +129,7 @@ export class PostComponent implements OnInit {
   }
 
   postImage() {
+
     this.loadingCtrl.show();
     var image = new FormData(); //FormData creation
     image.append('Image', this.Image);
@@ -137,7 +139,6 @@ export class PostComponent implements OnInit {
       // localStorage.setItem('Image', JSON.stringify(res));
       this.productData.image = res;
       this.postProduct();
-      console.log(this.productData.image);
     });
   }
 
