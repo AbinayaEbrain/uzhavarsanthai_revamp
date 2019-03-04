@@ -12,13 +12,19 @@
                 </div>
                 <div class="col-md-2">
                 </div>
-        <div class="col-md-6 onmobiviewpadding mt-md-0 mt-2 one " id="hideSearchDiv">                  
+                <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">                  
        
-                        <div class="inner-addon left-addon " >
-                                <i class="fa fa-search glyphicon" aria-hidden="true"></i>
-                                <input type="text" class="form-control searchBorder searchtop"  [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
- </div>
-                     </div>
+                    <div class="inner-addon left-addon" >
+                            <i class="fa fa-search glyphicon" aria-hidden="true"></i>
+                            <input type="text" class="form-control searchBorder searchtop1"  [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
+</div>
+                 </div>
+                 <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">
+                    <div class="inner-addon left-addon" >
+                            <i class="fa fa-search glyphicon" aria-hidden="true"></i>
+                            <input google-place type="text" class="form-control searchBorder"  [(ngModel)]="getLocationDeals" (onSelect)="setAddress($event)" placeholder="Search by location.." />
+                        </div>
+                 </div>
                      <div class="stunning-header stunning-header-bg-green mt-3 two" id="hideSelectedCategory">
                             <div class="stunning-header-content" >
                                  <ul class="breadcrumbs" style=" list-style-type: none;cursor: pointer;color:#072304;margin-left: -25px;margin-bottom: -10px;">
