@@ -12,6 +12,7 @@ import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatePipe } from '@angular/common';
 import { FileUploader } from 'ng2-file-upload';
+import { empty } from 'rxjs';
 declare var swal: any;
 const URL = 'https://uzhavarsanthai.herokuapp.com/api/upload';
 
@@ -148,6 +149,7 @@ export class UserDealsEditComponent implements OnInit {
         this.deallistobj.subqnty = this.dealslists[i].subqnty;
         this.deallistobj.price = this.dealslists[i].price;
         this.deallistobj.description = this.dealslists[i].description;
+        this.deallistobj.image = this.dealslists[i].image;
         this.deallistobj.avlPlace = this.dealslists[
           i
         ].avlPlace.formatted_address;
@@ -163,13 +165,19 @@ export class UserDealsEditComponent implements OnInit {
     var image = new FormData(); //FormData creation
     image.append('Image', this.Image);
     //Adding the image to the form data to be sent
-    this._dealsService.sendImage(image).subscribe(res => {
-      this.loadingCtrl.hide();
-      // localStorage.setItem('Image', JSON.stringify(res));
-      this.deallistobj.image = res;
+    console.log(this.Image);
+    if (this.Image != undefined) {
+      this._dealsService.sendImage(image).subscribe(res => {
+        this.loadingCtrl.hide();
+        // localStorage.setItem('Image', JSON.stringify(res));
+        this.deallistobj.image = res;
+        this.update();
+        console.log(this.deallistobj.image);
+      });
+    }
+    if(this.Image == undefined){
       this.update();
-      console.log(this.deallistobj.image);
-    });
+    }
   }
 
   update() {

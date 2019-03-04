@@ -285,7 +285,7 @@ router.get('/deals', (req, res) => {
     } else {
       res.send(result);
     }
-  });
+  }).sort({date : -1});
 });
 
 router.get('/category', (req, res) => {

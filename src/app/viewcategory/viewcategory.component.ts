@@ -53,6 +53,7 @@ export class ViewcategoryComponent implements OnInit {
   setAddress(addrObj) {
     this.zone.run(() => {
       this.addr = addrObj;
+      this.getLocation();
       this.addrKeys = Object.keys(addrObj);
     });
   }
@@ -188,7 +189,7 @@ export class ViewcategoryComponent implements OnInit {
   }
 
   getLocation() {
-    this.totalDeals1 = [];
+   this.totalDeals1 = [];
     let j = 0;
     for (let i = 0; i < this.totalDeals.length; i++) {
       if (this.addr.locality == this.totalDeals[i].avlPlace.locality) {
@@ -201,27 +202,10 @@ export class ViewcategoryComponent implements OnInit {
 
     if (this.totalDeals1.length == 0) {
       sweetAlert('Sorry!', 'Currently no product available', 'error');
+      this.getLocationDeals = '';
       this.showDeals = true;
     }
     this.getLocationDeals = '';
   }
 
-  clickMe() {
-    this.totalDeals1 = [];
-    let j = 0;
-    for (let i = 0; i < this.totalDeals.length; i++) {
-      if (this.addr.locality == this.totalDeals[i].avlPlace.locality) {
-        this.totalDeals1[j] = this.totalDeals[i];
-        j++;
-      }
-    }
-    this.showDeals = false;
-    document.getElementById('hidePagination').style.display = 'block';
-
-    if (this.totalDeals1.length == 0) {
-      sweetAlert('Sorry!', 'Currently no product available', 'error');
-      this.showDeals = true;
-    }
-    this.getLocationDeals = '';
-  }
 }
