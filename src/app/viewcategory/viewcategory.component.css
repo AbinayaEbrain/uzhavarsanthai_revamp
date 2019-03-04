@@ -169,6 +169,15 @@ table {
   background-color: #072304;
   color: white;
 }
+
+.faStyle {
+  background-color: #0d4608;
+  margin-top: 1px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
 .close {
   color: white !important;
 }
@@ -294,13 +303,20 @@ input {
   font-weight: bold;
   color: #0d4608;
 }
-.inline { 
-  display: inline-block; 
-  border: 1px solid red; 
-  margin:10px;
+.inline {
+  display: inline-block;
+  border: 1px solid red;
+  margin: 10px;
+}
+@media screen and (max-width: 767px) {
+  .container {
+    display: flex;
+    flex-flow: column;
   }
-  @media screen and (max-width: 767px) {
-    .container { display: flex; flex-flow: column; }
-    .two { order: 1; }
-    .one { order: 2 }
+  .two {
+    order: 1;
+  }
+  .one {
+    order: 2;
+  }
 }

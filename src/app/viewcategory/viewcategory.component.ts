@@ -23,6 +23,8 @@ declare var $: any;
   styleUrls: ['./viewcategory.component.css']
 })
 export class ViewcategoryComponent implements OnInit {
+  getLocationDeals: any;
+  locationData: any;
   public showDeals = true;
   crdDeals = [];
   totalDeals = [];
@@ -33,7 +35,7 @@ export class ViewcategoryComponent implements OnInit {
   specifyCategory = [];
   getSearchDeals = [];
   querydetails: any = {};
-  totalDeals1: any;
+  totalDeals1 = [];
   noSearchDealsErr: any;
   queryString: any;
   p: any;
@@ -101,7 +103,7 @@ export class ViewcategoryComponent implements OnInit {
           document.getElementById('hideFilterButton').style.display = 'none';
           this.loadingCtrl.hide();
         }
-        
+
         this.showDeals = true;
       },
       err => {
@@ -183,5 +185,43 @@ export class ViewcategoryComponent implements OnInit {
     if (this.addr != undefined) {
       this.addr.locality = '';
     }
+  }
+
+  getLocation() {
+    this.totalDeals1 = [];
+    let j = 0;
+    for (let i = 0; i < this.totalDeals.length; i++) {
+      if (this.addr.locality == this.totalDeals[i].avlPlace.locality) {
+        this.totalDeals1[j] = this.totalDeals[i];
+        j++;
+      }
+    }
+    this.showDeals = false;
+    document.getElementById('hidePagination').style.display = 'block';
+
+    if (this.totalDeals1.length == 0) {
+      sweetAlert('Sorry!', 'Currently no product available', 'error');
+      this.showDeals = true;
+    }
+    this.getLocationDeals = '';
+  }
+
+  clickMe() {
+    this.totalDeals1 = [];
+    let j = 0;
+    for (let i = 0; i < this.totalDeals.length; i++) {
+      if (this.addr.locality == this.totalDeals[i].avlPlace.locality) {
+        this.totalDeals1[j] = this.totalDeals[i];
+        j++;
+      }
+    }
+    this.showDeals = false;
+    document.getElementById('hidePagination').style.display = 'block';
+
+    if (this.totalDeals1.length == 0) {
+      sweetAlert('Sorry!', 'Currently no product available', 'error');
+      this.showDeals = true;
+    }
+    this.getLocationDeals = '';
   }
 }
