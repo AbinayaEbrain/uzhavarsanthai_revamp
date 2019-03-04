@@ -13,7 +13,7 @@
                     <div class="form-group  mt-2">
                         <label class=" english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
                         <input type="text" placeholder="Enter your name" #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="crntUser.firstname" autocomplete="off" required>
-                        <span class="text-danger float-left error_word" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> First Name is required</span>
+                        <span class="text-danger float-left error_word" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Name is required</span>
                       </div>
                  </div>
                  <div class="col-md-12">

@@ -131,15 +131,6 @@ export class PostComponent implements OnInit {
   postImage() {
 
     this.loadingCtrl.show();
-    // if(this.Image == null){
-    //   console.log('no img')
-    //   document.getElementById("submitBtn").disabled = true;
-    //
-    // }
-    setTimeout(() => {
-        console.log('2')
-    this.postProduct();
-  },5000);
     var image = new FormData(); //FormData creation
     image.append('Image', this.Image);
     //Adding the image to the form data to be sent
@@ -147,10 +138,9 @@ export class PostComponent implements OnInit {
       this.loadingCtrl.hide();
       // localStorage.setItem('Image', JSON.stringify(res));
       this.productData.image = res;
-      console.log('3')
-      console.log(this.productData.image)
+      this.postProduct();
+      console.log(this.productData.image);
     });
-
   }
 
   postProduct() {

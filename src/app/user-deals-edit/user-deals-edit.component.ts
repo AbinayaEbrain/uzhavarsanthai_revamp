@@ -161,10 +161,6 @@ export class UserDealsEditComponent implements OnInit {
   postImage() {
     console.log('1')
     this.loadingCtrl.show();
-    setTimeout(() => {
-      console.log('2')
-    this.update();
-  },5000);
     var image = new FormData(); //FormData creation
     image.append('Image', this.Image);
     //Adding the image to the form data to be sent
@@ -173,7 +169,8 @@ export class UserDealsEditComponent implements OnInit {
       console.log('3')
       // localStorage.setItem('Image', JSON.stringify(res));
       this.deallistobj.image = res;
-        this.loadingCtrl.hide();
+      this.update();
+      console.log(this.deallistobj.image);
     });
   }
 

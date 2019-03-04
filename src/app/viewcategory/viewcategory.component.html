@@ -12,12 +12,25 @@
                 </div>
                 <div class="col-md-2">
                 </div>
+<<<<<<< HEAD
         <div class="col-md-6 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">                  
 
                         <div class="inner-addon left-addon" >
+=======
+        <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">                  
+       
+                        <div class="inner-addon right-addon" >
+>>>>>>> d7b986129b8190d2a5d66b50bc204245f395fe62
                                 <i class="fa fa-search glyphicon" aria-hidden="true"></i>
                                 <input type="text" class="form-control searchBorder"  [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
  </div>
+                     </div>
+                     <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">
+
+                        <div class="inner-addon right-addon" >
+                                <i class="fa fa-search glyphicon faStyle" (click)="clickMe()" aria-hidden="true"></i>
+                                <input google-place type="text" class="form-control searchBorder"  [(ngModel)]="getLocationDeals" (onSelect)="setAddress($event)" (onSelect)="getLocation()" placeholder="Search by location.." />
+                            </div>
                      </div>
                      <div class="stunning-header stunning-header-bg-green mt-3 two" id="hideSelectedCategory">
                             <div class="stunning-header-content" >

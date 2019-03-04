@@ -66,7 +66,7 @@ export class BlogComponent implements OnInit {
         if (this.loggedInBlog.length == 0) {
           this.noBlog = 'No blogs added';
         }
-        console.log(this.loggedInBlog);
+        // console.log(this.loggedInBlog);
       },
       err => {
         console.log(err);
@@ -105,6 +105,7 @@ export class BlogComponent implements OnInit {
     if (this.id) {
       this._auth.blogEditData(this.blogUserData, this.id).subscribe(
         res => {
+          console.log(res);
           this.success = 'Updated successfully!';
           this.getAllBlog();
           setTimeout(() => {
@@ -124,6 +125,7 @@ export class BlogComponent implements OnInit {
       )._id;
 
       this._auth.blogUserData(this.blogUserData).subscribe(data => {
+        console.log(data);
         this.noBlog = '';
         this.success = 'Saved successfully!';
         this.getAllBlog();

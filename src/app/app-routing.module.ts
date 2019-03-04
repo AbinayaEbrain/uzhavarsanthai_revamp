@@ -28,7 +28,7 @@ import { BlogViewComponent } from 'src/app/blog-view/blog-view.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    component: HomeComponent,
     pathMatch: 'full'
   },
   {
