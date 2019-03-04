@@ -159,14 +159,11 @@ export class UserDealsEditComponent implements OnInit {
   }
 
   postImage() {
-    console.log('1')
     this.loadingCtrl.show();
     var image = new FormData(); //FormData creation
     image.append('Image', this.Image);
     //Adding the image to the form data to be sent
     this._dealsService.sendImage(image).subscribe(res => {
-
-      console.log('3')
       // localStorage.setItem('Image', JSON.stringify(res));
       this.deallistobj.image = res;
       this.update();
@@ -175,7 +172,6 @@ export class UserDealsEditComponent implements OnInit {
   }
 
   update() {
-    console.log('4')
     this.loadingCtrl.show();
     let curntDte = new Date().toLocaleDateString();
     this.deallistobj.date = curntDte;
