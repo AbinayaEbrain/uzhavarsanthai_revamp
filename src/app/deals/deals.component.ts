@@ -53,13 +53,15 @@ export class DealsComponent implements OnInit {
   panTo: any;
   getPrdtName = [];
   showErr = true;
-
   setAddress(addrObj) {
     this.zone.run(() => {
       this.addr = addrObj;
+      console.log(this.addr.locality)
+      this.getLocation();
       this.addrKeys = Object.keys(addrObj);
     });
   }
+  getLocationDeals: any;
   constructor(
     private _dealsService: DealsService,
     private route: Router,
@@ -68,6 +70,12 @@ export class DealsComponent implements OnInit {
   ) {
     this.userdetails.searchqnty = '';
     this.userdetails.searchCategory = '';
+    // for (let i=1;i<=100;i++){
+    //   this.crdDeals1.push(`Angular ${i}.0`)
+    // }
+    //   for (let i=1;i<=100;i++){
+    //     this.totalDeals1.push(`Angular ${i}.0`)
+    // }
   }
 
   ngOnInit() {
@@ -224,4 +232,24 @@ export class DealsComponent implements OnInit {
       this.addr.locality = '';
     }
   }
+  getLocation() {
+    this.totalDeals1 = [];
+     let j = 0;
+     for (let i = 0; i < this.crdDeals1.length; i++) {
+       console.log(this.addr.locality)
+       if (this.addr.locality == this.crdDeals1[i].avlPlace.locality) {
+         this.totalDeals1[j] = this.crdDeals1[i];
+         j++;
+       }
+     }
+     this.showDeals = false;
+     document.getElementById('hidePagination').style.display = 'block';
+ 
+     if (this.totalDeals1.length == 0) {
+       sweetAlert('Sorry!', 'Currently no product available', 'error');
+       this.getLocationDeals = '';
+       this.showDeals = true;
+     }
+     this.getLocationDeals = '';
+   }
 }

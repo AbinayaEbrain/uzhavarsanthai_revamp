@@ -4,16 +4,22 @@
       <div class="row">
           <div class="col-md-4 mobiviewBtn">
                 <button type="button"  id="showBackButton" routerLink="/dealCategory" style="display: none" class="btn btn-outline-success text-center viewMoreBtn1" ><i class="fa fa-chevron-left" aria-hidden="true"></i>   Back</button>
-                <button type="button" class="btn btn-outline-success text-center viewMoreBtn" id="hideNearByBtn" routerLink="/location"><i class="fa fa-map-marker" aria-hidden="true"></i> Nearby Sale</button> &nbsp;
-                <button type="button" id="hideFilterButton" (click)="getCategory()" class="btn btn-outline-success text-center viewMoreBtn mobiviewFilterBtn" data-target="#myModal" data-toggle="modal"> <i class="fa fa-filter" aria-hidden="true"></i> Filter</button>
+                <!-- <button type="button" class="btn btn-outline-success text-center viewMoreBtn" id="hideNearByBtn" routerLink="/location"><i class="fa fa-map-marker" aria-hidden="true"></i> Nearby Sale</button> &nbsp; -->
+                <button type="button" id="hideFilterButton" (click)="getCategory()" class="btn btn-outline-success text-center viewMoreBtn mobiviewFilterBtn sysviewhide" data-target="#myModal" data-toggle="modal"> <i class="fa fa-filter" aria-hidden="true"></i> Filter</button>
           </div>
           <div class="col-md-2"></div>
-          <div class="col-md-6 onmobiviewpadding mt-md-0 mt-2" id="hideSearchDiv">
+          <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2" id="hideSearchDiv">
                 <div class="inner-addon left-addon">
                     <i class="fa fa-search glyphicon" aria-hidden="true"></i>
-                    <input type="text" class="form-control searchDiv mobiviewinputBtn" id="search_box"  [(ngModel)]="queryString" (keyup)="case()" name="search" autocomplete="off" placeholder="Search by product.." />
+                    <input type="text" class="form-control searchDiv mobviewmargintop " id="search_box"  [(ngModel)]="queryString" (keyup)="case()" name="search" autocomplete="off" placeholder="Search by product.." />
                 </div>
           </div>
+          <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">
+            <div class="inner-addon left-addon" >
+                    <i class="fa fa-search glyphicon" aria-hidden="true"></i>
+                    <input google-place type="text" class="form-control searchBorder mobviewmargin "  [(ngModel)]="getLocationDeals" (onSelect)="setAddress($event)" placeholder="Search by location.." />
+                </div>
+         </div>
       </div>
       <div class="errDiv">
             <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
@@ -64,7 +70,7 @@
       </div>
   </div>
   <div class="mx-auto" id="hidePagination">
-        <pagination-controls id="foo" class="ngx-pagination mobiviewpageBtn"  style="margin-right: 30px; " (pageChange)="e = $event"></pagination-controls>
+        <pagination-controls id="foo" class="ngx-pagination mobiviewpageBtn"   style="margin-right: 30px; " (pageChange)="e = $event"></pagination-controls>
       </div>
 </div>
 
@@ -115,13 +121,14 @@
 
       </div>
       <div class="mx-auto" id="hidePagination">
-            <pagination-controls id="foo1" class="ngx-pagination mobiviewpageBtn" style="margin-right: 30px;" (pageChange)="p=$event"></pagination-controls>
+            <pagination-controls id="foo1" class="ngx-pagination mobiviewpageBtn"   style="margin-right: 30px;" (pageChange)="p=$event"></pagination-controls>
           </div>
     </div>
 
 </div>
 
 </body>
+<button type="button" id="hideFilterButton" (click)="getCategory()" style="display:none" class="float mobviewhide" data-target="#myModal" data-toggle="modal"><i class="fa fa-filter" aria-hidden="true"></i> Filter</button>
 
 <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
