@@ -73,9 +73,10 @@ export class BlogViewComponent implements OnInit {
       this.router.navigate(['/blog']);
     } else {
       this.errMsg = 'You must login first!';
-      setTimeout(() => {
-        this.router.navigate(['/login']);
-      }, 2000);
+
+      // setTimeout(() => {
+      //   this.router.navigate(['/login']);
+      // }, 2000);
     }
   }
 
