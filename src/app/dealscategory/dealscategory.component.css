@@ -39,9 +39,15 @@
   color: white;
 }
 
-@media screen and (min-width: 300px) and (max-width: 425px) {
+@media screen and (min-width: 366px) and (max-width: 470px) {
   .categoryHeading {
-    font-size: medium;
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 365px) {
+  .categoryHeading {
+    font-size: 12px;
   }
 }
 

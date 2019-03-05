@@ -93,6 +93,7 @@ export class PostComponent implements OnInit {
     public zone: NgZone
   ) {
     this.privateIP = ClientIP;
+    console.log(this.privateIP);
 
     this.http.get('https://api.ipify.org?format=json').subscribe(data => {
       this.publicIP = data['ip'];

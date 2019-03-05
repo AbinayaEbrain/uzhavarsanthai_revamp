@@ -294,4 +294,32 @@ input {
   .mobiviewinputBtn{
     margin-bottom: -38px;
   }
+  .mobviewmargin{
+  margin-top: -10px;
+  margin-bottom: -28px;
+  }
+  .sysviewhide{
+    display: none
+  }
+  .mobviewhide{
+    display: block !important;
+  }
+  .mobviewmargintop{
+    margin-top: -35px;
+  }
+}
+.searchBorder {
+  border: 1px solid #0d4608;
+}
+.float{
+	position: fixed;
+    width: 70px;
+    height: 35px;
+    bottom: 5px;
+    right: 20px;
+    background-color: #0d4608;
+    color: #FFF;
+    font-size: 16px;
+    border-radius: 10px;
+    text-align: center;
 }
