@@ -6,6 +6,7 @@ const Post = require('../models/post')
 const Category = require('../models/category')
 const Blog = require('../models/blog')
 const Contact = require('../models/contact');
+const Count = require('../models/viewCount');
 const mongoose = require('mongoose')
 var multer = require('multer');
 const cloudinary = require('cloudinary');
@@ -523,5 +524,64 @@ router.put('/admin-user/active/:id', function(req, res) {
     }
   });
 });
+
+router.post('/getCount', (req, res) => {
+  Count.find(
+    {
+      $and : [
+        {
+          productId : req.body.productId
+        },
+        {
+          ipAddress:req.body.ipAddress
+        },
+      ]
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Count.update(
+          {
+          productId : req.body.productId
+          },
+          {
+              $inc: { count: 1 } 
+          }
+      )
+      .then(() =>{
+        res.status(200).json({ message: 'Updated '});
+      })
+      .catch(err => {
+        res.status(500).json({ message: 'Error occured' });
+      });
+      } else{
+        let contactData = req.body;
+        let count = new Count(contactData);
+        count.save((error, data) => {
+          if (error) {
+            console.log(error);
+          } else {
+          res.status(200).send(data);
+          }
+        });
+      }
+    }
+  )
+  // let contactData = req.body;
+  // let count = new Count(contactData);
+  // count.save((error, data) => {
+  //   if (error) {
+  //     console.log(error);
+  //   } else {
+  //     console.log(data);
+  //     res.status(200).send(data);
+  //   }
+  // });
+});
+
+// router.post('/getCount',(req,res) =>{
+//   const { productId } = req.body.productId;
+
+
+// })
 
 module.exports = router;

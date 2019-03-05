@@ -16,6 +16,7 @@ import 'rxjs/add/operator/pairwise';
 
 declare var sweetAlert: any;
 declare var $: any;
+declare let ClientIP: any;
 
 @Component({
   selector: 'app-viewcategory',
@@ -49,6 +50,8 @@ export class ViewcategoryComponent implements OnInit {
   };
   getCategory: any;
   getPrdtName = [];
+  privateIP: any;
+  count : number
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -64,6 +67,8 @@ export class ViewcategoryComponent implements OnInit {
     private router: Router,
     public zone: NgZone
   ) {
+    this.privateIP = ClientIP;
+    console.log(this.privateIP)
     this.userdetails.searchqnty = '';
     this.showDeals = true;
   }
@@ -75,7 +80,6 @@ export class ViewcategoryComponent implements OnInit {
       res => {
         let j = 0;
         this.crdDeals = res;
-        console.log(this.crdDeals);
         this.showDeals = true;
         this.id = this.route.snapshot.params['id'];
         let CurrentDate = new Date().toISOString();
@@ -85,7 +89,6 @@ export class ViewcategoryComponent implements OnInit {
             this.crdDeals[i].validityTime > CurrentDate &&
             this.crdDeals[i].status == 'ACTIVE'
           ) {
-            console.log(this.crdDeals[i].validityTime);
             this.totalDeals[j] = this.crdDeals[i];
             this.getCategory = this.totalDeals[j].category;
             this.getPrdtName = this.totalDeals[j].name;
@@ -175,8 +178,16 @@ export class ViewcategoryComponent implements OnInit {
     this.clear();
   }
 
-  goToView(id) {
-    this.router.navigate(['/viewmore', id], this.id);
+  goToView(data) {
+    console.log(data);
+    console.log(this.privateIP);
+    
+    this._dealService.getCount(data.name,data._id,this.privateIP).subscribe(res =>{
+      console.log(res);
+      this.router.navigate(['/viewmore', data._id], this.id);
+    },err =>{
+      console.log(err);
+    })
   }
   clear() {
     this.querydetails = [];

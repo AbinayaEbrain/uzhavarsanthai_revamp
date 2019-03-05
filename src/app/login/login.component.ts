@@ -66,7 +66,8 @@ export class LoginComponent implements OnInit {
           if (this.wholedata === 'ACTIVE') {
             if (previousUrl1 == '/blog-view') {
               this.router.navigate(['/blog']);
-            } else {
+            } else 
+            {
               this.router.navigate(['/products']);
             }
           } else {
