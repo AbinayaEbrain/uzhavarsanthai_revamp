@@ -41,7 +41,6 @@ export class ViewmoreComponent implements OnInit {
     this._dealsService.getDeals().subscribe(
       res => {
         this.viewPost = res;
-        console.log(this.viewPost);
         for (let i = 0; i < this.viewPost.length; i++) {
           if (this.id == this.viewPost[i]._id) {
             this.postProduct.category = this.viewPost[i].category;

@@ -14,6 +14,7 @@ import { timer, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class DealsService {
+  private _getCountUrl = 'http://localhost:5000/api/getCount';
   // https://farmers-market-ebrain.herokuapp.com
   private _dealsUrl = 'https://uzhavarsanthai.herokuapp.com/api/deals';
   private _postUrl = 'https://uzhavarsanthai.herokuapp.com/api/post';
@@ -30,7 +31,7 @@ export class DealsService {
   constructor(private http: HttpClient) {}
 
   sendImage(Image: FormData) {
-    console.log("sds")
+    console.log('sds');
     return this.http.post(this.uploadUrl, Image).pipe(
       timeout(2500),
       retryWhen(errors => errors.pipe(delayWhen(val => timer(val * 1000)))),
@@ -85,5 +86,13 @@ export class DealsService {
   //activate account
   activateAccount(data, id) {
     return this.http.put<any>(this.activeUrl + '/' + id, data);
+  }
+
+  getCount(productName, productId, ipAddress) {
+    return this.http.post<any>(this._getCountUrl, {
+      productName,
+      productId,
+      ipAddress
+    });
   }
 }
