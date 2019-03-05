@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { DealsService } from '../deals.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+
+declare let ClientIP: any;
 declare var sweetAlert: any;
 declare var $: any;
 // loader
@@ -51,6 +53,7 @@ export class DealsComponent implements OnInit {
   };
   submitted: any;
   panTo: any;
+  privateIP:any;
   getPrdtName = [];
   showErr = true;
   setAddress(addrObj) {
@@ -68,6 +71,8 @@ export class DealsComponent implements OnInit {
     public loadingCtrl: NgxSpinnerService,
     public zone: NgZone
   ) {
+    this.privateIP = ClientIP;
+    console.log(this.privateIP)
     this.userdetails.searchqnty = '';
     this.userdetails.searchCategory = '';
     // for (let i=1;i<=100;i++){
@@ -252,4 +257,17 @@ export class DealsComponent implements OnInit {
      }
      this.getLocationDeals = '';
    }
+
+   goToView(data) {
+    console.log(data);
+    console.log(this.privateIP);
+    
+    this._dealsService.getCount(data.name,data._id,this.privateIP).subscribe(res =>{
+      console.log(res);
+      this.route.navigate(['/viewmore', data._id]);
+    },err =>{
+      console.log(err);
+    })
+  }
+
 }

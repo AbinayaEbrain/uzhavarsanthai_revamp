@@ -157,7 +157,6 @@ export class ViewcategoryComponent implements OnInit {
         this.querydetails.searchmainquantity <=
           this.getSearchDeals[i].quantity ||
         this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||
-        this.querydetails.searchqnty == this.getSearchDeals[i].qnty ||
         this.querydetails.frmAmt <= parseFloat(this.getSearchDeals[i].price) ||
         this.querydetails.toCost >= parseFloat(this.getSearchDeals[i].price) ||
         this.querydetails.searchLocation ==
@@ -189,6 +188,7 @@ export class ViewcategoryComponent implements OnInit {
       console.log(err);
     })
   }
+  
   clear() {
     this.querydetails = [];
     this.userdetails = [];
