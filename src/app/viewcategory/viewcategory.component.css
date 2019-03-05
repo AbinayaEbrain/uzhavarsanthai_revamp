@@ -330,8 +330,8 @@ input {
   }
   .float {
     position: fixed;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     bottom: 5px;
     right: 20px;
     background-color: #0d4608;
@@ -342,8 +342,8 @@ input {
   }
   .float1 {
     position: fixed;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     bottom: 5px;
     left: 20px;
     background-color: #0d4608;

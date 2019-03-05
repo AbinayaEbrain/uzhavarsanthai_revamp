@@ -37,6 +37,12 @@
   }
 }
 
+@media only screen and (max-width: 321px) {
+  .mobfontsize {
+    font-size: 14px !important;
+  }
+}
+
 @media only screen and (min-width: 320px) and (max-width: 425px) {
   .bg {
     height: fit-content;

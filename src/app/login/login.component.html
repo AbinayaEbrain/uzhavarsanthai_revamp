@@ -12,7 +12,7 @@
                 {{deactiveErrorMsg}}
               </div>
               <form #loginform="ngForm" *ngIf ="!submitted" novalidate>
-                <h4 class="h4 mb-5 font-weight-normal mt-3 clr" style="text-align: center;"><span  class="tamil_word">உள் நுழைக </span> / LOGIN</h4>
+                <h4 class="h4 mb-5 font-weight-normal mt-3 clr mobviewfonteng" style="text-align: center;"><span  class="tamil_word mobviewfontamil">உள் நுழைக </span> / LOGIN</h4>
            <div class="form-group mt-2">
                <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> தொலைபேசி எண் </span>/ Phone Number</label>
                     <input type="text"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>

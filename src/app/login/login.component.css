@@ -19,6 +19,12 @@
   .bg {
     height: fit-content;
   }
+  .mobviewfontamil{
+    font-size: 20px;
+  }
+  .mobviewfonteng{
+    font-size: 18px;
+  }
 }
 
 input[type='text'],
