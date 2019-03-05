@@ -31,6 +31,7 @@ const postSchema = new Schema({
   userNumber: Number,
   userAddressLine: String,
   userAddress: String,
-  status: String
+  status: String,
+  count: { type: Number, default: 1 }
 });
 module.exports = mongoose.model('post', postSchema, 'post');

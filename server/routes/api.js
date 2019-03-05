@@ -569,8 +569,16 @@ router.post('/getCount', (req, res) => {
           } else {
           res.status(200).send(data);
           }
-        });
-      }
+        })
+      };
+      await Post.update(
+        {
+          _id : req.body.productId
+        },
+        {
+          $inc: { count: 1 } 
+        }
+      )
     }
   )
   // let contactData = req.body;
