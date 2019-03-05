@@ -541,7 +541,14 @@ router.post('/getCount', (req, res) => {
       if(result.length > 0){
         await Count.update(
           {
-          productId : req.body.productId
+            $and : [
+              {
+                productId : req.body.productId
+              },
+              {
+                ipAddress:req.body.ipAddress
+              },
+            ]
           },
           {
               $inc: { count: 1 } 
