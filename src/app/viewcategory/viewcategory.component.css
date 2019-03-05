@@ -317,61 +317,59 @@ input {
     order: 1;
   }
   @media screen and (max-width: 767px) {
-    .container { display: flex; flex-flow: column; }
-    .two { order: 1; }
-    .one { order: 2 }
-}
-.float{
-	position:fixed;
-  width: 40px;
-  height: 40px;
-  bottom: 77px;
-  right: 20px;
-  background-color: #0d4608;
-  color: #FFF;
-  border-radius: 30px;
-	text-align:center;
-	box-shadow: 2px 2px 3px #999;
-}
-.float1{
-	position:fixed;
-  width: 40px;
-  height: 40px;
-  bottom: 77px;
-  left: 20px;
-  background-color: #0d4608;
-  color: #FFF;
-  border-radius: 30px;
-	text-align:center;
-	box-shadow: 2px 2px 3px #999;
-}
-@media only screen and (min-width: 320px) and (max-width: 425px) {
- .first{
-   display: none
- }
- .second{
-   display: block
- }
- ul{
-  margin-top: -50px;
- }
- .onmobiviewpadding {
-  margin-bottom: -15px;
-}
-.searchtop{
-  margin-top: -30px !important;
-}
-.searchtop1{
-  margin-top: -30px !important;
-}
-}
-@media only screen and (min-width: 426px) and (max-width: 3000px) {
-  .first{
-    display: block
+    .container {
+      display: flex;
+      flex-flow: column;
+    }
+    .two {
+      order: 1;
+    }
+    .one {
+      order: 2;
+    }
   }
-  .second{
-    display: none
+  .float {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    bottom: 77px;
+    right: 20px;
+    background-color: #0d4608;
+    color: #fff;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
   }
- }
-
+  .float1 {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    bottom: 77px;
+    left: 20px;
+    background-color: #0d4608;
+    color: #fff;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    .first {
+      display: none;
+    }
+    .second {
+      display: block !important;
+    }
+    ul {
+      margin-top: -50px;
+    }
+    .onmobiviewpadding {
+      margin-bottom: -15px;
+    }
+    .searchtop {
+      margin-top: -30px !important;
+    }
+    .searchtop1 {
+      margin-top: -30px !important;
+    }
+  }
 }
