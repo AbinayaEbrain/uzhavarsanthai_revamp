@@ -117,35 +117,6 @@ export class DealsComponent implements OnInit {
         console.log(err);
       }
     );
-
-    // this._dealsService.getDetails().subscribe(
-    //   res => {
-    //     this.showDeals = true;
-    //     this.activeUsers = res;
-    //     let l = 0;
-    //     let k = 0;
-    //     let CurrentDate = new Date().toISOString();
-    //     for (let i = 0; i < this.activeUsers.length; i++) {
-    //       for (let j = 0; j < this.crdDeals.length; j++) {
-    //         if (
-    //           this.activeUsers[i]._id == this.crdDeals[j].accountId &&
-    //           this.crdDeals[j].validityTime > CurrentDate
-    //         ) {
-    //           if (this.activeUsers[i].status == 'ACTIVE') {
-    //             this.crdDeals1[k] = this.crdDeals[j];
-    //             this.getPrdtName[l] = this.crdDeals1[k].name;
-    //             k++;
-    //             l++;
-    //           }
-    //         }
-    //       }
-    //     }
-    //     console.log(this.getPrdtName);
-    //     this.showDeals = true;
-    //     this.loadingCtrl.hide();
-    //   },
-    //   err => {}
-    // );
   }
 
   case() {
@@ -237,6 +208,7 @@ export class DealsComponent implements OnInit {
       this.addr.locality = '';
     }
   }
+
   getLocation() {
     this.totalDeals1 = [];
      let j = 0;
@@ -259,15 +231,17 @@ export class DealsComponent implements OnInit {
    }
 
    goToView(data) {
-    console.log(data);
+    let ip = JSON.parse(localStorage.getItem('privateIP'));
+    if(ip){
+      this.privateIP = ip;
+    }
     console.log(this.privateIP);
-    
     this._dealsService.getCount(data.name,data._id,this.privateIP).subscribe(res =>{
       console.log(res);
       this.route.navigate(['/viewmore', data._id]);
     },err =>{
       console.log(err);
-    })
+    });
   }
 
 }

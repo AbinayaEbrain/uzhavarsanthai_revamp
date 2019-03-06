@@ -178,7 +178,10 @@ export class ViewcategoryComponent implements OnInit {
   }
 
   goToView(data) {
-    console.log(data);
+    let ip = JSON.parse(localStorage.getItem('privateIP'));
+    if(ip){
+      this.privateIP = ip;
+    }
     console.log(this.privateIP);
     
     this._dealService.getCount(data.name,data._id,this.privateIP).subscribe(res =>{

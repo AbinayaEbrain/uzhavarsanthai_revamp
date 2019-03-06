@@ -14,10 +14,10 @@ import { timer, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class DealsService {
-  private _getCountUrl = 'http://localhost:5000/api/getCount';
+  private _getCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/getCount';
   // https://farmers-market-ebrain.herokuapp.com
   private _dealsUrl = 'https://uzhavarsanthai.herokuapp.com/api/deals';
-  private _postUrl = 'http://localhost:5000/api/post';
+  private _postUrl = 'https://uzhavarsanthai.herokuapp.com/api/post';
   private _getUrl = 'https://uzhavarsanthai.herokuapp.com/api/details';
   private _getCategoryUrl = 'https://uzhavarsanthai.herokuapp.com/api/category';
   //Deactivate URL
