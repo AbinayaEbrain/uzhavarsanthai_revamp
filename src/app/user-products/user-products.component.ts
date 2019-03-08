@@ -20,8 +20,8 @@ export class UserProductsComponent implements OnInit {
   errMsg1: any;
   success: any;
   queryString: any;
-  p: any;
-  d: any;
+  p: number = 1;
+  d:number = 1;
   errMsg2: any;
   hideProduct = true;
   constructor(
@@ -30,11 +30,11 @@ export class UserProductsComponent implements OnInit {
     private router: Router,
     public loadingCtrl: NgxSpinnerService
   ) {
-    for (let i = 1; i <= 1; i++) {
-      this.userDeals.push('Angular ${i}.0');
+    for (let i = 1; i <= this.userDeals.length; i++) {
+      this.userDeals.push('deal ${i}.0');
     }
-    for (let i = 1; i <= 1; i++) {
-      this.userDeals1.push('Angular ${i}.0');
+    for (let i = 1; i <= this.userDeals.length; i++) {
+      this.userDeals1.push('deal ${i}.0');
     }
   }
 

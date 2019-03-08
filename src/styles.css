@@ -58,3 +58,25 @@ ol {
 .ngx-pagination li {
   margin-right: 5px !important;
 }
+@media only screen and (min-width: 343px) and (max-width: 425px) {
+  .ngx-pagination a {
+    padding: 0.1875rem 0.25rem !important;
+  }
+}
+@media only screen and (min-width: 331px) and (max-width: 342px) {
+  .ngx-pagination a {
+    padding: 0.1875rem 0.25rem !important;
+  }
+  .ngx-pagination .current {
+    padding: 0.1875rem 0.25rem !important;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 330px) {
+  .ngx-pagination a {
+    font-size: 7px !important;
+     padding: 0.1875rem 0.25rem !important;
+  }
+  .ngx-pagination .current {
+    padding: 0.1875rem 0.25rem !important;
+  }
+}

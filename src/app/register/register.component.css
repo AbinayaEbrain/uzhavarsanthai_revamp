@@ -1,10 +1,10 @@
 .bg1{
-    background: url(./images/A5.jpg) no-repeat center center fixed ;
+    /* background: url(./images/A5.jpg) no-repeat center center fixed ; */
     background-position: center center;
     background-repeat:  no-repeat;
     background-attachment: fixed;
     background-size:  cover;
-    background-color: #999;
+    background-color: white;
     min-height: 100vh;
     width:100%
 }
@@ -19,7 +19,7 @@
     display: inline-block;
     box-sizing: border-box;
     background-color: transparent !important;
-    border: 1px solid white !important;
+    border: 1px solid #0d4608 !important;
 
 }
 
@@ -46,7 +46,7 @@ select:focus{
 
 input{
     background-color: transparent !important;
-    border: 1px solid white !important;
+    border: 1px solid #0d4608 !important;
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
@@ -78,10 +78,10 @@ select{
 }
 .btn{
     font-size: 18px;
-    background-color: white;
+    background-color: #0d4608;
     /* color: white; */
     border: none;
-    color: #0d4608;
+    color: white;
     font-weight: bold;
     float: right;
 }
@@ -92,7 +92,8 @@ select{
   }
 
   .form-control{
-    color: white !important;
+    color: #0d4608 !important;
+    margin-bottom: -2px;
 }
 
 .slect{
@@ -113,7 +114,7 @@ select{
     left: -12px;
     font-weight: 500;
     font-size: 17px;
-    color: white;
+    color: #0d4608;
   }
 
   .form-control:focus + .form-control-placeholder,
@@ -121,11 +122,11 @@ select{
     font-size: 100%;
     transform: translate3d(0, -100%, 0);
     opacity: 1;
-    color: rgb(255, 254, 254);
+    color: #0d4608(255, 254, 254);
   }
   .clr{
-      color: white;
-      font-family: 'Oxygen', sans-serif;
+      color: #0d4608;;
+      font-family: 'Mukta', sans-serif;
       text-align: center;
   }
   .tamil_word{
@@ -141,7 +142,8 @@ select{
   }
   .english_wrd{
     font-family: 'Mukta', sans-serif;
-    color: white !important;
+    color: #0d4608 !important;
+    font-weight: bold;
   }
   .tamil_word{
     font-family: 'Hind Madurai', sans-serif;
@@ -152,7 +154,7 @@ select{
   input {
     font-family: 'Nunito', sans-serif;
     background-color: transparent !important;
-    border: 1px solid white !important;
+    border: 1px solid #0d4608 !important;
 
   }
   .button_word{
@@ -189,4 +191,16 @@ select{
     .greetmsg{
       display: block;
     }
+    .mobviewfontamil{
+      font-size: 20px;
+    }
+    .mobviewfonteng{
+      font-size: 18px;
+    }
   }
+  .titilebold{
+    font-weight: bold;
+  }
+  .first-input {
+    autofocus:"autofocus"
+}

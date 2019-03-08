@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <nav class="navbar navbar-expand-md fixed-top navbar-dark nav_clr">
-  <a class="navbar-brand apptitle">உழவர் சந்தை</a>
+  <a class="navbar-brand apptitle" routerLink="/">உழவர் சந்தை</a>
   <a class="textAlign">
     <p class="every clr tamil_word hideMobile d-lg-block d-md-none d-none">
       உணவூட்டும் விவசாயத்திற்கு உயிரூட்டுவோம்!
@@ -27,10 +27,23 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <a class="nav-link" routerLink="/home" routerLinkActive="active"
-          >Home</a
+        <a class="nav-link" routerLink="/dealCategory" routerLinkActive="active"
+          >Buy</a
         >
       </li>
+      <li
+      *ngIf="!_authService.loggedIn() || !_authService.findActive()"
+      class="nav-item"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <a class="nav-link" routerLink="/login" routerLinkActive="active"
+        >Sell</a
+      >
+    </li>
       <li
         *ngIf="!_authService.loggedIn()"
         class="nav-item"
@@ -74,19 +87,7 @@
         >Blog</a
       >
     </li>
-      <li
-        *ngIf="!_authService.loggedIn() || !_authService.findActive()"
-        class="nav-item"
-        data-toggle="collapse"
-        data-target="#navbarCollapse"
-        aria-controls="navbarCollapse"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <a class="nav-link" routerLink="/login" routerLinkActive="active"
-          >Login / Signup</a
-        >
-      </li>
+     
       <li
         *ngIf="
           _authService.loggedIn() &&
@@ -192,22 +193,15 @@
 <footer class="footer uzhavarsanthaiFooter">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-6 col-sm-12 col-12 textCenter" style="margin-top: 1%;">
-        <p >
-          <span class="footerOptions" routerLink="/about"
-            >About Us &nbsp;&nbsp;|</span
-          >
-          <span class="footerOptions" routerLink="/contact"
-            >&nbsp;&nbsp;Contact Us &nbsp;&nbsp;|</span
-          >
-          <span class="footerOptions" routerLink="/about"
-            >&nbsp;&nbsp;Privacy Policy &nbsp;&nbsp;|</span
-          >
-          <span class="footerOptions" routerLink="/about"
-            >&nbsp;&nbsp;Terms Of Use</span
-          >
-        </p>
-      </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 col-12 ">
+            <div class="footer-copyright text-center" style="margin-top: 4%;float:left">
+              © 2019 Copyright
+              <a  href="http://www.ebraintechnologies.com/" target="_blank"  class="EbrainTechnologies">உழவர் சந்தை</a
+              >
+            </div>
+          </div>
+
+    
       <!-- <div class="col-md-2 mt-1">
         <p class="footerOptions" routerLink="/contact">Contact Us</p>
       </div>
@@ -217,13 +211,22 @@
       <div class="col-md-2 mt-1">
         <p class="footerOptions" routerLink="/about">Terms Of Use</p>
       </div> -->
-      <div class="col-lg-4 col-md-6 col-sm-12 col-12 float-right">
-        <div class="footer-copyright text-center" style="margin-top: 3%;">
-          © 2019 Copyright
-          <a  href="http://www.ebraintechnologies.com/" target="_blank"  class="EbrainTechnologies">Ebrain Technologies</a
-          >
+      <div class="col-lg-8 col-md-6 col-sm-12 col-12 textCenter float-right" style="margin-top: 1%;">
+          <p  style="float: right;">
+            <span class="footerOptions" routerLink="/about"
+              >About Us &nbsp;&nbsp;|</span
+            >
+            <span class="footerOptions" routerLink="/contact"
+              >&nbsp;&nbsp;Contact Us &nbsp;&nbsp;
+              </span>
+            <!-- <span class="footerOptions" routerLink="/about"
+              >&nbsp;&nbsp;Privacy Policy &nbsp;&nbsp;|</span
+            >
+            <span class="footerOptions" routerLink="/about"
+              >&nbsp;&nbsp;Terms Of Use</span
+            > -->
+          </p>
         </div>
-      </div>
     </div>
   </div>
 </footer>

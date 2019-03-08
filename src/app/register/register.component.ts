@@ -12,7 +12,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  @ViewChild('input1') inputEl:ElementRef;
+  
   registeredUserData = {
     address : {
       city:{},
@@ -51,6 +52,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.loadingCtrl.show();
+        setTimeout(() => this.inputEl.nativeElement.focus(), 0);
     setTimeout(() => {
       // swal.close();
       this.loadingCtrl.hide();

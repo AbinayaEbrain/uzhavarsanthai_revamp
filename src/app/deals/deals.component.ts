@@ -40,8 +40,8 @@ export class DealsComponent implements OnInit {
   longd: any;
   crdDeals1 = [];
   queryString: any;
-  p: any;
-  e: any;
+  p: number = 1;
+  e: number = 1;
   getlat: any;
   getlng: any;
   getSearchDeals = [];
@@ -75,12 +75,12 @@ export class DealsComponent implements OnInit {
     console.log(this.privateIP)
     this.userdetails.searchqnty = '';
     this.userdetails.searchCategory = '';
-    // for (let i=1;i<=100;i++){
-    //   this.crdDeals1.push(`Angular ${i}.0`)
-    // }
-    //   for (let i=1;i<=100;i++){
-    //     this.totalDeals1.push(`Angular ${i}.0`)
-    // }
+    for (let i = 1; i <= this.crdDeals.length; i++) {
+      this.crdDeals1.push(`deal ${i}.0`);
+    }
+      for (let i = 1; i <= this.crdDeals.length; i++){
+        this.totalDeals1.push(`deal ${i}`)
+    }
   }
 
   ngOnInit() {
@@ -238,8 +238,8 @@ export class DealsComponent implements OnInit {
     }
   }
   getLocation() {
-    this.totalDeals1 = [];
-     let j = 0;
+    this.totalDeals1 = []
+ let j = 0;
      for (let i = 0; i < this.crdDeals1.length; i++) {
        console.log(this.addr.locality)
        if (this.addr.locality == this.crdDeals1[i].avlPlace.locality) {

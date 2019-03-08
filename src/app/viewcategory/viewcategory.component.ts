@@ -39,8 +39,8 @@ export class ViewcategoryComponent implements OnInit {
   totalDeals1 = [];
   noSearchDealsErr: any;
   queryString: any;
-  p: any;
-  e: any;
+  p: number = 1;
+  e: number = 1;
   errMsg1: any;
   submitted: any;
   public addrKeys: string[];
@@ -71,6 +71,12 @@ export class ViewcategoryComponent implements OnInit {
     console.log(this.privateIP)
     this.userdetails.searchqnty = '';
     this.showDeals = true;
+    for (let i = 1; i <= this.totalDeals.length; i++) {
+      this.totalDeals.push(`deal ${i}.0`);
+    }
+    for (let i = 1; i <= this.totalDeals.length; i++) {
+      this.totalDeals1.push(`deal ${i}.0`);
+    }
   }
 
   ngOnInit() {

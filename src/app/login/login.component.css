@@ -1,17 +1,22 @@
 .bg {
-  background: url(./images/A5.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background: url(./images/A5.jpg); */
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
   height: 105vh;
-  width: 100%;
-  background-attachment: fixed;
+  /* width: 100%; */
+  /* background-attachment: fixed; */
   margin-top: -80px;
 }
 
 @media only screen and (min-width: 1023px) and (max-width: 1330px) {
   .bg {
     height: auto;
+  }
+}
+@media only screen  and (max-width: 320px) {
+  .onmobviewfont {
+  font-size: 14px;
   }
 }
 
@@ -30,11 +35,11 @@
 input[type='text'],
 input[type='password'] {
   width: 100%;
-  color: white;
+  color: #0d4608;
   display: inline-block;
   box-sizing: border-box;
   background-color: transparent !important;
-  border: 1px solid white !important;
+  border: 1px solid #0d4608 !important;
 }
 
 ::placeholder {
@@ -43,10 +48,10 @@ input[type='password'] {
 }
 .btn {
   font-size: 18px;
-  background-color: white;
+  background-color: #0d4608;
   /* / color: white; / */
   border: none;
-  color: #0d4608;
+  color: white;
   font-weight: bold;
 }
 
@@ -67,7 +72,7 @@ input[type='password'] {
   left: -12px;
   font-weight: 500;
   font-size: 17px;
-  color: white;
+  color: #0d4608;
 }
 
 .form-control:focus + .form-control-placeholder,
@@ -75,16 +80,23 @@ input[type='password'] {
   font-size: 100%;
   transform: translate3d(0, -100%, 0);
   opacity: 1;
-  color: rgb(255, 254, 254);
+  color: #0d4608(255, 254, 254);
 }
 
 .clr {
-  color: white;
-  font-family: 'Oxygen', sans-serif;
+  color: #0d4608;
+  font-family: 'Mukta', sans-serif;
+}
+.txtalign{
+  font-family: 'Mukta', sans-serif;
+  color: #0d4608;;
+  text-align: center !important;
+  font-weight: bold;
+
 }
 .sent_font {
   font-weight: bold;
-  color: white;
+  color: #0d4608;
   font-size: 20px;
 }
 .span_clr {
@@ -96,8 +108,9 @@ input[type='password'] {
 }
 .english_wrd {
   font-family: 'Mukta', sans-serif;
-  color: white;
+  color: #0d4608;
   float: left;
+  font-weight: bold;
 }
 .tamil_word {
   font-family: 'Hind Madurai', sans-serif;
@@ -118,4 +131,7 @@ input {
   .greetmsg {
     display: block;
   }
+}
+.titilebold{
+  font-weight: bold;
 }

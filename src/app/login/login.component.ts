@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, RoutesRecognized } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -12,6 +12,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  @ViewChild('input1') inputEl:ElementRef;
   userData = {};
   errormsg;
   id: any;
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loadingCtrl.show();
+    setTimeout(() => this.inputEl.nativeElement.focus());
     setTimeout(() => {
       // swal.close();
       this.loadingCtrl.hide();
