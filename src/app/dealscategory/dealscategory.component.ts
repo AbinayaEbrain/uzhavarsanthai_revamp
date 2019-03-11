@@ -10,22 +10,26 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class DealscategoryComponent implements OnInit {
 
-  categoryArr=[{
-    image:''
-  }];
+  // categoryArr=[{
+  //   image:''
+  // }];
+  categoryArr : any = []
   errMsg:any
  //imageSrc = require('../../../server/uploads/photo-1544505995155.jpg');
   imageSrc:any
 
-  constructor(private _dealService:DealsService,public loadingCtrl: NgxSpinnerService,) { }
+  constructor(private _dealService:DealsService,public loadingCtrl: NgxSpinnerService,) {
+    for (let i = 1; i <= this.categoryArr.length; i++) {
+      this.categoryArr.push(`deal ${i}.0`);
+    }
+   }
 
   ngOnInit() {
     this.loadingCtrl.show();
     this._dealService.getCategory()
     .subscribe(
         res => {
-      
-         
+    
           this.categoryArr = res;
           this.loadingCtrl.hide();
           if(this.categoryArr.length == 0){

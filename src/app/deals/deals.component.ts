@@ -75,10 +75,10 @@ export class DealsComponent implements OnInit {
     console.log(this.privateIP)
     this.userdetails.searchqnty = '';
     this.userdetails.searchCategory = '';
-    for (let i = 1; i <= this.crdDeals.length; i++) {
+    for (let i = 1; i <= this.crdDeals1.length; i++) {
       this.crdDeals1.push(`deal ${i}.0`);
     }
-      for (let i = 1; i <= this.crdDeals.length; i++){
+      for (let i = 1; i <= this.totalDeals1.length; i++){
         this.totalDeals1.push(`deal ${i}`)
     }
   }

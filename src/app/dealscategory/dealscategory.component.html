@@ -15,7 +15,7 @@
     <div class="row">
       <div
         class="col-md-6 col-sm-6 col-lg-4 col-xl-3 col-12 "
-        *ngFor="let deal of categoryArr"
+        *ngFor="let deal of categoryArr | paginate: {id: 'foo', itemsPerPage:8,currentPage:e}; let i = index"
         style="margin-bottom: 10px;"
       >
         <div
@@ -42,4 +42,9 @@
       </div>
     </div>
   </div>
+  <div class="mx-auto" id="hidePagination">
+      <pagination-controls id="foo" class="ngx-pagination mobiviewpageBtn"   style="margin-right: 30px; " (pageChange)="e = $event"  maxSize="5"
+      directionLinks="true"
+      autoHide="true"></pagination-controls>
+    </div>
 </body>
