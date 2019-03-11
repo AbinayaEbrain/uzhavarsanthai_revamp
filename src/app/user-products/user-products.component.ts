@@ -59,7 +59,7 @@ export class UserProductsComponent implements OnInit {
             l++;
           }
         }
-        if(this.userDeals.length == 0){
+        if (this.userDeals.length == 0) {
           this.errMsg = "Still you haven't post any deals";
         }
         // for (let j = 0; j < this.userDeals.length; j++) {
@@ -79,8 +79,11 @@ export class UserProductsComponent implements OnInit {
     );
   }
 
+  getActiveDeals() {
+    this.queryString = '';
+  }
+
   case() {
-    // console.log(this.queryString);
     this.queryString = this.queryString.toLowerCase();
     for (let i = 0; i < this.getPrdtName.length; i++) {
       if (this.queryString != this.getPrdtName[i]) {
@@ -108,7 +111,7 @@ export class UserProductsComponent implements OnInit {
             j++;
           }
         }
-        if(this.userDeals1.length == 0){
+        if (this.userDeals1.length == 0) {
           this.errMsg1 = 'No expired products found';
         }
         // for (let j = 0; j < this.userDeals1.length; j++) {
