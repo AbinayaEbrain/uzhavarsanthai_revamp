@@ -20,8 +20,8 @@ export class UserProductsComponent implements OnInit {
   errMsg1: any;
   success: any;
   queryString: any;
-  p: number = 1;
-  d:number = 1;
+  p: any;
+  d: any;
   errMsg2: any;
   hideProduct = true;
   constructor(
@@ -31,10 +31,10 @@ export class UserProductsComponent implements OnInit {
     public loadingCtrl: NgxSpinnerService
   ) {
     for (let i = 1; i <= this.userDeals.length; i++) {
-      this.userDeals.push('deal ${i}.0');
+      this.userDeals.push('Angular ${i}.0');
     }
-    for (let i = 1; i <= this.userDeals.length; i++) {
-      this.userDeals1.push('deal ${i}.0');
+    for (let i = 1; i <= this.userDeals1.length; i++) {
+      this.userDeals1.push('Angular ${i}.0');
     }
   }
 
@@ -59,15 +59,18 @@ export class UserProductsComponent implements OnInit {
             l++;
           }
         }
-        for (let j = 0; j < this.userDeals.length; j++) {
-          if (this.userDeals[j].category == undefined) {
-            this.errMsg = "Still you haven't post any deals";
-            document.getElementById('hideEditBtn').style.display = 'none';
-            document.getElementById('hideDeleteBtn').style.display = 'none';
-            // document.getElementById('hideSearchDiv').style.display = 'none';
-            document.getElementById('hide').style.display = 'none';
-          }
+        if(this.userDeals.length == 0){
+          this.errMsg = "Still you haven't post any deals";
         }
+        // for (let j = 0; j < this.userDeals.length; j++) {
+        //   if (this.userDeals[j].category == undefined) {
+        //     this.errMsg = "Still you haven't post any deals";
+        //     document.getElementById('hideEditBtn').style.display = 'none';
+        //     document.getElementById('hideDeleteBtn').style.display = 'none';
+        //     // document.getElementById('hideSearchDiv').style.display = 'none';
+        //     document.getElementById('hide').style.display = 'none';
+        //   }
+        // }
       },
       err => {
         this.loadingCtrl.hide();
@@ -82,7 +85,6 @@ export class UserProductsComponent implements OnInit {
     for (let i = 0; i < this.getPrdtName.length; i++) {
       if (this.queryString != this.getPrdtName[i]) {
         this.errMsg2 = 'Category is not available';
-      
       }
     }
   }
@@ -106,17 +108,20 @@ export class UserProductsComponent implements OnInit {
             j++;
           }
         }
-        for (let j = 0; j < this.userDeals1.length; j++) {
-          if (this.userDeals1[j].category == undefined) {
-            this.loadingCtrl.show();
-            this.errMsg1 = 'No expired products found';
-            document.getElementById('hideEditBtn1').style.display = 'none';
-            document.getElementById('hideDeleteBtn1').style.display = 'none';
-            // document.getElementById('hideSearchDiv').style.display = 'none';
-            document.getElementById('hide1').style.display = 'none';
-            this.loadingCtrl.hide();
-          }
+        if(this.userDeals1.length == 0){
+          this.errMsg1 = 'No expired products found';
         }
+        // for (let j = 0; j < this.userDeals1.length; j++) {
+        //   if (this.userDeals1[j].category == undefined) {
+        //     this.loadingCtrl.show();
+        //     this.errMsg1 = 'No expired products found';
+        //     document.getElementById('hideEditBtn1').style.display = 'none';
+        //     document.getElementById('hideDeleteBtn1').style.display = 'none';
+        //     // document.getElementById('hideSearchDiv').style.display = 'none';
+        //     document.getElementById('hide1').style.display = 'none';
+        //     this.loadingCtrl.hide();
+        //   }
+        // }
       },
       err => {
         this.loadingCtrl.hide();
