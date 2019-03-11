@@ -25,6 +25,7 @@
 }
 .productFullName {
   text-overflow: ellipsis;
+  font-family: 'Hind Madurai', sans-serif;
   white-space: nowrap;
   width: 150px;
   overflow: hidden;
@@ -278,12 +279,12 @@ input {
 
 @media only screen and (min-width: 368px) and (max-width: 416px) {
   .mobiviewpageBtn {
-   font-size: 11px;
+    font-size: 11px;
   }
 }
-@media only screen  and (max-width: 367px) {
+@media only screen and (max-width: 367px) {
   .mobiviewpageBtn {
-   font-size: 10px;
+    font-size: 10px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 425px) {
@@ -291,27 +292,27 @@ input {
     margin-top: -25px;
     margin-bottom: -5px;
   }
-  .mobiviewinputBtn{
+  .mobiviewinputBtn {
     margin-bottom: -38px;
   }
-  .mobviewmargin{
-  margin-top: -10px;
-  margin-bottom: -28px;
+  .mobviewmargin {
+    margin-top: -10px;
+    margin-bottom: -28px;
   }
-  .sysviewhide{
-    display: none
+  .sysviewhide {
+    display: none;
   }
-  .mobviewhide{
+  .mobviewhide {
     display: block !important;
   }
-  .mobviewmargintop{
+  .mobviewmargintop {
     margin-top: -35px;
   }
 }
 .searchBorder {
   border: 1px solid #0d4608;
 }
-.float{
+.float {
   position: fixed;
   width: 50px;
   height: 50px;

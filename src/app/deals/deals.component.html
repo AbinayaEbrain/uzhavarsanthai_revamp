@@ -144,10 +144,10 @@
             <div class="modal-body">
                     <form #searchform="ngForm" *ngIf ="!submitted" novalidate>
                             <div class="row">
-                                <div class="col-md-12">
+                                <!-- <div class="col-md-12">
                                         <label style="color: black;font-weight: bold;" class="english_wrd"> Location</label>
                                         <input google-place type="text" id="searchLocation" placeholder="Search location" class="form-control addressplhldr" #searchLocation="ngModel"  ngModel  name="searchLocation" (onSelect)="setAddress($event)"  [(ngModel)]="userdetails.searchLocation">
-                                </div>
+                                </div> -->
                                     <div class="col-md-12"  style="margin-top: 3%;">
                                    <label style="color: black;font-weight: bold;" class="english_wrd"> Category</label>
                                   <select class="form-control slect" #searchCategory="ngModel"  ngModel  name="searchCategory" class="form-control"  placeholder="Enter product category" style="color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchCategory" >
