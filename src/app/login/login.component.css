@@ -30,6 +30,9 @@
   .mobviewfonteng{
     font-size: 18px;
   }
+  .onmobhide{
+    display: none
+  }
 }
 
 input[type='text'],

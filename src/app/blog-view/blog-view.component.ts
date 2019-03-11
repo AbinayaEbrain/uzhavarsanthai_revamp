@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-
+declare var $: any;
 @Component({
   selector: 'app-blog-view',
   templateUrl: './blog-view.component.html',
@@ -17,7 +17,7 @@ export class BlogViewComponent implements OnInit {
   success: any;
   show = 5;
   noBlog: any;
-
+  
   constructor(
     private _auth: AuthService,
     private route: ActivatedRoute,
@@ -68,19 +68,19 @@ export class BlogViewComponent implements OnInit {
   }
 
   addBlog() {
+    $('.showAlert').show()
     let isLoggedIn = this._auth.loggedIn();
     if (isLoggedIn == true) {
       this.router.navigate(['/blog']);
     } else {
+      $('.showAlert').show()
       this.errMsg = 'You must login first!';
-
-      // setTimeout(() => {
-      //   this.router.navigate(['/login']);
-      // }, 2000);
+    // setTimeout(() => {
+      //   this.errMsg = '';
+      // }, 1000);
     }
   }
-
-  openblog() {
+openblog() {
     document.getElementById('hide').innerHTML = '';
   }
 }

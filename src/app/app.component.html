@@ -27,8 +27,8 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <a class="nav-link" routerLink="/dealCategory" routerLinkActive="active"
-          >Buy</a
+        <a class="nav-link " routerLink="/dealCategory" routerLinkActive="active"
+          ><span class="tamil_word">வாங்க</span> / Buy</a
         >
       </li>
       <li
@@ -41,7 +41,7 @@
       aria-label="Toggle navigation"
     >
       <a class="nav-link" routerLink="/login" routerLinkActive="active"
-        >Sell</a
+        ><span class="tamil_word" >விற்க</span> / Sell</a
       >
     </li>
       <li
@@ -71,8 +71,7 @@
         aria-label="Toggle navigation"
       >
         <a class="nav-link" routerLink="/blog-view" routerLinkActive="active"
-          >Blog</a
-        >
+          ><span class="tamil_word">வலைப்பதிவு </span> / Blog</a>
       </li>
       <li
       *ngIf="_authService.loggedIn()"
@@ -194,7 +193,7 @@
   <div class="container">
     <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-12 col-12 ">
-            <div class="footer-copyright text-center" style="margin-top: 4%;float:left">
+            <div class="footer-copyright text-center onmobviewalign" style="margin-top: 4%;float:left">
               © 2019 Copyright
               <a  href="http://www.ebraintechnologies.com/" target="_blank"  class="EbrainTechnologies">உழவர் சந்தை</a
               >
@@ -212,7 +211,7 @@
         <p class="footerOptions" routerLink="/about">Terms Of Use</p>
       </div> -->
       <div class="col-lg-8 col-md-6 col-sm-12 col-12 textCenter float-right" style="margin-top: 1%;">
-          <p  style="float: right;">
+          <p class="onmobviewalign"  style="float: right;">
             <span class="footerOptions" routerLink="/about"
               >About Us &nbsp;&nbsp;|</span
             >

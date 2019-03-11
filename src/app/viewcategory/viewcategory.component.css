@@ -338,7 +338,6 @@ input {
     color: #fff;
     border-radius: 30px;
     text-align: center;
-    /* box-shadow: 2px 2px 3px #999; */
   }
   .float1 {
     position: fixed;
@@ -350,7 +349,6 @@ input {
     color: #fff;
     border-radius: 30px;
     text-align: center;
-    /* box-shadow: 2px 2px 3px #999; */
   }
   @media only screen and (min-width: 320px) and (max-width: 425px) {
     .first {

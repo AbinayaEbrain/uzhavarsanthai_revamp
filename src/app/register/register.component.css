@@ -197,10 +197,10 @@ select{
     .mobviewfonteng{
       font-size: 18px;
     }
+    .onmobhide{
+      display: none;
+    }
   }
   .titilebold{
     font-weight: bold;
   }
-  .first-input {
-    autofocus:"autofocus"
-}
