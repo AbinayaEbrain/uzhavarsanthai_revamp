@@ -1,22 +1,24 @@
 .bg {
   /* background: url(./images/A5.jpg); */
-  /* background-position: center; */
-  /* background-repeat: no-repeat; */
-  /* background-size: cover; */
-  height: 105vh;
-  /* width: 100%; */
-  /* background-attachment: fixed; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: -webkit-fill-available;
+  width: 100%;
+  background-attachment: fixed;
   margin-top: -80px;
+  height: 105vh;
 }
 
-@media only screen and (min-width: 1023px) and (max-width: 1330px) {
+/* @media only screen and (min-width: 1023px) and (max-width: 1330px) {
   .bg {
     height: auto;
   }
-}
-@media only screen  and (max-width: 320px) {
-  .onmobviewfont {
-  font-size: 14px;
+} */
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .bg {
+    height: fit-content;
   }
 }
 
@@ -24,14 +26,26 @@
   .bg {
     height: fit-content;
   }
-  .mobviewfontamil{
+}
+
+@media only screen and (max-width: 320px) {
+  .onmobviewfont {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .bg {
+    height: fit-content;
+  }
+  .mobviewfontamil {
     font-size: 20px;
   }
-  .mobviewfonteng{
+  .mobviewfonteng {
     font-size: 18px;
   }
-  .onmobhide{
-    display: none
+  .onmobhide {
+    display: none;
   }
 }
 
@@ -90,12 +104,11 @@ input[type='password'] {
   color: #0d4608;
   font-family: 'Mukta', sans-serif;
 }
-.txtalign{
+.txtalign {
   font-family: 'Mukta', sans-serif;
-  color: #0d4608;;
+  color: #0d4608;
   text-align: center !important;
   font-weight: bold;
-
 }
 .sent_font {
   font-weight: bold;
@@ -135,6 +148,6 @@ input {
     display: block;
   }
 }
-.titilebold{
+.titilebold {
   font-weight: bold;
 }
