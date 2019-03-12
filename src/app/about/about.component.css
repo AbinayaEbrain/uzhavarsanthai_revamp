@@ -1,123 +1,197 @@
 .aboutus-section {
-    padding: 103px 0;
+  padding: 103px 0;
 }
 .aboutus-title {
-    font-family: 'Oxygen', sans-serif;
-    letter-spacing: 0;
-    line-height: 32px;
-    position: relative;
-    text-align: center;
-    color: #0d4608;
+  font-family: 'Oxygen', sans-serif;
+  letter-spacing: 0;
+  line-height: 32px;
+  position: relative;
+  text-align: center;
+  color: #0d4608;
 }
 .aboutus-text {
-    color: #0d4608;
-    font-size: 13px;
-    line-height: 22px;
+  color: dimgray;
+  font-size: 13px;
+  line-height: 22px;
 }
 
-a:hover, a:active {
-    color: #ffb901;
-    text-decoration: none;
-    outline: 0;
+a:hover,
+a:active {
+  color: #ffb901;
+  text-decoration: none;
+  outline: 0;
 }
 .aboutus-more {
-    border: 1px solid #fdb801;
-    border-radius: 25px;
-    color: #fdb801;
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0;
-    padding: 7px 20px;
-    text-transform: uppercase;
+  border: 1px solid #fdb801;
+  border-radius: 25px;
+  color: #fdb801;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  padding: 7px 20px;
+  text-transform: uppercase;
 }
 .feature .feature-box .iconset {
-    background: #fff none repeat scroll 0 0;
-    float: left;
-    position: relative;
-    width: 18%;
+  background: #fff none repeat scroll 0 0;
+  float: left;
+  margin-top: 6%;
+  position: relative;
+  width: 18%;
 }
 .feature .feature-box .iconset::after {
-    background: #0d4608 none repeat scroll 0 0;
-    content: "";
-    height: 150%;
-    left: 43%;
-    position: absolute;
-    top: 100%;
-    width: 1px;
+  background: #0d4608 none repeat scroll 0 0;
+  content: '';
+  height: 150%;
+  left: 43%;
+  position: absolute;
+  top: 100%;
+  width: 1px;
 }
 
 .feature .feature-box .feature-content h4 {
-    color: #0f0f0f;
-    font-size: 18px;
-    letter-spacing: 0;
-    line-height: 22px;
-    margin: 0 0 5px;
-    margin-top: 6% !important;
+  color: #0f0f0f;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 22px;
+  margin: 0 0 5px;
+  margin-top: 6% !important;
 }
-
 
 .feature .feature-box .feature-content {
-    float: left;
-    padding-left: 28px;
-    width: 78%;
+  float: left;
+  padding-left: 28px;
+  width: 78%;
 }
 .feature .feature-box .feature-content h4 {
-    color: #0f0f0f;
-    font-size: 18px;
-    letter-spacing: 0;
-    line-height: 22px;
-    margin: 0 0 5px;
+  color: #0f0f0f;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 22px;
+  margin: 0 0 5px;
 }
 .feature .feature-box .feature-content p {
-    color: #606060;
-    font-size: 13px;
-    line-height: 22px;
+  color: #606060;
+  font-size: 13px;
+  line-height: 22px;
 }
 .icon {
-    color : white;
-    padding:0px;
-    font-size:40px;
-    border: 1px solid #0d4608;
-    border-radius: 100px;
-    color: #0d4608;
-    font-size: 28px;
-    height: 70px;
-    line-height: 70px;
-    text-align: center;
-    width: 70px;
+  color: white;
+  padding: 0px;
+  font-size: 40px;
+  border: 1px solid #0d4608;
+  border-radius: 100px;
+  color: #0d4608;
+  font-size: 28px;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  width: 70px;
 }
-.tamil_word{
+.holeRow {
+  margin-top: 3% !important;
+}
+.tamil_word {
   font-family: 'Hind Madurai', sans-serif !important;
   font-weight: bold;
   text-align: left;
 }
-.english_wrd{
+.english_wrd {
   font-family: 'Mukta', sans-serif;
   font-weight: bold;
   text-align: left;
 }
+.feature .feature-box .iconset2 {
+  background: #fff none repeat scroll 0 0;
+  float: left;
+  position: relative;
+  margin-top: 6%;
+  width: 18%;
+}
+.feature .feature-box .iconset2::after {
+  background: #0d4608 none repeat scroll 0 0;
+  content: '';
+  height: 0%;
+  left: 43%;
+  position: absolute;
+  top: 100%;
+  width: 1px;
+}
+.feature .feature-box .iconset2::after {
+  background: #0d4608 none repeat scroll 0 0;
+  content: '';
+  height: 0%;
+  position: absolute;
+  top: 100%;
+  width: 1px;
+}
 @media only screen and (min-width: 320px) and (max-width: 425px) {
   .feature .feature-box .iconset::after {
-      background: #0d4608 none repeat scroll 0 0;
-      content: "";
-      height: 150%;
-      left: 60%;
-      position: absolute;
-      top: 100%;
-      width: 1px;
+    background: #0d4608 none repeat scroll 0 0;
+    content: '';
+    height: 150%;
+    left: 55% !important;
+    position: absolute;
+    top: 100%;
+    width: 1px;
+  }
+  .feature .feature-box .iconset {
+    background: #fff none repeat scroll 0 0;
+    float: left;
+    margin-top: 15%;
+    position: relative;
+    width: 18%;
+  }
+  .feature .feature-box .iconset2 {
+    background: #fff none repeat scroll 0 0;
+    float: left;
+    position: relative;
+    margin-top: 15%;
+    width: 18%;
   }
   .feature .feature-box .feature-content h4 {
-      color: #0f0f0f;
-      font-size: 18px;
-      letter-spacing: 0;
-      line-height: 22px;
-      margin: 0 0 5px;
-      margin-top: 10% !important;
+    color: #0f0f0f;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: 22px;
+    margin: 0 0 5px;
+    margin-top: 10% !important;
+  }
+  .whatWeDO {
+    text-align: center !important;
+    margin-top: -15% !important;
+  }
+  .farmersFinger {
+    font-size: 80%;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1200px) {
-.aboutus-banner{
-  display: none !important;
+  .aboutus-banner {
+    display: none !important;
+  }
 }
+.whatWeDO {
+  text-align: center;
+  margin-top: -4%;
+}
+.farmersFinger {
+  font-family: 'Hind Madurai', sans-serif !important;
+  text-align: center;
+  font-weight: bold;
+}
+.clearfix .icon {
+  float: left;
+  -webkit-transition: 0.6s ease-out;
+  -moz-transition: 0.6s ease-out;
+  transition: 0.6s ease-out;
+}
+.clearfix:hover .icon {
+  -webkit-transform: rotateZ(720deg);
+  -moz-transform: rotateZ(720deg);
+  transform: rotateZ(720deg);
+}
+.feature-content {
+  -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+  -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+  box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
 }

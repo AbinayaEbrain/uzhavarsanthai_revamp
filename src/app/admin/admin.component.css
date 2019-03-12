@@ -1,5 +1,5 @@
 .bg {
-  background: url(../../assets/Images/A2.jpg);
+  background: url(../../assets/Images/admin.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -9,46 +9,44 @@
   min-height: -webkit-fill-available;
 }
 
-input[type=text], input[type=password] {
+input[type='text'],
+input[type='password'] {
   width: 100%;
   display: inline-block;
   box-sizing: border-box;
 }
 
-input:focus{
+input:focus {
   background-color: transparent;
   box-shadow: none;
   border: none;
 }
 
-input{
+input {
   background-color: transparent;
 
   border-bottom: 2px solid white !important;
   border-top: none !important;
   border-left: none !important;
   border-right: none !important;
-} 
+}
 ::placeholder {
   color: white;
-
 }
-.btn{
+.btn {
   font-size: 18px;
   background-color: white;
   border: none;
   color: #0d4608;
   font-weight: bold;
-  border: 1 solid ;
+  border: 1 solid;
   border-radius: 5px;
-  
 }
-.btn1{
-
+.btn1 {
 }
 @media only screen and (max-width: 600px) {
-  .btn1{
-     width: 100%;
+  .btn1 {
+    width: 100%;
   }
 }
 .form-group {
@@ -56,7 +54,7 @@ input{
   margin-bottom: 1.5rem;
 }
 
-.form-control{
+.form-control {
   color: white !important;
 }
 .form-control-placeholder {
@@ -79,26 +77,26 @@ input{
   color: rgb(255, 254, 254);
 }
 
-.clr{
-    color: white;
+.clr {
+  color: white;
 }
 
-.sent_font{
+.sent_font {
   font-family: cursive;
   font-weight: bold;
-  color: white
+  color: white;
 }
-.span_clr{
-    text-decoration: underline;
-    cursor: pointer;
+.span_clr {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-.btn{
+.btn {
   border: 2px solid;
 }
-.text-success{
+.text-success {
   font-family: 'Oxygen', sans-serif;
 }
-.button_word{
+.button_word {
   font-family: 'Kanit', sans-serif;
 }

@@ -31,8 +31,8 @@ export class DealsService {
   constructor(private http: HttpClient) {}
 
   sendImage(Image: FormData) {
-    console.log('sds');
-    return this.http.post(this.uploadUrl, Image).pipe(
+    return this.http.post(this.uploadUrl, Image)
+    .pipe(
       timeout(2500),
       retryWhen(errors => errors.pipe(delayWhen(val => timer(val * 1000)))),
       take(2),

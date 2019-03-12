@@ -106,7 +106,7 @@ export class DealsComponent implements OnInit {
           document.getElementById('hidePagination').style.display = 'none';
           document.getElementById('hideSearchDiv').style.display = 'none';
           document.getElementById('hideFilterButton').style.display = 'none';
-          document.getElementById('hideNearByBtn').style.display = 'none';
+          //document.getElementById('hideNearByBtn').style.display = 'none';
           document.getElementById('showBackButton').style.display = 'block';
         }
         this.showDeals = true;
