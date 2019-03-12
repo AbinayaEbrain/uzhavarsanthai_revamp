@@ -32,13 +32,14 @@ export class DealsService {
 
   sendImage(Image: FormData) {
     console.log('sds');
-    return this.http.post(this.uploadUrl, Image).pipe(
-      timeout(2500),
-      retryWhen(errors => errors.pipe(delayWhen(val => timer(val * 1000)))),
-      take(2),
-      // concat(throwError('This is an error!')),
-      share()
-    );
+    return this.http.post(this.uploadUrl, Image)
+    // .pipe(
+    //   timeout(2500),
+    //   retryWhen(errors => errors.pipe(delayWhen(val => timer(val * 1000)))),
+    //   take(2),
+    //   // concat(throwError('This is an error!')),
+    //   share()
+    // );
   }
   getDeals() {
     return this.http.get<any>(this._dealsUrl);

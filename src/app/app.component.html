@@ -83,7 +83,7 @@
       aria-label="Toggle navigation"
     >
       <a class="nav-link" routerLink="/blog" routerLinkActive="active"
-        >Blog</a
+        ><span class="tamil_word">வலைப்பதிவு</span> / Blog</a
       >
     </li>
      
@@ -131,8 +131,7 @@
           routerLink="/admin"
           (click)="_authService.logoutUser()"
           routerLinkActive="active"
-          >Logout</a
-        >
+          >Logout</a>
       </li>
       <li
         *ngIf="_authService.loggedIn() && !_authService.roleAdmin()"
@@ -144,7 +143,8 @@
         aria-label="Toggle navigation"
       >
         <a
-          class="nav-link dropdown-toggle"
+          class="nav-link d
+          ropdown-toggle"
           style="cursor: pointer;"
           routerLinkActive="active"
           id="dropdown03"

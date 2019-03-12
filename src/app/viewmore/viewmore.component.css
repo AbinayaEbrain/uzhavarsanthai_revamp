@@ -48,7 +48,8 @@
   font-family: 'Hind Madurai', sans-serif !important;
 }
 .pageHeading {
-  margin-top: 1%;
+  margin-top: 5px;
+  margin-bottom: 5px;
   color: #0d4608;
   font-family: 'Oxygen', sans-serif;
   font-weight: bold;
@@ -157,4 +158,12 @@ tr {
     /* height: inherit; */
     width: 310px;
   }
+}
+@media screen and (min-width: 320px) and (max-width: 374px) {
+  .pageHeading {
+   font-size: 12px
+  }
+  .pageHeadingDescription {
+    font-size: 12px
+   }
 }

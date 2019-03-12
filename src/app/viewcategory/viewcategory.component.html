@@ -159,16 +159,16 @@
                                    <label style="color: black;font-weight: bold;" class="english_wrd"> Location</label>
                                    <input google-place type="text" id="searchLocation" placeholder="Search location" class="form-control addressplhldr" #searchLocation="ngModel"  ngModel  name="searchLocation" (onSelect)="setAddress($event)"  [(ngModel)]="userdetails.searchLocation">
                                     </div> -->
-                              <div class="col-md-6" style="margin-top: 3%;">
+                              <div class="col-md-6">
                                   <div class="form-group">
                                       <label style="color: black;font-weight: bold;" class="english_wrd"> Min - Quantity</label>
-                                      <input type="text" #searchmainquantity="ngModel"  ngModel  name="searchmainquantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchmainquantity">
+                                      <input type="text" #searchmainquantity="ngModel"  ngModel  name="searchmainquantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control mobmargintop"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchmainquantity">
                                     </div>
                                 </div>
-                              <div class="col-md-6" style="margin-top: 3%;">
+                              <div class="col-md-6 mobviewmargin">
                                   <div class="form-group">
                                       <label style="color: black;font-weight: bold;" class="english_wrd"> Unit</label>
-                                      <select  class="form-control" class="form-control"  style="background-color: transparent;color: black;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
+                                      <select  class="form-control mobmargintop" style="background-color: transparent;color: #0d4608;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
                                             <option style="color: black" value="" disabled >Choose unit..</option>
                                             <option style="color: black" value="Kg">Kg</option>
                                             <option style="color: black" value="Litre">Ltre</option>
@@ -178,19 +178,19 @@
                               <div class="col-md-6">
                                   <div class="form-group">
                                       <label style="color: black;font-weight: bold;" class="english_wrd">Price Range - Min</label>
-                                      <input type="text" #frmAmt="ngModel"  ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter min price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.frmAmt">
+                                      <input type="text" #frmAmt="ngModel"  ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control mobmargintop"  placeholder="Enter min price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.frmAmt">
                                   </div>
                                  </div>
                                  <div class="col-md-6">
                                     <div class="form-group">
                                         <label style="color: black;font-weight: bold;" class="english_wrd"> Max</label>
-                                        <input type="text" #toCost="ngModel" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control"  placeholder="Enter max price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.toCost">
+                                        <input type="text" #toCost="ngModel" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control mobmargintop"  placeholder="Enter max price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;margin-bottom: 2px;"  [(ngModel)]="userdetails.toCost">
 
                                     </div>
                                    </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit"  class="btn btn-outline-success text-center viewMoreBtn"   (click)="filterDeal()" data-dismiss="modal">Search</button>
+                                <button type="submit"  class="btn btn-outline-success text-center viewMoreBtn"   (click)="filterDeal()" data-dismiss="modal"> <i class="fa fa-search glyphicon" aria-hidden="true"></i> Search</button>
                             </div>
                           </form>
             </div>

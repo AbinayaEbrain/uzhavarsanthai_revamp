@@ -38,7 +38,22 @@
   background-color: #0d4608;
   color: white;
 }
-
+.error_word {
+  font-family: 'Cabin', sans-serif;
+}
+.no_deals_found {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: white;
+  width: fit-content;
+  margin: auto;
+  padding: 5px;
+  /* box-shadow: 7px 7px 7px grey; */
+  border-radius: 5px;
+  margin-top: 10% !important;
+}
 @media screen and (min-width: 366px) and (max-width: 470px) {
   .categoryHeading {
     font-size: 15px;

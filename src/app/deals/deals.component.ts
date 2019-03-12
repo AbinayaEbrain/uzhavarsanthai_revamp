@@ -103,6 +103,7 @@ export class DealsComponent implements OnInit {
         }
         if (this.crdDeals1.length == 0) {
           this.errMsg = 'Currently no deals available';
+          this.loadingCtrl.hide();
           document.getElementById('hidePagination').style.display = 'none';
           document.getElementById('hideSearchDiv').style.display = 'none';
           document.getElementById('hideFilterButton').style.display = 'none';
