@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 declare var $: any;
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-blog-view',
   templateUrl: './blog-view.component.html',
@@ -17,7 +19,7 @@ export class BlogViewComponent implements OnInit {
   success: any;
   show = 5;
   noBlog: any;
-  
+
   constructor(
     private _auth: AuthService,
     private route: ActivatedRoute,
@@ -68,19 +70,24 @@ export class BlogViewComponent implements OnInit {
   }
 
   addBlog() {
-    $('.showAlert').show()
+    $('.showAlert').show();
     let isLoggedIn = this._auth.loggedIn();
     if (isLoggedIn == true) {
       this.router.navigate(['/blog']);
     } else {
-      $('.showAlert').show()
+      $('.showAlert').show();
       this.errMsg = 'You must login first!';
-    // setTimeout(() => {
+      // setTimeout(() => {
       //   this.errMsg = '';
       // }, 1000);
     }
   }
-openblog() {
+
+  // timeFromNow(time) {
+  //   return moment(time).fromNow();
+  // }
+
+  openblog() {
     document.getElementById('hide').innerHTML = '';
   }
 }

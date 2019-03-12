@@ -152,7 +152,7 @@
                                    <label style="color: black;font-weight: bold;" class="english_wrd"> Category</label>
                                   <select class="form-control slect mobmargintop" #searchCategory="ngModel"  ngModel  name="searchCategory" class="form-control"  placeholder="Enter product category" style="color: #0d4608; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchCategory" >
                                     <option style="color: black" value="" disabled >Choose category</option>
-                                    <option *ngFor="let val of categoryArr" value="{{val._id}}">{{val.productCategory}}</option>
+                                    <option *ngFor="let val of categoryArr" class="productFullName" value="{{val._id}}">{{val.productCategory}}</option>
                                   </select>
                                     </div>
                               <div class="col-md-6 mt-md-3 mt-0">

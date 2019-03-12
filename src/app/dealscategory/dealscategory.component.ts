@@ -16,7 +16,8 @@ export class DealscategoryComponent implements OnInit {
   categoryArr : any = []
   errMsg:any
  //imageSrc = require('../../../server/uploads/photo-1544505995155.jpg');
-  imageSrc:any
+  imageSrc:any;
+  e : any;
 
   constructor(private _dealService:DealsService,public loadingCtrl: NgxSpinnerService,) {
     for (let i = 1; i <= this.categoryArr.length; i++) {
