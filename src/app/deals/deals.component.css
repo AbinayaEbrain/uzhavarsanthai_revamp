@@ -174,7 +174,7 @@ table {
 }
 ::placeholder {
   text-align: left;
-  color: black;
+  color: #0d4608;
 }
 .searchDiv {
   border: 1px solid #0d4608;
@@ -308,6 +308,16 @@ input {
   .mobviewmargintop {
     margin-top: -35px;
   }
+  .onmobviwmargin{
+    margin-top: 0% !important;
+  }
+  .mobmargintop{
+    margin-bottom: -15px;
+    }
+    .mobmargintopbtn{
+      margin-top: 10px;
+          }
+
 }
 .searchBorder {
   border: 1px solid #0d4608;
@@ -322,4 +332,10 @@ input {
   color: #fff;
   border-radius: 30px;
   text-align: center;
+  border: 0px solid;
+  padding: 0px;
+  box-shadow: 0px 0px 0px 0px #0d4608;
+}
+.mobmargintop{
+  margin-top: -5px;
 }
