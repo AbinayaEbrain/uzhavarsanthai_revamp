@@ -13,11 +13,10 @@
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">                  
-       
                     <div class="inner-addon left-addon" >
                             <i class="fa fa-search glyphicon" aria-hidden="true"></i>
                             <input type="text" class="form-control searchBorder searchtop1"  [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
-</div>
+                    </div>
                  </div>
                  <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">
                     <div class="inner-addon left-addon" >
@@ -25,31 +24,69 @@
                             <input google-place type="text" class="form-control searchBorder"  [(ngModel)]="getLocationDeals" (onSelect)="setAddress($event)" placeholder="Search by location.." />
                         </div>
                  </div>
-                     <div class="stunning-header stunning-header-bg-green mt-3 two" id="hideSelectedCategory">
-                            <div class="stunning-header-content" >
-                                 <ul class="breadcrumbs" style=" list-style-type: none;cursor: pointer;color:#072304;margin-left: -25px;margin-bottom: -10px;">
-                                    <li class="breadcrumbs-item" ><span routerLink="/home" >Home</span>&nbsp;<i class="fa fa-arrow-right" style="font-weight: normal;"></i>&nbsp;<span class="printCategory">{{getCategory}}</span></li>
-                                </ul>
-                            </div>
-                        </div>
-
             </div>
+
+            <div class="row  mt-3">
+                <div class="col-md-4">
+                        <div class="stunning-header stunning-header-bg-green two" id="hideSelectedCategory">
+                                <div class="stunning-header-content" >
+                                     <ul class="breadcrumbs" style=" list-style-type: none;cursor: pointer;color:#072304;margin-left: -37px;margin-bottom: -10px;">
+                                        <li class="breadcrumbs-item" ><span routerLink="/dealCategory" >Category</span>&nbsp;<i class="fa fa-arrow-right" style="font-weight: normal;"></i>&nbsp;<span class="printCategory">{{getCategory}}</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <button class="btn btn-outline-success float-right text-center viewMoreBtn button_word" style="display: none" id="backToAll" (click)="gotoBck()"> View all</button>
+                </div>
+            </div>
+
             <div class="errDiv">
                 <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
         </div>
 
+        <div *ngIf="errMsg1" class="mt-3" style="margin-bottom: 7%">
+                <div class="col-md-4 col-lg-4 col-12"></div>
+                <div class="col-md-4 col-lg-4 col-12 errDesign">
+                    <img src="../../assets/Images/empty_cart_retina.png" width="354" alt="cart">
+                    <p class="mt-4">Oops! No products available from
+                         <font *ngIf="addr.locality" style="color: #f53636;font-style: italic">"{{addr.locality}}"</font> 
+                         <font *ngIf="!addr.locality" style="color: #f53636;font-style: italic">"{{addr.formatted_address}}"</font>
+                        </p>
+                    <p (click)="reset()" style="cursor: pointer;text-decoration: underline">Go to back</p>
+                    
+                </div>
+                <div class="col-md-4 col-lg-4 col-12"></div>
+            </div>
 
+            <div *ngIf="errMsgSec" class="mt-3" style="margin-bottom: 6%">
+                    <div class="col-md-4 col-lg-4 col-12"></div>
+                    <div class="col-md-4 col-lg-4 col-12 errDesign">
+                        <img src="../../assets/Images/empty_cart_retina.png" width="354" alt="cart">
+                        <p class="mt-4">Oops! No products available based on your search.</p>
+                        <p (click)="reset()" style="cursor: pointer;text-decoration: underline">Go to back</p>
+                        
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-12"></div>
+                </div>
+            
             <div *ngIf="showDeals">
                     <div class="mt-5" *ngFor = "let deal of totalDeals | filterdata: queryString  : 'name'">
-                            <div *ngIf="deal === -1">
-                            <div class="col-md-4 col-lg-5 col-12"></div>
-                            <div class="col-md-4 col-lg-2 col-12 errDesign">
-                                            {{errMsg1}}
+                         <div *ngIf="errMsg2">  
+                        <div *ngIf="deal === -1" style="margin-bottom: 6%">
+                            <div class="col-md-4 col-lg-3 col-12"></div>
+                            <div class="col-md-4 col-lg-6 col-12 errDesign">
+                                <img src="../../assets/Images/empty_cart_retina.png" width="354" alt="cart">
+                                <p class="mt-4">Oops! Currently your searched product "<font style="color: #f53636;font-style: italic">
+                                    {{queryString}}</font>" is unavailable.</p>
+                                <a (click)="reset1()" style="cursor: pointer;text-decoration: underline">Go to back</a>
                             </div>
-                            <div class="col-md-4 col-lg-5 col-12"></div>
+                            <div class="col-md-4 col-lg-3 col-12"></div>
                         </div>
+                    </div>
                         </div>
-                <div class="row " id="hideifNoData" style="margin-top: -30px;">
+                <div class="row " id="hideifNoData" style="margin-top: -20px;">
                         <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of totalDeals |paginate: {id: 'foo1', itemsPerPage:6,currentPage:e } | filterdata: queryString  : 'name'">
                                 <div class="card" *ngIf="deal !== -1">
                                         <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
@@ -87,15 +124,20 @@
                           </div>
             </div>
 
-            <div *ngIf="!showDeals">
+            <div *ngIf="!showDeals" class="mt-2">
                     <div class="mt-5" *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name'">
-                            <div *ngIf="deal === -1">
-                            <div class="col-md-4 col-lg-5 col-12"></div>
-                            <div class="col-md-4 col-lg-2 col-12 errDesign">
-                                            {{errMsg1}}
-                            </div>
-                            <div class="col-md-4 col-lg-5 col-12"></div>
-                        </div>
+                            <div *ngIf="!errMsg1">  
+                                    <div *ngIf="deal === -1" style="margin-bottom: 6%">
+                                        <div class="col-md-4 col-lg-3 col-12"></div>
+                                        <div class="col-md-4 col-lg-6 col-12 errDesign">
+                                            <img src="../../assets/Images/empty_cart_retina.png" width="354" alt="cart">
+                                            <p class="mt-4">Oops! Currently your searched product "<font style="color: #f53636;font-style: italic">
+                                                    {{queryString}}</font>" is unavailable.</p>
+                                                <a (click)="reset1()" style="cursor: pointer;text-decoration: underline">Go to back</a>
+                                        </div>
+                                        <div class="col-md-4 col-lg-3 col-12"></div>
+                                    </div>
+                                </div>
                         </div>
                     <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
                     <div class="row mt-3" id="hideifData">

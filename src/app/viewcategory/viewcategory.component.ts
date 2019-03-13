@@ -51,7 +51,9 @@ export class ViewcategoryComponent implements OnInit {
   getCategory: any;
   getPrdtName = [];
   privateIP: any;
-  count : number
+  count: number;
+  errMsg2: any;
+  errMsgSec: any;
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -68,7 +70,7 @@ export class ViewcategoryComponent implements OnInit {
     public zone: NgZone
   ) {
     this.privateIP = ClientIP;
-    console.log(this.privateIP)
+    console.log(this.privateIP);
     this.userdetails.searchqnty = '';
     this.showDeals = true;
     for (let i = 1; i <= this.totalDeals.length; i++) {
@@ -122,17 +124,6 @@ export class ViewcategoryComponent implements OnInit {
     );
   }
 
-  case() {
-    // console.log(this.queryString);
-    this.queryString = this.queryString.toLowerCase();
-    for (let i = 0; i < this.getPrdtName.length; i++) {
-      if (this.queryString != this.getPrdtName[i]) {
-        console.log('no data');
-        this.errMsg1 = 'Product Unavailable';
-      }
-    }
-  }
-
   getGoogleAddress() {
     var pacContainerInitialized = false;
     $('#searchLocation').keypress(function() {
@@ -152,6 +143,7 @@ export class ViewcategoryComponent implements OnInit {
     this.refreshGrid();
     this.loadingCtrl.hide();
   }
+
   refreshGrid() {
     if (this.addr != null || this.addr != undefined) {
       this.querydetails.searchLocation = this.addr.locality;
@@ -169,15 +161,18 @@ export class ViewcategoryComponent implements OnInit {
           this.getSearchDeals[i].avlPlace.locality
       ) {
         this.totalDeals1[j] = this.getSearchDeals[i];
+        this.errMsgSec = '';
         j++;
       }
     }
     this.showDeals = false;
     document.getElementById('hidePagination').style.display = 'block';
+    document.getElementById('backToAll').style.display = 'block';
 
     if (this.totalDeals1.length == 0) {
-      sweetAlert('Sorry!', 'Currently no product available', 'error');
-      this.showDeals = true;
+      this.totalDeals1 = [];
+      this.errMsgSec = 'location';
+      // this.showDeals = true;
     }
     this.loadingCtrl.hide();
     this.clear();
@@ -185,19 +180,22 @@ export class ViewcategoryComponent implements OnInit {
 
   goToView(data) {
     let ip = JSON.parse(localStorage.getItem('privateIP'));
-    if(ip){
+    if (ip) {
       this.privateIP = ip;
     }
     console.log(this.privateIP);
-    
-    this._dealService.getCount(data.name,data._id,this.privateIP).subscribe(res =>{
-      console.log(res);
-      this.router.navigate(['/viewmore', data._id], this.id);
-    },err =>{
-      console.log(err);
-    })
+
+    this._dealService.getCount(data.name, data._id, this.privateIP).subscribe(
+      res => {
+        console.log(res);
+        this.router.navigate(['/viewmore', data._id], this.id);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
-  
+
   clear() {
     this.querydetails = [];
     this.userdetails = [];
@@ -208,24 +206,66 @@ export class ViewcategoryComponent implements OnInit {
     }
   }
 
+  case() {
+    // console.log(this.queryString);
+    this.queryString = this.queryString.toLowerCase();
+    for (let i = 0; i < this.getPrdtName.length; i++) {
+      if (this.queryString != this.getPrdtName[i]) {
+        this.errMsg2 = 'Product Unavailable';
+      }
+    }
+    console.log(this.queryString);
+    if (this.queryString != '') {
+      document.getElementById('backToAll').style.display = 'block';
+    } else {
+      document.getElementById('backToAll').style.display = 'none';
+    }
+  }
+
   getLocation() {
-   this.totalDeals1 = [];
+    this.totalDeals1 = [];
+    this.queryString = '';
     let j = 0;
     for (let i = 0; i < this.totalDeals.length; i++) {
       if (this.addr.locality == this.totalDeals[i].avlPlace.locality) {
         this.totalDeals1[j] = this.totalDeals[i];
+        this.errMsg1 = '';
         j++;
       }
     }
     this.showDeals = false;
     document.getElementById('hidePagination').style.display = 'block';
+    document.getElementById('backToAll').style.display = 'block';
 
     if (this.totalDeals1.length == 0) {
-      sweetAlert('Sorry!', 'Currently no product available', 'error');
+      // console.log(this.addr.locality);
+      // sweetAlert('Sorry!', 'Currently no product available', 'error');
+      this.errMsg1 = 'locayion';
       this.getLocationDeals = '';
-      this.showDeals = true;
+      // this.showDeals = true;
     }
     this.getLocationDeals = '';
   }
 
+  reset() {
+    this.errMsg1 = '';
+    this.errMsgSec = '';
+    this.queryString = '';
+    this.showDeals = true;
+    document.getElementById('backToAll').style.display = 'none';
+  }
+
+  reset1() {
+    this.queryString = '';
+    document.getElementById('backToAll').style.display = 'none';
+  }
+
+  gotoBck() {
+    this.showDeals = true;
+    this.queryString = '';
+    this.errMsg1 = '';
+    this.errMsg2 = '';
+    this.errMsgSec = '';
+    document.getElementById('backToAll').style.display = 'none';
+  }
 }
