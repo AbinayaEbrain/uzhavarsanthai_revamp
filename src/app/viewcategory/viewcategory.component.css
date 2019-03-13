@@ -285,7 +285,7 @@ input {
     float: right !important;
   }
 }
-.mobmargintop{
+.mobmargintop {
   margin-top: -5px;
   margin-bottom: -10px;
 }
@@ -320,67 +320,76 @@ input {
   .two {
     order: 1;
   }
-  @media screen and (max-width: 767px) {
-    .container {
-      display: flex;
-      flex-flow: column;
-    }
-    .two {
-      order: 1;
-    }
-    .one {
-      order: 2;
-    }
+  .one {
+    order: 2;
   }
-  .float {
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    bottom: 5px;
-    right: 20px;
-    background-color: #0d4608;
-    color: #fff;
-    border-radius: 30px;
-    text-align: center;
-    border: 0px solid;
-    padding: 0px;
-    box-shadow: 0px 0px 0px 0px #0d4608;
+}
+
+.float {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 5px;
+  right: 20px;
+  background-color: #0d4608;
+  color: #fff;
+  border-radius: 30px;
+  text-align: center;
+  border: 0px solid;
+  padding: 0px;
+  box-shadow: 0px 0px 0px 0px #0d4608;
+}
+.float1 {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 5px;
+  left: 20px;
+  background-color: #0d4608;
+  color: #fff;
+  border-radius: 30px;
+  text-align: center;
+  border: 0px solid;
+  padding: 0px;
+  box-shadow: 0px 0px 0px 0px #0d4608;
+}
+
+@media only screen and (max-width: 767px) {
+  .first {
+    display: none;
   }
-  .float1 {
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    bottom: 5px;
-    left: 20px;
-    background-color: #0d4608;
-    color: #fff;
-    border-radius: 30px;
-    text-align: center;
-    border: 0px solid;
-    padding: 0px;
-    box-shadow: 0px 0px 0px 0px #0d4608;
+  .second {
+    display: block !important;
   }
-  @media only screen and (min-width: 320px) and (max-width: 425px) {
-    .first {
-      display: none;
-    }
-    .second {
-      display: block !important;
-    }
-    ul {
-      margin-top: -50px;
-    }
-    .onmobiviewpadding {
-      margin-bottom: -15px;
-    }
-    .searchtop {
-      margin-top: -30px !important;
-    }
-    .searchtop1 {
-      margin-top: -30px !important;
-    }
-    .mobviewmargin{
-      margin-top: 0% !important;
-    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .first {
+    display: none;
   }
+  .second {
+    display: block !important;
+  }
+  ul {
+    margin-top: -50px;
+  }
+  .onmobiviewpadding {
+    margin-bottom: -15px;
+  }
+  .searchtop {
+    margin-top: -30px !important;
+  }
+  .searchtop1 {
+    margin-top: -30px !important;
+  }
+  .mobviewmargin {
+    margin-top: 0% !important;
+  }
+  .imgRes {
+    width: inherit !important;
+  }
+}
+
+.imgRes {
+  width: 354px;
 }
