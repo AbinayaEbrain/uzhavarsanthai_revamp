@@ -5,7 +5,7 @@
 </style>
 <body class="backgrd">
         <div class="container mainCntainer">
-            <div class="row mt-md-5 pt-md-5 mt-sm-1 pt-sm-1 mt-5 pt-3">
+            <div class="row mt-md-5 pt-md-5 mt-sm-1 pt-sm-1 mt-5 pt-3 frstRow">
                 <div class=" col-md-4 col-xs-6 first">
                         <button class="btn btn-outline-success text-center viewMoreBtn button_word" routerLink="/dealCategory"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
                         <button id="hideFilterButton" (click)="getGoogleAddress()" class="btn btn-outline-success text-center mobiviewFilterBtn viewMoreBtn button_word" data-toggle="modal" style="width: auto;margin-left: 10px;" data-target="#myModal" ><i class="fa fa-filter" aria-hidden="true" ></i> Filter</button>
@@ -24,7 +24,7 @@
                             <input google-place type="text" class="form-control searchBorder"  [(ngModel)]="getLocationDeals" (onSelect)="setAddress($event)" placeholder="Search by location.." />
                         </div>
                  </div>
-                 <div class="stunning-header stunning-header-bg-green mt-5 mb-md-0 mb-1 two" id="hideSelectedCategory">
+                 <div class="stunning-header stunning-header-bg-green mt-5 mt-md-3 mb-md-0 mb-1 two" id="hideSelectedCategory">
                         <div class="stunning-header-content" >
                              <ul class="breadcrumbs" style=" list-style-type: none;cursor: pointer;color:#072304;margin-left: -25px;margin-bottom: -10px;">
                                 <li class="breadcrumbs-item" ><span routerLink="/dealCategory" >Category</span>&nbsp;<i class="fa fa-arrow-right" style="font-weight: normal;"></i>&nbsp;<span class="printCategory">{{getCategory}}</span></li>
