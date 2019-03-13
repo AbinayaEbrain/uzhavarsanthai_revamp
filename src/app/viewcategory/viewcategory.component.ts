@@ -214,8 +214,10 @@ export class ViewcategoryComponent implements OnInit {
         this.errMsg2 = 'Product Unavailable';
       }
     }
-    console.log(this.queryString);
+
     if (this.queryString != '') {
+      document.getElementById('backToAll').style.display = 'block';
+    } else if (this.showDeals == false) {
       document.getElementById('backToAll').style.display = 'block';
     } else {
       document.getElementById('backToAll').style.display = 'none';
@@ -241,6 +243,7 @@ export class ViewcategoryComponent implements OnInit {
       // console.log(this.addr.locality);
       // sweetAlert('Sorry!', 'Currently no product available', 'error');
       this.errMsg1 = 'locayion';
+      this.errMsgSec = '';
       this.getLocationDeals = '';
       // this.showDeals = true;
     }
