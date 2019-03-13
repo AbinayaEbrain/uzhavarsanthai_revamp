@@ -36,7 +36,11 @@ export class AdminUserComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public loadingCtrl: NgxSpinnerService
-  ) {}
+  ) {
+    for (let i = 1; i <= this.registerUser.length; i++) {
+      this.registerUser.push(`deal ${i}.0`);
+    }
+  }
 
   ngOnInit() {
     this.loadingCtrl.show();

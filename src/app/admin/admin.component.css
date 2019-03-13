@@ -1,12 +1,13 @@
 .bg {
-  background: url(../../assets/Images/admin.jpg);
+  /* background: url(../../assets/Images/admin.jpg); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   /* height: 100vh; */
   width: 100%;
+  background-color: whitesmoke;
   background-attachment: fixed;
-  min-height: -webkit-fill-available;
+  /* min-height: -webkit-fill-available; */
 }
 
 input[type='text'],
@@ -42,8 +43,7 @@ input {
   border: 1 solid;
   border-radius: 5px;
 }
-.btn1 {
-}
+
 @media only screen and (max-width: 600px) {
   .btn1 {
     width: 100%;
@@ -99,4 +99,60 @@ input {
 }
 .button_word {
   font-family: 'Kanit', sans-serif;
+}
+/* .widget-small .icon {
+  display: flex;
+  min-width: 85px;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 4px 0 0 4px;
+  font-size: 2.5rem;
+}
+.widget-small.primary.coloured-icon .icon {
+    background-color: #009688;
+    color: #fff;
+} */
+.card-body {
+  flex: 1 1 auto;
+  padding: 3.25rem;
+}
+.my-card
+{
+    position:absolute;
+    left:40%;
+    top:-20px;
+    border-radius:50%;
+}
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: whitesmoke;
+  border-radius: 0.3rem;
+}
+
+.card{
+  display: block !important;
+  text-align: center;
+  border-color: #0d4608;
+}
+
+.cardht{
+  height: 100%;
+}
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .mobviewmargine {
+    margin-top: 25px;
+  }
+  .mobviewmargine1 {
+    margin-top: 50px;
+  }
+  .mobviewbottom{
+margin-bottom: 0px;
+  }
+}
+.iconsize{
+  font-size: 25px;
 }

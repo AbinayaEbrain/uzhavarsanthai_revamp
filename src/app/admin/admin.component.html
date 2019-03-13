@@ -3,56 +3,94 @@
 <div class="bg" style="overflow-y: scroll;">
  <div class="mb-5 container mt-5 pt-1" >
 
-      <h2 class="text-center mt-5" style="font-family: 'Oxygen', sans-serif;color: white">Welcome To Farmers Market !</h2>
+      <h2 class="text-center mt-5" style="font-family: 'Kanit', sans-serif;color: #0d4608">Dashboard</h2>
 
-   <button  class="btn  btn1 button_word" routerLink="/category">Add Category</button>
- <div class="row mt-5">
-        <div class="col-md-6">
-            <div class="card border-success flex-md-row mb-4 shadow-sm h-md-250">
-               <div class="card-body text-center">
-                  <h4 class="d-inline-block mb-2 text-success mx-auto">Number of Registered Users</h4>
-                  <!-- <h6 class="mb-0">
-                     <a class="text-dark" href="#"></a>
-                  </h6> -->
-                  <!-- <div class="mb-1 text-muted small">Nov 11</div> -->
+   <button  class="btn  btn1 button_word" routerLink="/category">Add Category</button><br>
+   <!-- <div class="row mt-3">
+     <div class="col-lg-12">
+    <div class="card">
+      <div class="widget-small primary coloured-icon">
+        
+            <div class="row">
+        <div class="col-lg-2">
+        <i class="icon fa fa-users fa-3x"></i></div>
+        <div class="col-lg-7" style="text-align:center;color:#0d4608">
+          <h4 class="d-inline-block mb-2 mx-auto">Number of Registered Users</h4>
+         
+          <h5 class="card-text mb-auto mx-auto mt-3 mb-5"><strong>{{length}}</strong></h5></div>
+          <div class="col-md-3">
+          <button class="btn btn-outline-success btn-sm mt-3 button_word" routerLink="/admin-user">View Details</button></div>
+        </div></div></div>
+    </div>
+ </div> -->
+ <div class="jumbotron">
+    <div class="row mobviewbottom mt-5 mb-md-4 mb-0">
+            <div class="col-md-4" style="color:#0d4608">
+                <div class="card cardht  mx-sm-1 p-3">
+                    <div class="card p-3 my-card" ><span class="fa fa-users iconsize " aria-hidden="true"></span></div>
+                    <div class=" text-center mt-5"><h5>Registered Users</h5></div>
+                    <div class=" text-center mt-2"><h5><strong>{{length}}</strong></h5></div>
+                    <button class="btn btn-outline-success btn-small mt-3 button_word" routerLink="/admin-user">View Details</button>
+                </div>
+            </div>
+            <div class="col-md-4" style="color:#0d4608">
+                <div class="card cardht mobviewmargine mx-sm-1 p-3">
+                    <div class="card  p-3 my-card"><i class="fa fa-newspaper-o iconsize" aria-hidden="true"></i></div>
+                    <div class="text-center mt-5"><h5> Posted Product</h5></div>
+                    <div class=" text-center mt-2"><h5><strong>{{dealsLength}}</strong></h5></div>
+                    <button class="btn btn-outline-success btn-sm mt-3 button_word" routerLink = "/admin-deals">View Details</button>
+
+                </div>
+            </div>
+            <div class="col-md-4 " style="color:#0d4608">
+                <div class="card cardht mobviewmargine1  mx-sm-1 p-3">
+                    <div class="card  p-3 my-card" ><span class="	fa fa-desktop iconsize" aria-hidden="true"></span></div>
+                    <div class="text-center mt-5"><h5>Post based on IP address</h5></div>
+                    <button class="btn btn-outline-success btn-sm mt-3 button_word" routerLink = "/admin-ip">View Details</button>
+                  </div>
+            </div>
+         </div>
+    </div>
+ 
+ <!-- <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+               <div class="card-body text-center" style="color:#0d4608">
+                  <h4 class="d-inline-block mb-2  mx-auto">  <i class="icon fa fa-users fa-1x"></i> Registered Users</h4>
+                  
                   <h5 class="card-text mb-auto mx-auto mt-3 mb-5"><strong>{{length}}</strong></h5>
                   <button class="btn btn-outline-success btn-sm mt-3 button_word" routerLink="/admin-user">View Details</button>
                </div>
             </div>
          </div>
 
-         <div class="col-md-6">
-            <div class="card border-success flex-md-row mb-4 shadow-sm h-md-250">
-               <div class="card-body text-center">
-                  <h4 class="d-inline-block mb-2 text-success mx-auto">Number of Posted Product</h4>
-                  <!-- <h6 class="mb-0">
-                     <a class="text-dark" href="#"></a>
-                  </h6> -->
-                  <!-- <div class="mb-1 text-muted small">Nov 11</div> -->
+         <div class="col-md-4">
+            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+               <div class="card-body text-center" style="color:#0d4608">
+                  <h4 class="d-inline-block mb-2 mx-auto"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Posted Product</h4>
+               
                   <h5 class="card-text mb-auto mx-auto mt-3 mb-5"><strong>{{dealsLength}}</strong></h5>
                   <button class="btn btn-outline-success btn-sm mt-3 button_word" routerLink = "/admin-deals">View Details</button>
                </div>
 
             </div>
          </div>
-  </div>
+         <div class="col-md-4">
+          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+             <div class="card-body text-center" style="color:#0d4608">
+                <h4 class="d-inline-block mb-2 mx-auto"><i class="fa fa-clipboard" aria-hidden="true"></i> Post based on IP address</h4>
+              
+                <h5 class="card-text mb-auto mx-auto mt-3 mb-5"><strong></strong></h5>
+                <button class="btn btn-outline-success btn-sm mt-3 button_word" routerLink = "/admin-ip">View Details</button>
+             </div>
+  
+          </div>
+       </div>
+  </div> -->
 
   <div class="row">
     <div class="col-md-3"></div>
-    <div class="col-md-6">
-        <div class="card border-success flex-md-row mb-4 shadow-sm h-md-250">
-           <div class="card-body text-center">
-              <h4 class="d-inline-block mb-2 text-success mx-auto">Post based on IP address</h4>
-              <!-- <h6 class="mb-0">
-                 <a class="text-dark" href="#"></a>
-              </h6> -->
-              <!-- <div class="mb-1 text-muted small">Nov 11</div> -->
-              <h5 class="card-text mb-auto mx-auto mt-3 mb-5"><strong></strong></h5>
-              <button class="btn btn-outline-success btn-sm mt-3 button_word" routerLink = "/admin-ip">View Details</button>
-           </div>
-
-        </div>
-     </div>
+   
     <div class="col-md-3"></div>
   </div>
 
