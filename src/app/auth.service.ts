@@ -1,107 +1,104 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse  } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private _registerUrl = "https://uzhavarsanthai.herokuapp.com/api/register";
-  private _logInUrl = "https://uzhavarsanthai.herokuapp.com/api/login";
-  private _blogUrl = "https://uzhavarsanthai.herokuapp.com/api/blog";
-  private _blogViewUrl = "https://uzhavarsanthai.herokuapp.com/api/blogview";
-  private _blogEditUrl = "https://uzhavarsanthai.herokuapp.com/api/blogedit";
-  private _blogGetOneUrl = "https://uzhavarsanthai.herokuapp.com/api/blogetone";
-  private _blogDeleteUrl = "https://uzhavarsanthai.herokuapp.com/api/blogdel";
+  private _registerUrl = 'https://uzhavarsanthai.herokuapp.com/api/register';
+  private _logInUrl = 'https://uzhavarsanthai.herokuapp.com/api/login';
+  private _blogUrl = 'https://uzhavarsanthai.herokuapp.com/api/blog';
+  private _blogViewUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogview';
+  private _blogEditUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogedit';
+  private _blogGetOneUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogetone';
+  private _blogDeleteUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogdel';
+  private _sendOtp = 'https://uzhavarsanthai.herokuapp.com/api/sendotpverf';
 
+  constructor(private http: HttpClient, private route: Router) {}
 
-  constructor(private http:HttpClient,private route:Router) { }
-
-  registerUser(user){
-    return this.http.post<any>(this._registerUrl,user)
+  sendOtp(data) {
+    return this.http.post<any>(this._sendOtp, data);
   }
 
-  logInUser(data){
-    return this.http.post<any>(this._logInUrl,data)
+  registerUser(user) {
+    return this.http.post<any>(this._registerUrl, user);
   }
 
-   loggedIn(){
-    return !!localStorage.getItem('token')
+  logInUser(data) {
+    return this.http.post<any>(this._logInUrl, data);
   }
 
-  getUserName(){
+  loggedIn() {
+    return !!localStorage.getItem('token');
+  }
+
+  getUserName() {
     let username = JSON.parse(localStorage.getItem('firstname'));
     return username;
   }
-  blogUserData(data){
-    return this.http.post<any>(this._blogUrl,data)
+  blogUserData(data) {
+    return this.http.post<any>(this._blogUrl, data);
   }
-  blogGetData(){
-    return this.http.get<any>(this._blogViewUrl)
+  blogGetData() {
+    return this.http.get<any>(this._blogViewUrl);
   }
-  blogGetOneData(id){
-    return this.http.get<any>(this._blogGetOneUrl + "/" + id)
+  blogGetOneData(id) {
+    return this.http.get<any>(this._blogGetOneUrl + '/' + id);
   }
-  blogEditData(data,id){
-    console.log(data)
-    return this.http.put<any>(this._blogEditUrl + "/" + id ,data)
+  blogEditData(data, id) {
+    console.log(data);
+    return this.http.put<any>(this._blogEditUrl + '/' + id, data);
   }
-  blogDeleteData(id){
-    return this.http.delete<any>(this._blogDeleteUrl + "/" + id )
+  blogDeleteData(id) {
+    return this.http.delete<any>(this._blogDeleteUrl + '/' + id);
   }
-  
-  
 
-  roleAdmin(){
-    
+  roleAdmin() {
     let role = JSON.parse(localStorage.getItem('firstname'));
-   
-    if(role == 'Admin'){
-      return !!role
-   }
 
+    if (role == 'Admin') {
+      return !!role;
+    }
   }
 
-  findActive(){
+  findActive() {
     let status = JSON.parse(localStorage.getItem('status'));
-    if(status =='ACTIVE') {
-    return !!status
-    }
-    else{
-      localStorage.removeItem('payload')
-      localStorage.removeItem('currentUser')
-      localStorage.removeItem('token')
-      localStorage.removeItem('Address')
-      localStorage.removeItem('Address1')
-      localStorage.removeItem('googleLat')
-      localStorage.removeItem('googleLong')
-      localStorage.removeItem('ipAddress')
-      localStorage.removeItem('status')
-      localStorage.removeItem('firstname')
-      localStorage.removeItem('Image')
+    if (status == 'ACTIVE') {
+      return !!status;
+    } else {
+      localStorage.removeItem('payload');
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('token');
+      localStorage.removeItem('Address');
+      localStorage.removeItem('Address1');
+      localStorage.removeItem('googleLat');
+      localStorage.removeItem('googleLong');
+      localStorage.removeItem('ipAddress');
+      localStorage.removeItem('status');
+      localStorage.removeItem('firstname');
+      localStorage.removeItem('Image');
     }
   }
-
 
   //get token from interceptor
-  getToken(){
-    return localStorage.getItem('token')
+  getToken() {
+    return localStorage.getItem('token');
   }
 
   //logout
-  logoutUser(){
-    localStorage.removeItem('payload')
-    localStorage.removeItem('currentUser')
-    localStorage.removeItem('token')
-    localStorage.removeItem('Address')
-    localStorage.removeItem('Address1')
-    localStorage.removeItem('googleLat')
-    localStorage.removeItem('googleLong')
-    localStorage.removeItem('ipAddress')
-    localStorage.removeItem('status')
-    localStorage.removeItem('firstname')
-    localStorage.removeItem('Image')
-    this.route.navigate(['/deals'])
+  logoutUser() {
+    localStorage.removeItem('payload');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    localStorage.removeItem('Address');
+    localStorage.removeItem('Address1');
+    localStorage.removeItem('googleLat');
+    localStorage.removeItem('googleLong');
+    localStorage.removeItem('ipAddress');
+    localStorage.removeItem('status');
+    localStorage.removeItem('firstname');
+    localStorage.removeItem('Image');
+    this.route.navigate(['/deals']);
   }
-
 }

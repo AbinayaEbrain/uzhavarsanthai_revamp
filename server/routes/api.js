@@ -7,11 +7,13 @@ const Category = require('../models/category')
 const Blog = require('../models/blog')
 const Contact = require('../models/contact');
 const Count = require('../models/viewCount');
+const Phone = require('../models/phone');
 const mongoose = require('mongoose')
 var multer = require('multer');
 const cloudinary = require('cloudinary');
 const cloudinaryStorage = require('multer-storage-cloudinary');
 const db = 'mongodb://user01:user01@ds023704.mlab.com:23704/farmersdb';
+var http = require("http");
 
 //email
 var email = require('emailjs/email');
@@ -98,6 +100,7 @@ router.post('/post', (req, res) => {
 //admin
 
 router.post('/category',(req,res)=>{
+    console.log(req.body);
     let categoryData = req.body
     let category = new Category(categoryData)
     category.save((error,productData)=>{
@@ -433,41 +436,40 @@ router.put('/category/:id', function(req, res) {
 });
 
 //Deactivate account
-router.put('/admin-user/deactive/:id', function(req, res) {
-  // console.log('Update a user');
-  // console.log(req.body)
-  User.findByIdAndUpdate(
-    req.params.id,
+router.post('/admin-user/deactive/:id', function(req, res) {
+  User.find(
     {
-      $set: { status: 'DEACTIVE' }
+      _id:req.params.id
     },
-    {
-      new: true
-    },
-    function(err, updatedUser) {
-      if (err) {
-        res.send('Error updating user');
-      } else {
-        res.json(updatedUser);
-      }
+    async (err,result) =>{
+      if(result.length > 0){
+        await User.update(
+          {
+            _id:req.params.id
+          },
+          {
+            $set: { status: 'DEACTIVE' }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'Status set'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      } 
+      await Post.update(
+        {
+          accountId:req.params.id
+        },
+        {
+          $set: { status: 'DEACTIVE' }
+        }
+      )
     }
-  ),
-  Post.update({
-    'accountId':req.params.id
-  },{
-    $set: { status: 'DEACTIVE' }
-  },
-  {
-    new: true
-  },
-  function(err, updatedUser) {
-    if (err) {
-      res.send('Error updating user');
-    } else {
-      res.json(updatedUser);
-    }
-  });
+  )
 });
+
 
 router.post(
   '/sendImage',
@@ -488,43 +490,41 @@ router.post(
 );
 
 //activate account
-router.put('/admin-user/active/:id', function(req, res) {
-  //console.log('Update a user');
-  // console.log(req.body)
-  User.findByIdAndUpdate(
-    req.params.id,
+router.post('/admin-user/active/:id', function(req, res) {
+  User.find(
     {
-      $set: { status: 'ACTIVE' }
+      _id:req.params.id
     },
-    {
-      new: true
-    },
-    function(err, updatedUser) {
-      if (err) {
-        res.send('Error updating user');
-      } else {
-        res.json(updatedUser);
-      }
+    async (err,result) =>{
+      if(result.length > 0){
+        await User.update(
+          {
+            _id:req.params.id
+          },
+          {
+            $set: { status: 'ACTIVE' }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'Status set'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      } 
+      await Post.update(
+        {
+          accountId:req.params.id
+        },
+        {
+          $set: { status: 'ACTIVE' }
+        }
+      )
     }
-  ),
-  Post.update({
-    'accountId':req.params.id
-  },{
-    $set: { status: 'ACTIVE' }
-  },
-  {
-    new: true
-  },
-  function(err, updatedUser) {
-    if (err) {
-      res.send('Error updating user');
-    } else {
-       res.json(updatedUser);
-      // res.status(200).json({ message: 'Marked all messages as read',updatedUser });
-    }
-  });
+  )
 });
 
+// Viewed product count
 router.post('/getCount', (req, res) => {
   Count.find(
     {
@@ -581,22 +581,57 @@ router.post('/getCount', (req, res) => {
       )
     }
   )
-  // let contactData = req.body;
-  // let count = new Count(contactData);
-  // count.save((error, data) => {
-  //   if (error) {
-  //     console.log(error);
-  //   } else {
-  //     console.log(data);
-  //     res.status(200).send(data);
-  //   }
-  // });
 });
 
-// router.post('/getCount',(req,res) =>{
-//   const { productId } = req.body.productId;
+// router.post('/contact', (req, res) => {
+//   let contactData = req.body;
+//   let contact = new Contact(contactData);
+//   contact.save((error, data) => {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       res.status(200).send(data);
+//     }
+//   });
+// });
 
+router.post('/sendotpverf',(req , res) => {
+  console.log(req.body);
 
-// })
+  let contactData = req.body;
+  let phoneVerify = new Phone(contactData);
+  phoneVerify.save((error, data) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.status(200).send(data);
+      console.log(data);
+    }
+ })
+
+  var options = {
+    "method": "POST",
+    "hostname": "control.msg91.com",
+    "port": null,
+    "path": "/api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&otp_expiry=1&otp=" + req.body.otp + "&mobile=" + req.body.phone,
+    "headers": {}
+  };
+  // /api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&otp_expiry=1&otp=" + req.body.phone + "&mobile=" + req.body.phone **** "path": "/api/sendotp.php?otp_length=4&authkey=267433AasRmmBdVC5c8a1c2b&message=Your verification code is&sender=ABCDEF&mobile=919677424386&otp=1234&otp_expiry=1440",
+  
+  var req = http.request(options, function (res) {
+    var chunks = [];
+
+    res.on("data", function (chunk) {
+      chunks.push(chunk);
+    });
+   
+    res.on("end", function () {
+      var body = Buffer.concat(chunks);
+      console.log(body.toString());
+    });
+  });
+
+  req.end();
+})
 
 module.exports = router;
