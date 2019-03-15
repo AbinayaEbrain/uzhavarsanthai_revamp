@@ -13,7 +13,11 @@ export class AdminDealsComponent implements OnInit {
   errMsg:any;
   p:any;
   constructor(private _dealsService:DealsService,public loadingCtrl: NgxSpinnerService
-  ) { }
+  ) {
+    for (let i = 1; i <= this.crdDeals.length; i++) {
+      this.crdDeals.push(`deal ${i}.0`);
+    }
+   }
 
   ngOnInit() {
 

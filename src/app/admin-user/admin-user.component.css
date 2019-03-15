@@ -1,11 +1,11 @@
 .bg {
   /* The image used */
-  background: url(../../assets/Images/admin.jpg);
+  /* background: url(../../assets/Images/admin.jpg); */
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-color: #999;
+  background-color: whitesmoke;
   min-height: 100vh;
   width: 100%;
 }
@@ -97,3 +97,59 @@ td {
 .error_word {
   font-family: 'Cabin', sans-serif;
 }
+.viewMoreBtn {
+  margin: auto;
+  font-weight: bold;
+  color: #0d4608;
+  border-color: #0d4608;
+  background-color: white;
+  padding: 5px;
+}
+.viewMoreBtn:hover {
+  background-color: #0d4608;
+  color: white;
+}
+.tamil_word {
+  font-family: 'Hind Madurai', sans-serif !important;
+}
+.btnClr {
+  border: 2px solid #0d4608;
+  color: #0d4608;
+  background-color: white;
+  font-weight: bolder;
+}
+
+.btnClr:hover {
+  background-color: #0d4608;
+  color: white;
+}
+
+.btnDanger {
+  border: 2px solid #dc3545;
+  color: #dc3545;
+  background-color: white;
+  font-weight: bolder;
+}
+
+.btnDanger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+/* @media screen and (min-width: 320px) and (max-width: 425px) {
+  .mobfontsze {
+    font-size: 20px;
+  }
+  .mobtblfont{
+    font-size: 12px;
+  }
+  .btnfntsize{
+    font-size: 10px;
+    margin-left: -17px;
+  }
+ .btnfntsize1{
+  font-size: 10px;
+  }
+  .mobfontsize{
+  font-size: 12px;
+  }
+} */

@@ -1,5 +1,5 @@
 .bg {
-  background-image: url('../../assets/Images/home.jpg');
+  background-image: url('https://heroku-support-production.s3.amazonaws.com/c8a8a45f-f013-4eed-85bb-0fe2de4e6be4%2F656d2539-6df8-4849-bf8a-792afc849d5e%2Fcc.jpg');
   height: -webkit-fill-available;
   background-position: center center;
   background-repeat: no-repeat;
@@ -14,17 +14,20 @@
 }
 
 .bg1 {
-  background-image: url('../../assets/Images/jjj.jpeg');
-  height: 150px;
-  width: 150px;
+  background-image: url('https://heroku-support-production.s3.amazonaws.com/c8a8a45f-f013-4eed-85bb-0fe2de4e6be4%2F656d2539-6df8-4849-bf8a-792afc849d5e%2Fcard.JPG');
+  height: 182px;
+  width: 182px;
+  border-radius: 10px;
+  background-position: center center;
+  background-size: cover;
 }
 
 .bg2 {
-  background-image: url('../../assets/Images/sell1.png');
-  height: 150px;
-  width: 150px;
+  background-image: url('https://heroku-support-production.s3.amazonaws.com/c8a8a45f-f013-4eed-85bb-0fe2de4e6be4%2F656d2539-6df8-4849-bf8a-792afc849d5e%2Fcar.JPG');
+  height: 182px;
+  width: 182px;
+  border-radius: 10px;
 }
-
 .slogan {
   font-weight: bold !important;
   color: white;
@@ -45,7 +48,16 @@
 
 @media only screen and (min-width: 320px) and (max-width: 425px) {
   .bg {
-    height: fit-content;
+    background-image: url('https://heroku-support-production.s3.amazonaws.com/c8a8a45f-f013-4eed-85bb-0fe2de4e6be4%2F656d2539-6df8-4849-bf8a-792afc849d5e%2Fmobile.JPG');
+    height: -webkit-fill-available;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+  }
+  .wellcomeHeading{
+    display: none;
   }
 }
 
@@ -53,6 +65,7 @@
   .bg {
     height: fit-content;
   }
+
 }
 .tamil_word {
   font-family: 'Hind Madurai', sans-serif;

@@ -80,12 +80,12 @@ export class DealsService {
 
   //deactivate account
   deactivateAccount(data, id) {
-    return this.http.put<any>(this.deactiveUrl + '/' + id, data);
+    return this.http.post<any>(this.deactiveUrl + '/' + id, data);
   }
 
   //activate account
   activateAccount(data, id) {
-    return this.http.put<any>(this.activeUrl + '/' + id, data);
+    return this.http.post<any>(this.activeUrl + '/' + id, data);
   }
 
   getCount(productName, productId, ipAddress) {

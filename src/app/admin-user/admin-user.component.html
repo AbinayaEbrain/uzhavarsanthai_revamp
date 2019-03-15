@@ -2,7 +2,7 @@
 <body class="bg" style="overflow: hidden;">
     <div class="container mt-5 pt-5">
         <button class="btn btn-success btn1 mb-2 button_word" routerLink="/admin">BACK</button>
-        <h4 class="text-center text-white mb-4" style="font-family: 'Oxygen', sans-serif;">Details of registered users</h4>
+        <h4 class="text-center mb-4 mobfontsze" style="font-family: 'Oxygen', sans-serif;color:#0d4608"><strong>Details of registered users</strong></h4>
         <div *ngIf="errMsg">
                 <p style="text-align: center;font-weight: bold;color:red" class="error_word">{{errMsg}}</p>
             </div>
@@ -17,7 +17,7 @@
   
                         <div class="fresh-table table-responsive">
                             <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                <thead style="text-align: center">
+                                <thead style="text-align: center; background-color: #0d460840;">
                                     <tr>
                                         <th>Name</th>
                                         <th>Phone Number</th>
@@ -28,25 +28,26 @@
                                     </tr>
                                 </thead>
                                 <tbody style="text-align: center">
-                                    <tr  id="dltHide" *ngFor="let deal of registerUser | paginate: { itemsPerPage:5,currentPage:p};">
-                                        <td>{{deal.firstname}} {{deal.lastName}}</td>
-                                        <td>{{deal.phone}}</td>
-                                        <td>{{deal.address.city.formatted_address}}</td>
-                                        <td>{{deal.address.city.locality}}</td>
+                                    <tr class="mobtblfont"  id="dltHide" *ngFor="let deal of registerUser | paginate: { itemsPerPage:6,currentPage:p};">
+                                        <td class="tamil_word">{{deal.firstname}} {{deal.lastName}}</td>
+                                        <td class="tamil_word">{{deal.phone}}</td>
+                                        <td class="tamil_word">{{deal.address.city.formatted_address}}</td>
+                                        <td class="tamil_word">{{deal.address.city.locality}}</td>
                                         <!-- <td>{{deal.address.city.admin_area_l1}}</td> -->
                                         <td style="font-weight: bold;" [ngStyle]="{'color':deal.status === 'ACTIVE' ? 'green' : 'red' }">{{deal.status}}</td>
                                         <td>
-                                            <button class="btn btn-simple btn-success button_word"  [ngStyle]="{'display':deal.status === 'ACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal2" data-backdrop="static"
+                                            <button class="btn btn-simple mobfontsize viewMoreBtn button_word" style="margin-top: 8px;"  [ngStyle]="{'display':deal.status === 'ACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal2" data-backdrop="static"
                                             data-keyboard="false"  routerLink="/admin-user/{{deal._id}}" >
                                                Active
                                             </button>
-                                            <button class="btn btn-simple btn-danger button_word" [ngStyle]="{'display':deal.status === 'DEACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
+                                            <div style="display: inline-flex;">
+                                            <button class="btn btn-simple  viewMoreBtn btnfntsize button_word" [ngStyle]="{'display':deal.status === 'DEACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
                                             data-keyboard="false"  routerLink="/admin-user/{{deal._id}}" >
                                               Deactive
-                                           </button>&nbsp;&nbsp;
-                                            <button class="btn btn-simple btn-warning btn-icon remove button_word" routerLink="/admin-view/{{deal._id}}">
+                                           </button>&nbsp;
+                                            <button class="btn btn-simple  btn-icon remove viewMoreBtn btnfntsize1 button_word" routerLink="/admin-view/{{deal._id}}">
                                               View
-                                           </button>
+                                           </button></div>
                                         </td> 
                             
                                     </tr>
@@ -66,7 +67,7 @@
           
         </div>
         <div class="mx-auto page mt-2">
-            <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+            <pagination-controls class="ngx-pagination" (pageChange)="p=$event" maxSize="5"></pagination-controls>
           </div>
 
     </div>
@@ -90,8 +91,8 @@
                         <p style="text-align: center;font-weight: bold;color:red" class="error_word">{{deactiveMsg}}</p>
                     </div>
                    
-           <button type="button" class="btn btn-primary button_word" (click)="deactiveAccount(data,id)" >Yes</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" class="btn btn-danger button_word" routerLink="/admin-user" data-dismiss="modal">No</button>
+           <button type="button" class="btn btnClr button_word" (click)="deactiveAccount(data,id)" >Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btnDanger  button_word" routerLink="/admin-user" data-dismiss="modal">No</button>
           </div>
         </div>
       
@@ -116,8 +117,8 @@
                 <div *ngIf="activeMsg">
                         <p style="text-align: center;font-weight: bold;color:green" class="error_word">{{activeMsg}}</p>
                     </div>
-           <button type="button" class="btn btn-primary"  (click)="activeAccount(data,id)" >Yes</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" class="btn btn-danger" routerLink="/admin-user" data-dismiss="modal">No</button>
+           <button type="button" class="btn btnClr "  (click)="activeAccount(data,id)" >Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btnDanger " routerLink="/admin-user" data-dismiss="modal">No</button>
           </div>
         </div>
       

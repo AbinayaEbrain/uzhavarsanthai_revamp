@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 declare var $: any;
-import * as moment from 'moment';
+// import * as moment from 'moment';
 
 @Component({
   selector: 'app-blog-view',
