@@ -80,3 +80,8 @@ ol {
     padding: 0.1875rem 0.25rem !important;
   }
 }
+@media only screen and (min-width: 320px) and (max-width: 375px) {
+  .ngx-pagination .current {
+    font-size: 50%;
+  }
+}

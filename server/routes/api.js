@@ -433,40 +433,38 @@ router.put('/category/:id', function(req, res) {
 });
 
 //Deactivate account
-router.put('/admin-user/deactive/:id', function(req, res) {
-  // console.log('Update a user');
-  // console.log(req.body)
-  User.findByIdAndUpdate(
-    req.params.id,
+router.post('/admin-user/deactive/:id', function(req, res) {
+  User.find(
     {
-      $set: { status: 'DEACTIVE' }
+      _id:req.params.id
     },
-    {
-      new: true
-    },
-    function(err, updatedUser) {
-      if (err) {
-        res.send('Error updating user');
-      } else {
-        res.json(updatedUser);
-      }
+    async (err,result) =>{
+      if(result.length > 0){
+        await User.update(
+          {
+            _id:req.params.id
+          },
+          {
+            $set: { status: 'DEACTIVE' }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'Status set'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      } 
+      await Post.update(
+        {
+          accountId:req.params.id
+        },
+        {
+          $set: { status: 'DEACTIVE' }
+        }
+      )
     }
-  ),
-  Post.update({
-    'accountId':req.params.id
-  },{
-    $set: { status: 'DEACTIVE' }
-  },
-  {
-    new: true
-  },
-  function(err, updatedUser) {
-    if (err) {
-      res.send('Error updating user');
-    } else {
-      res.json(updatedUser);
-    }
-  });
+  )
 });
 
 router.post(
@@ -488,41 +486,38 @@ router.post(
 );
 
 //activate account
-router.put('/admin-user/active/:id', function(req, res) {
-  //console.log('Update a user');
-  // console.log(req.body)
-  User.findByIdAndUpdate(
-    req.params.id,
+router.post('/admin-user/active/:id', function(req, res) {
+  User.find(
     {
-      $set: { status: 'ACTIVE' }
+      _id:req.params.id
     },
-    {
-      new: true
-    },
-    function(err, updatedUser) {
-      if (err) {
-        res.send('Error updating user');
-      } else {
-        res.json(updatedUser);
-      }
+    async (err,result) =>{
+      if(result.length > 0){
+        await User.update(
+          {
+            _id:req.params.id
+          },
+          {
+            $set: { status: 'ACTIVE' }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'Status set'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      } 
+      await Post.update(
+        {
+          accountId:req.params.id
+        },
+        {
+          $set: { status: 'ACTIVE' }
+        }
+      )
     }
-  ),
-  Post.update({
-    'accountId':req.params.id
-  },{
-    $set: { status: 'ACTIVE' }
-  },
-  {
-    new: true
-  },
-  function(err, updatedUser) {
-    if (err) {
-      res.send('Error updating user');
-    } else {
-       res.json(updatedUser);
-      // res.status(200).json({ message: 'Marked all messages as read',updatedUser });
-    }
-  });
+  )
 });
 
 router.post('/getCount', (req, res) => {

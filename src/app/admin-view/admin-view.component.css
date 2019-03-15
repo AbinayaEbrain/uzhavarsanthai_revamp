@@ -159,3 +159,9 @@ input {
 .clr{
   color: black
 }
+.prdUnavil{
+  text-align: center !important;
+     font-weight: bold;
+     color: red;
+     font-family: 'Mukta', sans-serif;
+}

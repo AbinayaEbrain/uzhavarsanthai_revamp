@@ -1,11 +1,11 @@
 .bg {
   /* The image used */
-  background: url(../../assets/Images/admin.jpg);
+  /* background: url(../../assets/Images/admin.jpg); */
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-color: #999;
+  background-color: whitesmoke;
   min-height: 100vh;
   width: 100%;
 }
@@ -105,7 +105,7 @@ input-placeholder {
 }
 
 .clr {
-  color: black;
+  color: white;
   font-family: 'Oxygen', sans-serif;
 }
 
@@ -141,4 +141,54 @@ input {
   background-color: white;
   font-weight: bold;
   border: none !important;
+}
+.viewMoreBtn {
+  margin: auto;
+  font-weight: bold;
+  color: #0d4608;
+  border-color: #0d4608;
+  background-color: white;
+}
+.viewMoreBtn:hover {
+  background-color: #0d4608;
+  color: white;
+}
+.btnClr {
+  border: 2px solid #0d4608;
+  color: #0d4608;
+  background-color: white;
+  font-weight: bolder;
+}
+
+.btnClr:hover {
+  background-color: #0d4608;
+  color: white;
+}
+
+.btnDanger {
+  border: 2px solid #dc3545;
+  color: #dc3545;
+  background-color: white;
+  font-weight: bolder;
+}
+
+.btnDanger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+@media screen and (min-width: 362px) and (max-width: 412px) {
+  .viewMoreBtn {
+    font-size: 13px;
+  }
+  .mobfont {
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 361px) {
+  .viewMoreBtn {
+    font-size: 10px;
+  }
+  .mobfont {
+    font-size: 10px;
+  }
 }
