@@ -19,10 +19,8 @@
   width: 182px;
   border-radius: 10px;
   background-position: center center;
-      background-size: cover;
-
+  background-size: cover;
 }
-
 .bg2 {
   background-image: url('../../assets/Images/car.jpg');
   height: 182px;
@@ -67,7 +65,7 @@
   .bg {
     height: fit-content;
   }
-  
+
 }
 .tamil_word {
   font-family: 'Hind Madurai', sans-serif;
