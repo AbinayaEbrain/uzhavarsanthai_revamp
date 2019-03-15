@@ -30,7 +30,7 @@
                             <span class="text-danger float-left"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="errormsg">{{errormsg}}</span>
                             <span class="text-danger float-left error_word" *ngIf="phnErr">{{phnErr}}</span>
                     </div>
-                    <button class="mb-2 btn2" type="submit" (click)="sendOtp()">Send OTP</button>
+                    <button class="mb-2 btn2" type="submit" [disabled]="!phoneObj.phone" (click)="sendOtp()">Send OTP</button>
                 </div>
 
                 <div id="secondDiv" class="mt-5" style="display: none">
