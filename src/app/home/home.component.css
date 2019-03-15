@@ -1,5 +1,5 @@
 .bg {
-  background-image: url('../../assets/Images/cc.jpg');
+  background-image: url("../../assets/Images/cc.jpg");
   height: -webkit-fill-available;
   background-position: center center;
   background-repeat: no-repeat;
@@ -14,7 +14,7 @@
 }
 
 .bg1 {
-  background-image: url('../../assets/Images/card.jpg');
+  background-image: url("../../assets/Images/card.jpg");
   height: 182px;
   width: 182px;
   border-radius: 10px;
@@ -23,7 +23,7 @@
 }
 
 .bg2 {
-  background-image: url('../../assets/Images/car.jpg');
+  background-image: url("../../assets/Images/car.jpg");
   height: 182px;
   width: 182px;
   border-radius: 10px;
@@ -48,7 +48,7 @@
 
 @media only screen and (min-width: 320px) and (max-width: 425px) {
   .bg {
-    background-image: url('../../assets/Images/mobile.jpg');
+    background-image: url("../../assets/Images/mobile.jpg");
     height: -webkit-fill-available;
     background-position: center center;
     background-repeat: no-repeat;
