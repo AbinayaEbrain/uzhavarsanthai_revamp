@@ -1,5 +1,5 @@
 .bg {
-  background-image: url('../../assets/Images/cc.jpg');
+  background-image: url('./homeimages/cc.jpg');
   height: -webkit-fill-available;
   background-position: center center;
   background-repeat: no-repeat;
@@ -14,7 +14,7 @@
 }
 
 .bg1 {
-  background-image: url('../../assets/Images/card.jpg');
+  background-image: url('./homeimages/card.jpg');
   height: 182px;
   width: 182px;
   border-radius: 10px;
@@ -22,7 +22,7 @@
   background-size: cover;
 }
 .bg2 {
-  background-image: url('../../assets/Images/car.jpg');
+  background-image: url('./homeimages/car.jpg');
   height: 182px;
   width: 182px;
   border-radius: 10px;
