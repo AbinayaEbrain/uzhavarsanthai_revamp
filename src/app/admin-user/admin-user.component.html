@@ -28,16 +28,15 @@
                                     </tr>
                                 </thead>
                                 <tbody style="text-align: center">
-                                    <tr class="mobtblfont"  id="dltHide" *ngFor="let deal of registerUser | paginate: { itemsPerPage:10,currentPage:p};">
+                                    <tr class="mobtblfont"  id="dltHide" *ngFor="let deal of registerUser | paginate: { itemsPerPage:6,currentPage:p};">
                                         <td class="tamil_word">{{deal.firstname}} {{deal.lastName}}</td>
                                         <td class="tamil_word">{{deal.phone}}</td>
-                                        <td class="tamil_word">
-                                            <span *ngIf="deal.address.city.formatted_address">{{deal.address.city.formatted_address}}</span><span *ngIf="!deal.address.city.formatted_address">{{deal.address.city.locality}}</span></td>
-                                        <!-- <td class="tamil_word">{{deal.address.city.locality}}</td> -->
+                                        <td class="tamil_word">{{deal.address.city.formatted_address}}</td>
+                                        <td class="tamil_word">{{deal.address.city.locality}}</td>
                                         <!-- <td>{{deal.address.city.admin_area_l1}}</td> -->
                                         <td style="font-weight: bold;" [ngStyle]="{'color':deal.status === 'ACTIVE' ? 'green' : 'red' }">{{deal.status}}</td>
                                         <td>
-                                            <button class="btn btn-simple mobfontsize viewMoreBtn button_word"  [ngStyle]="{'display':deal.status === 'ACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal2" data-backdrop="static"
+                                            <button class="btn btn-simple mobfontsize viewMoreBtn button_word" style="margin-top: 8px;"  [ngStyle]="{'display':deal.status === 'ACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal2" data-backdrop="static"
                                             data-keyboard="false"  routerLink="/admin-user/{{deal._id}}" >
                                                Active
                                             </button>
