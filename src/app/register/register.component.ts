@@ -24,7 +24,6 @@ export class RegisterComponent implements OnInit {
       city: {},
       location: ''
     },
-    gender: '',
     phone: '',
     privateIP: '',
     status: ''
@@ -56,7 +55,6 @@ export class RegisterComponent implements OnInit {
     public loadingCtrl: NgxSpinnerService,
     private http: HttpClient
   ) {
-    this.registeredUserData.gender = '';
     this.registeredUserData.address.location = '';
     this.registeredUserData.address.city = '';
   }
@@ -73,9 +71,12 @@ export class RegisterComponent implements OnInit {
   post() {
     this.registeredUserData.status = 'ACTIVE';
     this.registeredUserData.address.city = this.addr;
+    this.registeredUserData.phone = this.phoneObj.phone;
     this.loadingCtrl.show();
+    console.log(this.registeredUserData);
     this._auth.registerUser(this.registeredUserData).subscribe(
       res => {
+        console.log(res);
         this.loadingCtrl.hide();
         localStorage.setItem('token', res.token);
         localStorage.setItem('currentUser', JSON.stringify(res.user));
@@ -149,6 +150,14 @@ export class RegisterComponent implements OnInit {
       },
       err => {
         console.log(err);
+        if (err.statusText == 'Unauthorized') {
+          this.errormsg = 'Phone number already exist!';
+          setTimeout(() => {
+            this.errormsg = '';
+          }, 15000);
+
+          this.loadingCtrl.hide();
+        }
       }
     );
   }

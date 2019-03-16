@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('previousUrl', e[0].urlAfterRedirects);
       });
   }
+  
   logform() {
     this.loadingCtrl.show();
     this._auth.logInUser(this.userData).subscribe(

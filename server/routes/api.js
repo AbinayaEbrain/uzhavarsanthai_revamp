@@ -50,29 +50,24 @@ router.get('/', (req, res) => {
 router.post('/register', (req, res) => {
   let userData = req.body;
   let user = new User(userData);
-
-  User.findOne({ phone: userData.phone }, (err, exuser) => {
-    if (exuser == null) {
-      user.save((error, registeredUser) => {
-        if (error) {
-          console.log(error);
-        } else {
-          //jwt
-          let payload = { subject: registeredUser._id };
+  user.save((error, data) => {
+    if (error) {
+      console.log(error);
+    } else {
+      //  jwt
+          let payload = { subject: data._id };
           let token = jwt.sign(payload, 'secretKey');
 
           //before adding jwt
-          // res.status(200).send(registeredUser)
+         // res.status(200).send(registeredUser)
 
-          //after add jwt
-          //console.log(payload)
-          res.status(200).send({ token, payload, user });
-        }
-      });
-    } else {
-      res.status(401).send('Number already exist');
+         //after add jwt
+         //console.log(payload)
+      res.status(200).send({ token, payload, user });
+      // res.status(200).send(data);
+      console.log(token, payload, user);
     }
-  });
+ })
 });
 
 //postdeals
@@ -596,42 +591,49 @@ router.post('/getCount', (req, res) => {
 // });
 
 router.post('/sendotpverf',(req , res) => {
-  console.log(req.body);
-
   let contactData = req.body;
   let phoneVerify = new Phone(contactData);
-  phoneVerify.save((error, data) => {
-    if (error) {
-      console.log(error);
-    } else {
-      res.status(200).send(data);
-      console.log(data);
-    }
- })
 
-  var options = {
-    "method": "POST",
-    "hostname": "control.msg91.com",
-    "port": null,
-    "path": "/api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&otp_expiry=1&otp=" + req.body.otp + "&mobile=" + req.body.phone,
-    "headers": {}
-  };
-  // /api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&otp_expiry=1&otp=" + req.body.phone + "&mobile=" + req.body.phone **** "path": "/api/sendotp.php?otp_length=4&authkey=267433AasRmmBdVC5c8a1c2b&message=Your verification code is&sender=ABCDEF&mobile=919677424386&otp=1234&otp_expiry=1440",
-  
-  var req = http.request(options, function (res) {
-    var chunks = [];
+Phone.findOne({ phone: contactData.phone }, (err, exuser) => {
+  if (exuser == null) {
+    phoneVerify.save((error, registeredUser) => {
+      if (error) {
+        console.log(error);
+      } else {
+        //jwt
+        console.log(registeredUser);
+        res.status(200).send(registeredUser);
+      }
 
-    res.on("data", function (chunk) {
-      chunks.push(chunk);
+      var options = {
+        "method": "POST",
+        "hostname": "control.msg91.com",
+        "port": null,
+        "path": "/api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&otp_expiry=1&otp=" + contactData.otp + "&mobile=" + contactData.phone,
+        "headers": {}
+      };
+      // /api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&otp_expiry=1&otp=" + req.body.phone + "&mobile=" + req.body.phone **** "path": "/api/sendotp.php?otp_length=4&authkey=267433AasRmmBdVC5c8a1c2b&message=Your verification code is&sender=ABCDEF&mobile=919677424386&otp=1234&otp_expiry=1440",
+      
+      var req = http.request(options, function (res) {
+        var chunks = [];
+    
+        res.on("data", function (chunk) {
+          chunks.push(chunk);
+        });
+       
+        res.on("end", function () {
+          var body = Buffer.concat(chunks);
+          console.log(body.toString());
+        });
+      });
+    
+      req.end();
     });
-   
-    res.on("end", function () {
-      var body = Buffer.concat(chunks);
-      console.log(body.toString());
-    });
-  });
+  } else {
+    res.status(401).send('Number already exist');
+  }
+});
 
-  req.end();
 })
 
 module.exports = router;

@@ -4,8 +4,6 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   firstname: String,
-  lastName: String,
-  gender: String,
   address: {
     addressLine: String,
     address1: String,
@@ -22,6 +20,7 @@ const userSchema = new Schema({
   password: String,
   confirmPassword: String,
   privateIP: String,
+  phone: Number,
   status: String
 });
 
