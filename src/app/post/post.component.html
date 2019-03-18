@@ -84,8 +84,8 @@
                 <div class="col-md-5 mb-3">
                   <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">பொருளைப் பற்றி </span>/ Description</label>
                         <div class="form-group">
-                                <input type="text"  placeholder="Enter description"  #description="ngModel" [class.is-invalid]="description.invalid && description.touched" ngModel  [(ngModel)]="productData.description"  name="description" class="form-control"  autocomplete="off" maxlength="500" required>
-                                <span class="text-danger float-left error_word" [class.d-none] = "description.valid || description.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Description is required</span>
+                                <input type="text"  placeholder="Enter description"  #description="ngModel"  ngModel  [(ngModel)]="productData.description"  name="description" class="form-control"  autocomplete="off" maxlength="500" >
+                                <!-- <span class="text-danger float-left error_word" [class.d-none] = "description.valid || description.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Description is required</span> -->
                               </div>
               </div>
                 <div class="col-md-5 mb-3">
