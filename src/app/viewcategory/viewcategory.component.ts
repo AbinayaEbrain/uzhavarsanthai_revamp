@@ -28,6 +28,7 @@ export class ViewcategoryComponent implements OnInit {
   locationData: any;
   public showDeals = true;
   crdDeals = [];
+  crdCategory = [];
   totalDeals = [];
   id: any;
   errMsg: any;
@@ -85,12 +86,24 @@ export class ViewcategoryComponent implements OnInit {
   ngOnInit() {
     this.loadingCtrl.show();
     this.showDeals = true;
+    this._dealService.getCategory().subscribe(
+      res =>{
+        this.crdCategory = res;
+        this.id = this.route.snapshot.params['id'];
+        for (let i=0; i< this.crdCategory.length; i++){
+          if (this.crdCategory[i]._id == this.id){
+            this.getCategory = this.crdCategory[i].productCategory;
+          }
+        }
+      }
+    )
+   
     this._dealService.getDeals().subscribe(
       res => {
         let j = 0;
         this.crdDeals = res;
         this.showDeals = true;
-        this.id = this.route.snapshot.params['id'];
+        // this.id = this.route.snapshot.params['id'];
         let CurrentDate = new Date().toISOString();
         for (let i = 0; i < this.crdDeals.length; i++) {
           if (
@@ -99,7 +112,6 @@ export class ViewcategoryComponent implements OnInit {
             this.crdDeals[i].status == 'ACTIVE'
           ) {
             this.totalDeals[j] = this.crdDeals[i];
-            this.getCategory = this.totalDeals[j].category;
             this.getPrdtName = this.totalDeals[j].name;
             j++;
 
@@ -111,9 +123,9 @@ export class ViewcategoryComponent implements OnInit {
           this.errMsg = 'Currently no deals available';
           document.getElementById('hidePagination').style.display = 'none';
           document.getElementById('hideSearchDiv').style.display = 'none';
-          document.getElementById('hideSelectedCategory').style.display =
-            'none';
+          document.getElementById('hideSelectedCategory').style.display ='none';
           document.getElementById('hideFilterButton').style.display = 'none';
+          document.getElementById('hideSearchlocDiv').style.display = 'none';
           this.loadingCtrl.hide();
         }
 

@@ -145,7 +145,7 @@ export class PostComponent implements OnInit {
       this.postProduct();
     });
   }else{
-    this.productData.image = 'https://corp.sellerscommerce.com//SCAssets/images/noimage.png';
+    this.productData.image = 'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
     this.postProduct();
   }
   }

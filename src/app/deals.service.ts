@@ -27,18 +27,19 @@ export class DealsService {
   private activeUrl =
     'https://uzhavarsanthai.herokuapp.com/api/admin-user/active';
   private updateuserurl = 'https://uzhavarsanthai.herokuapp.com/api/updateuser';
-  // private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
-  private uploadUrl = 'http://localhost:5000/api/sendImage';
+ // private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
+ private uploadUrl = 'http://localhost:5000/api/sendImage';
   constructor(private http: HttpClient) {}
 
   sendImage(Image: FormData) {
-    return this.http.post(this.uploadUrl, Image).pipe(
-      timeout(2500),
-      retryWhen(errors => errors.pipe(delayWhen(val => timer(val * 1000)))),
-      take(2),
-      // concat(throwError('This is an error!')),
-      share()
-    );
+    return this.http.post(this.uploadUrl, Image)
+    // .pipe(
+    //   timeout(2500),
+    //   retryWhen(errors => errors.pipe(delayWhen(val => timer(val * 1000)))),
+    //   take(2),
+    //   // concat(throwError('This is an error!')),
+    //   share()
+    // );
   }
   getDeals() {
     return this.http.get<any>(this._dealsUrl);

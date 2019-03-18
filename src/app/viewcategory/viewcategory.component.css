@@ -111,7 +111,7 @@
   color: #0d4608;
   font-weight: bold;
   font-size: 20px;
-  background-color: white;
+  /* background-color: white; */
   width: fit-content;
   margin: auto;
   padding: 5px;
@@ -272,7 +272,7 @@ input {
     font-weight: bold;
     font-size: 18px;
     margin-top: 20% !important;
-    background-color: white;
+    /* background-color: white; */
     /* box-shadow: 7px 7px 7px grey; */
     border-radius: 5px;
   }
@@ -398,4 +398,7 @@ input {
 
 .imgRes {
   width: 354px;
+}
+.tamil_word{
+  font-family: 'Hind Madurai', sans-serif;
 }
