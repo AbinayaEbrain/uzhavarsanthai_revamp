@@ -10,6 +10,38 @@
   height: 105vh;
 }
 
+/* style glyph */
+.inner-addon .fa-eye-slash {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align glyph */
+.left-addon .fa-eye-slash {
+  left: 0px;
+}
+.right-addon .fa-eye-slash {
+  right: 15px;
+  margin-top: 31px;
+}
+
+/* add padding  */
+.left-addon input {
+  padding-left: 30px;
+}
+.right-addon input {
+  padding-right: 30px;
+}
+
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: 8px;
+  position: relative;
+  z-index: 2;
+}
+
 /* @media only screen and (min-width: 1023px) and (max-width: 1330px) {
   .bg {
     height: auto;

@@ -6,14 +6,15 @@ import { DealsService } from '../deals.service';
 import { filter, pairwise } from 'rxjs/operators';
 // loader
 import { NgxSpinnerService } from 'ngx-spinner';
+
+declare var $: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  @ViewChild('input1') inputEl:ElementRef;
+  @ViewChild('input1') inputEl: ElementRef;
   userData = {};
   errormsg;
   id: any;
@@ -50,7 +51,17 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('previousUrl', e[0].urlAfterRedirects);
       });
   }
-  
+
+  eyeClick() {
+    var temp = <HTMLInputElement>document.getElementById('password');
+    if (temp.type === 'password') {
+      temp.type = 'text';
+      document.getElementById('password1').classList.toggle('fa-eye-slash');
+    } else {
+      temp.type = 'password';
+    }
+  }
+
   logform() {
     this.loadingCtrl.show();
     this._auth.logInUser(this.userData).subscribe(
@@ -70,8 +81,7 @@ export class LoginComponent implements OnInit {
           if (this.wholedata === 'ACTIVE') {
             if (previousUrl1 == '/blog-view') {
               this.router.navigate(['/blog']);
-            } else 
-            {
+            } else {
               this.router.navigate(['/products']);
             }
           } else {
@@ -95,6 +105,11 @@ export class LoginComponent implements OnInit {
         }
       }
     );
+  }
+
+  toggle(){
+    document.getElementById('hideForm').style.display = 'none';
+    document.getElementById('showForm').style.display = 'block';
   }
 
   register() {
