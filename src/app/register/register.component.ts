@@ -105,7 +105,7 @@ export class RegisterComponent implements OnInit {
           this.errormsg = 'Phone number already exist!';
           setTimeout(() => {
             this.errormsg = '';
-          }, 15000);
+          }, 5000);
 
           this.loadingCtrl.hide();
         }
@@ -138,7 +138,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.phoneObj);
     let resultpath = this.phoneObj.phone;
     let OTP = '';
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 6; i++) {
       OTP += resultpath[Math.floor(Math.random() * 10)];
     }
     this.phoneObj.otp = OTP;

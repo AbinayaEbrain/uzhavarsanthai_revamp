@@ -13,7 +13,7 @@ export class AuthService {
   private _blogEditUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogedit';
   private _blogGetOneUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogetone';
   private _blogDeleteUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogdel';
-  private _sendOtp = 'https://uzhavarsanthai.herokuapp.com/api/sendotpverf';
+  private _sendOtp = 'http://localhost:5000/api/sendotpverf';
 
   constructor(private http: HttpClient, private route: Router) {}
 

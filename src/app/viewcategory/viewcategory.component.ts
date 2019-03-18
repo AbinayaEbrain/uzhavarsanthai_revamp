@@ -73,7 +73,7 @@ export class ViewcategoryComponent implements OnInit {
     console.log(this.privateIP);
     this.userdetails.searchqnty = '';
     this.showDeals = true;
-    console.log(this.totalDeals.length)
+    console.log(this.totalDeals.length);
     for (let i = 1; i <= this.totalDeals.length; i++) {
       this.totalDeals.push(`deal ${i}`);
     }
@@ -167,7 +167,7 @@ export class ViewcategoryComponent implements OnInit {
       }
     }
     this.showDeals = false;
-    document.getElementById('hidePagination1').style.display = 'block';
+    // document.getElementById('hidePagination1').style.display = 'block';
     document.getElementById('backToAll').style.display = 'block';
 
     if (this.totalDeals1.length == 0) {
@@ -181,8 +181,7 @@ export class ViewcategoryComponent implements OnInit {
 
   goToView(data) {
     let ip = JSON.parse(localStorage.getItem('privateIP'));
-    if (ip)
- {
+    if (ip) {
       this.privateIP = ip;
     }
     console.log(this.privateIP);
@@ -228,18 +227,21 @@ export class ViewcategoryComponent implements OnInit {
 
   getLocation() {
     this.totalDeals1 = [];
-    this.queryString = '';
-    console.log(this.addr.locality);
+    // this.queryString = '';
+    console.log(this.getLocationDeals);
     let j = 0;
     for (let i = 0; i < this.totalDeals.length; i++) {
-      if(this.addr.locality != undefined){
+      if (this.addr.locality != undefined) {
         if (this.addr.locality == this.totalDeals[i].avlPlace.locality) {
           this.totalDeals1[j] = this.totalDeals[i];
           this.errMsg1 = '';
           j++;
         }
-      }else{
-        if(this.addr.formatted_address == this.totalDeals[i].avlPlace.formatted_address){
+      } else {
+        if (
+          this.addr.formatted_address ==
+          this.totalDeals[i].avlPlace.formatted_address
+        ) {
           this.totalDeals1[j] = this.totalDeals[i];
           this.errMsg1 = '';
           j++;
@@ -247,18 +249,17 @@ export class ViewcategoryComponent implements OnInit {
       }
     }
     this.showDeals = false;
-    document.getElementById('hidePagination1').style.display = 'block';
+    // document.getElementById('hidePagination1').style.display = 'block';
     document.getElementById('backToAll').style.display = 'block';
 
     if (this.totalDeals1.length == 0) {
-      // console.log(this.addr.locality);
       // sweetAlert('Sorry!', 'Currently no product available', 'error');
       this.errMsg1 = 'locayion';
       this.errMsgSec = '';
       this.getLocationDeals = '';
       // this.showDeals = true;
     }
-    this.getLocationDeals = '';
+    this.addr.locality = '';
   }
 
   reset() {

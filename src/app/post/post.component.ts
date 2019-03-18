@@ -133,15 +133,21 @@ export class PostComponent implements OnInit {
   postImage() {
 
     this.loadingCtrl.show();
+    if(this.Image){
     var image = new FormData(); //FormData creation
     image.append('Image', this.Image);
     //Adding the image to the form data to be sent
+
     this._dealsService.sendImage(image).subscribe(res => {
       this.loadingCtrl.hide();
       // localStorage.setItem('Image', JSON.stringify(res));
       this.productData.image = res;
       this.postProduct();
     });
+  }else{
+    this.productData.image = 'https://corp.sellerscommerce.com//SCAssets/images/noimage.png';
+    this.postProduct();
+  }
   }
 
   postProduct() {

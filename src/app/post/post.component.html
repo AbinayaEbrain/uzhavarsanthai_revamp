@@ -100,16 +100,26 @@
               <div class="row">
                   <div class="col-md-1"></div>
                   <div class="col-md-3 mb-3">
-                            <div class="form-group">
+                      <div class="form-group">
+                          <div class="upload-btn-wrapper">
+                            <label for="ImageUpload" style="color:#0d4608;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;font-weight: bolder">Upload product image</label>
+                            <input type="file" id="Image" #Image="ngModel"  class="upload" (change)="onFileChange($event)" #fileInput
+                             ngModel  [(ngModel)]="productData.Image" name="Image" autocomplete="off" >
+                            <!-- <span class="text-danger float-left error_word" [class.d-none] = "Image.valid || Image.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Image is required</span> -->
+                            <!-- <input type="file" id="Image" name="Image" class="upload" (change)="onFileChange($event)" #fileInput required> -->
+                          </div>
+
+                     </div>
+                            <!-- <div class="form-group">
                                     <div class="upload-btn-wrapper">
                                       <label for="ImageUpload" style="color:#0d4608;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;font-weight: bolder">Upload product image</label>
                                       <input type="file" id="Image" #Image="ngModel" [class.is-invalid]="Image.invalid && Image.touched" class="upload" (change)="onFileChange($event)" #fileInput
                                        ngModel  [(ngModel)]="productData.Image" name="Image" autocomplete="off" required>
                                       <span class="text-danger float-left error_word" [class.d-none] = "Image.valid || Image.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Image is required</span>
-                                      <!-- <input type="file" id="Image" name="Image" class="upload" (change)="onFileChange($event)" #fileInput required> -->
+                                   
                                     </div>
 
-                               </div>
+                               </div> -->
                   </div>
                   <!-- <div class="col-md-1">
                         <button class="btn btn-outline-success text-center viewMoreBtn"  [disabled]="!this.Image">Upload</button>
