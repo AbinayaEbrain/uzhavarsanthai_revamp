@@ -399,3 +399,11 @@ input {
 .imgRes {
   width: 354px;
 }
+
+.viewAll{
+  padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    margin-top: -17px;
+}

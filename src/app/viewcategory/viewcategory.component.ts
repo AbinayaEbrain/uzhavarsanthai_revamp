@@ -228,7 +228,6 @@ export class ViewcategoryComponent implements OnInit {
   getLocation() {
     this.totalDeals1 = [];
     // this.queryString = '';
-    console.log(this.getLocationDeals);
     let j = 0;
     for (let i = 0; i < this.totalDeals.length; i++) {
       if (this.addr.locality != undefined) {
@@ -259,7 +258,22 @@ export class ViewcategoryComponent implements OnInit {
       this.getLocationDeals = '';
       // this.showDeals = true;
     }
+    if (this.addr.locality == '') {
+      this.errMsg1 = '';
+    }
+  }
+
+  adrsChange() {
+    if (this.getLocationDeals == '') {
+      this.showDeals = true;
+      this.reset2();
+    }
+  }
+
+  reset2() {
+    this.errMsg1 = '';
     this.addr.locality = '';
+    this.getLocationDeals = '';
   }
 
   reset() {
@@ -281,6 +295,7 @@ export class ViewcategoryComponent implements OnInit {
     this.errMsg1 = '';
     this.errMsg2 = '';
     this.errMsgSec = '';
+    this.getLocationDeals = '';
     document.getElementById('backToAll').style.display = 'none';
   }
 }
