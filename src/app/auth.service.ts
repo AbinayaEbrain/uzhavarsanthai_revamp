@@ -14,11 +14,22 @@ export class AuthService {
   private _blogGetOneUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogetone';
   private _blogDeleteUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogdel';
   private _sendOtp = 'https://uzhavarsanthai.herokuapp.com/api/sendotpverf';
+  private _forgotPwd = 'https://uzhavarsanthai.herokuapp.com/api/forgotPwd';
+  private _resetPasswordUrl =
+    'https://uzhavarsanthai.herokuapp.com/api/resetPassword';
 
   constructor(private http: HttpClient, private route: Router) {}
 
   sendOtp(data) {
     return this.http.post<any>(this._sendOtp, data);
+  }
+
+  forgotPassword(data) {
+    return this.http.post<any>(this._forgotPwd, data);
+  }
+
+  resetPassword(data, phone) {
+    return this.http.post<any>(this._resetPasswordUrl + '/' + phone, data);
   }
 
   registerUser(user) {

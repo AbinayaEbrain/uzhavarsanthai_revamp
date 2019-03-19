@@ -578,17 +578,57 @@ router.post('/getCount', (req, res) => {
   )
 });
 
-// router.post('/contact', (req, res) => {
-//   let contactData = req.body;
-//   let contact = new Contact(contactData);
-//   contact.save((error, data) => {
-//     if (error) {
-//       console.log(error);
-//     } else {
-//       res.status(200).send(data);
-//     }
-//   });
-// });
+// Forgot password
+
+router.post('/forgotPwd',(req , res) => {
+  let contactData = req.body;
+  let phoneVerify = new Phone(contactData);
+
+  Phone.find(
+    { 
+    phone: req.body.phone1
+   },
+   async (err, exuser) => {
+  if (exuser.length > 0) {
+   await Phone.update(
+      {
+        phone: contactData.phone1 
+      },
+      {
+        $set: { otp: contactData.otp }
+      }
+  )
+    res.status(200).json({ message: 'Updated '});
+     var options = {
+      "method": "POST",
+      "hostname": "control.msg91.com",
+      "port": null,
+      "path": "/api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&sender=UZHAVAN&otp_expiry=1&otp=" + contactData.otp + "&mobile=" + contactData.phone1,
+      "headers": {}
+    };
+    // /api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&otp_expiry=1&otp=" + req.body.phone + "&mobile=" + req.body.phone **** "path": "/api/sendotp.php?otp_length=4&authkey=267433AasRmmBdVC5c8a1c2b&message=Your verification code is&sender=ABCDEF&mobile=919677424386&otp=1234&otp_expiry=1440",
+    
+    var req = http.request(options, function (res) {
+      var chunks = [];
+  
+      res.on("data", function (chunk) {
+        chunks.push(chunk);
+      });
+     
+      res.on("end", function () {
+        var body = Buffer.concat(chunks);
+        console.log(body.toString());
+      });
+    });
+  
+    req.end();
+  }
+   else {
+    res.status(401).send('Please enter registered phone number');
+  }
+});
+
+})
 
 router.post('/sendotpverf',(req , res) => {
   let contactData = req.body;
@@ -601,7 +641,6 @@ Phone.findOne({ phone: contactData.phone }, (err, exuser) => {
         console.log(error);
       } else {
         //jwt
-        console.log(registeredUser);
         res.status(200).send(registeredUser);
       }
 
@@ -609,7 +648,7 @@ Phone.findOne({ phone: contactData.phone }, (err, exuser) => {
         "method": "POST",
         "hostname": "control.msg91.com",
         "port": null,
-        "path": "/api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&otp_expiry=1&otp=" + contactData.otp + "&mobile=" + contactData.phone,
+        "path": "/api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&sender=UZHAVAN&otp_expiry=1&otp=" + contactData.otp + "&mobile=" + contactData.phone,
         "headers": {}
       };
       // /api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&otp_expiry=1&otp=" + req.body.phone + "&mobile=" + req.body.phone **** "path": "/api/sendotp.php?otp_length=4&authkey=267433AasRmmBdVC5c8a1c2b&message=Your verification code is&sender=ABCDEF&mobile=919677424386&otp=1234&otp_expiry=1440",
@@ -633,7 +672,32 @@ Phone.findOne({ phone: contactData.phone }, (err, exuser) => {
     res.status(401).send('Number already exist');
   }
 });
-
 })
+
+router.post('/resetPassword/:phone',(req , res) =>{
+  User.find(
+    {
+      phone:req.params.phone
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await User.update(
+          {
+            phone:req.params.phone
+          },
+          {
+            $set: { password: req.body.confirmPassword }
+          }
+      )
+      .then(() =>{
+        res.status(200).json({ message: 'Changed password successfully!'});
+      })
+      .catch(err => {
+        res.status(500).json({ message: 'Error occured' });
+      });
+      } 
+    }
+  )
+}),
 
 module.exports = router;

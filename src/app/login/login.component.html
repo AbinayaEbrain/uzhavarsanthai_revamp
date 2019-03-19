@@ -26,7 +26,8 @@
               <div id="hideForm">
               <form #loginform="ngForm" *ngIf ="!submitted" novalidate>
                 <h5 class="h5 mb-4 mt-1 clr mobviewfonteng titilebold" style="text-align: center;"><span  class="tamil_word mobviewfontamil">உள் நுழைக </span> / Login</h5>
-           <div class="form-group mt-2">
+                <div class="alert alert-success text-center" *ngIf="message">{{message}}</div>
+                <div class="form-group mt-2">
                <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> தொலைபேசி எண் </span>/ Phone Number</label>
                     <input type="text"  #input1 #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" autofocus required>
                     <span class="text-danger float-left error_word" [class.d-none] = "phone.valid || phone.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone Number is required</span>
@@ -38,28 +39,74 @@
                   <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
                 </div>
 
-                <a (click)="toggle()">Forgot password?</a>
+                <a (click)="toggle()" style="cursor: pointer;text-decoration: underline">Forgot password?</a>
                 <button [disabled]="loginform.form.invalid " class="btn mt-4 mb-4 btn-block button_word" type="submit" (click)="logform()"><span style="font-size: 14px" class="tamil_word">உள் நுழைக </span> / Login</button>
               </form>
+              <p class="clr txtalign" style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>    
             </div>
 
-            <div id="showForm" style="display: none">
-              <form>
-                  <div class="form-group mt-2">
-                      <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> தொலைபேசி எண் </span>/ Phone Number</label>
-                           <input type="text"  #input1 #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" autofocus required>
-                           <span class="text-danger float-left error_word" [class.d-none] = "phone.valid || phone.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone Number is required</span>
-                    </div>
+            <div id="showForm" style="display: none" class="mt-2">
+                <h5 class="h5 mb-4 mt-1 clr mobviewfonteng titilebold" style="text-align: center;"><span  class="tamil_word mobviewfontamil">உள் நுழைக </span> / Login</h5>
+              <form> 
+                  <div class="form-group ">
+                      <label class="english_wrd" for="phone1"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
+                          <input type="tel"  #phone1="ngModel" [class.is-invalid]="phone1.invalid && phone1.touched" ngModel name="phone1" class="form-control" (change)="phnTen()" [(ngModel)]="phoneObj.phone1" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
+                          <div *ngIf="phone1.errors && (phone1.invalid && phone1.touched)">
+                              <span class="text-danger float-left error_word" *ngIf="phone1.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
+                          </div>
+                          <span class="text-danger float-left"  [class.d-none] = "phone1.invalid && phone1.touched" *ngIf="errormsg1">{{errormsg1}}</span>
+                          <span class="text-danger float-left error_word" *ngIf="phnErr">{{phnErr}}</span>
+                  </div>
+                  <button class=" mb-5 btn2" type="submit" [disabled]="!phoneObj.phone1" (click)="sendOtp()">Send OTP</button>
+            </form>
+            <p class="clr txtalign mt-5 pt-5" style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>    
+          </div>
+            
+              <div id="secondDiv" class="mt-2" style="display: none">
+                  <h5 class="h5 mb-4 mt-1 clr mobviewfonteng titilebold" style="text-align: center;"><span  class="tamil_word mobviewfontamil">உள் நுழைக </span> / Login</h5>
+                  <form>
+                    <div class="alert alert-success text-center" *ngIf="optsent">{{optsent}}</div>
+                <div class="text-center text-danger" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
+                <div class="form-group ">
+                    <label class="english_wrd" for="verifyPhone"><span style="font-size: 14px" class="tamil_word">Enter your OTP</span></label>
+                        <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone"  autocomplete="off" required>
+                </div>
+                <button class="mb-2 btn2" type="submit" id="verify" [disabled]="!verifyPhone1.verifyPhone" (click)="verifyOtp()">Verify OTP</button>
+                <a class="mb-2 resend" id="resend" style="display: none;" (click)="sendOtp()">Resend</a>
               </form>
-            </div>
+              <p class="clr txtalign mt-5 pt-5" style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>    
+              </div>
+
+              <div id="firstDiv" class="mt-2" style="display: none">
+                  <h5 class="h5 mb-4 mt-1 clr mobviewfonteng titilebold" style="text-align: center;"><span  class="tamil_word mobviewfontamil"></span>Create a new password</h5>
+                  <form>
+                      <div class="form-group">
+                          <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> கடவுச்சொல் </span>/ Password</label>
+                        <input type="password" id="resetPassword"  #resetPassword="ngModel" [class.is-invalid]="resetPassword.invalid && resetPassword.touched" ngModel name="resetPassword" class="form-control" [(ngModel)]="resetPasswordObj.resetPassword" autocomplete="off"  required>
+                        <span toggle="#resetPassword" id="resetPassword1" (click)="reseteyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        <span class="text-danger float-left error_word" [class.d-none] = "resetPassword.valid || resetPassword.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> உறுதிப்படுத்த </span>/ Confirm Password</label>
+                        <input type="password" id="confirmPassword" (keyup)="equalPwd()"  #confirmPassword="ngModel" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" ngModel name="confirmPassword" class="form-control" [(ngModel)]="resetPasswordObj.confirmPassword" autocomplete="off"  required>
+                        <span toggle="#confirmPassword" id="confirmPassword1" (click)="confirmeyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        <span class="text-danger float-left error_word" [class.d-none] = "confirmPassword.valid || confirmPassword.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
+                        <span class="text-danger float-left error_word" *ngIf="notEqual">{{notEqual}}</span>
+                      </div>
+
+                      <button class="mb-2 btn2" type="submit" id="reset" [disabled]="!resetPasswordObj" (click)="resetConPassword()">Reset password</button>
+
+              </form>
+              <p class="clr txtalign mt-5 pt-5" style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>    
+              </div>
      
-          <p class="clr  txtalign " style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>    
           </div>
       <div class="col-md-2">   </div>
-</div>
+      </div>
  
     </div>
     </div>
   </div>
 
-          </body>
+</body>

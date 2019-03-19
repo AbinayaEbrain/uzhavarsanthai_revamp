@@ -36,7 +36,7 @@
                 <div id="secondDiv" class="mt-5" style="display: none">
                     <div class="text-center text-danger" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
                     <div class="form-group ">
-                        <label class="english_wrd" for="phone"><span style="font-size: 14px" class="tamil_word">Enter OTP</span></label>
+                        <label class="english_wrd" for="phone"><span style="font-size: 14px" class="tamil_word">Enter your OTP</span></label>
                             <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone"  autocomplete="off" required>
                     </div>
                     <button class="mb-2 btn2" type="submit" id="verify" [disabled]="!verifyPhone1.verifyPhone" (click)="verifyOtp()">Verify OTP</button>
