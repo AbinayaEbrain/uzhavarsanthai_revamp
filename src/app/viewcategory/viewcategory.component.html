@@ -21,9 +21,13 @@
                  <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchlocDiv">
                     <div class="inner-addon left-addon" >
                             <i class="fa fa-search glyphicon" aria-hidden="true"></i>
-                            <input google-place type="text" class="form-control searchBorder"  [(ngModel)]="getLocationDeals" (onSelect)="setAddress($event)" placeholder="Search by location.." />
+                            <input google-place type="text" class="form-control searchBorder"  [(ngModel)]="getLocationDeals" (keyup)="adrsChange()" (onSelect)="setAddress($event)" placeholder="Search by location.." />
                         </div>
+                        
                  </div>
+                 <!-- <div class="col-md-1 one">
+                     <i class="fas fa-undo pt-2" style="display: none" id="backToAll" (click)="gotoBck()" ></i>
+                    </div> -->
                  <div class="stunning-header stunning-header-bg-green mt-5 mt-md-3 mb-md-0 mb-1 two" id="hideSelectedCategory">
                         <div class="stunning-header-content" >
                              <ul class="breadcrumbs" style=" list-style-type: none;cursor: pointer;color:#072304;margin-left: -25px;margin-bottom: -10px;">
@@ -36,8 +40,9 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4"></div>
-                <div class="col-md-4 mt-md-0 mt-2">
-                    <button class="btn btn-outline-success float-right text-center viewMoreBtn button_word" style="display: none" id="backToAll" (click)="gotoBck()"> View all</button>
+                <div class="col-md-4 mt-md-0 mt-1">
+                    <button class="btn btn-outline-success float-right text-center viewMoreBtn button_word viewAll" style="display: none" id="backToAll" (click)="gotoBck()">
+                         View all</button>
                 </div>
             </div>
 
@@ -129,7 +134,7 @@
                           </div>
             </div>
 
-            <div *ngIf="!showDeals" class="mt-2">
+            <div *ngIf="!showDeals" style="margin-top: -20px;">
                     <div class="mt-5" *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name'">
                             <div *ngIf="!errMsg1 && !errMsgSec">  
                                     <div *ngIf="deal === -1" style="margin-bottom: 6%">
