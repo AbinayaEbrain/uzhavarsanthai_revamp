@@ -128,7 +128,8 @@
        </div>
        </div> 
        </div> -->
-       <div class="card mt-5"  id="hideTable" >
+       <h5 class="mt-5 head">Posted products</h5>
+       <div class="card "  id="hideTable" >
           <div class="card-content">
             <div class="fresh-table table-responsive">
                   <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
@@ -144,7 +145,7 @@
                       </thead>
                       <tbody style="text-align: center">
                         <div *ngIf="errMsg">
-                          <span class="prdUnavil">{{errMsg}}</span>
+                          <span class="prdUnavil" colspan="7" style="text-align: center">{{errMsg}}</span>
                         </div>
                           <tr  id="hide" *ngFor = "let product of postProduct | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }" >
                               

@@ -40,10 +40,10 @@
 .card:nth-child(2) {
   margin: 0 50px;
 }
-.card:hover {
+/* .card:hover {
   top: -15px;
   box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
-}
+} */
 .viewMoreBtn {
   margin: auto;
   font-weight: bold;
@@ -401,4 +401,12 @@ input {
 }
 .tamil_word{
   font-family: 'Hind Madurai', sans-serif;
+}
+.zoom {
+  transition: transform .2s;
+}
+.zoom:hover {
+  -ms-transform: scale(1.1); 
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1); 
 }

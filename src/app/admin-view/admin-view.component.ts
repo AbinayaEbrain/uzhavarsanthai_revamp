@@ -75,7 +75,7 @@ export class AdminViewComponent implements OnInit {
         this.postLength = this.postProduct.length;
 
         if (this.postLength == 0) {
-          this.errMsg = 'No posts found';
+          this.errMsg = 'No post found';
         }
       },
       err => console.log(err)

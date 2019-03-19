@@ -42,6 +42,7 @@ export class CategoryComponent implements OnInit {
 
   onFileChange(event) { //Method to set the value of the file to the selected file by the user
     this.Image = event.target.files[0]; //To get the image selected by the user
+    console.log(this.Image);
     this.valid = true;
  }
 
@@ -110,8 +111,10 @@ export class CategoryComponent implements OnInit {
           // localStorage.setItem('Image', JSON.stringify(res));
           this.cateData.image = res;
           console.log(this.cateData.image)
+          this.addCategory();
        });
     }
+    
 
     updateImage(){
       this.loadingCtrl.show();
@@ -125,6 +128,7 @@ export class CategoryComponent implements OnInit {
           // localStorage.setItem('Image', JSON.stringify(res));
           this.deallistobj.image = res;
           console.log(this.deallistobj.image)
+          this.update();
        });
     }
     

@@ -124,8 +124,8 @@
 
                       <div class="upload-btn-wrapper">
                         <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
-                        <input type="file" id="Image" name="Image" class="upload"(change)="onFileChange($event)" #fileInput>
-                        <button class="btn" [disabled]="cateform.form.invalid " (click)="updateImage()" [disabled]="!this.Image">Upload</button>
+                        <input type="file" id="Image" #Image="ngModel" name="Image" class="upload"(change)="onFileChange($event)" #fileInput ngModel  [(ngModel)]="cateData.Image" autocomplete="off">
+                        <!-- <button class="btn" [disabled]="cateform.form.invalid " (click)="updateImage()" [disabled]="!this.Image">Upload</button> -->
                     </div>
                       <!-- Category Image
                       <label class="file-upload-container" for="file-upload" style="border: 2px solid green;padding: 5px;color: black">
@@ -139,7 +139,7 @@
                     </button>  -->
                       <div class="row">
                             <div class="col-md-6">
-                                    <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit" (click)="update()"  routerLink="category" data-dismiss="modal">Update</button>
+                                    <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit" (click)="updateImage()" routerLink="category" data-dismiss="modal">Update</button>
                             </div>
                     
                     <div class="col-md-6">
@@ -196,8 +196,8 @@
 
                          <div class="upload-btn-wrapper">
                             <label for="ImageUpload" style="color:white;float: left;font-family: 'Mukta', sans-serif;font-size: 17px;">Upload product image</label>
-                            <input type="file" id="Image" name="Image" class="upload"(change)="onFileChange($event)" #fileInput>
-                            <button class="btn" [disabled]="cateform.form.invalid " (click)="postImage()" [disabled]="!this.Image">Upload</button>
+                            <input type="file" id="Image" #Image="ngModel" name="Image" class="upload"(change)="onFileChange($event)" #fileInput ngModel  [(ngModel)]="cateData.Image" autocomplete="off">
+                            <!-- <button class="btn" [disabled]="cateform.form.invalid " (click)="postImage()" [disabled]="!this.Image">Upload</button> -->
                         </div>
                        
                             <!-- Category Image
@@ -212,7 +212,7 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit" (click)="addCategory()">Add Category</button>
+                            <button [disabled]="cateform.form.invalid " id="submitBtn" class="btn mt-3 mb-5 btn-block" type="submit" (click)="postImage()">Add Category</button>
                         </div>
                         <div class="col-md-6">
                             <button  class="btn mt-3 mb-5 btn-block" type="reset" routerLink="/admin">Reset</button>
