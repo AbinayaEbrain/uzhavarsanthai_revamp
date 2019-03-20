@@ -73,6 +73,9 @@ router.post('/register', (req, res) => {
 //postdeals
 
 router.post('/post', (req, res) => {
+  let aaa = req.body.name;
+  let name = aaa.toLowerCase();
+  req.body.name = name.charAt(0).toUpperCase() + name.slice(1);
   let userData = req.body;
   let user = new Post(userData);
   user.save((error, productData) => {

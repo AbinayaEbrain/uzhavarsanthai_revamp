@@ -79,9 +79,12 @@ export class LoginComponent implements OnInit {
     var temp = <HTMLInputElement>document.getElementById('password');
     if (temp.type === 'password') {
       temp.type = 'text';
-      document.getElementById('password1').classList.toggle('fa-eye-slash');
+      document.getElementById('password1').classList.remove("fa-eye");
+      document.getElementById('password1').classList.add('fa-eye-slash');
     } else {
       temp.type = 'password';
+      document.getElementById('password1').classList.remove("fa-eye-slash");
+      document.getElementById('password1').classList.add('fa-eye');
     }
   }
 
@@ -89,11 +92,12 @@ export class LoginComponent implements OnInit {
     var temp = <HTMLInputElement>document.getElementById('resetPassword');
     if (temp.type === 'password') {
       temp.type = 'text';
-      document
-        .getElementById('resetPassword1')
-        .classList.toggle('fa-eye-slash');
+      document.getElementById('resetPassword1').classList.remove("fa-eye");
+      document.getElementById('resetPassword1').classList.add('fa-eye-slash');
     } else {
       temp.type = 'password';
+      document.getElementById('resetPassword1').classList.remove("fa-eye-slash");
+      document.getElementById('resetPassword1').classList.add('fa-eye');
     }
   }
 
@@ -101,11 +105,12 @@ export class LoginComponent implements OnInit {
     var temp = <HTMLInputElement>document.getElementById('confirmPassword');
     if (temp.type === 'password') {
       temp.type = 'text';
-      document
-        .getElementById('confirmPassword1')
-        .classList.toggle('fa-eye-slash');
+      document.getElementById('confirmPassword1').classList.remove("fa-eye");
+      document.getElementById('confirmPassword1').classList.add('fa-eye-slash');
     } else {
       temp.type = 'password';
+      document.getElementById('confirmPassword1').classList.remove("fa-eye-slash");
+      document.getElementById('confirmPassword1').classList.add('fa-eye');
     }
   }
 
