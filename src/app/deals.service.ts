@@ -32,12 +32,7 @@ export class DealsService {
   constructor(private http: HttpClient) {}
 
   sendImage(Image: FormData) {
-<<<<<<< HEAD
-    return this.http.post(this.uploadUrl, Image)
-    .pipe(
-=======
     return this.http.post(this.uploadUrl, Image).pipe(
->>>>>>> 4783d613063917140435573637eeda2237c2acc6
       timeout(2500),
       retryWhen(errors => errors.pipe(delayWhen(val => timer(val * 1000)))),
       take(2),
