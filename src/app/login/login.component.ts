@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Router, RoutesRecognized } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -15,6 +16,7 @@ declare var $: any;
 })
 export class LoginComponent implements OnInit {
   @ViewChild('input1') inputEl: ElementRef;
+  @ViewChild('loginform') mytemplateForm: NgForm;
   userData = {};
   errormsg;
   id: any;
@@ -23,6 +25,16 @@ export class LoginComponent implements OnInit {
   deactiveErrorMsg: any;
   submitted: boolean;
   previousUrl: string;
+  phoneObj: any = {};
+  phnErr: any;
+  verifyPhone: any;
+  verifyPhone1: any = {};
+  errMsgVerfi: any;
+  errormsg1: any;
+  resetPasswordObj: any = {};
+  notEqual: any;
+  optsent: any;
+  message: any;
 
   constructor(
     private router: Router,
@@ -52,6 +64,17 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  phnTen() {
+    if (this.phoneObj.phone1.length !== 10) {
+      //alert(this.registeredUserData.phone.length)
+      this.phnErr = 'Phone number must be 10 digits';
+      setTimeout(() => {
+        this.phnErr = '';
+      }, 3000);
+      //alert(this.phnErr)
+    }
+  }
+
   eyeClick() {
     var temp = <HTMLInputElement>document.getElementById('password');
     if (temp.type === 'password') {
@@ -60,6 +83,64 @@ export class LoginComponent implements OnInit {
     } else {
       temp.type = 'password';
     }
+  }
+
+  reseteyeClick() {
+    var temp = <HTMLInputElement>document.getElementById('resetPassword');
+    if (temp.type === 'password') {
+      temp.type = 'text';
+      document
+        .getElementById('resetPassword1')
+        .classList.toggle('fa-eye-slash');
+    } else {
+      temp.type = 'password';
+    }
+  }
+
+  confirmeyeClick() {
+    var temp = <HTMLInputElement>document.getElementById('confirmPassword');
+    if (temp.type === 'password') {
+      temp.type = 'text';
+      document
+        .getElementById('confirmPassword1')
+        .classList.toggle('fa-eye-slash');
+    } else {
+      temp.type = 'password';
+    }
+  }
+
+  equalPwd() {
+    let value = this.resetPasswordObj.resetPassword;
+    console.log(value);
+    let value1 = this.resetPasswordObj.confirmPassword;
+    console.log(value1);
+    if (value != value1) {
+      this.notEqual = "Password doesn't match";
+      // setTimeout(() => {
+      //   this.notEqual = '';
+      // }, 3000);
+    } else {
+      this.notEqual = '';
+    }
+  }
+
+  resetConPassword() {
+    this._auth
+      .resetPassword(this.resetPasswordObj, this.phoneObj.phone1)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.message = res.message;
+          setTimeout(() => {
+            this.message = '';
+          }, 3000);
+          document.getElementById('firstDiv').style.display = 'none';
+          document.getElementById('hideForm').style.display = 'block';
+        },
+        err => {
+          console.log(err);
+        }
+      );
   }
 
   logform() {
@@ -107,12 +188,63 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  toggle(){
+  toggle() {
+    this.mytemplateForm.reset();
     document.getElementById('hideForm').style.display = 'none';
     document.getElementById('showForm').style.display = 'block';
   }
 
   register() {
     this.router.navigate(['/register']);
+  }
+
+  sendOtp() {
+    if (this.errMsgVerfi) {
+      this.errMsgVerfi = '';
+    }
+    console.log(this.phoneObj);
+    let resultpath = this.phoneObj.phone1;
+    let OTP = '';
+    for (let i = 0; i < 6; i++) {
+      OTP += resultpath[Math.floor(Math.random() * 10)];
+    }
+    this.phoneObj.otp = OTP;
+    this._auth.forgotPassword(this.phoneObj).subscribe(
+      res => {
+        console.log(res);
+        if (this.errormsg1) {
+          this.errormsg1 = '';
+        }
+        this.optsent = 'OTP has been sent successfully!';
+        setTimeout(() => {
+          this.optsent = '';
+        }, 3000);
+        document.getElementById('showForm').style.display = 'none';
+        document.getElementById('secondDiv').style.display = 'block';
+      },
+      err => {
+        console.log(err);
+        if (err.statusText == 'Unauthorized') {
+          this.errormsg1 = 'Please enter registered phone number!';
+          setTimeout(() => {
+            this.errormsg1 = '';
+          }, 7000);
+        }
+        this.loadingCtrl.hide();
+      }
+    );
+  }
+
+  verifyOtp() {
+    console.log(this.phoneObj.otp);
+    if (this.verifyPhone1.verifyPhone == this.phoneObj.otp) {
+      document.getElementById('secondDiv').style.display = 'none';
+      document.getElementById('firstDiv').style.display = 'block';
+    } else {
+      this.errMsgVerfi = 'You have entered invalid OTP';
+      // document.getElementById('verify').style.display = 'none';
+      document.getElementById('resend').style.display = 'block';
+      this.verifyPhone1.verifyPhone = '';
+    }
   }
 }
