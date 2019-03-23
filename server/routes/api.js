@@ -637,7 +637,7 @@ router.post('/sendotpverf',(req , res) => {
   let contactData = req.body;
   let phoneVerify = new Phone(contactData);
 
-Phone.findOne({ phone: contactData.phone }, (err, exuser) => {
+User.findOne({ phone: contactData.phone }, (err, exuser) => {
   if (exuser == null) {
     phoneVerify.save((error, registeredUser) => {
       if (error) {

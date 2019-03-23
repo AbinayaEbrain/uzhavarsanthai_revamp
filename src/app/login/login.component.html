@@ -26,7 +26,7 @@
               <div id="hideForm">
               <form #loginform="ngForm" *ngIf ="!submitted" novalidate>
                 <h5 class="h5 mb-4 mt-1 clr mobviewfonteng titilebold" style="text-align: center;"><span  class="tamil_word mobviewfontamil">உள் நுழைக </span> / Login</h5>
-                <div class="alert alert-success text-center" *ngIf="message">{{message}}</div>
+                <div class="alert alert-success text-center" *ngIf="message"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{message}}</div>
                 <div class="form-group mt-2">
                <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> தொலைபேசி எண் </span>/ Phone Number</label>
                     <input type="text"  #input1 #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" autofocus required>
@@ -54,10 +54,10 @@
                           <div *ngIf="phone1.errors && (phone1.invalid && phone1.touched)">
                               <span class="text-danger float-left error_word" *ngIf="phone1.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
                           </div>
-                          <span class="text-danger float-left"  [class.d-none] = "phone1.invalid && phone1.touched" *ngIf="errormsg1">{{errormsg1}}</span>
+                          <span class="text-danger float-left mb-2"  [class.d-none] = "phone1.invalid && phone1.touched" *ngIf="errormsg1">{{errormsg1}}</span>
                           <span class="text-danger float-left error_word" *ngIf="phnErr">{{phnErr}}</span>
                   </div>
-                  <button class=" mb-5 btn2" type="submit" [disabled]="!phoneObj.phone1" (click)="sendOtp()">Send OTP</button>
+                  <button class=" mb-5 btn2" type="submit" [disabled]="!phoneObj.phone1" (click)="sendOtp()">Get OTP</button>
             </form>
             <p class="clr txtalign mt-5 pt-5" style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>    
           </div>
@@ -65,7 +65,7 @@
               <div id="secondDiv" class="mt-2" style="display: none">
                   <h5 class="h5 mb-4 mt-1 clr mobviewfonteng titilebold" style="text-align: center;"><span  class="tamil_word mobviewfontamil">உள் நுழைக </span> / Login</h5>
                   <form>
-                    <div class="alert alert-success text-center" *ngIf="optsent">{{optsent}}</div>
+                    <div class="alert alert-success text-center" *ngIf="optsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{optsent}}</div>
                 <div class="text-center text-danger" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
                 <div class="form-group ">
                     <label class="english_wrd" for="verifyPhone"><span style="font-size: 14px" class="tamil_word">Enter your OTP</span></label>
@@ -79,6 +79,7 @@
 
               <div id="firstDiv" class="mt-2" style="display: none">
                   <h5 class="h5 mb-4 mt-1 clr mobviewfonteng titilebold" style="text-align: center;"><span  class="tamil_word mobviewfontamil"></span>Create a new password</h5>
+                  <div class="alert alert-success text-center" *ngIf="verifymsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{verifymsg}}</div>
                   <form>
                       <div class="form-group">
                           <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> கடவுச்சொல் </span>/ Password</label>

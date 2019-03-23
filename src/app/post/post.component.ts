@@ -74,6 +74,7 @@ export class PostComponent implements OnInit {
   files: any;
   url: '';
   today: Date;
+  currentuserAddress: any;
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -93,7 +94,7 @@ export class PostComponent implements OnInit {
     public zone: NgZone
   ) {
     this.privateIP = ClientIP;
-    console.log(this.privateIP)
+    console.log(this.privateIP);
 
     // this.http.get('https://api.ipify.org?format=json').subscribe(data => {
     //   this.publicIP = data['ip'];
@@ -109,13 +110,17 @@ export class PostComponent implements OnInit {
   onFileChange(event) {
     //Method to set the value of the file to the selected file by the user
     this.Image = event.target.files[0];
-    console.log(this.Image.name)//To get the image selected by the user
+    console.log(this.Image.name); //To get the image selected by the user
     this.valid = true;
   }
 
   ngOnInit() {
     this.loadingCtrl.show();
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
+    this.productData.avlPlace = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).address.city.formatted_address;
+    console.log(this.productData.avlPlace);
     //category
     this.today = new Date();
     this._dealsService.getCategory().subscribe(
@@ -131,23 +136,23 @@ export class PostComponent implements OnInit {
   }
 
   postImage() {
-
     this.loadingCtrl.show();
-    if(this.Image){
-    var image = new FormData(); //FormData creation
-    image.append('Image', this.Image);
-    //Adding the image to the form data to be sent
+    if (this.Image) {
+      var image = new FormData(); //FormData creation
+      image.append('Image', this.Image);
+      //Adding the image to the form data to be sent
 
-    this._dealsService.sendImage(image).subscribe(res => {
-      this.loadingCtrl.hide();
-      // localStorage.setItem('Image', JSON.stringify(res));
-      this.productData.image = res;
+      this._dealsService.sendImage(image).subscribe(res => {
+        this.loadingCtrl.hide();
+        // localStorage.setItem('Image', JSON.stringify(res));
+        this.productData.image = res;
+        this.postProduct();
+      });
+    } else {
+      this.productData.image =
+        'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
       this.postProduct();
-    });
-  }else{
-    this.productData.image = 'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
-    this.postProduct();
-  }
+    }
   }
 
   postProduct() {

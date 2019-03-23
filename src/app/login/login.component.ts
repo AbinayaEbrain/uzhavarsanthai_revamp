@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
   notEqual: any;
   optsent: any;
   message: any;
+  verifymsg:any;
 
   constructor(
     private router: Router,
@@ -243,6 +244,10 @@ export class LoginComponent implements OnInit {
   verifyOtp() {
     console.log(this.phoneObj.otp);
     if (this.verifyPhone1.verifyPhone == this.phoneObj.otp) {
+      this.verifymsg = "Your otp has been verified!";
+      setTimeout(() => {
+        this.verifymsg = '';
+      }, 3000);
       document.getElementById('secondDiv').style.display = 'none';
       document.getElementById('firstDiv').style.display = 'block';
     } else {

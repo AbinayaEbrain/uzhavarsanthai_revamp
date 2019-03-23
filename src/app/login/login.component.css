@@ -43,6 +43,7 @@
   float: right;
   border-radius: 4px;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .btn2:hover {
