@@ -148,9 +148,9 @@ export class RegisterComponent implements OnInit {
       res => {
         console.log(res);
         this.optsent = 'OTP has been sent successfully!';
-        // setTimeout(() => {
-        //   this.optsent = '';
-        // }, 3000);
+        setTimeout(() => {
+          this.optsent = '';
+        }, 3000);
         document.getElementById('firstDiv').style.display = 'none';
         document.getElementById('secondDiv').style.display = 'block';
       },

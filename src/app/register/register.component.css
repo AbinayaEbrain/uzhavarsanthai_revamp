@@ -211,6 +211,9 @@ input {
 .greetmsg {
   display: none;
 }
+.mobpara {
+  margin-top: 0%;
+}
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .sent_font {
     font-size: 15px;
@@ -226,6 +229,9 @@ input {
   }
   .onmobhide {
     display: none;
+  }
+  .mobpara {
+    margin-top: 35%;
   }
 }
 .titilebold {

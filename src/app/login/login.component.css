@@ -40,7 +40,7 @@
   border: none;
   color: #0d4608;
   font-weight: 600;
-  float: right;
+  /* float: right; */
   border-radius: 4px;
   background-color: transparent;
   cursor: pointer;
