@@ -15,8 +15,8 @@ export class AuthService {
   private _blogDeleteUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogdel';
   private _sendOtp = 'https://uzhavarsanthai.herokuapp.com/api/sendotpverf';
   private _forgotPwd = 'https://uzhavarsanthai.herokuapp.com/api/forgotPwd';
-  private _resetPasswordUrl =
-    'https://uzhavarsanthai.herokuapp.com/api/resetPassword';
+  private _resetPasswordUrl ='https://uzhavarsanthai.herokuapp.com/api/resetPassword';
+  private _devicedataeUrl = "https://uzhavarsanthai.herokuapp.com/api/getdevicedata";
 
   constructor(private http: HttpClient, private route: Router) {}
 
@@ -71,6 +71,9 @@ export class AuthService {
     if (role == 'Admin') {
       return !!role;
     }
+  }
+  deviceData(data){
+    return this.http.post<any>(this._devicedataeUrl,data)
   }
 
   findActive() {

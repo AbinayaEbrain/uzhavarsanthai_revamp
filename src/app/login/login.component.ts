@@ -140,6 +140,7 @@ export class LoginComponent implements OnInit {
           setTimeout(() => {
             this.message = '';
           }, 3000);
+          this.phoneObj.phone1 = '';
           document.getElementById('firstDiv').style.display = 'none';
           document.getElementById('hideForm').style.display = 'block';
         },
@@ -221,6 +222,7 @@ export class LoginComponent implements OnInit {
         if (this.errormsg1) {
           this.errormsg1 = '';
         }
+        // this.phoneObj.phone1 = '';
         this.optsent = 'OTP has been sent successfully!';
         setTimeout(() => {
           this.optsent = '';

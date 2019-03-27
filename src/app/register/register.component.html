@@ -1,4 +1,4 @@
-<body class="bg1" style="overflow: hidden;">
+<body class="bg1" style="overflow-x:hidden">
     <div class="container" style="margin-top: 10%">
       <div class="row mt-5">
             <div class="col-md-6">
@@ -29,7 +29,7 @@
                             <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
                                 <span class="text-danger float-left error_word" *ngIf="phone.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
                             </div>
-                           <span class="text-danger float-left mmb-3"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="errormsg">{{errormsg}}
+                           <span class="text-danger float-left mb-3 errfont"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="errormsg">{{errormsg}}
                                <span style="color: #0d4608"> Please <span style="text-decoration: underline;cursor: pointer;" routerLink="/login">login</span> </span> </span>
                             <span class="text-danger float-left error_word" *ngIf="phnErr"><i class="fa fa-info-circle" aria-hidden="true"></i> {{phnErr}}</span>
                     </div>
@@ -70,7 +70,7 @@
                               <input google-place type="text" placeholder=""  class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="registeredUserData.address.city" required>
                               <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
                       </div>
-                       <div class="form-group mt-2">
+                       <div class="form-group">
                            <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word">கடவுச்சொல் </span>/ Password</label>
                               <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
                             <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>

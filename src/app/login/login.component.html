@@ -1,4 +1,4 @@
-<body class="bg" style="overflow: hidden;">
+<body class="bg" style="overflow-x:hidden">
   <div class="container mt-5 pt-1">
       <h2 class="mt-5 pt-5 d-sm-block clr sent_font text-center tamil_word">உழவு என்பது தொழில் மட்டுமல்ல <br class="greetmsg"> - அது உயிரின் ஆதாரம்
       </h2>
@@ -84,7 +84,7 @@
               <div id="firstDiv" class="mt-2" style="display: none">
                   <h5 class="h5 mb-4 mt-1 clr mobviewfonteng titilebold" style="text-align: center;"><span  class="tamil_word mobviewfontamil"></span>Create a new password</h5>
                   <div class="alert alert-success text-center" *ngIf="verifymsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{verifymsg}}</div>
-                  <form>
+                  <form  #resetForm="ngForm" *ngIf ="!submitted" novalidate>
                       <div class="form-group">
                           <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> கடவுச்சொல் </span>/ Password</label>
                         <input type="password" id="resetPassword"  #resetPassword="ngModel" [class.is-invalid]="resetPassword.invalid && resetPassword.touched" ngModel name="resetPassword" class="form-control" [(ngModel)]="resetPasswordObj.resetPassword" autocomplete="off"  required>
@@ -100,7 +100,7 @@
                         <span class="text-danger float-left error_word" *ngIf="notEqual">{{notEqual}}</span>
                       </div>
                       <div style="text-align: center;" >
-                      <button class="mb-2 btn2" type="submit" id="reset" [disabled]="!resetPasswordObj" (click)="resetConPassword()">Reset password</button>
+                      <button class="mb-2 btn2" type="submit" id="reset" [disabled]="notEqual" (click)="resetConPassword()">Reset password</button>
                     </div>
               </form>
               <p class="clr txtalign mt-3 " style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>    

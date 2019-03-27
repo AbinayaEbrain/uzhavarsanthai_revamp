@@ -243,3 +243,8 @@ input {
   text-decoration: underline !important;
   font-weight: 600 !important;
 }
+@media screen and (min-width: 320px) and (max-width: 374px) {
+  .errfont {
+    font-size: 13px !important;
+  }
+}

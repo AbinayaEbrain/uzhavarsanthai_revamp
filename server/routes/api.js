@@ -8,6 +8,7 @@ const Blog = require('../models/blog')
 const Contact = require('../models/contact');
 const Count = require('../models/viewCount');
 const Phone = require('../models/phone');
+const Device = require('../models/devicedata');
 const mongoose = require('mongoose')
 var multer = require('multer');
 const cloudinary = require('cloudinary');
@@ -701,6 +702,32 @@ router.post('/resetPassword/:phone',(req , res) =>{
       } 
     }
   )
-}),
+});
+
+//get device data
+router.post('/getdevicedata', (req, res) => {
+  Device.find(
+    {
+      deviceId:req.body.deviceId
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        console.log("ALready exist");
+      }else{
+        console.log(req.body);
+        let device = req.body;
+        let deviceData = new Device(device);
+        deviceData.save((error, data) => {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log(data);
+            res.status(200).send(data);
+          }
+        });
+      }
+    }
+  )
+});
 
 module.exports = router;
