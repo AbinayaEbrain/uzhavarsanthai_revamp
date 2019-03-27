@@ -9,8 +9,8 @@ const devicedataSchema = new Schema({
   deviceSerial: String,
   deviceModal: String,
   deviceVersion: String,
-  deviceLatitute: String,
-  deviceLongtitute: String
+  deviceLatitute: Number,
+  deviceLongtitute: Number
 });
 
 module.exports = mongoose.model('devicedata', devicedataSchema, 'devicedata');
