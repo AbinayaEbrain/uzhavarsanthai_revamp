@@ -36,6 +36,8 @@ import { AgmCoreModule } from '@agm/core';
 import { GooglePlacesDirective } from './google-places.directive';
 //datepicker
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+// carousal
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 //file upload
 import { FileUploadModule } from 'ng2-file-upload';
@@ -74,7 +76,7 @@ import { ReadMoreComponent } from './read-more/read-more.component';
     ContactComponent,
     BlogComponent,
     BlogViewComponent,
-    ReadMoreComponent
+    ReadMoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +89,7 @@ import { ReadMoreComponent } from './read-more/read-more.component';
     FileUploadModule,
     BsDatepickerModule,
     SweetAlert2Module,
+    SlickCarouselModule,
     BsDatepickerModule.forRoot(),
   ],
   providers: [

@@ -9,7 +9,7 @@
   min-height: 700px;
 }
 .card {
-  margin-top: 5% !important;
+  margin-top: -2% !important;
   border-radius: 8px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
   overflow: hidden;
@@ -109,7 +109,7 @@ select {
 }
 
 .form-control {
-  border-bottom: 1px solid #0d4608 !important;
+  border: 1px solid #0d4608 !important;
   font-family: 'Hind Madurai', sans-serif ;
   font-family: 'Mukta', sans-serif ;
 }
@@ -273,3 +273,45 @@ label {
 .tamil_word {
   font-family: 'Hind Madurai', sans-serif;
 }
+#tabs .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: white !important;
+  background-color: #0d4608;
+  border-color: transparent transparent white;
+  border-bottom: 4px solid #0d4608 !important;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#tabs .nav-tabs .nav-link {
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  color: white !important;
+  background-color: #0d4608;
+  font-size: 1rem;
+}
+.nav-tabs .nav-link {
+  border: 1px solid #0d4608;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  color: #0d4608;
+  font-weight: bold;
+}
+.nav-tabs {
+  border-bottom: 2px solid white;
+  width: fit-content;
+}
+@media only screen and (min-width: 768px) and (max-width: 1100px) {
+  .nav-item{
+    font-size: 10px;
+  }
+  .nav-tabs .nav-link.active {
+    color: white !important;
+    background-color: #0d4608;
+    border-color: transparent transparent white;
+    border-bottom: 4px solid #0d4608 !important;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  }

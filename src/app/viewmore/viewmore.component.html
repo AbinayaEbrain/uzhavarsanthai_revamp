@@ -9,7 +9,15 @@
 <div class="container">
 <div class="row mb-3">
         <div class="col-md-4 col-sm-12 col-lg-4">
-                <img src="{{postProduct.image}}" style="cursor: pointer;" class="viewImage"  data-toggle="modal" data-target="#myModal">
+                <!-- <img src="{{postProduct.image}}" style="cursor: pointer;" class="viewImage"> -->
+                <ngx-slick-carousel class="carousel"
+                #slickModal="slick-carousel" 
+                        [config]="slideConfig" 
+                        (init)="slickInit($event)">
+                    <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
+                        <img src="{{ slide }}" alt="" class="viewImage">
+                    </div>
+                </ngx-slick-carousel>
         </div>
         <div class="col-md-8 col-sm-12 col-lg-8 margTop">
             <div class="col-md-12">

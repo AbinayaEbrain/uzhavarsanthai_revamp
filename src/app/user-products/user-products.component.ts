@@ -24,6 +24,9 @@ export class UserProductsComponent implements OnInit {
   d: any;
   errMsg2: any;
   hideProduct = true;
+  multiPost = [];
+  singleMultiArray = [];
+
   constructor(
     private _dealsService: DealsService,
     private route: ActivatedRoute,
@@ -59,6 +62,7 @@ export class UserProductsComponent implements OnInit {
             l++;
           }
         }
+        this.getMultiArray();
         if (this.userDeals.length == 0) {
           this.errMsg = "Still you haven't post any deals";
         }
@@ -77,6 +81,19 @@ export class UserProductsComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  getMultiArray(){
+    this._dealsService.getMultiPost().subscribe(res =>{
+      this.multiPost = res;
+      this.getArray();
+    },err =>{
+      console.log(err);
+    });
+  }
+
+  getArray(){
+    this.singleMultiArray = this.userDeals.concat(this.multiPost);
   }
 
   getActiveDeals() {

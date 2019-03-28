@@ -34,7 +34,7 @@ export class BlogComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
 
     this.getAllBlog();
-
+    if(this.id){
     this._auth.blogGetOneData(this.id).subscribe(
       res => {
         console.log(res);
@@ -46,6 +46,7 @@ export class BlogComponent implements OnInit {
         this.loadingCtrl.hide();
       }
     );
+  }
   }
 
   getAllBlog() {

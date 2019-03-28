@@ -23,6 +23,9 @@ export class ViewmoreComponent implements OnInit {
   userName = '';
   adrsArray: any;
   public previousUrl: any;
+  imageArray = '';
+  arrayImage = [];
+  slideConfig:any;
 
   constructor(
     private _dealsService: DealsService,
@@ -55,7 +58,7 @@ export class ViewmoreComponent implements OnInit {
               i
             ].avlPlace.formatted_address;
             this.postProduct.accountId = this.viewPost[i].accountId;
-            this.postProduct.image = this.viewPost[i].image;
+            this.imageArray = this.viewPost[i].image;
             this.time = this.viewPost[i].validityTime;
             this.postProduct.firstName = this.viewPost[i].username;
             this.postProduct.lastName = this.viewPost[i].lastname;
@@ -69,9 +72,24 @@ export class ViewmoreComponent implements OnInit {
           this.time,
           'dd/MM/yyyy'
         );
+        this.arrayImage = this.imageArray.split(",");
+        // this.slideConfig = {"slidesToShow": 1, "slidesToScroll": 1};
+        this.slideConfig = {
+          "slidesToShow": 1,
+          "slidesToScroll": 1,
+          "dots": true,
+          "infinite": false,
+          "arrows": false,
+          "autoplay": false,
+          "autoplaySpeed": 1500
+      };
       },
       err => console.log(err)
     );
+  }
+
+  slickInit(e) {
+    console.log('slick initialized');
   }
 
   goToBack() {

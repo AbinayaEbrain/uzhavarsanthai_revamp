@@ -55,6 +55,9 @@ export class ViewcategoryComponent implements OnInit {
   count: number;
   errMsg2: any;
   errMsgSec: any;
+  splitImage: '';
+  multiImage = [];
+  bulkPost : boolean = false;
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -111,13 +114,16 @@ export class ViewcategoryComponent implements OnInit {
             this.crdDeals[i].validityTime > CurrentDate &&
             this.crdDeals[i].status == 'ACTIVE'
           ) {
-            this.totalDeals[j] = this.crdDeals[i];
+            this.totalDeals[j] = this.crdDeals[i]; 
+            this.splitImage =  this.totalDeals[j].image;
+            this.totalDeals[j].image = this.splitImage.split(",",1);
             this.getPrdtName = this.totalDeals[j].name;
             j++;
-
             this.loadingCtrl.hide();
           }
         }
+        console.log(this.totalDeals);
+       
         if (this.totalDeals.length == 0) {
           this.loadingCtrl.show();
           this.errMsg = 'Currently no deals available';
