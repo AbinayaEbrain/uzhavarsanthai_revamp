@@ -9,28 +9,26 @@ import { NgForm } from '@angular/forms';
 })
 export class NotificationsComponent implements OnInit {
   optsent: any;
-  public notificationMsg: any = {}
+  public notificationMsg: any = {};
   @ViewChild('notificationForm') mytemplateForm: NgForm;
   @ViewChild('specifynotificationForm') mytemplateFormmdl: NgForm;
 
-  constructor(private _dealsService:DealsService) { }
+  constructor(private _dealsService: DealsService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  notificationToAll(notificationMsg){
+  notificationToAll() {
     console.log('function works');
     console.log(this.notificationMsg);
-    this._dealsService.notificationToAll(this.notificationMsg)
-    .subscribe(
+    this._dealsService.notificationToAll(this.notificationMsg).subscribe(
       res => {
-      console.log(res);
-      this.optsent = 'Notification has been sent successfully!';
-      setTimeout(() => {
-        this.optsent = '';
-      }, 3000);
-      this.mytemplateForm.reset();
-      // this.notificationMsg=''
+        console.log(res);
+        this.optsent = 'Notification has been sent successfully!';
+        setTimeout(() => {
+          this.optsent = '';
+        }, 3000);
+        this.mytemplateForm.reset();
+        // this.notificationMsg=''
       },
       err => {
         console.log(err);
@@ -39,24 +37,24 @@ export class NotificationsComponent implements OnInit {
   }
 
   //specific Users
-  notificationToSpecifyUsers(){
+  notificationToSpecifyUsers() {
     console.log('function works');
     console.log(this.notificationMsg);
-    this._dealsService.notificationTospecificUsers(this.notificationMsg)
-    .subscribe(
-      res=>{
-      console.log(res);
-      this.optsent = 'Notification has been sent successfully!';
-      setTimeout(() => {
-        this.optsent = '';
-      }, 3000);
-      this.mytemplateFormmdl.reset();
-      // this.notificationMsg=''
-      },
-      err=>{
-        console.log(err);
-      }
-    )
+    this._dealsService
+      .notificationTospecificUsers(this.notificationMsg)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.optsent = 'Notification has been sent successfully!';
+          setTimeout(() => {
+            this.optsent = '';
+          }, 3000);
+          this.mytemplateFormmdl.reset();
+          // this.notificationMsg=''
+        },
+        err => {
+          console.log(err);
+        }
+      );
   }
 }
-
