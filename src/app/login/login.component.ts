@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
   notEqual: any;
   optsent: any;
   message: any;
+  verifymsg:any;
 
   constructor(
     private router: Router,
@@ -79,9 +80,12 @@ export class LoginComponent implements OnInit {
     var temp = <HTMLInputElement>document.getElementById('password');
     if (temp.type === 'password') {
       temp.type = 'text';
-      document.getElementById('password1').classList.toggle('fa-eye-slash');
+      document.getElementById('password1').classList.remove("fa-eye");
+      document.getElementById('password1').classList.add('fa-eye-slash');
     } else {
       temp.type = 'password';
+      document.getElementById('password1').classList.remove("fa-eye-slash");
+      document.getElementById('password1').classList.add('fa-eye');
     }
   }
 
@@ -89,11 +93,12 @@ export class LoginComponent implements OnInit {
     var temp = <HTMLInputElement>document.getElementById('resetPassword');
     if (temp.type === 'password') {
       temp.type = 'text';
-      document
-        .getElementById('resetPassword1')
-        .classList.toggle('fa-eye-slash');
+      document.getElementById('resetPassword1').classList.remove("fa-eye");
+      document.getElementById('resetPassword1').classList.add('fa-eye-slash');
     } else {
       temp.type = 'password';
+      document.getElementById('resetPassword1').classList.remove("fa-eye-slash");
+      document.getElementById('resetPassword1').classList.add('fa-eye');
     }
   }
 
@@ -101,11 +106,12 @@ export class LoginComponent implements OnInit {
     var temp = <HTMLInputElement>document.getElementById('confirmPassword');
     if (temp.type === 'password') {
       temp.type = 'text';
-      document
-        .getElementById('confirmPassword1')
-        .classList.toggle('fa-eye-slash');
+      document.getElementById('confirmPassword1').classList.remove("fa-eye");
+      document.getElementById('confirmPassword1').classList.add('fa-eye-slash');
     } else {
       temp.type = 'password';
+      document.getElementById('confirmPassword1').classList.remove("fa-eye-slash");
+      document.getElementById('confirmPassword1').classList.add('fa-eye');
     }
   }
 
@@ -134,6 +140,7 @@ export class LoginComponent implements OnInit {
           setTimeout(() => {
             this.message = '';
           }, 3000);
+          this.phoneObj.phone1 = '';
           document.getElementById('firstDiv').style.display = 'none';
           document.getElementById('hideForm').style.display = 'block';
         },
@@ -215,6 +222,7 @@ export class LoginComponent implements OnInit {
         if (this.errormsg1) {
           this.errormsg1 = '';
         }
+        // this.phoneObj.phone1 = '';
         this.optsent = 'OTP has been sent successfully!';
         setTimeout(() => {
           this.optsent = '';
@@ -238,6 +246,10 @@ export class LoginComponent implements OnInit {
   verifyOtp() {
     console.log(this.phoneObj.otp);
     if (this.verifyPhone1.verifyPhone == this.phoneObj.otp) {
+      this.verifymsg = "Your otp has been verified!";
+      setTimeout(() => {
+        this.verifymsg = '';
+      }, 3000);
       document.getElementById('secondDiv').style.display = 'none';
       document.getElementById('firstDiv').style.display = 'block';
     } else {

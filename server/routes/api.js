@@ -9,6 +9,8 @@ const Blog = require('../models/blog')
 const Contact = require('../models/contact');
 const Count = require('../models/viewCount');
 const Phone = require('../models/phone');
+const Device = require('../models/devicedata');
+const Notification = require('../models/notification');
 const mongoose = require('mongoose')
 var multer = require('multer');
 const cloudinary = require('cloudinary');
@@ -76,6 +78,9 @@ router.post('/register', (req, res) => {
 //postdeals
 
 router.post('/post', (req, res) => {
+  let aaa = req.body.name;
+  let name = aaa.toLowerCase();
+  req.body.name = name.charAt(0).toUpperCase() + name.slice(1);
   let userData = req.body;
   let user = new Post(userData);
   user.save((error, productData) => {
@@ -699,7 +704,7 @@ router.post('/sendotpverf',(req , res) => {
   let contactData = req.body;
   let phoneVerify = new Phone(contactData);
 
-Phone.findOne({ phone: contactData.phone }, (err, exuser) => {
+User.findOne({ phone: contactData.phone }, (err, exuser) => {
   if (exuser == null) {
     phoneVerify.save((error, registeredUser) => {
       if (error) {
@@ -763,6 +768,182 @@ router.post('/resetPassword/:phone',(req , res) =>{
       } 
     }
   )
-}),
+});
+
+//get device data
+router.post('/getdevicedata', (req, res) => {
+  Device.find(
+    {
+      deviceId:req.body.deviceId
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        console.log("ALready exist");
+      }else{
+        console.log(req.body);
+        let device = req.body;
+        let deviceData = new Device(device);
+        deviceData.save((error, data) => {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log(data);
+            res.status(200).send(data);
+          }
+        });
+      }
+    }
+  )
+});
+
+//notification to all
+router.post('/notificationtoall', (req, res) => {
+  let userData = req.body;
+  console.log(req.body)
+  console.log('hai')
+  let user = new Notification(userData);
+  console.log(userData)
+var sendNotification = function(data) {
+  var headers = {
+    "Content-Type": "application/json; charset=utf-8",
+    "Authorization": "Basic NjExYjYxY2UtMGI1Yi00MjIxLTg1NmQtZGIxN2NiNmFhNDg1"
+  };
+
+  var options = {
+    host: "onesignal.com",
+    port: 443,
+    path: "/api/v1/notifications",
+    method: "POST",
+    headers: headers
+  };
+
+  var https = require('https');
+  var req = https.request(options, function(res) {
+    res.on('data', function(data) {
+      console.log("Response:");
+      console.log(JSON.parse(data));
+    });
+  });
+
+  req.on('error', function(e) {
+    console.log("ERROR:");
+    console.log(e);
+  });
+
+  req.write(JSON.stringify(data));
+  req.end();
+};
+
+var message = {
+  app_id: "2670fedc-e8d7-41fa-bcbd-3e82b4ba8e08",
+  headings:{"en": '' + userData.msgTile},
+  contents: {"en": '' + userData.msgBody},
+  included_segments: ["All"]
+};
+
+sendNotification(message);
+res.status(200).send(message);
+});
+//notification for specific Users
+router.post('/notificationospecificeusers', (req, res) => {
+  let userData = req.body;
+  console.log(req.body)
+  console.log('hai')
+  let user = new Notification(userData);
+  console.log(userData)
+var sendNotification = function(data) {
+  var headers = {
+    "Content-Type": "application/json; charset=utf-8",
+    "Authorization": "Basic NjExYjYxY2UtMGI1Yi00MjIxLTg1NmQtZGIxN2NiNmFhNDg1"
+  };
+
+  var options = {
+    host: "onesignal.com",
+    port: 443,
+    path: "/api/v1/notifications",
+    method: "POST",
+    headers: headers
+  };
+
+  var https = require('https');
+  var req = https.request(options, function(res) {
+    res.on('data', function(data) {
+      console.log("Response:");
+      console.log(JSON.parse(data));
+    });
+  });
+
+  req.on('error', function(e) {
+    console.log("ERROR:");
+    console.log(e);
+  });
+
+  req.write(JSON.stringify(data));
+  req.end();
+};
+
+var message = {
+  app_id: "2670fedc-e8d7-41fa-bcbd-3e82b4ba8e08",
+  headings:{"en": '' +userData.msgBodyone},
+  contents: {"en": '' + userData.msgTileone},
+  included_segments: [userData.msgCategory]
+};
+sendNotification(message);
+console.log(message)
+res.status(200).send(message);
+});
+//for post notifications
+router.post('/notificationforpost', (req, res) => {
+  let userData = req.body;
+  let lat1 = userData.avlPlace.lat * 1.015;
+  let lat2 = userData.avlPlace.lat / 1.03;
+  console.log(req.body)
+  console.log('hai')
+  let user = new Post(userData);
+  console.log(userData)
+var sendNotification = function(data) {
+  var headers = {
+    "Content-Type": "application/json; charset=utf-8",
+    "Authorization": "Basic NjExYjYxY2UtMGI1Yi00MjIxLTg1NmQtZGIxN2NiNmFhNDg1"
+  };
+
+  var options = {
+    host: "onesignal.com",
+    port: 443,
+    path: "/api/v1/notifications",
+    method: "POST",
+    headers: headers
+  };
+
+  var https = require('https');
+  var req = https.request(options, function(res) {
+    res.on('data', function(data) {
+      console.log("Response:");
+      console.log(JSON.parse(data));
+    });
+  });
+
+  req.on('error', function(e) {
+    console.log("ERROR:");
+    console.log(e);
+  });
+
+  req.write(JSON.stringify(data));
+  req.end();
+};
+
+var message = {
+  app_id: "2670fedc-e8d7-41fa-bcbd-3e82b4ba8e08",
+  headings:{"en": '' +'Hurry Up!'},
+  contents: {"en":'' + 'Hi customer ' + 'a new ' + userData.name + ' product is posted under the '
+  + userData.category + ' category by ' + userData.username + '. Available Place - '
+  + userData.avlPlace.formatted_address + '. Quantity -' + userData.quantity + userData.qnty + '. Price - '
+  + userData.price + '/' + userData.qnty },
+  included_segments: ["All"]
+};
+sendNotification(message);
+console.log(message)
+res.status(200).send(message);
+});
 
 module.exports = router;

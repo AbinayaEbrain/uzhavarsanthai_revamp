@@ -20,7 +20,7 @@
   font-family: 'Hind Madurai', sans-serif;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 150px;
+  width: 200px;
   overflow: hidden;
 }
 
@@ -34,7 +34,7 @@
   position: relative;
   top: 0;
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   transition: all 0.25s;
 }
 .card:nth-child(2) {
@@ -394,27 +394,61 @@ input {
   .imgRes {
     width: inherit !important;
   }
+  .scrollbtn {
+    display: none !important;
+  }
 }
 
 .imgRes {
   width: 354px;
 }
 
-.viewAll{
+.viewAll {
   padding-left: 3px;
-    padding-right: 3px;
-    padding-bottom: 2px;
-    padding-top: 2px;
-    margin-top: -17px;
+  padding-right: 3px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  margin-top: -17px;
 }
-.tamil_word{
+.tamil_word {
   font-family: 'Hind Madurai', sans-serif;
 }
 .zoom {
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 .zoom:hover {
-  -ms-transform: scale(1.1); 
+  -ms-transform: scale(1.1);
   -webkit-transform: scale(1.1);
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
+
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+/*-----------------------------Button-------------------*/
+
+#myBtn {
+  display: none;
+  z-index: 99;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 60px;
+  right: 20px;
+  background-color: #0d4608;
+  color: #fff;
+  border-radius: 30px;
+  text-align: center;
+  border: 0px solid;
+  padding: 0px;
+  box-shadow: 0px 0px 0px 0px #0d4608;
+}
+
+/* #myBtn:hover {
+  background-color: #0d4608;
+} */

@@ -34,9 +34,11 @@ export class DealsService {
     'https://uzhavarsanthai.herokuapp.com/api/admin-user/active';
   private updateuserurl = 'https://uzhavarsanthai.herokuapp.com/api/updateuser';
   // private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
-  private uploadUrl = 'http://localhost:5000/api/sendImage';
-  private multiimgUrl = 'http://localhost:5000/api/multiple_uploads';
-  
+  private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
+  private notificationtoallurl = 'https://uzhavarsanthai.herokuapp.com/api/notificationtoall';
+  private notificationtospecificurl ="https://uzhavarsanthai.herokuapp.com/api/notificationospecificeusers";
+  private notificationtoPostedProductUrl="https://uzhavarsanthai.herokuapp.com/api/notificationforpost";
+
   constructor(private http: HttpClient) {}
 
   sendImage(Image : FormData) {
@@ -118,5 +120,18 @@ export class DealsService {
       productId,
       ipAddress
     });
+  }
+  //notificationToAll
+  notificationToAll(data) {
+    return this.http.post<any>(this.notificationtoallurl, data);
+  }
+
+  //notificationspecific users
+  notificationTospecificUsers(data) {
+    return this.http.post<any>(this.notificationtospecificurl, data);
+  }
+
+  notificationToPostedProduct(data){
+    return this.http.post<any>(this.notificationtoPostedProductUrl, data);
   }
 }

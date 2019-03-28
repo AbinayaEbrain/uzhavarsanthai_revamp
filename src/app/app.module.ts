@@ -49,6 +49,7 @@ import { ContactComponent } from './contact/contact.component';
 import { BlogComponent } from './blog/blog.component';
 import { BlogViewComponent } from './blog-view/blog-view.component';
 import { ReadMoreComponent } from './read-more/read-more.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { ReadMoreComponent } from './read-more/read-more.component';
     BlogComponent,
     BlogViewComponent,
     ReadMoreComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

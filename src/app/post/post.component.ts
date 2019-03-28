@@ -100,7 +100,7 @@ export class PostComponent implements OnInit {
     public zone: NgZone,
   ) {
     this.privateIP = ClientIP;
-    console.log(this.privateIP)
+    console.log(this.privateIP);
 
     // this.http.get('https://api.ipify.org?format=json').subscribe(data => {
     //   this.publicIP = data['ip'];
@@ -119,6 +119,10 @@ export class PostComponent implements OnInit {
     this.loadingCtrl.show();
     this.editId = this.router.snapshot.params['id'];
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
+    this.productData.avlPlace = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).address.city.formatted_address;
+    console.log(this.productData.avlPlace);
     //category
     this.today = new Date();
     this._dealsService.getCategory().subscribe(

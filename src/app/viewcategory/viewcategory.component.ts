@@ -3,7 +3,8 @@ import {
   OnInit,
   ElementRef,
   ViewChild,
-  NgZone
+  NgZone,
+  HostListener
 } from '@angular/core';
 import { ActivatedRoute, Params, RoutesRecognized } from '@angular/router';
 import { DealsService } from '../deals.service';
@@ -132,6 +133,8 @@ export class ViewcategoryComponent implements OnInit {
           document.getElementById('hideSelectedCategory').style.display ='none';
           document.getElementById('hideFilterButton').style.display = 'none';
           document.getElementById('hideSearchlocDiv').style.display = 'none';
+          document.getElementById('hideFilterButton2').style.display = 'none';  
+
           this.loadingCtrl.hide();
         }
 
@@ -269,6 +272,7 @@ export class ViewcategoryComponent implements OnInit {
     // document.getElementById('hidePagination1').style.display = 'block';
     document.getElementById('backToAll').style.display = 'block';
 
+
     if (this.totalDeals1.length == 0) {
       // sweetAlert('Sorry!', 'Currently no product available', 'error');
       this.errMsg1 = 'locayion';
@@ -316,4 +320,21 @@ export class ViewcategoryComponent implements OnInit {
     this.getLocationDeals = '';
     document.getElementById('backToAll').style.display = 'none';
   }
+  @HostListener("window:scroll", []) onWindowScroll() {
+    this.scrollFunction();
+  }
+  // When the user scrolls down 20px from the top of the document, show the button
+scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+} 
 }

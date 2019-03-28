@@ -12,7 +12,7 @@
   position: relative;
   top: 0;
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   transition: all 0.25s;
 }
 .close {
@@ -27,7 +27,7 @@
   text-overflow: ellipsis;
   font-family: 'Hind Madurai', sans-serif;
   white-space: nowrap;
-  width: 150px;
+  width: 200px;
   overflow: hidden;
 }
 .card:nth-child(2) {
@@ -277,16 +277,6 @@ input {
   /* height: -webkit-fill-available; */
 }
 
-@media only screen and (min-width: 368px) and (max-width: 416px) {
-  .mobiviewpageBtn {
-    font-size: 11px;
-  }
-}
-@media only screen and (max-width: 367px) {
-  .mobiviewpageBtn {
-    font-size: 10px;
-  }
-}
 @media only screen and (min-width: 320px) and (max-width: 425px) {
   .mobiviewBtn {
     margin-top: -25px;
@@ -308,16 +298,18 @@ input {
   .mobviewmargintop {
     margin-top: -35px;
   }
-  .onmobviwmargin{
+  .onmobviwmargin {
     margin-top: 0% !important;
   }
-  .mobmargintop{
+  .mobmargintop {
     margin-bottom: -15px;
-    }
-    .mobmargintopbtn{
-      margin-top: 10px;
-          }
-
+  }
+  .mobmargintopbtn {
+    margin-top: 10px;
+  }
+  .scrollbtn {
+    display: none !important;
+  }
 }
 .searchBorder {
   border: 1px solid #0d4608;
@@ -336,14 +328,48 @@ input {
   padding: 0px;
   box-shadow: 0px 0px 0px 0px #0d4608;
 }
-.mobmargintop{
+.mobmargintop {
   margin-top: -5px;
 }
 .zoom {
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 .zoom:hover {
-  -ms-transform: scale(1.1); 
+  -ms-transform: scale(1.1);
   -webkit-transform: scale(1.1);
-  transform: scale(1.1); 
+  transform: scale(1.1);
+}
+/*-----------------------------Button-------------------*/
+
+#myBtn {
+  display: none;
+  z-index: 99;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 60px;
+  right: 20px;
+  background-color: #0d4608;
+  color: #fff;
+  border-radius: 30px;
+  text-align: center;
+  border: 0px solid;
+  padding: 0px;
+  box-shadow: 0px 0px 0px 0px #0d4608;
+}
+
+/* #myBtn:hover {
+  background-color: #0d4608;
+} */
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.onpadding{
+  margin-bottom: -10px;
+  margin-top: -10px;
 }

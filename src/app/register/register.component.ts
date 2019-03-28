@@ -40,6 +40,8 @@ export class RegisterComponent implements OnInit {
   verifyPhone: any;
   verifyPhone1: any = {};
   errMsgVerfi: any;
+  optsent : any;
+  verifymsg:any;
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -145,16 +147,20 @@ export class RegisterComponent implements OnInit {
     this._auth.sendOtp(this.phoneObj).subscribe(
       res => {
         console.log(res);
+        this.optsent = 'OTP has been sent successfully!';
+        setTimeout(() => {
+          this.optsent = '';
+        }, 3000);
         document.getElementById('firstDiv').style.display = 'none';
         document.getElementById('secondDiv').style.display = 'block';
       },
       err => {
         console.log(err);
         if (err.statusText == 'Unauthorized') {
-          this.errormsg = 'Phone number already exist!';
+          this.errormsg = 'Phone number is already registered!';
           setTimeout(() => {
             this.errormsg = '';
-          }, 15000);
+          }, 10000);
 
           this.loadingCtrl.hide();
         }
@@ -165,6 +171,10 @@ export class RegisterComponent implements OnInit {
   verifyOtp() {
     console.log(this.phoneObj.otp);
     if (this.verifyPhone1.verifyPhone == this.phoneObj.otp) {
+      this.verifymsg = "Your otp has been verified!";
+      setTimeout(() => {
+        this.verifymsg = '';
+      }, 3000);
       document.getElementById('secondDiv').style.display = 'none';
       document.getElementById('afterotpverified').style.display = 'block';
     } else {

@@ -1,13 +1,27 @@
 .bg1 {
   /* background: url(./images/A5.jpg) no-repeat center center fixed ; */
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   background-size: cover;
-  background-color: white;
-  min-height: 100vh;
+  min-height: -webkit-fill-available;
   width: 100%;
+  background-attachment: fixed;
+  margin-top: -80px;
+  height: 105vh;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .bg {
+    height: fit-content;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .bg {
+    height: fit-content;
+  }
+}
+
 .sent_font {
   font-weight: bold;
   color: white;
@@ -88,11 +102,13 @@ select {
   border: none;
   color: #0d4608;
   font-weight: 600;
-  float: right;
   border-radius: 4px;
   background-color: transparent;
+  cursor: pointer;
 }
-
+.downDiv {
+  margin-top: 5%;
+}
 .btn2:hover {
   background-color: #0d4608;
   color: white !important;
@@ -195,6 +211,9 @@ input {
 .greetmsg {
   display: none;
 }
+.mobpara {
+  margin-top: 0%;
+}
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .sent_font {
     font-size: 15px;
@@ -211,6 +230,9 @@ input {
   .onmobhide {
     display: none;
   }
+  .mobpara {
+    margin-top: 35%;
+  }
 }
 .titilebold {
   font-weight: bold;
@@ -220,4 +242,9 @@ input {
   color: #0d4608 !important;
   text-decoration: underline !important;
   font-weight: 600 !important;
+}
+@media screen and (min-width: 320px) and (max-width: 374px) {
+  .errfont {
+    font-size: 13px !important;
+  }
 }

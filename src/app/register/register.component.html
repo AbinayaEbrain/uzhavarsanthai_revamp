@@ -1,5 +1,5 @@
-<body class="bg1" style="overflow: hidden;">
-    <div class="container mt-4 pt-1">
+<body class="bg1" style="overflow-x:hidden">
+    <div class="container" style="margin-top: 10%">
       <div class="row mt-5">
             <div class="col-md-6">
                     <p class="mt-5 pt-3 onmobhide" style="text-align: justify;">Farmers’ markets provide and sell more than a gorgeous head 
@@ -9,42 +9,52 @@
                               populated, low-income urban neighborhoods where such nutritious items are scarce. Typically in 
                               these neighborhoods, the only readily available and affordable food is from fast-food chains and
                                convenience stores, which generally do not offer healthy options.</p>
+                    <p class="mobpara">Farmers’ markets provide and sell more than a gorgeous head 
+                        of lettuce or an exotic vegetable you can’t find in your big box supermarket.</p>
             </div>
             <div class="col-md-6">
             <div class="row">
           <div class="col-md-2"></div>
-          <div class="col-md-8">
+          <div class="col-md-8 downDiv">
                 <div class="alert alert-success english_wrd" *ngIf = "success">
-                        {{success}}
+                    <i class="fa fa-check-square-o" aria-hidden="true"></i> {{success}}
                 </div>
                 <div  id="cardFocus">
-            <form  #postform="ngForm"  *ngIf ="!submitted" novalidate >
+            <form  #postform="ngForm" class="mt-4" *ngIf ="!submitted" novalidate >
                     <h5 class="h5 clr mobviewfonteng titilebold mt-2" ><span  class="tamil_word mobviewfontamil">பதிவு செய்க</span> / Sign up</h5>
-                    <div id="firstDiv" class="mt-4"> 
+                    <div id="firstDiv" class="mt-5"> 
                     <div class="form-group ">
                         <label class="english_wrd" for="phone"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
                             <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" (change)="phnTen()" [(ngModel)]="phoneObj.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
                             <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
                                 <span class="text-danger float-left error_word" *ngIf="phone.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
                             </div>
-                            <span class="text-danger float-left"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="errormsg">{{errormsg}}</span>
-                            <span class="text-danger float-left error_word" *ngIf="phnErr">{{phnErr}}</span>
+                           <span class="text-danger float-left mb-3 errfont"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="errormsg">{{errormsg}}
+                               <span style="color: #0d4608"> Please <span style="text-decoration: underline;cursor: pointer;" routerLink="/login">login</span> </span> </span>
+                            <span class="text-danger float-left error_word" *ngIf="phnErr"><i class="fa fa-info-circle" aria-hidden="true"></i> {{phnErr}}</span>
                     </div>
-                    <button class="mb-2 btn2" type="submit" [disabled]="!phoneObj.phone" (click)="sendOtp()">Send OTP</button>
+                    <div style="text-align: center;">
+                        <button class="mb-2 btn2" type="submit" [disabled]="!phoneObj.phone" (click)="sendOtp()">Get OTP</button>
+                    </div>
+                  
                 </div>
 
                 <div id="secondDiv" class="mt-5" style="display: none">
-                    <div class="text-center text-danger" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
+                        <div class="alert alert-success text-center" style="margin-top: -10%;" *ngIf="optsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{optsent}}</div>
+                    <div class="alert alert-danger text-center" style="margin-top: -10%;" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
                     <div class="form-group ">
-                        <label class="english_wrd" for="phone"><span style="font-size: 14px" class="tamil_word">Enter your OTP</span></label>
+                        <label class="english_wrd" for="phone">Enter your OTP</label>
                             <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone"  autocomplete="off" required>
                     </div>
+                    <div style="text-align: center;">
                     <button class="mb-2 btn2" type="submit" id="verify" [disabled]="!verifyPhone1.verifyPhone" (click)="verifyOtp()">Verify OTP</button>
+                </div>
                     <a class="mb-2 resend" id="resend" style="display: none;" (click)="sendOtp()">Resend</a>
                 </div>
 
                 <!-- AFTER OTP VERIFIED -->
                 <div id="afterotpverified" style="display: none">
+                        <div class="alert alert-success text-center" *ngIf="verifymsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{verifymsg}}</div>
                     <div class="form-group ">
                         <label class="english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
                               <input type="text" #input1 id="firstinput"   #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="registeredUserData.firstname" autocomplete="off" required >
@@ -60,7 +70,7 @@
                               <input google-place type="text" placeholder=""  class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="registeredUserData.address.city" required>
                               <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
                       </div>
-                       <div class="form-group mt-2">
+                       <div class="form-group">
                            <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word">கடவுச்சொல் </span>/ Password</label>
                               <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
                             <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
