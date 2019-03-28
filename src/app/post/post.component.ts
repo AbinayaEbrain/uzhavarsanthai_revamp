@@ -113,7 +113,6 @@ export class PostComponent implements OnInit {
     console.log(this.Image.name); //To get the image selected by the user
     this.valid = true;
   }
-
   ngOnInit() {
     this.loadingCtrl.show();
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
@@ -147,12 +146,29 @@ export class PostComponent implements OnInit {
         // localStorage.setItem('Image', JSON.stringify(res));
         this.productData.image = res;
         this.postProduct();
+        this.notificationToAll();
       });
     } else {
       this.productData.image =
         'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
       this.postProduct();
+      this.notificationToAll();
     }
+  }
+
+  notificationToAll(){
+    console.log('function works');
+    console.log(this.productData);
+    this._dealsService.notificationToPostedProduct(this.productData)
+    .subscribe(
+      res=>{
+      console.log(res);
+
+      },
+      err=>{
+        console.log(err);
+      }
+    )
   }
 
   postProduct() {
@@ -275,6 +291,8 @@ export class PostComponent implements OnInit {
       err => console.log(err)
     );
   }
+
+
 
   //restrict numbers on product name
   // handleInput(evt)

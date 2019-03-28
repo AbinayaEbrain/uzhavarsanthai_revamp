@@ -25,6 +25,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { BlogComponent } from 'src/app/blog/blog.component';
 import { BlogViewComponent } from 'src/app/blog-view/blog-view.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 const routes: Routes = [
   {
     path: '',
@@ -155,6 +156,10 @@ const routes: Routes = [
   {
     path: 'blog-view/:id',
     component: BlogViewComponent
+  },
+  {
+    path: 'notifications',
+    component: NotificationsComponent
   }
 ];
 

@@ -1,108 +1,57 @@
 
 <body  class="bg" style="overflow-x: hidden">
-<div class="container mt-5 pt-5">
-      <div class="row">
-          <div class="col-md-4 mobiviewBtn">
-                <button type="button"  id="showBackButton" routerLink="/dealCategory" style="display: none" class="btn btn-outline-success text-center viewMoreBtn1" ><i class="fa fa-chevron-left" aria-hidden="true"></i>   Back</button>
-                <!-- <button type="button" class="btn btn-outline-success text-center viewMoreBtn" id="hideNearByBtn" routerLink="/location"><i class="fa fa-map-marker" aria-hidden="true"></i> Nearby Sale</button> &nbsp; -->
-                <button type="button" id="hideFilterButton" (click)="getCategory()" class="btn btn-outline-success text-center viewMoreBtn mobiviewFilterBtn sysviewhide" data-target="#myModal" data-toggle="modal"> <i class="fa fa-filter" aria-hidden="true"></i> Filter</button>
+    <div class="container mt-5 pt-5">
+          <div class="row">
+              <div class="col-md-4 mobiviewBtn">
+                    <button type="button"  id="showBackButton" routerLink="/dealCategory" style="display: none" class="btn btn-outline-success text-center viewMoreBtn1" ><i class="fa fa-chevron-left" aria-hidden="true"></i>   Back</button>
+                    <!-- <button type="button" class="btn btn-outline-success text-center viewMoreBtn" id="hideNearByBtn" routerLink="/location"><i class="fa fa-map-marker" aria-hidden="true"></i> Nearby Sale</button> &nbsp; -->
+                    <button type="button" id="hideFilterButton" (click)="getCategory()" class="btn btn-outline-success text-center viewMoreBtn mobiviewFilterBtn sysviewhide" data-target="#myModal" data-toggle="modal"> <i class="fa fa-filter" aria-hidden="true"></i> Filter</button>
+              </div>
+              <div class="col-md-2"></div>
+              <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2" id="hideSearchDiv">
+                    <div class="inner-addon left-addon">
+                        <i class="fa fa-search glyphicon" aria-hidden="true"></i>
+                        <input type="text" class="form-control searchDiv mobviewmargintop " id="search_box"  [(ngModel)]="queryString" (keyup)="case()" name="search" autocomplete="off" placeholder="Search by product.." />
+                    </div>
+              </div>
+              <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">
+                <div class="inner-addon left-addon" >
+                        <i class="fa fa-search glyphicon" aria-hidden="true"></i>
+                        <input google-place type="text" class="form-control searchBorder mobviewmargin "  [(ngModel)]="getLocationDeals" (onSelect)="setAddress($event)" placeholder="Search by location.." />
+                    </div>
+             </div>
           </div>
-          <div class="col-md-2"></div>
-          <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2" id="hideSearchDiv">
-                <div class="inner-addon left-addon">
-                    <i class="fa fa-search glyphicon" aria-hidden="true"></i>
-                    <input type="text" class="form-control searchDiv mobviewmargintop " id="search_box"  [(ngModel)]="queryString" (keyup)="case()" name="search" autocomplete="off" placeholder="Search by product.." />
-                </div>
+          <div class="errDiv">
+                <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
           </div>
-          <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">
-            <div class="inner-addon left-addon" >
-                    <i class="fa fa-search glyphicon" aria-hidden="true"></i>
-                    <input google-place type="text" class="form-control searchBorder mobviewmargin "  [(ngModel)]="getLocationDeals" (onSelect)="setAddress($event)" placeholder="Search by location.." />
+    <div *ngIf="showDeals">
+            <div class="mt-5" *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'name'">
+                    <div *ngIf="deal === -1">
+                    <div class="col-md-4 col-lg-5 col-12"></div>
+                    <div class="col-md-4 col-lg-2 col-12 errDesign">
+                                    {{errMsg1}}
+                    </div>
+                    <div class="col-md-4 col-lg-5 col-12"></div>
                 </div>
-         </div>
-      </div>
-      <div class="errDiv">
-            <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
-      </div>
-<div *ngIf="showDeals">
-        <div class="mt-5" *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'name'">
-                <div *ngIf="deal === -1">
-                <div class="col-md-4 col-lg-5 col-12"></div>
-                <div class="col-md-4 col-lg-2 col-12 errDesign">
-                                {{errMsg1}}
                 </div>
-                <div class="col-md-4 col-lg-5 col-12"></div>
-            </div>
-            </div>
-  <div class="row mt-4">
-
-    <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'name' | paginate: {id: 'foo', itemsPerPage:8,currentPage:e}; let i = index">
-
-            <div class="card" *ngIf="deal !== -1">
-                    <img src="{{deal.image}}" class="zoom" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
-                    <table class="tableContent">
-                            <tr>
-                               <td><strong>Product &nbsp; </strong></td>
-                               <td>:</td>
-                               <div class="productFullName">&nbsp;&nbsp;{{deal.name}}</div>
-                           </tr>
-                           <tr>
-                               <td><strong>Price &nbsp; </strong></td>
-                               <td>:</td>
-                               <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
-                            </tr>
-                            <tr>
-                               <td><strong>Quantity &nbsp;</strong></td>
-                               <td>:</td>
-                               <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
-                           </tr>
-                           <tr>
-                               <td><strong>Location &nbsp;</strong></td>
-                               <td>:</td>
-                               <div class="productFullName">&nbsp;&nbsp;{{deal.avlPlace.locality}}</div>
-                           </tr>
-
-                       </table>
-                       <br>
-                       <button type="button" class="btn btn-outline-success text-center viewMoreBtn" (click)="goToView(deal)">View More</button>
-                       <br>
-                  </div>
-      </div>
-  </div>
-  <div class="mx-auto" id="hidePagination">
-        <pagination-controls id="foo" class="ngx-pagination "   style="margin-right: 30px; " (pageChange)="e = $event"  maxSize="5"
-        directionLinks="true"
-        autoHide="true"></pagination-controls>
-      </div>
-</div>
-
-<!-- [style.display]="totalDeals1 ? 'block' : 'none'"  -->
- <div *ngIf="!showDeals">
-        <div class="mt-5" *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name'">
-                <div *ngIf="deal === -1">
-                <div class="col-md-4 col-lg-5 col-12"></div>
-                <div class="col-md-4 col-lg-2 col-12 errDesign">
-                                {{errMsg1}}
-                </div>
-                <div class="col-md-4 col-lg-5 col-12"></div>
-            </div>
-            </div>
-  <div class="row mt-4">
-        <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of totalDeals1 | paginate: {id:'foo1' ,itemsPerPage:8,currentPage:p,totalItems: total } | filterdata: queryString  : 'name'">
-                <div class="card"  *ngIf="deal !== -1">
-                        <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
+      <div class="row mt-4">
+    
+        <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'name' | paginate: {id: 'foo', itemsPerPage:40,currentPage:e}; let i = index">
+    
+                <div class="card card-1" *ngIf="deal !== -1">
+                        <img src="{{deal.image}}" class="zoom" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                         <table class="tableContent">
                                 <tr>
-                                   <td><strong>Product &nbsp; </strong></td>
-                                   <td>:</td>
-                                   <div class="productFullName">&nbsp;{{deal.name}}</div>
+                                   <!-- <td><strong>Product &nbsp; </strong></td>
+                                   <td>:</td> -->
+                                   <div class="productFullName">{{deal.name}}</div>
                                </tr>
-                                <tr>
-                                    <td><strong>Price &nbsp; </strong></td>
-                                    <td>:</td>
-                                    <td>&nbsp;&nbsp;Rs.{{deal.price}}/-</td>
+                               <tr>
+                                   <!-- <td><strong>Price &nbsp; </strong></td>
+                                   <td>:</td> -->
+                                   <td style="font-weight:500"><i class="fa fa-inr" aria-hidden="true"></i> {{deal.price}}.00/{{deal.qnty}}</td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                    <td><strong>Quantity &nbsp;</strong></td>
                                    <td>:</td>
                                    <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
@@ -111,93 +60,146 @@
                                    <td><strong>Location &nbsp;</strong></td>
                                    <td>:</td>
                                    <div class="productFullName">&nbsp;&nbsp;{{deal.avlPlace.locality}}</div>
-                               </tr>
-                               <br>
+                               </tr> -->
+    
                            </table>
                            <br>
-                           <button type="button" class="btn btn-outline-success text-center viewMoreBtn"  (click)="goToView(deal)">View More</button>
+                           <button type="button" class="btn btn-outline-success text-center viewMoreBtn onpadding" (click)="goToView(deal)">View More</button>
                            <br>
                       </div>
           </div>
-
-
       </div>
       <div class="mx-auto" id="hidePagination">
-            <pagination-controls id="foo1" class="ngx-pagination mobiviewpageBtn"   style="margin-right: 30px;" (pageChange)="p=$event" maxSize="5"></pagination-controls>
+            <pagination-controls id="foo" class="ngx-pagination "   style="margin-right: 30px; " (pageChange)="e = $event"  maxSize="5"
+            directionLinks="true"
+            autoHide="true"></pagination-controls>
           </div>
     </div>
-
-</div>
-
-</body>
-<button type="button" id="hideFilterButton" (click)="getCategory()" style="display:none" class="float mobviewhide" data-target="#myModal" data-toggle="modal"><i class="fa fa-filter" aria-hidden="true"></i></button>
-
-<div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- Modal content-->
-          <div class="modal-content">
-                <div class="modal-header headingTitle">
-                        <h4 class="modal-title clr">Search Products</h4>
-                        <button type="button" class="close clr" data-dismiss="modal">&times;</button>
-                      </div>
-            <div class="modal-body">
-                    <form #searchform="ngForm" *ngIf ="!submitted" novalidate>
-                            <div class="row">
-                                <!-- <div class="col-md-12">
-                                        <label style="color: black;font-weight: bold;" class="english_wrd"> Location</label>
-                                        <input google-place type="text" id="searchLocation" placeholder="Search location" class="form-control addressplhldr" #searchLocation="ngModel"  ngModel  name="searchLocation" (onSelect)="setAddress($event)"  [(ngModel)]="userdetails.searchLocation">
-                                </div> -->
-                                    <div class="col-md-12">
-                                   <label style="color: black;font-weight: bold;" class="english_wrd"> Category</label>
-                                  <select class="form-control slect mobmargintop" #searchCategory="ngModel"  ngModel  name="searchCategory" class="form-control"  placeholder="Enter product category" style="color: #0d4608; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchCategory" >
-                                    <option style="color: black" value="" disabled >Choose category</option>
-                                    <option *ngFor="let val of categoryArr" class="productFullName" value="{{val._id}}">{{val.productCategory}}</option>
-                                  </select>
-                                    </div>
-                              <div class="col-md-6 mt-md-3 mt-0">
-                                  <div class="form-group">
-                                      <label style="color: black;font-weight: bold;" class="english_wrd"> Min - Quantity</label>
-                                      <input type="text" #searchmainquantity="ngModel"  ngModel  name="searchmainquantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control mobmargintop"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchmainquantity">
-
-                                  </div>
-
-                              </div>
-                              <div class="col-md-6 mt-md-3 mt-0 onmobviwmargin">
-                                  <div class="form-group">
-                                      <label style="color: black;font-weight: bold;" class="english_wrd"> Unit</label>
-                                      <select  class="form-control" class="form-control mobmargintop"   placeholder="Enter unit" style="background-color: transparent;color: #0d4608;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
-                                            <option style="color: black" value="" disabled >Choose unit</option>
-                                            <option style="color: black" value="Kg">Kg</option>
-                                            <option style="color: black" value="Litre">Ltre</option>
-                                        </select>
-
-                                  </div>
-
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label style="color: black;font-weight: bold;" class="english_wrd">Price Range - Min</label>
-                                      <input type="text" #frmAmt="ngModel"  ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control mobmargintop"  placeholder="Enter min price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.frmAmt">
-
-                                  </div>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label style="color: black;font-weight: bold;" class="english_wrd"> Max</label>
-                                        <input type="text" #toCost="ngModel" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control mobmargintop"  placeholder="Enter max price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.toCost">
-
-                                    </div>
-                                   </div>
-
-                            </div>
-                            <div class="text-center">
-                                <button type="submit"  class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn"   (click)="filterDeal()" data-dismiss="modal"><i class="fa fa-search glyphicon" aria-hidden="true"></i> Search</button>
-                            </div>
-                          </form>
-            </div>
-
+    
+    <!-- [style.display]="totalDeals1 ? 'block' : 'none'"  -->
+     <div *ngIf="!showDeals">
+            <div class="mt-5" *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name'">
+                    <div *ngIf="deal === -1">
+                    <div class="col-md-4 col-lg-5 col-12"></div>
+                    <div class="col-md-4 col-lg-2 col-12 errDesign">
+                                    {{errMsg1}}
+                    </div>
+                    <div class="col-md-4 col-lg-5 col-12"></div>
+                </div>
+                </div>
+      <div class="row mt-4">
+            <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of totalDeals1 | paginate: {id:'foo1' ,itemsPerPage:40,currentPage:p,totalItems: total } | filterdata: queryString  : 'name'">
+                    <div class="card card-1"  *ngIf="deal !== -1">
+                            <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
+                            <table class="tableContent">
+                                <tr>
+                                    <!-- <td><strong>Product &nbsp; </strong></td>
+                                    <td>:</td> -->
+                                    <div class="productFullName">{{deal.name}}</div>
+                                </tr>
+                                <tr>
+                                    <!-- <td><strong>Price &nbsp; </strong></td>
+                                    <td>:</td> -->
+                                    <td style="font-weight:500"><i class="fa fa-inr" aria-hidden="true"></i> {{deal.price}}.00/{{deal.qnty}}</td>
+                                 </tr>
+                                 <!-- <tr>
+                                    <td><strong>Quantity &nbsp;</strong></td>
+                                    <td>:</td>
+                                    <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Location &nbsp;</strong></td>
+                                    <td>:</td>
+                                    <div class="productFullName">&nbsp;&nbsp;{{deal.avlPlace.locality}}</div>
+                                </tr> -->
+                                   <br>
+                               </table>
+                               <br>
+                               <button type="button" class="btn btn-outline-success text-center viewMoreBtn"  (click)="goToView(deal)">View More</button>
+                               <br>
+                          </div>
+              </div>
+    
+    
           </div>
-
+          <div class="mx-auto" id="hidePagination">
+                <pagination-controls id="foo1" class="ngx-pagination mobiviewpageBtn"   style="margin-right: 30px;" (pageChange)="p=$event" maxSize="5"></pagination-controls>
+              </div>
         </div>
-      </div>
+    
+    </div>
+    
+    </body>
+    <button type="button" id="hideFilterButton" (click)="getCategory()" style="display:none" class="float mobviewhide" data-target="#myModal" data-toggle="modal"><i class="fa fa-filter" aria-hidden="true"></i></button>
+    
+    <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+    
+              <!-- Modal content-->
+              <div class="modal-content">
+                    <div class="modal-header headingTitle">
+                            <h4 class="modal-title clr">Search Products</h4>
+                            <button type="button" class="close clr" data-dismiss="modal">&times;</button>
+                          </div>
+                <div class="modal-body">
+                        <form #searchform="ngForm" *ngIf ="!submitted" novalidate>
+                                <div class="row">
+                                    <!-- <div class="col-md-12">
+                                            <label style="color: black;font-weight: bold;" class="english_wrd"> Location</label>
+                                            <input google-place type="text" id="searchLocation" placeholder="Search location" class="form-control addressplhldr" #searchLocation="ngModel"  ngModel  name="searchLocation" (onSelect)="setAddress($event)"  [(ngModel)]="userdetails.searchLocation">
+                                    </div> -->
+                                        <div class="col-md-12">
+                                       <label style="color: black;font-weight: bold;" class="english_wrd"> Category</label>
+                                      <select class="form-control slect mobmargintop" #searchCategory="ngModel"  ngModel  name="searchCategory" class="form-control"  placeholder="Enter product category" style="color: #0d4608; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchCategory" >
+                                        <option style="color: black" value="" disabled >Choose category</option>
+                                        <option *ngFor="let val of categoryArr" class="productFullName" value="{{val._id}}">{{val.productCategory}}</option>
+                                      </select>
+                                        </div>
+                                  <div class="col-md-6 mt-md-3 mt-0">
+                                      <div class="form-group">
+                                          <label style="color: black;font-weight: bold;" class="english_wrd"> Min - Quantity</label>
+                                          <input type="text" #searchmainquantity="ngModel"  ngModel  name="searchmainquantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control mobmargintop"  placeholder="Enter quantity" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.searchmainquantity">
+    
+                                      </div>
+    
+                                  </div>
+                                  <div class="col-md-6 mt-md-3 mt-0 onmobviwmargin">
+                                      <div class="form-group">
+                                          <label style="color: black;font-weight: bold;" class="english_wrd"> Unit</label>
+                                          <select  class="form-control" class="form-control mobmargintop"   placeholder="Enter unit" style="background-color: transparent;color: #0d4608;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
+                                                <option style="color: black" value="" disabled >Choose unit</option>
+                                                <option style="color: black" value="Kg">Kg</option>
+                                                <option style="color: black" value="Litre">Ltre</option>
+                                            </select>
+    
+                                      </div>
+    
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label style="color: black;font-weight: bold;" class="english_wrd">Price Range - Min</label>
+                                          <input type="text" #frmAmt="ngModel"  ngModel  name="frmAmt" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control mobmargintop"  placeholder="Enter min price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.frmAmt">
+    
+                                      </div>
+                                     </div>
+                                     <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label style="color: black;font-weight: bold;" class="english_wrd"> Max</label>
+                                            <input type="text" #toCost="ngModel" ngModel  name="toCost" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control mobmargintop"  placeholder="Enter max price" style="background-color: transparent;color: black; font-family: 'Mukta', sans-serif;"  [(ngModel)]="userdetails.toCost">
+    
+                                        </div>
+                                       </div>
+    
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit"  class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn"   (click)="filterDeal()" data-dismiss="modal"><i class="fa fa-search glyphicon" aria-hidden="true"></i> Search</button>
+                                </div>
+                              </form>
+                </div>
+    
+              </div>
+    
+            </div>
+          </div>
+          <button (click)="topFunction(target)" class="scrollbtn" id="myBtn" title="Go to top"><i class="fa fa-chevron-up"></i></button>
+          

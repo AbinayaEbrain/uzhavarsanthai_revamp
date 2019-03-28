@@ -1,0 +1,156 @@
+<div class="container mobviewmt" style="height: 560px;margin-top:8%;">
+  <button type="submit" class="btn  btn1 button_word btn-success" style="float:left;" routerLink="/admin" >Back</button>
+  <button type="submit" class="btn  btn1 button_word btn-success" data-toggle="modal" data-target="#myModal" style="float:right;">Specified Users</button>
+  <h4 style="text-align:center;color: #0d4608;">Notification</h4>
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+          <div class="alert alert-success text-center" *ngIf="optsent">{{optsent}}</div>
+        <form
+          #notificationForm="ngForm"
+          novalidate
+          class="mobviewmt1"
+        >
+          <div class="form-group" style="color:#0d4608;">
+            <label class="blgtitle" for="usr">Notification Title</label>
+            <input type="text"
+             #msgTile="ngModel" ngModel [(ngModel)]="notificationMsg.msgTile" name="msgTile"
+              style="border-color: #0d4608;"
+              [class.is-invalid]="msgTile.invalid && msgTile.touched"
+              class="form-control"
+              autocomplete="off"
+  
+              required
+            />
+            <span
+              class="text-danger float-left error_word"
+              [class.d-none]="msgTile.valid || msgTile.untouched"
+              ><i class="fa fa-info-circle" aria-hidden="true"></i> Notification title
+              is required</span
+            >
+          </div>
+          <br>
+          <div class="form-group" style="color:#0d4608;">
+            <label class="blgtitle" for="usr">Notification Title</label>
+            <textarea
+             #msgBody="ngModel" ngModel [(ngModel)]="notificationMsg.msgBody" name="msgBody"
+              style="border-color: #0d4608;"
+              [class.is-invalid]="msgBody.invalid && msgBody.touched"
+              class="form-control"
+              autocomplete="off"
+  
+              required
+            ></textarea>
+            <span
+              class="text-danger float-left error_word"
+              [class.d-none]="msgBody.valid || msgBody.untouched"
+              ><i class="fa fa-info-circle" aria-hidden="true"></i> Notification Msg
+              is required</span
+            >
+          </div>
+          <div class="mt-5 mb-3" style="text-align:center">
+            <button
+              type="button"
+              [disabled]="notificationForm.form.invalid"
+              class="btn btn-outline text-center viewMoreBtn"
+              style="margin-bottom: 10px;"
+              type="submit"
+              (click)="notificationToAll()"
+            >
+              Send Notification
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+              <h4 class="modal-title">Specific Notification</h4>
+          <button type="button" class="close" style="color:white" data-dismiss="modal">&times;</button>
+      </div>
+        <div class="modal-body">
+          <form
+            #specifynotificationForm="ngForm"
+            novalidate
+          >
+          <div class="alert alert-success text-center" *ngIf="optsent">{{optsent}}</div>
+            <div class="form-group" style="color:#0d4608;">
+              <label class="blgtitle" for="usr">Specific Notification</label>
+              <input type="text"
+               #msgTileone="ngModel" ngModel [(ngModel)]="notificationMsg.msgTileone" name="msgTile"
+                style="border-color: #0d4608;"
+                [class.is-invalid]="msgTileone.invalid && msgTileone.touched"
+                class="form-control"
+                autocomplete="off"
+  
+                required
+              />
+              <span
+                class="text-danger float-left error_word"
+                [class.d-none]="msgTileone.valid || msgTileone.untouched"
+                ><i class="fa fa-info-circle" aria-hidden="true"></i> Notification title
+                is required</span
+              >
+            </div>
+            <br>
+            <div class="form-group" style="color:#0d4608;">
+              <label class="blgtitle" for="usr">Notification Title</label>
+              <textarea
+               #msgBodyone="ngModel" ngModel [(ngModel)]="notificationMsg.msgBodyone" name="msgBodyone"
+                style="border-color: #0d4608;"
+                [class.is-invalid]="msgBodyone.invalid && msgBodyone.touched"
+                class="form-control"
+                autocomplete="off"
+  
+                required
+              ></textarea>
+              <span
+                class="text-danger float-left error_word"
+                [class.d-none]="msgBodyone.valid || msgBodyone.untouched"
+                ><i class="fa fa-info-circle" aria-hidden="true"></i> Notification msg
+                is required</span
+              >
+            </div>
+            <br>
+            <label class="blgtitle" for="phone" >Select Category</label>
+             <div class="form-group" style="color:#0d4608;">
+                 <select required class="form-control" style="border-color: #0d4608;" placeholder="Choose unit" #msgCategory="ngModel" name="msgCategory" [class.is-invalid]="msgCategory.invalid && msgCategory.touched" ngModel [(ngModel)]="notificationMsg.msgCategory" >
+                     <option class="prdtOption" selected="" disabled="" value="" >Choose product unit</option>
+                     <option value="Subscribed Users" class="categoryOption">Subscribed Users</option>
+                     <option value="Active Users" class="categoryOption">Active Users</option>
+                     <option value="Engaged Users" class="categoryOption">Engaged Users</option>
+                     <option value="Inactive Users" class="categoryOption">Inactive Users</option>
+                   </select>
+                       <span class="text-danger float-left error_word" [class.d-none] = "msgCategory.valid || msgCategory.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i>Category is required</span>
+               </div>
+            <div class="mt-5 mb-3" style="text-align:center">
+              <button
+                type="button"
+                [disabled]="specifynotificationForm.form.invalid"
+                class="btn btn-outline text-center viewMoreBtn"
+                style="margin-bottom: 10px;"
+                type="submit"
+                (click)="notificationToSpecifyUsers()"
+              >
+                Send Notification
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  </div>
