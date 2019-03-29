@@ -177,9 +177,9 @@
                       </div>
 
                       <div class="form-group" *ngIf="editId">
-                          <select required class="form-control"  #category="ngModel" [(ngModel)]="multiData.categoryId" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
+                          <select required class="form-control"  #category="ngModel" [(ngModel)]="multiData.category" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
                             <option class="opt" selected="" disabled="" value="" >Choose product category</option>
-                              <option *ngFor="let val of categoryArr" class="tamil_word" value="{{val._id}}">{{val.productCategory}}</option>
+                              <option *ngFor="let val of categoryArr" class="tamil_word" value="{{val.productCategory}}">{{val.productCategory}}</option>
                             </select>
                             <span class="text-danger float-left error_word" [class.d-none] = "category.valid || category.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span>
                           </div>
@@ -220,6 +220,7 @@
                     <label for="image" class="english_wrd" ><span span style="font-size: 14px" class="tamil_word">படத்தை பதிவேற்றம் செய்யவும்</span> / Upload product image</label>
                     <input type="file" id="image"  class="upload" (change)="onFileChangeMulti($event)"
                       name="image" multiple autocomplete="off" >
+                      <img data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;margin-top: -20%;" id="show" class="card-img-top" src="{{multiData.image}}" alt="Card image cap">
                   </div>
              </div>
               </div>
@@ -240,3 +241,20 @@
     </div>
   </div>
 </body>
+
+
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content" >
+        <div class="modal-header">
+          <h5 class="modal-title ">Product Image</h5>
+          <button type="button" class="close"  data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+                <img src="{{multiData.image}}" height="250px" width= "100%" alt="Card image cap">
+        </div>
+      </div>
+    </div>
+  </div>

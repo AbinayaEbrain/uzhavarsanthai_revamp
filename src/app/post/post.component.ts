@@ -78,9 +78,10 @@ export class PostComponent implements OnInit {
   files: any;
   url: '';
   today: Date;
-  imageLength : any;
+  imageLength = 0;
   editId:any;
   singleMultiPost = {};
+  splitImage : '';
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -114,7 +115,6 @@ export class PostComponent implements OnInit {
 
   }
 
-
   ngOnInit() {
     this.loadingCtrl.show();
     this.editId = this.router.snapshot.params['id'];
@@ -122,7 +122,7 @@ export class PostComponent implements OnInit {
     this.productData.avlPlace = JSON.parse(
       localStorage.getItem('currentUser')
     ).address.city.formatted_address;
-    console.log(this.productData.avlPlace);
+
     //category
     this.today = new Date();
     this._dealsService.getCategory().subscribe(
@@ -140,10 +140,14 @@ export class PostComponent implements OnInit {
       this._dealsService.getSingleMultiPost(this.editId).subscribe(
         res => {
           console.log(res);
-          this.multiData = res;
-          //document.getElementById('resetPassword1').classList.remove("fa-eye");
+          document.getElementById('nav-home').classList.remove('show');
+          document.getElementById('nav-home').classList.remove('active');
           document.getElementById('nav-profile').classList.add('show');
           document.getElementById('nav-profile').classList.add('active');
+          this.multiData = res;
+          this.multiData.avlPlace = this.multiData.avlPlace.locality;
+          this.splitImage =  this.multiData.image;
+          this.multiData.image = this.splitImage.split(",",1);
           this.loadingCtrl.hide();
         },
         err => {
@@ -172,6 +176,7 @@ export class PostComponent implements OnInit {
         this.imageLength = this.urls.length;
       }
     }
+    console.log(this.imageLength);
     console.log(this.urls);
   }
 
@@ -195,23 +200,47 @@ export class PostComponent implements OnInit {
 
   postMultiImage() {
     this.loadingCtrl.show();
-    if(this.urls){
-    for (let i = 0; i < this.urls.length; i++) {
-      var image = new FormData(); //FormData creation
-      image.append('Image', this.urls[i]);
-      this._dealsService.sendImage(image).subscribe(res => {
-        this.loadingCtrl.hide();
-        console.log(res);
-        this.Image.push(res);
-        this.postMultiProduct();
-      });
-      break;
-    }
-  }
-   else{
-    this.productData.image = 'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
-    this.postMultiProduct();
-  }
+      if(this.editId){
+        console.log(this.urls.length);
+        if(this.urls.length != 0){
+          for (let i = 0; i < this.urls.length; i++) {
+            var image = new FormData(); //FormData creation
+            image.append('Image', this.urls[i]);
+            this._dealsService.sendImage(image).subscribe(res => {
+              this.loadingCtrl.hide();
+              console.log(res);
+              this.Image.push(res);
+              this.postMultiProduct();
+            });
+            break;
+          }
+        }
+         else{
+          this.multiData.image = this.splitImage;
+          // this.productData.image = 'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
+          this.loadingCtrl.hide();
+          this.postMultiProduct();
+        }
+      }else{
+        if(this.urls.length != 0){
+          for (let i = 0; i < this.urls.length; i++) {
+            var image = new FormData(); //FormData creation
+            image.append('Image', this.urls[i]);
+            this._dealsService.sendImage(image).subscribe(res => {
+              this.loadingCtrl.hide();
+              console.log(res);
+              this.Image.push(res);
+              this.postMultiProduct();
+            });
+            break;
+          }
+        }
+         else{
+          this.multiData.image = 'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
+          this.loadingCtrl.hide();
+          this.postMultiProduct();
+        }
+      }
   }
 
   postProduct(){
@@ -285,17 +314,6 @@ export class PostComponent implements OnInit {
   }
 
   postMultiProduct() {
-   if(this.Image.length == this.imageLength){
-    this.loadingCtrl.show();
-     // var time = this.productData.validityTime;
-     // this.productData.validityTime = time.getTime();
-    //  if(this.Image.length > 1){
-    //    this.productData.bulk = true;
-    //  }else{
-    //   this.productData.bulk = false;
-    //  }
-     this.multiData.image = this.Image;
-     console.log(this.multiData.image);
      this.multiData.accountId = JSON.parse(
        localStorage.getItem('currentUser')
      )._id;
@@ -314,6 +332,71 @@ export class PostComponent implements OnInit {
      this.multiData.status = JSON.parse(
        localStorage.getItem('currentUser')
      ).status;
+    // update multi
+    if(this.editId){
+      console.log(this.Image)
+      if(this.Image.length != 0){
+        this.multiData.image = this.Image;
+        console.log(this.multiData.image);
+      }
+      console.log(this.imageLength)
+      console.log(this.Image.length)
+       if(this.Image.length == this.imageLength){
+          this.loadingCtrl.show();
+           // this.productData.image = JSON.parse(localStorage.getItem('Image'));
+           this.multiData.ipAddress = this.privateIP;
+           this.multiData.avlPlace = this.addr;
+       
+           for (let i = 0; i < this.categoryArr.length; i++) {
+             if (this.multiData.categoryId == this.categoryArr[i]._id) {
+               this.multiData.category = this.categoryArr[i].productCategory;
+             }
+           }
+           let curntDte = new Date().getTime();
+           this.multiData.date = curntDte;
+           console.log(this.multiData);
+           this._dealsService.addMultiPost(this.multiData).subscribe(
+             res => {
+               console.log(this.multiData);
+               console.log(res);
+               this.success = 'Posted successfully!';
+               //localStorage.removeItem('Image')
+               this.loadingCtrl.hide();
+               setTimeout(() => {
+                 this.loadingCtrl.show();
+                 this.route.navigate(['products']);
+                 this.loadingCtrl.hide();
+               }, 1000);
+             },
+             err => {
+               if (err instanceof HttpErrorResponse) {
+                 if (err.status === 401) {
+                   this.loadingCtrl.show();
+                   this.route.navigate(['/login']);
+                   this.loadingCtrl.hide();
+                 }
+               }
+             }
+           );
+         }
+         else{
+          this.urls.shift();
+          this.postMultiImage();
+         }
+    }
+    // post multi
+    else{
+   if(this.Image.length == this.imageLength){
+    this.loadingCtrl.show();
+     // var time = this.productData.validityTime;
+     // this.productData.validityTime = time.getTime();
+    //  if(this.Image.length > 1){
+    //    this.productData.bulk = true;
+    //  }else{
+    //   this.productData.bulk = false;
+    //  }
+     this.multiData.image = this.Image;
+     console.log(this.multiData.image);
      // this.productData.image = JSON.parse(localStorage.getItem('Image'));
      this.multiData.ipAddress = this.privateIP;
      this.multiData.avlPlace = this.addr;
@@ -355,6 +438,7 @@ export class PostComponent implements OnInit {
     this.urls.shift();
     this.postMultiImage();
    }
+  }
   }
 
   getunits() {
