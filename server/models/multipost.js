@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const multipostSchema = new Schema(
   {
     category: String,
+    categoryId: String,
     avlPlace: {
       lat: '',
       lng: '',
@@ -25,6 +26,7 @@ const multipostSchema = new Schema(
     userAddress: String,
     status: String,
     count: { type: Number, default: 1 },
+    bulk : false
 });
 
 module.exports = mongoose.model('multipost', multipostSchema, 'multipost');

@@ -114,7 +114,7 @@ router.get('/getMultipost', (req, res) => {
       res.send(result);
       //console.log(result)
     }
-  });
+  }).sort({createdAt : -1});
 });
 
 //admin
@@ -212,29 +212,36 @@ router.delete('/dltMultiPost/:id', (req, res) => {
   });
 });
 
-//update multi post
-router.put('/updateMultipost/:id', function(req, res) {
-  Multipost.findByIdAndUpdate(
-    req.params.id,
+router.post('/updateMultipost/:id', function(req, res) {
+  Multipost.find(
     {
-      $set: {
-        category: req.body.category,
-        description: req.body.description,
-        avlPlace: req.body.avlPlace,
-        image: req.body.image
-      }
+      _id:req.params.id
     },
-    {
-      new: true
-    },
-    function(err, updatedUser) {
-      if (err) {
-        res.send('Error updating user');
-      } else {
-        res.json(updatedUser);
-      }
+    async (err,result) =>{
+      if(result.length > 0){
+        await Multipost.update(
+          {
+            _id:req.params.id
+          },
+          {
+            $set: { 
+              category: req.body.category,
+              description: req.body.description,
+              avlPlace: req.body.avlPlace,
+              image: req.body.image,
+              validityTime: req.body.validityTime
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'Multipost updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      } 
     }
-  );
+  )
 });
 
 //delete blog

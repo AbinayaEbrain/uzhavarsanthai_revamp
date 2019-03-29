@@ -161,7 +161,26 @@ export class UserProductsComponent implements OnInit {
           this.loadingCtrl.show();
           this.router.navigate(['/products']);
           this.loadingCtrl.hide();
-        }, 2000);
+        }, 1000);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  deleteMultiPost(){
+    this.id = this.route.snapshot.params['id'];
+    this._dealsService.deleteMultiPost(this.id).subscribe(
+      res => {
+        this.success = 'Deleted successfully!';
+
+        setTimeout(() => {
+          // swal.close();
+          this.loadingCtrl.show();
+          this.router.navigate(['/products']);
+          this.loadingCtrl.hide();
+        }, 1000);
       },
       err => {
         console.log(err);
