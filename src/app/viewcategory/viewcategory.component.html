@@ -114,21 +114,21 @@
                                                <tr  *ngIf="!deal.bulk">
                                                  <!-- <td><strong>Quantity &nbsp;</strong></td>
                                                  <td>:</td> -->
-                                                 <td>{{deal.quantity}}  {{deal.qnty}}</td>
+                                                 <td>{{deal.quantity}} {{deal.qnty}}</td>
                                              </tr>
                                              <tr  *ngIf="!deal.bulk">
                                                <!-- <td><strong>Quantity &nbsp;</strong></td>
                                                <td>:</td> -->
                                                <td>{{deal.price}} / {{deal.qnty}}</td>
                                            </tr>
-                                             <tr *ngIf="deal.bulk">
-
-                                                 <div class="productFullName">&nbsp;&nbsp;{{deal.avlPlace.locality}}</div>
-                                              </tr>
-                                              <tr *ngIf="!deal.bulk">
+                                             <tr>
+                                                 <div *ngIf="deal.avlPlace.locality" class="productFullName">&nbsp;&nbsp;{{deal.avlPlace.locality}}</div>
+                                                 <div *ngIf="!deal.avlPlace.locality" class="productFullName">&nbsp;&nbsp;{{deal.avlPlace.formatted_address}}</div>
+                                                </tr>
+                                              <!-- <tr *ngIf="!deal.bulk">
 
                                                   <div class="productFullName">{{deal.avlPlace.locality}}</div>
-                                               </tr>
+                                               </tr> -->
                                              <br>
                                          </table>
                                          <button type="button" class="btn btn-outline-success text-center viewMoreBtn" (click)="goToView(deal)">View More</button>
