@@ -163,6 +163,7 @@
                               <div class="card card-1" *ngIf="deal !== -1">
                                       <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                                       <table class="tableContent">
+<<<<<<< HEAD
                                         <tr *ngIf="!deal.bulk">
                                                 <!-- <td><strong>Product &nbsp; </strong></td>
                                                 <td>:</td> -->
@@ -191,6 +192,36 @@
 
                                                   <div class="productFullName">{{deal.avlPlace.locality}}</div>
                                                </tr>
+=======
+                                            <tr>
+                                                    <!-- <td><strong>Product &nbsp; </strong></td>
+                                                    <td>:</td> -->
+                                                    <div class="productFullName">{{deal.name}}</div>
+                                                </tr>
+
+                                                   <div class="row">
+
+                                                  <div class="col-md-5">
+                                                    <tr>
+                                                       <!-- <td><strong>Quantity &nbsp;</strong></td>
+                                                       <td>:</td> -->
+                                                       <td>{{deal.quantity}}  {{deal.qnty}}</td>
+                                                   </tr>
+                                                  </div>
+                                                  <div class="col-md-7">
+                                                          <tr>
+                                                               <!-- <td><strong>Price &nbsp; </strong></td>
+                                                               <td>:</td> -->
+                                                               <td><i class="fa fa-inr" aria-hidden="true"></i> {{deal.price}}.00/{{deal.qnty}}</td>
+                                                            </tr>
+                                                         </div>
+                                                  </div>
+                                                   <tr>
+                                                      <!-- <td><strong>Location &nbsp;</strong></td>
+                                                      <td>:</td> -->
+                                                      <div class="productFullName">{{deal.avlPlace.locality}}</div>
+                                                   </tr>
+>>>>>>> 9bfb1ea200a703893ce63041439c30ddc48090eb
                                            <br>
                                          </table>
                                          <button type="button" class="btn btn-outline-success text-center viewMoreBtn" (click)="goToView(deal)">View More</button>
@@ -203,12 +234,11 @@
                                   <pagination-controls id="foo" class="ngx-pagination" style="margin-right: 30px;" (pageChange)="p=$event" maxSize="5"></pagination-controls>
                                 </div>
                       </div>
-
             </div>
-            <div class="second" style="display: none">
-            <button class="float1" style="float:left" id="hideFilterButton1"  routerLink="/dealCategory"><i class="fa fa-arrow-left"></i> </button>
-         <button id="hideFilterButton2" style="float:right" (click)="getGoogleAddress()" class="float" data-toggle="modal"  data-target="#myModal" > <i class="fa fa-filter "></i></button>
-      </div>
+        <div class="second" style="display: none">
+        <button class="float1" style="float:left" id="hideFilterButton1"  routerLink="/dealCategory"><i class="fa fa-arrow-left"></i> </button>
+        <button id="hideFilterButton2" style="float:right" (click)="getGoogleAddress()" class="float" data-toggle="modal"  data-target="#myModal" > <i class="fa fa-filter "></i></button>
+        </div>
 </body>
 
 <div class="modal fade" id="myModal" role="dialog">

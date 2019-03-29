@@ -23,7 +23,13 @@
   width: 200px;
   overflow: hidden;
 }
-
+.productFullName1 {
+  font-family: 'Hind Madurai', sans-serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100px;
+  overflow: hidden;
+}
 .searchBorder {
   border: 1px solid #0d4608;
 }
