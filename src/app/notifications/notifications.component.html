@@ -1,16 +1,15 @@
-<div class="container mobviewmt" style="height: 560px;margin-top:8%;">
+<div class="container mobviewmt" style="margin-top:8%;height: 77vh;">
   <button type="submit" class="btn  btn1 button_word btn-success" style="float:left;" routerLink="/admin" >Back</button>
   <button type="submit" class="btn  btn1 button_word btn-success" data-toggle="modal" data-target="#myModal" style="float:right;">Specified Users</button>
-  <h4 style="text-align:center;color: #0d4608;">Notification</h4>
-  <div class="col-md-12">
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-          <div class="alert alert-success text-center" *ngIf="optsent">{{optsent}}</div>
+    <br><br>
+            <h4  style="color: #0d4608;text-align: center;">Notification</h4>
+            <div class="row mt-3">
+              <div class="col-md-3 col-sm-12 col-12"></div>
+              <div class="col-md-6 col-sm-12 col-12">
+                  <div class="alert alert-success text-center" *ngIf="optsent">{{optsent}}</div>
         <form
           #notificationForm="ngForm"
           novalidate
-          class="mobviewmt1"
         >
           <div class="form-group" style="color:#0d4608;">
             <label class="blgtitle" for="usr">Notification Title</label>
@@ -63,9 +62,9 @@
           </div>
         </form>
       </div>
-      <div class="col-md-3"></div>
+      <div class="col-md-3 col-sm-12 col-12"></div>
     </div>
-  </div>
+</div>
   
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -153,4 +152,4 @@
     </div>
   </div>
   
-  </div>
+ 

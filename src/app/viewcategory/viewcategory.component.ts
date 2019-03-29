@@ -31,12 +31,14 @@ export class ViewcategoryComponent implements OnInit {
   crdDeals = [];
   crdCategory = [];
   totalDeals = [];
+  singleMultiArray  =[];
   id: any;
   errMsg: any;
   noSearchDeals: any;
   public userdetails: any = [];
   specifyCategory = [];
   getSearchDeals = [];
+  multiPosts = [];
   querydetails: any = {};
   totalDeals1 = [];
   noSearchDealsErr: any;
@@ -101,7 +103,7 @@ export class ViewcategoryComponent implements OnInit {
         }
       }
     )
-   
+
     this._dealService.getDeals().subscribe(
       res => {
         let j = 0;
@@ -115,7 +117,7 @@ export class ViewcategoryComponent implements OnInit {
             this.crdDeals[i].validityTime > CurrentDate &&
             this.crdDeals[i].status == 'ACTIVE'
           ) {
-            this.totalDeals[j] = this.crdDeals[i]; 
+            this.totalDeals[j] = this.crdDeals[i];
             this.splitImage =  this.totalDeals[j].image;
             this.totalDeals[j].image = this.splitImage.split(",",1);
             this.getPrdtName = this.totalDeals[j].name;
@@ -123,8 +125,9 @@ export class ViewcategoryComponent implements OnInit {
             this.loadingCtrl.hide();
           }
         }
+        this.getMultiArray();
         console.log(this.totalDeals);
-       
+
         if (this.totalDeals.length == 0) {
           this.loadingCtrl.show();
           this.errMsg = 'Currently no deals available';
@@ -133,7 +136,7 @@ export class ViewcategoryComponent implements OnInit {
           document.getElementById('hideSelectedCategory').style.display ='none';
           document.getElementById('hideFilterButton').style.display = 'none';
           document.getElementById('hideSearchlocDiv').style.display = 'none';
-          document.getElementById('hideFilterButton2').style.display = 'none';  
+          document.getElementById('hideFilterButton2').style.display = 'none';
 
           this.loadingCtrl.hide();
         }
@@ -146,6 +149,36 @@ export class ViewcategoryComponent implements OnInit {
     );
   }
 
+  getMultiArray(){
+    this._dealService.getMultiPost().subscribe(res =>{
+      let j = 0;
+      this.multiPost = res;
+        let CurrentDate = new Date().toISOString();
+      for (let i = 0; i < this.multiPost.length; i++) {
+        if (
+          this.id == this.multiPost[i].categoryId &&
+          this.multiPost[i].validityTime > CurrentDate &&
+          this.multiPost[i].status == 'ACTIVE'
+        ) {
+          this.multiPosts[j] = this.multiPost[i];
+          this.splitImage1 =  this.multiPosts[j].image;
+          this.multiPosts[j].image = this.splitImage1.split(",",1);
+          j++;
+          this.loadingCtrl.hide();
+        }
+      }
+      console.log(this.multiPost);
+      this.getArray();
+    },err =>{
+      console.log(err);
+    });
+  }
+
+  getArray(){
+    this.singleMultiArray = this.totalDeals.concat(this.multiPosts);
+    console.log( this.singleMultiArray);
+  }
+  
   getGoogleAddress() {
     var pacContainerInitialized = false;
     $('#searchLocation').keypress(function() {
@@ -336,5 +369,5 @@ scrollFunction() {
 topFunction() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-} 
+}
 }

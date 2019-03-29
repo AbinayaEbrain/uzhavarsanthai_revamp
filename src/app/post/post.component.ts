@@ -279,8 +279,17 @@ export class PostComponent implements OnInit {
        ).status;
 
        this.productData.ipAddress = this.privateIP;
-       this.productData.avlPlace = this.addr;
+      //  this.productData.avlPlace = this.addr;
    
+       if(this.addr == undefined || this.addr == null ){
+        this.productData.avlPlace = JSON.parse(
+          localStorage.getItem('currentUser')
+        ).address.city;
+       }
+       else{
+        this.productData.avlPlace = this.addr;
+       }
+
        for (let i = 0; i < this.categoryArr.length; i++) {
          if (this.productData.categoryId == this.categoryArr[i]._id) {
            this.productData.category = this.categoryArr[i].productCategory;

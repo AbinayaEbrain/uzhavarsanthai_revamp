@@ -12,7 +12,7 @@
               </div>
               <div class="col-md-2">
               </div>
-              <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">                  
+              <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">
                   <div class="inner-addon left-addon" >
                           <i class="fa fa-search glyphicon" aria-hidden="true"></i>
                           <input type="text" class="form-control searchBorder searchtop1"  [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
@@ -23,7 +23,7 @@
                           <i class="fa fa-search glyphicon" aria-hidden="true"></i>
                           <input google-place type="text" class="form-control searchBorder"  [(ngModel)]="getLocationDeals" (keyup)="adrsChange()" (onSelect)="setAddress($event)" placeholder="Search by location.." />
                       </div>
-                      
+
                </div>
                <!-- <div class="col-md-1 one">
                    <i class="fas fa-undo pt-2" style="display: none" id="backToAll" (click)="gotoBck()" ></i>
@@ -51,7 +51,7 @@
               <div class="col-md-6 col-lg-4 col-12 errDesign">
                   <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" style="margin-top: 40px;" alt="cart">
                   <p class="mt-4">Oops! Currently no deals available in <br>"<font class="tamil_word" style="color: #f53636;font-style: italic">{{getCategory}}</font>" category
-                      </p>                    
+                      </p>
               </div>
               <div class="col-md-3 col-lg-4 col-12"></div>
       </div>
@@ -61,11 +61,11 @@
               <div class="col-md-6 col-lg-4 col-12 errDesign">
                   <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
                   <p class="mt-4">Oops! No products available from
-                       <font *ngIf="addr.locality" style="color: #f53636;font-style: italic">"{{addr.locality}}"</font> 
+                       <font *ngIf="addr.locality" style="color: #f53636;font-style: italic">"{{addr.locality}}"</font>
                        <font *ngIf="!addr.locality" style="color: #f53636;font-style: italic">"{{addr.formatted_address}}"</font>
                       </p>
                   <p (click)="reset()" style="cursor: pointer;text-decoration: underline">Go to back</p>
-                  
+
               </div>
               <div class="col-md-3 col-lg-4 col-12"></div>
           </div>
@@ -76,14 +76,14 @@
                       <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
                       <p class="mt-4">Oops! No products available based on your search.</p>
                       <p (click)="reset()" style="cursor: pointer;text-decoration: underline">Go to back</p>
-                      
+
                   </div>
                   <div class="col-md-3 col-lg-4 col-12"></div>
               </div>
-          
+
           <div *ngIf="showDeals">
-                  <div class="mt-5" *ngFor = "let deal of totalDeals | filterdata: queryString  : 'name'">
-                       <div *ngIf="errMsg2 && !errMsgSec">  
+                  <div class="mt-5" *ngFor = "let deal of singleMultiArray | filterdata: queryString  : 'name'">
+                       <div *ngIf="errMsg2 && !errMsgSec">
                       <div *ngIf="deal === -1" style="margin-bottom: 6%">
                           <div class="col-md-3 col-lg-3 col-12"></div>
                           <div class="col-md-6 col-lg-6 col-12 errDesign">
@@ -97,30 +97,38 @@
                   </div>
                       </div>
               <div class="row " id="hideifNoData" style="margin-top: -20px;">
-                      <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of totalDeals  | filterdata: queryString  : 'name'|paginate: {id: 'foo1', itemsPerPage:40,currentPage:e },let i = index">
+                      <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of singleMultiArray  | filterdata: queryString  : 'name'|paginate: {id: 'foo1', itemsPerPage:40,currentPage:e },let i = index">
                               <div class="card card-1" *ngIf="deal !== -1">
                                       <img src="{{deal.image}}" class="zoom" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                                       <table class="tableContent">
-                                          <tr>
-                                              <!-- <td><strong>Product &nbsp; </strong></td>
-                                              <td>:</td> -->
-                                              <div class="productFullName">{{deal.name}}</div>
-                                          </tr>
-                                             <tr>
-                                                  <!-- <td><strong>Price &nbsp; </strong></td>
-                                                  <td>:</td> -->
-                                                  <td style="font-weight:500"><i class="fa fa-inr" aria-hidden="true"></i> {{deal.price}}.00/{{deal.qnty}}</td>
-                                               </tr>
-                                              <!-- <tr>
-                                                 <td><strong>Quantity &nbsp;</strong></td>
-                                                 <td>:</td>
-                                                 <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
+                                        <tr *ngIf="!deal.bulk">
+                                                <!-- <td><strong>Product &nbsp; </strong></td>
+                                                <td>:</td> -->
+                                                <div class="productFullName">{{deal.name}}</div>
+                                            </tr>
+                                            <tr *ngIf="deal.bulk">
+                                                <!-- <td><strong>Product &nbsp; </strong></td>
+                                                <td>:</td> -->
+                                                <div class="productFullName">{{deal.category}}</div>
+                                            </tr>
+                                               <tr  *ngIf="!deal.bulk">
+                                                 <!-- <td><strong>Quantity &nbsp;</strong></td>
+                                                 <td>:</td> -->
+                                                 <td>{{deal.quantity}}  {{deal.qnty}}</td>
                                              </tr>
-                                             <tr>
-                                                 <td><strong>Location &nbsp;</strong></td>
-                                                 <td>:</td>
+                                             <tr  *ngIf="!deal.bulk">
+                                               <!-- <td><strong>Quantity &nbsp;</strong></td>
+                                               <td>:</td> -->
+                                               <td>{{deal.price}} / {{deal.qnty}}</td>
+                                           </tr>
+                                             <tr *ngIf="deal.bulk">
+
                                                  <div class="productFullName">&nbsp;&nbsp;{{deal.avlPlace.locality}}</div>
-                                              </tr> -->
+                                              </tr>
+                                              <tr *ngIf="!deal.bulk">
+
+                                                  <div class="productFullName">{{deal.avlPlace.locality}}</div>
+                                               </tr>
                                              <br>
                                          </table>
                                          <button type="button" class="btn btn-outline-success text-center viewMoreBtn" (click)="goToView(deal)">View More</button>
@@ -135,8 +143,8 @@
           </div>
 
           <div *ngIf="!showDeals" style="margin-top: -20px;">
-                  <div class="mt-5" *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name'">
-                          <div *ngIf="!errMsg1 && !errMsgSec">  
+                  <div class="mt-5" *ngFor = "let deal of singleMultiArray | filterdata: queryString  : 'name'">
+                          <div *ngIf="!errMsg1 && !errMsgSec">
                                   <div *ngIf="deal === -1" style="margin-bottom: 6%">
                                       <div class="col-md-3 col-lg-3 col-12"></div>
                                       <div class="col-md-6 col-lg-6 col-12 errDesign">
@@ -151,30 +159,69 @@
                       </div>
                   <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
                   <div class="row mt-3" id="hideifData">
-                         <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of totalDeals1  | filterdata: queryString  : 'name'| paginate: {id: 'foo', itemsPerPage:40,currentPage:p },let i = index">
+                         <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of singleMultiArray  | filterdata: queryString  : 'name'| paginate: {id: 'foo', itemsPerPage:40,currentPage:p },let i = index">
                               <div class="card card-1" *ngIf="deal !== -1">
                                       <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                                       <table class="tableContent">
-                                        <tr>
-                                            <!-- <td><strong>Product &nbsp; </strong></td>
-                                            <td>:</td> -->
-                                            <div class="productFullName">{{deal.name}}</div>
-                                        </tr>
-                                           <tr>
-                                                <!-- <td><strong>Price &nbsp; </strong></td>
+<<<<<<< HEAD
+                                        <tr *ngIf="!deal.bulk">
+                                                <!-- <td><strong>Product &nbsp; </strong></td>
                                                 <td>:</td> -->
-                                                <td style="font-weight:500"><i class="fa fa-inr" aria-hidden="true"></i> {{deal.price}}.00/{{deal.qnty}}</td>
+                                                <div class="productFullName">{{deal.name}}</div>
+                                            </tr>
+                                            <tr *ngIf="deal.bulk">
+                                                <!-- <td><strong>Product &nbsp; </strong></td>
+                                                <td>:</td> -->
+                                                <div class="productFullName">{{deal.category}}</div>
+                                            </tr>
+                                               <tr  *ngIf="!deal.bulk">
+                                                 <!-- <td><strong>Quantity &nbsp;</strong></td>
+                                                 <td>:</td> -->
+                                                 <td>{{deal.quantity}}  {{deal.qnty}}</td>
                                              </tr>
-                                            <!-- <tr>
-                                               <td><strong>Quantity &nbsp;</strong></td>
-                                               <td>:</td>
-                                               <td>&nbsp;&nbsp;{{deal.quantity}}  {{deal.qnty}}</td>
+                                             <tr  *ngIf="deal.bulk">
+                                               <!-- <td><strong>Quantity &nbsp;</strong></td>
+                                               <td>:</td> -->
+                                               <td>{{deal.price}} / {{deal.qnty}}</td>
                                            </tr>
-                                           <tr>
-                                               <td><strong>Location &nbsp;</strong></td>
-                                               <td>:</td>
-                                               <div class="productFullName">&nbsp;&nbsp;{{deal.avlPlace.locality}}</div>
-                                            </tr> -->
+                                             <tr *ngIf="deal.bulk">
+
+                                                 <div class="productFullName">{{deal.avlPlace.locality}}</div>
+                                              </tr>
+                                              <tr *ngIf="!deal.bulk">
+
+                                                  <div class="productFullName">{{deal.avlPlace.locality}}</div>
+                                               </tr>
+=======
+                                            <tr>
+                                                    <!-- <td><strong>Product &nbsp; </strong></td>
+                                                    <td>:</td> -->
+                                                    <div class="productFullName">{{deal.name}}</div>
+                                                </tr>
+
+                                                   <div class="row">
+
+                                                  <div class="col-md-5">
+                                                    <tr>
+                                                       <!-- <td><strong>Quantity &nbsp;</strong></td>
+                                                       <td>:</td> -->
+                                                       <td>{{deal.quantity}}  {{deal.qnty}}</td>
+                                                   </tr>
+                                                  </div>
+                                                  <div class="col-md-7">
+                                                          <tr>
+                                                               <!-- <td><strong>Price &nbsp; </strong></td>
+                                                               <td>:</td> -->
+                                                               <td><i class="fa fa-inr" aria-hidden="true"></i> {{deal.price}}.00/{{deal.qnty}}</td>
+                                                            </tr>
+                                                         </div>
+                                                  </div>
+                                                   <tr>
+                                                      <!-- <td><strong>Location &nbsp;</strong></td>
+                                                      <td>:</td> -->
+                                                      <div class="productFullName">{{deal.avlPlace.locality}}</div>
+                                                   </tr>
+>>>>>>> 9bfb1ea200a703893ce63041439c30ddc48090eb
                                            <br>
                                          </table>
                                          <button type="button" class="btn btn-outline-success text-center viewMoreBtn" (click)="goToView(deal)">View More</button>
@@ -187,12 +234,11 @@
                                   <pagination-controls id="foo" class="ngx-pagination" style="margin-right: 30px;" (pageChange)="p=$event" maxSize="5"></pagination-controls>
                                 </div>
                       </div>
-
             </div>
-            <div class="second" style="display: none">
-            <button class="float1" style="float:left" id="hideFilterButton1"  routerLink="/dealCategory"><i class="fa fa-arrow-left"></i> </button>
-         <button id="hideFilterButton2" style="float:right" (click)="getGoogleAddress()" class="float" data-toggle="modal"  data-target="#myModal" > <i class="fa fa-filter "></i></button>
-      </div>
+        <div class="second" style="display: none">
+        <button class="float1" style="float:left" id="hideFilterButton1"  routerLink="/dealCategory"><i class="fa fa-arrow-left"></i> </button>
+        <button id="hideFilterButton2" style="float:right" (click)="getGoogleAddress()" class="float" data-toggle="modal"  data-target="#myModal" > <i class="fa fa-filter "></i></button>
+        </div>
 </body>
 
 <div class="modal fade" id="myModal" role="dialog">
