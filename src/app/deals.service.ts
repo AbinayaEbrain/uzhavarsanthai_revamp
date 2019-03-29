@@ -24,6 +24,8 @@ export class DealsService {
   private _multiPostUrl = 'http://localhost:5000/api/multipost';
   private _getMultiUrl = 'http://localhost:5000/api/getMultipost';
   private _getSingleMultiUrl = 'http://localhost:5000/api/singleMultipost';
+  private _updateMultiPost = 'http://localhost:5000/api/updateMultipost';
+  private _deleteMultiPost = 'http://localhost:5000/api/dltMultiPost'
 
   private _getCategoryUrl = 'https://uzhavarsanthai.herokuapp.com/api/category';
   //Deactivate URL
@@ -56,6 +58,23 @@ export class DealsService {
     return this.http.get<any>(this._getSingleMultiUrl + '/' + id);
   }
 
+  getMultiPost() {
+    return this.http.get<any>(this._getMultiUrl);
+  }
+
+  updateMultiPost(data, id) {
+    console.log(data);
+    return this.http.post<any>(this._updateMultiPost + '/' + id, data);
+  }
+
+  deleteMultiPost(id) {
+    return this.http.delete<any>(this._deleteMultiPost + '/' + id);
+  }
+
+  addPost(data) {
+    return this.http.post<any>(this._postUrl, data);
+  }
+
   getDeals() {
     return this.http.get<any>(this._dealsUrl);
   }
@@ -64,20 +83,12 @@ export class DealsService {
     return this.http.put<any>(this.updateuserurl + '/' + id, data);
   }
 
-  addPost(data) {
-    return this.http.post<any>(this._postUrl, data);
-  }
-
   addMultiPost(data) {
     return this.http.post<any>(this._multiPostUrl, data);
   }
 
   getDetails() {
     return this.http.get<any>(this._getUrl);
-  }
-
-  getMultiPost() {
-    return this.http.get<any>(this._getMultiUrl);
   }
 
   editDeals(data, id) {
