@@ -222,6 +222,33 @@
                   </div>
                   <div class="col-md-1"></div>
                 </div>
+                 <!-- 4th row -->
+                 <div class="row">
+                  <div class="col-md-2"></div>
+              <div class="col-md-8 mb-3">
+                <label class="english_wrd" for="validityTime" ><span style="font-size: 14px" class="tamil_word">காலாவதி தேதி </span>/ Expiry Date</label>
+                        <div class="form-group">
+                            <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="multiData.validityTime" placeholder="Enter expiry date" name="validityTime" class="form-control" autocomplete="off"  bsDatepicker [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"  required>
+                              <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>
+                        </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+            <!-- 5th row -->
+            <div class="row">
+              <div class="col-md-2"></div>
+          <div class="col-md-8 mb-3">
+            <div class="form-group">
+              <div class="upload-btn-wrapper">
+                <label for="image" class="english_wrd" ><span span style="font-size: 14px" class="tamil_word">படத்தை பதிவேற்றம் செய்யவும்</span> / Upload product image</label>
+                <input type="file" id="image"  class="upload" (change)="onFileChangeMulti($event)"
+                  name="image" multiple autocomplete="off" >
+                  <img *ngIf="editId" data-toggle="modal" data-target="#myModal" id="show" style="height: 50px;width: 50px;cursor: pointer;" class="card-img-top" src="{{multiData.image}}" alt="Card image cap">
+              </div>
+         </div>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
                     <div class="row">
                           <div class="col-md-12">
                                   <div class="text-center">
@@ -249,7 +276,15 @@
           <button type="button" class="close"  data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-                <img src="{{multiData.image}}" height="250px" width= "100%" alt="Card image cap">
+                <!-- <img src="{{multiData.image}}" height="250px" width= "100%" alt="Card image cap"> -->
+                <ngx-slick-carousel class="carousel"
+                #slickModal="slick-carousel" 
+                        [config]="slideConfig" 
+                        (init)="slickInit($event)">
+                    <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
+                        <img src="{{ slide }}" alt="" class="viewImage">
+                    </div>
+                </ngx-slick-carousel>
         </div>
       </div>
     </div>

@@ -47,7 +47,6 @@ export class PostComponent implements OnInit {
   loading: boolean = false;
   valid: boolean = false;
   message: string = '';
-  // Image: any;
   Image = [];
   singleImage : File;
   urls = [];
@@ -86,6 +85,7 @@ export class PostComponent implements OnInit {
   singleMultiPost = {};
   splitImage : '';
   oldAvlplace :any;
+  slideConfig:any;
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -152,16 +152,16 @@ export class PostComponent implements OnInit {
           document.getElementById('nav-profile').classList.add('show');
           document.getElementById('nav-profile').classList.add('active');
           this.multiData = res;
+
           this.oldAvlplace = this.multiData.avlPlace;
-          console.log(this.multiData.validityTime);
-          this.multiPostTime = this.multiData.validityTime; 
-          console.log(this.multiPostTime)
           this.multiData.avlPlace = this.multiData.avlPlace.formatted_address;
+
           this.splitImage =  this.multiData.image;
           this.multiData.image = this.splitImage.split(",",1);
+
+          this.multiPostTime = this.multiData.validityTime; 
           this.dateNrml = this.datePipe.transform(this.multiPostTime, 'dd/MM/yyyy');
           this.multiData.validityTime = this.dateNrml;
-          console.log(this.multiData.validityTime );
           this.loadingCtrl.hide();
         },
         err => {
@@ -188,8 +188,6 @@ export class PostComponent implements OnInit {
         this.imageLength = this.urls.length;
       }
     }
-    console.log(this.imageLength);
-    console.log(this.urls);
   }
 
   postImage() {
@@ -213,7 +211,6 @@ export class PostComponent implements OnInit {
   postMultiImage() {
     this.loadingCtrl.show();
       if(this.editId){
-        console.log(this.urls.length);
         if(this.urls.length != 0){
           for (let i = 0; i < this.urls.length; i++) {
             var image = new FormData(); //FormData creation
@@ -259,13 +256,6 @@ export class PostComponent implements OnInit {
       this.loadingCtrl.show();
        // var time = this.productData.validityTime;
        // this.productData.validityTime = time.getTime();
-      //  if(this.Image.length > 1){
-      //    this.productData.bulk = true;
-      //  }else{
-      //   this.productData.bulk = false;
-      //  }
-      // this.productData.image = this.Image;
-       console.log(this.productData.image);
        this.productData.accountId = JSON.parse(
          localStorage.getItem('currentUser')
        )._id;
@@ -287,7 +277,7 @@ export class PostComponent implements OnInit {
        this.productData.status = JSON.parse(
          localStorage.getItem('currentUser')
        ).status;
-       // this.productData.image = JSON.parse(localStorage.getItem('Image'));
+
        this.productData.ipAddress = this.privateIP;
       //  this.productData.avlPlace = this.addr;
    
@@ -308,13 +298,11 @@ export class PostComponent implements OnInit {
    
        let curntDte = new Date().getTime();
        this.productData.date = curntDte;
-       console.log(this.productData);
+
        this._dealsService.addPost(this.productData).subscribe(
          res => {
-           console.log(this.productData);
            console.log(res);
            this.success = 'Posted successfully!';
-           //localStorage.removeItem('Image')
            this.loadingCtrl.hide();
            setTimeout(() => {
              this.loadingCtrl.show();
@@ -354,6 +342,7 @@ export class PostComponent implements OnInit {
        localStorage.getItem('currentUser')
      ).status;
      this.multiData.bulk = true;
+
     // update multi
     if(this.editId){
        if(this.Image.length == this.imageLength){
@@ -373,16 +362,17 @@ export class PostComponent implements OnInit {
           let time1 = this.multiData.validityTime;
           this.multiData.validityTime = time1.getTime();
         }
-          
-           this.multiData.ipAddress = this.privateIP;
-           for (let i = 0; i < this.categoryArr.length; i++) {
+                     
+          for (let i = 0; i < this.categoryArr.length; i++) {
              if (this.multiData.category == this.categoryArr[i].productCategory) {
                this.multiData.categoryId = this.categoryArr[i]._id;
              }
            }
+
+           this.multiData.ipAddress = this.privateIP;
            let curntDte = new Date().getTime();
            this.multiData.date = curntDte;
-           console.log(this.multiData);
+
            this._dealsService.updateMultiPost(this.multiData,this.editId).subscribe(
              res => {
                console.log(res);
@@ -410,31 +400,30 @@ export class PostComponent implements OnInit {
           this.postMultiImage();
          }
     }
+
     // post multi
     else{
       if(this.Image.length == this.imageLength){
       this.loadingCtrl.show();
-     // var time = this.productData.validityTime;
-     // this.productData.validityTime = time.getTime();
-     if(this.Image.length > 0){
-      this.multiData.image = this.Image;
-     }
-     this.multiData.ipAddress = this.privateIP;
-     this.multiData.avlPlace = this.addr;
+        if(this.Image.length > 0){
+          this.multiData.image = this.Image;
+        }
  
      for (let i = 0; i < this.categoryArr.length; i++) {
        if (this.multiData.categoryId == this.categoryArr[i]._id) {
          this.multiData.category = this.categoryArr[i].productCategory;
        }
      }
- 
+
+     this.multiData.ipAddress = this.privateIP;
+     this.multiData.avlPlace = this.addr;
      let curntDte = new Date().getTime();
      this.multiData.date = curntDte;
+
      this._dealsService.addMultiPost(this.multiData).subscribe(
        res => {
          console.log(res);
          this.success = 'Posted successfully!';
-         //localStorage.removeItem('Image')
          this.loadingCtrl.hide();
          setTimeout(() => {
            this.loadingCtrl.show();
