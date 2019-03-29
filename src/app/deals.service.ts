@@ -17,8 +17,14 @@ export class DealsService {
   private _getCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/getCount';
   // https://farmers-market-ebrain.herokuapp.com
   private _dealsUrl = 'https://uzhavarsanthai.herokuapp.com/api/deals';
-  private _postUrl = 'https://uzhavarsanthai.herokuapp.com/api/post';
+  private _postUrl = 'http://localhost:5000/api/post';
   private _getUrl = 'https://uzhavarsanthai.herokuapp.com/api/details';
+
+  // Multipost
+  private _multiPostUrl = 'http://localhost:5000/api/multipost';
+  private _getMultiUrl = 'http://localhost:5000/api/getMultipost';
+  private _getSingleMultiUrl = 'http://localhost:5000/api/singleMultipost';
+
   private _getCategoryUrl = 'https://uzhavarsanthai.herokuapp.com/api/category';
   //Deactivate URL
   private deactiveUrl =
@@ -35,27 +41,43 @@ export class DealsService {
 
   constructor(private http: HttpClient) {}
 
-  sendImage(Image: FormData) {
-    return this.http.post(this.uploadUrl, Image).pipe(
-      timeout(2500),
-      retryWhen(errors => errors.pipe(delayWhen(val => timer(val * 1000)))),
-      take(2),
-      // concat(throwError('This is an error!')),
-      share()
-    );
+  sendImage(Image : FormData) {
+     return this.http.post(this.uploadUrl, Image)
+    //  .pipe(
+    //   timeout(2500),
+    //   retryWhen(errors => errors.pipe(delayWhen(val => timer(val * 1000)))),
+    //   take(2),
+    //   // concat(throwError('This is an error!')),
+    //   share()
+    // );
   }
+
+  getSingleMultiPost(id) {
+    return this.http.get<any>(this._getSingleMultiUrl + '/' + id);
+  }
+
   getDeals() {
     return this.http.get<any>(this._dealsUrl);
   }
+
   updateCustomer(data, id) {
     return this.http.put<any>(this.updateuserurl + '/' + id, data);
   }
+
   addPost(data) {
     return this.http.post<any>(this._postUrl, data);
   }
 
+  addMultiPost(data) {
+    return this.http.post<any>(this._multiPostUrl, data);
+  }
+
   getDetails() {
     return this.http.get<any>(this._getUrl);
+  }
+
+  getMultiPost() {
+    return this.http.get<any>(this._getMultiUrl);
   }
 
   editDeals(data, id) {

@@ -36,6 +36,8 @@ import { AgmCoreModule } from '@agm/core';
 import { GooglePlacesDirective } from './google-places.directive';
 //datepicker
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+// carousal
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 //file upload
 import { FileUploadModule } from 'ng2-file-upload';
@@ -89,6 +91,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     FileUploadModule,
     BsDatepickerModule,
     SweetAlert2Module,
+    SlickCarouselModule,
     BsDatepickerModule.forRoot(),
   ],
   providers: [

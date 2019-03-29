@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const router = express.Router()
 const User = require('../models/user')
 const Post = require('../models/post')
+const Multipost = require('../models/multipost')
 const Category = require('../models/category')
 const Blog = require('../models/blog')
 const Contact = require('../models/contact');
@@ -49,6 +50,8 @@ router.get('/', (req, res) => {
   res.send('From API route');
 });
 
+
+
 router.post('/register', (req, res) => {
   let userData = req.body;
   let user = new User(userData);
@@ -84,15 +87,32 @@ router.post('/post', (req, res) => {
     if (error) {
       console.log(error);
     } else {
-      //jwt
-      //  let payload={subject:productData._id}
-      //  let token =jwt.sign(payload,'secretKey')
-      //before adding jwt
-
       res.status(200).send(productData);
+    }
+  });
+});
 
-      //after add jwt
-      //    res.status(200).send({token})
+// Multipost
+router.post('/multipost', (req, res) => {
+  let userData = req.body;
+  let multipost = new Multipost(userData);
+  multipost.save((error, productData) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.status(200).send(productData);
+    }
+  });
+});
+
+// get multipost
+router.get('/getMultipost', (req, res) => {
+  Multipost.find(function(err, result) {
+    if (err) {
+      console.log('no data2');
+    } else {
+      res.send(result);
+      //console.log(result)
     }
   });
 });
@@ -123,6 +143,7 @@ router.post('/blog',(req,res)=>{
         }else{
 
             res.status(200).send(blogData)
+            
 
         }
     })
@@ -168,6 +189,54 @@ router.get('/blogetone/:id', (req, res) => {
     }
   });
 });
+
+// get one multi post
+router.get('/singleMultipost/:id', (req, res) => {
+  Multipost.findById(req.params.id, function(errors, getoneuser) {
+    if (errors) {
+      console.log('Error updating' + errors);
+    } else {
+      res.json(getoneuser);
+    }
+  });
+});
+
+//delete multipost
+router.delete('/dltMultiPost/:id', (req, res) => {
+  Multipost.findByIdAndRemove(req.params.id, function(errors, deleteblog) {
+    if (errors) {
+      console.log('Error deleting' + errors);
+    } else {
+      res.json(deleteblog);
+    }
+  });
+});
+
+//update multi post
+router.put('/updateMultipost/:id', function(req, res) {
+  Multipost.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: {
+        category: req.body.category,
+        description: req.body.description,
+        avlPlace: req.body.avlPlace,
+        image: req.body.image
+      }
+    },
+    {
+      new: true
+    },
+    function(err, updatedUser) {
+      if (err) {
+        res.send('Error updating user');
+      } else {
+        res.json(updatedUser);
+      }
+    }
+  );
+});
+
 //delete blog
 router.delete('/blogdel/:id', (req, res) => {
   Blog.findByIdAndRemove(req.params.id, function(errors, deleteblog) {
@@ -349,10 +418,6 @@ router.delete('/details/:id', (req, res) => {
 
 //update deals
 router.put('/deals/:id', function(req, res) {
-  // console.log('Update a user');
-  // console.log(req.body)
-  //let userData = req.body
-  // let User = new User(userData)
   Post.findByIdAndUpdate(
     req.params.id,
     {

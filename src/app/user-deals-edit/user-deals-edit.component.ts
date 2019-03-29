@@ -59,8 +59,10 @@ export class UserDealsEditComponent implements OnInit {
   dateNrml: any;
   currentImg: any;
   valid: boolean = false;
-  Image: File;
+  Image =[];
   today: Date;
+  urls = [];
+  imageLength:any;
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
     //to the object in the DOM.
@@ -81,8 +83,15 @@ export class UserDealsEditComponent implements OnInit {
 
   onFileChange(event) {
     //Method to set the value of the file to the selected file by the user
-    this.Image = event.target.files[0]; //To get the image selected by the user
-    this.valid = true;
+    //this.Image = event.target.files[0]; //To get the image selected by the user
+    var filesAmount = event.target.files.length;
+    if(filesAmount > 0 ){
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        this.urls.push(event.target.files[i]);
+        this.imageLength = this.urls.length;
+      }
+    }
   }
 
   ngOnInit() {
@@ -162,68 +171,76 @@ export class UserDealsEditComponent implements OnInit {
 
   postImage() {
     this.loadingCtrl.show();
-    var image = new FormData(); //FormData creation
-    image.append('Image', this.Image);
     //Adding the image to the form data to be sent
-    if (this.Image != undefined) {
-      this._dealsService.sendImage(image).subscribe(res => {
-        this.loadingCtrl.hide();
-        // localStorage.setItem('Image', JSON.stringify(res));
-        this.deallistobj.image = res;
-        this.update();
-        console.log(this.deallistobj.image);
-      });
-    }
-    if(this.Image == undefined){
+      if(this.urls != undefined){
+        for (let i = 0; i < this.urls.length; i++) {
+          var image = new FormData(); //FormData creation
+          image.append('Image', this.urls[i]);
+          this._dealsService.sendImage(image).subscribe(res => {
+            this.loadingCtrl.hide();
+            console.log(res);
+            this.Image.push(res);
+            this.update();
+          });
+          break;
+        }
+      }
+    
+    if(this.urls == undefined){
       this.update();
     }
   }
 
   update() {
-    this.loadingCtrl.show();
-    let curntDte = new Date().toLocaleDateString();
-    this.deallistobj.date = curntDte;
-
-    if (this.addr == null || this.addr == undefined) {
-      this.deallistobj.avlPlace = this.address;
-    } else {
-      this.deallistobj.avlPlace = this.addr;
-    }
-
-    if (this.dateNrml == this.deallistobj.validityTime) {
-      this.deallistobj.validityTime = this.time;
-    }
-
-    this.deallistobj.username = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).firstname;
-    this.deallistobj.lastname = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).lastName;
-    this.deallistobj.userNumber = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).phone;
-    this.deallistobj.userAddressLine = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).address.addressLine;
-    this.deallistobj.userAddress = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).address.city.formatted_address;
-
-    this._dealsService.editDeals(this.deallistobj, this.id).subscribe(
-      res => {
-        console.log(res);
-        this.loadingCtrl.hide();
-        this.success = 'Updated successfully!';
-        setTimeout(() => {
-          this.loadingCtrl.show();
-          this.router.navigate(['/products']);
+    if(this.Image.length == this.imageLength){
+      this.loadingCtrl.show();
+      let curntDte = new Date().toLocaleDateString();
+      this.deallistobj.date = curntDte;
+  
+      if (this.addr == null || this.addr == undefined) {
+        this.deallistobj.avlPlace = this.address;
+      } else {
+        this.deallistobj.avlPlace = this.addr;
+      }
+  
+      if (this.dateNrml == this.deallistobj.validityTime) {
+        this.deallistobj.validityTime = this.time;
+      }
+  
+      this.deallistobj.username = JSON.parse(
+        localStorage.getItem('currentUser')
+      ).firstname;
+      this.deallistobj.lastname = JSON.parse(
+        localStorage.getItem('currentUser')
+      ).lastName;
+      this.deallistobj.userNumber = JSON.parse(
+        localStorage.getItem('currentUser')
+      ).phone;
+      this.deallistobj.userAddressLine = JSON.parse(
+        localStorage.getItem('currentUser')
+      ).address.addressLine;
+      this.deallistobj.userAddress = JSON.parse(
+        localStorage.getItem('currentUser')
+      ).address.city.formatted_address;
+  
+      this._dealsService.editDeals(this.deallistobj, this.id).subscribe(
+        res => {
+          console.log(res);
           this.loadingCtrl.hide();
-        }, 2000);
-      },
-      err => console.log(err)
-    );
-    localStorage.removeItem('Image');
+          this.success = 'Updated successfully!';
+          setTimeout(() => {
+            this.loadingCtrl.show();
+            this.router.navigate(['/products']);
+            this.loadingCtrl.hide();
+          }, 2000);
+        },
+        err => console.log(err)
+      );
+    }
+    else{
+      this.urls.shift();
+      this.postImage();
+     }
   }
 
   // handleInput(evt)
