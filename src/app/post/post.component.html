@@ -70,7 +70,6 @@
                     </div>
                     <div class="col-md-1"></div>
             </div>
-
             <!-- 3rd row -->
             <div class="row">
                     <div class="col-md-1"></div>
@@ -80,7 +79,6 @@
                       <input type="text" placeholder="Enter price" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="productData.price"  name="price" class="form-control" maxlength="5"  autocomplete="off"  required>
                       <span class="text-danger float-left error_word" [class.d-none] = "price.valid || price.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Price is required</span>
                     </div>
-
               </div>
                 <div class="col-md-5 mb-3">
                   <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">கிடைக்குமிடம் </span>/ Available Place</label>
@@ -120,7 +118,6 @@
                             <!-- <span class="text-danger float-left error_word" [class.d-none] = "Image.valid || Image.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Image is required</span> -->
                             <!-- <input type="file" id="Image" name="Image" class="upload" (change)="onFileChange($event)" #fileInput required> -->
                           </div>
-
                      </div>
                             <!-- <div class="form-group">
                                     <div class="upload-btn-wrapper">
@@ -146,10 +143,8 @@
                         </div>
               </div>
              <br>
-
         </form>
       </div>
-
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             <form  #postform="ngForm" *ngIf ="!submitted" novalidate class="card singlepost">
                 <p class="clr">Post Your Product Details</p>
@@ -161,12 +156,11 @@
                     </div>
                   </div>
                 <div class="col-md-4"></div>
-              </div>
-           
+              </div>         
                  <!-- 1st row --> 
               <div class="row" style="margin-top: 1%;">
-                <div class="col-md-2"></div>
-              <div class="col-md-8  mb-3">
+                <div class="col-md-1"></div>
+              <div class="col-md-5  mb-3">
                  <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> பொருள் வகை </span>/ Category</label>
                   <div class="form-group" *ngIf="!editId">
                       <select required class="form-control"  #category="ngModel" [(ngModel)]="multiData.categoryId" name="category" [class.is-invalid]="category.invalid && category.touched"  ngModel>
@@ -184,25 +178,41 @@
                             <span class="text-danger float-left error_word" [class.d-none] = "category.valid || category.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span>
                           </div>
                     </div>
-            <div class="col-md-2"></div>
-                </div>
-                  <!-- 2nd row -->
-                  <div class="row">
-                          <div class="col-md-2"></div>
-                      <div class="col-md-8 mb-3">
+                    <div class="col-md-5 mb-3">
                         <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">கிடைக்குமிடம் </span>/ Available Place</label>
                           <div class="form-group">
                                 <input google-place type="text" placeholder="Enter your address" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="multiData.avlPlace" required>
                                 <span class="text-danger float-left error_word" [class.d-none] = "avlPlace.valid || avlPlace.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
                             </div>
                       </div>
-                      <div class="col-md-2"></div>
+            <div class="col-md-1"></div>
+                </div>
+                    <!-- 2th row -->
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                    <div class="col-md-5 mb-3">
+                      <label class="english_wrd" for="validityTime" ><span style="font-size: 14px" class="tamil_word">காலாவதி தேதி </span>/ Expiry Date</label>
+                              <div class="form-group">
+                                  <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="multiData.validityTime" placeholder="Enter expiry date" name="validityTime" class="form-control" autocomplete="off"  bsDatepicker [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"  required>
+                                    <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>
+                              </div>
                     </div>
-                   
-                    <!-- 3rd row -->
+                    <div class="col-md-5 mb-3">
+                        <div class="form-group">
+                          <div class="upload-btn-wrapper">
+                            <label for="image" class="english_wrd" ><span span style="font-size: 14px" class="tamil_word">படத்தை பதிவேற்றம் செய்யவும்</span> / Upload product image</label>
+                            <input type="file" id="image" class="form-control" (change)="onFileChangeMulti($event)"
+                              name="image" multiple autocomplete="off" >
+                              <img *ngIf="editId" data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;margin-top: -20%;" id="show" class="card-img-top" src="{{multiData.image}}" alt="Card image cap">
+                          </div>
+                     </div>
+                      </div>
+                    <div class="col-md-1"></div>
+                  </div>
+                  <!-- 3nd row -->
                    <div class="row">
-                      <div class="col-md-2"></div>
-                  <div class="col-md-8 mb-3">
+                      <div class="col-md-1"></div>
+                  <div class="col-md-10 mb-3">
                       
                       <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">பொருளைப் பற்றி </span>/ Description</label>
                             <div class="form-group">
@@ -210,35 +220,8 @@
                                        <span class="text-danger float-left error_word" [class.d-none] = "description.valid || description.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Description is required</span>
                               </div>
                   </div>
-                  <div class="col-md-2"></div>
-                </div>
-                 <!-- 4th row -->
-                 <div class="row">
-                  <div class="col-md-2"></div>
-              <div class="col-md-8 mb-3">
-                <label class="english_wrd" for="validityTime" ><span style="font-size: 14px" class="tamil_word">காலாவதி தேதி </span>/ Expiry Date</label>
-                        <div class="form-group">
-                            <input type="text"  #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  [(ngModel)]="multiData.validityTime" placeholder="Enter expiry date" name="validityTime" class="form-control" autocomplete="off"  bsDatepicker [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"  required>
-                              <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>
-                        </div>
-              </div>
-              <div class="col-md-2"></div>
-            </div>
-            <!-- 5th row -->
-            <div class="row">
-              <div class="col-md-2"></div>
-          <div class="col-md-8 mb-3">
-            <div class="form-group">
-              <div class="upload-btn-wrapper">
-                <label for="image" class="english_wrd" ><span span style="font-size: 14px" class="tamil_word">படத்தை பதிவேற்றம் செய்யவும்</span> / Upload product image</label>
-                <input type="file" id="image"  class="upload" (change)="onFileChangeMulti($event)"
-                  name="image" multiple autocomplete="off" >
-                  <img *ngIf="editId" data-toggle="modal" data-target="#myModal" id="show" style="height: 50px;width: 50px;cursor: pointer;" class="card-img-top" src="{{multiData.image}}" alt="Card image cap">
-              </div>
-         </div>
-          </div>
-          <div class="col-md-2"></div>
-        </div>
+                  <div class="col-md-1"></div>
+                </div>     
                     <div class="row">
                           <div class="col-md-12">
                                   <div class="text-center">
