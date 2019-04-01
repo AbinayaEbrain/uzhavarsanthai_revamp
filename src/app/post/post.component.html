@@ -272,7 +272,7 @@
                         [config]="slideConfig" 
                         (init)="slickInit($event)">
                     <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
-                        <img src="{{ slide }}" alt="" class="viewImage">
+                        <img src="{{ slide }}" alt="Card image" height="250px" width= "100%" class="viewImage">
                     </div>
                 </ngx-slick-carousel>
         </div>

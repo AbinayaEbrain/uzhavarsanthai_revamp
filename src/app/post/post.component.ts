@@ -86,6 +86,7 @@ export class PostComponent implements OnInit {
   splitImage : '';
   oldAvlplace :any;
   slideConfig:any;
+  arrayImage = [];
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -162,6 +163,18 @@ export class PostComponent implements OnInit {
           this.multiPostTime = this.multiData.validityTime; 
           this.dateNrml = this.datePipe.transform(this.multiPostTime, 'dd/MM/yyyy');
           this.multiData.validityTime = this.dateNrml;
+
+          this.arrayImage = this.splitImage.split(",");
+          console.log(this.arrayImage);
+          this.slideConfig = {
+            "slidesToShow": 1,
+            "slidesToScroll": 1,
+            "dots": true,
+            "infinite": false,
+            "arrows": false,
+            "autoplay": false,
+            "autoplaySpeed": 1500
+        };
           this.loadingCtrl.hide();
         },
         err => {
@@ -170,6 +183,10 @@ export class PostComponent implements OnInit {
         }
       );
     }
+  }
+
+  slickInit(e) {
+    console.log('slick initialized');
   }
 
   onFileChange(event) {

@@ -39,6 +39,8 @@ export class ViewcategoryComponent implements OnInit {
   specifyCategory = [];
   getSearchDeals = [];
   multiPosts = [];
+  multiPost : any;
+  splitImage1 = '';
   querydetails: any = {};
   totalDeals1 = [];
   noSearchDealsErr: any;
