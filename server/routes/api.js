@@ -20,12 +20,6 @@ const Phone = require('../models/phone');
 const Device = require('../models/devicedata');
 const Notification = require('../models/notification');
 const Orderrequest = require('../models/orderrequest');
-const mongoose = require('mongoose')
-var multer = require('multer');
-const cloudinary = require('cloudinary');
-const cloudinaryStorage = require('multer-storage-cloudinary');
-const db = 'mongodb://user01:user01@ds023704.mlab.com:23704/farmersdb';
-var http = require("http");
 const Signup = require('../models/signUp');
 
 //email

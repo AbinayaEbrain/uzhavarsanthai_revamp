@@ -159,6 +159,7 @@ sendQuery(){
 this.storeOrderRequest();
 this.smsToSeller();
 this.smsToBuyer();
+localStorage.removeItem('lastvisitproductid');
 }
 
 //store order request
@@ -207,6 +208,7 @@ smsToBuyer(){
       this.router.navigate(['/login']);
     }else {
       console.log('logged');
+      this.openModal();
     }
   }
 }
