@@ -10,19 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./admin-user.component.css']
 })
 export class AdminUserComponent implements OnInit {
-  //  public registerUser=[{
-  //     firstname:'',
-  //     _id:'',
-  //     status:'',
-  //     address:{
-  //       city:'',
-  //       location:''
-  //     }
-  //   }
-  //   ]
-
   public registerUser: any = [];
-
   mapDeals = [];
   id: any;
   errMsg: any;

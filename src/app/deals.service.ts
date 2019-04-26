@@ -67,7 +67,6 @@ export class DealsService {
   }
 
   updateMultiPost(data, id) {
-    console.log(data);
     return this.http.post<any>(this._updateMultiPost + '/' + id, data);
   }
 

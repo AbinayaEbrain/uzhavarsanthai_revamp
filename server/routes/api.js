@@ -1,6 +1,14 @@
 const express =require('express')
 const jwt = require('jsonwebtoken')
 const router = express.Router()
+
+const mongoose = require('mongoose')
+var multer = require('multer');
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+const db = 'mongodb://user01:user01@ds023704.mlab.com:23704/farmersdb';
+var http = require("http");
+
 const User = require('../models/user')
 const Post = require('../models/post')
 const Multipost = require('../models/multipost')
@@ -18,6 +26,7 @@ const cloudinary = require('cloudinary');
 const cloudinaryStorage = require('multer-storage-cloudinary');
 const db = 'mongodb://user01:user01@ds023704.mlab.com:23704/farmersdb';
 var http = require("http");
+const Signup = require('../models/signUp');
 
 //email
 var email = require('emailjs/email');
@@ -52,7 +61,6 @@ router.get('/', (req, res) => {
 });
 
 
-
 router.post('/register', (req, res) => {
   let userData = req.body;
   let user = new User(userData);
@@ -71,10 +79,32 @@ router.post('/register', (req, res) => {
          //console.log(payload)
       res.status(200).send({ token, payload, user });
       // res.status(200).send(data);
-      console.log(token, payload, user);
     }
  })
 });
+
+// router.post('/registerSeller', (req, res) => {
+//   let userData = req.body;
+//   let user = new User(userData);
+//   user.save((error, data) => {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       //  jwt
+//           // let payload = { subject: data._id };
+//           // let token = jwt.sign(payload, 'secretKey');
+
+//          // before adding jwt
+//          console.log(registeredUser);
+//          res.status(200).send(registeredUser)
+
+//          //after add jwt
+//          //console.log(payload)
+//       //res.status(200).send({ token, payload, user });
+//       //console.log(token, payload, user);
+//     }
+//  })
+// });
 
 //postdeals
 
@@ -115,7 +145,7 @@ router.get('/getMultipost', (req, res) => {
       res.send(result);
       //console.log(result)
     }
-  }).sort({createdAt : -1});
+  }).sort({date : -1});
 });
 
 //admin
@@ -309,7 +339,7 @@ router.post('/sendMail', (req, res) => {
   });
   server.send(
     {
-      text: 'You have signed up',
+      text: 'Contact mail',
       from: 'support@ebraintechnologies.com',
       to: 'support@ebraintechnologies.com',
       subject: 'Welcome to my app',
@@ -321,6 +351,43 @@ router.post('/sendMail', (req, res) => {
           alternative: true
         }
         //  {path:"pathtofile.zip", type:"application/zip", name:"renamed.zip"}
+      ]
+    },
+    function(err, message) {
+      if (err) console.log(err);
+      else res.json({ success: true, msg: 'sent', message });
+    }
+  );
+});
+
+// Mail for signup rqst
+router.post('/sendMailSignUp', (req, res) => {
+  console.log(req.body);
+  var server = email.server.connect({
+    user: 'abishakshi1496@gmail.com',
+    password: 'abiyuva1438',
+    host: 'smtp.gmail.com',
+    ssl: true
+  });
+  server.send(
+    {
+      text: 'Signup request from Uzhavarsanthai !',
+      from: 'abishakshi1496@gmail.com',
+      to: 'abishakshi1496@gmail.com',
+      subject: 'Signup request from Uzhavarsanthai !',
+      attachment: [
+        {
+          data:
+         "<html><h2>" + req.body.user.firstname + "</h2></html>" + "<html><h4>has requested to signup as a seller!</h4></html>" +
+          "<html><h3>Name :</h3></html>" + req.body.user.firstname + "<html><br></html>" + "<html><h3>Role :</h3></html>" + req.body.user.role
+           + "<html><br></html>" + "<html><h3>Phone :</h3></html>" + req.body.user.phone + "<html><br></html>" + "<html><h3>Address :</h3></html>" + req.body.user.address.city.formatted_address
+           + "<html><br></html>" + "<html><h3>City :</h3></html>" + req.body.user.address.city.locality ,
+          alternative: true
+        }
+        //  {path:"pathtofile.zip", type:"application/zip", name:"renamed.zip"}
+        // + "<html><br></html>" + "<html><h5>Address :</h5></html>" + req.body.address.city.formatted_address +
+       // "<html><br></html>" + "<html><h5>City :</h5></html>" + req.body.address.city.locality
+
       ]
     },
     function(err, message) {
@@ -905,8 +972,6 @@ router.post('/notificationforpost', (req, res) => {
   let userData = req.body;
   let lat1 = userData.avlPlace.lat * 1.015;
   let lat2 = userData.avlPlace.lat / 1.03;
-  console.log(req.body)
-  console.log('hai')
   let user = new Post(userData);
   console.log(userData)
 var sendNotification = function(data) {
@@ -950,7 +1015,6 @@ var message = {
   included_segments: ["All"]
 };
 sendNotification(message);
-console.log(message)
 res.status(200).send(message);
 });
 

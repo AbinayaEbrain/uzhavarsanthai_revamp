@@ -6,8 +6,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private _registerUrl = 'https://uzhavarsanthai.herokuapp.com/api/register';
-  private _logInUrl = 'https://uzhavarsanthai.herokuapp.com/api/login';
+  private _registerUrl = 'http://localhost:5000/api/register';
+  private _logInUrl = 'http://localhost:5000/api/login';
   private _blogUrl = 'https://uzhavarsanthai.herokuapp.com/api/blog';
   private _blogViewUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogview';
   private _blogEditUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogedit';
@@ -15,8 +15,10 @@ export class AuthService {
   private _blogDeleteUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogdel';
   private _sendOtp = 'https://uzhavarsanthai.herokuapp.com/api/sendotpverf';
   private _forgotPwd = 'https://uzhavarsanthai.herokuapp.com/api/forgotPwd';
-  private _resetPasswordUrl ='https://uzhavarsanthai.herokuapp.com/api/resetPassword';
-  private _devicedataeUrl = "https://uzhavarsanthai.herokuapp.com/api/getdevicedata";
+  private _resetPasswordUrl =
+    'https://uzhavarsanthai.herokuapp.com/api/resetPassword';
+  private _devicedataeUrl =
+    'https://uzhavarsanthai.herokuapp.com/api/getdevicedata';
 
   constructor(private http: HttpClient, private route: Router) {}
 
@@ -48,19 +50,24 @@ export class AuthService {
     let username = JSON.parse(localStorage.getItem('firstname'));
     return username;
   }
+
   blogUserData(data) {
     return this.http.post<any>(this._blogUrl, data);
   }
+
   blogGetData() {
     return this.http.get<any>(this._blogViewUrl);
   }
+
   blogGetOneData(id) {
     return this.http.get<any>(this._blogGetOneUrl + '/' + id);
   }
+
   blogEditData(data, id) {
     console.log(data);
     return this.http.put<any>(this._blogEditUrl + '/' + id, data);
   }
+
   blogDeleteData(id) {
     return this.http.delete<any>(this._blogDeleteUrl + '/' + id);
   }
@@ -72,8 +79,8 @@ export class AuthService {
       return !!role;
     }
   }
-  deviceData(data){
-    return this.http.post<any>(this._devicedataeUrl,data)
+  deviceData(data) {
+    return this.http.post<any>(this._devicedataeUrl, data);
   }
 
   findActive() {
