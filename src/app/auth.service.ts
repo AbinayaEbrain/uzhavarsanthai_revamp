@@ -86,6 +86,15 @@ export class AuthService {
       return !!role;
     }
   }
+
+  roleBuyer() {
+    let role = JSON.parse(localStorage.getItem('role'));
+
+    if (role == 'buyer') {
+      return !!role;
+    }
+  }
+
   deviceData(data) {
     return this.http.post<any>(this._devicedataeUrl, data);
   }
