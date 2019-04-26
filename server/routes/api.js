@@ -458,16 +458,20 @@ router.put('/deals/:id', function(req, res) {
 //update user
 router.put('/updateuser/:id', function(req, res) {
   // console.log('Update a userprofile');
-  // console.log(req.body)
+  console.log(req.body._id)
+  console.log(req.params.id)
 
   User.findByIdAndUpdate(
     req.params.id,
     {
       $set: {
+        phone : req.body.phone, 
+        status: req.body.status,
         firstname: req.body.firstname,
-        lastName: req.body.lastName,
-        gender: req.body.gender,
-        address: req.body.address
+        password : req.body.password,
+        address: req.body.address,
+        role: req.body.role,
+        roleStatus : req.body.roleStatus
       }
     },
     {
@@ -477,6 +481,7 @@ router.put('/updateuser/:id', function(req, res) {
       if (err) {
         res.send('Error updating userprofile');
       } else {
+        console.log(updatedUser);
         res.json(updatedUser);
       }
     }
@@ -952,5 +957,34 @@ sendNotification(message);
 console.log(message)
 res.status(200).send(message);
 });
+
+// SMS to seller signup rqst
+router.post('/sendSmsToSeller',(req , res) => {
+  let signupData = req.body;
+
+  var options = {
+        "method": "GET",
+        "hostname": "api.msg91.com",
+        "port": null,
+        "path": "/api/sendhttp.php?route=4&sender=UZHAVA&mobiles=" + signupData.phone + "&authkey=267433AasRmmBdVC5c8a1c2b&message=Hai%20!%20You%20have%20been%20activated%20successfully%20by%20Uzhavarsanthai.%20You%20can%20login%20now.&country=91",
+        "headers": {}
+      };
+
+      var req = http.request(options, function (res) {
+        var chunks = [];
+    
+        res.on("data", function (chunk) {
+          chunks.push(chunk);
+        });
+       
+        res.on("end", function () {
+          var body = Buffer.concat(chunks);
+          console.log(body.toString());
+        });
+      });
+    
+      req.end();
+
+})
 
 module.exports = router;

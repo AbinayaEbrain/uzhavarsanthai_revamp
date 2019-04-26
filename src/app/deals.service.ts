@@ -34,7 +34,7 @@ export class DealsService {
   //Active URL
   private activeUrl =
     'https://uzhavarsanthai.herokuapp.com/api/admin-user/active';
-  private updateuserurl = 'https://uzhavarsanthai.herokuapp.com/api/updateuser';
+  private updateuserurl = 'http://localhost:5000/api/updateuser';
   // private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private notificationtoallurl = 'https://uzhavarsanthai.herokuapp.com/api/notificationtoall';
@@ -81,6 +81,10 @@ export class DealsService {
 
   updateCustomer(data, id) {
     return this.http.put<any>(this.updateuserurl + '/' + id, data);
+  }
+
+  updateCustomer1(data, id) {
+    return this.http.post<any>(this.updateuserurl + '/' + id, data);
   }
 
   addMultiPost(data) {

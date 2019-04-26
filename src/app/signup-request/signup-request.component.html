@@ -1,0 +1,110 @@
+<body style="height: -webkit-fill-available;">
+  <div class="container mt-5">
+    <h4 class="mt-5" style="color:#0d4608;text-align:center">Signup Request</h4><br>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+    <div class="alert alert-success text-center error_word mt-3"  *ngIf="successMsg">
+        {{successMsg}}
+    </div>
+    <div class="alert alert-danger text-center error_word mt-3"  *ngIf="successMsg1">
+        {{successMsg1}}
+    </div>
+  </div>
+    <div class="col-md-4"></div>
+  </div>
+    <div class="table-responsive" id="cardFocus">
+      <table class="table tamil_word">
+          <thead>
+              <tr>
+                <th scope="col" style="text-align:center">User Request</th>
+                <th scope="col" style="text-align:center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="errorMsg">
+                    <td colspan="2" class="text-danger" style="text-align: center;font-weight:bold">
+                       {{errorMsg}}
+                    </td>
+                </tr>
+                <tr *ngFor="let user of userCategory">
+                  <td><span style="font-weight:bold;color:#0d4608">{{user.firstname}} ({{user.phone}})</span>, has requested to signup as a seller.Verify seller details and activate</td>
+                  <td style="display: inline-flex;">
+                    <button type="button" class="btn" style="background-color: #0d4608;color:white;padding: 5px 7px;" (click)="updateSignupReq(user._id)">Accept</button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-danger" style="color:white;padding: 5px 7px;" (click)="updateSignupRejReq(user._id)">Reject</button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary" style="color:white;padding: 5px 7px;" (click)="singleUpdateSignupReq(user._id)" data-toggle="modal" data-target="#myModal" >
+                      View
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+      </table>
+    </div>
+  </div>
+  </body>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Signup request</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body" >
+          <div class="table-responsive" id="cardFocus">
+            <table class="table tamil_word">
+                  <tbody>
+                      <tr>
+                        <td >Name</td>
+                        <td>:</td>
+                        <td>{{userCategory2.firstname}}</td>
+                        </tr>
+
+                        <tr>
+                        <td >Phone</td>
+                        <td>:</td>
+                        <td>{{userCategory2.phone}}</td>
+                      </tr>
+
+                      <tr>
+                        <td >Address</td>
+                        <td>:</td>
+                        <td>{{userCategory2.address.city.locality}}</td>
+                      </tr>
+
+                      <tr>
+                        <td >Role</td>
+                        <td>:</td>
+                        <td>{{userCategory2.role}}</td>
+                      </tr>
+
+                      <tr>
+                        <td >Role status</td>
+                        <td>:</td>
+                        <td>{{userCategory2.roleStatus}}</td>
+                      </tr>
+
+                      <tr>
+                        <td >Status</td>
+                        <td>:</td>
+                        <td>{{userCategory2.status}}</td>
+                      </tr>
+
+                      </tbody>
+            </table>
+          </div></div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    

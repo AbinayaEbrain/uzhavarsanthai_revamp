@@ -21,7 +21,8 @@ const userSchema = new Schema({
   confirmPassword: String,
   privateIP: String,
   phone: Number,
-  status: String
+  status: String,
+  roleStatus : String
 });
 
 module.exports = mongoose.model('user', userSchema, 'users');

@@ -243,7 +243,7 @@ export class PostComponent implements OnInit {
         }
          else{
           this.multiData.image = this.splitImage;
-          // this.productData.image = 'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
+          this.productData.image = 'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
           this.loadingCtrl.hide();
           this.postMultiProduct();
         }
