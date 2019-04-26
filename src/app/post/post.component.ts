@@ -160,7 +160,7 @@ export class PostComponent implements OnInit {
           this.splitImage =  this.multiData.image;
           this.multiData.image = this.splitImage.split(",",1);
 
-          this.multiPostTime = this.multiData.validityTime; 
+          this.multiPostTime = this.multiData.validityTime;
           this.dateNrml = this.datePipe.transform(this.multiPostTime, 'dd/MM/yyyy');
           this.multiData.validityTime = this.dateNrml;
 
@@ -208,6 +208,7 @@ export class PostComponent implements OnInit {
   }
 
   postImage() {
+    alert('1');
     this.loadingCtrl.show();
     if (this.singleImage) {
       var image = new FormData(); //FormData creation
@@ -219,6 +220,7 @@ export class PostComponent implements OnInit {
         this.postProduct();
       });
     } else {
+
       this.productData.image =
         'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
       this.postProduct();
@@ -270,6 +272,7 @@ export class PostComponent implements OnInit {
   }
 
   postProduct(){
+        alert('2');
       this.loadingCtrl.show();
        // var time = this.productData.validityTime;
        // this.productData.validityTime = time.getTime();
@@ -297,7 +300,7 @@ export class PostComponent implements OnInit {
 
        this.productData.ipAddress = this.privateIP;
       //  this.productData.avlPlace = this.addr;
-   
+
        if(this.addr == undefined || this.addr == null ){
         this.productData.avlPlace = JSON.parse(
           localStorage.getItem('currentUser')
@@ -312,7 +315,7 @@ export class PostComponent implements OnInit {
            this.productData.category = this.categoryArr[i].productCategory;
          }
        }
-   
+
        let curntDte = new Date().getTime();
        this.productData.date = curntDte;
 
@@ -367,7 +370,7 @@ export class PostComponent implements OnInit {
         if(this.Image.length != 0){
           this.multiData.image = this.Image;
         }
- 
+
         if(this.addr == undefined || this.addr == null){
           this.multiData.avlPlace = this.oldAvlplace;
         }else{
@@ -379,7 +382,7 @@ export class PostComponent implements OnInit {
           let time1 = this.multiData.validityTime;
           this.multiData.validityTime = time1.getTime();
         }
-                     
+
           for (let i = 0; i < this.categoryArr.length; i++) {
              if (this.multiData.category == this.categoryArr[i].productCategory) {
                this.multiData.categoryId = this.categoryArr[i]._id;
@@ -425,7 +428,7 @@ export class PostComponent implements OnInit {
         if(this.Image.length > 0){
           this.multiData.image = this.Image;
         }
- 
+
      for (let i = 0; i < this.categoryArr.length; i++) {
        if (this.multiData.categoryId == this.categoryArr[i]._id) {
          this.multiData.category = this.categoryArr[i].productCategory;

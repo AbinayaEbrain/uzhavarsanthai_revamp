@@ -113,6 +113,7 @@ export class AuthService {
     localStorage.removeItem('status');
     localStorage.removeItem('firstname');
     localStorage.removeItem('Image');
+    localStorage.removeItem('lastvisitproductid');
     this.route.navigate(['/deals']);
   }
 }

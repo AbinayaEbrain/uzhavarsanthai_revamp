@@ -40,6 +40,10 @@ export class DealsService {
   private notificationtoallurl = 'https://uzhavarsanthai.herokuapp.com/api/notificationtoall';
   private notificationtospecificurl ="https://uzhavarsanthai.herokuapp.com/api/notificationospecificeusers";
   private notificationtoPostedProductUrl="https://uzhavarsanthai.herokuapp.com/api/notificationforpost";
+  private orderReqmailUrl = "http://localhost:5000/api/sendorderrequest";
+  private storeOrderReqUrl = "http://localhost:5000/api/storeorderrequest";
+  private sendSellerSmsUrl = "http://localhost:5000/api/sendordersmstoseller";
+  private sendBuyerSmsUrl = "http://localhost:5000/api/sendbuyersmsUrl";
 
   constructor(private http: HttpClient) {}
 
@@ -144,5 +148,23 @@ export class DealsService {
 
   notificationToPostedProduct(data){
     return this.http.post<any>(this.notificationtoPostedProductUrl, data);
+  }
+
+  sendOrderReqmail(data){
+    return this.http.post<any>(this.orderReqmailUrl, data);
+  }
+
+  storeOrderRequest(data){
+    return this.http.post<any>(this.storeOrderReqUrl, data);
+  }
+
+  sendOrderSmsSeller(data){
+    console.log(data);
+    return this.http.post<any>(this.sendSellerSmsUrl, data);
+  }
+
+  sendOrderSmsBuyer(data){
+    console.log(data);
+    return this.http.post<any>(this.sendBuyerSmsUrl, data);
   }
 }

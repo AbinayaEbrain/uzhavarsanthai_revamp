@@ -42,6 +42,8 @@ export class RegisterComponent implements OnInit {
   errMsgVerfi: any;
   optsent : any;
   verifymsg:any;
+  authorize:any;
+  visitId:any;
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -84,9 +86,16 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('currentUser', JSON.stringify(res.user));
         localStorage.setItem('firstname', JSON.stringify(res.user.firstname));
         localStorage.setItem('status', JSON.stringify(res.user.status));
-        //this.router.navigate(['/login'])
         this.success = 'Registered successfully!';
-        this.router.navigate(['/products']);
+        this.authorize = localStorage.getItem('authorization');
+        if(this.authorize ){
+          this.visitId = localStorage.getItem('lastvisitproductid');
+          this.router.navigate(['/viewmore/' + this.visitId ]);
+          localStorage.removeItem('authorization');
+        }else{
+          this.router.navigate(['/products']);
+        }
+
         //  document.getElementById('hideButton').style.display ='none'
         //  document.getElementById('hideRestButton').style.display ='none'
 

@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
   optsent: any;
   message: any;
   verifymsg:any;
+  authorize:any;
+  visitId:any;
 
   constructor(
     private router: Router,
@@ -163,15 +165,28 @@ export class LoginComponent implements OnInit {
         this.wholedata = JSON.parse(localStorage.getItem('status'));
         this.user = JSON.parse(localStorage.getItem('firstname'));
         let previousUrl1 = localStorage.getItem('previousUrl');
+        this.authorize = localStorage.getItem('authorization');
+        console.log(this.authorize);
         if (this.user === 'Admin') {
+          // alert('1');
           this.router.navigate(['/admin']);
         } else {
           if (this.wholedata === 'ACTIVE') {
-            if (previousUrl1 == '/blog-view') {
-              this.router.navigate(['/blog']);
-            } else {
-              this.router.navigate(['/products']);
+            if(this.authorize ){
+              console.log('yes');
+              this.visitId = localStorage.getItem('lastvisitproductid');
+              this.router.navigate(['/viewmore/' + this.visitId ]);
+              localStorage.removeItem('authorization');
+            }else{
+              if (previousUrl1 == '/blog-view') {
+                // alert('2');
+                this.router.navigate(['/blog']);
+              } else {
+                  // alert('4');
+                this.router.navigate(['/products']);
+              }
             }
+
           } else {
             this.deactiveErrorMsg = 'Your account has been deactivated !';
             setTimeout(() => {

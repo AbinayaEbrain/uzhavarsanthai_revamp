@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DealsService } from '../deals.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
+import { NgForm } from '@angular/forms';
 // loader
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatePipe } from '@angular/common';
 import { Location } from '@angular/common';
+declare var $:any;
 
 @Component({
   selector: 'app-viewmore',
@@ -13,11 +15,13 @@ import { Location } from '@angular/common';
   styleUrls: ['./viewmore.component.css']
 })
 export class ViewmoreComponent implements OnInit {
+    @ViewChild('queryform') mytemplateForm: NgForm;
   id = '';
   viewmore = [];
   viewPost = [];
   time: any;
   public postProduct: any = {};
+  public querydata: any = {};
   city: any;
   state: any;
   userName = '';
@@ -26,6 +30,14 @@ export class ViewmoreComponent implements OnInit {
   imageArray = '';
   arrayImage = [];
   slideConfig:any;
+  getToken : any;
+  lastvisit:any;
+  reqId:any;
+  buyerName:any;
+  buyerPhone:any;
+  buyerAddress : any;
+  buyerCity = {};
+  orderRequestMsg:any;
 
   constructor(
     private _dealsService: DealsService,
@@ -34,13 +46,20 @@ export class ViewmoreComponent implements OnInit {
     private route: ActivatedRoute,
     public loadingCtrl: NgxSpinnerService,
     private location: Location
-  ) {}
+  ) {
+      this.querydata.urgency = '';
+  }
 
   ngOnInit() {
     //this.userName = JSON.parse(localStorage.getItem('currentUser')).firstname;
 
     this.id = this.route.snapshot.params['id'];
     this.loadingCtrl.show();
+    this.lastvisit = localStorage.getItem('lastvisitproductid');
+    console.log(this.lastvisit);
+  if(this.lastvisit){
+    this.openModal();
+  }
     this._dealsService.getDeals().subscribe(
       res => {
         this.viewPost = res;
@@ -65,6 +84,7 @@ export class ViewmoreComponent implements OnInit {
             this.postProduct.phone = this.viewPost[i].userNumber;
             this.postProduct.userAddressLine = this.viewPost[i].userAddressLine;
             this.postProduct.address = this.viewPost[i].userAddress;
+            console.log(this.postProduct);
             this.loadingCtrl.hide();
           }
         }
@@ -86,13 +106,107 @@ export class ViewmoreComponent implements OnInit {
       },
       err => console.log(err)
     );
+
   }
 
+
+
+openModal(){
+  console.log("1")
+  document.getElementById("openmodal").click();
+  // $('#myModal').modal('show');
+}
+sendQuery(){
+  this.loadingCtrl.show();
+  var a = "UZHAVAN"
+  this.reqId = Math.floor(100000 + Math.random() * 900000);
+  console.log(this.reqId);
+  this.querydata.requestId = a+ "-" +this.reqId;
+  this.buyerName = JSON.parse(localStorage.getItem('currentUser')).firstname;
+  this.buyerPhone = JSON.parse(localStorage.getItem('currentUser')).phone;
+  this.buyerAddress = JSON.parse(localStorage.getItem('currentUser')).address.addressLine;
+  this.buyerCity = JSON.parse(localStorage.getItem('currentUser')).address.city.formatted_address;
+  this.querydata.buyerName =  this.buyerName;
+  this.querydata.buyerPhone =  this.buyerPhone;
+  this.querydata.buyerAddress =  this.buyerAddress;
+  this.querydata.buyerCity =  this.buyerCity;
+  //seller data
+  this.querydata.sellerName = this.postProduct.firstName;
+  this.querydata.sellerPhone = this.postProduct.phone;
+  this.querydata.sellerAddress =   this.postProduct.userAddressLine;
+  this.querydata.sellerCity = this.postProduct.address;
+  //prduct data
+  this.querydata.prdctCategory = this.postProduct.category;
+  this.querydata.prdctName = this.postProduct.name;
+  this.querydata.prdctUnit = this.postProduct.qnty;
+  this.querydata.prdctQty = this.postProduct.quantity
+  this.querydata.prdctAvlplace = this.postProduct.avlPlace;
+  console.log(this.querydata);
+
+  this._dealsService.sendOrderReqmail(this.querydata).subscribe(
+    res => {
+      console.log(res);
+      this.loadingCtrl.hide();
+      this.orderRequestMsg = 'We got your order query, we get back to you soon!';
+      this.mytemplateForm.reset();
+      setTimeout(() => {
+        this.orderRequestMsg = '';
+        document.getElementById("closeModal").click();
+      }, 10000);
+    },
+    err => console.log(err)
+  );
+this.storeOrderRequest();
+this.smsToSeller();
+this.smsToBuyer();
+}
+
+//store order request
+storeOrderRequest(){
+  this._dealsService.storeOrderRequest(this.querydata).subscribe(
+    res => {
+      console.log(res);
+    },
+    err => console.log(err)
+  );
+}
+//sms to seller
+smsToSeller(){
+  this._dealsService.sendOrderSmsSeller(this.querydata).subscribe(
+    res => {
+      console.log(res);
+    },
+    err => console.log(err)
+  );
+}
+//sms to buyer
+smsToBuyer(){
+  this._dealsService.sendOrderSmsBuyer(this.querydata).subscribe(
+    res => {
+      console.log(res);
+    },
+    err => console.log(err)
+  );
+}
   slickInit(e) {
     console.log('slick initialized');
   }
 
   goToBack() {
     this.location.back();
+  }
+
+  checkBuyer(){
+    console.log('function works');
+    this.getToken = localStorage.getItem('token');
+    if(this.getToken == null || this.getToken == undefined || this.getToken == '' ){
+      console.log('not logged');
+      var a = "wait for login"
+      localStorage.setItem('authorization', JSON.stringify(a));
+      localStorage.setItem('lastvisitproductid',this.id);
+      this.router.navigate(['/login']);
+    }else {
+      console.log('logged');
+    }
   }
 }
