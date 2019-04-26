@@ -57,6 +57,10 @@ export class AppComponent implements OnInit {
     this.username = this._authService.getUserName();
   }
 
+  register() {
+    this.router.navigate(['/register', { role: 'seller' }]);
+  }
+
   trackMe() {
     if (navigator.geolocation) {
       this.isTracking = true;
