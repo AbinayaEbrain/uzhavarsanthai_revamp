@@ -20,12 +20,6 @@ const Phone = require('../models/phone');
 const Device = require('../models/devicedata');
 const Notification = require('../models/notification');
 const Orderrequest = require('../models/orderrequest');
-const mongoose = require('mongoose')
-var multer = require('multer');
-const cloudinary = require('cloudinary');
-const cloudinaryStorage = require('multer-storage-cloudinary');
-const db = 'mongodb://user01:user01@ds023704.mlab.com:23704/farmersdb';
-var http = require("http");
 const Signup = require('../models/signUp');
 
 //email
@@ -314,8 +308,8 @@ router.post('/login',(req,res)=>{
                 }
             }
         }
-    })
-})
+    });
+});
 
 //contact
 router.post('/contact', (req, res) => {
@@ -395,34 +389,6 @@ router.post('/sendMailSignUp', (req, res) => {
       else res.json({ success: true, msg: 'sent', message });
     }
   );
-});
-
-router.post('/login', (req, res) => {
-  let userData = req.body;
-
-  User.findOne({ phone: userData.phone }, (error, user) => {
-    if (error) {
-      console.log(error);
-    } else {
-      if (!user) {
-        res.status(401).send('Invalid Phone Number');
-      } else {
-        if (user.password !== userData.password) {
-          res.status(401).send('Invalid Password');
-        } else {
-          //add jwt
-          let payload = { subject: user._id };
-          let token = jwt.sign(payload, 'secretKey');
-          //before add jwt
-          // res.status(200).send(user)
-
-          //after add jwt
-
-          res.status(200).send({ token, payload, user });
-        }
-      }
-    }
-  });
 });
 
 router.get('/deals', (req, res) => {

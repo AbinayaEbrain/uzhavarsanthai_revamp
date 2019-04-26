@@ -170,7 +170,7 @@ export class LoginComponent implements OnInit {
         this.user = JSON.parse(localStorage.getItem('firstname'));
         let previousUrl1 = localStorage.getItem('previousUrl');
         this.authorize = localStorage.getItem('authorization');
-        console.log(this.authorize);
+        
         if (this.user === 'Admin') {
           this.router.navigate(['/admin']);
         } else {
@@ -202,6 +202,7 @@ export class LoginComponent implements OnInit {
       },
       err => {
         this.loadingCtrl.hide();
+        console.log(err);
         if (err.statusText === 'Unauthorized') {
           this.errormsg = 'Invalid Phone Number and Password !';
           setTimeout(() => {
