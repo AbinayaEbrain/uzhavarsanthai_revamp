@@ -20,10 +20,17 @@ export class AuthService {
   private _devicedataeUrl =
     'https://uzhavarsanthai.herokuapp.com/api/getdevicedata';
 
+  // send sms to sender for signup
+  private _sendsmsToSeller = 'http://localhost:5000/api/sendSmsToSeller';
+
   constructor(private http: HttpClient, private route: Router) {}
 
   sendOtp(data) {
     return this.http.post<any>(this._sendOtp, data);
+  }
+
+  sendSignUpreqst(data) {
+    return this.http.post<any>(this._sendsmsToSeller, data);
   }
 
   forgotPassword(data) {

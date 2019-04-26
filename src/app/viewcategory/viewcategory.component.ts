@@ -82,7 +82,6 @@ export class ViewcategoryComponent implements OnInit {
     console.log(this.privateIP);
     this.userdetails.searchqnty = '';
     this.showDeals = true;
-    console.log(this.totalDeals.length);
     for (let i = 1; i <= this.totalDeals.length; i++) {
       this.totalDeals.push(`deal ${i}`);
     }
@@ -110,10 +109,16 @@ export class ViewcategoryComponent implements OnInit {
       res => {
         let j = 0;
         this.crdDeals = res;
+        console.log(this.crdDeals);
         this.showDeals = true;
-        // this.id = this.route.snapshot.params['id'];
+        this.id = this.route.snapshot.params['id'];
         let CurrentDate = new Date().toISOString();
         for (let i = 0; i < this.crdDeals.length; i++) {
+          console.log(this.id);
+          console.log(this.crdDeals[i].categoryId);
+          console.log(this.id == this.crdDeals[i].categoryId);
+          console.log(this.crdDeals[i].validityTime > CurrentDate);
+          console.log(this.crdDeals[i].status == 'ACTIVE');
           if (
             this.id == this.crdDeals[i].categoryId &&
             this.crdDeals[i].validityTime > CurrentDate &&
@@ -123,12 +128,14 @@ export class ViewcategoryComponent implements OnInit {
             this.splitImage =  this.totalDeals[j].image;
             this.totalDeals[j].image = this.splitImage.split(",",1);
             this.getPrdtName = this.totalDeals[j].name;
+            console.log(this.totalDeals);
             j++;
+            console.log(this.totalDeals);
             this.loadingCtrl.hide();
           }
         }
-        this.getMultiArray();
         console.log(this.totalDeals);
+        this.getMultiArray();
 
         if (this.totalDeals.length == 0) {
           this.loadingCtrl.show();
@@ -192,7 +199,6 @@ export class ViewcategoryComponent implements OnInit {
   }
 
   filterDeal() {
-    //  alert('1')
     this.totalDeals1 = [];
     this.loadingCtrl.show();
     this.getSearchDeals = this.totalDeals;
@@ -310,7 +316,8 @@ export class ViewcategoryComponent implements OnInit {
 
     if (this.totalDeals1.length == 0) {
       // sweetAlert('Sorry!', 'Currently no product available', 'error');
-      this.errMsg1 = 'locayion';
+      this.singleMultiArray = [];
+      this.errMsg1 = 'location';
       this.errMsgSec = '';
       this.getLocationDeals = '';
       // this.showDeals = true;
@@ -338,6 +345,7 @@ export class ViewcategoryComponent implements OnInit {
     this.errMsgSec = '';
     this.queryString = '';
     this.showDeals = true;
+    this.getArray()
     document.getElementById('backToAll').style.display = 'none';
   }
 
@@ -348,6 +356,7 @@ export class ViewcategoryComponent implements OnInit {
 
   gotoBck() {
     this.showDeals = true;
+    this.getArray()
     this.queryString = '';
     this.errMsg1 = '';
     this.errMsg2 = '';

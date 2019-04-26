@@ -114,6 +114,32 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
+        <a class="nav-link" routerLink="/signup-request" routerLinkActive="active"
+          >Signup request</a
+        >
+      </li>
+      <li
+      *ngIf="_authService.roleAdmin() && _authService.loggedIn()"
+      class="nav-item"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <a class="nav-link" routerLink="/order-request" routerLinkActive="active"
+        >Order request</a
+      >
+    </li>
+      <li
+        *ngIf="_authService.roleAdmin() && _authService.loggedIn()"
+        class="nav-item"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <a class="nav-link" routerLink="/admin" routerLinkActive="active"
           >Admin</a
         >

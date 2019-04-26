@@ -50,6 +50,8 @@ import { BlogComponent } from './blog/blog.component';
 import { BlogViewComponent } from './blog-view/blog-view.component';
 import { ReadMoreComponent } from './read-more/read-more.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { SignupRequestComponent } from './signup-request/signup-request.component';
+import { OrderRequestComponent } from './order-request/order-request.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,9 @@ import { NotificationsComponent } from './notifications/notifications.component'
     BlogComponent,
     BlogViewComponent,
     ReadMoreComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    SignupRequestComponent,
+    OrderRequestComponent
   ],
   imports: [
     BrowserModule,
