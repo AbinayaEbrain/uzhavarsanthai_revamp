@@ -72,3 +72,30 @@ ol {
     font-size: 70%;
   }
 }
+
+.sweet-alert {
+  width: 400px !important;
+}
+
+.sa-custom {
+  width: 300px !important;
+  height: 79px !important;
+  margin-top: -10px !important;
+}
+
+.sweet-alert p {
+  font-family: 'Mukta', sans-serif !important;
+  line-height: unset !important;
+}
+
+.sweet-alert h2 {
+  font-family: 'Mukta', sans-serif !important;
+  color: #0d4608 !important;
+  font-size: 27px !important;
+  margin-top: -35px !important;
+}
+
+.sweet-alert button {
+  background-color: #0d4608 !important;
+  padding: 6px 20px !important;
+}

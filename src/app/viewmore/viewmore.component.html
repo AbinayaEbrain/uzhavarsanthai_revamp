@@ -11,8 +11,8 @@
         <div class="col-md-4 col-sm-12 col-lg-4">
                 <!-- <img src="{{postProduct.image}}" style="cursor: pointer;" class="viewImage"> -->
                 <ngx-slick-carousel class="carousel"
-                #slickModal="slick-carousel" 
-                        [config]="slideConfig" 
+                #slickModal="slick-carousel"
+                        [config]="slideConfig"
                         (init)="slickInit($event)">
                     <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
                         <img src="{{ slide }}" alt="" class="viewImage">
@@ -69,13 +69,14 @@
                               <tr>
                                 <td><strong>Number</strong></td>
                                 <td>:</td>
-                                <td class="contactNumber"><a href="tel:{{postProduct.phone}} "><i class="fa fa-phone mobileIcon" aria-hidden="true"></i> {{postProduct.phone}}</a></td>
+                                <td *ngIf="!lastvisit" class="contactNumber"><button type="button" class="btn btn-success" name="button" (click)="checkBuyer()">Contact Seller</button></td>
                               </tr>
-                              <tr>
+                              <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal" name="button" id="openmodal"></button>
+                              <!-- <tr>
                                 <td><strong>Address</strong></td>
                                 <td>:</td>
                                 <td class="prdtName">{{postProduct.address}}</td>
-                            </tr>
+                            </tr> -->
                             </tbody>
                           </table>
                 </div>
@@ -97,3 +98,68 @@
 </div>
 </div>
 </div>
+
+
+<div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="">Requirement Details</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-success text-center error_word"  *ngIf="orderRequestMsg">
+          {{orderRequestMsg}}
+        </div>
+        <form #queryform="ngForm" *ngIf ="!submitted" novalidate>
+                <div class="row">
+                  <div class="col-md-12" >
+                 <label style="color: black;font-weight: bold;" class="english_wrd">Urgency of Product </label><br>
+                 <select  class="form-control" class="form-control mobmargintop"   placeholder="Enter unit"
+                 style="background-color: transparent;color: #0d4608;"  #urgency="ngModel"
+                 name="urgency" [class.is-invalid]="urgency.invalid && urgency.touched"
+                 ngModel [(ngModel)]="querydata.urgency" required>
+                       <option style="color: black" value="" disabled >Choose Urgency</option>
+                       <option style="color: black" value="Today">Today</option>
+                       <option style="color: black" value="Within 3 days">Within 3 days</option>
+                      <option style="color: black" value="Within 1 week">Within 1 week</option>
+                   </select>
+                   <span
+                     class="text-danger float-left error_word"
+                     [class.d-none]="urgency.valid || urgency.untouched"
+                     ><i class="fa fa-info-circle" aria-hidden="true"></i>Description
+                     is required</span
+                   >
+                  </div>
+
+
+                        <div class="col-md-12 mt-3">
+                       <label style="color: black;font-weight: bold;" class="english_wrd">Description</label>
+                       <textarea
+                         class="form-control" style="height: 75px;border-color: #0d4608;"
+                         name="description"   #description="ngModel"
+                         [class.is-invalid]="description.invalid && description.touched"
+                           class="form-control"
+                           [(ngModel)]="querydata.description"
+                           autocomplete="off"
+                           required
+                       ></textarea>
+                       <span
+                         class="text-danger float-left error_word"
+                         [class.d-none]="description.valid || description.untouched"
+                         ><i class="fa fa-info-circle" aria-hidden="true"></i>Description
+                         is required</span
+                       >
+                        </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" [disabled]="queryform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn" (click)="sendQuery()" >Create Order Request</button>
+                </div>
+              </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

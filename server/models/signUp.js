@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const signUpSchema = new Schema({
   firstname: String,
   address: {
     addressLine: String,
@@ -26,4 +26,4 @@ const userSchema = new Schema({
   roleStatus: String
 });
 
-module.exports = mongoose.model('user', userSchema, 'users');
+module.exports = mongoose.model('singup', signUpSchema, 'singup');

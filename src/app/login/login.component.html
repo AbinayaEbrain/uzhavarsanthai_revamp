@@ -22,6 +22,9 @@
               <div class="alert alert-danger text-center error_word"  *ngIf="deactiveErrorMsg">
                 {{deactiveErrorMsg}}
               </div>
+              <div class="alert alert-danger text-center error_word"  *ngIf="adminVerifyErr">
+                  {{adminVerifyErr}}
+                </div>
 
               <div id="hideForm">
               <form #loginform="ngForm" *ngIf ="!submitted" novalidate>

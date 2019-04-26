@@ -1,6 +1,14 @@
 const express =require('express')
 const jwt = require('jsonwebtoken')
 const router = express.Router()
+
+const mongoose = require('mongoose')
+var multer = require('multer');
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+const db = 'mongodb://user01:user01@ds023704.mlab.com:23704/farmersdb';
+var http = require("http");
+
 const User = require('../models/user')
 const Post = require('../models/post')
 const Multipost = require('../models/multipost')
@@ -11,12 +19,14 @@ const Count = require('../models/viewCount');
 const Phone = require('../models/phone');
 const Device = require('../models/devicedata');
 const Notification = require('../models/notification');
+const Orderrequest = require('../models/orderrequest');
 const mongoose = require('mongoose')
 var multer = require('multer');
 const cloudinary = require('cloudinary');
 const cloudinaryStorage = require('multer-storage-cloudinary');
 const db = 'mongodb://user01:user01@ds023704.mlab.com:23704/farmersdb';
 var http = require("http");
+const Signup = require('../models/signUp');
 
 //email
 var email = require('emailjs/email');
@@ -51,7 +61,6 @@ router.get('/', (req, res) => {
 });
 
 
-
 router.post('/register', (req, res) => {
   let userData = req.body;
   let user = new User(userData);
@@ -70,10 +79,32 @@ router.post('/register', (req, res) => {
          //console.log(payload)
       res.status(200).send({ token, payload, user });
       // res.status(200).send(data);
-      console.log(token, payload, user);
     }
  })
 });
+
+// router.post('/registerSeller', (req, res) => {
+//   let userData = req.body;
+//   let user = new User(userData);
+//   user.save((error, data) => {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       //  jwt
+//           // let payload = { subject: data._id };
+//           // let token = jwt.sign(payload, 'secretKey');
+
+//          // before adding jwt
+//          console.log(registeredUser);
+//          res.status(200).send(registeredUser)
+
+//          //after add jwt
+//          //console.log(payload)
+//       //res.status(200).send({ token, payload, user });
+//       //console.log(token, payload, user);
+//     }
+//  })
+// });
 
 //postdeals
 
@@ -114,7 +145,7 @@ router.get('/getMultipost', (req, res) => {
       res.send(result);
       //console.log(result)
     }
-  }).sort({createdAt : -1});
+  }).sort({date : -1});
 });
 
 //admin
@@ -143,7 +174,7 @@ router.post('/blog',(req,res)=>{
         }else{
 
             res.status(200).send(blogData)
-            
+
 
         }
     })
@@ -157,7 +188,7 @@ router.get('/blogview', (req, res) => {
       res.send(result);
     }
   }).sort({createdAt : -1});
-  
+
 });
 
 //update blogs
@@ -224,7 +255,7 @@ router.post('/updateMultipost/:id', function(req, res) {
             _id:req.params.id
           },
           {
-            $set: { 
+            $set: {
               category: req.body.category,
               description: req.body.description,
               avlPlace: req.body.avlPlace,
@@ -239,7 +270,7 @@ router.post('/updateMultipost/:id', function(req, res) {
         .catch(err => {
           res.status(500).json({ message: 'Error occured' });
         });
-      } 
+      }
     }
   )
 });
@@ -304,11 +335,11 @@ router.post('/sendMail', (req, res) => {
     user: 'support@ebraintechnologies.com',
     password: 'Ji#993te',
     host: 'smtp.gmail.com',
-    ssl: true 
+    ssl: true
   });
   server.send(
     {
-      text: 'You have signed up',
+      text: 'Contact mail',
       from: 'support@ebraintechnologies.com',
       to: 'support@ebraintechnologies.com',
       subject: 'Welcome to my app',
@@ -320,6 +351,43 @@ router.post('/sendMail', (req, res) => {
           alternative: true
         }
         //  {path:"pathtofile.zip", type:"application/zip", name:"renamed.zip"}
+      ]
+    },
+    function(err, message) {
+      if (err) console.log(err);
+      else res.json({ success: true, msg: 'sent', message });
+    }
+  );
+});
+
+// Mail for signup rqst
+router.post('/sendMailSignUp', (req, res) => {
+  console.log(req.body);
+  var server = email.server.connect({
+    user: 'abishakshi1496@gmail.com',
+    password: 'abiyuva1438',
+    host: 'smtp.gmail.com',
+    ssl: true
+  });
+  server.send(
+    {
+      text: 'Signup request from Uzhavarsanthai !',
+      from: 'abishakshi1496@gmail.com',
+      to: 'abishakshi1496@gmail.com',
+      subject: 'Signup request from Uzhavarsanthai !',
+      attachment: [
+        {
+          data:
+         "<html><h2>" + req.body.user.firstname + "</h2></html>" + "<html><h4>has requested to signup as a seller!</h4></html>" +
+          "<html><h3>Name :</h3></html>" + req.body.user.firstname + "<html><br></html>" + "<html><h3>Role :</h3></html>" + req.body.user.role
+           + "<html><br></html>" + "<html><h3>Phone :</h3></html>" + req.body.user.phone + "<html><br></html>" + "<html><h3>Address :</h3></html>" + req.body.user.address.city.formatted_address
+           + "<html><br></html>" + "<html><h3>City :</h3></html>" + req.body.user.address.city.locality ,
+          alternative: true
+        }
+        //  {path:"pathtofile.zip", type:"application/zip", name:"renamed.zip"}
+        // + "<html><br></html>" + "<html><h5>Address :</h5></html>" + req.body.address.city.formatted_address +
+       // "<html><br></html>" + "<html><h5>City :</h5></html>" + req.body.address.city.locality
+
       ]
     },
     function(err, message) {
@@ -534,7 +602,7 @@ router.post('/admin-user/deactive/:id', function(req, res) {
         .catch(err => {
           res.status(500).json({ message: 'Error occured' });
         });
-      } 
+      }
       await Post.update(
         {
           accountId:req.params.id
@@ -588,7 +656,7 @@ router.post('/admin-user/active/:id', function(req, res) {
         .catch(err => {
           res.status(500).json({ message: 'Error occured' });
         });
-      } 
+      }
       await Post.update(
         {
           accountId:req.params.id
@@ -628,7 +696,7 @@ router.post('/getCount', (req, res) => {
             ]
           },
           {
-              $inc: { count: 1 } 
+              $inc: { count: 1 }
           }
       )
       .then(() =>{
@@ -653,7 +721,7 @@ router.post('/getCount', (req, res) => {
           _id : req.body.productId
         },
         {
-          $inc: { count: 1 } 
+          $inc: { count: 1 }
         }
       )
     }
@@ -667,14 +735,14 @@ router.post('/forgotPwd',(req , res) => {
   let phoneVerify = new Phone(contactData);
 
   Phone.find(
-    { 
+    {
     phone: req.body.phone1
    },
    async (err, exuser) => {
   if (exuser.length > 0) {
    await Phone.update(
       {
-        phone: contactData.phone1 
+        phone: contactData.phone1
       },
       {
         $set: { otp: contactData.otp }
@@ -689,20 +757,20 @@ router.post('/forgotPwd',(req , res) => {
       "headers": {}
     };
     // /api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&otp_expiry=1&otp=" + req.body.phone + "&mobile=" + req.body.phone **** "path": "/api/sendotp.php?otp_length=4&authkey=267433AasRmmBdVC5c8a1c2b&message=Your verification code is&sender=ABCDEF&mobile=919677424386&otp=1234&otp_expiry=1440",
-    
+
     var req = http.request(options, function (res) {
       var chunks = [];
-  
+
       res.on("data", function (chunk) {
         chunks.push(chunk);
       });
-     
+
       res.on("end", function () {
         var body = Buffer.concat(chunks);
         console.log(body.toString());
       });
     });
-  
+
     req.end();
   }
    else {
@@ -734,20 +802,20 @@ User.findOne({ phone: contactData.phone }, (err, exuser) => {
         "headers": {}
       };
       // /api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&otp_expiry=1&otp=" + req.body.phone + "&mobile=" + req.body.phone **** "path": "/api/sendotp.php?otp_length=4&authkey=267433AasRmmBdVC5c8a1c2b&message=Your verification code is&sender=ABCDEF&mobile=919677424386&otp=1234&otp_expiry=1440",
-      
+
       var req = http.request(options, function (res) {
         var chunks = [];
-    
+
         res.on("data", function (chunk) {
           chunks.push(chunk);
         });
-       
+
         res.on("end", function () {
           var body = Buffer.concat(chunks);
           console.log(body.toString());
         });
       });
-    
+
       req.end();
     });
   } else {
@@ -777,7 +845,7 @@ router.post('/resetPassword/:phone',(req , res) =>{
       .catch(err => {
         res.status(500).json({ message: 'Error occured' });
       });
-      } 
+      }
     }
   )
 });
@@ -909,8 +977,6 @@ router.post('/notificationforpost', (req, res) => {
   let userData = req.body;
   let lat1 = userData.avlPlace.lat * 1.015;
   let lat2 = userData.avlPlace.lat / 1.03;
-  console.log(req.body)
-  console.log('hai')
   let user = new Post(userData);
   console.log(userData)
 var sendNotification = function(data) {
@@ -954,9 +1020,135 @@ var message = {
   included_segments: ["All"]
 };
 sendNotification(message);
-console.log(message)
 res.status(200).send(message);
 });
+
+//order request mail for admin
+router.post('/sendorderrequest', (req, res) => {
+  var server = email.server.connect({
+    user: 'abishakshi1496@gmail.com',
+    password: 'abiyuva1438',
+    host: 'smtp.gmail.com',
+    ssl: true
+  });
+  server.send(
+    {
+      text: 'You have signed up',
+      from: 'abishakshi1496@gmail.com',
+      to: 'abishakshi1496@gmail.com',
+      subject: 'Buyer Order Request - Uzhavarsanthai',
+      attachment: [
+        {
+          data:
+          "<html><h6>Buyer Order Request</h6></html>" +
+           "<html><h3> Request Number:</h3></html>"+ req.body.requestId +
+           "<html><br></html>" +
+           "<html><h3> Buyer Name :</h3></html>" + req.body.buyerName +
+           "<html><br></html>" +
+           "<html><h3>Buyer Phone :</h3></html>" + req.body.buyerPhone +
+           "<html><br></html>" +
+           "<html><h3>Buyer Address :</h3></html>" + req.body.buyerAddress +
+           "<html><br></html>" +
+           "<html><h3>Buyer City :</h3></html>" + req.body.buyerCity +
+           "<html><br></html>" +
+           "<html><h3>Buyer Query :</h3></html>" + req.body.description +
+           "<html><br></html>" +
+           "<html><h3>Buyer Urgency :</h3></html>" + req.body.urgency +
+           "<html><br></html>" + "<html><hr></html>" +
+
+           "<html><h5>Seller Details</h5></html>" +
+           "<html><h3>Seller Name :</h3></html>" + req.body.sellerName +
+           "<html><br></html>" +
+           "<html><h3>Seller Phone :</h3></html>" + req.body.sellerPhone +
+           "<html><br></html>" +
+           "<html><h3>Seller Address :</h3></html>" + req.body.sellerAddress +
+           "<html><br></html>" +
+           "<html><h3>Seller City :</h3></html>" + req.body.sellerCity +
+           "<html><br></html>" +
+           "<html><h3>Product Available Place :</h3></html>" + req.body.prdctAvlplace,
+          alternative: true
+        }
+        //  {path:"pathtofile.zip", type:"application/zip", name:"renamed.zip"}
+      ]
+    },
+    function(err, message) {
+      if (err) console.log(err);
+      else res.json({ success: true, msg: 'sent', message });
+      console.log(message);
+    }
+  );
+});
+
+//store order request
+router.post('/storeorderrequest', (req, res) => {
+  let orderData = req.body;
+  let order = new Orderrequest(orderData);
+  order.save((error, data) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+//send order request created msg to seller
+router.post('/sendordersmstoseller',(req , res) => {
+  let sellerMsgData = req.body;
+  console.log(sellerMsgData);
+  var options = {
+        "method": "GET",
+        "hostname": "api.msg91.com",
+        "port": null,
+        "path": "/api/sendhttp.php?route=4&sender=UZHAVA&mobiles="+sellerMsgData.sellerPhone+
+        "&authkey=267433AasRmmBdVC5c8a1c2b&message=Hai%20"+
+        sellerMsgData.sellerName+"%20!%20"+"Order%20Request%20No%20"+sellerMsgData.requestId+"%20" +sellerMsgData.buyerName+"%20wants%20to%20purchase%20your%20product.%20Our%20executive%20will%20contact%20you%20and%20provide%20additional%20information%20Thank%20You!&country=91",
+        "headers": {}
+      };
+      var req = http.request(options, function (res) {
+        var chunks = [];
+
+        res.on("data", function (chunk) {
+          chunks.push(chunk);
+        });
+
+        res.on("end", function () {
+          var body = Buffer.concat(chunks);
+          console.log(body.toString());
+        });
+      });
+
+      req.end();
+
+})
+//send order request created msg to buyer
+router.post('/sendbuyersmsUrl',(req , res) => {
+  let sellerMsgData = req.body;
+  console.log(sellerMsgData);
+  var options = {
+        "method": "GET",
+        "hostname": "api.msg91.com",
+        "port": null,
+        "path": "/api/sendhttp.php?route=4&sender=UZHAVA&mobiles="+sellerMsgData.buyerPhone+
+        "&authkey=267433AasRmmBdVC5c8a1c2b&message=Hai%20"+
+        sellerMsgData.buyerName+"%20!%20"+"Your%20order%20request%20created%20successfully.%20Order%20Request%20No%20"+sellerMsgData.requestId+"%20Our%20executive%20will%20contact%20you%20and%20provide%20additional%20information%20Thank%20You!&country=91",
+        "headers": {}
+      };
+      var req = http.request(options, function (res) {
+        var chunks = [];
+
+        res.on("data", function (chunk) {
+          chunks.push(chunk);
+        });
+
+        res.on("end", function () {
+          var body = Buffer.concat(chunks);
+          console.log(body.toString());
+        });
+      });
+      req.end();
+
+})
 
 // SMS to seller signup rqst
 router.post('/sendSmsToSeller',(req , res) => {
@@ -966,7 +1158,7 @@ router.post('/sendSmsToSeller',(req , res) => {
         "method": "GET",
         "hostname": "api.msg91.com",
         "port": null,
-        "path": "/api/sendhttp.php?route=4&sender=UZHAVA&mobiles=" + signupData.phone + "&authkey=267433AasRmmBdVC5c8a1c2b&message=Hai%20!%20You%20have%20been%20activated%20successfully%20by%20Uzhavarsanthai.%20You%20can%20login%20now.&country=91",
+        "path": "/api/sendhttp.php?route=4&sender=UZHAVA&mobiles=" + signupData.phone + "&authkey=267433AasRmmBdVC5c8a1c2b&message=Hai " + signupData.firstname + "%20!%20You%20have%20been%20activated%20successfully%20by%20Uzhavarsanthai.%20You%20can%20login%20now.&country=91",
         "headers": {}
       };
 

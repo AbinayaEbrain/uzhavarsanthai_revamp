@@ -7,9 +7,12 @@ import {
 } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 // loader
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
+
+declare var swal: any;
 
 @Component({
   selector: 'app-register',
@@ -26,8 +29,11 @@ export class RegisterComponent implements OnInit {
     },
     phone: '',
     privateIP: '',
-    status: ''
+    status: '',
+    role: '',
+    roleStatus: ''
   };
+  //registeredUserData: any = {};
   success: any;
   errormsg: any;
   phnErr: any;
@@ -40,8 +46,12 @@ export class RegisterComponent implements OnInit {
   verifyPhone: any;
   verifyPhone1: any = {};
   errMsgVerfi: any;
+
+  private sendSignUpMail = 'http://localhost:5000/api/sendMailSignUp';
   optsent : any;
   verifymsg:any;
+  authorize:any;
+  visitId:any;
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -55,49 +65,96 @@ export class RegisterComponent implements OnInit {
     public zone: NgZone,
     private router: Router,
     public loadingCtrl: NgxSpinnerService,
-    private http: HttpClient
+    private http: HttpClient,
+    private route: ActivatedRoute
   ) {
+    // console.log(this.router.getCurrentNavigation().extras)
     this.registeredUserData.address.location = '';
     this.registeredUserData.address.city = '';
   }
 
   ngOnInit() {
     this.loadingCtrl.show();
+    let role = this.route.snapshot.paramMap.get('role');
+    console.log(role);
     setTimeout(() => this.inputEl.nativeElement.focus(), 0);
     setTimeout(() => {
-      // swal.close();
       this.loadingCtrl.hide();
     }, 1000);
   }
 
   post() {
+    let role = this.route.snapshot.paramMap.get('role');
+    console.log(role);
+    if (role != null) {
+      this.registeredUserData.role = 'seller';
+      this.registeredUserData.roleStatus = 'Deactive';
+    } else {
+      this.registeredUserData.role = 'buyer';
+      this.registeredUserData.roleStatus = 'Active';
+    }
     this.registeredUserData.status = 'ACTIVE';
     this.registeredUserData.address.city = this.addr;
     this.registeredUserData.phone = this.phoneObj.phone;
     this.loadingCtrl.show();
     console.log(this.registeredUserData);
+
+    // if(role != null){
+    //   this.sellerSignUp();
+    // }else{
+    //   this.buyerSignUp();
+    // }
+
     this._auth.registerUser(this.registeredUserData).subscribe(
       res => {
         console.log(res);
+        if (res.user.roleStatus == 'Deactive') {
+          if (res) {
+            this.http.post<any>(this.sendSignUpMail, res).subscribe(
+              data => {
+                if (data) {
+                  console.log(data);
+                  console.log('success');
+                }
+              },
+              err => {
+                console.log(err);
+              }
+            );
+          }
+        }
         this.loadingCtrl.hide();
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('currentUser', JSON.stringify(res.user));
-        localStorage.setItem('firstname', JSON.stringify(res.user.firstname));
-        localStorage.setItem('status', JSON.stringify(res.user.status));
-        //this.router.navigate(['/login'])
+
         this.success = 'Registered successfully!';
-        this.router.navigate(['/products']);
-        //  document.getElementById('hideButton').style.display ='none'
-        //  document.getElementById('hideRestButton').style.display ='none'
-
-        //    setTimeout(() => {
-        //     // swal.close();
-        //     this.loadingCtrl.hide();
-
-        // }, 2000);
-
+        if (res.user.roleStatus == 'Deactive') {
+          swal({
+            title: 'Registered successfully!',
+            text:
+              'Your signup request has been sent succesfully! Please wait until you get confirmation message to LOGIN.',
+            imageUrl: '../../assets/Images/progress.gif'
+          });
+          this.router.navigate(['/home']);
+        } else {
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('role', JSON.stringify(res.user.role));
+          localStorage.setItem('currentUser', JSON.stringify(res.user));
+          localStorage.setItem('firstname', JSON.stringify(res.user.firstname));
+          localStorage.setItem('status', JSON.stringify(res.user.status));
+          localStorage.setItem(
+            'roleStatus',
+            JSON.stringify(res.user.roleStatus)
+          );
+          this.authorize = localStorage.getItem('authorization');
+          if(this.authorize){
+            this.visitId = localStorage.getItem('lastvisitproductid');
+            this.router.navigate(['/viewmore/' + this.visitId ]);
+            localStorage.removeItem('authorization');
+          }else{
+          this.router.navigate(['/products']);
+          }
+        }
         if (res.statusText == 'Unauthorized') {
-          this.errormsg = 'Check Email and Password !';
+          this.errormsg = 'Check phone number and Password !';
           this.loadingCtrl.hide();
         }
       },
@@ -171,7 +228,7 @@ export class RegisterComponent implements OnInit {
   verifyOtp() {
     console.log(this.phoneObj.otp);
     if (this.verifyPhone1.verifyPhone == this.phoneObj.otp) {
-      this.verifymsg = "Your otp has been verified!";
+      this.verifymsg = 'Your otp has been verified!';
       setTimeout(() => {
         this.verifymsg = '';
       }, 3000);

@@ -4,7 +4,7 @@
           <div class="col-md-4">
               <nav>
                   <div class="nav nav-tabs " id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active button_word tabTitle" style="margin-top: 20%;" (click)="getActiveDeals()" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Single Products <i class="fa fa-star-o" aria-hidden="true"></i></a>
+                    <a class="nav-item nav-link active button_word tabTitle" style="margin-top: 20%;" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Single Products <i class="fa fa-star-o" aria-hidden="true"></i></a>
                     <a class="nav-item nav-link button_word tabTitle"  style="margin-top: 20%;"  id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Multi Products <i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
                    </div>
                 </nav>
@@ -125,7 +125,7 @@
                                       <input type="file" id="Image" #Image="ngModel" [class.is-invalid]="Image.invalid && Image.touched" class="upload" (change)="onFileChange($event)" #fileInput
                                        ngModel  [(ngModel)]="productData.Image" name="Image" autocomplete="off" required>
                                       <span class="text-danger float-left error_word" [class.d-none] = "Image.valid || Image.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Image is required</span>
-                                   
+
                                     </div>
 
                                </div> -->
@@ -156,8 +156,8 @@
                     </div>
                   </div>
                 <div class="col-md-4"></div>
-              </div>         
-                 <!-- 1st row --> 
+              </div>
+                 <!-- 1st row -->
               <div class="row" style="margin-top: 1%;">
                 <div class="col-md-1"></div>
               <div class="col-md-5  mb-3">
@@ -213,7 +213,7 @@
                    <div class="row">
                       <div class="col-md-1"></div>
                   <div class="col-md-10 mb-3">
-                      
+
                       <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">பொருளைப் பற்றி </span>/ Description</label>
                             <div class="form-group">
                                     <textarea type="text"  placeholder="Enter description" [class.is-invalid]="description.invalid && description.touched"  #description="ngModel"  ngModel  [(ngModel)]="multiData.description"  name="description" rows="3" class="form-control"  autocomplete="off" required ></textarea>
@@ -221,7 +221,7 @@
                               </div>
                   </div>
                   <div class="col-md-1"></div>
-                </div>     
+                </div>
                     <div class="row">
                           <div class="col-md-12">
                                   <div class="text-center">
@@ -232,7 +232,7 @@
                     </div>
                    <br>
                   </form>
-        </div>   
+        </div>
       </div>
     </div>
   </div>
@@ -251,8 +251,8 @@
         <div class="modal-body">
                 <!-- <img src="{{multiData.image}}" height="250px" width= "100%" alt="Card image cap"> -->
                 <ngx-slick-carousel class="carousel"
-                #slickModal="slick-carousel" 
-                        [config]="slideConfig" 
+                #slickModal="slick-carousel"
+                        [config]="slideConfig"
                         (init)="slickInit($event)">
                     <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
                         <img src="{{ slide }}" alt="Card image" height="250px" width= "100%" class="viewImage">

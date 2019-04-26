@@ -174,7 +174,7 @@ tr {
   pointer-events: none;
   /* opacity: 1; */
 }
- 
+
 .prev-slide {
   background: url('../../assets/Images/arrow.png') no-repeat scroll 0 0;
   left: -33px;
@@ -191,16 +191,32 @@ tr {
   cursor: pointer;
   top: 100px !important;
 }
- 
+
 .next-slide {
   background: url('../../assets/Images/arrow.png') no-repeat scroll -24px 0px;
   right: -33px;
 }
- 
+
 .prev-slide:hover {
   background-position: 0px -53px;
 }
- 
+
 .next-slide:hover {
   background-position: -24px -53px;
+}
+.modal {
+  text-align: center;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
 }

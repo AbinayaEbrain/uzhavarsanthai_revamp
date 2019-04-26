@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit {
   id: any;
   user: any;
   wholedata: any;
+  wholedata1: any;
   deactiveErrorMsg: any;
+  adminVerifyErr: any;
   submitted: boolean;
   previousUrl: string;
   phoneObj: any = {};
@@ -36,6 +38,8 @@ export class LoginComponent implements OnInit {
   optsent: any;
   message: any;
   verifymsg:any;
+  authorize:any;
+  visitId:any;
 
   constructor(
     private router: Router,
@@ -156,32 +160,45 @@ export class LoginComponent implements OnInit {
       res => {
         localStorage.setItem('currentUser', JSON.stringify(res.user));
         localStorage.setItem('status', JSON.stringify(res.user.status));
+        localStorage.setItem('roleStatus', JSON.stringify(res.user.roleStatus));
         localStorage.setItem('firstname', JSON.stringify(res.user.firstname));
         localStorage.setItem('payload', JSON.stringify(res.payload));
         localStorage.setItem('token', res.token);
 
         this.wholedata = JSON.parse(localStorage.getItem('status'));
+        this.wholedata1 = JSON.parse(localStorage.getItem('roleStatus'));
         this.user = JSON.parse(localStorage.getItem('firstname'));
         let previousUrl1 = localStorage.getItem('previousUrl');
+        this.authorize = localStorage.getItem('authorization');
+        console.log(this.authorize);
         if (this.user === 'Admin') {
           this.router.navigate(['/admin']);
         } else {
-          if (this.wholedata === 'ACTIVE') {
-            if (previousUrl1 == '/blog-view') {
-              this.router.navigate(['/blog']);
-            } else {
-              this.router.navigate(['/products']);
+          if (this.wholedata === 'ACTIVE' && this.wholedata1 === 'Active') {
+            if(this.authorize){
+              this.visitId = localStorage.getItem('lastvisitproductid');
+              this.router.navigate(['/viewmore/' + this.visitId ]);
+              localStorage.removeItem('authorization');
+            }else{
+              if (previousUrl1 == '/blog-view') {
+                this.router.navigate(['/blog']);
+              } else {
+                this.router.navigate(['/products']);
+              }
             }
-          } else {
+          }
+        else if(this.wholedata != 'ACTIVE') {
             this.deactiveErrorMsg = 'Your account has been deactivated !';
-            setTimeout(() => {
-              this.deactiveErrorMsg = '';
-            }, 3000);
+            // setTimeout(() => {
+            //   this.deactiveErrorMsg = '';
+            // }, 3000);
+          }else if(this.wholedata1 != 'Active'){
+            this.adminVerifyErr = 'Stay cool until get confirmation from Uzhavarsanthai to login!';
+            this.mytemplateForm.reset();
+            this.removeLS();
           }
           this.loadingCtrl.hide();
         }
-
-        this.loadingCtrl.hide();
       },
       err => {
         this.loadingCtrl.hide();
@@ -193,6 +210,20 @@ export class LoginComponent implements OnInit {
         }
       }
     );
+  }
+
+  removeLS(){
+    localStorage.removeItem('payload');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    localStorage.removeItem('Address');
+    localStorage.removeItem('roleStatus');
+    localStorage.removeItem('googleLat');
+    localStorage.removeItem('googleLong');
+    localStorage.removeItem('ipAddress');
+    localStorage.removeItem('status');
+    localStorage.removeItem('firstname');
+    localStorage.removeItem('Image');
   }
 
   toggle() {
