@@ -38,6 +38,7 @@ export class ViewmoreComponent implements OnInit {
   buyerAddress : any;
   buyerCity = {};
   orderRequestMsg:any;
+  submitted:any;
 
   constructor(
     private _dealsService: DealsService,

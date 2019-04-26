@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-request.component.css']
 })
 export class OrderRequestComponent implements OnInit {
-
+  successMsg: any;
+  errorMsg: any;
+  userCategory: any = [];
   constructor() { }
 
   ngOnInit() {
