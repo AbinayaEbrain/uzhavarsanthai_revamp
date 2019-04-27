@@ -41,6 +41,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 //file upload
 import { FileUploadModule } from 'ng2-file-upload';
+
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DeactiveDealsComponent } from './deactive-deals/deactive-deals.component';
 import { UserProductsComponent } from './user-products/user-products.component';
@@ -52,6 +53,7 @@ import { ReadMoreComponent } from './read-more/read-more.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { SignupRequestComponent } from './signup-request/signup-request.component';
 import { OrderRequestComponent } from './order-request/order-request.component';
+import { BuyerAsSellerComponent } from './buyer-as-seller/buyer-as-seller.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +84,8 @@ import { OrderRequestComponent } from './order-request/order-request.component';
     ReadMoreComponent,
     NotificationsComponent,
     SignupRequestComponent,
-    OrderRequestComponent
+    OrderRequestComponent,
+    BuyerAsSellerComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +99,7 @@ import { OrderRequestComponent } from './order-request/order-request.component';
     BsDatepickerModule,
     SweetAlert2Module,
     SlickCarouselModule,
-    BsDatepickerModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     AuthService,

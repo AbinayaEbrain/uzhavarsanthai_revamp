@@ -359,7 +359,7 @@ router.post('/sendMailSignUp', (req, res) => {
   console.log(req.body);
   var server = email.server.connect({
     user: 'abishakshi1496@gmail.com',
-    password: 'abiyuva1438',
+    password: 'abiyuva14382',
     host: 'smtp.gmail.com',
     ssl: true
   });
@@ -993,7 +993,7 @@ res.status(200).send(message);
 router.post('/sendorderrequest', (req, res) => {
   var server = email.server.connect({
     user: 'abishakshi1496@gmail.com',
-    password: 'abiyuva1438',
+    password: 'abiyuva14382',
     host: 'smtp.gmail.com',
     ssl: true
   });
