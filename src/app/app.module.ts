@@ -54,6 +54,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { SignupRequestComponent } from './signup-request/signup-request.component';
 import { OrderRequestComponent } from './order-request/order-request.component';
 import { BuyerAsSellerComponent } from './buyer-as-seller/buyer-as-seller.component';
+import { MyOrderComponent } from './my-order/my-order.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { BuyerAsSellerComponent } from './buyer-as-seller/buyer-as-seller.compon
     NotificationsComponent,
     SignupRequestComponent,
     OrderRequestComponent,
-    BuyerAsSellerComponent
+    BuyerAsSellerComponent,
+    MyOrderComponent
   ],
   imports: [
     BrowserModule,

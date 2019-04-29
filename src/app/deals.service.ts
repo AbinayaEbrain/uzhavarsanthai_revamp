@@ -46,6 +46,9 @@ export class DealsService {
   private sendSellerSmsUrl = "http://localhost:5000/api/sendordersmstoseller";
   private sendBuyerSmsUrl = "http://localhost:5000/api/sendbuyersmsUrl";
 
+  private _orderReqPosturl = 'http://localhost:5000/api/orderReqPost';
+
+
   constructor(private http: HttpClient) {}
 
   sendImage(Image : FormData) {
@@ -171,5 +174,9 @@ export class DealsService {
   sendOrderSmsBuyer(data){
     console.log(data);
     return this.http.post<any>(this.sendBuyerSmsUrl, data);
+  }
+
+  addOrderReqPost(data) {
+    return this.http.post<any>(this._orderReqPosturl, data);
   }
 }
