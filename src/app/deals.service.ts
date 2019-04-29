@@ -42,6 +42,7 @@ export class DealsService {
   private notificationtoPostedProductUrl="https://uzhavarsanthai.herokuapp.com/api/notificationforpost";
   private orderReqmailUrl = "http://localhost:5000/api/sendorderrequest";
   private storeOrderReqUrl = "http://localhost:5000/api/storeorderrequest";
+  private _getOrderReqUrl = "http://localhost:5000/api/getorderrequest";
   private sendSellerSmsUrl = "http://localhost:5000/api/sendordersmstoseller";
   private sendBuyerSmsUrl = "http://localhost:5000/api/sendbuyersmsUrl";
 
@@ -159,6 +160,10 @@ export class DealsService {
 
   storeOrderRequest(data){
     return this.http.post<any>(this.storeOrderReqUrl, data);
+  }
+
+  getOrderRequest() {
+    return this.http.get<any>(this._getOrderReqUrl);
   }
 
   sendOrderSmsSeller(data){
