@@ -6,8 +6,8 @@
   min-height: -webkit-fill-available;
   width: 100%;
   background-attachment: fixed;
-  margin-top: -80px;
-  height: 105vh;
+  margin-top: -73px;
+  height: 104vh;
 }
 
 /* style glyph */
@@ -121,6 +121,10 @@ input[type='password'] {
   font-weight: bold;
 }
 
+.btn1 {
+  background-color: burlywood !important;
+}
+
 .form-group {
   position: relative;
   margin-bottom: 1.5rem;
@@ -197,6 +201,7 @@ input {
     display: block;
   }
 }
+
 .titilebold {
   font-weight: bold;
 }
@@ -206,5 +211,10 @@ input {
   background-color: whitesmoke;
   border: none;
   padding: 20px;
-  margin: 20px;
+  margin: 10px;
+}
+
+.cardClr {
+  background-color: whitesmoke;
+  padding: 18px;
 }

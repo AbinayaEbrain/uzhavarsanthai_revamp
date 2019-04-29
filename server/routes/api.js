@@ -56,6 +56,9 @@ router.get('/', (req, res) => {
 
 
 router.post('/register', (req, res) => {
+  let aaa = req.body.firstname;
+  let name = aaa.toLowerCase();
+  req.body.firstname = name.charAt(0).toUpperCase() + name.slice(1);
   let userData = req.body;
   let user = new User(userData);
   user.save((error, data) => {
@@ -376,6 +379,43 @@ router.post('/sendMailSignUp', (req, res) => {
           "<html><h3>Name :</h3></html>" + req.body.user.firstname + "<html><br></html>" + "<html><h3>Role :</h3></html>" + req.body.user.role
            + "<html><br></html>" + "<html><h3>Phone :</h3></html>" + req.body.user.phone + "<html><br></html>" + "<html><h3>Address :</h3></html>" + req.body.user.address.city.formatted_address
            + "<html><br></html>" + "<html><h3>City :</h3></html>" + req.body.user.address.city.locality ,
+          alternative: true
+        }
+        //  {path:"pathtofile.zip", type:"application/zip", name:"renamed.zip"}
+        // + "<html><br></html>" + "<html><h5>Address :</h5></html>" + req.body.address.city.formatted_address +
+       // "<html><br></html>" + "<html><h5>City :</h5></html>" + req.body.address.city.locality
+
+      ]
+    },
+    function(err, message) {
+      if (err) console.log(err);
+      else res.json({ success: true, msg: 'sent', message });
+    }
+  );
+});
+
+// Mail for buyer as seller signup rqst
+router.post('/sendMailSignUpBuyer', (req, res) => {
+  console.log(req.body);
+  var server = email.server.connect({
+    user: 'abishakshi1496@gmail.com',
+    password: 'abiyuva14382',
+    host: 'smtp.gmail.com',
+    ssl: true
+  });
+  server.send(
+    {
+      text: 'Signup request from Uzhavarsanthai !',
+      from: 'abishakshi1496@gmail.com',
+      to: 'abishakshi1496@gmail.com',
+      subject: 'Signup request from Uzhavarsanthai !',
+      attachment: [
+        {
+          data:
+         "<html><h2>" + req.body.firstname + "</h2></html>" + "<html><h4>has requested to signup as a seller!</h4></html>" +
+          "<html><h3>Name :</h3></html>" + req.body.firstname + "<html><br></html>" + "<html><h3>Role :</h3></html>" + req.body.role
+           + "<html><br></html>" + "<html><h3>Phone :</h3></html>" + req.body.phone + "<html><br></html>" + "<html><h3>Address :</h3></html>" + req.body.address.city.formatted_address
+           + "<html><br></html>" + "<html><h3>City :</h3></html>" + req.body.address.city.locality ,
           alternative: true
         }
         //  {path:"pathtofile.zip", type:"application/zip", name:"renamed.zip"}
@@ -1124,7 +1164,7 @@ router.post('/sendSmsToSeller',(req , res) => {
         "method": "GET",
         "hostname": "api.msg91.com",
         "port": null,
-        "path": "/api/sendhttp.php?route=4&sender=UZHAVA&mobiles=" + signupData.phone + "&authkey=267433AasRmmBdVC5c8a1c2b&message=Hai " + signupData.firstname + "%20!%20You%20have%20been%20activated%20successfully%20by%20Uzhavarsanthai.%20You%20can%20login%20now.&country=91",
+        "path": "/api/sendhttp.php?route=4&sender=UZHAVA&mobiles=" + signupData.phone + "&authkey=267433AasRmmBdVC5c8a1c2b&message=Hai!%20You%20have%20been%20activated%20successfully%20by%20Uzhavarsanthai.%20You%20can%20login%20now.%20Connect%20with%20us%20and%20Do%20The%20Miracles%20in%20Agriculture!!!&country=91",
         "headers": {}
       };
 

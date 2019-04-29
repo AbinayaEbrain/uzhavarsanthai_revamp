@@ -31,7 +31,7 @@ export class SignupRequestComponent implements OnInit {
     this._dealService.getDetails().subscribe(res =>{
     console.log(res);
     this.signupUser = res;
-  this.getBalanceUser();
+    this.getBalanceUser();
     },err =>{
       console.log(err);
     });
@@ -85,13 +85,13 @@ singleUpdateSignupReq(id){
           this._auth.sendSignUpreqst(this.userCategory1).subscribe(
             data => {
               console.log(data);
+              this.getSignupReq();
             },
             err => {
               console.log(err);
             }
           );
         }
-        this.getSignupReq();
       },
       err => {
         console.log(err);

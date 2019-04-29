@@ -87,12 +87,11 @@
         ><span class="tamil_word">வலைப்பதிவு</span> / Blog</a
       >
     </li>
-
       <li
         *ngIf="
           _authService.loggedIn() &&
           !_authService.roleAdmin() &&
-          _authService.findActive() && !_authService.roleBuyer
+          _authService.findActive() && !_authService.roleBuyer()
         "
         class="nav-item"
         data-toggle="collapse"
@@ -105,6 +104,23 @@
           >My Products</a
         >
       </li>
+      <li
+      *ngIf="
+        _authService.loggedIn() &&
+        !_authService.roleAdmin() &&
+        _authService.findActive() && _authService.roleBuyer()
+      "
+      class="nav-item"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <a class="nav-link" routerLink="/buyerAsSeller" routerLinkActive="active"
+        >Sell on Uzhavar</a
+      >
+    </li>
       <li
         *ngIf="_authService.roleAdmin() && _authService.loggedIn()"
         class="nav-item"
@@ -187,12 +203,6 @@
             style="cursor: pointer;color:#0d4608"
             >Edit Profile</a
           >
-          <a
-          class="dropdown-item"
-          routerLink="/buyerAsSeller"
-          style="cursor: pointer;color:#0d4608"
-          >Sell on Uzhavar</a
-        >
           <a
             class="dropdown-item"
             style="cursor: pointer;color:#0d4608"
