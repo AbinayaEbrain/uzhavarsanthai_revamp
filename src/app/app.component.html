@@ -136,6 +136,23 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
+      <a class="nav-link" routerLink="/my-order" routerLinkActive="active"
+        >My Orders</a
+      >
+    </li>
+      <li
+      *ngIf="
+        _authService.loggedIn() &&
+        !_authService.roleAdmin() &&
+        _authService.findActive() && _authService.roleBuyer()
+      "
+      class="nav-item"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <a class="nav-link" routerLink="/buyerAsSeller" routerLinkActive="active"
         >Sell on Uzhavar</a
       >

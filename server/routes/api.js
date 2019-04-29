@@ -1098,6 +1098,46 @@ router.post('/storeorderrequest', (req, res) => {
   });
 });
 
+//Get order request
+router.get('/getorderrequest', (req, res) => {
+  Orderrequest.find(function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  }).sort({date : -1});
+});
+
+//Update order request
+router.post('/orderReqPost', function(req, res) {
+  Post.find(
+    {
+      _id:req.body.id
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Post.update(
+          {
+            _id:req.body.id
+          },
+          {
+            $pull: {
+              requestedPersonId: { _id: req.body.id }
+            }
+          }
+        )
+          .then(() => {
+            res.status(200).json({ message: 'Deleted successfully' });
+          })
+          .catch(err => {
+            res.status(500).json({ message: 'Error occured' });
+          });
+      }
+    }
+  )
+});
+
 //send order request created msg to seller
 router.post('/sendordersmstoseller',(req , res) => {
   let sellerMsgData = req.body;

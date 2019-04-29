@@ -55,6 +55,7 @@ import { SignupRequestComponent } from './signup-request/signup-request.componen
 import { OrderRequestComponent } from './order-request/order-request.component';
 import { BuyerAsSellerComponent } from './buyer-as-seller/buyer-as-seller.component';
 import { SellerOrderRequestsComponent } from './seller-order-requests/seller-order-requests.component';
+import { MyOrderComponent } from './my-order/my-order.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { SellerOrderRequestsComponent } from './seller-order-requests/seller-ord
     SignupRequestComponent,
     OrderRequestComponent,
     BuyerAsSellerComponent,
-    SellerOrderRequestsComponent
+    SellerOrderRequestsComponent,
+    MyOrderComponent
   ],
   imports: [
     BrowserModule,

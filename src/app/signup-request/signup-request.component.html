@@ -1,4 +1,4 @@
-<body style="height: -webkit-fill-available;">
+<body class="bg" style="overflow-x: hidden;">
   <div class="container mt-5">
     <h4 class="mt-5" style="color:#0d4608;text-align:center">Signup Request</h4><br>
     <div class="row">
@@ -27,7 +27,7 @@
                        {{errorMsg}}
                     </td>
                 </tr>
-                <tr *ngFor="let user of userCategory">
+                <tr *ngFor="let user of userCategory | paginate: {id: 'foo', itemsPerPage:10,currentPage:d},let i = index">
                   <td><span style="font-weight:bold;color:#0d4608">{{user.firstname}} ({{user.phone}})</span>, has requested to signup as a seller.Verify seller details and activate</td>
                   <td style="display: inline-flex;">
                     <button type="button" class="btn" style="background-color: #0d4608;color:white;padding: 5px 7px;" (click)="updateSignupReq(user._id)">Accept</button>&nbsp;&nbsp;
@@ -40,6 +40,9 @@
                 </tbody>
       </table>
     </div>
+    <div class="mx-auto mt-3">
+        <pagination-controls id="foo"  class="ngx-pagination" style="margin-right: 30px;" maxSize="5" (pageChange)="d = $event"></pagination-controls>
+      </div>
   </div>
   </body>
 
@@ -74,7 +77,7 @@
                       <tr>
                         <td >Address</td>
                         <td>:</td>
-                        <td>{{userCategory2.address.city.locality}}</td>
+                        <td>{{userCategory2.address?.city?.locality}}</td>
                       </tr>
 
                       <tr>

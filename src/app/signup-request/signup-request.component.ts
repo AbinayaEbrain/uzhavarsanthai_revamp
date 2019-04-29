@@ -21,7 +21,11 @@ export class SignupRequestComponent implements OnInit {
   constructor(
     private _dealService: DealsService,
     private _auth: AuthService
-  ) { }
+  ) { 
+    for (let i = 1; i <= this.userCategory.length; i++) {
+      this.userCategory.push('Angular ${i}.0');
+    }
+  }
 
   ngOnInit() {
     this.getSignupReq();

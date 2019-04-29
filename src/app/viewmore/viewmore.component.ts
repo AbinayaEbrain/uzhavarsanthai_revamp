@@ -53,7 +53,7 @@ export class ViewmoreComponent implements OnInit {
 
   ngOnInit() {
     //this.userName = JSON.parse(localStorage.getItem('currentUser')).firstname;
-
+    console.log(this.querydata.prdctId);
     this.id = this.route.snapshot.params['id'];
     this.loadingCtrl.show();
     this.lastvisit = localStorage.getItem('lastvisitproductid');
@@ -66,7 +66,9 @@ export class ViewmoreComponent implements OnInit {
         this.viewPost = res;
         for (let i = 0; i < this.viewPost.length; i++) {
           if (this.id == this.viewPost[i]._id) {
+            this.postProduct.id = this.viewPost[i]._id;
             this.postProduct.category = this.viewPost[i].category;
+            this.postProduct.categoryId = this.viewPost[i].categoryId;
             this.postProduct.name = this.viewPost[i].name;
             this.postProduct.quantity = this.viewPost[i].quantity;
             this.postProduct.qnty = this.viewPost[i].qnty;
@@ -132,18 +134,23 @@ export class ViewmoreComponent implements OnInit {
     this.querydata.buyerPhone = this.buyerPhone;
     this.querydata.buyerAddress = this.buyerAddress;
     this.querydata.buyerCity = this.buyerCity;
+    this.querydata.buyerId = JSON.parse(localStorage.getItem('currentUser'))._id;
     //seller data
     this.querydata.sellerName = this.postProduct.firstName;
     this.querydata.sellerPhone = this.postProduct.phone;
     this.querydata.sellerAddress = this.postProduct.userAddressLine;
     this.querydata.sellerCity = this.postProduct.address;
+    this.querydata.sellerId = this.postProduct.accountId;
     //prduct data
+    this.querydata.prdctId = this.postProduct.id;
     this.querydata.prdctCategory = this.postProduct.category;
+    this.querydata.prdctCategoryId =  this.postProduct.categoryId;
     this.querydata.prdctName = this.postProduct.name;
     this.querydata.prdctUnit = this.postProduct.qnty;
     this.querydata.prdctQty = this.postProduct.quantity;
     this.querydata.prdctAvlplace = this.postProduct.avlPlace;
     console.log(this.querydata);
+    console.log(this.querydata.prdctId);
 
     this._dealsService.sendOrderReqmail(this.querydata).subscribe(
       res => {
@@ -168,6 +175,7 @@ export class ViewmoreComponent implements OnInit {
 
   //store order request
   storeOrderRequest() {
+    
     this._dealsService.storeOrderRequest(this.querydata).subscribe(
       res => {
         console.log(res);

@@ -30,6 +30,7 @@ import { SignupRequestComponent } from 'src/app/signup-request/signup-request.co
 import { OrderRequestComponent } from 'src/app/order-request/order-request.component';
 import { BuyerAsSellerComponent } from './buyer-as-seller/buyer-as-seller.component';
 import { SellerOrderRequestsComponent } from './seller-order-requests/seller-order-requests.component';
+import { MyOrderComponent } from 'src/app/my-order/my-order.component';
 
 const routes: Routes = [
   {
@@ -181,6 +182,10 @@ const routes: Routes = [
   {
     path: 'seller-order-requests',
     component: SellerOrderRequestsComponent
+  },
+  {
+    path: 'my-order',
+    component: MyOrderComponent
   }
 ];
 

@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const orderrequestSchema = new Schema({
   requestId:String,
+  buyerId:String,
   buyerName:String,
   buyerPhone:Number,
   buyerAddress:String,
@@ -14,6 +15,9 @@ const orderrequestSchema = new Schema({
   sellerPhone:Number,
   sellerAddress:String,
   sellerCity:String,
+  prdctId:String,
+  sellerId : String,
+  prdctCategoryId:String,
   prdctCategory:String,
   prdctName:String,
   prdctUnit:String,
