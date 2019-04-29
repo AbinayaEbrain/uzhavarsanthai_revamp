@@ -10,6 +10,9 @@ import { AuthService } from 'src/app/auth.service';
 export class OrderRequestComponent implements OnInit {
 
   userOrderReq = [];
+  successMsg: any;
+  errorMsg: any;
+  userCategory: any = [];
 
   constructor(
     private _dealService: DealsService,

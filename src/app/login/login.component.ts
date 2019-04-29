@@ -161,6 +161,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('currentUser', JSON.stringify(res.user));
         localStorage.setItem('status', JSON.stringify(res.user.status));
         localStorage.setItem('roleStatus', JSON.stringify(res.user.roleStatus));
+        localStorage.setItem('role', JSON.stringify(res.user.role));
         localStorage.setItem('firstname', JSON.stringify(res.user.firstname));
         localStorage.setItem('payload', JSON.stringify(res.payload));
         localStorage.setItem('token', res.token);
@@ -170,7 +171,8 @@ export class LoginComponent implements OnInit {
         this.user = JSON.parse(localStorage.getItem('firstname'));
         let previousUrl1 = localStorage.getItem('previousUrl');
         this.authorize = localStorage.getItem('authorization');
-        console.log(this.authorize);
+        let role = JSON.parse(localStorage.getItem('role'));
+        
         if (this.user === 'Admin') {
           this.router.navigate(['/admin']);
         } else {
@@ -182,8 +184,10 @@ export class LoginComponent implements OnInit {
             }else{
               if (previousUrl1 == '/blog-view') {
                 this.router.navigate(['/blog']);
-              } else {
+              } else if(role == "seller"){
                 this.router.navigate(['/products']);
+              }else{
+                this.router.navigate(['/blog']);
               }
             }
           }
@@ -202,6 +206,7 @@ export class LoginComponent implements OnInit {
       },
       err => {
         this.loadingCtrl.hide();
+        console.log(err);
         if (err.statusText === 'Unauthorized') {
           this.errormsg = 'Invalid Phone Number and Password !';
           setTimeout(() => {

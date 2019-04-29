@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
   verifyPhone1: any = {};
   errMsgVerfi: any;
 
-  private sendSignUpMail = 'http://localhost:5000/api/sendMailSignUp';
+  private sendSignUpMail = 'https://uzhavarsanthai.herokuapp.com/api/sendMailSignUp';
   optsent : any;
   verifymsg:any;
   authorize:any;

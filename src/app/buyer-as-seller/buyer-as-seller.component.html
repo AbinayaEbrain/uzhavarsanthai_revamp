@@ -1,0 +1,96 @@
+<body class="bg" style="overflow-x:hidden">
+  <div class="container mt-5 pt-1">
+    <h2 class="mt-5 pt-5 d-sm-block clr sent_font text-center tamil_word">
+      உழவு என்பது தொழில் மட்டுமல்ல <br class="greetmsg" />
+      - அது உயிரின் ஆதாரம்
+    </h2>
+
+    <div class="row mt-3">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="row cardStyle">
+          <div class="col-md-6">
+            <div class="card cardClr">
+              <h4 class="text-center clr sent_font">Signup as a Seller</h4>
+              <ul style="list-style: none" class="mt-3">
+                <li style="padding: 5px;">
+                  <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                  You can become a seller in Uzhavarsanthai by just clicking the
+                  below button.
+                </li>
+                <li style="padding: 5px;">
+                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                  You will get confirmation message from Uzhavarsanthai to login
+                  as a seller.
+                </li>
+                <li style="padding: 5px;">
+                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                  After successful login, You will be rewarded 1000 credits and
+                  some credits will be deducted per post.
+                </li>
+                <li style="padding: 5px;">
+                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                  Connect with us and
+                  <span style="color: #0d4608;font-weight: bold"
+                    >Do The Miracles in Agriculture !!!</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card mt-3">
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                  <h4 class="text-center mt-3 clr sent_font">Details</h4>
+                  <div class="form-group mt-4">
+                    <label class="english_wrd" for="name"
+                      ><span style="font-size: 14px" class="tamil_word">
+                        பெயர் </span
+                      >/ Name</label
+                    >
+                    <input
+                      type="text"
+                      value="{{crntUser.firstname}}"
+                      name="name"
+                      class="form-control"
+                      readonly
+                    />
+                  </div>
+                  <div class="form-group mt-2">
+                    <label class="english_wrd" for="phone"
+                      ><span style="font-size: 14px" class="tamil_word">
+                        தொலைபேசி எண் </span
+                      >/ Phone Number</label
+                    >
+                    <input
+                      type="text"
+                      value="{{crntUser.phone}}"
+                      name="phone"
+                      class="form-control"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+              <button
+                class="btn mx-auto mt-3 mb-3"
+                *ngIf="show"
+                (click)="updateUser()"
+              >
+                Make me as a seller
+              </button>
+              <button class="btn btn1 mx-auto mt-3 mb-3" *ngIf="!show">
+                Seller request sent
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+</body>

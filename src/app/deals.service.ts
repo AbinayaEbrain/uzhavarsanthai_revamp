@@ -17,15 +17,15 @@ export class DealsService {
   private _getCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/getCount';
   // https://farmers-market-ebrain.herokuapp.com
   private _dealsUrl = 'https://uzhavarsanthai.herokuapp.com/api/deals';
-  private _postUrl = 'http://localhost:5000/api/post';
+  private _postUrl = 'https://uzhavarsanthai.herokuapp.com/api/post';
   private _getUrl = 'https://uzhavarsanthai.herokuapp.com/api/details';
 
   // Multipost
-  private _multiPostUrl = 'http://localhost:5000/api/multipost';
-  private _getMultiUrl = 'http://localhost:5000/api/getMultipost';
-  private _getSingleMultiUrl = 'http://localhost:5000/api/singleMultipost';
-  private _updateMultiPost = 'http://localhost:5000/api/updateMultipost';
-  private _deleteMultiPost = 'http://localhost:5000/api/dltMultiPost'
+  private _multiPostUrl = 'https://uzhavarsanthai.herokuapp.com/api/multipost';
+  private _getMultiUrl = 'https://uzhavarsanthai.herokuapp.com/api/getMultipost';
+  private _getSingleMultiUrl = 'https://uzhavarsanthai.herokuapp.com/api/singleMultipost';
+  private _updateMultiPost = 'https://uzhavarsanthai.herokuapp.com/api/updateMultipost';
+  private _deleteMultiPost = 'https://uzhavarsanthai.herokuapp.com/api/dltMultiPost'
 
   private _getCategoryUrl = 'https://uzhavarsanthai.herokuapp.com/api/category';
   //Deactivate URL
@@ -84,11 +84,8 @@ export class DealsService {
   }
 
   updateCustomer(data, id) {
+    console.log(data);
     return this.http.put<any>(this.updateuserurl + '/' + id, data);
-  }
-
-  updateCustomer1(data, id) {
-    return this.http.post<any>(this.updateuserurl + '/' + id, data);
   }
 
   addMultiPost(data) {
