@@ -196,10 +196,12 @@ export class LoginComponent implements OnInit {
             // setTimeout(() => {
             //   this.deactiveErrorMsg = '';
             // }, 3000);
-          }else if(this.wholedata1 != 'Active'){
+          }else if(this.wholedata1 != 'Active' && role == "seller"){
             this.adminVerifyErr = 'Stay cool until get confirmation from Uzhavarsanthai to login!';
             this.mytemplateForm.reset();
             this.removeLS();
+          }else if(this.wholedata1 != 'Active' && role == "buyer"){
+            this.router.navigate(['/blog']);
           }
           this.loadingCtrl.hide();
         }

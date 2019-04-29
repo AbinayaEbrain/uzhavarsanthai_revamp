@@ -18,6 +18,7 @@ export class BuyerAsSellerComponent implements OnInit {
   loggedUser = [];
   currentuserId: any;
   show = true;
+  roleStatus : any;
   private sendMailSignUpBuyer = 'http://localhost:5000/api/sendMailSignUpBuyer';
 
   constructor(
@@ -29,6 +30,10 @@ export class BuyerAsSellerComponent implements OnInit {
 
   ngOnInit() {
     this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
+    this.getSingleUser();
+  }
+
+  getSingleUser(){
     this._dealsService.getDetails().subscribe(
       res => {
         this.loggedUser = res;
@@ -36,9 +41,13 @@ export class BuyerAsSellerComponent implements OnInit {
         for (let i = 0; i < this.loggedUser.length; i++) {
           if (this.id == this.loggedUser[i]._id) {
             this.crntUser = this.loggedUser[i];
+            this.roleStatus = this.loggedUser[i].roleStatus;
           }
         }
         console.log(this.crntUser);
+        if(this.roleStatus == "Deactive"){
+
+        }
       },
       err => {
         console.log(err);
@@ -49,7 +58,7 @@ export class BuyerAsSellerComponent implements OnInit {
   updateUser() {
     this.show = false;
     this.crntUser.roleStatus = 'Deactive';
-    this.crntUser.role = 'seller';
+    // this.crntUser.role = 'seller';
     console.log(this.crntUser);
     this._dealsService.updateCustomer(this.crntUser, this.id).subscribe(
       data => {
@@ -74,7 +83,8 @@ export class BuyerAsSellerComponent implements OnInit {
               'Your request for seller has been sent succesfully! Please wait until you get confirmation message to LOGIN.',
             imageUrl: '../../assets/Images/progress.gif'
           });
-          this.router.navigate(['/login']);
+          this.getSingleUser();
+          this.router.navigate(['/buyerAsSeller']);
         }
       },
       err => {

@@ -29,6 +29,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { SignupRequestComponent } from 'src/app/signup-request/signup-request.component';
 import { OrderRequestComponent } from 'src/app/order-request/order-request.component';
 import { BuyerAsSellerComponent } from './buyer-as-seller/buyer-as-seller.component';
+import { SellerOrderRequestsComponent } from './seller-order-requests/seller-order-requests.component';
 
 const routes: Routes = [
   {
@@ -176,6 +177,10 @@ const routes: Routes = [
   {
     path: 'buyerAsSeller',
     component: BuyerAsSellerComponent
+  },
+  {
+    path: 'seller-order-requests',
+    component: SellerOrderRequestsComponent
   }
 ];
 

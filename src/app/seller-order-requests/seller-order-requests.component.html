@@ -1,0 +1,122 @@
+<body class="bg" style="overflow-x: hidden;">
+    <div class="container mt-5">
+        <h4 class="text-center clr sent_font">Signup as a Seller</h4>
+      <div class="container mt-5">
+             <div class="card mt-1"  id="hideTable" >
+                                          <div class="card-content">
+                                            <div class="fresh-table table-responsive">
+                                                  <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                                      <thead style="text-align: center; background-color: #0d460840;">
+                                                          <tr>
+                                                              <th>Category</th>
+                                                              <th>Name</th>
+                                                              <th>Quantity</th>
+                                                              <th><i class="fa fa-inr" aria-hidden="true"></i> Price/ Quantity</th>
+                                                              <th>Post Date</th>
+                                                              <th>Expiry Date</th>
+                                                              <th class="disabled-sorting">Action</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody style="text-align: center">
+                                                           <tr *ngIf="errMsg">
+                                                                   <td colspan="7" style="text-align: center">
+                                                                      {{errMsg}}
+                                                                   </td>
+                                                               </tr>
+                           
+                                                          <tr  id="hide" *ngFor="let deal of singleMultiArray | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
+                                                               <td *ngIf="deal === -1" class="prdUnavil" style="text-align: center">
+                                                                   {{errMsg2}}
+                                                               </td>
+                                                                
+                                                           <td>{{deal.category}}</td>
+                                                              <td>
+                                                              <div class="productFullName">{{deal.name}}</div>
+                                                               </td>
+                                                              <td>{{deal.quantity}}{{deal.qnty}} </td>
+                                                             <td>{{deal.price}}</td>
+                                                              <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
+                                                              <td> {{deal.validityTime | date: 'dd/MM/yyyy'}} </td>
+                                                              <td style="display: flex;" *ngIf="deal !== -1" >
+                                                                  <button id="hideEditBtn" *ngIf="!deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                   Edit
+                                                                  </button>
+                                                                  <button id="hideEditBtn" *ngIf="deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/post/{{deal._id}}"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                      Edit
+                                                                  </button> &nbsp;
+                                                                  <button id="hideDeleteBtn" *ngIf="!deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
+                                                                   data-keyboard="false" routerLink="/products/{{deal._id}}">
+                                                                   <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                                                                  </button>
+                                                                  <button id="hideDeleteBtn" *ngIf="deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
+                                                                  data-keyboard="false" routerLink="/products/{{deal._id}}">
+                                                                  <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                                                                 </button>
+                                                              </td>
+                           
+                                                          </tr>
+                           
+                                                      </tbody>
+                           
+                                                  </table>
+                           
+                           
+                                              </div>
+                                          </div>
+                                      </div>
+             <div class="mx-auto mt-3">
+              <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
+            </div>
+  </div>
+  </div>
+  </body>
+  
+   <!-- modal -->
+  
+   <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+  
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+  
+            <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;color: white;">Delete Confirmation</h4>
+          </div>
+          <div class="modal-body">
+            <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete?</h6>
+            <div class="text-center">
+  
+             <button type="button" class="btn btnClr button_word" (click)="deleteuser()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+             <button type="button" class="btn btnDanger button_word" routerLink="/products" data-dismiss="modal">No</button>
+            </div>
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+  
+  
+    <div class="modal fade" id="myModal1" role="dialog">
+      <div class="modal-dialog">
+  
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+  
+            <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;color: white;">Delete Confirmation</h4>
+          </div>
+          <div class="modal-body">
+            <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete?</h6>
+            <div class="text-center">
+  
+             <button type="button" class="btn btnClr button_word" (click)="deleteMultiPost()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+             <button type="button" class="btn btnDanger button_word" routerLink="/products" data-dismiss="modal">No</button>
+            </div>
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+  

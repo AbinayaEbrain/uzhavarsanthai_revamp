@@ -73,6 +73,7 @@ singleUpdateSignupReq(id){
       }
     }
     this.userCategory1.roleStatus = 'Active';
+    this.userCategory1.role = 'seller';
     console.log(this.userCategory1);
        this._dealService.updateCustomer(this.userCategory1, this.id).subscribe(
       res => {
