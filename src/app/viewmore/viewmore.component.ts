@@ -798,8 +798,6 @@ cancelOrderReq(){
       this.router.navigateByUrl('/dummy', { skipLocationChange: true });
       setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);
       }, 3000);
-
-
     },
     err => {
       console.log(err);
