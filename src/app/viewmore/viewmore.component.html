@@ -346,7 +346,7 @@
                           style="background-color: transparent;color: #0d4608;"  #Unit="ngModel"
                           name="Unit" [class.is-invalid]="Unit.invalid && Unit.touched"
                           ngModel [(ngModel)]="querydata.Unit" required>
-                            <option class="prdtOption" selected="" disabled="" value="" >Choose unit</option>
+                            <option  selected="" disabled="" value="" >Choose unit</option>
                           <option value="Ml" class="categoryOption">Milli litre</option>
                           <option value="Litre" class="categoryOption">Litre</option>
                           <option value="Gram" class="categoryOption">Gram</option>
@@ -366,7 +366,7 @@
                  style="background-color: transparent;color: #0d4608;"  #urgency="ngModel"
                  name="urgency" [class.is-invalid]="urgency.invalid && urgency.touched"
                  ngModel [(ngModel)]="querydata.urgency" required>
-                       <option style="color: black" selected="" disabled="" value="" >Choose Urgency</option>
+                       <option selected="" disabled="" value="" >Choose Urgency</option>
                        <option style="color: black" value="Today">Today</option>
                        <option style="color: black" value="Within 3 days">Within 3 days</option>
                       <option style="color: black" value="Within 1 week">Within 1 week</option>
@@ -383,7 +383,7 @@
                         <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">குறிப்பு </span>/ Notes</label>
                         <textarea
                          class="form-control" style="height: 75px;border-color: #0d4608;"
-                         name="description"   #description="ngModel"
+                         name="description" placeholder="Type your notes here..."  #description="ngModel"
                          [class.is-invalid]="description.invalid && description.touched"
                            class="form-control"
                            [(ngModel)]="querydata.description"
@@ -393,7 +393,7 @@
                        <span
                          class="text-danger float-left error_word"
                          [class.d-none]="description.valid || description.untouched"
-                         ><i class="fa fa-info-circle" aria-hidden="true"></i>Description
+                         ><i class="fa fa-info-circle" aria-hidden="true"></i>Notes
                          is required</span
                        >
                         </div>

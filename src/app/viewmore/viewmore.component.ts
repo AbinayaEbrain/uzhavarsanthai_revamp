@@ -114,7 +114,6 @@ export class ViewmoreComponent implements OnInit {
     private _auth: AuthService,
     private http: HttpClient
   ) {
-      this.querydata.urgency = '';
       this.registeredUserData.address.location = '';
       this.registeredUserData.address.city = '';
   }
@@ -770,8 +769,9 @@ mapWithPost(){
 //create order modal
 createOrederModal(){
   this.mytemplateForm3.reset();
-  this.querydata.urgency = '';
   document.getElementById("openOrderReqModal").click();
+  this.querydata.urgency = '';
+  this.querydata.Unit = '';
 }
 
 cancelOrderModal(){
