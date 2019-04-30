@@ -300,6 +300,7 @@ mapWithPost(){
   this.requestData.requestedProductId = this.id;
   this.requestData.requestedPersonId = JSON.parse(localStorage.getItem('currentUser'))._id;
   console.log(this.requestData);
+  this.requestData.orderStatus = 'Order created';
   this._dealsService.mapUserIdinPost(this.requestData).subscribe(
     res => {
       console.log(res);
