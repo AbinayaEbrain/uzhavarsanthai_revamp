@@ -172,7 +172,7 @@ export class LoginComponent implements OnInit {
         let previousUrl1 = localStorage.getItem('previousUrl');
         this.authorize = localStorage.getItem('authorization');
         let role = JSON.parse(localStorage.getItem('role'));
-        
+
         if (this.user === 'Admin') {
           this.router.navigate(['/admin']);
         } else {
@@ -193,9 +193,6 @@ export class LoginComponent implements OnInit {
           }
         else if(this.wholedata != 'ACTIVE') {
             this.deactiveErrorMsg = 'Your account has been deactivated !';
-            // setTimeout(() => {
-            //   this.deactiveErrorMsg = '';
-            // }, 3000);
           }else if(this.wholedata1 != 'Active' && role == "seller"){
             this.adminVerifyErr = 'Stay cool until get confirmation from Uzhavarsanthai to login!';
             this.mytemplateForm.reset();

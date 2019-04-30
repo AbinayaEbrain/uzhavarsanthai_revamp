@@ -208,5 +208,4 @@ export class DealsService {
     console.log(data);
     return this.http.post<any>(this.mapUserIdPostUrl, data);
   }
-
 }
