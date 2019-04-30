@@ -41,7 +41,6 @@ export class DealsService {
   private updateuserurl = 'http://localhost:5000/api/updateuser';
   // private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
-<<<<<<< HEAD
   private notificationtoallurl =
     'https://uzhavarsanthai.herokuapp.com/api/notificationtoall';
   private notificationtospecificurl =
@@ -51,24 +50,14 @@ export class DealsService {
   private orderReqmailUrl = 'http://localhost:5000/api/sendorderrequest';
   private storeOrderReqUrl = 'http://localhost:5000/api/storeorderrequest';
   private _getOrderReqUrl = 'http://localhost:5000/api/getorderrequest';
+  private _updateOrderReqUrl = "http://localhost:5000/api/updateorderrequest";
   private _getSinleOrderReqUrl =
     'http://localhost:5000/api/getSingleOrderRequest';
     private _getSinleOrderReqUrl1 =
     'http://localhost:5000/api/getSingleOrderRequest1';
   private sendSellerSmsUrl = 'http://localhost:5000/api/sendordersmstoseller';
   private sendBuyerSmsUrl = 'http://localhost:5000/api/sendbuyersmsUrl';
-=======
-  private notificationtoallurl = 'https://uzhavarsanthai.herokuapp.com/api/notificationtoall';
-  private notificationtospecificurl ="https://uzhavarsanthai.herokuapp.com/api/notificationospecificeusers";
-  private notificationtoPostedProductUrl="https://uzhavarsanthai.herokuapp.com/api/notificationforpost";
-  private orderReqmailUrl = "http://localhost:5000/api/sendorderrequest";
-  private storeOrderReqUrl = "http://localhost:5000/api/storeorderrequest";
-  private _getOrderReqUrl = "http://localhost:5000/api/getorderrequest";
-  private _updateOrderReqUrl = "http://localhost:5000/api/updateorderrequest";
-  private sendSellerSmsUrl = "http://localhost:5000/api/sendordersmstoseller";
-  private sendBuyerSmsUrl = "http://localhost:5000/api/sendbuyersmsUrl";
   private mapUserIdPostUrl = "http://localhost:5000/api/mapuserpostUrl";
->>>>>>> a768aafa5e838697cb321bcee84dd3307328c8da
 
   private _orderReqPosturl = 'http://localhost:5000/api/orderReqPost';
 
@@ -189,7 +178,6 @@ export class DealsService {
     return this.http.get<any>(this._getOrderReqUrl);
   }
 
-<<<<<<< HEAD
   getSingleOrderRequest(id) {
     return this.http.get<any>(this._getSinleOrderReqUrl + '/' + id);
   }
@@ -198,14 +186,12 @@ export class DealsService {
     return this.http.get<any>(this._getSinleOrderReqUrl1 + '/' + id);
   }
 
-  sendOrderSmsSeller(data) {
-=======
+ 
   editOrderRequest(data, id) {
     return this.http.put<any>(this._updateOrderReqUrl + '/' + id, data);
   }
 
   sendOrderSmsSeller(data){
->>>>>>> a768aafa5e838697cb321bcee84dd3307328c8da
     console.log(data);
     return this.http.post<any>(this.sendSellerSmsUrl, data);
   }

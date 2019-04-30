@@ -5,7 +5,7 @@
           <div class="col-md-4">
               <nav>
                   <div class="nav nav-tabs " id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active button_word tabTitle" style="margin-top: 8%;" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Active Requests <i class="fa fa-star-o" aria-hidden="true"></i></a>
+                    <a class="nav-item nav-link active button_word tabTitle" style="margin-top: 8%;" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true" (click)="getCreatedRequests()">Active Requests <i class="fa fa-star-o" aria-hidden="true" ></i></a>
                     <a class="nav-item nav-link button_word tabTitle"  style="margin-top: 8%;"  id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" (click)="getCancelledRequests()">Cancelled Requests <i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
                    </div>
                 </nav>
@@ -31,13 +31,13 @@
                                                           </tr>
                                                       </thead>
                                                       <tbody style="text-align: center">
-                                                           <tr *ngIf="errMsg">
-                                                                   <td colspan="7" class="text-danger"style="text-align: center">
-                                                                      {{errMsg}}
-                                                                   </td>
-                                                               </tr>
+                                                            <tr *ngIf="createdErrMsg">
+                                                                    <td colspan="7" class="text-danger"style="text-align: center">
+                                                                       {{createdErrMsg}}
+                                                                    </td>
+                                                                </tr>
                            
-                                                          <tr  id="hide" *ngFor="let deal of orderRequests | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
+                                                          <tr  id="hide" *ngFor="let deal of createdRequests | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
                                                                <td *ngIf="deal === -1" class="prdUnavil" style="text-align: center">
                                                                    {{errMsg2}}
                                                                </td>
@@ -90,7 +90,7 @@
                                         <th>Buyer Name</th>
                                         <th>Buyer Number</th>
                                         <!-- <th>Buyer City</th> -->
-                                        <th class="disabled-sorting">Action</th>
+                                        <!-- <th class="disabled-sorting">Action</th> -->
                                     </tr>
                                 </thead>
                                 <tbody style="text-align: center">
@@ -113,7 +113,7 @@
                                        <td>{{deal.buyerName}}</td>
                                         <td>{{deal.buyerPhone}}</td>
                                         <!-- <td>{{deal.buyerCity}}</td> -->
-                                        <td style="display: flex;" *ngIf="deal !== -1" >
+                                        <!-- <td style="display: flex;" *ngIf="deal !== -1" >
                                             <button id="hideEditBtn" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" (click)="view(deal._id)" data-toggle="modal" data-target="#centralModalInfo" data-backdrop="static">
                                              View
                                             </button>&nbsp;
@@ -121,7 +121,7 @@
                                              data-keyboard="false" routerLink="/seller-order-requests/{{deal._id}}">
                                              Reject
                                             </button>
-                                        </td>
+                                        </td> -->
      
                                     </tr>
      
