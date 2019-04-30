@@ -1109,6 +1109,29 @@ router.get('/getorderrequest', (req, res) => {
   }).sort({date : -1});
 });
 
+router.get('/getSingleOrderRequest/:id', (req, res) => {
+  Orderrequest.find({
+    sellerId : req.params.id
+  }
+    , function(errors, getoneuser) {
+    if (errors) {
+      console.log('Error updating' + errors);
+    } else {
+      res.json(getoneuser);
+    }
+  });
+});
+
+router.get('/getSingleOrderRequest1/:id', (req, res) => {
+  Orderrequest.findById(req.params.id, function(errors, getoneuser) {
+    if (errors) {
+      console.log('Error updating' + errors);
+    } else {
+      res.json(getoneuser);
+    }
+  });
+});
+
 //update order request
 router.put('/updateorderrequest/:id', function(req, res) {
   Orderrequest.findByIdAndUpdate(

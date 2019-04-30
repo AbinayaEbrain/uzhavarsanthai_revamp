@@ -1,192 +1,192 @@
 .bg {
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-color: whitesmoke;
-    min-height: 100vh;
-    width: 100%;
-    min-height: -webkit-fill-available;
-  }
-  .viewMoreBtn {
-    margin: auto;
-    font-weight: bold;
-    color: #0d4608;
-    border-color: #0d4608;
-  }
-  .viewMoreBtn:hover {
-    background-color: #0d4608;
-    color: white;
-  }
-  .table td {
-    border-top: none;
-  }
-  .productFullName {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 129px;
-    overflow: hidden;
-    font-family: 'Hind Madurai', sans-serif !important;
-  }
-  .table tr {
-    font-family: 'Hind Madurai', sans-serif !important;
-  }
-  .card {
-    border-radius: 8px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
-    overflow: hidden;
-    position: relative;
-    top: 0;
-    text-align: center;
-    margin-bottom: 5px;
-    transition: all 0.25s;
-  }
-  section .section-title {
-    text-align: center;
-    margin-bottom: 50px;
-    text-transform: uppercase;
-    color: white;
-    background-color: #0d4608;
-  }
-  .searchBorder {
-    border: 1px solid #0d4608;
-  }
-  #tabs h6.section-title {
-    color: white;
-    background-color: #0d4608;
-  }
-  
-  #tabs .nav-tabs .nav-item.show .nav-link,
-  .nav-tabs .nav-link.active {
-    color: white !important;
-    background-color: #0d4608;
-    border-color: transparent transparent white;
-    border-bottom: 4px solid #0d4608 !important;
-    font-size: 1rem;
-    font-weight: bold;
-  }
-  
-  #tabs .nav-tabs .nav-link {
-    border: 1px solid transparent;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
-    color: white !important;
-    background-color: #0d4608;
-    font-size: 1rem;
-  }
-  .nav-tabs .nav-link {
-    border: 1px solid #0d4608;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
-    color: white;
-    font-weight: bold;
-  }
-  .nav-tabs {
-    border-bottom: 2px solid white;
-    width: fit-content;
-  }
-  .button_word {
-    font-family: 'Kanit', sans-serif;
-  }
-  .english_wrd {
-    font-family: 'Mukta', sans-serif;
-  }
-  .no_deals_found {
-    text-align: center;
-    color: black;
-    font-weight: bold;
-    font-size: 25px;
-    background-color: white;
-    width: fit-content;
-    margin: auto;
-    padding: 5px;
-    box-shadow: 7px 7px 7px grey;
-    border-radius: 5px;
-    margin-top: 20% !important;
-  }
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: whitesmoke;
+  min-height: 100vh;
+  width: 100%;
+  min-height: -webkit-fill-available;
+}
+.viewMoreBtn {
+  margin: auto;
+  font-weight: bold;
+  color: #0d4608;
+  border-color: #0d4608;
+}
+.viewMoreBtn:hover {
+  background-color: #0d4608;
+  color: white;
+}
+.table td {
+  border-top: none;
+}
+.productFullName {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 129px;
+  overflow: hidden;
+  font-family: 'Hind Madurai', sans-serif !important;
+}
+.table tr {
+  font-family: 'Hind Madurai', sans-serif !important;
+}
+.card {
+  border-radius: 8px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  text-align: center;
+  margin-bottom: 5px;
+  transition: all 0.25s;
+}
+section .section-title {
+  text-align: center;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  color: white;
+  background-color: #0d4608;
+}
+.searchBorder {
+  border: 1px solid #0d4608;
+}
+#tabs h6.section-title {
+  color: white;
+  background-color: #0d4608;
+}
+
+#tabs .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: white !important;
+  background-color: #0d4608;
+  border-color: transparent transparent white;
+  border-bottom: 4px solid #0d4608 !important;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#tabs .nav-tabs .nav-link {
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  color: white !important;
+  background-color: #0d4608;
+  font-size: 1rem;
+}
+.nav-tabs .nav-link {
+  border: 1px solid #0d4608;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  color: white;
+  font-weight: bold;
+}
+.nav-tabs {
+  border-bottom: 2px solid white;
+  width: fit-content;
+}
+.button_word {
+  font-family: 'Kanit', sans-serif;
+}
+.english_wrd {
+  font-family: 'Mukta', sans-serif;
+}
+.no_deals_found {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: white;
+  width: fit-content;
+  margin: auto;
+  padding: 5px;
+  box-shadow: 7px 7px 7px grey;
+  border-radius: 5px;
+  margin-top: 20% !important;
+}
+.tabTitle {
+  font-size: 14px;
+  color: #0d4608 !important;
+}
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align glyph */
+.left-addon .glyphicon {
+  left: 0px;
+}
+.right-addon .glyphicon {
+  right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+  padding-left: 30px;
+}
+.right-addon input {
+  padding-right: 30px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
   .tabTitle {
-    font-size: 14px;
+    font-size: 12px !important;
     color: #0d4608 !important;
   }
-  .inner-addon {
-    position: relative;
-  }
-  
-  /* style glyph */
-  .inner-addon .glyphicon {
-    position: absolute;
+  .onmobiviewpadding {
     padding: 10px;
-    pointer-events: none;
   }
-  
-  /* align glyph */
-  .left-addon .glyphicon {
-    left: 0px;
-  }
-  .right-addon .glyphicon {
-    right: 0px;
-  }
-  
-  /* add padding  */
-  .left-addon input {
-    padding-left: 30px;
-  }
-  .right-addon input {
-    padding-right: 30px;
-  }
-  
-  @media only screen and (min-width: 320px) and (max-width: 425px) {
-    .tabTitle {
-      font-size: 12px !important;
-      color: #0d4608 !important;
-    }
-    .onmobiviewpadding {
-      padding: 10px;
-    }
-  }
-  .postError {
-    text-align: center;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    font-family: 'Mukta', sans-serif;
-  }
-  
-  .btnClr {
-    border: 2px solid #0d4608;
-    color: #0d4608;
-    background-color: white;
-    font-weight: bolder;
-  }
-  
-  .btnClr:hover {
-    background-color: #0d4608;
-    color: white;
-  }
-  
-  .btnDanger {
-    border: 2px solid #dc3545;
-    color: #dc3545;
-    background-color: white;
-    font-weight: bolder;
-  }
-  
-  .btnDanger:hover {
-    background-color: #dc3545;
-    color: white;
-  }
-  
-  .modal-title {
-    color: #0d4608;
-  }
-  .prdUnavil{
-    text-align: center !important;
-       font-weight: bold;
-       color: #0d4608;
-       font-family: 'Mukta', sans-serif;
-  }
-  @media only screen and (min-width: 768px) and (max-width: 1100px) {
-  .nav-item{
+}
+.postError {
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Mukta', sans-serif;
+}
+
+.btnClr {
+  border: 2px solid #0d4608;
+  color: #0d4608;
+  background-color: white;
+  font-weight: bolder;
+}
+
+.btnClr:hover {
+  background-color: #0d4608;
+  color: white;
+}
+
+.btnDanger {
+  border: 2px solid #dc3545;
+  color: #dc3545;
+  background-color: white;
+  font-weight: bolder;
+}
+
+.btnDanger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.modal-title {
+  color: #0d4608;
+}
+.prdUnavil {
+  text-align: center !important;
+  font-weight: bold;
+  color: #0d4608;
+  font-family: 'Mukta', sans-serif;
+}
+@media only screen and (min-width: 768px) and (max-width: 1100px) {
+  .nav-item {
     font-size: 10px;
   }
   .nav-tabs .nav-link.active {
@@ -197,41 +197,57 @@
     font-size: 10px;
     font-weight: bold;
   }
-  }
-  .dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown-content a:hover {background-color: #ddd;}
-  
-  .dropdown:hover .dropdown-content {display: block;}
-  
-  .dropdown:hover .dropbtn {background-color: #3e8e41;}
-  
-  
-  
+}
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.modalHeaderStyle {
+  padding-bottom: 0px;
+}
+
+.lead {
+  font-weight: 500 !important;
+}
+
+.tableBorder {
+  border: 2px solid gray;
+  border-radius: 5px;
+}
