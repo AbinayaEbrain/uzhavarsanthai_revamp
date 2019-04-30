@@ -28,6 +28,10 @@ import { BlogViewComponent } from 'src/app/blog-view/blog-view.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { SignupRequestComponent } from 'src/app/signup-request/signup-request.component';
 import { OrderRequestComponent } from 'src/app/order-request/order-request.component';
+import { BuyerAsSellerComponent } from './buyer-as-seller/buyer-as-seller.component';
+import { SellerOrderRequestsComponent } from './seller-order-requests/seller-order-requests.component';
+import { MyOrderComponent } from 'src/app/my-order/my-order.component';
+
 import { DummyComponent } from 'src/app/dummy/dummy.component';
 const routes: Routes = [
   {
@@ -175,6 +179,18 @@ const routes: Routes = [
   {
     path: 'dummy',
     component: DummyComponent
+  },
+{
+    path: 'buyerAsSeller',
+    component: BuyerAsSellerComponent
+  },
+  {
+    path: 'seller-order-requests',
+    component: SellerOrderRequestsComponent
+  },
+  {
+    path: 'my-order',
+    component: MyOrderComponent
   }
 ];
 

@@ -28,8 +28,9 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
+      <!-- <span class="tamil_word" >விற்க</span> /  -->
         <a class="nav-link " routerLink="/dealCategory" routerLinkActive="active"
-          ><span class="tamil_word">வாங்க</span> / Buy</a
+          >Buy</a
         >
       </li>
       <li
@@ -41,8 +42,9 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
+    <!-- <span class="tamil_word" >விற்க</span> /  -->
       <a class="nav-link" routerLink="/login" routerLinkActive="active"
-        ><span class="tamil_word" >விற்க</span> / Sell</a
+        >Sell</a
       >
     </li>
       <li
@@ -70,9 +72,9 @@
         aria-controls="navbarCollapse"
         aria-expanded="false"
         aria-label="Toggle navigation"
-      >
+      ><!-- <span class="tamil_word" >வலைப்பதிவு</span> /  -->
         <a class="nav-link" routerLink="/blog-view" routerLinkActive="active"
-          ><span class="tamil_word">வலைப்பதிவு </span> / Blog</a>
+          >Blog</a>
       </li>
       <li
       *ngIf="_authService.loggedIn()"
@@ -82,17 +84,16 @@
       aria-controls="navbarCollapse"
       aria-expanded="false"
       aria-label="Toggle navigation"
-    >
+    ><!-- <span class="tamil_word" >வலைப்பதிவு</span> /  -->
       <a class="nav-link" routerLink="/blog" routerLinkActive="active"
-        ><span class="tamil_word">வலைப்பதிவு</span> / Blog</a
+        >Blog</a
       >
     </li>
-
       <li
         *ngIf="
           _authService.loggedIn() &&
           !_authService.roleAdmin() &&
-          _authService.findActive() && !_authService.roleBuyer
+          _authService.findActive() && !_authService.roleBuyer()
         "
         class="nav-item"
         data-toggle="collapse"
@@ -105,6 +106,57 @@
           >My Products</a
         >
       </li>
+      <li
+      *ngIf="
+        _authService.loggedIn() &&
+        !_authService.roleAdmin() &&
+        _authService.findActive() && !_authService.roleBuyer()
+      "
+      class="nav-item"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <a class="nav-link" routerLink="/seller-order-requests" routerLinkActive="active"
+        >My Orders</a
+      >
+    </li>
+      <li
+      *ngIf="
+        _authService.loggedIn() &&
+        !_authService.roleAdmin() &&
+        _authService.findActive() && _authService.roleBuyer()
+      "
+      class="nav-item"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <a class="nav-link" routerLink="/my-order" routerLinkActive="active"
+        >My Orders</a
+      >
+    </li>
+      <li
+      *ngIf="
+        _authService.loggedIn() &&
+        !_authService.roleAdmin() &&
+        _authService.findActive() && _authService.roleBuyer()
+      "
+      class="nav-item"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <a class="nav-link" routerLink="/buyerAsSeller" routerLinkActive="active"
+        >Sell on Uzhavar</a
+      >
+    </li>
       <li
         *ngIf="_authService.roleAdmin() && _authService.loggedIn()"
         class="nav-item"
@@ -178,7 +230,7 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
-          >My Profile</a
+          >{{this._authService.getUserName()}} <i class="fa fa-caret-down" aria-hidden="true"></i></a
         >
         <div class="dropdown-menu" aria-labelledby="dropdown03">
           <a

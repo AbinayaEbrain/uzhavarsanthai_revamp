@@ -1,35 +1,51 @@
-<body style="height: -webkit-fill-available;">
+<body class="bg" style="overflow-x: hidden;">
     <div class="container mt-5">
       <h4 class="mt-5" style="color:#0d4608;text-align:center">Order Request</h4><br>
       <div class="alert alert-success text-center error_word mt-3"  *ngIf="successMsg">
           {{successMsg}}
       </div>
-      <div class="table-responsive" id="cardFocus">
-        <table class="table tamil_word">
-            <thead>
-                <tr>
-                  <th scope="col" style="text-align:center">User order request</th>
-                  <th scope="col" style="text-align:center">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <tr *ngIf="errorMsg">
-                      <td colspan="2" class="text-danger" style="text-align: center;font-weight:bold">
-                         {{errorMsg}}
-                      </td>
-                  </tr>
-                  <tr *ngFor="let user of userCategory">
-                    <td><span style="font-weight:bold;color:#0d4608">{{user.firstname}} ({{user.phone}})</span>, has requested to signup as a seller.Verify seller details and activate</td>
-                    <td style="display: inline-flex;">
-                      <button type="button" class="btn" style="background-color: #0d4608;color:white;padding: 5px 7px;" (click)="updateSignupReq(user._id)">Accept</button>&nbsp;&nbsp;
-                      <button type="button" class="btn btn-danger" style="color:white;padding: 5px 7px;" (click)="updateSignupRejReq(user._id)">Reject</button>&nbsp;&nbsp;
-                      <button type="button" class="btn btn-secondary" style="color:white;padding: 5px 7px;" (click)="singleUpdateSignupReq(user._id)" data-toggle="modal" data-target="#myModal" >
-                        View
-                      </button>
-                    </td>
-                  </tr>
-                  </tbody>
+      <div class="table-responsive">
+        <table class="table" id="cardFocus">
+          <thead>
+            <tr>
+              <th style="width: 150px;">Request id</th>
+              <th style="width: 150px;">Buyer name</th>
+              <th style="width: 150px;">Buyer Phone</th>
+              <th style="width: 150px;">Buyer address</th>
+              <th style="width: 150px;">Product category</th>
+              <th style="width: 150px;">Product name</th>
+              <th style="width: 150px;">Product available place</th>
+              <th style="width: 150px;">Product qty</th>
+              <th style="width: 150px;">Product urgency</th>
+              <th style="width: 150px;">Seller name</th>
+              <th style="width: 150px;">Seller Phone</th>
+
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngIf="errorMsg">
+                  <td colspan="7" class="text-danger" style="text-align: center">
+                     {{errorMsg}}
+                  </td>
+              </tr>
+            <tr *ngFor="let order of userOrderReq | paginate: {id: 'foo', itemsPerPage:10,currentPage:d},let i = index">
+              <td style="min-width: 150px;">{{order.requestId}}</td>
+              <td style="min-width: 150px;">{{order.buyerName}}</td>
+              <td style="min-width: 150px;">{{order.buyerPhone}}</td>
+              <td style="min-width: 150px;">{{order.buyerAddress}}</td>
+              <td style="min-width: 150px;">{{order.prdctCategory}}</td>
+              <td style="min-width: 150px;">{{order.prdctName}}</td>
+              <td style="min-width: 150px;">{{order.prdctAvlplace}}</td>
+              <td style="min-width: 150px;">{{order.prdctQty}}/{{order.prdctUnit}}</td>
+              <td style="min-width: 150px;">{{order.urgency}}</td>
+              <td style="min-width: 150px;">{{order.sellerName}}</td>
+              <td style="min-width: 150px;">{{order.sellerPhone}}</td>
+            </tr>
+          </tbody>
         </table>
-      </div>
+        </div>
+        <div class="mx-auto mt-3">
+            <pagination-controls id="foo"  class="ngx-pagination" style="margin-right: 30px;" maxSize="5" (pageChange)="d = $event"></pagination-controls>
+          </div>
     </div>
     </body>

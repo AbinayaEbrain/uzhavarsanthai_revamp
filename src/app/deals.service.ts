@@ -17,15 +17,15 @@ export class DealsService {
   private _getCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/getCount';
   // https://farmers-market-ebrain.herokuapp.com
   private _dealsUrl = 'https://uzhavarsanthai.herokuapp.com/api/deals';
-  private _postUrl = 'http://localhost:5000/api/post';
+  private _postUrl = 'https://uzhavarsanthai.herokuapp.com/api/post';
   private _getUrl = 'https://uzhavarsanthai.herokuapp.com/api/details';
 
   // Multipost
-  private _multiPostUrl = 'http://localhost:5000/api/multipost';
-  private _getMultiUrl = 'http://localhost:5000/api/getMultipost';
-  private _getSingleMultiUrl = 'http://localhost:5000/api/singleMultipost';
-  private _updateMultiPost = 'http://localhost:5000/api/updateMultipost';
-  private _deleteMultiPost = 'http://localhost:5000/api/dltMultiPost'
+  private _multiPostUrl = 'https://uzhavarsanthai.herokuapp.com/api/multipost';
+  private _getMultiUrl = 'https://uzhavarsanthai.herokuapp.com/api/getMultipost';
+  private _getSingleMultiUrl = 'https://uzhavarsanthai.herokuapp.com/api/singleMultipost';
+  private _updateMultiPost = 'https://uzhavarsanthai.herokuapp.com/api/updateMultipost';
+  private _deleteMultiPost = 'https://uzhavarsanthai.herokuapp.com/api/dltMultiPost'
 
   private _getCategoryUrl = 'https://uzhavarsanthai.herokuapp.com/api/category';
   //Deactivate URL
@@ -42,9 +42,13 @@ export class DealsService {
   private notificationtoPostedProductUrl="https://uzhavarsanthai.herokuapp.com/api/notificationforpost";
   private orderReqmailUrl = "http://localhost:5000/api/sendorderrequest";
   private storeOrderReqUrl = "http://localhost:5000/api/storeorderrequest";
+  private _getOrderReqUrl = "http://localhost:5000/api/getorderrequest";
   private sendSellerSmsUrl = "http://localhost:5000/api/sendordersmstoseller";
   private sendBuyerSmsUrl = "http://localhost:5000/api/sendbuyersmsUrl";
   private mapUserIdPostUrl = "http://localhost:5000/api/mapuserpostUrl";
+
+  private _orderReqPosturl = 'http://localhost:5000/api/orderReqPost';
+
 
   constructor(private http: HttpClient) {}
 
@@ -84,11 +88,8 @@ export class DealsService {
   }
 
   updateCustomer(data, id) {
+    console.log(data);
     return this.http.put<any>(this.updateuserurl + '/' + id, data);
-  }
-
-  updateCustomer1(data, id) {
-    return this.http.post<any>(this.updateuserurl + '/' + id, data);
   }
 
   addMultiPost(data) {
@@ -162,6 +163,10 @@ export class DealsService {
     return this.http.post<any>(this.storeOrderReqUrl, data);
   }
 
+  getOrderRequest() {
+    return this.http.get<any>(this._getOrderReqUrl);
+  }
+
   sendOrderSmsSeller(data){
     console.log(data);
     return this.http.post<any>(this.sendSellerSmsUrl, data);
@@ -175,5 +180,8 @@ export class DealsService {
   mapUserIdinPost(data){
     console.log(data);
     return this.http.post<any>(this.mapUserIdPostUrl, data);
+  }
+  addOrderReqPost(data) {
+    return this.http.post<any>(this._orderReqPosturl, data);
   }
 }

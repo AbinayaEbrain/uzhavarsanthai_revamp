@@ -54,7 +54,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.username = this._authService.getUserName();
   }
 
   register() {

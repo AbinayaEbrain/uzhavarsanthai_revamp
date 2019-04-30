@@ -6,8 +6,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private _registerUrl = 'http://localhost:5000/api/register';
-  private _logInUrl = 'http://localhost:5000/api/login';
+  private _registerUrl = 'https://uzhavarsanthai.herokuapp.com/api/register';
+  private _logInUrl = 'https://uzhavarsanthai.herokuapp.com/api/login';
   private _blogUrl = 'https://uzhavarsanthai.herokuapp.com/api/blog';
   private _blogViewUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogview';
   private _blogEditUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogedit';
@@ -21,7 +21,8 @@ export class AuthService {
     'https://uzhavarsanthai.herokuapp.com/api/getdevicedata';
 
   // send sms to sender for signup
-  private _sendsmsToSeller = 'http://localhost:5000/api/sendSmsToSeller';
+  private _sendsmsToSeller =
+    'http://localhost:5000/api/sendSmsToSeller';
 
   constructor(private http: HttpClient, private route: Router) {}
 
@@ -88,10 +89,10 @@ export class AuthService {
   }
 
   roleBuyer() {
-    let role = JSON.parse(localStorage.getItem('role'));
+    let role1 = JSON.parse(localStorage.getItem('role'));
 
-    if (role == 'buyer') {
-      return !!role;
+    if (role1 == 'buyer') {
+      return role1;
     }
   }
 
@@ -136,6 +137,7 @@ export class AuthService {
     localStorage.removeItem('status');
     localStorage.removeItem('firstname');
     localStorage.removeItem('Image');
+    localStorage.removeItem('role');
     localStorage.removeItem('lastvisitproductid');
     this.route.navigate(['/deals']);
   }

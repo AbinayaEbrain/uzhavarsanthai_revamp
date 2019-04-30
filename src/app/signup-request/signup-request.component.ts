@@ -21,7 +21,11 @@ export class SignupRequestComponent implements OnInit {
   constructor(
     private _dealService: DealsService,
     private _auth: AuthService
-  ) { }
+  ) { 
+    for (let i = 1; i <= this.userCategory.length; i++) {
+      this.userCategory.push('Angular ${i}.0');
+    }
+  }
 
   ngOnInit() {
     this.getSignupReq();
@@ -31,7 +35,7 @@ export class SignupRequestComponent implements OnInit {
     this._dealService.getDetails().subscribe(res =>{
     console.log(res);
     this.signupUser = res;
-  this.getBalanceUser();
+    this.getBalanceUser();
     },err =>{
       console.log(err);
     });
@@ -73,6 +77,7 @@ singleUpdateSignupReq(id){
       }
     }
     this.userCategory1.roleStatus = 'Active';
+    this.userCategory1.role = 'seller';
     console.log(this.userCategory1);
        this._dealService.updateCustomer(this.userCategory1, this.id).subscribe(
       res => {
@@ -85,13 +90,13 @@ singleUpdateSignupReq(id){
           this._auth.sendSignUpreqst(this.userCategory1).subscribe(
             data => {
               console.log(data);
+              this.getSignupReq();
             },
             err => {
               console.log(err);
             }
           );
         }
-        this.getSignupReq();
       },
       err => {
         console.log(err);

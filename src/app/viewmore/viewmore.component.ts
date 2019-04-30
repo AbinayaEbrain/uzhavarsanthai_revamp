@@ -8,9 +8,13 @@ import { NgForm } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatePipe } from '@angular/common';
 import { Location } from '@angular/common';
+<<<<<<< HEAD
 import { HttpClient } from '@angular/common/http';
 declare var $:any;
 declare var swal: any;
+=======
+declare var $: any;
+>>>>>>> b83ecbc4e320a7a594e9d2ac5f1967a128892b62
 
 @Component({
   selector: 'app-viewmore',
@@ -18,6 +22,7 @@ declare var swal: any;
   styleUrls: ['./viewmore.component.css']
 })
 export class ViewmoreComponent implements OnInit {
+<<<<<<< HEAD
     // @ViewChild('queryform') mytemplateForm: NgForm;
     @ViewChild('loginform') mytemplateForm: NgForm;
     @ViewChild('loginform') mytemplateForm1: NgForm;
@@ -25,6 +30,9 @@ export class ViewmoreComponent implements OnInit {
     @ViewChild('queryform') mytemplateForm3: NgForm;
 
 
+=======
+  @ViewChild('queryform') mytemplateForm: NgForm;
+>>>>>>> b83ecbc4e320a7a594e9d2ac5f1967a128892b62
   id = '';
   viewmore = [];
   viewPost = [];
@@ -43,6 +51,7 @@ export class ViewmoreComponent implements OnInit {
   private sendSignUpMail = 'http://localhost:5000/api/sendMailSignUp';
   imageArray = '';
   arrayImage = [];
+<<<<<<< HEAD
   slideConfig:any;
   getToken : any;
   lastvisit:any;
@@ -99,6 +108,18 @@ export class ViewmoreComponent implements OnInit {
         console.log(this.addrKeys);
     });
   }
+=======
+  slideConfig: any;
+  getToken: any;
+  lastvisit: any;
+  reqId: any;
+  buyerName: any;
+  buyerPhone: any;
+  buyerAddress: any;
+  buyerCity = {};
+  orderRequestMsg: any;
+  submitted: any;
+>>>>>>> b83ecbc4e320a7a594e9d2ac5f1967a128892b62
 
   constructor(
     private _dealsService: DealsService,
@@ -111,27 +132,39 @@ export class ViewmoreComponent implements OnInit {
     private _auth: AuthService,
     private http: HttpClient
   ) {
+<<<<<<< HEAD
       this.querydata.urgency = '';
       this.registeredUserData.address.location = '';
       this.registeredUserData.address.city = '';
+=======
+    this.querydata.urgency = '';
+>>>>>>> b83ecbc4e320a7a594e9d2ac5f1967a128892b62
   }
 
   ngOnInit() {
     //this.userName = JSON.parse(localStorage.getItem('currentUser')).firstname;
-
+    console.log(this.querydata.prdctId);
     this.id = this.route.snapshot.params['id'];
     this.loadingCtrl.show();
     this.lastvisit = localStorage.getItem('lastvisitproductid');
     console.log(this.lastvisit);
+<<<<<<< HEAD
   // if(this.lastvisit){
   //   this.openModal();
   // }
+=======
+    if (this.lastvisit) {
+      this.openModal();
+    }
+>>>>>>> b83ecbc4e320a7a594e9d2ac5f1967a128892b62
     this._dealsService.getDeals().subscribe(
       res => {
         this.viewPost = res;
         for (let i = 0; i < this.viewPost.length; i++) {
           if (this.id == this.viewPost[i]._id) {
+            this.postProduct.id = this.viewPost[i]._id;
             this.postProduct.category = this.viewPost[i].category;
+            this.postProduct.categoryId = this.viewPost[i].categoryId;
             this.postProduct.name = this.viewPost[i].name;
             this.postProduct.quantity = this.viewPost[i].quantity;
             this.postProduct.qnty = this.viewPost[i].qnty;
@@ -177,24 +210,21 @@ export class ViewmoreComponent implements OnInit {
           this.time,
           'dd/MM/yyyy'
         );
-        this.arrayImage = this.imageArray.split(",");
+        this.arrayImage = this.imageArray.split(',');
         // this.slideConfig = {"slidesToShow": 1, "slidesToScroll": 1};
         this.slideConfig = {
-          "slidesToShow": 1,
-          "slidesToScroll": 1,
-          "dots": true,
-          "infinite": false,
-          "arrows": false,
-          "autoplay": false,
-          "autoplaySpeed": 1500
-      };
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true,
+          infinite: false,
+          arrows: false,
+          autoplay: false,
+          autoplaySpeed: 1500
+        };
       },
       err => console.log(err)
     );
-
   }
-
-
 
 openloginModal(){
   document.getElementById("openLoginModal").click();
@@ -217,13 +247,17 @@ sendQuery(){
   this.querydata.buyerPhone =  this.buyerPhone;
   this.querydata.buyerAddress =  this.buyerAddress;
   this.querydata.buyerCity =  this.buyerCity;
+  this.querydata.buyerId = JSON.parse(localStorage.getItem('currentUser'))._id;
   //seller data
   this.querydata.sellerName = this.postProduct.firstName;
   this.querydata.sellerPhone = this.postProduct.phone;
   this.querydata.sellerAddress =   this.postProduct.userAddressLine;
   this.querydata.sellerCity = this.postProduct.address;
+  this.querydata.sellerId = this.postProduct.accountId;
   //prduct data
+  this.querydata.prdctId = this.postProduct.id;
   this.querydata.prdctCategory = this.postProduct.category;
+  this.querydata.prdctCategoryId =  this.postProduct.categoryId;
   this.querydata.prdctName = this.postProduct.name;
   this.querydata.prdctUnit = this.postProduct.qnty;
   this.querydata.prdctQty = this.postProduct.quantity
@@ -325,12 +359,16 @@ mapWithPost(){
     this.location.back();
   }
 
-  checkBuyer(){
+  checkBuyer() {
     console.log('function works');
     this.getToken = localStorage.getItem('token');
-    if(this.getToken == null || this.getToken == undefined || this.getToken == '' ){
+    if (
+      this.getToken == null ||
+      this.getToken == undefined ||
+      this.getToken == ''
+    ) {
       console.log('not logged');
-      var a = "wait for login"
+      var a = 'wait for login';
       localStorage.setItem('authorization', JSON.stringify(a));
       localStorage.setItem('lastvisitproductid',this.id);
       this.errormsg ='';
