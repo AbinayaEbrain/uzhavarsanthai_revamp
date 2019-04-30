@@ -22,10 +22,14 @@ export class DealsService {
 
   // Multipost
   private _multiPostUrl = 'https://uzhavarsanthai.herokuapp.com/api/multipost';
-  private _getMultiUrl = 'https://uzhavarsanthai.herokuapp.com/api/getMultipost';
-  private _getSingleMultiUrl = 'https://uzhavarsanthai.herokuapp.com/api/singleMultipost';
-  private _updateMultiPost = 'https://uzhavarsanthai.herokuapp.com/api/updateMultipost';
-  private _deleteMultiPost = 'https://uzhavarsanthai.herokuapp.com/api/dltMultiPost'
+  private _getMultiUrl =
+    'https://uzhavarsanthai.herokuapp.com/api/getMultipost';
+  private _getSingleMultiUrl =
+    'https://uzhavarsanthai.herokuapp.com/api/singleMultipost';
+  private _updateMultiPost =
+    'https://uzhavarsanthai.herokuapp.com/api/updateMultipost';
+  private _deleteMultiPost =
+    'https://uzhavarsanthai.herokuapp.com/api/dltMultiPost';
 
   private _getCategoryUrl = 'https://uzhavarsanthai.herokuapp.com/api/category';
   //Deactivate URL
@@ -37,22 +41,28 @@ export class DealsService {
   private updateuserurl = 'http://localhost:5000/api/updateuser';
   // private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
-  private notificationtoallurl = 'https://uzhavarsanthai.herokuapp.com/api/notificationtoall';
-  private notificationtospecificurl ="https://uzhavarsanthai.herokuapp.com/api/notificationospecificeusers";
-  private notificationtoPostedProductUrl="https://uzhavarsanthai.herokuapp.com/api/notificationforpost";
-  private orderReqmailUrl = "http://localhost:5000/api/sendorderrequest";
-  private storeOrderReqUrl = "http://localhost:5000/api/storeorderrequest";
-  private _getOrderReqUrl = "http://localhost:5000/api/getorderrequest";
-  private sendSellerSmsUrl = "http://localhost:5000/api/sendordersmstoseller";
-  private sendBuyerSmsUrl = "http://localhost:5000/api/sendbuyersmsUrl";
+  private notificationtoallurl =
+    'https://uzhavarsanthai.herokuapp.com/api/notificationtoall';
+  private notificationtospecificurl =
+    'https://uzhavarsanthai.herokuapp.com/api/notificationospecificeusers';
+  private notificationtoPostedProductUrl =
+    'https://uzhavarsanthai.herokuapp.com/api/notificationforpost';
+  private orderReqmailUrl = 'http://localhost:5000/api/sendorderrequest';
+  private storeOrderReqUrl = 'http://localhost:5000/api/storeorderrequest';
+  private _getOrderReqUrl = 'http://localhost:5000/api/getorderrequest';
+  private _getSinleOrderReqUrl =
+    'http://localhost:5000/api/getSingleOrderRequest';
+    private _getSinleOrderReqUrl1 =
+    'http://localhost:5000/api/getSingleOrderRequest1';
+  private sendSellerSmsUrl = 'http://localhost:5000/api/sendordersmstoseller';
+  private sendBuyerSmsUrl = 'http://localhost:5000/api/sendbuyersmsUrl';
 
   private _orderReqPosturl = 'http://localhost:5000/api/orderReqPost';
 
-
   constructor(private http: HttpClient) {}
 
-  sendImage(Image : FormData) {
-     return this.http.post(this.uploadUrl, Image)
+  sendImage(Image: FormData) {
+    return this.http.post(this.uploadUrl, Image);
     //  .pipe(
     //   timeout(2500),
     //   retryWhen(errors => errors.pipe(delayWhen(val => timer(val * 1000)))),
@@ -150,15 +160,15 @@ export class DealsService {
     return this.http.post<any>(this.notificationtospecificurl, data);
   }
 
-  notificationToPostedProduct(data){
+  notificationToPostedProduct(data) {
     return this.http.post<any>(this.notificationtoPostedProductUrl, data);
   }
 
-  sendOrderReqmail(data){
+  sendOrderReqmail(data) {
     return this.http.post<any>(this.orderReqmailUrl, data);
   }
 
-  storeOrderRequest(data){
+  storeOrderRequest(data) {
     return this.http.post<any>(this.storeOrderReqUrl, data);
   }
 
@@ -166,12 +176,20 @@ export class DealsService {
     return this.http.get<any>(this._getOrderReqUrl);
   }
 
-  sendOrderSmsSeller(data){
+  getSingleOrderRequest(id) {
+    return this.http.get<any>(this._getSinleOrderReqUrl + '/' + id);
+  }
+
+  getSingleOrderRequest1(id) {
+    return this.http.get<any>(this._getSinleOrderReqUrl1 + '/' + id);
+  }
+
+  sendOrderSmsSeller(data) {
     console.log(data);
     return this.http.post<any>(this.sendSellerSmsUrl, data);
   }
 
-  sendOrderSmsBuyer(data){
+  sendOrderSmsBuyer(data) {
     console.log(data);
     return this.http.post<any>(this.sendBuyerSmsUrl, data);
   }
