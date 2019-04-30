@@ -46,6 +46,7 @@ export class DealsService {
   private _updateOrderReqUrl = "http://localhost:5000/api/updateorderrequest";
   private sendSellerSmsUrl = "http://localhost:5000/api/sendordersmstoseller";
   private sendBuyerSmsUrl = "http://localhost:5000/api/sendbuyersmsUrl";
+  private mapUserIdPostUrl = "http://localhost:5000/api/mapuserpostUrl";
 
   private _orderReqPosturl = 'http://localhost:5000/api/orderReqPost';
 
@@ -186,4 +187,10 @@ export class DealsService {
     console.log(id)
     return this.http.post<any>(this._orderReqPosturl  + '/' + id ,data);
   }
+  
+  mapUserIdinPost(data){
+    console.log(data);
+    return this.http.post<any>(this.mapUserIdPostUrl, data);
+  }
+  
 }

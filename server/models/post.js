@@ -37,6 +37,7 @@ const postSchema = new Schema({
   orderrequests : [
     {
       requestedPersonId: String,
+      requestedProductId:String,
       orderStatus : String
   }
   ]
