@@ -54,14 +54,13 @@
 </button>
 </div>
 
-<!-- <div style="text-align:center;" *ngIf="getToken" id="hideContactSeller" (click)="createOrederModal()"><button type="button" class="btn btn-success mx-auto contactbtn" style="padding: 10px;"><p style="margin-top: -5px;
-  margin-bottom: -5px;"><i class="fa fa-plus" aria-hidden="true"></i> Create Order Request</p>
-</button>
-</div> -->
 <p *ngIf="requestSent" style="text-align:center;color:#0d4608;font-weight:bold;"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{requestSent}}</p>
-
-
-
+<div style="text-align:center;">
+<button  *ngIf="requestSent" (click)="cancelOrderModal()"  type="button" class="btn1 btn-danger mx-auto" style="padding: 10px;"><p style="margin-top: -5px;
+  margin-bottom: -5px;"><i class="fa fa-ban" aria-hidden="true"></i> Cancel Order</p>
+</button>
+</div>
+<!-- (click)="cancelOrderReq()" -->
                     <!-- <table class="table table-borderless" style="text-align: justify;">
                             <tbody>
                               <tr>
@@ -110,6 +109,7 @@
     <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal" name="button" id="openLoginModal"></button>
     <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal1" name="button" id="openSignupModal"></button>
     <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal2" name="button" id="openOrderReqModal"></button>
+      <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal3" name="button" id="cancelOrderReqModal"></button>
         <!-- <div class="col-md-12 colPad card" style="margin-top:1%;margin-left: 27px;
         margin-right: 27px;">
 
@@ -407,5 +407,28 @@
         <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
       </div>
     </div>
+</div>
+</div>
+
+<div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal3">
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h4  style="font-family:'Oxygen', sans-serif;color: white;">Order Cancel Confirmation</h4>
+         <button type="button" class="close" id="closeCancelOrderModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     </div>
+     <div class="modal-body">
+       <div class="alert alert-success text-center error_word"  *ngIf="orderCancelMsg">
+         {{orderCancelMsg}}
+       </div>
+       <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to order request delete?</h6>
+       <div class="text-center">
+
+    <button type="button" class="btn btn-success button_word"  (click)="cancelOrderReq()">Yes</button>&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-danger button_word"data-dismiss="modal">No</button>
+   </div>
+     </div>
+
+   </div>
 </div>
 </div>

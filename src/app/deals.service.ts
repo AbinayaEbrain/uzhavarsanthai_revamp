@@ -58,6 +58,7 @@ export class DealsService {
   private mapUserIdPostUrl = "http://localhost:5000/api/mapuserpostUrl";
 
   private _orderReqPosturl = 'http://localhost:5000/api/orderReqPost';
+  private _cancelOrderRequestUrl = "http://localhost:5000/api/cancelorder";
 
   constructor(private http: HttpClient) {}
 
@@ -207,5 +208,10 @@ export class DealsService {
   mapUserIdinPost(data){
     console.log(data);
     return this.http.post<any>(this.mapUserIdPostUrl, data);
+  }
+
+  cancelOrderStatus(data){
+    console.log(data);
+    return this.http.post<any>(this._cancelOrderRequestUrl, data);
   }
 }
