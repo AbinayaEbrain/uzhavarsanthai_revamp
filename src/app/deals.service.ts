@@ -43,6 +43,7 @@ export class DealsService {
   private orderReqmailUrl = "http://localhost:5000/api/sendorderrequest";
   private storeOrderReqUrl = "http://localhost:5000/api/storeorderrequest";
   private _getOrderReqUrl = "http://localhost:5000/api/getorderrequest";
+  private _updateOrderReqUrl = "http://localhost:5000/api/updateorderrequest";
   private sendSellerSmsUrl = "http://localhost:5000/api/sendordersmstoseller";
   private sendBuyerSmsUrl = "http://localhost:5000/api/sendbuyersmsUrl";
 
@@ -166,6 +167,10 @@ export class DealsService {
     return this.http.get<any>(this._getOrderReqUrl);
   }
 
+  editOrderRequest(data, id) {
+    return this.http.put<any>(this._updateOrderReqUrl + '/' + id, data);
+  }
+
   sendOrderSmsSeller(data){
     console.log(data);
     return this.http.post<any>(this.sendSellerSmsUrl, data);
@@ -176,7 +181,9 @@ export class DealsService {
     return this.http.post<any>(this.sendBuyerSmsUrl, data);
   }
 
-  addOrderReqPost(data) {
-    return this.http.post<any>(this._orderReqPosturl, data);
+  addOrderReqPost(data, id) {
+    console.log(data)
+    console.log(id)
+    return this.http.post<any>(this._orderReqPosturl  + '/' + id ,data);
   }
 }

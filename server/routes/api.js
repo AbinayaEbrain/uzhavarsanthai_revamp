@@ -1109,21 +1109,43 @@ router.get('/getorderrequest', (req, res) => {
   }).sort({date : -1});
 });
 
+//update order request
+router.put('/updateorderrequest/:id', function(req, res) {
+  Orderrequest.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: { status: req.body.status
+      }
+    },
+    {
+      new: true
+    },
+    function(err, updatedOrder) {
+      if (err) {
+        res.send('Error updating blog');
+      } else {
+        res.json(updatedOrder);
+      }
+    }
+  );
+});
+
 //Update order request
-router.post('/orderReqPost', function(req, res) {
+router.post('/orderReqPost/:id', function(req, res) {
   Post.find(
     {
-      _id:req.body.id
+      _id:req.params.id
     },
     async (err,result) =>{
       if(result.length > 0){
         await Post.update(
           {
-            _id:req.body.id
+            _id:req.params.id,
+            'orderrequests.requestedPersonId': req.body.buyerId
           },
           {
-            $pull: {
-              requestedPersonId: { _id: req.body.id }
+            $set: {
+              orderrequests: { orderStatus: req.body.orderStatus }
             }
           }
         )

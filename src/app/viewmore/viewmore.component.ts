@@ -151,7 +151,7 @@ export class ViewmoreComponent implements OnInit {
     this.querydata.prdctAvlplace = this.postProduct.avlPlace;
     console.log(this.querydata);
     console.log(this.querydata.prdctId);
-
+    this.querydata.status = 'Order created';
     this._dealsService.sendOrderReqmail(this.querydata).subscribe(
       res => {
         console.log(res);

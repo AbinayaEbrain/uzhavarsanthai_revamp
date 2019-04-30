@@ -7,11 +7,14 @@ import { DealsService } from 'src/app/deals.service';
   styleUrls: ['./my-order.component.css']
 })
 export class MyOrderComponent implements OnInit {
-
+  successMsg = '';
   userOrderReq = [];
   userOrder :any = [];
   id: any;
+  prdcIid : any;
   userOrder1 : any = {};
+  userOrder2 : any = {};
+  errorMsg = '';
 
   constructor(
     private _dealService: DealsService,
@@ -37,6 +40,9 @@ export class MyOrderComponent implements OnInit {
         j++;
       }
     }
+    if (this.userOrder.length == 0) {
+      this.errorMsg = 'No order request';
+    }
     },err =>{
       console.log(err);
     });
@@ -51,6 +57,53 @@ export class MyOrderComponent implements OnInit {
       }
     }
     console.log(this.userOrder1)
+  }
+
+  singleUpdateSignupReq1(id){
+    this.id = id;
+    console.log(this.id )
+    for (let i = 0; i < this.userOrder.length; i++) {
+      if (this.id == this.userOrder[i]._id) {
+       this.userOrder1 = this.userOrder[i];
+       this. updateSignupReq1(id)
+      }
+    }
+    console.log(this.userOrder1)
+  }
+
+  updateSignupReq1(id) {
+    this.prdcIid = id;
+    console.log(this.prdcIid)
+    this.userOrder1.status = 'Order cancelled';
+       this._dealService.editOrderRequest(this.userOrder1,this.prdcIid).subscribe(
+      res => {
+        console.log(res);
+             this.successMsg = 'Your order is cancelled';
+              setTimeout(() => {
+                this.successMsg = '';
+              }, 2000);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  updateSignupReq(id) {
+    this.id = id;
+    // this.userOrder1.status = 'Order cancelled';
+       this._dealService.addOrderReqPost(this.userOrder1,this.id).subscribe(
+      res => {
+        console.log(res);
+          //  this.successMsg = 'Accepted user request';
+          //     setTimeout(() => {
+          //       this.successMsg = '';
+          //     }, 2000);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 }
