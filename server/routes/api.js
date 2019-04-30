@@ -539,7 +539,7 @@ router.put('/updateuser/:id', function(req, res) {
     req.params.id,
     {
       $set: {
-        phone : req.body.phone, 
+        phone : req.body.phone,
         status: req.body.status,
         firstname: req.body.firstname,
         password : req.body.password,
@@ -1132,21 +1132,43 @@ router.get('/getSingleOrderRequest1/:id', (req, res) => {
   });
 });
 
+//update order request
+router.put('/updateorderrequest/:id', function(req, res) {
+  Orderrequest.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: { status: req.body.status
+      }
+    },
+    {
+      new: true
+    },
+    function(err, updatedOrder) {
+      if (err) {
+        res.send('Error updating blog');
+      } else {
+        res.json(updatedOrder);
+      }
+    }
+  );
+});
+
 //Update order request
-router.post('/orderReqPost', function(req, res) {
+router.post('/orderReqPost/:id', function(req, res) {
   Post.find(
     {
-      _id:req.body.id
+      _id:req.params.id
     },
     async (err,result) =>{
       if(result.length > 0){
         await Post.update(
           {
-            _id:req.body.id
+            _id:req.params.id,
+            'orderrequests.requestedPersonId': req.body.buyerId
           },
           {
-            $pull: {
-              requestedPersonId: { _id: req.body.id }
+            $set: {
+              orderrequests: { orderStatus: req.body.orderStatus }
             }
           }
         )
@@ -1233,19 +1255,51 @@ router.post('/sendSmsToSeller',(req , res) => {
 
       var req = http.request(options, function (res) {
         var chunks = [];
-    
+
         res.on("data", function (chunk) {
           chunks.push(chunk);
         });
-       
+
         res.on("end", function () {
           var body = Buffer.concat(chunks);
           console.log(body.toString());
         });
       });
-    
+
       req.end();
 
 })
+
+//map userId with POST
+router.post('/mapuserpostUrl', function(req, res) {
+  console.log(req.body);
+  Post.find(
+    {
+      _id:req.body.requestedProductId
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Post.update(
+          {
+            _id:req.body.requestedProductId
+          },
+          {
+            $push: {
+            orderrequests:{
+              requestedPersonId: req.body.requestedPersonId
+            }
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'post id updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
 
 module.exports = router;
