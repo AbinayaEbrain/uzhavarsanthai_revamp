@@ -208,7 +208,6 @@ export class PostComponent implements OnInit {
   }
 
   postImage() {
-    alert('1');
     this.loadingCtrl.show();
     if (this.singleImage) {
       var image = new FormData(); //FormData creation
@@ -272,7 +271,6 @@ export class PostComponent implements OnInit {
   }
 
   postProduct(){
-        alert('2');
       this.loadingCtrl.show();
        // var time = this.productData.validityTime;
        // this.productData.validityTime = time.getTime();
