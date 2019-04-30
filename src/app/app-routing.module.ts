@@ -28,6 +28,7 @@ import { BlogViewComponent } from 'src/app/blog-view/blog-view.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { SignupRequestComponent } from 'src/app/signup-request/signup-request.component';
 import { OrderRequestComponent } from 'src/app/order-request/order-request.component';
+import { DummyComponent } from 'src/app/dummy/dummy.component';
 const routes: Routes = [
   {
     path: '',
@@ -170,6 +171,10 @@ const routes: Routes = [
   {
     path: 'order-request',
     component: OrderRequestComponent
+  },
+  {
+    path: 'dummy',
+    component: DummyComponent
   }
 ];
 

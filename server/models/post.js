@@ -33,6 +33,10 @@ const postSchema = new Schema({
   userAddress: String,
   status: String,
   count: { type: Number, default: 1 },
-  bulk : false
+  bulk : false,
+  orderrequests:[{
+    requestedProductId:String,
+    requestedPersonId:String
+  }]
 });
 module.exports = mongoose.model('post', postSchema, 'post');

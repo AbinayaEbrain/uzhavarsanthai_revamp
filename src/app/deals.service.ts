@@ -44,6 +44,7 @@ export class DealsService {
   private storeOrderReqUrl = "http://localhost:5000/api/storeorderrequest";
   private sendSellerSmsUrl = "http://localhost:5000/api/sendordersmstoseller";
   private sendBuyerSmsUrl = "http://localhost:5000/api/sendbuyersmsUrl";
+  private mapUserIdPostUrl = "http://localhost:5000/api/mapuserpostUrl";
 
   constructor(private http: HttpClient) {}
 
@@ -169,5 +170,10 @@ export class DealsService {
   sendOrderSmsBuyer(data){
     console.log(data);
     return this.http.post<any>(this.sendBuyerSmsUrl, data);
+  }
+
+  mapUserIdinPost(data){
+    console.log(data);
+    return this.http.post<any>(this.mapUserIdPostUrl, data);
   }
 }

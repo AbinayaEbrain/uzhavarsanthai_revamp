@@ -52,6 +52,7 @@ import { ReadMoreComponent } from './read-more/read-more.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { SignupRequestComponent } from './signup-request/signup-request.component';
 import { OrderRequestComponent } from './order-request/order-request.component';
+import { DummyComponent } from './dummy/dummy.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { OrderRequestComponent } from './order-request/order-request.component';
     ReadMoreComponent,
     NotificationsComponent,
     SignupRequestComponent,
-    OrderRequestComponent
+    OrderRequestComponent,
+    DummyComponent
   ],
   imports: [
     BrowserModule,

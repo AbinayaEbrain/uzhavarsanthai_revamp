@@ -527,7 +527,7 @@ router.put('/updateuser/:id', function(req, res) {
     req.params.id,
     {
       $set: {
-        phone : req.body.phone, 
+        phone : req.body.phone,
         status: req.body.status,
         firstname: req.body.firstname,
         password : req.body.password,
@@ -1021,7 +1021,7 @@ res.status(200).send(message);
 router.post('/sendorderrequest', (req, res) => {
   var server = email.server.connect({
     user: 'abishakshi1496@gmail.com',
-    password: 'abiyuva1438',
+    password: 'abiyuva14382',
     host: 'smtp.gmail.com',
     ssl: true
   });
@@ -1158,19 +1158,51 @@ router.post('/sendSmsToSeller',(req , res) => {
 
       var req = http.request(options, function (res) {
         var chunks = [];
-    
+
         res.on("data", function (chunk) {
           chunks.push(chunk);
         });
-       
+
         res.on("end", function () {
           var body = Buffer.concat(chunks);
           console.log(body.toString());
         });
       });
-    
+
       req.end();
 
 })
+
+//map userId with POST
+router.post('/mapuserpostUrl', function(req, res) {
+  console.log(req.body);
+  Post.find(
+    {
+      _id:req.body.requestedProductId
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Post.update(
+          {
+            _id:req.body.requestedProductId
+          },
+          {
+            $push: {
+            orderrequests:{
+              requestedPersonId: req.body.requestedPersonId
+            }
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'post id updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
 
 module.exports = router;
