@@ -370,7 +370,6 @@ mapWithPost(){
 
   logform() {
     this.loadingCtrl.show();
-    console.log('1');
     this._auth.logInUser(this.userData).subscribe(
       res => {
         localStorage.setItem('currentUser', JSON.stringify(res.user));
@@ -385,16 +384,15 @@ mapWithPost(){
         this.user = JSON.parse(localStorage.getItem('firstname'));
         let previousUrl1 = localStorage.getItem('previousUrl');
         this.authorize = localStorage.getItem('authorization');
-        console.log(this.authorize);
+		let role = JSON.parse(localStorage.getItem('role'));
         if (this.user === 'Admin') {
           console.log('2');
           this.router.navigate(['/admin']);
         } else {
-          console.log('3');
+     
           if (this.wholedata === 'ACTIVE' && this.wholedata1 === 'Active') {
-            console.log('4');
-            if(this.authorize){
-              console.log('5');
+		if(this.authorize){
+              
               this.visitId = this.route.snapshot.params['id'];
               // this.router.navigate(['/viewmore/' + this.visitId ]);
               document.getElementById("closeLoginModal").click();
@@ -406,9 +404,11 @@ mapWithPost(){
               if (previousUrl1 == '/blog-view') {
                 console.log('6');
                 this.router.navigate(['/blog']);
-              } else {
+              } else if(role == "seller") {
                 console.log('7');
                 this.router.navigate(['/products']);
+              }else{
+                this.router.navigate(['/blog']);
               }
             }
           }
@@ -418,11 +418,13 @@ mapWithPost(){
             // setTimeout(() => {
             //   this.deactiveErrorMsg = '';
             // }, 3000);
-          }else if(this.wholedata1 != 'Active'){
+          }else if(this.wholedata1 != 'Active'  && role == "seller"){
             console.log('9');
             this.adminVerifyErr = 'Stay cool until get confirmation from Uzhavarsanthai to login!';
             this.mytemplateForm.reset();
             this.removeLS();
+          }else if(this.wholedata1 != 'Active' && role == "buyer"){
+            this.router.navigate(['/blog']);
           }
           this.loadingCtrl.hide();
         }

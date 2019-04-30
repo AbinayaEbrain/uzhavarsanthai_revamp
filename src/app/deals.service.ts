@@ -186,7 +186,6 @@ export class DealsService {
     return this.http.get<any>(this._getSinleOrderReqUrl1 + '/' + id);
   }
 
- 
   editOrderRequest(data, id) {
     return this.http.put<any>(this._updateOrderReqUrl + '/' + id, data);
   }
@@ -206,10 +205,9 @@ export class DealsService {
     console.log(id)
     return this.http.post<any>(this._orderReqPosturl  + '/' + id ,data);
   }
-  
+
   mapUserIdinPost(data){
     console.log(data);
     return this.http.post<any>(this.mapUserIdPostUrl, data);
   }
-  
 }
