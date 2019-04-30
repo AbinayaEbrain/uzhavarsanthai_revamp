@@ -1168,7 +1168,7 @@ router.post('/orderReqPost/:id', function(req, res) {
           },
           {
             $set: {
-              orderrequests: { orderStatus: req.body.orderStatus }
+              orderrequests: { orderStatus: req.body.orderStatus ,requestedPersonId : req.body.buyerId}
             }
           }
         )

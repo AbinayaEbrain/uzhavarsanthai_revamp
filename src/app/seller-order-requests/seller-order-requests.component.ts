@@ -11,8 +11,11 @@ export class SellerOrderRequestsComponent implements OnInit {
   acntID: any;
   errMsg: any;
   cancelledErrMsg: any;
+  createdErrMsg: any;
   singleOrderRequest: any = {};
   cancelledRequests: any = [];
+  createdRequests: any = [];
+
 
   constructor(private _dealService: DealsService) {}
 
@@ -47,6 +50,20 @@ export class SellerOrderRequestsComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  getCreatedRequests(){
+    let j = 0;
+    for(let i = 0;i < this.orderRequests.length ; i++){
+      if(this.orderRequests[i].status == "Order created"){
+        this.createdRequests[j] = this.orderRequests[i];
+        j++;
+      }
+    }
+    console.log(this.createdRequests);
+    if (this.createdRequests.length == 0) {
+      this.createdErrMsg = 'No created order requests!';
+    }
   }
 
   getCancelledRequests(){
