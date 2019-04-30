@@ -445,3 +445,7 @@ input {
 .titilebold {
   font-weight: bold;
 }
+textarea::placeholder {
+  font-family: 'Nunito', sans-serif;
+  color:  #0d4608;
+}

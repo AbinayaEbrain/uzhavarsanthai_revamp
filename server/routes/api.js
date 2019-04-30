@@ -1366,4 +1366,36 @@ router.post('/mapuserpostUrl', function(req, res) {
   )
 });
 
+router.post('/cancelorder', function(req, res) {
+  console.log(req.body.requestedProductId);
+  console.log(req.body.requestedPersonId);
+  console.log(req.body.orderStatus);
+  Post.find(
+    {
+      _id:req.body.requestedProductId
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Post.update(
+          {
+            'orderrequests.requestedPersonId':req.body.requestedPersonId
+          },
+          {
+            $set: {
+            orderrequests:{orderStatus: req.body.orderStatus,
+              requestedPersonId: req.body.requestedPersonId,}
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'post status updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
 module.exports = router;

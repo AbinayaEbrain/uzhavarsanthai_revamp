@@ -40,7 +40,7 @@ export class MyOrderComponent implements OnInit {
     this.loadingCtrl.hide();
     for (let i = 0; i < this.userOrderReq.length; i++) {
       if (
-        acntID == this.userOrderReq[i].buyerId 
+        acntID == this.userOrderReq[i].buyerId
       ) {
         this.userOrder[j] = this.userOrderReq[i];
         console.log(this.userOrder)
@@ -60,7 +60,7 @@ export class MyOrderComponent implements OnInit {
     for (let i = 0; i < this.userOrder.length; i++) {
       if (this.id == this.userOrder[i]._id) {
        this.userOrder1 = this.userOrder[i];
-       
+
       }
     }
     console.log(this.userOrder1)
@@ -70,6 +70,8 @@ export class MyOrderComponent implements OnInit {
     this.id = id;
     console.log(this.id )
     for (let i = 0; i < this.userOrder.length; i++) {
+      console.log(this.userOrder);
+      console.log(this.userOrder.length);
       if (this.id == this.userOrder[i]._id) {
        this.userOrder1 = this.userOrder[i];
       }
