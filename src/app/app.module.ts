@@ -88,7 +88,7 @@ import { DummyComponent } from './dummy/dummy.component';
     NotificationsComponent,
     SignupRequestComponent,
     OrderRequestComponent,
-    DummyComponent
+    DummyComponent,
     BuyerAsSellerComponent,
     SellerOrderRequestsComponent,
     MyOrderComponent

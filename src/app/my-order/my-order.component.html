@@ -1,24 +1,31 @@
 <body class="bg" style="overflow-x: hidden;">
   <div class="container mt-5">
     <h4 class="mt-5" style="color:#0d4608;text-align:center">My Orders</h4><br>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
     <div class="alert alert-success text-center error_word mt-3"  *ngIf="successMsg">
         {{successMsg}}
     </div>
+  </div>
+    <div class="col-md-4"></div>
+  </div>
     <div class="table-responsive">
       <table class="table" id="cardFocus">
         <thead>
-          <tr>
+          <tr style="color:#0d4608">
             <!-- <th style="width: 150px;">Request id</th>
             <th style="width: 150px;">Buyer name</th>
             <th style="width: 150px;">Buyer Phone</th>
             <th style="width: 150px;">Buyer address</th> -->
+            <th style="width: 150px;">Request Id</th>
             <th style="width: 150px;">Category</th>
             <th style="width: 150px;">Name</th>
-            <th style="width: 150px;">Available place</th>
-            <th style="width: 150px;">Qty</th>
-            <th style="width: 150px;">Urgency</th>
+            <!-- <th style="width: 150px;">Available place</th> -->
+            <th>Qty</th>
+            <th>Urgency</th>
             <th style="width: 150px;">Status</th>
-            <th style="width: 150px;text-align:center">Action</th>
+            <th>Action</th>
             <!-- <th style="width: 150px;">Seller name</th>
             <th style="width: 150px;">Seller Phone</th> -->
 
@@ -35,17 +42,18 @@
             <td style="min-width: 150px;">{{order.buyerName}}</td>
             <td style="min-width: 150px;">{{order.buyerPhone}}</td>
             <td style="min-width: 150px;">{{order.buyerAddress}}</td> -->
+            <td style="min-width: 150px;">{{order.requestId}}</td>
             <td style="min-width: 150px;">{{order.prdctCategory}}</td>
             <td style="min-width: 150px;">{{order.prdctName}}</td>
-            <td style="min-width: 150px;">{{order.prdctAvlplace}}</td>
-            <td style="min-width: 150px;">{{order.prdctQty}}/{{order.prdctUnit}}</td>
-            <td style="min-width: 150px;">{{order.urgency}}</td>
-            <td style="min-width: 150px;" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</td>
-            <td style="display: inline-flex;min-width: 150px;">
-              <button type="button" class="btn btn-secondary" style="color:white;padding: 5px 7px;" (click)="singleUpdateSignupReq(order._id)" data-toggle="modal" data-target="#myModal" >
+            <!-- <td style="min-width: 150px;">{{order.prdctAvlplace}}</td> -->
+            <td >{{order.prdctQty}}/{{order.prdctUnit}}</td>
+            <td >{{order.urgency}}</td>
+            <td style="min-width: 150px;font-weight:bold" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</td>
+            <td style="display: inline-flex;">
+              <button type="button" class="btn btn-outline-success viewMoreBtn button_word" [ngStyle]="{'text-align':order.status === 'Order cancelled' ? 'center' : '' }" (click)="singleUpdateSignupReq(order._id)" data-toggle="modal" data-target="#myModal" >
                 View
               </button>&nbsp;
-                <button type="button" class="btn clr btn-sm"   (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Order cancelled' ? 'none' : '' }" (click)="updateSignupReq1(order.prdctId)" >Order cancel</button>
+                <button type="button" class="btn btn-outline-success text-center viewMoreBtn button_word" (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Order cancelled' ? 'none' : '' }" (click)="updateSignupReq1(order.prdctId)" >Order cancel</button>
             </td>
             <!-- <td style="min-width: 150px;">{{order.sellerName}}</td>
             <td style="min-width: 150px;">{{order.sellerPhone}}</td> -->
@@ -72,29 +80,35 @@
           
           <!-- Modal body -->
           <div class="modal-body" >
+              <h5 style="text-align:center;color:#0d4608">Product Details</h5>
           <div class="table-responsive" id="cardFocus">
             <table class="table tamil_word">
                   <tbody>
                       <tr>
-                        <td >Product category</td>
+                          <td >Request Id</td>
+                          <td>:</td>
+                          <td>{{userOrder1.requestId}}</td>
+                          </tr>
+                      <tr>
+                        <td >Category</td>
                         <td>:</td>
                         <td>{{userOrder1.prdctCategory}}</td>
                         </tr>
 
                         <tr>
-                        <td >Product name</td>
+                        <td >Name</td>
                         <td>:</td>
                         <td>{{userOrder1.prdctName}}</td>
                       </tr>
 
                       <tr>
-                        <td >Product qty</td>
+                        <td >Qty</td>
                         <td>:</td>
                         <td>{{userOrder1.prdctQty}}/{{userOrder1.prdctUnit}}</td>
                       </tr>
 
                       <tr>
-                        <td >Product available place</td>
+                        <td >Available place</td>
                         <td>:</td>
                         <td>{{userOrder1.prdctAvlplace}}</td>
                       </tr>

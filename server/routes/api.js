@@ -1263,7 +1263,8 @@ router.post('/mapuserpostUrl', function(req, res) {
           {
             $push: {
             orderrequests:{
-              requestedPersonId: req.body.requestedPersonId
+              requestedPersonId: req.body.requestedPersonId,
+              orderStatus: req.body.orderStatus
             }
              }
           }

@@ -78,6 +78,7 @@ export class MyOrderComponent implements OnInit {
        this._dealService.editOrderRequest(this.userOrder1,this.prdcIid).subscribe(
       res => {
         console.log(res);
+        this.updateSignupReq(id)
              this.successMsg = 'Your order is cancelled';
               setTimeout(() => {
                 this.successMsg = '';
@@ -91,7 +92,7 @@ export class MyOrderComponent implements OnInit {
 
   updateSignupReq(id) {
     this.id = id;
-    // this.userOrder1.status = 'Order cancelled';
+    this.userOrder1.orderStatus = 'Order cancelled';
        this._dealService.addOrderReqPost(this.userOrder1,this.id).subscribe(
       res => {
         console.log(res);

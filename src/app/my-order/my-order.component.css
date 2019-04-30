@@ -16,3 +16,19 @@
 .table {
     border: 2px solid darkgray;
   }
+
+  .viewMoreBtn {
+    margin: auto;
+    font-weight: bold;
+    color: #0d4608;
+    border-color: #0d4608;
+  }
+
+  .viewMoreBtn:hover {
+    background-color: #0d4608;
+    color: white;
+  }
+
+  .button_word {
+    font-family: 'Kanit', sans-serif;
+  }
