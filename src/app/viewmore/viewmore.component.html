@@ -13,11 +13,11 @@
                   </ngx-slick-carousel>
           </div>
           <div class="col-md-8 col-sm-7 col-lg-7 margTop">
-  <p class="seller">Seller: <span style="font-weight:100;">{{postProduct.firstName}}</span></p>
+  <p class="seller float-right">Seller: <span style="font-weight:100;">{{postProduct.firstName}}</span></p>
                     <h3 style="color: #0d4608;">{{postProduct.name}}</h3>
                     <p style="color: #0d4608;"><i class="fa" style="color: #0d4608;">&#xf156;</i> {{postProduct.price}} / {{postProduct.qnty}}</p>
-  
-  
+
+
                         <table class="table table-borderless teble-responsive" style="text-align: justify;">
                                 <tbody>
                                   <tr>
@@ -48,12 +48,12 @@
   <!-- <p class="askbest">Ask for best deal</p> -->
     </button>
   </div>
-  
+
   <div style="text-align:center;" *ngIf="getToken && !requestSent" ><button type="button" (click)="createOrederModal()" class="btn btn-success mx-auto contactbtn" style="padding: 10px;"><p style="margin-top: -5px;
     margin-bottom: -5px;"><i class="fa fa-plus" aria-hidden="true"></i> Create Order Request</p>
   </button>
   </div>
-  
+
   <p *ngIf="requestSent" style="text-align:center;color:#0d4608;font-weight:bold;"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{requestSent}}</p>
   <div style="text-align:center;">
   <button  *ngIf="requestSent" (click)="cancelOrderModal()"  type="button" class="btn1 btn-danger mx-auto" style="padding: 10px;"><p style="margin-top: -5px;
@@ -72,7 +72,7 @@
                                 <tr>
                                 <td>{{postProduct.quantity}} {{postProduct.qnty}}</td>
                                 </tr>
-  
+
                               <tr>
                                   <td><strong>Expiry</strong></td>
                                   <td>:</td>
@@ -101,10 +101,10 @@
                                   <td *ngIf="!lastvisit" class="contactNumber" id="hideContactSeller"><button type="button" class="btn btn-success" name="button" (click)="checkBuyer()">Contact Seller</button></td>
                                   <td *ngIf="requestSent"><p><i class="fa fa-paper-plane" aria-hidden="true"></i> {{requestSent}}</p></td>
                                 </tr>
-  
+
                               </tbody>
                             </table> -->
-  
+
           </div>
       <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal" name="button" id="openLoginModal"></button>
       <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal1" name="button" id="openSignupModal"></button>
@@ -112,15 +112,15 @@
         <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal3" name="button" id="cancelOrderReqModal"></button>
           <!-- <div class="col-md-12 colPad card" style="margin-top:1%;margin-left: 27px;
           margin-right: 27px;">
-  
+
                   <p  class="pageHeadingDescription">பொருள் குறிப்பு / Description</p>
                   <p class="fontSize"> {{postProduct.description}}</p>
           </div>
-  
+
           <div class="col-md-12 text-center" style="margin-bottom: 1%;">
                   <button type="button" class="btn btn-outline-success viewMoreBtn" (click)="goToBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
           </div> -->
-  
+
   </div>
   <br>
   <br>
@@ -159,7 +159,7 @@
           <span toggle="#password" id="password1" (click)="eyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
           <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
         </div>
-  
+
         <a (click)="toggle()" style="cursor: pointer;text-decoration: underline">Forgot password?</a>
         <button [disabled]="loginform.form.invalid " class="btn mt-4 mb-4 btn-block button_word" type="submit" (click)="logform()"><span style="font-size: 14px" class="tamil_word">உள் நுழைக </span> / Login</button>
       </form>
@@ -212,7 +212,7 @@
             <span toggle="#resetPassword" id="resetPassword1" (click)="reseteyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
             <span class="text-danger float-left error_word" [class.d-none] = "resetPassword.valid || resetPassword.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
           </div>
-  
+
           <div class="form-group">
               <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> உறுதிப்படுத்த </span>/ Confirm Password</label>
             <input type="password" id="confirmPassword" (keyup)="equalPwd()"  #confirmPassword="ngModel" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" ngModel name="confirmPassword" class="form-control" [(ngModel)]="resetPasswordObj.confirmPassword" autocomplete="off"  required>
@@ -233,7 +233,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- signUp modal -->
   <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal1">
     <div class="modal-dialog" role="document">
@@ -260,7 +260,7 @@
                   <button class="mb-2 btn2" type="submit" id="hideGetOtp" [disabled]="!phoneObj.phone" (click)="signUpSendOtp()">Get OTP</button>
               </div>
           </div>
-  
+
           <div id="signUpsecondDiv" class="mt-5" style="display: none">
                   <div class="alert alert-success text-center" style="margin-top: -10%;" *ngIf="signUoptsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{signUoptsent}}</div>
               <div class="alert alert-danger text-center" style="margin-top: -10%;" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
@@ -311,7 +311,7 @@
       </div><!-- /.modal-content -->
     </div>
   </div>
-  
+
    <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal2">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -338,7 +338,7 @@
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>Quantity is required</span>
                        </div>
                       </div>
-  
+
                       <div class="col-md-6">
                         <div class="form-group">
                             <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">அளவு </span>/ Unit</label>
@@ -359,7 +359,7 @@
                       </div>
                       </div>
                       </div>
-  
+
                     <div class="col-md-12 mt-2" >
                     <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">பொருள் தேவை </span>/ Product Urgency</label>
                    <select  class="form-control" class="form-control mobmargintop"   placeholder="Enter unit"
@@ -378,7 +378,7 @@
                        is required</span
                      >
                     </div>
-  
+
                     <div class="col-md-12 mt-2">
                           <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">குறிப்பு </span>/ Notes</label>
                           <textarea
@@ -409,7 +409,7 @@
       </div>
   </div>
   </div>
-  
+
   <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal3">
    <div class="modal-dialog" role="document">
      <div class="modal-content">
@@ -423,13 +423,12 @@
          </div>
          <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to order request delete?</h6>
          <div class="text-center">
-  
+
       <button type="button" class="btn btn-success button_word"  (click)="cancelOrderReq()">Yes</button>&nbsp;&nbsp;&nbsp;
       <button type="button" class="btn btn-danger button_word"data-dismiss="modal">No</button>
      </div>
        </div>
-  
+
      </div>
   </div>
   </div>
-  
