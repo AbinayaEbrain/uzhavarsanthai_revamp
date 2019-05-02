@@ -22,7 +22,7 @@ export class AuthService {
 
   // send sms to sender for signup
   private _sendsmsToSeller =
-    'http://localhost:5000/api/sendSmsToSeller';
+    'https://uzhavarsanthai.herokuapp.com/api/sendSmsToSeller';
 
   constructor(private http: HttpClient, private route: Router) {}
 

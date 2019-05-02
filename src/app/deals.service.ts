@@ -38,7 +38,7 @@ export class DealsService {
   //Active URL
   private activeUrl =
     'https://uzhavarsanthai.herokuapp.com/api/admin-user/active';
-  private updateuserurl = 'http://localhost:5000/api/updateuser';
+  private updateuserurl = 'https://uzhavarsanthai.herokuapp.com/api/updateuser';
   // private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private notificationtoallurl =
@@ -47,20 +47,20 @@ export class DealsService {
     'https://uzhavarsanthai.herokuapp.com/api/notificationospecificeusers';
   private notificationtoPostedProductUrl =
     'https://uzhavarsanthai.herokuapp.com/api/notificationforpost';
-  private orderReqmailUrl = 'http://localhost:5000/api/sendorderrequest';
-  private storeOrderReqUrl = 'http://localhost:5000/api/storeorderrequest';
-  private _getOrderReqUrl = 'http://localhost:5000/api/getorderrequest';
-  private _updateOrderReqUrl = "http://localhost:5000/api/updateorderrequest";
+  private orderReqmailUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendorderrequest';
+  private storeOrderReqUrl = 'https://uzhavarsanthai.herokuapp.com/api/storeorderrequest';
+  private _getOrderReqUrl = 'https://uzhavarsanthai.herokuapp.com/api/getorderrequest';
+  private _updateOrderReqUrl = "https://uzhavarsanthai.herokuapp.com/api/updateorderrequest";
   private _getSinleOrderReqUrl =
-    'http://localhost:5000/api/getSingleOrderRequest';
+    'https://uzhavarsanthai.herokuapp.com/api/getSingleOrderRequest';
     private _getSinleOrderReqUrl1 =
     'http://localhost:5000/api/getSingleOrderRequest1';
-  private sendSellerSmsUrl = 'http://localhost:5000/api/sendordersmstoseller';
-  private sendBuyerSmsUrl = 'http://localhost:5000/api/sendbuyersmsUrl';
-  private mapUserIdPostUrl = "http://localhost:5000/api/mapuserpostUrl";
+  private sendSellerSmsUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendordersmstoseller';
+  private sendBuyerSmsUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendbuyersmsUrl';
+  private mapUserIdPostUrl = "https://uzhavarsanthai.herokuapp.com/api/mapuserpostUrl";
 
-  private _orderReqPosturl = 'http://localhost:5000/api/orderReqPost';
-  private _cancelOrderRequestUrl = "http://localhost:5000/api/cancelorder";
+  private _orderReqPosturl = 'https://uzhavarsanthai.herokuapp.com/api/orderReqPost';
+  private _cancelOrderRequestUrl = "https://uzhavarsanthai.herokuapp.com/api/cancelorder";
 
   constructor(private http: HttpClient) {}
 
