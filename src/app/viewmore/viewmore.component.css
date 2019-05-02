@@ -100,3 +100,7 @@ section .section-title {
   color: #eee;
   font-size: 20px;
 }
+textarea::placeholder {
+  font-family: 'Nunito', sans-serif;
+  color:  #0d4608;
+}

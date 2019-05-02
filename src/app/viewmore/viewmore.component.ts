@@ -34,6 +34,7 @@ export class ViewmoreComponent implements OnInit {
   public postProduct: any = {};
   public querydata: any = {};
   public requestData: any ={};
+  public cancelOrderData: any ={};
   resetPasswordObj: any = {};
   city: any;
   state: any;
@@ -90,6 +91,8 @@ export class ViewmoreComponent implements OnInit {
   public addr: {
     formatted_address: '';
   };
+  orderLiveStatus:any;
+  orderCancelMsg:any;
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -110,7 +113,6 @@ export class ViewmoreComponent implements OnInit {
     private _auth: AuthService,
     private http: HttpClient
   ) {
-      this.querydata.urgency = '';
       this.registeredUserData.address.location = '';
       this.registeredUserData.address.city = '';
   }
@@ -159,9 +161,11 @@ export class ViewmoreComponent implements OnInit {
               for (let i = 0; i < this.requestPerson.length; i++) {
                 console.log(this.requestPerson.length);
                 console.log(this.requestPerson[i].requestedPersonId);
+                console.log(this.requestPerson[i].orderStatus);
+                this.orderLiveStatus = this.requestPerson[i].orderStatus;
                 this.loggedUser = JSON.parse(localStorage.getItem('currentUser'))._id;
                 console.log(this.loggedUser);
-                if(this.loggedUser == this.requestPerson[i].requestedPersonId){
+                if(this.loggedUser == this.requestPerson[i].requestedPersonId && this.orderLiveStatus == "Order created"){
                   console.log('yes');
                   // document.getElementById('noneSeller').style.display="none";
                   this.requestSent = "Order Request Sent!"
@@ -248,7 +252,7 @@ sendQuery(){
           setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);
           document.getElementById("closeRequirementModal").click();
           //localStorage.removeItem('lastvisitproductid');
-        }, 5000);
+        }, 3000);
       console.log('four');
       //   this.visitId = this.route.snapshot.params['id'];
       // this.router.navigateByUrl('/dummy', { skipLocationChange: true });
@@ -374,6 +378,7 @@ mapWithPost(){
         localStorage.setItem('currentUser', JSON.stringify(res.user));
         localStorage.setItem('status', JSON.stringify(res.user.status));
         localStorage.setItem('roleStatus', JSON.stringify(res.user.roleStatus));
+		localStorage.setItem('role', JSON.stringify(res.user.role));
         localStorage.setItem('firstname', JSON.stringify(res.user.firstname));
         localStorage.setItem('payload', JSON.stringify(res.payload));
         localStorage.setItem('token', res.token);
@@ -388,10 +393,10 @@ mapWithPost(){
           console.log('2');
           this.router.navigate(['/admin']);
         } else {
-     
+
           if (this.wholedata === 'ACTIVE' && this.wholedata1 === 'Active') {
 		if(this.authorize){
-              
+
               this.visitId = this.route.snapshot.params['id'];
               // this.router.navigate(['/viewmore/' + this.visitId ]);
               document.getElementById("closeLoginModal").click();
@@ -763,7 +768,39 @@ mapWithPost(){
 //create order modal
 createOrederModal(){
   this.mytemplateForm3.reset();
-  this.querydata.urgency = '';
   document.getElementById("openOrderReqModal").click();
+  this.querydata.urgency = '';
+  this.querydata.Unit = '';
+}
+
+cancelOrderModal(){
+  document.getElementById("cancelOrderReqModal").click();
+}
+
+cancelOrderReq(){
+  console.log('hi');
+  this.loggedUser = JSON.parse(localStorage.getItem('currentUser'))._id;
+  console.log(this.loggedUser);
+  this.cancelOrderData.requestedPersonId = this.loggedUser;
+  this.visitId = this.route.snapshot.params['id'];
+  this.cancelOrderData.requestedProductId = this.visitId;
+  this.cancelOrderData.orderStatus = "Order cancelled"
+  console.log(this.visitId);
+  console.log(this.cancelOrderData);
+  this._dealsService.cancelOrderStatus(this.cancelOrderData).subscribe(
+    res => {
+      console.log(res);
+      this.orderCancelMsg = "Order Request Cancelled!";
+      setTimeout(() => {
+        this.orderCancelMsg ='';
+          document.getElementById("closeCancelOrderModal").click();
+      this.router.navigateByUrl('/dummy', { skipLocationChange: true });
+      setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);
+      }, 3000);
+    },
+    err => {
+      console.log(err);
+    }
+  );
 }
 }
