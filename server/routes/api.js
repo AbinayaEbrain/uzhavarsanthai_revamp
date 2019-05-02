@@ -418,10 +418,72 @@ router.post('/sendMailSignUpBuyer', (req, res) => {
            + "<html><br></html>" + "<html><h3>City :</h3></html>" + req.body.address.city.locality ,
           alternative: true
         }
-        //  {path:"pathtofile.zip", type:"application/zip", name:"renamed.zip"}
-        // + "<html><br></html>" + "<html><h5>Address :</h5></html>" + req.body.address.city.formatted_address +
-       // "<html><br></html>" + "<html><h5>City :</h5></html>" + req.body.address.city.locality
+      ]
+    },
+    function(err, message) {
+      if (err) console.log(err);
+      else res.json({ success: true, msg: 'sent', message });
+    }
+  );
+});
 
+// Mail for buyer as seller signup rqst
+router.post('/sendMailRejectSeller', (req, res) => {
+  console.log(req.body);
+  var server = email.server.connect({
+    user: 'abishakshi1496@gmail.com',
+    password: 'abiyuva14382',
+    host: 'smtp.gmail.com',
+    ssl: true
+  });
+  server.send(
+    {
+      text: 'Seller rejected order request from Uzhavarsanthai !',
+      from: 'abishakshi1496@gmail.com',
+      to: 'abishakshi1496@gmail.com',
+      subject: 'Seller rejected order request from Uzhavarsanthai !',
+      attachment: [
+        {
+          data:
+          "<html><h2 style='text-align:center'>Seller rejected order request</h2></html>" +
+          "<html><h3>Request Number:</h3></html>"+ req.body.requestId +
+          "<html><br></html>" + "<html><hr></html>" +
+          "<html><h3 style='text-align:center'>Product Details</h3></html>" +
+          "<html><h3>Product Category :</h3></html>" + req.body.prdctCategory +
+          "<html><br></html>" +
+          "<html><h3>Product Name :</h3></html>" + req.body.prdctName +
+          "<html><br></html>" +
+          "<html><h3>Product Quantity :</h3></html>" + req.body.prdctQty +
+          "<html><br></html>" +
+          "<html><h3>Product Unit :</h3></html>" + req.body.prdctUnit +
+          "<html><br></html>" +
+          "<html><h3>Product Available Place :</h3></html>" + req.body.prdctAvlplace + 
+
+          "<html><br></html>" + "<html><hr></html>" +
+          "<html><h3 style='text-align:center'>Buyer Details</h3></html>" +
+          "<html><h3>Buyer Name :</h3></html>" + req.body.buyerName +
+          "<html><br></html>" +
+          "<html><h3>Buyer Phone :</h3></html>" + req.body.buyerPhone +
+          "<html><br></html>" +
+          "<html><h3>Buyer Address :</h3></html>" + req.body.buyerAddress +
+          "<html><br></html>" +
+          "<html><h3>Buyer City :</h3></html>" + req.body.buyerCity +
+          "<html><br></html>" +
+          "<html><h3>Buyer Query :</h3></html>" + req.body.description +
+          "<html><br></html>" +
+          "<html><h3>Buyer Urgency :</h3></html>" + req.body.urgency +
+          "<html><br></html>" + "<html><hr></html>" +
+
+          "<html><h3 style='text-align:center'>Seller Details</h3></html>" +
+          "<html><h3>Seller Name :</h3></html>" + req.body.sellerName +
+          "<html><br></html>" +
+          "<html><h3>Seller Phone :</h3></html>" + req.body.sellerPhone +
+          "<html><br></html>" +
+          "<html><h3>Seller Address :</h3></html>" + req.body.sellerAddress +
+          "<html><br></html>" +
+          "<html><h3>Seller City :</h3></html>" + req.body.sellerCity ,
+         alternative: true
+        }
       ]
     },
     function(err, message) {

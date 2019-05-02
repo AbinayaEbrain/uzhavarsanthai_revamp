@@ -11,6 +11,15 @@
                 </nav>
            </div>
    </div>
+
+   <div class="row" *ngIf="successMsg">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+             <div class="alert alert-success text-center">{{successMsg}}</div>
+        </div>
+        <div class="col-md-4"></div>
+</div>
+
       <div class="container mt-3">
           <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -31,9 +40,9 @@
                                                           </tr>
                                                       </thead>
                                                       <tbody style="text-align: center">
-                                                            <tr *ngIf="createdErrMsg">
+                                                            <tr *ngIf="errMsg">
                                                                     <td colspan="7" class="text-danger"style="text-align: center">
-                                                                       {{createdErrMsg}}
+                                                                       {{errMsg}}
                                                                     </td>
                                                                 </tr>
                            
@@ -54,7 +63,7 @@
                                                                   <button id="hideEditBtn" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" (click)="view(deal._id)" data-toggle="modal" data-target="#centralModalInfo" data-backdrop="static">
                                                                    View
                                                                   </button>&nbsp;
-                                                                  <button id="hideDeleteBtn" class="btn btn-outline-success text-center viewMoreBtn button_word"   style="width: 50%;" data-toggle="modal" data-target="#frameModalBottom" data-backdrop="static"
+                                                                  <button id="hideDeleteBtn" class="btn btn-outline-success text-center viewMoreBtn button_word" (click)="getId(deal._id)"  style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
                                                                    data-keyboard="false">
                                                                    Reject
                                                                   </button>
@@ -105,7 +114,7 @@
                                              {{errMsg2}}
                                          </td>
                                          <td>{{deal.requestId}}</td>
-                                     <td>{{deal.prdctCategory}}</td>
+                                        <td>{{deal.prdctCategory}}</td>
                                         <td>
                                         <div class="productFullName">{{deal.prdctName}}</div>
                                          </td>
@@ -223,28 +232,31 @@ aria-hidden="true">
 </div>
 <!-- Central Modal Medium Info-->
 
-  <!-- Frame Modal Bottom -->
-<div class="modal fade bottom" id="frameModalBottom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-aria-hidden="true">
 
-<!-- Add class .modal-frame and then add class .modal-bottom (or other classes from list above) to set a position to the modal -->
-<div class="modal-dialog modal-frame modal-bottom" role="document">
+ <!-- modal -->
 
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
 
-  <div class="modal-content">
-    <div class="modal-body">
-      <div class="row d-flex justify-content-center align-items-center">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;color: white;">Reject Confirmation</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="text-white">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to reject this request?</h6>
+          <div class="text-center">
 
-        <p class="pt-3 pr-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit nisi quo
-          provident fugiat reprehenderit nostrum
-          quos..
-        </p>
+           <button type="button" class="btn btnClr button_word" (click)="reject()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btnDanger button_word" data-dismiss="modal">No</button>
+          </div>
+        </div>
 
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
+
     </div>
   </div>
-</div>
-</div>
-<!-- Frame Modal Bottom -->
+   <!-- modal -->

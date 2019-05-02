@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DealsService } from '../deals.service';
+import { HttpClient } from '@angular/common/http';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-seller-order-requests',
@@ -15,11 +17,14 @@ export class SellerOrderRequestsComponent implements OnInit {
   singleOrderRequest: any = {};
   cancelledRequests: any = [];
   createdRequests: any = [];
+  rejectId: any;
+  successMsg: any;
+  private sendMailForReject = 'http://localhost:5000/api/sendMailRejectSeller'
 
-
-  constructor(private _dealService: DealsService) {}
+  constructor(private _dealService: DealsService,private http: HttpClient,public loadingCtrl: NgxSpinnerService) {}
 
   ngOnInit() {
+    this.loadingCtrl.show();
     this.acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
     console.log(this.acntID);
     this.getSignUpRqst();
@@ -42,9 +47,7 @@ export class SellerOrderRequestsComponent implements OnInit {
       data => {
         console.log(data);
         this.orderRequests = data;
-        if (this.orderRequests.length == 0) {
-          this.errMsg = 'No order requests!';
-        }
+        this.getCreatedRequests();
       },
       err => {
         console.log(err);
@@ -52,24 +55,26 @@ export class SellerOrderRequestsComponent implements OnInit {
     );
   }
 
-  getCreatedRequests(){
+  getCreatedRequests() {
     let j = 0;
-    for(let i = 0;i < this.orderRequests.length ; i++){
-      if(this.orderRequests[i].status == "Order created"){
+    for (let i = 0; i < this.orderRequests.length; i++) {
+      if (this.orderRequests[i].status == 'Order created') {
         this.createdRequests[j] = this.orderRequests[i];
         j++;
       }
     }
-    console.log(this.createdRequests);
     if (this.createdRequests.length == 0) {
-      this.createdErrMsg = 'No created order requests!';
+      this.errMsg = 'No order requests!';
     }
+    console.log(this.createdRequests);
+    this.loadingCtrl.hide();
   }
 
-  getCancelledRequests(){
+  getCancelledRequests() {
+    this.loadingCtrl.show();
     let j = 0;
-    for(let i = 0;i < this.orderRequests.length ; i++){
-      if(this.orderRequests[i].status == "Order cancelled"){
+    for (let i = 0; i < this.orderRequests.length; i++) {
+      if (this.orderRequests[i].status == 'Order cancelled') {
         this.cancelledRequests[j] = this.orderRequests[i];
         j++;
       }
@@ -78,6 +83,7 @@ export class SellerOrderRequestsComponent implements OnInit {
     if (this.cancelledRequests.length == 0) {
       this.cancelledErrMsg = 'No cancelled order requests!';
     }
+    this.loadingCtrl.hide();
   }
 
   view(id) {
@@ -91,5 +97,59 @@ export class SellerOrderRequestsComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  getId(id) {
+    this.rejectId = id;
+    this.view(id);
+    console.log(this.rejectId);
+  }
+
+  reject() {
+    this.loadingCtrl.show();
+    console.log(this.rejectId);
+    this.singleOrderRequest.status = 'Order cancelled';
+    console.log(this.singleOrderRequest);
+    this._dealService
+      .editOrderRequest(this.singleOrderRequest, this.rejectId)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.updatePost(this.singleOrderRequest.prdctId);
+        },
+        err => {
+          console.log(err);
+        }
+      );
+  }
+
+  updatePost(id){
+    console.log(id);
+    this.singleOrderRequest.orderStatus = 'Order cancelled';
+    this._dealService.addOrderReqPost(this.singleOrderRequest,id).subscribe(data =>{
+      this.loadingCtrl.hide();
+      console.log(data);
+      this.getSingleOrder();
+      this.successMsg = "Rejected successfully!";
+      setTimeout(() => {
+        this.successMsg = '';
+      }, 3000);
+      if (data) {
+        this.http.post<any>(this.sendMailForReject, this.singleOrderRequest).subscribe(
+          data => {
+            if (data) {
+              console.log(data);
+              console.log('success');
+            }
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      }
+    }, err => {
+      this.loadingCtrl.hide();
+      console.log(err);
+    })
   }
 }

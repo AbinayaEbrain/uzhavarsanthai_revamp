@@ -92,7 +92,6 @@ export class ViewmoreComponent implements OnInit {
   };
 
   setAddress(addrObj) {
-      console.log('3');
     this.zone.run(() => {
       this.addr = addrObj;
       this.addrKeys = Object.keys(addrObj);
