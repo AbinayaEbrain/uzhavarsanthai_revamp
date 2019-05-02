@@ -54,7 +54,7 @@ export class DealsService {
   private _getSinleOrderReqUrl =
     'https://uzhavarsanthai.herokuapp.com/api/getSingleOrderRequest';
     private _getSinleOrderReqUrl1 =
-    'http://localhost:5000/api/getSingleOrderRequest1';
+    'https://uzhavarsanthai.herokuapp.com/api/getSingleOrderRequest1';
   private sendSellerSmsUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendordersmstoseller';
   private sendBuyerSmsUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendbuyersmsUrl';
   private mapUserIdPostUrl = "https://uzhavarsanthai.herokuapp.com/api/mapuserpostUrl";
