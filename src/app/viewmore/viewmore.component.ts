@@ -51,6 +51,7 @@ export class ViewmoreComponent implements OnInit {
   requestSent:any;
   buyerName:any;
   buyerPhone:any;
+  submitted:any;
   buyerAddress : any;
   buyerCity = {};
   orderRequestMsg:any;

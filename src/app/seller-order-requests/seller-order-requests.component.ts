@@ -19,6 +19,9 @@ export class SellerOrderRequestsComponent implements OnInit {
   createdRequests: any = [];
   rejectId: any;
   successMsg: any;
+  queryString:any;
+  p:any;
+  e:any;
   private sendMailForReject = 'http://localhost:5000/api/sendMailRejectSeller'
 
   constructor(private _dealService: DealsService,private http: HttpClient,public loadingCtrl: NgxSpinnerService) {}

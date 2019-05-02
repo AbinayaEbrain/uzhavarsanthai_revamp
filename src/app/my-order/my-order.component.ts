@@ -17,6 +17,7 @@ export class MyOrderComponent implements OnInit {
   userOrder1 : any = {};
   userOrder2 : any = {};
   errorMsg = '';
+  d:any;
   private orderCancelmail = 'http://localhost:5000/api/sendordercancelrequest';
 
   constructor(
