@@ -18,7 +18,7 @@ export class MyOrderComponent implements OnInit {
   userOrder2 : any = {};
   errorMsg = '';
   d:any;
-  private orderCancelmail = 'http://localhost:5000/api/sendordercancelrequest';
+  private orderCancelmail = 'https://uzhavarsanthai.herokuapp.com/api/sendordercancelrequest';
 
   constructor(
     private _dealService: DealsService,
