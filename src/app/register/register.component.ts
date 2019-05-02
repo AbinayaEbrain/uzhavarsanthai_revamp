@@ -127,6 +127,7 @@ export class RegisterComponent implements OnInit {
 
         this.success = 'Registered successfully!';
         if (res.user.roleStatus == 'Deactive') {
+          this.removeLS();
           swal({
             title: 'Registered successfully!',
             text:
@@ -181,6 +182,21 @@ export class RegisterComponent implements OnInit {
       }, 3000);
       //alert(this.phnErr)
     }
+  }
+
+  
+  removeLS(){
+    localStorage.removeItem('payload');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    localStorage.removeItem('Address');
+    localStorage.removeItem('roleStatus');
+    localStorage.removeItem('googleLat');
+    localStorage.removeItem('googleLong');
+    localStorage.removeItem('ipAddress');
+    localStorage.removeItem('status');
+    localStorage.removeItem('firstname');
+    localStorage.removeItem('Image');
   }
 
   handleInput(evt) {

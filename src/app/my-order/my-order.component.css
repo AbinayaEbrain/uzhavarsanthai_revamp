@@ -1,58 +1,62 @@
 .bg {
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-color: whitesmoke;
-    min-height: 100vh;
-    width: 100%;
-    min-height: -webkit-fill-available;
-  }
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: whitesmoke;
+  min-height: 100vh;
+  width: 100%;
+  min-height: -webkit-fill-available;
+}
 
-  .mt-5{
-    margin-top: 6rem !important;
+.mt-5 {
+  margin-top: 6rem !important;
+}
+
+.tamil_word {
+  font-family: 'Hind Madurai', sans-serif;
 }
 
 .table {
-    border: 2px solid darkgray;
-  }
+  border: 2px solid darkgray;
+}
 
-  .viewMoreBtn {
-    margin: auto;
-    font-weight: bold;
-    color: #0d4608;
-    border-color: #0d4608;
-  }
+.viewMoreBtn {
+  margin: auto;
+  font-weight: bold;
+  color: #0d4608;
+  border-color: #0d4608;
+}
 
-  .viewMoreBtn:hover {
-    background-color: #0d4608;
-    color: white;
-  }
+.viewMoreBtn:hover {
+  background-color: #0d4608;
+  color: white;
+}
 
-  .button_word {
-    font-family: 'Kanit', sans-serif;
-  }
+.button_word {
+  font-family: 'Kanit', sans-serif;
+}
 
-  .btnClr {
-    border: 2px solid #0d4608;
-    color: #0d4608;
-    background-color: white;
-    font-weight: bolder;
-  }
-  
-  .btnClr:hover {
-    background-color: #0d4608;
-    color: white;
-  }
-  
-  .btnDanger {
-    border: 2px solid #dc3545;
-    color: #dc3545;
-    background-color: white;
-    font-weight: bolder;
-  }
-  
-  .btnDanger:hover {
-    background-color: #dc3545;
-    color: white;
-  }
+.btnClr {
+  border: 2px solid #0d4608;
+  color: #0d4608;
+  background-color: white;
+  font-weight: bolder;
+}
+
+.btnClr:hover {
+  background-color: #0d4608;
+  color: white;
+}
+
+.btnDanger {
+  border: 2px solid #dc3545;
+  color: #dc3545;
+  background-color: white;
+  font-weight: bolder;
+}
+
+.btnDanger:hover {
+  background-color: #dc3545;
+  color: white;
+}

@@ -19,7 +19,7 @@ export class BuyerAsSellerComponent implements OnInit {
   currentuserId: any;
   show = true;
   roleStatus : any;
-  private sendMailSignUpBuyer = 'http://localhost:5000/api/sendMailSignUpBuyer';
+  private sendMailSignUpBuyer = 'https://uzhavarsanthai.herokuapp.com/api/sendMailSignUpBuyer';
 
   constructor(
     private _dealsService: DealsService,

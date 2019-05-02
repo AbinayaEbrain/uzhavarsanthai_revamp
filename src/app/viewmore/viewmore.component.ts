@@ -41,7 +41,7 @@ export class ViewmoreComponent implements OnInit {
   userName = '';
   adrsArray: any;
   public previousUrl: any;
-  private sendSignUpMail = 'http://localhost:5000/api/sendMailSignUp';
+  private sendSignUpMail = 'https://uzhavarsanthai.herokuapp.com/api/sendMailSignUp';
   imageArray = '';
   arrayImage = [];
   slideConfig:any;
@@ -240,21 +240,21 @@ sendQuery(){
 
   this._dealsService.sendOrderReqmail(this.querydata).subscribe(
     res => {
-      console.log('two');
       console.log(res);
       this.mytemplateForm3.reset();
         this.orderRequestMsg = 'We got your order query, we get back to you soon!';
-        setTimeout(() => {
-          console.log('three');
-          this.orderRequestMsg = '';
-          this.visitId = this.route.snapshot.params['id'];
-          console.log(this.visitId);
-          this.router.navigateByUrl('/dummy', { skipLocationChange: true });
-          setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);
-          document.getElementById("closeRequirementModal").click();
-          //localStorage.removeItem('lastvisitproductid');
-        }, 3000);
-      console.log('four');
+        document.getElementById("closeRequirementModal").click();
+        this.router.navigate(['/my-order']);
+        // setTimeout(() => {
+        //   console.log('three');
+        //   this.orderRequestMsg = '';
+        //   this.visitId = this.route.snapshot.params['id'];
+        //   console.log(this.visitId);
+        //   // this.router.navigateByUrl('/dummy', { skipLocationChange: true });
+        //   // setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);
+        //   document.getElementById("closeRequirementModal").click();
+        //   //localStorage.removeItem('lastvisitproductid');
+        // }, 3000);
       //   this.visitId = this.route.snapshot.params['id'];
       // this.router.navigateByUrl('/dummy', { skipLocationChange: true });
       // setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);

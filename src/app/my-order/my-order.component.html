@@ -33,7 +33,7 @@
         </thead>
         <tbody>
             <tr *ngIf="errorMsg">
-                <td colspan="6" class="text-danger" style="text-align: center">
+                <td colspan="7" class="text-danger" style="text-align: center">
                    {{errorMsg}}
                 </td>
             </tr>
@@ -43,14 +43,14 @@
             <td style="min-width: 150px;">{{order.buyerPhone}}</td>
             <td style="min-width: 150px;">{{order.buyerAddress}}</td> -->
             <td style="min-width: 150px;">{{order.requestId}}</td>
-            <td style="min-width: 150px;">{{order.prdctCategory}}</td>
+            <td style="min-width: 150px;" class="tamil_word">{{order.prdctCategory}}</td>
             <td style="min-width: 150px;">{{order.prdctName}}</td>
             <!-- <td style="min-width: 150px;">{{order.prdctAvlplace}}</td> -->
             <td >{{order.prdctQty}}/{{order.prdctUnit}}</td>
             <td >{{order.urgency}}</td>
             <td style="min-width: 150px;font-weight:bold" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</td>
             <td style="display: inline-flex;">
-              <button type="button" class="btn btn-outline-success viewMoreBtn button_word" data-toggle="modal" data-target="#myModal" >
+              <button type="button" class="btn btn-outline-success viewMoreBtn button_word" data-toggle="modal" data-target="#myModal" (click)="singleUpdateSignupReq(order._id)" >
                 View
               </button>&nbsp;
                 <button type="button" class="btn btn-outline-success text-center viewMoreBtn button_word" (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Order cancelled' ? 'none' : '' }" data-toggle="modal" data-target="#myModal1" >Order cancel</button>
