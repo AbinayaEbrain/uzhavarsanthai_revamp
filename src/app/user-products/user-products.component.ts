@@ -63,9 +63,7 @@ export class UserProductsComponent implements OnInit {
           }
         }
         this.getMultiArray();
-        if (this.userDeals.length == 0) {
-          this.errMsg = "Still you haven't post any deals";
-        }
+       
         // for (let j = 0; j < this.userDeals.length; j++) {
         //   if (this.userDeals[j].category == undefined) {
         //     this.errMsg = "Still you haven't post any deals";
@@ -94,6 +92,9 @@ export class UserProductsComponent implements OnInit {
 
   getArray(){
     this.singleMultiArray = this.userDeals.concat(this.multiPost);
+    if (this.singleMultiArray.length == 0) {
+      this.errMsg = "Still you haven't post any deals";
+    }
   }
 
   getActiveDeals() {

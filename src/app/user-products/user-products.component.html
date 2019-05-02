@@ -51,13 +51,13 @@
                                                     </thead>
                                                     <tbody style="text-align: center">
                                                          <tr *ngIf="errMsg">
-                                                                 <td colspan="7" style="text-align: center">
+                                                                 <td colspan="7" class="text-danger" style="text-align: center">
                                                                     {{errMsg}}
                                                                  </td>
                                                              </tr>
                          
                                                         <tr  id="hide" *ngFor="let deal of singleMultiArray | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
-                                                             <td *ngIf="deal === -1" class="prdUnavil" style="text-align: center">
+                                                             <td *ngIf="deal === -1" class="prdUnavil text-danger" style="text-align: center">
                                                                  {{errMsg2}}
                                                              </td>
                                                               
@@ -119,12 +119,12 @@
                    </thead>
                    <tbody style="text-align: center">
                         <tr *ngIf="errMsg1">
-                                <td colspan="7" style="text-align: center">
+                                <td colspan="7" class="text-danger" style="text-align: center">
                                    {{errMsg1}}
                                 </td>
                             </tr>
                        <tr id="hide1" *ngFor="let deal of userDeals1 | filterdata: queryString  : 'category'| paginate: {id: 'foo1', itemsPerPage:10,currentPage:d},let i = index"  >
-                            <td *ngIf="deal === -1 && !errMsg1" class="prdUnavil" style="text-align: center">
+                            <td *ngIf="deal === -1 && !errMsg1" class="prdUnavil text-danger" style="text-align: center">
                                     {{errMsg2}}
                             </td>
                         <td>{{deal.category}}</td>

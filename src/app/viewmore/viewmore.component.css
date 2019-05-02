@@ -97,10 +97,32 @@ section .section-title {
   border: 1px solid transparent;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
-  color: #eee;
+  color: #eb0f2491;
   font-size: 20px;
 }
 textarea::placeholder {
   font-family: 'Nunito', sans-serif;
-  color:  #0d4608;
+  color: #0d4608;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #f47682;
+  /* width: 550px; */
+}
+
+/* .tab-pane {
+  width: 550px;
+} */
+
+.btnCancel {
+  font-weight: bold;
+  padding: 3px;
+  font-size: 15px;
+  margin-top: 15px;
+}
+
+.btnStyle {
+  background-color: #0d4608;
+  border-color: #0d4608;
+  color: white;
 }

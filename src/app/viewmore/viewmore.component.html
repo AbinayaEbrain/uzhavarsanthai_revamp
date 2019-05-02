@@ -1,131 +1,125 @@
-<div class="container mainrowDiv  mt-5 pt-3 pt-md-5">
-  <div class="container ">
-  <div class="row mt-3">
-          <div class="col-md-4 col-sm-5 col-lg-5">
-                  <!-- <img src="{{postProduct.image}}" style="cursor: pointer;" class="viewImage"> -->
-                  <ngx-slick-carousel class="carousel"
-                  #slickModal="slick-carousel"
-                          [config]="slideConfig"
-                          (init)="slickInit($event)">
-                      <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
-                          <img src="{{ slide }}" alt="" class="viewImage">
-                      </div>
-                  </ngx-slick-carousel>
-          </div>
-          <div class="col-md-8 col-sm-7 col-lg-7 margTop">
-  <p class="seller">Seller: <span style="font-weight:100;">{{postProduct.firstName}}</span></p>
-                    <h3 style="color: #0d4608;">{{postProduct.name}}</h3>
-                    <p style="color: #0d4608;"><i class="fa" style="color: #0d4608;">&#xf156;</i> {{postProduct.price}} / {{postProduct.qnty}}</p>
-  
-  
-                        <table class="table table-borderless teble-responsive" style="text-align: justify;">
-                                <tbody>
-                                  <tr>
-                                    <td><strong>Expiry Date</strong></td>
-                                    <td>:</td>
-                                    <td>{{postProduct.validityTime}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><strong>Quantity</strong></td>
-                                    <td>:</td>
-                                    <td>{{postProduct.quantity}} {{postProduct.qnty}}</td>
-                                  </tr>
-                                  <tr>
-                                    <td><strong>Location</strong></td>
-                                    <td>:</td>
-                                    <td>{{postProduct.avlPlace}}</td>
-                                  </tr>
-                                </tbody>
-                        </table>
-    <!-- <ul>
-  <li><strong>Expiry Date :</strong> {{postProduct.validityTime}}</li>
-  <li><strong>Available Quantity  :</strong> {{postProduct.quantity}} {{postProduct.qnty}}</li>
-  <li><strong>Available Location : </strong> {{postProduct.avlPlace}}</li>
-  </ul> -->
-    <p class="fontSize"> {{postProduct.description}}</p>
-    <div style="text-align:center;" *ngIf="!getToken" ><button (click)="checkBuyer()" type="button" class="btn btn-success mx-auto contactbtn" style="padding: 10px;"><p style="margin-top: -5px;
-      margin-bottom: -5px;"><i class="fa fa-phone" aria-hidden="true"></i> Contact Seller</p>
-  <!-- <p class="askbest">Ask for best deal</p> -->
-    </button>
+<div class="container mt-5 pt-3 pt-md-5"> 
+  <div class="card cardStyle">
+  <div class="row">
+  <aside class="col-sm-5">
+  <article class="gallery-wrap"> 
+  <div class="img-big-wrap">
+  <div> 
+    <!-- <img src="{{postProduct.image}}" style="cursor: pointer;" class="viewImage"> -->
+    <ngx-slick-carousel class="carousel"
+    #slickModal="slick-carousel"
+            [config]="slideConfig"
+            (init)="slickInit($event)">
+        <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
+            <img src="{{ slide }}" alt="" class="viewImage">
+        </div>
+    </ngx-slick-carousel>
   </div>
-  
-  <div style="text-align:center;" *ngIf="getToken && !requestSent" ><button type="button" (click)="createOrederModal()" class="btn btn-success mx-auto contactbtn" style="padding: 10px;"><p style="margin-top: -5px;
-    margin-bottom: -5px;"><i class="fa fa-plus" aria-hidden="true"></i> Create Order Request</p>
-  </button>
+  </div> <!-- slider-product.// -->
+  <div class="img-small-wrap" *ngFor="let slide of arrayImage">
+  <div class="item-gallery"> <img src="{{ slide }}"> </div>
+  <!-- <div class="item-gallery"> <img src="{{ slide }}"> </div>
+  <div class="item-gallery"> <img src="{{ slide }}"> </div>
+  <div class="item-gallery"> <img src="{{ slide }}"> </div> -->
   </div>
-  
-  <p *ngIf="requestSent" style="text-align:center;color:#0d4608;font-weight:bold;"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{requestSent}}</p>
-  <div style="text-align:center;">
-  <button  *ngIf="requestSent" (click)="cancelOrderModal()"  type="button" class="btn1 btn-danger mx-auto" style="padding: 10px;"><p style="margin-top: -5px;
-    margin-bottom: -5px;"><i class="fa fa-ban" aria-hidden="true"></i> Cancel Order</p>
-  </button>
-  </div>
-  <!-- (click)="cancelOrderReq()" -->
-                      <!-- <table class="table table-borderless" style="text-align: justify;">
-                              <tbody>
-                                <tr>
-                                <td class="prdtName"><h3>{{postProduct.name}}</h3></td>
-                                </tr>
-                                <tr>
-                                  <td>Rs.{{postProduct.price}} / {{postProduct.qnty}}</td>
+   <!-- slider-nav.// -->
+  </article> <!-- gallery-wrap .end// -->
+  </aside>
+  <aside class="col-sm-7">
+      <button  *ngIf="requestSent" type="button" (click)="cancelOrderModal()" class="btn btn-danger btnCancel float-right">Cancel order
+      </button>
+  <h3 style="font-size: 2rem;color: #f47682">{{postProduct.name}}</h3>
+     
+  <hr>
+  <p class="seller float-right" style="font-weight: bold">Seller: <span style="font-weight:400;">{{postProduct.firstName}}</span></p> 
+  <p style="color: #0d4608;font-size: larger;"><b>Rs.{{postProduct.price}}.00 / {{postProduct.qnty}}</b></p>
+  <!--<i class="fa" style="font-size: larger;">Rs.</i>  &#xf156;   -->
+  <table class="table table-borderless teble-responsive" style="text-align: justify;">
+                            <tbody>
+                                  <tr>
+                                          <td><strong>Category</strong></td>
+                                          <td>:</td>
+                                          <td class="tamil_word">{{postProduct.category}}</td>
+                                        </tr>
+                              <tr>
+                                <td><strong>Expiry Date</strong></td>
+                                <td>:</td>
+                                <td>{{postProduct.validityTime}}</td>
                               </tr>
-                                <tr>
+                              <tr>
+                                <td><strong>Quantity</strong></td>
+                                <td>:</td>
                                 <td>{{postProduct.quantity}} {{postProduct.qnty}}</td>
-                                </tr>
-  
-                              <tr>
-                                  <td><strong>Expiry</strong></td>
-                                  <td>:</td>
-                                  <td>{{postProduct.validityTime}}</td>
                               </tr>
                               <tr>
-                                  <td><strong>Location</strong></td>
-                                  <td>:</td>
-                                  <td class="prdtName">{{postProduct.avlPlace}}</td>
+                                <td><strong>Location</strong></td>
+                                <td>:</td>
+                                <td>{{postProduct.avlPlace}}</td>
                               </tr>
-                              </tbody>
-                            </table> -->
+                            </tbody>
+                    </table>
+
+                    <section id="tabs">
+                          <div class="container">
+                              <div class="row">
+                                  <div class="col-xs-12 ">
+                                      <nav>
+                                          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Description</a>
+                                              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews</a>
+                                          </div>
+                                      </nav>
+                                      <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                              <p class="product-description" style="text-align: justify">{{postProduct.description}}</p>
+                                          </div>
+                                          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                              <p class="product-description" style="text-align: justify">{{postProduct.description}}</p>
+                                          </div>
+                                      </div>
+                                  
+                                  </div>
+                              </div>
+                          </div>
+                      </section>
+    
+                    <div style="text-align:center;" *ngIf="!getToken" ><button (click)="checkBuyer()" type="button" class="btn btnStyle mx-auto contactbtn" style="padding: 13px;border-radius: unset"><p style="margin-top: -5px;
+                      margin-bottom: -5px;font-weight: bold">Contact Seller</p>
+                  <!-- <p class="askbest">Ask for best deal</p> -->
+                    </button>
                   </div>
-                  <!-- <div class="col-md-12 " style="margin-top:1% !important;padding-left: 0px;padding-right: 0px"> -->
-                        <!--
-                      <table class="table table-borderless" style="text-align: justify;">
-                              <tbody>
-                                <tr>
-                                  <td><strong>Name</strong></td>
-                                  <td>:</td>
-                                  <td class="prdtName">{{postProduct.firstName}} {{postProduct.lastName}}</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Contact</strong></td>
-                                    <td>:</td>
-                                  <td *ngIf="!lastvisit" class="contactNumber" id="hideContactSeller"><button type="button" class="btn btn-success" name="button" (click)="checkBuyer()">Contact Seller</button></td>
-                                  <td *ngIf="requestSent"><p><i class="fa fa-paper-plane" aria-hidden="true"></i> {{requestSent}}</p></td>
-                                </tr>
+                  
+                  <div style="text-align:center;" *ngIf="getToken && !requestSent" >
+                      <button type="button" (click)="createOrederModal()" class="btn btnStyle mx-auto contactbtn" style="padding: 13px;border-radius: unset"><p style="margin-top: -5px;
+                      margin-bottom: -5px;font-weight: bold">Create Order Request</p>
+                      </button>
+                  </div>
+                  
+                  <p *ngIf="requestSent" style="text-align:center;color:#0d4608;font-weight:bold;"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{requestSent}}</p>                <!-- card-body.// -->
+  </aside> <!-- col.// -->
+  </div> <!-- row.// -->
+  </div> <!-- card.// -->
   
-                              </tbody>
-                            </table> -->
-  
-          </div>
-      <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal" name="button" id="openLoginModal"></button>
-      <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal1" name="button" id="openSignupModal"></button>
-      <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal2" name="button" id="openOrderReqModal"></button>
-        <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal3" name="button" id="cancelOrderReqModal"></button>
-          <!-- <div class="col-md-12 colPad card" style="margin-top:1%;margin-left: 27px;
-          margin-right: 27px;">
-  
-                  <p  class="pageHeadingDescription">பொருள் குறிப்பு / Description</p>
-                  <p class="fontSize"> {{postProduct.description}}</p>
-          </div>
-  
-          <div class="col-md-12 text-center" style="margin-bottom: 1%;">
-                  <button type="button" class="btn btn-outline-success viewMoreBtn" (click)="goToBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
-          </div> -->
   
   </div>
+  <!--container.//-->
   <br>
-  <br>
-  <br>
-  </div>
+
+
+  <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal" name="button" id="openLoginModal"></button>
+  <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal1" name="button" id="openSignupModal"></button>
+  <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal2" name="button" id="openOrderReqModal"></button>
+    <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal3" name="button" id="cancelOrderReqModal"></button>
+
+
+
+
+
+
+
+
+
+
   <!-- //open login modal -->
   <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal">
     <div class="modal-dialog" role="document">
@@ -195,7 +189,7 @@
             <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone"  autocomplete="off" required>
     </div>
     <div style="text-align: center;" >
-    <button class="mb-2 btn2" type="submit" id="verify" [disabled]="!verifyPhone1.verifyPhone" (click)="verifyOtp()">Verify OTP</button>
+    <button class="mb-2 btn2" type="submit" id="verify1" [disabled]="!verifyPhone1.verifyPhone" (click)="verifyOtp()">Verify OTP</button>
   </div>
     <a class="mb-2 resend" id="resend" style="display: none;" (click)="sendOtp()">Resend</a>
   </form>
