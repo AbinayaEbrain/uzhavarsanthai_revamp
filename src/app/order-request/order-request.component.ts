@@ -13,6 +13,7 @@ export class OrderRequestComponent implements OnInit {
   successMsg: any;
   errorMsg: any;
   userCategory: any = [];
+  d:any;
 
   constructor(
     private _dealService: DealsService,

@@ -126,3 +126,192 @@ textarea::placeholder {
   border-color: #0d4608;
   color: white;
 }
+/* style glyph */
+.inner-addon .fa-eye-slash {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align glyph */
+.left-addon .fa-eye-slash {
+  left: 0px;
+}
+.right-addon .fa-eye-slash {
+  right: 15px;
+  margin-top: 31px;
+}
+
+/* add padding  */
+.left-addon input {
+  padding-left: 30px;
+}
+.right-addon input {
+  padding-right: 30px;
+}
+
+.btn2 {
+  font-size: 16px;
+  border: 1px solid #0d4608 !important;
+  border: none;
+  color: #0d4608;
+  font-weight: 600;
+  /* float: right; */
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn2:hover {
+  background-color: #0d4608;
+  color: white !important;
+}
+
+.field-icon {
+  /* float: right; */
+  margin-left: -25px;
+  margin-top: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+/* @media only screen and (min-width: 1023px) and (max-width: 1330px) {
+  .bg {
+    height: auto;
+  }
+} */
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .bg {
+    height: fit-content;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .bg {
+    height: fit-content;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .onmobviewfont {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .bg {
+    height: fit-content;
+  }
+  .mobviewfontamil {
+    font-size: 20px;
+  }
+  .mobviewfonteng {
+    font-size: 18px;
+  }
+  .onmobhide {
+    display: none;
+  }
+}
+
+input[type='text'],
+input[type='password'] {
+  width: 100%;
+  color: #0d4608;
+  display: inline-block;
+  box-sizing: border-box;
+  background-color: transparent !important;
+  border: 1px solid #0d4608 !important;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}
+.btn {
+  font-size: 18px;
+  background-color: #0d4608;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-control {
+  background-color: transparent !important;
+}
+.form-control-placeholder {
+  position: absolute;
+  top: 0;
+  padding: 7px 0 0 13px;
+  transition: all 200ms;
+  /* / opacity: 0.5; / */
+  left: -12px;
+  font-weight: 500;
+  font-size: 17px;
+  color: #0d4608;
+}
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  font-size: 100%;
+  transform: translate3d(0, -100%, 0);
+  opacity: 1;
+  color: #0d4608(255, 254, 254);
+}
+
+.clr {
+  color: #0d4608;
+  font-family: 'Mukta', sans-serif;
+}
+.txtalign {
+  font-family: 'Mukta', sans-serif;
+  color: #0d4608;
+  text-align: center !important;
+  font-weight: bold;
+}
+.sent_font {
+  font-weight: bold;
+  color: #0d4608;
+  font-size: 20px;
+}
+.span_clr {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.greetmsg {
+  display: none;
+}
+.english_wrd {
+  font-family: 'Mukta', sans-serif;
+  color: #0d4608;
+  float: left;
+  font-weight: bold;
+}
+.tamil_word {
+  font-family: 'Hind Madurai', sans-serif;
+}
+.error_word {
+  font-family: 'Cabin', sans-serif;
+}
+input {
+  font-family: 'Nunito', sans-serif;
+}
+.button_word {
+  font-family: 'Kanit', sans-serif;
+}
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .sent_font {
+    font-size: 15px;
+  }
+  .greetmsg {
+    display: block;
+  }
+}
+.titilebold {
+  font-weight: bold;
+}

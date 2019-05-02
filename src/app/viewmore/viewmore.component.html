@@ -153,7 +153,7 @@
           <span toggle="#password" id="password1" (click)="eyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
           <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
         </div>
-  
+
         <a (click)="toggle()" style="cursor: pointer;text-decoration: underline">Forgot password?</a>
         <button [disabled]="loginform.form.invalid " class="btn mt-4 mb-4 btn-block button_word" type="submit" (click)="logform()"><span style="font-size: 14px" class="tamil_word">உள் நுழைக </span> / Login</button>
       </form>
@@ -206,7 +206,7 @@
             <span toggle="#resetPassword" id="resetPassword1" (click)="reseteyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
             <span class="text-danger float-left error_word" [class.d-none] = "resetPassword.valid || resetPassword.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
           </div>
-  
+
           <div class="form-group">
               <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> உறுதிப்படுத்த </span>/ Confirm Password</label>
             <input type="password" id="confirmPassword" (keyup)="equalPwd()"  #confirmPassword="ngModel" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" ngModel name="confirmPassword" class="form-control" [(ngModel)]="resetPasswordObj.confirmPassword" autocomplete="off"  required>
@@ -227,7 +227,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- signUp modal -->
   <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal1">
     <div class="modal-dialog" role="document">
@@ -254,7 +254,7 @@
                   <button class="mb-2 btn2" type="submit" id="hideGetOtp" [disabled]="!phoneObj.phone" (click)="signUpSendOtp()">Get OTP</button>
               </div>
           </div>
-  
+
           <div id="signUpsecondDiv" class="mt-5" style="display: none">
                   <div class="alert alert-success text-center" style="margin-top: -10%;" *ngIf="signUoptsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{signUoptsent}}</div>
               <div class="alert alert-danger text-center" style="margin-top: -10%;" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
@@ -305,7 +305,7 @@
       </div><!-- /.modal-content -->
     </div>
   </div>
-  
+
    <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal2">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -326,13 +326,13 @@
                             <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">எடை </span>/ Quantity</label>
                                <input type="text" placeholder="Enter Quantity"  class="form-control"  #quantity="ngModel"
                                 name="quantity" [class.is-invalid]="quantity.invalid && quantity.touched"
-                                 ngModel [(ngModel)]="querydata.quantity" required>
+                                 ngModel [(ngModel)]="querydata.quantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="5" required>
                                <span class="text-danger float-left error_word"
                                 [class.d-none] = "quantity.valid || quantity.untouched">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>Quantity is required</span>
                        </div>
                       </div>
-  
+
                       <div class="col-md-6">
                         <div class="form-group">
                             <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">அளவு </span>/ Unit</label>
@@ -353,7 +353,7 @@
                       </div>
                       </div>
                       </div>
-  
+
                     <div class="col-md-12 mt-2" >
                     <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">பொருள் தேவை </span>/ Product Urgency</label>
                    <select  class="form-control" class="form-control mobmargintop"   placeholder="Enter unit"
@@ -372,7 +372,7 @@
                        is required</span
                      >
                     </div>
-  
+
                     <div class="col-md-12 mt-2">
                           <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">குறிப்பு </span>/ Notes</label>
                           <textarea
@@ -392,18 +392,19 @@
                          >
                           </div>
                   </div>
+                  <br>
                   <div class="text-center">
-                      <button type="submit" [disabled]="queryform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn" (click)="sendQuery()" >Create Order Request</button>
+                      <button type="submit" [disabled]="queryform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn" (click)="sendQuery()" >Send Order Request</button>
                   </div>
                 </form>
         </div>
-        <div class="modal-footer">
+        <!-- <div class="modal-footer">
           <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
-        </div>
+        </div> -->
       </div>
   </div>
   </div>
-  
+
   <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal3">
    <div class="modal-dialog" role="document">
      <div class="modal-content">
@@ -415,15 +416,14 @@
          <div class="alert alert-success text-center error_word"  *ngIf="orderCancelMsg">
            {{orderCancelMsg}}
          </div>
-         <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to order request delete?</h6>
+         <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete this order request?</h6>
          <div class="text-center">
-  
+
       <button type="button" class="btn btn-success button_word"  (click)="cancelOrderReq()">Yes</button>&nbsp;&nbsp;&nbsp;
-      <button type="button" class="btn btn-danger button_word"data-dismiss="modal">No</button>
+      <button style="background-color:#e43d3d !important;" type="button" class="btn btn-danger button_word" data-dismiss="modal">No</button>
      </div>
        </div>
-  
+
      </div>
   </div>
   </div>
-  

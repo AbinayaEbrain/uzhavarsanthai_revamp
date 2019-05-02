@@ -17,11 +17,12 @@ export class SignupRequestComponent implements OnInit {
   errorMsg = '';
   successMsg = '';
   successMsg1 = '';
+  d:any;
 
   constructor(
     private _dealService: DealsService,
     private _auth: AuthService
-  ) { 
+  ) {
     for (let i = 1; i <= this.userCategory.length; i++) {
       this.userCategory.push('Angular ${i}.0');
     }
@@ -60,7 +61,7 @@ singleUpdateSignupReq(id){
   for (let i = 0; i < this.userCategory.length; i++) {
     if (this.id == this.userCategory[i]._id) {
      this.userCategory2 = this.userCategory[i];
-     
+
     }
   }
   document.getElementById('btn1').click();
@@ -73,7 +74,7 @@ singleUpdateSignupReq(id){
     for (let i = 0; i < this.userCategory.length; i++) {
       if (this.id == this.userCategory[i]._id) {
        this.userCategory1 = this.userCategory[i];
-       
+
       }
     }
     this.userCategory1.roleStatus = 'Active';
@@ -110,7 +111,7 @@ singleUpdateSignupReq(id){
     for (let i = 0; i < this.userCategory.length; i++) {
       if (this.id == this.userCategory[i]._id) {
        this.userCategory1 = this.userCategory[i];
-       
+
       }
     }
     this.userCategory1.roleStatus = 'Rejected';
