@@ -12,11 +12,14 @@ export class MyOrderComponent implements OnInit {
   successMsg = '';
   userOrderReq = [];
   userOrder :any = [];
+  createdRequests: any = [];
+  cancelledRequests: any = [];
   id: any;
   prdcIid : any;
   userOrder1 : any = {};
   userOrder2 : any = {};
   errorMsg = '';
+  cancelledErrMsg = '';
   d:any;
   private orderCancelmail = 'https://uzhavarsanthai.herokuapp.com/api/sendordercancelrequest';
 
@@ -33,6 +36,9 @@ export class MyOrderComponent implements OnInit {
   getSignupReq(){
     this.loadingCtrl.show();
     let j = 0;
+    let curntDte = new Date().getTime();
+    this.userOrder.createdAt = curntDte;
+    console.log(this.userOrder.createdAt)
     this._dealService.getOrderRequest().subscribe(res =>{
       let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
     console.log(acntID);
@@ -48,12 +54,47 @@ export class MyOrderComponent implements OnInit {
         j++;
       }
     }
+    this.createdRequests = [];
+    this.getCreatedRequests();
     if (this.userOrder.length == 0) {
       this.errorMsg = 'No orders';
     }
     },err =>{
       console.log(err);
     });
+  }
+
+  getCreatedRequests() {
+    console.log(this.userOrder)
+    let j = 0;
+    for (let i = 0; i < this.userOrder.length; i++) {
+      console.log(this.userOrder[i].status);
+      if (this.userOrder[i].status == 'Order created') {
+        this.createdRequests[j] = this.userOrder[i];
+        j++;
+      }
+    }
+    if (this.createdRequests.length == 0) {
+      this.errorMsg = 'No order requests!';
+    }
+    console.log(this.createdRequests);
+    this.loadingCtrl.hide();
+  }
+
+  getCancelledRequests() {
+    this.loadingCtrl.show();
+    let j = 0;
+    for (let i = 0; i < this.userOrder.length; i++) {
+      if (this.userOrder[i].status == 'Order cancelled') {
+        this.cancelledRequests[j] = this.userOrder[i];
+        j++;
+      }
+    }
+    console.log(this.cancelledRequests);
+    if (this.cancelledRequests.length == 0) {
+      this.cancelledErrMsg = 'No cancelled order requests!';
+    }
+    this.loadingCtrl.hide();
   }
 
   singleUpdateSignupReq(id){
@@ -91,6 +132,7 @@ export class MyOrderComponent implements OnInit {
               setTimeout(() => {
                 this.successMsg = '';
               }, 2000);
+           this.getSignupReq();   
       },
       err => {
         console.log(err);
@@ -110,16 +152,13 @@ export class MyOrderComponent implements OnInit {
                 console.log(data);
                 console.log('success');
               }
+              this.getSignupReq();
             },
             err => {
               console.log(err);
             }
           );
         }
-          //  this.successMsg = 'Accepted user request';
-          //     setTimeout(() => {
-          //       this.successMsg = '';
-          //     }, 2000);
       },
       err => {
         console.log(err);

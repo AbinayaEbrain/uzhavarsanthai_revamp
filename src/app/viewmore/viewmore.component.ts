@@ -260,6 +260,9 @@ sendQuery(){
   this.querydata.prdctQty = this.postProduct.quantity
   this.querydata.prdctAvlplace = this.postProduct.avlPlace;
   this.querydata.status = 'Order created';
+  let curntDte = new Date().getTime();
+  this.querydata.createdAt = curntDte;
+  console.log(this.querydata.createdAt)
   console.log(this.querydata);
 
   this._dealsService.sendOrderReqmail(this.querydata).subscribe(

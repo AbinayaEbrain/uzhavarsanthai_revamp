@@ -17,10 +17,6 @@
   font-family: 'Hind Madurai', sans-serif;
 }
 
-.table {
-  border: 2px solid darkgray;
-}
-
 .viewMoreBtn {
   margin: auto;
   font-weight: bold;
@@ -59,4 +55,98 @@
 .btnDanger:hover {
   background-color: #dc3545;
   color: white;
+}
+
+#tabs h6.section-title {
+  color: white;
+  background-color: #0d4608;
+}
+
+#tabs .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: white !important;
+  background-color: #0d4608;
+  border-color: transparent transparent white;
+  border-bottom: 4px solid #0d4608 !important;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#tabs .nav-tabs .nav-link {
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  color: white !important;
+  background-color: #0d4608;
+  font-size: 1rem;
+}
+.nav-tabs .nav-link {
+  border: 1px solid #0d4608;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  color: white;
+  font-weight: bold;
+}
+.nav-tabs {
+  border-bottom: 2px solid white;
+  width: fit-content;
+}
+.button_word {
+  font-family: 'Kanit', sans-serif;
+}
+.english_wrd {
+  font-family: 'Mukta', sans-serif;
+}
+.no_deals_found {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: white;
+  width: fit-content;
+  margin: auto;
+  padding: 5px;
+  box-shadow: 7px 7px 7px grey;
+  border-radius: 5px;
+  margin-top: 20% !important;
+}
+.tabTitle {
+  font-size: 14px;
+  color: #0d4608 !important;
+}
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align glyph */
+.left-addon .glyphicon {
+  left: 0px;
+}
+.right-addon .glyphicon {
+  right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+  padding-left: 30px;
+}
+.right-addon input {
+  padding-right: 30px;
+}
+.card {
+  border-radius: 8px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  text-align: center;
+  margin-bottom: 5px;
+  transition: all 0.25s;
 }

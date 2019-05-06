@@ -130,7 +130,7 @@ export class SellerOrderRequestsComponent implements OnInit {
     console.log(id);
     this.singleOrderRequest.orderStatus = 'Order cancelled';
     this._dealService.addOrderReqPost(this.singleOrderRequest,id).subscribe(data =>{
-      this.loadingCtrl.hide();
+      this.loadingCtrl.show();
       console.log(data);
       this.getSingleOrder();
       this.successMsg = "Rejected successfully!";
