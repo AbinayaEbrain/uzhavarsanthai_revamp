@@ -20,6 +20,10 @@
   background-color: #d3efe680;
 }
 
+.slick-dots {
+  display: none !important;
+}
+
 .ngx-pagination {
   position: sticky;
   bottom: 0;
@@ -33,7 +37,8 @@ dl,
 ol {
   margin-left: -35px !important;
 }
-.ngx-pagination a, .ngx-pagination button {
+.ngx-pagination a,
+.ngx-pagination button {
   cursor: pointer;
   display: inline-flex !important;
 }
@@ -54,7 +59,7 @@ ol {
   height: 26px !important;
   border-radius: 10px !important;
   font-weight: bold !important;
-  font-size: 100%;;
+  font-size: 100%;
 }
 .ngx-pagination a,
 .ngx-pagination button {

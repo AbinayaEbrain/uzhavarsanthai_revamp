@@ -22,7 +22,7 @@
             <th style="width: 150px;">Category</th>
             <th style="width: 150px;">Name</th>
             <!-- <th style="width: 150px;">Available place</th> -->
-            <th>Qty</th>
+            <th>Quantity</th>
             <th>Urgency</th>
             <th style="width: 150px;">Status</th>
             <th>Action</th>
@@ -46,7 +46,7 @@
             <td style="min-width: 150px;" class="tamil_word">{{order.prdctCategory}}</td>
             <td style="min-width: 150px;">{{order.prdctName}}</td>
             <!-- <td style="min-width: 150px;">{{order.prdctAvlplace}}</td> -->
-            <td >{{order.prdctQty}}/{{order.prdctUnit}}</td>
+            <td >{{order.requiredQuantity}}/{{order.requiredUnit}}</td>
             <td >{{order.urgency}}</td>
             <td style="min-width: 150px;font-weight:bold" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</td>
             <td style="display: inline-flex;">

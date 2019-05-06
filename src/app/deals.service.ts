@@ -48,7 +48,7 @@ export class DealsService {
   private notificationtoPostedProductUrl =
     'https://uzhavarsanthai.herokuapp.com/api/notificationforpost';
   private orderReqmailUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendorderrequest';
-  private storeOrderReqUrl = 'https://uzhavarsanthai.herokuapp.com/api/storeorderrequest';
+  private storeOrderReqUrl = 'http://localhost:5000/api/storeorderrequest';
   private _getOrderReqUrl = 'https://uzhavarsanthai.herokuapp.com/api/getorderrequest';
   private _updateOrderReqUrl = "https://uzhavarsanthai.herokuapp.com/api/updateorderrequest";
   private _getSinleOrderReqUrl =

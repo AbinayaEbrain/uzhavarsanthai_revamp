@@ -116,18 +116,23 @@ export class ViewmoreComponent implements OnInit {
   ) {
       this.registeredUserData.address.location = '';
       this.registeredUserData.address.city = '';
+      this.querydata.requiredUnit = '';
   }
 
   ngOnInit() {
     //this.userName = JSON.parse(localStorage.getItem('currentUser')).firstname;
-    console.log(this.querydata.prdctId);
     this.id = this.route.snapshot.params['id'];
     this.loadingCtrl.show();
     this.lastvisit = localStorage.getItem('lastvisitproductid');
-    console.log(this.lastvisit);
-  // if(this.lastvisit){
-  //   this.openModal();
-  // }
+    
+    if(this.id){
+      this.getDeals();
+      this.getMultiPostDeals();
+    }
+    
+  }
+  
+  getDeals(){
     this._dealsService.getDeals().subscribe(
       res => {
         this.viewPost = res;
@@ -142,6 +147,7 @@ export class ViewmoreComponent implements OnInit {
             this.postProduct.subQuantity = this.viewPost[i].subQuantity;
             this.postProduct.subqnty = this.viewPost[i].subqnty;
             this.postProduct.price = this.viewPost[i].price;
+            this.postProduct.bulk = this.viewPost[i].bulk;
             this.postProduct.description = this.viewPost[i].description;
             this.postProduct.avlPlace = this.viewPost[
               i
@@ -156,26 +162,18 @@ export class ViewmoreComponent implements OnInit {
             this.postProduct.address = this.viewPost[i].userAddress;
             this.getToken = localStorage.getItem('token');
             var check = this.viewPost[i].orderrequests;
+
             if(this.getToken && check){
-              console.log(this.getToken);
               this.requestPerson = this.viewPost[i].orderrequests;
               for (let i = 0; i < this.requestPerson.length; i++) {
-                console.log(this.requestPerson.length);
-                console.log(this.requestPerson[i].requestedPersonId);
-                console.log(this.requestPerson[i].orderStatus);
                 this.orderLiveStatus = this.requestPerson[i].orderStatus;
                 this.loggedUser = JSON.parse(localStorage.getItem('currentUser'))._id;
-                console.log(this.loggedUser);
                 if(this.loggedUser == this.requestPerson[i].requestedPersonId && this.orderLiveStatus == "Order created"){
-                  console.log('yes');
-                  // document.getElementById('noneSeller').style.display="none";
                   this.requestSent = "Order Request Sent!"
                 }
               }
             }
 
-            console.log(this.requestPerson);
-            console.log(this.postProduct);
             this.loadingCtrl.hide();
           }
         }
@@ -199,6 +197,33 @@ export class ViewmoreComponent implements OnInit {
     );
   }
 
+  getMultiPostDeals(){
+    this._dealsService.getMultiPost().subscribe(res =>{
+      for(let i = 0 ; i < res.length ; i++){
+        if(res[i]._id == this.id){
+          this.postProduct.category = res[i].category;
+            this.postProduct.categoryId = res[i].categoryId;
+            this.postProduct.description = res[i].description;
+            this.postProduct.firstName = res[i].username;
+            this.postProduct.bulk = res[i].bulk;
+            this.time = res[i].validityTime;
+            this.imageArray = res[i].image;
+        }
+      }
+
+      this.postProduct.validityTime = this.datePipe.transform(
+        this.time,
+        'dd/MM/yyyy'
+      );
+      this.arrayImage = this.imageArray.split(',');
+
+      this.loadingCtrl.hide();
+    },err =>{
+      console.log(err);
+      this.loadingCtrl.hide();
+    });
+  }
+
 openloginModal(){
   document.getElementById("openLoginModal").click();
   document.getElementById("hideForm").style.display="block";
@@ -207,7 +232,6 @@ openloginModal(){
   // $('#myModal').modal('show');
 }
 sendQuery(){
-  console.log('one');
   var a = "UZHAVAN"
   this.reqId = Math.floor(100000 + Math.random() * 900000);
   console.log(this.reqId);
@@ -245,22 +269,7 @@ sendQuery(){
         this.orderRequestMsg = 'We got your order query, we get back to you soon!';
         document.getElementById("closeRequirementModal").click();
         this.router.navigate(['/my-order']);
-        // setTimeout(() => {
-        //   console.log('three');
-        //   this.orderRequestMsg = '';
-        //   this.visitId = this.route.snapshot.params['id'];
-        //   console.log(this.visitId);
-        //   // this.router.navigateByUrl('/dummy', { skipLocationChange: true });
-        //   // setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);
-        //   document.getElementById("closeRequirementModal").click();
-        //   //localStorage.removeItem('lastvisitproductid');
-        // }, 3000);
-      //   this.visitId = this.route.snapshot.params['id'];
-      // this.router.navigateByUrl('/dummy', { skipLocationChange: true });
-      // setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);
-      // document.getElementById("closeRequirementModal").click();
-
-      this.loadingCtrl.hide();
+        this.loadingCtrl.hide();
     },
     err => console.log(err)
   );
@@ -771,7 +780,7 @@ createOrederModal(){
   this.mytemplateForm3.reset();
   document.getElementById("openOrderReqModal").click();
   this.querydata.urgency = '';
-  this.querydata.Unit = '';
+  this.querydata.requiredUnit = '';
 }
 
 cancelOrderModal(){
@@ -779,9 +788,7 @@ cancelOrderModal(){
 }
 
 cancelOrderReq(){
-  console.log('hi');
   this.loggedUser = JSON.parse(localStorage.getItem('currentUser'))._id;
-  console.log(this.loggedUser);
   this.cancelOrderData.requestedPersonId = this.loggedUser;
   this.visitId = this.route.snapshot.params['id'];
   this.cancelOrderData.requestedProductId = this.visitId;

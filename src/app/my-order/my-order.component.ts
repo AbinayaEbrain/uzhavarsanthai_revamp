@@ -49,7 +49,7 @@ export class MyOrderComponent implements OnInit {
       }
     }
     if (this.userOrder.length == 0) {
-      this.errorMsg = 'No order request';
+      this.errorMsg = 'No orders';
     }
     },err =>{
       console.log(err);

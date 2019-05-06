@@ -114,6 +114,10 @@ textarea::placeholder {
   width: 550px;
 } */
 
+.slick-dots {
+  display: none !important;
+}
+
 .btnCancel {
   font-weight: bold;
   padding: 3px;

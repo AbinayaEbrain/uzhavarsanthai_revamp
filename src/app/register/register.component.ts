@@ -150,8 +150,9 @@ export class RegisterComponent implements OnInit {
             this.visitId = localStorage.getItem('lastvisitproductid');
             this.router.navigate(['/viewmore/' + this.visitId ]);
             localStorage.removeItem('authorization');
-          }else{
-          this.router.navigate(['/products']);
+          }
+          else{
+          this.router.navigate(['/my-order']);
           }
         }
         if (res.statusText == 'Unauthorized') {

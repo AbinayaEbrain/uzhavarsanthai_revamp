@@ -48,7 +48,7 @@ export class PostComponent implements OnInit {
   valid: boolean = false;
   message: string = '';
   Image = [];
-  singleImage : File;
+  singleImage: File;
   urls = [];
   imageSrc: string;
   privateIP;
@@ -60,7 +60,7 @@ export class PostComponent implements OnInit {
   subCateArr = [];
   time: any;
   multiPostTime: any;
-  dateNrml : any;
+  dateNrml: any;
   public productData: any = {};
   public multiData: any = {};
   id: any;
@@ -81,11 +81,11 @@ export class PostComponent implements OnInit {
   url: '';
   today: Date;
   imageLength = 0;
-  editId:any;
+  editId: any;
   singleMultiPost = {};
-  splitImage : '';
-  oldAvlplace :any;
-  slideConfig:any;
+  splitImage: '';
+  oldAvlplace: any;
+  slideConfig: any;
   arrayImage = [];
 
   setAddress(addrObj) {
@@ -120,7 +120,6 @@ export class PostComponent implements OnInit {
     this.productData.categoryId = '';
     this.multiData.category = '';
     this.multiData.categoryId = '';
-
   }
 
   ngOnInit() {
@@ -144,7 +143,7 @@ export class PostComponent implements OnInit {
       }
     );
 
-    if(this.editId){
+    if (this.editId) {
       this._dealsService.getSingleMultiPost(this.editId).subscribe(
         res => {
           console.log(res);
@@ -157,24 +156,27 @@ export class PostComponent implements OnInit {
           this.oldAvlplace = this.multiData.avlPlace;
           this.multiData.avlPlace = this.multiData.avlPlace.formatted_address;
 
-          this.splitImage =  this.multiData.image;
-          this.multiData.image = this.splitImage.split(",",1);
+          this.splitImage = this.multiData.image;
+          this.multiData.image = this.splitImage.split(',', 1);
 
           this.multiPostTime = this.multiData.validityTime;
-          this.dateNrml = this.datePipe.transform(this.multiPostTime, 'dd/MM/yyyy');
+          this.dateNrml = this.datePipe.transform(
+            this.multiPostTime,
+            'dd/MM/yyyy'
+          );
           this.multiData.validityTime = this.dateNrml;
 
-          this.arrayImage = this.splitImage.split(",");
+          this.arrayImage = this.splitImage.split(',');
           console.log(this.arrayImage);
           this.slideConfig = {
-            "slidesToShow": 1,
-            "slidesToScroll": 1,
-            "dots": true,
-            "infinite": false,
-            "arrows": false,
-            "autoplay": false,
-            "autoplaySpeed": 1500
-        };
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: true,
+            infinite: false,
+            arrows: true,
+            autoplay: true,
+            autoplaySpeed: 800
+          };
           this.loadingCtrl.hide();
         },
         err => {
@@ -198,7 +200,7 @@ export class PostComponent implements OnInit {
 
   onFileChangeMulti(event) {
     var filesAmount = event.target.files.length;
-    if(filesAmount > 0 ){
+    if (filesAmount > 0) {
       var filesAmount = event.target.files.length;
       for (let i = 0; i < filesAmount; i++) {
         this.urls.push(event.target.files[i]);
@@ -219,7 +221,6 @@ export class PostComponent implements OnInit {
         this.postProduct();
       });
     } else {
-
       this.productData.image =
         'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
       this.postProduct();
@@ -228,243 +229,242 @@ export class PostComponent implements OnInit {
 
   postMultiImage() {
     this.loadingCtrl.show();
-      if(this.editId){
-        if(this.urls.length != 0){
-          for (let i = 0; i < this.urls.length; i++) {
-            var image = new FormData(); //FormData creation
-            image.append('Image', this.urls[i]);
-            this._dealsService.sendImage(image).subscribe(res => {
-              this.loadingCtrl.hide();
-              console.log(res);
-              this.Image.push(res);
-              this.postMultiProduct();
-            });
-            break;
-          }
+    if (this.editId) {
+      if (this.urls.length != 0) {
+        for (let i = 0; i < this.urls.length; i++) {
+          var image = new FormData(); //FormData creation
+          image.append('Image', this.urls[i]);
+          this._dealsService.sendImage(image).subscribe(res => {
+            this.loadingCtrl.hide();
+            console.log(res);
+            this.Image.push(res);
+            this.postMultiProduct();
+          });
+          break;
         }
-         else{
-          this.multiData.image = this.splitImage;
-          this.productData.image = 'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
-          this.loadingCtrl.hide();
-          this.postMultiProduct();
-        }
-      }else{
-        if(this.urls.length != 0){
-          for (let i = 0; i < this.urls.length; i++) {
-            var image = new FormData(); //FormData creation
-            image.append('Image', this.urls[i]);
-            this._dealsService.sendImage(image).subscribe(res => {
-              this.loadingCtrl.hide();
-              console.log(res);
-              this.Image.push(res);
-              this.postMultiProduct();
-            });
-            break;
-          }
-        }
-         else{
-          this.multiData.image = 'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
-          this.loadingCtrl.hide();
-          this.postMultiProduct();
-        }
+      } else {
+        this.multiData.image = this.splitImage;
+        this.productData.image =
+          'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
+        this.loadingCtrl.hide();
+        this.postMultiProduct();
       }
+    } else {
+      if (this.urls.length != 0) {
+        for (let i = 0; i < this.urls.length; i++) {
+          var image = new FormData(); //FormData creation
+          image.append('Image', this.urls[i]);
+          this._dealsService.sendImage(image).subscribe(res => {
+            this.loadingCtrl.hide();
+            console.log(res);
+            this.Image.push(res);
+            this.postMultiProduct();
+          });
+          break;
+        }
+      } else {
+        this.multiData.image =
+          'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
+        this.loadingCtrl.hide();
+        this.postMultiProduct();
+      }
+    }
   }
 
-  postProduct(){
-      this.loadingCtrl.show();
-       // var time = this.productData.validityTime;
-       // this.productData.validityTime = time.getTime();
-       this.productData.accountId = JSON.parse(
-         localStorage.getItem('currentUser')
-       )._id;
-       this.productData.username = JSON.parse(
-         localStorage.getItem('currentUser')
-       ).firstname;
-       this.productData.lastname = JSON.parse(
-         localStorage.getItem('currentUser')
-       ).lastName;
-       this.productData.userNumber = JSON.parse(
-         localStorage.getItem('currentUser')
-       ).phone;
-       this.productData.userAddressLine = JSON.parse(
-         localStorage.getItem('currentUser')
-       ).address.addressLine;
-       this.productData.userAddress = JSON.parse(
-         localStorage.getItem('currentUser')
-       ).address.city.formatted_address;
-       this.productData.status = JSON.parse(
-         localStorage.getItem('currentUser')
-       ).status;
+  postProduct() {
+    this.loadingCtrl.show();
+    // var time = this.productData.validityTime;
+    // this.productData.validityTime = time.getTime();
+    this.productData.accountId = JSON.parse(
+      localStorage.getItem('currentUser')
+    )._id;
+    this.productData.username = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).firstname;
+    this.productData.lastname = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).lastName;
+    this.productData.userNumber = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).phone;
+    this.productData.userAddressLine = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).address.addressLine;
+    this.productData.userAddress = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).address.city.formatted_address;
+    this.productData.status = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).status;
 
-       this.productData.ipAddress = this.privateIP;
-      //  this.productData.avlPlace = this.addr;
+    this.productData.ipAddress = this.privateIP;
+    //  this.productData.avlPlace = this.addr;
 
-       if(this.addr == undefined || this.addr == null ){
-        this.productData.avlPlace = JSON.parse(
-          localStorage.getItem('currentUser')
-        ).address.city;
-       }
-       else{
-        this.productData.avlPlace = this.addr;
-       }
+    if (this.addr == undefined || this.addr == null) {
+      this.productData.avlPlace = JSON.parse(
+        localStorage.getItem('currentUser')
+      ).address.city;
+    } else {
+      this.productData.avlPlace = this.addr;
+    }
 
-       for (let i = 0; i < this.categoryArr.length; i++) {
-         if (this.productData.categoryId == this.categoryArr[i]._id) {
-           this.productData.category = this.categoryArr[i].productCategory;
-         }
-       }
+    for (let i = 0; i < this.categoryArr.length; i++) {
+      if (this.productData.categoryId == this.categoryArr[i]._id) {
+        this.productData.category = this.categoryArr[i].productCategory;
+      }
+    }
 
-       let curntDte = new Date().getTime();
-       this.productData.date = curntDte;
+    let curntDte = new Date().getTime();
+    this.productData.date = curntDte;
 
-       this._dealsService.addPost(this.productData).subscribe(
-         res => {
-           console.log(res);
-           this.success = 'Posted successfully!';
-           this.loadingCtrl.hide();
-           setTimeout(() => {
-             this.loadingCtrl.show();
-             this.route.navigate(['products']);
-             this.loadingCtrl.hide();
-           }, 1000);
-         },
-         err => {
-           if (err instanceof HttpErrorResponse) {
-             if (err.status === 401) {
-               this.loadingCtrl.show();
-               this.route.navigate(['/login']);
-               this.loadingCtrl.hide();
-             }
-           }
-         }
-       );
+    this._dealsService.addPost(this.productData).subscribe(
+      res => {
+        console.log(res);
+        this.success = 'Posted successfully!';
+        this.loadingCtrl.hide();
+        setTimeout(() => {
+          this.loadingCtrl.show();
+          this.route.navigate(['products']);
+          this.loadingCtrl.hide();
+        }, 1000);
+      },
+      err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this.loadingCtrl.show();
+            this.route.navigate(['/login']);
+            this.loadingCtrl.hide();
+          }
+        }
+      }
+    );
   }
 
   postMultiProduct() {
-     this.multiData.accountId = JSON.parse(
-       localStorage.getItem('currentUser')
-     )._id;
-     this.multiData.username = JSON.parse(
-       localStorage.getItem('currentUser')
-     ).firstname;
-     this.multiData.userNumber = JSON.parse(
-       localStorage.getItem('currentUser')
-     ).phone;
-     this.multiData.userAddressLine = JSON.parse(
-       localStorage.getItem('currentUser')
-     ).address.addressLine;
-     this.multiData.userAddress = JSON.parse(
-       localStorage.getItem('currentUser')
-     ).address.city.formatted_address;
-     this.multiData.status = JSON.parse(
-       localStorage.getItem('currentUser')
-     ).status;
-     this.multiData.bulk = true;
+    this.multiData.accountId = JSON.parse(
+      localStorage.getItem('currentUser')
+    )._id;
+    this.multiData.username = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).firstname;
+    this.multiData.userNumber = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).phone;
+    this.multiData.userAddressLine = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).address.addressLine;
+    this.multiData.userAddress = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).address.city.formatted_address;
+    this.multiData.status = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).status;
+    this.multiData.bulk = true;
 
     // update multi
-    if(this.editId){
-       if(this.Image.length == this.imageLength){
+    if (this.editId) {
+      if (this.Image.length == this.imageLength) {
         this.loadingCtrl.show();
-        if(this.Image.length != 0){
+        if (this.Image.length != 0) {
           this.multiData.image = this.Image;
         }
 
-        if(this.addr == undefined || this.addr == null){
+        if (this.addr == undefined || this.addr == null) {
           this.multiData.avlPlace = this.oldAvlplace;
-        }else{
+        } else {
           this.multiData.avlPlace = this.addr;
         }
         if (this.dateNrml == this.multiData.validityTime) {
           this.multiData.validityTime = this.multiPostTime;
-        }else{
+        } else {
           let time1 = this.multiData.validityTime;
           this.multiData.validityTime = time1.getTime();
         }
 
-          for (let i = 0; i < this.categoryArr.length; i++) {
-             if (this.multiData.category == this.categoryArr[i].productCategory) {
-               this.multiData.categoryId = this.categoryArr[i]._id;
-             }
-           }
+        for (let i = 0; i < this.categoryArr.length; i++) {
+          if (this.multiData.category == this.categoryArr[i].productCategory) {
+            this.multiData.categoryId = this.categoryArr[i]._id;
+          }
+        }
 
-           this.multiData.ipAddress = this.privateIP;
-           let curntDte = new Date().getTime();
-           this.multiData.date = curntDte;
+        this.multiData.ipAddress = this.privateIP;
+        let curntDte = new Date().getTime();
+        this.multiData.date = curntDte;
 
-           this._dealsService.updateMultiPost(this.multiData,this.editId).subscribe(
-             res => {
-               console.log(res);
-               this.success = 'Posted successfully!';
-               this.loadingCtrl.hide();
-               setTimeout(() => {
-                 this.loadingCtrl.show();
-                 this.route.navigate(['products']);
-                 this.loadingCtrl.hide();
-               }, 1000);
-             },
-             err => {
-               if (err instanceof HttpErrorResponse) {
-                 if (err.status === 401) {
-                   this.loadingCtrl.show();
-                   this.route.navigate(['/login']);
-                   this.loadingCtrl.hide();
-                 }
-               }
-             }
-           );
-         }
-         else{
-          this.urls.shift();
-          this.postMultiImage();
-         }
+        this._dealsService
+          .updateMultiPost(this.multiData, this.editId)
+          .subscribe(
+            res => {
+              console.log(res);
+              this.success = 'Posted successfully!';
+              this.loadingCtrl.hide();
+              setTimeout(() => {
+                this.loadingCtrl.show();
+                this.route.navigate(['products']);
+                this.loadingCtrl.hide();
+              }, 1000);
+            },
+            err => {
+              if (err instanceof HttpErrorResponse) {
+                if (err.status === 401) {
+                  this.loadingCtrl.show();
+                  this.route.navigate(['/login']);
+                  this.loadingCtrl.hide();
+                }
+              }
+            }
+          );
+      } else {
+        this.urls.shift();
+        this.postMultiImage();
+      }
     }
 
     // post multi
-    else{
-      if(this.Image.length == this.imageLength){
-      this.loadingCtrl.show();
-        if(this.Image.length > 0){
+    else {
+      if (this.Image.length == this.imageLength) {
+        this.loadingCtrl.show();
+        if (this.Image.length > 0) {
           this.multiData.image = this.Image;
         }
 
-     for (let i = 0; i < this.categoryArr.length; i++) {
-       if (this.multiData.categoryId == this.categoryArr[i]._id) {
-         this.multiData.category = this.categoryArr[i].productCategory;
-       }
-     }
+        for (let i = 0; i < this.categoryArr.length; i++) {
+          if (this.multiData.categoryId == this.categoryArr[i]._id) {
+            this.multiData.category = this.categoryArr[i].productCategory;
+          }
+        }
 
-     this.multiData.ipAddress = this.privateIP;
-     this.multiData.avlPlace = this.addr;
-     let curntDte = new Date().getTime();
-     this.multiData.date = curntDte;
+        this.multiData.ipAddress = this.privateIP;
+        this.multiData.avlPlace = this.addr;
+        let curntDte = new Date().getTime();
+        this.multiData.date = curntDte;
 
-     this._dealsService.addMultiPost(this.multiData).subscribe(
-       res => {
-         console.log(res);
-         this.success = 'Posted successfully!';
-         this.loadingCtrl.hide();
-         setTimeout(() => {
-           this.loadingCtrl.show();
-           this.route.navigate(['products']);
-           this.loadingCtrl.hide();
-         }, 1000);
-       },
-       err => {
-         if (err instanceof HttpErrorResponse) {
-           if (err.status === 401) {
-             this.loadingCtrl.show();
-             this.route.navigate(['/login']);
-             this.loadingCtrl.hide();
-           }
-         }
-       }
-     );
-   }
-   else{
-    this.urls.shift();
-    this.postMultiImage();
-   }
-  }
+        this._dealsService.addMultiPost(this.multiData).subscribe(
+          res => {
+            console.log(res);
+            this.success = 'Posted successfully!';
+            this.loadingCtrl.hide();
+            setTimeout(() => {
+              this.loadingCtrl.show();
+              this.route.navigate(['products']);
+              this.loadingCtrl.hide();
+            }, 1000);
+          },
+          err => {
+            if (err instanceof HttpErrorResponse) {
+              if (err.status === 401) {
+                this.loadingCtrl.show();
+                this.route.navigate(['/login']);
+                this.loadingCtrl.hide();
+              }
+            }
+          }
+        );
+      } else {
+        this.urls.shift();
+        this.postMultiImage();
+      }
+    }
   }
 
   getunits() {

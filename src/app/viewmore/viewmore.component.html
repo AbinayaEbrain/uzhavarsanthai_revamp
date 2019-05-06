@@ -16,8 +16,8 @@
     </ngx-slick-carousel>
   </div>
   </div> <!-- slider-product.// -->
-  <div class="img-small-wrap" *ngFor="let slide of arrayImage">
-  <div class="item-gallery"> <img src="{{ slide }}"> </div>
+  <div class="img-small-wrap">
+  <div class="item-gallery"  *ngFor="let slide of arrayImage"> <img src="{{ slide }}"> </div>
   <!-- <div class="item-gallery"> <img src="{{ slide }}"> </div>
   <div class="item-gallery"> <img src="{{ slide }}"> </div>
   <div class="item-gallery"> <img src="{{ slide }}"> </div> -->
@@ -28,11 +28,11 @@
   <aside class="col-sm-7">
       <button  *ngIf="requestSent" type="button" (click)="cancelOrderModal()" class=" btn-danger btnCancel float-right">Cancel order
       </button>
-  <h3 style="font-size: 2rem;color: #f47682">{{postProduct.name}}</h3>
-     
+  <h3 style="font-size: 2rem;color: #f47682" *ngIf="!postProduct.bulk">{{postProduct.name}}</h3>
+  <h3 style="font-size: 2rem;color: #f47682" class="tamil_word" *ngIf="postProduct.bulk">{{postProduct.category}}</h3> 
   <hr>
   <p class="seller float-right" style="font-weight: bold">Seller: <span style="font-weight:400;">{{postProduct.firstName}}</span></p> 
-  <p style="color: #0d4608;font-size: larger;"><b>Rs.{{postProduct.price}}.00 / {{postProduct.qnty}}</b></p>
+  <p style="color: #0d4608;font-size: larger;" *ngIf="!postProduct.bulk"><b>Rs.{{postProduct.price}}.00 / {{postProduct.qnty}}</b></p>
   <!--<i class="fa" style="font-size: larger;">Rs.</i>  &#xf156;   -->
   <table class="table table-borderless teble-responsive" style="text-align: justify;">
                             <tbody>
@@ -46,12 +46,12 @@
                                 <td>:</td>
                                 <td>{{postProduct.validityTime}}</td>
                               </tr>
-                              <tr>
+                              <tr *ngIf="!postProduct.bulk">
                                 <td><strong>Quantity</strong></td>
                                 <td>:</td>
                                 <td>{{postProduct.quantity}} {{postProduct.qnty}}</td>
                               </tr>
-                              <tr>
+                              <tr *ngIf="!postProduct.bulk">
                                 <td><strong>Location</strong></td>
                                 <td>:</td>
                                 <td>{{postProduct.avlPlace}}</td>
@@ -324,11 +324,11 @@
                       <div class="col-md-6">
                         <div class="form-group">
                             <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">எடை </span>/ Quantity</label>
-                               <input type="text" placeholder="Enter Quantity"  class="form-control"  #quantity="ngModel"
-                                name="quantity" [class.is-invalid]="quantity.invalid && quantity.touched"
-                                 ngModel [(ngModel)]="querydata.quantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="5" required>
+                               <input type="text" placeholder="Enter Quantity"  class="form-control"  #requiredQuantity="ngModel"
+                                name="requiredQuantity" [class.is-invalid]="requiredQuantity.invalid && requiredQuantity.touched"
+                                 ngModel [(ngModel)]="querydata.requiredQuantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="5" required>
                                <span class="text-danger float-left error_word"
-                                [class.d-none] = "quantity.valid || quantity.untouched">
+                                [class.d-none] = "requiredQuantity.valid || requiredQuantity.untouched">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>Quantity is required</span>
                        </div>
                       </div>
@@ -337,17 +337,17 @@
                         <div class="form-group">
                             <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">அளவு </span>/ Unit</label>
                             <select  class="form-control" class="form-control mobmargintop"   placeholder="Enter unit"
-                            style="background-color: transparent;color: #0d4608;"  #Unit="ngModel"
-                            name="Unit" [class.is-invalid]="Unit.invalid && Unit.touched"
-                            ngModel [(ngModel)]="querydata.Unit" required>
+                            style="background-color: transparent;color: #0d4608;"  #requiredUnit="ngModel"
+                            name="requiredUnit" [class.is-invalid]="requiredUnit.invalid && requiredUnit.touched"
+                            ngModel [(ngModel)]="querydata.requiredUnit" required>
                               <option  selected="" disabled="" value="" >Choose unit</option>
                             <option value="Ml" class="categoryOption">Milli litre</option>
                             <option value="Litre" class="categoryOption">Litre</option>
-                            <option value="Gram" class="categoryOption">Gram</option>
+                            <option value="g" class="categoryOption">Gram</option>
                             <option value="Kg" class="categoryOption">Kilogram</option>
                               </select>
                                <span class="text-danger float-left error_word"
-                                [class.d-none] = "Unit.valid || Unit.untouched">
+                                [class.d-none] = "requiredUnit.valid || requiredUnit.untouched">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>Unit is required</span>
                        </div>
                       </div>

@@ -15,7 +15,7 @@
               <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">
                   <div class="inner-addon left-addon" >
                           <i class="fa fa-search glyphicon" aria-hidden="true"></i>
-                          <input type="text" class="form-control searchBorder searchtop1"  [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
+                          <input type="text" class="form-control searchBorder searchtop1" name="search" [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
                   </div>
                </div>
                <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchlocDiv">
@@ -75,7 +75,7 @@
                   <div class="col-md-3 col-lg-4 col-12"></div>
               </div>         
           <div *ngIf="showDeals">
-                  <div class="mt-5" *ngFor = "let deal of singleMultiArray | filterdata: queryString  : 'name'">
+                  <div class="mt-5" *ngFor = "let deal of singleMultiArray | filterdata: queryString  : 'category'">
                        <div *ngIf="errMsg2 && !errMsgSec">
                       <div *ngIf="deal === -1" style="margin-bottom: 6%">
                           <div class="col-md-3 col-lg-3 col-12"></div>
@@ -90,7 +90,7 @@
                   </div>
                       </div>
               <div class="row " id="hideifNoData" style="margin-top: -20px;">
-                      <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of singleMultiArray  | filterdata: queryString  : 'name'|paginate: {id: 'foo1', itemsPerPage:40,currentPage:e },let i = index">
+                      <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of singleMultiArray  | filterdata: queryString  : 'name' | paginate: {id: 'foo1', itemsPerPage:40,currentPage:e },let i = index">
                               <div class="card card-1" *ngIf="deal !== -1">
                                       <img src="{{deal.image}}" class="zoom" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                                          <table class="tableContent">
@@ -117,7 +117,7 @@
                                                               <tr>
                                                                    <!-- <td><strong>Price &nbsp; </strong></td>
                                                                    <td>:</td> -->
-                                                                   <td><i class="fa fa-inr" aria-hidden="true"></i> {{deal.price}}.00/{{deal.qnty}}</td>
+                                                                   <td><i class="fa fa-inr" aria-hidden="true"></i> {{deal.price}}/{{deal.qnty}}</td>
                                                                 </tr>
                                                              </div>
                                                       </div>
@@ -139,7 +139,7 @@
                         </div>
           </div>
           <div *ngIf="!showDeals" style="margin-top: -20px;">
-                  <div class="mt-5" *ngFor = "let deal of singleMultiArray | filterdata: queryString  : 'name'">
+                  <div class="mt-5" *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'category'">
                           <div *ngIf="!errMsg1 && !errMsgSec">
                                   <div *ngIf="deal === -1" style="margin-bottom: 6%">
                                       <div class="col-md-3 col-lg-3 col-12"></div>
@@ -155,7 +155,7 @@
                       </div>
                   <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
                   <div class="row mt-3" id="hideifData">
-                         <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of singleMultiArray  | filterdata: queryString  : 'name'| paginate: {id: 'foo', itemsPerPage:40,currentPage:p },let i = index">
+                         <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of totalDeals1  | filterdata: queryString  : 'name'| paginate: {id: 'foo', itemsPerPage:40,currentPage:p },let i = index">
                               <div class="card card-1" *ngIf="deal !== -1">
                                       <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                                       <table class="tableContent">
