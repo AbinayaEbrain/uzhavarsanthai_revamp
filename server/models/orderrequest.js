@@ -24,6 +24,7 @@ const orderrequestSchema = new Schema({
   prdctQty:String,
   prdctAvlplace:String,
   status:String,
+  image:String,
 });
 
 module.exports = mongoose.model('orderrequest', orderrequestSchema, 'orderrequest');

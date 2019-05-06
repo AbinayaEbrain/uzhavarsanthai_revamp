@@ -47,9 +47,9 @@ export class DealsService {
     'https://uzhavarsanthai.herokuapp.com/api/notificationospecificeusers';
   private notificationtoPostedProductUrl =
     'https://uzhavarsanthai.herokuapp.com/api/notificationforpost';
-  private orderReqmailUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendorderrequest';
-  private storeOrderReqUrl = 'https://uzhavarsanthai.herokuapp.com/api/storeorderrequest';
-  private _getOrderReqUrl = 'https://uzhavarsanthai.herokuapp.com/api/getorderrequest';
+  private orderReqmailUrl = 'http://localhost:5000/api/sendorderrequest';
+  private storeOrderReqUrl = 'http://localhost:5000/api/storeorderrequest';
+  private _getOrderReqUrl = 'http://localhost:5000/api/getorderrequest';
   private _updateOrderReqUrl = "https://uzhavarsanthai.herokuapp.com/api/updateorderrequest";
   private _getSinleOrderReqUrl =
     'https://uzhavarsanthai.herokuapp.com/api/getSingleOrderRequest';

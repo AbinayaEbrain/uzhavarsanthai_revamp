@@ -1,10 +1,10 @@
-<div class="container mt-5 pt-3 pt-md-5"> 
+<div class="container mt-5 pt-3 pt-md-5">
   <div class="card cardStyle">
   <div class="row">
   <aside class="col-sm-5">
-  <article class="gallery-wrap"> 
+  <article class="gallery-wrap">
   <div class="img-big-wrap">
-  <div> 
+  <div>
     <!-- <img src="{{postProduct.image}}" style="cursor: pointer;" class="viewImage"> -->
     <ngx-slick-carousel class="carousel"
     #slickModal="slick-carousel"
@@ -29,9 +29,9 @@
       <button  *ngIf="requestSent" type="button" (click)="cancelOrderModal()" class=" btn-danger btnCancel float-right">Cancel order
       </button>
   <h3 style="font-size: 2rem;color: #f47682">{{postProduct.name}}</h3>
-     
+
   <hr>
-  <p class="seller float-right" style="font-weight: bold">Seller: <span style="font-weight:400;">{{postProduct.firstName}}</span></p> 
+  <p class="seller float-right" style="font-weight: bold">Seller: <span style="font-weight:400;">{{postProduct.firstName}}</span></p>
   <p style="color: #0d4608;font-size: larger;"><b>Rs.{{postProduct.price}}.00 / {{postProduct.qnty}}</b></p>
   <!--<i class="fa" style="font-size: larger;">Rs.</i>  &#xf156;   -->
   <table class="table table-borderless teble-responsive" style="text-align: justify;">
@@ -77,30 +77,30 @@
                                               <p class="product-description" style="text-align: justify">{{postProduct.description}}</p>
                                           </div>
                                       </div>
-                                  
+
                                   </div>
                               </div>
                           </div>
                       </section>
-    
+
                     <div style="text-align:center;" *ngIf="!getToken" ><button (click)="checkBuyer()" type="button" class="btn btnStyle mx-auto contactbtn" style="padding: 13px;border-radius: unset"><p style="margin-top: -5px;
                       margin-bottom: -5px;font-weight: bold">Contact Seller</p>
                   <!-- <p class="askbest">Ask for best deal</p> -->
                     </button>
                   </div>
-                  
+
                   <div style="text-align:center;" *ngIf="getToken && !requestSent" >
                       <button type="button" (click)="createOrederModal()" class="btn btnStyle mx-auto contactbtn" style="padding: 13px;border-radius: unset"><p style="margin-top: -5px;
                       margin-bottom: -5px;font-weight: bold">Create Order Request</p>
                       </button>
                   </div>
-                  
+
                   <p *ngIf="requestSent" style="text-align:center;color:#0d4608;font-weight:bold;"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{requestSent}}</p>                <!-- card-body.// -->
   </aside> <!-- col.// -->
   </div> <!-- row.// -->
   </div> <!-- card.// -->
-  
-  
+
+
   </div>
   <!--container.//-->
   <br>
@@ -126,7 +126,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="headingEng"><span class="headingTamil">உள்நுழைக</span> / Login</h5>
-      <span class="text-danger float-left mb-2"  [class.d-none] = "phone1.invalid && phone1.touched" *ngIf="errormsg1">{{errormsg1}}</span>
+
           <button type="button" class="close" id="closeLoginModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
@@ -161,8 +161,7 @@
   </div>
   <!-- //show form -->
   <div id="showForm" style="display: none" class="mt-2">
-      <h5 class="h5 mb-4 mt-1 clr mobviewfonteng titilebold" style="text-align: center;"><span  class="tamil_word mobviewfontamil">உள் நுழைக </span> / Login</h5>
-    <form>
+  <form  #forgotpwdform="ngForm" *ngIf ="!submitted" novalidate>
         <div class="form-group ">
             <label class="english_wrd" for="phone1"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
                 <input type="tel"  #phone1="ngModel" [class.is-invalid]="phone1.invalid && phone1.touched" ngModel name="phone1" class="form-control" (change)="phnTen()" [(ngModel)]="phoneObj.phone1" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
@@ -180,7 +179,6 @@
   </div>
   <!-- //second div -->
   <div id="secondDiv" class="mt-2" style="display: none">
-      <h5 class="h5 mb-4 mt-1 clr mobviewfonteng titilebold" style="text-align: center;"><span  class="tamil_word mobviewfontamil">உள் நுழைக </span> / Login</h5>
       <form>
         <div class="alert alert-success text-center" *ngIf="optsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{optsent}}</div>
     <div class="alert alert-danger text-center" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
@@ -191,13 +189,12 @@
     <div style="text-align: center;" >
     <button class="mb-2 btn2" type="submit" id="verify1" [disabled]="!verifyPhone1.verifyPhone" (click)="verifyOtp()">Verify OTP</button>
   </div>
-    <a class="mb-2 resend" id="resend" style="display: none;" (click)="sendOtp()">Resend</a>
+    <p style="text-align: center;"><span>Not received otp yet? </span><a class="resend" (click)="sendOtp()">Resend OTP</a></p>
   </form>
   <p class="clr txtalign mt-3 " style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>
   </div>
   <!-- first div -->
   <div id="firstDiv" class="mt-2" style="display: none">
-      <h5 class="h5 mb-4 mt-1 clr mobviewfonteng titilebold" style="text-align: center;"><span  class="tamil_word mobviewfontamil"></span>Create a new password</h5>
       <div class="alert alert-success text-center" *ngIf="verifymsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{verifymsg}}</div>
       <form  #resetForm="ngForm" *ngIf ="!submitted" novalidate>
           <div class="form-group">
@@ -221,9 +218,9 @@
   <p class="clr txtalign mt-3 " style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>
   </div>
         </div>
-        <div class="modal-footer">
+        <!-- <div class="modal-footer">
           <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -251,13 +248,13 @@
                       <span class="text-danger float-left error_word" *ngIf="phnErr"><i class="fa fa-info-circle" aria-hidden="true"></i> {{phnErr}}</span>
               </div>
               <div style="text-align: center;">
-                  <button class="mb-2 btn2" type="submit" id="hideGetOtp" [disabled]="!phoneObj.phone" (click)="signUpSendOtp()">Get OTP</button>
+                  <button class="btn2" type="submit" id="hideGetOtp" [disabled]="!phoneObj.phone" (click)="signUpSendOtp()">Get OTP</button>
               </div>
           </div>
 
-          <div id="signUpsecondDiv" class="mt-5" style="display: none">
-                  <div class="alert alert-success text-center" style="margin-top: -10%;" *ngIf="signUoptsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{signUoptsent}}</div>
-              <div class="alert alert-danger text-center" style="margin-top: -10%;" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
+          <div id="signUpsecondDiv" style="display: none">
+                  <div class="alert alert-success text-center"  *ngIf="signUoptsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{signUoptsent}}</div>
+              <div class="alert alert-danger text-center"  *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
               <div class="form-group ">
                   <label class="english_wrd" for="phone">Enter your OTP</label>
                       <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone"  autocomplete="off" required>
@@ -265,7 +262,7 @@
               <div style="text-align: center;">
               <button class="mb-2 btn2" type="submit" id="verify" [disabled]="!verifyPhone1.verifyPhone" (click)="sigunUpverifyOtp()">Verify OTP</button>
           </div>
-              <a class="mb-2 resend" id="resend" style="display: none;" (click)="sendOtp()">Resend</a>
+              <p style="text-align: center;"><span>Not received otp yet? </span><a class="resend" (click)="signUpSendOtp()">Resend OTP</a></p>
           </div>
           <!-- AFTER OTP VERIFIED -->
           <div id="afterotpverified" style="display: none">
@@ -299,9 +296,9 @@
       </form>
   </div>
         </div>
-        <div class="modal-footer">
+        <!-- <div class="modal-footer">
           <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
-        </div>
+        </div> -->
       </div><!-- /.modal-content -->
     </div>
   </div>
