@@ -61,7 +61,7 @@
                             <option class="prdtOption" selected="" disabled="" value="" >Choose product unit</option>
                             <option value="Ml" class="categoryOption">Milli litre</option>
                             <option value="Litre" class="categoryOption">Litre</option>
-                            <option value="Gram" class="categoryOption">Gram</option>
+                            <option value="g" class="categoryOption">Gram</option>
                             <option value="Kg" class="categoryOption">Kilogram</option>
                           </select>
                               <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Unit is required</span>
@@ -203,7 +203,7 @@
                             <label for="image" class="english_wrd" ><span span style="font-size: 14px" class="tamil_word">படத்தை பதிவேற்றம் செய்யவும்</span> / Upload product image</label>
                             <input type="file" id="image" class="form-control" (change)="onFileChangeMulti($event)"
                               name="image" multiple autocomplete="off" >
-                              <img *ngIf="editId" data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;margin-top: -20%;" id="show" class="card-img-top" src="{{multiData.image}}" alt="Card image cap">
+                              <img *ngIf="editId" data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;margin-top: 1%;" id="show" class="card-img-top" src="{{multiData.image}}" alt="Card image cap">
                           </div>
                      </div>
                       </div>
@@ -249,7 +249,7 @@
           <button type="button" class="close"  data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-                <!-- <img src="{{multiData.image}}" height="250px" width= "100%" alt="Card image cap"> -->
+                <!-- <img src="{{arrayImage}}" height="250px" width= "100%" alt="Card image cap"> -->
                 <ngx-slick-carousel class="carousel"
                 #slickModal="slick-carousel"
                         [config]="slideConfig"

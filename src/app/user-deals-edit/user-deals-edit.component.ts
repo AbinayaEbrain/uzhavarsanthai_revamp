@@ -59,10 +59,10 @@ export class UserDealsEditComponent implements OnInit {
   dateNrml: any;
   currentImg: any;
   valid: boolean = false;
-  Image =[];
+  Image = [];
   today: Date;
   urls = [];
-  imageLength:any;
+  imageLength = 0;
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
     //to the object in the DOM.
@@ -85,7 +85,7 @@ export class UserDealsEditComponent implements OnInit {
     //Method to set the value of the file to the selected file by the user
     //this.Image = event.target.files[0]; //To get the image selected by the user
     var filesAmount = event.target.files.length;
-    if(filesAmount > 0 ){
+    if (filesAmount > 0) {
       var filesAmount = event.target.files.length;
       for (let i = 0; i < filesAmount; i++) {
         this.urls.push(event.target.files[i]);
@@ -172,41 +172,42 @@ export class UserDealsEditComponent implements OnInit {
   postImage() {
     this.loadingCtrl.show();
     //Adding the image to the form data to be sent
-      if(this.urls != undefined){
-        for (let i = 0; i < this.urls.length; i++) {
-          var image = new FormData(); //FormData creation
-          image.append('Image', this.urls[i]);
-          this._dealsService.sendImage(image).subscribe(res => {
-            this.loadingCtrl.hide();
-            console.log(res);
-            this.Image.push(res);
-            this.update();
-          });
-          break;
-        }
+    if (this.urls.length != 0 || this.urls != undefined) {
+      for (let i = 0; i < this.urls.length; i++) {
+        var image = new FormData(); //FormData creation
+        image.append('Image', this.urls[i]);
+        this._dealsService.sendImage(image).subscribe(res => {
+          this.loadingCtrl.hide();
+          console.log(res);
+          this.Image.push(res);
+          this.update();
+        });
+        break;
       }
-    
-    if(this.urls == undefined){
+    }
+
+    if (this.urls.length == 0 || this.urls == undefined || this.urls == []) {
+      this.loadingCtrl.hide();
       this.update();
     }
   }
 
   update() {
-    if(this.Image.length == this.imageLength){
+    if (this.Image.length == this.imageLength) {
       this.loadingCtrl.show();
       let curntDte = new Date().toLocaleDateString();
       this.deallistobj.date = curntDte;
-  
+
       if (this.addr == null || this.addr == undefined) {
         this.deallistobj.avlPlace = this.address;
       } else {
         this.deallistobj.avlPlace = this.addr;
       }
-  
+
       if (this.dateNrml == this.deallistobj.validityTime) {
         this.deallistobj.validityTime = this.time;
       }
-  
+
       this.deallistobj.username = JSON.parse(
         localStorage.getItem('currentUser')
       ).firstname;
@@ -222,7 +223,10 @@ export class UserDealsEditComponent implements OnInit {
       this.deallistobj.userAddress = JSON.parse(
         localStorage.getItem('currentUser')
       ).address.city.formatted_address;
-  
+
+      if (this.Image.length != 0) {
+        this.deallistobj.image = this.Image;
+      }
       this._dealsService.editDeals(this.deallistobj, this.id).subscribe(
         res => {
           console.log(res);
@@ -236,11 +240,10 @@ export class UserDealsEditComponent implements OnInit {
         },
         err => console.log(err)
       );
-    }
-    else{
+    } else {
       this.urls.shift();
       this.postImage();
-     }
+    }
   }
 
   // handleInput(evt)

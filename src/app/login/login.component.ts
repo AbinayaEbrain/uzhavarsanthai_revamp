@@ -198,7 +198,7 @@ export class LoginComponent implements OnInit {
             this.mytemplateForm.reset();
             this.removeLS();
           }else if(this.wholedata1 != 'Active' && role == "buyer"){
-            this.router.navigate(['/blog']);
+            this.router.navigate(['/my-order']);
           }
           this.loadingCtrl.hide();
         }

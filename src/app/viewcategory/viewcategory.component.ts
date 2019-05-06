@@ -235,7 +235,7 @@ export class ViewcategoryComponent implements OnInit {
     if (this.totalDeals1.length == 0) {
       this.totalDeals1 = [];
       this.errMsgSec = 'location';
-      // this.showDeals = true;
+      this.showDeals = false;
     }
     this.loadingCtrl.hide();
     this.clear();

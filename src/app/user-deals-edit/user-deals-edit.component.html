@@ -49,7 +49,7 @@
                               <select required class="form-control"  #qnty="ngModel" name="qnty" [class.is-invalid]="qnty.invalid && qnty.touched" ngModel (change)="getunits()" [(ngModel)]="deallistobj.qnty" >
                                   <option value="" selected="" disabled="">Unit</option>
                                   <option value="Kg">Kilogram</option>
-                                  <option value="Gram">Gram</option>
+                                  <option value="g">Gram</option>
                                   <option value="Litre">Litre</option>
                                   <option value="Milli litre">Milli litre</option>
                               </select>
