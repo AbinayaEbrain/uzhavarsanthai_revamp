@@ -10,7 +10,7 @@ declare var google: any;
 export class GooglePlacesDirective implements OnInit {
   @Output() onSelect: EventEmitter<any> = new EventEmitter();
   private element: HTMLInputElement;
-  
+
 
   constructor(private elRef: ElementRef) {
 
@@ -43,8 +43,7 @@ export class GooglePlacesDirective implements OnInit {
         location_obj['postal_code'] = item['short_name']
       } else if (item['types'].indexOf("geometry") > -1) {
         location_obj['geometry'] = item['geometry']
-      } 
-     
+      }
     }
       // get lat
       location_obj.lat = place.geometry.location.lat();

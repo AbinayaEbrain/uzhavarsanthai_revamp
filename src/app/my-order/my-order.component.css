@@ -61,23 +61,27 @@
   color: white;
   background-color: #0d4608;
 }
+section .section-title {
+  text-align: center;
+  color: #007b5e;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
 
 #tabs .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-  color: white !important;
-  background-color: #0d4608;
-  border-color: transparent transparent white;
-  border-bottom: 4px solid #0d4608 !important;
-  font-size: 1rem;
+  color: #f3f3f3;
+  background-color: transparent;
+  border-color: transparent transparent #f3f3f3;
+  border-bottom: 4px solid !important;
   font-weight: bold;
 }
-
 #tabs .nav-tabs .nav-link {
   border: 1px solid transparent;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
-  color: white !important;
-  background-color: #0d4608;
+  color: #eb0f2491 !important;
+  /* background-color: #0d4608; */
   font-size: 1rem;
 }
 .nav-tabs .nav-link {
@@ -149,4 +153,63 @@
   text-align: center;
   margin-bottom: 5px;
   transition: all 0.25s;
+}
+  
+.nav-tabs {
+  border-bottom: 1px solid #f47682;
+  /* width: 550px; */
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 1px;
+}
+.orderPara{
+  margin-top: -15px;
+  text-align: center;
+}
+.orderHighlight{
+float: left;
+background-color: #0d4608;
+padding: 5px;
+font-weight: bold;
+color: white;
+}
+.button_word1 {
+  font-family: 'Kanit', sans-serif;
+  cursor:pointer;
+  color: red !important;
+  float: right;
+  margin-top: 50%;
+}
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .button_word1 {
+    font-family: 'Kanit', sans-serif;
+    cursor:pointer;
+    color: red !important;
+    float: right;
+    margin-top: 0px;
+  }
+  .myOrderHeading{
+    color:#0d4608;text-align:center;
+     margin-top: 20%;
+  }
+}
+.headingrow{
+  background-color:#8080803d;padding:5px;
+}
+.myOrderHeading{
+  color:#0d4608;text-align:center
+}
+.orderHead{
+      margin-top: -15px;
+}
+.orderHead2{
+      margin-top: 0px;
 }

@@ -320,3 +320,7 @@ input {
 .titilebold {
   font-weight: bold;
 }
+
+.resend{
+  cursor:pointer; color: #0d4608 !important; font-weight:bold;
+  }
