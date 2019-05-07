@@ -4,7 +4,6 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import {} from "googlemaps";
 
 // loader
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -30,7 +29,7 @@ export class ViewmoreComponent implements OnInit {
     @ViewChild('forgotpwdform') mytemplateForm4: NgForm;
 
 
-
+  rqstId : any;
   id = '';
   viewmore = [];
   viewPost = [];
@@ -245,6 +244,7 @@ openloginModal(){
   // $('#myModal').modal('show');
 }
 sendQuery(){
+  this.loadingCtrl.show();
   var a = "UZHAVAN"
   this.reqId = Math.floor(100000 + Math.random() * 900000);
   console.log(this.reqId);
@@ -276,12 +276,11 @@ sendQuery(){
   this.querydata.status = 'Order created';
   let curntDte = new Date().getTime();
   this.querydata.createdAt = curntDte;
-  console.log(this.querydata.createdAt)
-  console.log(this.querydata);
 
   this._dealsService.sendOrderReqmail(this.querydata).subscribe(
     res => {
       console.log(res);
+      this.storeOrderRequest();
       this.mytemplateForm3.reset();
         this.orderRequestMsg = 'We got your order query, we get back to you soon!';
         document.getElementById("closeRequirementModal").click();
@@ -291,9 +290,10 @@ sendQuery(){
         this.router.navigate(['/my-order']);
         this.loadingCtrl.hide();
     },
-    err => console.log(err)
+    err => {console.log(err);
+      this.loadingCtrl.hide();}
   );
-this.storeOrderRequest();
+
 // this.smsToSeller();
 // this.smsToBuyer();
 
@@ -306,9 +306,6 @@ storeOrderRequest(){
     res => {
       console.log(res);
       this.requestData.orderRqstId = res._id;
-      // for(let i = 0;i< res.length ; i++){
-      //   this.requestData.orderRqstId = res[i]._id;
-      // }
       console.log(this.requestData.orderRqstId);
       this.mapWithPost();
     },
@@ -345,24 +342,13 @@ mapWithPost(){
   this._dealsService.mapUserIdinPost(this.requestData).subscribe(
     res => {
       console.log(res);
+      this.loadingCtrl.hide();
     },
-    err => console.log(err)
+    err => {console.log(err);
+      this.loadingCtrl.hide();}
   );
-  // this.changeReqState();
 }
-// changeReqState(){
-//   for (let i = 0; i < this.requestPerson.length; i++) {
-//     console.log(this.requestPerson.length);
-//     console.log(this.requestPerson[i].requestedPersonId);
-//     this.loggedUser = JSON.parse(localStorage.getItem('currentUser'))._id;
-//     console.log(this.loggedUser);
-//     if(this.loggedUser == this.requestPerson[i].requestedPersonId){
-//       console.log('yes');
-//       document.getElementById("hideContactSeller").style.display="none";
-//       this.requestSent = "Oreder Request Sent!"
-//     }
-//   }
-// }
+
   slickInit(e) {
     console.log('slick initialized');
   }
@@ -416,7 +402,7 @@ mapWithPost(){
         localStorage.setItem('currentUser', JSON.stringify(res.user));
         localStorage.setItem('status', JSON.stringify(res.user.status));
         localStorage.setItem('roleStatus', JSON.stringify(res.user.roleStatus));
-		localStorage.setItem('role', JSON.stringify(res.user.role));
+		    localStorage.setItem('role', JSON.stringify(res.user.role));
         localStorage.setItem('firstname', JSON.stringify(res.user.firstname));
         localStorage.setItem('payload', JSON.stringify(res.payload));
         localStorage.setItem('token', res.token);
@@ -426,14 +412,14 @@ mapWithPost(){
         this.user = JSON.parse(localStorage.getItem('firstname'));
         let previousUrl1 = localStorage.getItem('previousUrl');
         this.authorize = localStorage.getItem('authorization');
-		let role = JSON.parse(localStorage.getItem('role'));
+		    let role = JSON.parse(localStorage.getItem('role'));
         if (this.user === 'Admin') {
           console.log('2');
           this.router.navigate(['/admin']);
         } else {
 
           if (this.wholedata === 'ACTIVE' && this.wholedata1 === 'Active') {
-		if(this.authorize){
+		    if(this.authorize){
 
               this.visitId = this.route.snapshot.params['id'];
               // this.router.navigate(['/viewmore/' + this.visitId ]);
@@ -827,7 +813,9 @@ cancelOrderReq(){
   this.postProduct.buyerId = this.loggedUser;
   this.visitId = this.route.snapshot.params['id'];
   this.postProduct.requestedProductId = this.visitId;
+  this.postProduct.orderRqstId = this.rqstId;
  
+  console.log(this.postProduct);
   this._dealsService.cancelOrderStatus(this.postProduct,this.visitId).subscribe(
     res => {
       console.log(res);
@@ -836,8 +824,9 @@ cancelOrderReq(){
       setTimeout(() => {
         this.orderCancelMsg ='';
           document.getElementById("closeCancelOrderModal").click();
-          this.router.navigateByUrl('/dummy', { skipLocationChange: true });
-          setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);
+          // this.router.navigateByUrl('/dummy', { skipLocationChange: true });
+          // setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);
+          this.router.navigate(['/my-order']);
       }, 3000);
     },
     err => {
@@ -847,16 +836,21 @@ cancelOrderReq(){
 }
 
 updateOrderRqst(){
+  this.loggedUser = JSON.parse(localStorage.getItem('currentUser'))._id;
+  this.postProduct.buyerId = this.loggedUser;
   this.postProduct.status = 'Order cancelled';
   this.postProduct.sellerStatus = 'Order created';
   console.log(this.postProduct);
   this._dealsService.updateViewOrderRqst(this.postProduct).subscribe(data =>{
-    console.log(data.result);
+    console.log(data);
     let dataResult = {};
     for(let i = 0 ; i < data.result.length ; i++){
       dataResult = data.result[i];
-      console.log(dataResult);
+      this.rqstId = data.result[i]._id;
+      console.log(this.rqstId);
     }
+    console.log(dataResult);
+    this.cancelOrderReq();
     if (data) {
       this.http
         .post<any>(this.orderCancelmail, dataResult)

@@ -1131,7 +1131,6 @@ router.post('/sendorderrequest', (req, res) => {
     function(err, message) {
       if (err) console.log(err);
       else res.json({ success: true, msg: 'sent', message });
-      console.log(message);
     }
   );
 });
@@ -1297,16 +1296,16 @@ router.post('/orderReqPost/:id', function(req, res) {
 
 //Update order request
 router.post('/updateViewPost/:id', function(req, res) {
-  console.log(req.body)
-  Post.updateMany(
+  Post.updateOne(
    {
      _id:req.body.requestedProductId,
-     'orderrequests.requestedPersonId': req.body.buyerId
+     'orderrequests.orderRqstId': req.body.orderRqstId
    },
    {
        $set: {
          'orderrequests.$.orderStatus': req.body.orderStatus ,
-         'orderrequests.$.requestedPersonId' : req.body.buyerId
+         'orderrequests.$.requestedPersonId' : req.body.buyerId,
+         'orderrequests.$.orderRqstId' : req.body.orderRqstId
        }
    }
  )
@@ -1336,10 +1335,8 @@ router.post('/updatevieworderrequest', (req, res) => {
       ]
     },
     async (err,result) =>{
-      console.log("rtuyeutyueytu");
-      console.log(req.body)
       if(result.length > 0){
-        await Orderrequest.update(
+        await Orderrequest.updateMany(
           {
             $and : [
               {
