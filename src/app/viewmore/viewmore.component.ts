@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 declare var $:any;
 declare var swal: any;
 
+
 @Component({
   selector: 'app-viewmore',
   templateUrl: './viewmore.component.html',
@@ -42,7 +43,9 @@ export class ViewmoreComponent implements OnInit {
   adrsArray: any;
   public previousUrl: any;
   private sendSignUpMail = 'https://uzhavarsanthai.herokuapp.com/api/sendMailSignUp';
+  private orderCancelmail = 'http://localhost:5000/api/sendordercancelrequest';
   imageArray = '';
+  imageMultiArray = '';
   arrayImage = [];
   slideConfig:any;
   getToken : any;
@@ -207,7 +210,7 @@ export class ViewmoreComponent implements OnInit {
             this.postProduct.firstName = res[i].username;
             this.postProduct.bulk = res[i].bulk;
             this.time = res[i].validityTime;
-            this.imageArray = res[i].image;
+            this.imageMultiArray = res[i].image;
         }
       }
 
@@ -215,7 +218,9 @@ export class ViewmoreComponent implements OnInit {
         this.time,
         'dd/MM/yyyy'
       );
-      this.arrayImage = this.imageArray.split(',');
+      if(this.imageMultiArray){
+        this.arrayImage = this.imageMultiArray.split(',');
+      }
 
       this.loadingCtrl.hide();
     },err =>{
@@ -274,9 +279,8 @@ sendQuery(){
     err => console.log(err)
   );
 this.storeOrderRequest();
-this.smsToSeller();
-this.smsToBuyer();
-this.mapWithPost();
+// this.smsToSeller();
+// this.smsToBuyer();
 
 }
 
@@ -286,10 +290,17 @@ storeOrderRequest(){
   this._dealsService.storeOrderRequest(this.querydata).subscribe(
     res => {
       console.log(res);
+      this.requestData.orderRqstId = res._id;
+      // for(let i = 0;i< res.length ; i++){
+      //   this.requestData.orderRqstId = res[i]._id;
+      // }
+      console.log(this.requestData.orderRqstId);
+      this.mapWithPost();
     },
     err => console.log(err)
   );
 }
+
 //sms to seller
 smsToSeller(){
   this._dealsService.sendOrderSmsSeller(this.querydata).subscribe(
@@ -308,12 +319,14 @@ smsToBuyer(){
     err => console.log(err)
   );
 }
+
 //map with post
 mapWithPost(){
   this.requestData.requestedProductId = this.id;
   this.requestData.requestedPersonId = JSON.parse(localStorage.getItem('currentUser'))._id;
-  console.log(this.requestData);
   this.requestData.orderStatus = 'Order created';
+  console.log(this.requestData);
+
   this._dealsService.mapUserIdinPost(this.requestData).subscribe(
     res => {
       console.log(res);
@@ -788,27 +801,58 @@ cancelOrderModal(){
 }
 
 cancelOrderReq(){
+  this.postProduct.orderStatus = 'Order cancelled';
+
   this.loggedUser = JSON.parse(localStorage.getItem('currentUser'))._id;
-  this.cancelOrderData.requestedPersonId = this.loggedUser;
+  this.postProduct.buyerId = this.loggedUser;
   this.visitId = this.route.snapshot.params['id'];
-  this.cancelOrderData.requestedProductId = this.visitId;
-  this.cancelOrderData.orderStatus = "Order cancelled"
-  console.log(this.visitId);
-  console.log(this.cancelOrderData);
-  this._dealsService.cancelOrderStatus(this.cancelOrderData).subscribe(
+  this.postProduct.requestedProductId = this.visitId;
+ 
+  this._dealsService.cancelOrderStatus(this.postProduct,this.visitId).subscribe(
     res => {
       console.log(res);
+      // this.updateOrderRqst();
       this.orderCancelMsg = "Order Request Cancelled!";
       setTimeout(() => {
         this.orderCancelMsg ='';
           document.getElementById("closeCancelOrderModal").click();
-      this.router.navigateByUrl('/dummy', { skipLocationChange: true });
-      setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);
+          this.router.navigateByUrl('/dummy', { skipLocationChange: true });
+          setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);
       }, 3000);
     },
     err => {
       console.log(err);
     }
   );
+}
+
+updateOrderRqst(){
+  this.postProduct.status = 'Order cancelled';
+  this.postProduct.sellerStatus = 'Order created';
+  console.log(this.postProduct);
+  this._dealsService.updateViewOrderRqst(this.postProduct).subscribe(data =>{
+    console.log(data.result);
+    let dataResult = {};
+    for(let i = 0 ; i < data.result.length ; i++){
+      dataResult = data.result[i];
+      console.log(dataResult);
+    }
+    if (data) {
+      this.http
+        .post<any>(this.orderCancelmail, dataResult)
+        .subscribe(
+          data => {
+            if (data) {
+              console.log(data);
+            }
+          },
+          err => {
+            console.log(err);
+          }
+        );
+    }
+  },err =>{
+    console.log(err);
+  })
 }
 }

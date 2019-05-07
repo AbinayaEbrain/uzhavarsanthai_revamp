@@ -19,12 +19,17 @@ export class SellerOrderRequestsComponent implements OnInit {
   createdRequests: any = [];
   rejectId: any;
   successMsg: any;
-  queryString:any;
-  p:any;
-  e:any;
-  private sendMailForReject = 'https://uzhavarsanthai.herokuapp.com/api/sendMailRejectSeller'
+  queryString: any;
+  p: any;
+  e: any;
+  private sendMailForReject =
+    'https://uzhavarsanthai.herokuapp.com/api/sendMailRejectSeller';
 
-  constructor(private _dealService: DealsService,private http: HttpClient,public loadingCtrl: NgxSpinnerService) {}
+  constructor(
+    private _dealService: DealsService,
+    private http: HttpClient,
+    public loadingCtrl: NgxSpinnerService
+  ) {}
 
   ngOnInit() {
     this.loadingCtrl.show();
@@ -50,6 +55,7 @@ export class SellerOrderRequestsComponent implements OnInit {
       data => {
         console.log(data);
         this.orderRequests = data;
+        this.createdRequests = [];
         this.getCreatedRequests();
       },
       err => {
@@ -112,6 +118,7 @@ export class SellerOrderRequestsComponent implements OnInit {
     this.loadingCtrl.show();
     console.log(this.rejectId);
     this.singleOrderRequest.status = 'Order cancelled';
+    this.singleOrderRequest.sellerStatus = 'Order cancelled';
     console.log(this.singleOrderRequest);
     this._dealService
       .editOrderRequest(this.singleOrderRequest, this.rejectId)
@@ -126,33 +133,37 @@ export class SellerOrderRequestsComponent implements OnInit {
       );
   }
 
-  updatePost(id){
-    console.log(id);
+  updatePost(id) {
     this.singleOrderRequest.orderStatus = 'Order cancelled';
-    this._dealService.addOrderReqPost(this.singleOrderRequest,id).subscribe(data =>{
-      this.loadingCtrl.hide();
-      console.log(data);
-      this.getSingleOrder();
-      this.successMsg = "Rejected successfully!";
-      setTimeout(() => {
-        this.successMsg = '';
-      }, 3000);
-      if (data) {
-        this.http.post<any>(this.sendMailForReject, this.singleOrderRequest).subscribe(
-          data => {
-            if (data) {
-              console.log(data);
-              console.log('success');
-            }
-          },
-          err => {
-            console.log(err);
-          }
-        );
+    this._dealService.addOrderReqPost(this.singleOrderRequest, id).subscribe(
+      data => {
+        this.loadingCtrl.hide();
+        console.log(data);
+        this.getSingleOrder();
+        this.successMsg = 'Rejected successfully!';
+        setTimeout(() => {
+          this.successMsg = '';
+        }, 3000);
+        if (data) {
+          this.http
+            .post<any>(this.sendMailForReject, this.singleOrderRequest)
+            .subscribe(
+              data => {
+                if (data) {
+                  console.log(data);
+                  console.log('success');
+                }
+              },
+              err => {
+                console.log(err);
+              }
+            );
+        }
+      },
+      err => {
+        this.loadingCtrl.hide();
+        console.log(err);
       }
-    }, err => {
-      this.loadingCtrl.hide();
-      console.log(err);
-    })
+    );
   }
 }

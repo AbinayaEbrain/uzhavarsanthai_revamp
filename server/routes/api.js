@@ -148,7 +148,6 @@ router.get('/getMultipost', (req, res) => {
 //admin
 
 router.post('/category',(req,res)=>{
-    console.log(req.body);
     let categoryData = req.body
     let category = new Category(categoryData)
     category.save((error,productData)=>{
@@ -359,7 +358,6 @@ router.post('/sendMail', (req, res) => {
 
 // Mail for signup rqst
 router.post('/sendMailSignUp', (req, res) => {
-  console.log(req.body);
   var server = email.server.connect({
     user: 'abishakshi1496@gmail.com',
     password: 'abiyuva14382',
@@ -396,7 +394,6 @@ router.post('/sendMailSignUp', (req, res) => {
 
 // Mail for buyer as seller signup rqst
 router.post('/sendMailSignUpBuyer', (req, res) => {
-  console.log(req.body);
   var server = email.server.connect({
     user: 'abishakshi1496@gmail.com',
     password: 'abiyuva14382',
@@ -429,7 +426,6 @@ router.post('/sendMailSignUpBuyer', (req, res) => {
 
 // Mail for buyer as seller signup rqst
 router.post('/sendMailRejectSeller', (req, res) => {
-  console.log(req.body);
   var server = email.server.connect({
     user: 'abishakshi1496@gmail.com',
     password: 'abiyuva14382',
@@ -594,8 +590,6 @@ router.put('/deals/:id', function(req, res) {
 //update user
 router.put('/updateuser/:id', function(req, res) {
   // console.log('Update a userprofile');
-  console.log(req.body._id)
-  console.log(req.params.id)
 
   User.findByIdAndUpdate(
     req.params.id,
@@ -928,7 +922,6 @@ router.post('/getdevicedata', (req, res) => {
       if(result.length > 0){
         console.log("ALready exist");
       }else{
-        console.log(req.body);
         let device = req.body;
         let deviceData = new Device(device);
         deviceData.save((error, data) => {
@@ -947,10 +940,8 @@ router.post('/getdevicedata', (req, res) => {
 //notification to all
 router.post('/notificationtoall', (req, res) => {
   let userData = req.body;
-  console.log(req.body)
-  console.log('hai')
+ 
   let user = new Notification(userData);
-  console.log(userData)
 var sendNotification = function(data) {
   var headers = {
     "Content-Type": "application/json; charset=utf-8",
@@ -995,10 +986,8 @@ res.status(200).send(message);
 //notification for specific Users
 router.post('/notificationospecificeusers', (req, res) => {
   let userData = req.body;
-  console.log(req.body)
-  console.log('hai')
+  
   let user = new Notification(userData);
-  console.log(userData)
 var sendNotification = function(data) {
   var headers = {
     "Content-Type": "application/json; charset=utf-8",
@@ -1165,7 +1154,7 @@ router.post('/sendordercancelrequest', (req, res) => {
       attachment: [
         {
           data:
-          "<html><h2>Buyer Cancelled Request</h2></html>" +
+          "<html><h2 style='text-align:center'>Buyer Cancelled Request</h2></html>" +
            "<html><h3> Request Number:</h3></html>"+ req.body.requestId +
            "<html><br></html>" +
            "<html><h3> Buyer Name :</h3></html>" + req.body.buyerName +
@@ -1181,7 +1170,7 @@ router.post('/sendordercancelrequest', (req, res) => {
            "<html><h3>Buyer Urgency :</h3></html>" + req.body.urgency +
            "<html><br></html>" + "<html><hr></html>" +
 
-           "<html><h5>Seller Details</h5></html>" +
+           "<html><h3 style='text-align:center'>Seller Details</h3></html>" +
            "<html><h3>Seller Name :</h3></html>" + req.body.sellerName +
            "<html><br></html>" +
            "<html><h3>Seller Phone :</h3></html>" + req.body.sellerPhone +
@@ -1189,14 +1178,18 @@ router.post('/sendordercancelrequest', (req, res) => {
            "<html><h3>Seller Address :</h3></html>" + req.body.sellerAddress +
            "<html><br></html>" + "<html><hr></html>" +
 
-           "<html><h5>Product Details</h5></html>" +
+           "<html><h3 style='text-align:center'>Product Details</h3></html>" +
            "<html><h3>Product Category :</h3></html>" + req.body.prdctCategory +
            "<html><br></html>" +
            "<html><h3>Product Name :</h3></html>" + req.body.prdctName +
            "<html><br></html>" +
            "<html><h3>Product Qty :</h3></html>" + req.body.prdctQty +
            "<html><br></html>" +
-           "<html><h3>Product Unit :</h3></html>" + req.body.prdctUnit,
+           "<html><h3>Product Unit :</h3></html>" + req.body.prdctUnit + 
+           "<html><br></html>" +
+           "<html><h3>Required Unit :</h3></html>" + req.body.requiredUnit +
+           "<html><br></html>" +
+           "<html><h3>Required Quantity :</h3></html>" + req.body.requiredQuantity,
 
           alternative: true
         }
@@ -1262,7 +1255,8 @@ router.put('/updateorderrequest/:id', function(req, res) {
   Orderrequest.findByIdAndUpdate(
     req.params.id,
     {
-      $set: { status: req.body.status
+      $set: { status: req.body.status,
+        sellerStatus: req.body.sellerStatus
       }
     },
     {
@@ -1280,30 +1274,99 @@ router.put('/updateorderrequest/:id', function(req, res) {
 
 //Update order request
 router.post('/orderReqPost/:id', function(req, res) {
-  Post.find(
-    {
-      _id:req.params.id
-    },
-    async (err,result) =>{
-      if(result.length > 0){
-        await Post.update(
+         Post.updateOne(
           {
             _id:req.params.id,
-            'orderrequests.requestedPersonId': req.body.buyerId
+            'orderrequests.orderRqstId': req.body._id,
           },
           {
-            $set: {
-              orderrequests: { orderStatus: req.body.orderStatus ,requestedPersonId : req.body.buyerId}
-            }
+              $set: {
+                'orderrequests.$.orderStatus': req.body.orderStatus ,
+                'orderrequests.$.requestedPersonId' : req.body.buyerId,
+                'orderrequests.$.orderRqstId' : req.body._id
+              }
           }
         )
           .then(() => {
-            res.status(200).json({ message: 'Deleted successfully' });
+            res.status(200).json({ message: 'Updated successfully' });
           })
           .catch(err => {
             res.status(500).json({ message: 'Error occured' });
           });
-      }
+});
+
+//Update order request
+router.post('/updateViewPost/:id', function(req, res) {
+  console.log(req.body)
+  Post.updateMany(
+   {
+     _id:req.body.requestedProductId,
+     'orderrequests.requestedPersonId': req.body.buyerId
+   },
+   {
+       $set: {
+         'orderrequests.$.orderStatus': req.body.orderStatus ,
+         'orderrequests.$.requestedPersonId' : req.body.buyerId
+       }
+   }
+ )
+   .then(() => {
+     res.status(200).json({ message: 'Updated successfully' });
+   })
+   .catch(err => {
+     res.status(500).json({ message: 'Error occurred' });
+   });
+});
+
+
+// Viewed product count
+router.post('/updatevieworderrequest', (req, res) => {
+  Orderrequest.find(
+    {
+      $and : [
+        {
+          buyerId : req.body.buyerId
+        },
+        {
+          prdctId:req.body.id
+        },
+        {
+          sellerId:req.body.accountId
+        },
+      ]
+    },
+    async (err,result) =>{
+      console.log("rtuyeutyueytu");
+      console.log(req.body)
+      if(result.length > 0){
+        await Orderrequest.update(
+          {
+            $and : [
+              {
+                buyerId : req.body.buyerId
+              },
+              {
+                prdctId:req.body.id
+              },
+              {
+                sellerId:req.body.accountId
+              },
+            ]
+          },
+          {
+            $set: {
+              status: req.body.status ,
+              sellerStatus : req.body.sellerStatus
+            }
+          }
+      )
+      .then(() =>{
+        res.status(200).json({ message: 'Updated' , result});
+      })
+      .catch(err => {
+        res.status(500).json({ message: 'Error occured' });
+      });
+      } 
     }
   )
 });
@@ -1311,7 +1374,6 @@ router.post('/orderReqPost/:id', function(req, res) {
 //send order request created msg to seller
 router.post('/sendordersmstoseller',(req , res) => {
   let sellerMsgData = req.body;
-  console.log(sellerMsgData);
   var options = {
         "method": "GET",
         "hostname": "api.msg91.com",
@@ -1340,7 +1402,6 @@ router.post('/sendordersmstoseller',(req , res) => {
 //send order request created msg to buyer
 router.post('/sendbuyersmsUrl',(req , res) => {
   let sellerMsgData = req.body;
-  console.log(sellerMsgData);
   var options = {
         "method": "GET",
         "hostname": "api.msg91.com",
@@ -1397,7 +1458,6 @@ router.post('/sendSmsToSeller',(req , res) => {
 
 //map userId with POST
 router.post('/mapuserpostUrl', function(req, res) {
-  console.log(req.body);
   Post.find(
     {
       _id:req.body.requestedProductId
@@ -1410,10 +1470,11 @@ router.post('/mapuserpostUrl', function(req, res) {
           },
           {
             $push: {
-            orderrequests:{
-              requestedPersonId: req.body.requestedPersonId,
-              orderStatus: req.body.orderStatus
-            }
+              orderrequests:{
+                requestedPersonId: req.body.requestedPersonId,
+                orderStatus: req.body.orderStatus,
+                orderRqstId: req.body.orderRqstId
+              }
              }
           }
         )
@@ -1428,36 +1489,5 @@ router.post('/mapuserpostUrl', function(req, res) {
   )
 });
 
-router.post('/cancelorder', function(req, res) {
-  console.log(req.body.requestedProductId);
-  console.log(req.body.requestedPersonId);
-  console.log(req.body.orderStatus);
-  Post.find(
-    {
-      _id:req.body.requestedProductId
-    },
-    async (err,result) =>{
-      if(result.length > 0){
-        await Post.update(
-          {
-            'orderrequests.requestedPersonId':req.body.requestedPersonId
-          },
-          {
-            $set: {
-            orderrequests:{orderStatus: req.body.orderStatus,
-              requestedPersonId: req.body.requestedPersonId,}
-             }
-          }
-        )
-        .then(() =>{
-          res.status(200).json({ message: 'post status updated'});
-        })
-        .catch(err => {
-          res.status(500).json({ message: 'Error occured' });
-        });
-      }
-    }
-  )
-});
 
 module.exports = router;

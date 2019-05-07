@@ -46,10 +46,10 @@
                         <label class="english_wrd" for="phone">Enter your OTP</label>
                             <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone"  autocomplete="off" required>
                     </div>
+                    <a class="mb-2 resend" id="resend" style="display: none;" (click)="sendOtp()">Resend</a>
                     <div style="text-align: center;">
                     <button class="mb-2 btn2" type="submit" id="verify" [disabled]="!verifyPhone1.verifyPhone" (click)="verifyOtp()">Verify OTP</button>
                 </div>
-                    <a class="mb-2 resend" id="resend" style="display: none;" (click)="sendOtp()">Resend</a>
                 </div>
 
                 <!-- AFTER OTP VERIFIED -->

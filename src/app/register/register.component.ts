@@ -227,6 +227,7 @@ export class RegisterComponent implements OnInit {
         }, 3000);
         document.getElementById('firstDiv').style.display = 'none';
         document.getElementById('secondDiv').style.display = 'block';
+        document.getElementById('resend').style.display = 'block';
       },
       err => {
         console.log(err);
@@ -252,10 +253,12 @@ export class RegisterComponent implements OnInit {
       document.getElementById('secondDiv').style.display = 'none';
       document.getElementById('afterotpverified').style.display = 'block';
     } else {
-      this.errMsgVerfi = 'You have entered invalid OTP';
-      // document.getElementById('verify').style.display = 'none';
+      this.errMsgVerfi = 'You have entered invalid OTP!';
       document.getElementById('resend').style.display = 'block';
       this.verifyPhone1.verifyPhone = '';
+      setTimeout(() => {
+        this.errMsgVerfi = '';
+      }, 4000);
     }
   }
 }

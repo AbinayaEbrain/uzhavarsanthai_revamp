@@ -79,11 +79,11 @@ export class ViewcategoryComponent implements OnInit {
     public zone: NgZone
   ) {
     this.privateIP = ClientIP;
-    console.log(this.privateIP);
     this.userdetails.searchqnty = '';
+    this.querydetails.searchLocation = '';
     this.showDeals = true;
-    for (let i = 1; i <= this.totalDeals.length; i++) {
-      this.totalDeals.push(`deal ${i}`);
+    for (let i = 1; i <= this.singleMultiArray.length; i++) {
+      this.singleMultiArray.push(`deal ${i}`);
     }
     for (let i = 1; i <= this.totalDeals1.length; i++) {
       this.totalDeals1.push(`deal ${i}`);
@@ -109,16 +109,10 @@ export class ViewcategoryComponent implements OnInit {
       res => {
         let j = 0;
         this.crdDeals = res;
-        console.log(this.crdDeals);
         this.showDeals = true;
         this.id = this.route.snapshot.params['id'];
         let CurrentDate = new Date().toISOString();
         for (let i = 0; i < this.crdDeals.length; i++) {
-          console.log(this.id);
-          console.log(this.crdDeals[i].categoryId);
-          console.log(this.id == this.crdDeals[i].categoryId);
-          console.log(this.crdDeals[i].validityTime > CurrentDate);
-          console.log(this.crdDeals[i].status == 'ACTIVE');
           if (
             this.id == this.crdDeals[i].categoryId &&
             this.crdDeals[i].validityTime > CurrentDate &&
@@ -128,13 +122,10 @@ export class ViewcategoryComponent implements OnInit {
             this.splitImage =  this.totalDeals[j].image;
             this.totalDeals[j].image = this.splitImage.split(",",1);
             this.getPrdtName = this.totalDeals[j].name;
-            console.log(this.totalDeals);
             j++;
-            console.log(this.totalDeals);
             this.loadingCtrl.hide();
           }
         }
-        console.log(this.totalDeals);
         this.getMultiArray();
 
         if (this.totalDeals.length == 0) {
@@ -176,7 +167,6 @@ export class ViewcategoryComponent implements OnInit {
           this.loadingCtrl.hide();
         }
       }
-      console.log(this.multiPost);
       this.getArray();
     },err =>{
       console.log(err);
@@ -185,7 +175,6 @@ export class ViewcategoryComponent implements OnInit {
 
   getArray(){
     this.singleMultiArray = this.totalDeals.concat(this.multiPosts);
-    console.log( this.singleMultiArray);
   }
   
   getGoogleAddress() {
@@ -210,6 +199,8 @@ export class ViewcategoryComponent implements OnInit {
   refreshGrid() {
     if (this.addr != null || this.addr != undefined) {
       this.querydetails.searchLocation = this.addr.locality;
+    }else{
+      this.querydetails.searchLocation = ''
     }
     this.loadingCtrl.show();
     let j = 0;
@@ -270,20 +261,20 @@ export class ViewcategoryComponent implements OnInit {
   }
 
   case() {
-    // console.log(this.queryString);
+    //  console.log(this.queryString);
     this.queryString = this.queryString.toLowerCase();
     for (let i = 0; i < this.getPrdtName.length; i++) {
       if (this.queryString != this.getPrdtName[i]) {
         this.errMsg2 = 'Product Unavailable';
       }
     }
-
     if (this.queryString != '') {
       document.getElementById('backToAll').style.display = 'block';
     } else if (this.showDeals == false) {
       document.getElementById('backToAll').style.display = 'block';
     } else {
       document.getElementById('backToAll').style.display = 'none';
+      this.reset()
     }
   }
 
@@ -294,6 +285,10 @@ export class ViewcategoryComponent implements OnInit {
     for (let i = 0; i < this.totalDeals.length; i++) {
       if (this.addr.locality != undefined) {
         if (this.addr.locality == this.totalDeals[i].avlPlace.locality) {
+          this.totalDeals1[j] = this.totalDeals[i];
+          this.errMsg1 = '';
+          j++;
+        }else if (this.addr.formatted_address == this.totalDeals[i].avlPlace.formatted_address){
           this.totalDeals1[j] = this.totalDeals[i];
           this.errMsg1 = '';
           j++;
@@ -312,7 +307,6 @@ export class ViewcategoryComponent implements OnInit {
     this.showDeals = false;
     // document.getElementById('hidePagination1').style.display = 'block';
     document.getElementById('backToAll').style.display = 'block';
-
 
     if (this.totalDeals1.length == 0) {
       // sweetAlert('Sorry!', 'Currently no product available', 'error');

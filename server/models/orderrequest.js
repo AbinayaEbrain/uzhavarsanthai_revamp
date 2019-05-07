@@ -25,7 +25,8 @@ const orderrequestSchema = new Schema({
   prdctAvlplace: String,
   status: String,
   requiredQuantity: String,
-  requiredUnit: String
+  requiredUnit: String,
+  sellerStatus: { type: String, default: 'Order created' }
 });
 
 module.exports = mongoose.model(
