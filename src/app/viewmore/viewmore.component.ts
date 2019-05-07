@@ -4,6 +4,8 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import {} from "googlemaps";
+
 // loader
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatePipe } from '@angular/common';
@@ -11,6 +13,7 @@ import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 declare var $:any;
 declare var swal: any;
+declare var google: any;
 
 
 @Component({
@@ -20,10 +23,12 @@ declare var swal: any;
 })
 export class ViewmoreComponent implements OnInit {
     // @ViewChild('queryform') mytemplateForm: NgForm;
-    @ViewChild('loginform') mytemplateForm: NgForm;
+    // @ViewChild('loginform') mytemplateForm: NgForm;
     @ViewChild('loginform') mytemplateForm1: NgForm;
     @ViewChild('postform') mytemplateForm2: NgForm;
     @ViewChild('queryform') mytemplateForm3: NgForm;
+    @ViewChild('forgotpwdform') mytemplateForm4: NgForm;
+
 
 
   id = '';
@@ -230,9 +235,12 @@ export class ViewmoreComponent implements OnInit {
   }
 
 openloginModal(){
+  this.mytemplateForm1.reset();
   document.getElementById("openLoginModal").click();
   document.getElementById("hideForm").style.display="block";
   document.getElementById("showForm").style.display="none";
+  document.getElementById("secondDiv").style.display="none";
+
 
   // $('#myModal').modal('show');
 }
@@ -264,7 +272,11 @@ sendQuery(){
   this.querydata.prdctUnit = this.postProduct.qnty;
   this.querydata.prdctQty = this.postProduct.quantity
   this.querydata.prdctAvlplace = this.postProduct.avlPlace;
+  this.querydata.image = this.imageArray;
   this.querydata.status = 'Order created';
+  let curntDte = new Date().getTime();
+  this.querydata.createdAt = curntDte;
+  console.log(this.querydata.createdAt)
   console.log(this.querydata);
 
   this._dealsService.sendOrderReqmail(this.querydata).subscribe(
@@ -273,6 +285,9 @@ sendQuery(){
       this.mytemplateForm3.reset();
         this.orderRequestMsg = 'We got your order query, we get back to you soon!';
         document.getElementById("closeRequirementModal").click();
+         setTimeout(() => {
+             this.orderRequestMsg='';
+         },3000)
         this.router.navigate(['/my-order']);
         this.loadingCtrl.hide();
     },
@@ -372,8 +387,8 @@ mapWithPost(){
       this.adminVerifyErr ='';
       this.deactiveErrorMsg ='';
       this.mytemplateForm1.reset();
-      this.mytemplateForm.reset();
      this.openloginModal();
+
     }else {
       console.log('logged');
       // this.openModal();
@@ -448,7 +463,7 @@ mapWithPost(){
           }else if(this.wholedata1 != 'Active'  && role == "seller"){
             console.log('9');
             this.adminVerifyErr = 'Stay cool until get confirmation from Uzhavarsanthai to login!';
-            this.mytemplateForm.reset();
+            this.mytemplateForm1.reset();
             this.removeLS();
           }else if(this.wholedata1 != 'Active' && role == "buyer"){
             this.router.navigate(['/blog']);
@@ -484,7 +499,8 @@ mapWithPost(){
   }
 
     toggle() {
-      this.mytemplateForm.reset();
+      this.mytemplateForm1.reset();
+      this.mytemplateForm4.reset();
       document.getElementById('hideForm').style.display = 'none';
       document.getElementById('showForm').style.display = 'block';
     }
@@ -507,7 +523,7 @@ mapWithPost(){
             this.errormsg1 = '';
           }
           // this.phoneObj.phone1 = '';
-          this.optsent = 'OTP has been sent successfully!';
+          this.optsent = 'OTP has been sent to this number successfully! '+ resultpath;
           setTimeout(() => {
             this.optsent = '';
           }, 3000);
@@ -550,6 +566,7 @@ mapWithPost(){
     }
 
     register() {
+      this.mytemplateForm2.reset();
       var pacContainerInitialized = false;
        $('#city').keypress(function() {
         if (!pacContainerInitialized) {
@@ -560,9 +577,11 @@ mapWithPost(){
 });
         document.getElementById("closeLoginModal").click();
         document.getElementById("openSignupModal").click();
-        document.getElementById("hideGetOtp").style.display="block";
+        document.getElementById("signUpfirstDiv").style.display="block";
+        document.getElementById("signUpsecondDiv").style.display="none";
+        document.getElementById("afterotpverified").style.display="none";
         this.signUpNumbrExisterrormsg ='';
-        this.mytemplateForm2.reset();
+
 
     }
 
@@ -714,7 +733,7 @@ mapWithPost(){
               localStorage.removeItem('authorization');
 
             }else{
-            this.router.navigate(['/products']);
+            this.router.navigate(['/my-order']);
             }
           }
           if (res.statusText == 'Unauthorized') {
@@ -738,6 +757,7 @@ mapWithPost(){
       }
       console.log(this.phoneObj);
       let resultpath = this.phoneObj.phone;
+      console.log(resultpath)
       let OTP = '';
       for (let i = 0; i < 6; i++) {
         OTP += resultpath[Math.floor(Math.random() * 10)];
@@ -746,7 +766,7 @@ mapWithPost(){
       this._auth.sendOtp(this.phoneObj).subscribe(
         res => {
           console.log(res);
-          this.signUoptsent = 'OTP has been sent successfully!';
+          this.signUoptsent = 'OTP has been sent to this number successfully! '+ resultpath;
           setTimeout(() => {
             this.signUoptsent = '';
           }, 3000);

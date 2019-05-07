@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const orderrequestSchema = new Schema({
+  createdAt: Date,
   requestId: String,
   buyerId: String,
   buyerName: String,
@@ -26,7 +27,8 @@ const orderrequestSchema = new Schema({
   status: String,
   requiredQuantity: String,
   requiredUnit: String,
-  sellerStatus: { type: String, default: 'Order created' }
+  sellerStatus: { type: String, default: 'Order created' },
+  image: String
 });
 
 module.exports = mongoose.model(

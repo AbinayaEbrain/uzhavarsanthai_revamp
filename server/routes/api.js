@@ -1224,7 +1224,7 @@ router.get('/getorderrequest', (req, res) => {
     } else {
       res.send(result);
     }
-  }).sort({date : -1});
+  }).sort({createdAt : -1});
 });
 
 router.get('/getSingleOrderRequest/:id', (req, res) => {

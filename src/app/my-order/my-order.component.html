@@ -1,158 +1,89 @@
 <body class="bg" style="overflow-x: hidden;">
-  <div class="container mt-5">
-    <h4 class="mt-5" style="color:#0d4608;text-align:center">My Orders</h4><br>
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
-    <div class="alert alert-success text-center error_word mt-3"  *ngIf="successMsg">
-        {{successMsg}}
-    </div>
-  </div>
-    <div class="col-md-4"></div>
-  </div>
-    <div class="table-responsive">
-      <table class="table" id="cardFocus">
-        <thead>
-          <tr style="color:#0d4608">
-            <!-- <th style="width: 150px;">Request id</th>
-            <th style="width: 150px;">Buyer name</th>
-            <th style="width: 150px;">Buyer Phone</th>
-            <th style="width: 150px;">Buyer address</th> -->
-            <th style="width: 150px;">Request Id</th>
-            <th style="width: 150px;">Category</th>
-            <th style="width: 150px;">Name</th>
-            <!-- <th style="width: 150px;">Available place</th> -->
-            <th>Quantity</th>
-            <th>Urgency</th>
-            <th style="width: 150px;">Status</th>
-            <th>Action</th>
-            <!-- <th style="width: 150px;">Seller name</th>
-            <th style="width: 150px;">Seller Phone</th> -->
+  <div class="container card" style="margin-top: 5% !important;">
+    <h4 class="myOrderHeading">My Orders</h4><br>
+    <section id="tabs" style="margin-top: -20px;">
+          <div class="container">
+              <div class="row">
+                <div class="col-xs-12 ">
+                      <nav>
+                          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Open Orders</a>
+                              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Closed Orders</a>
+                          </div>
+                      </nav>
+                    </div>
+                </div>
+          </div>
+      </section>
+      <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="container">
+              <div class="row  mb-2" style="border-bottom: 1px solid #0d4608;" *ngFor="let order of userOrder | paginate: {id: 'foo', itemsPerPage:10,currentPage:d},let i = index">
+              <div class="container">
+                <div class="row headingrow" style="height: 45px;">
+                  <div class="col-md-4">
+                    <div><p class="orderHighlight">{{order.requestId}}</p></div>
+                  </div>
+                  <div class="col-md-4">
+                      <!-- <p class="orderHead">Urgency</p>
+                      <p class="orderPara">{{order.urgency}}</p> -->
+                  </div>
+                  <div class="col-md-4">
+                    <p class="orderHead2 float-right" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</p>
+                  </div>
+                </div>
 
-          </tr>
-        </thead>
-        <tbody>
-            <tr *ngIf="errorMsg">
-                <td colspan="7" class="text-danger" style="text-align: center">
-                   {{errorMsg}}
-                </td>
-            </tr>
-          <tr *ngFor="let order of userOrder | paginate: {id: 'foo', itemsPerPage:10,currentPage:d},let i = index">
-            <!-- <td style="min-width: 150px;">{{order.requestId}}</td>
-            <td style="min-width: 150px;">{{order.buyerName}}</td>
-            <td style="min-width: 150px;">{{order.buyerPhone}}</td>
-            <td style="min-width: 150px;">{{order.buyerAddress}}</td> -->
-            <td style="min-width: 150px;">{{order.requestId}}</td>
-            <td style="min-width: 150px;" class="tamil_word">{{order.prdctCategory}}</td>
-            <td style="min-width: 150px;">{{order.prdctName}}</td>
-            <!-- <td style="min-width: 150px;">{{order.prdctAvlplace}}</td> -->
-            <td >{{order.requiredQuantity}}/{{order.requiredUnit}}</td>
-            <td >{{order.urgency}}</td>
-            <td style="min-width: 150px;font-weight:bold" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</td>
-            <td style="display: inline-flex;">
-              <button type="button" class="btn btn-outline-success viewMoreBtn button_word" data-toggle="modal" data-target="#myModal" (click)="singleUpdateSignupReq(order._id)" >
-                View
-              </button>&nbsp;
-                <button type="button" class="btn btn-outline-success text-center viewMoreBtn button_word" (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Order cancelled' ? 'none' : '' }" data-toggle="modal" data-target="#myModal1" >Order cancel</button>
-            </td>
-            <!-- <td style="min-width: 150px;">{{order.sellerName}}</td>
-            <td style="min-width: 150px;">{{order.sellerPhone}}</td> -->
-          </tr>
-        </tbody>
-      </table>
+                <div class="row">
+                  <div class="col-md-2 col-sm-12">
+                  <img height="150px"  width="150px" src="{{order.image}}">
+                  </div>
+                  <div class="col-md-4">
+                    <p class="orderHead1">{{order.prdctCategory}}</p>
+                    <p class="orderHead">{{order.prdctName}}</p>
+                    <p class="orderHead">{{order.prdctQty}}/{{order.prdctUnit}}</p>
+                    <p class="orderHead">{{order.prdctAvlplace}}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p class="orderHead1">Seller</p>
+                    <p class="orderHead">{{order.sellerName}}</p>
+                    <p class="orderHead1">Urgency</p>
+                    <p class="orderHead">{{order.urgency}}</p>
+                  </div>
+                  <div class="col-md-2">
+                   <a class=" text-center button_word1" data-toggle="modal" data-target="#myModal1"  (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Order cancelled' ? 'none' : '' }">Cancel Order</a>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <p class="product-description" style="text-align: justify">postProduct.description</p>
+          </div>
       </div>
       <div class="mx-auto mt-3">
-          <pagination-controls id="foo"  class="ngx-pagination" style="margin-right: 30px;" maxSize="5" (pageChange)="d = $event"></pagination-controls>
-        </div>
+    <pagination-controls id="foo"  class="ngx-pagination" style="margin-right: 30px;" maxSize="5" (pageChange)="d = $event"></pagination-controls>
   </div>
-  </body>
-
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-        
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title">My Order</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          
-          <!-- Modal body -->
-          <div class="modal-body" >
-              <h5 style="text-align:center;color:#0d4608">Product Details</h5>
-          <div class="table-responsive" id="cardFocus">
-            <table class="table tamil_word">
-                  <tbody>
-                      <tr>
-                          <td >Request Id</td>
-                          <td>:</td>
-                          <td>{{userOrder1.requestId}}</td>
-                          </tr>
-                      <tr>
-                        <td >Category</td>
-                        <td>:</td>
-                        <td>{{userOrder1.prdctCategory}}</td>
-                        </tr>
-
-                        <tr>
-                        <td >Name</td>
-                        <td>:</td>
-                        <td>{{userOrder1.prdctName}}</td>
-                      </tr>
-
-                      <tr>
-                        <td >Qty</td>
-                        <td>:</td>
-                        <td>{{userOrder1.prdctQty}}/{{userOrder1.prdctUnit}}</td>
-                      </tr>
-
-                      <tr>
-                        <td >Available place</td>
-                        <td>:</td>
-                        <td>{{userOrder1.prdctAvlplace}}</td>
-                      </tr>
-
-                      <tr>
-                        <td >Seller name</td>
-                        <td>:</td>
-                        <td>{{userOrder1.sellerName}}</td>
-                      </tr>
-
-                      </tbody>
-            </table>
-          </div></div>
-          
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          </div>
-
-        </div>
-      </div>
     </div>
 
      <!-- modal -->
 
  <div class="modal fade" id="myModal1" role="dialog">
     <div class="modal-dialog">
-
-      <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-
-          <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;color: white;">Delete Confirmation</h4>
+          <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;color: white;">Cancel Confirmation</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="text-white">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
-          <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete?</h6>
+          <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to cancel this request?</h6>
           <div class="text-center">
-
            <button type="button" class="btn btnClr button_word" (click)="updateSignupReq1()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
            <button type="button" class="btn btnDanger button_word" routerLink="/my-order" data-dismiss="modal">No</button>
           </div>
         </div>
-
       </div>
-
     </div>
   </div>
