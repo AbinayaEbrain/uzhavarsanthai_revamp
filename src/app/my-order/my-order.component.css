@@ -68,6 +68,22 @@ section .section-title {
   text-transform: uppercase;
 }
 
+/* .imgRes {
+  width: inherit !important;
+} */
+
+.imgRes {
+width: 300px;
+}
+
+.errDesign {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+  color: red;
+}
+
 #tabs .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
   color: #f3f3f3;
@@ -80,7 +96,7 @@ section .section-title {
   border: 1px solid transparent;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
-  color: #eb0f2491 !important;
+  color: #0d4608 !important;
   /* background-color: #0d4608; */
   font-size: 1rem;
 }
@@ -156,7 +172,7 @@ section .section-title {
 }
   
 .nav-tabs {
-  border-bottom: 1px solid #f47682;
+  border-bottom: 1px solid #0d4608;
   /* width: 550px; */
 }
 .card {
@@ -177,7 +193,7 @@ section .section-title {
 .orderHighlight{
 float: left;
 background-color: #0d4608;
-padding: 5px;
+padding: 3px;
 font-weight: bold;
 color: white;
 }
@@ -186,7 +202,7 @@ color: white;
   cursor:pointer;
   color: red !important;
   float: right;
-  margin-top: 50%;
+  /* margin-top: 50%; */
 }
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .button_word1 {
@@ -200,6 +216,19 @@ color: white;
     color:#0d4608;text-align:center;
      margin-top: 20%;
   }
+  .orderHighlight{
+    font-size: 11px;
+  }
+  .col-md-6{
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .imgRes {
+    width: inherit !important;
+  }
 }
 .headingrow{
   background-color:#8080803d;padding:5px;
@@ -210,6 +239,32 @@ color: white;
 .orderHead{
       margin-top: -15px;
 }
+
 .orderHead2{
       margin-top: 0px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 3px;
+}
+
+.viewMoreBtn {
+  margin: auto;
+  font-weight: bold;
+  color: #eb0f2491;
+  border-color: #eb0f2491;
+  /* background-color: white; */
+
+}
+.viewMoreBtn:hover {
+  background-color: #eb0f2491;
+  color: white;
+}
+
+@media screen and (max-width: 320px) {
+  .orderHead2{
+   font-size: 13px;
+}
 }

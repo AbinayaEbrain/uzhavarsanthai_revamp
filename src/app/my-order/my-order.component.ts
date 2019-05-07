@@ -18,16 +18,19 @@ export class MyOrderComponent implements OnInit {
   prdcIid : any;
   userOrder1 : any = {};
   userOrder2 : any = {};
-  errorMsg = '';
-  cancelledErrMsg = '';
+  recentErrMsg = '';
+  pastErrMsg = '';
   d:any;
   private orderCancelmail = 'https://uzhavarsanthai.herokuapp.com/api/sendordercancelrequest';
+  recentOrder = [];
+  pastOrder = [];
 
   constructor(
     private _dealService: DealsService,
     private http: HttpClient,
     public loadingCtrl: NgxSpinnerService
-  ) { }
+  ) {
+   }
 
   ngOnInit() {
     this.getSignupReq();
@@ -55,10 +58,11 @@ export class MyOrderComponent implements OnInit {
       }
     }
     this.createdRequests = [];
+    this.filterMonth();
     this.getCreatedRequests();
-    if (this.userOrder.length == 0) {
-      this.errorMsg = 'No orders';
-    }
+    // if (this.userOrder.length == 0) {
+    //   this.errorMsg = 'No order requests!';
+    // }
     },err =>{
       console.log(err);
     });
@@ -74,9 +78,9 @@ export class MyOrderComponent implements OnInit {
         j++;
       }
     }
-    if (this.createdRequests.length == 0) {
-      this.errorMsg = 'No order requests!';
-    }
+    // if (this.createdRequests.length == 0) {
+    //   this.errorMsg = 'No order requests!';
+    // }
     console.log(this.createdRequests);
     this.loadingCtrl.hide();
   }
@@ -91,11 +95,56 @@ export class MyOrderComponent implements OnInit {
       }
     }
     console.log(this.cancelledRequests);
-    if (this.cancelledRequests.length == 0) {
-      this.cancelledErrMsg = 'No cancelled order requests!';
-    }
+    // if (this.cancelledRequests.length == 0) {
+    //   this.cancelledErrMsg = 'No order requests!';
+    // }
     this.loadingCtrl.hide();
   }
+
+//  monthDiff(dateFrom, dateTo) {
+//     return dateTo.getMonth() - dateFrom.getMonth() + 
+//       (12 * (dateTo.getFullYear() - dateFrom.getFullYear()))
+//    }
+
+   filterMonth(){
+    let j = 0;
+    for (let i = 0; i < this.userOrder.length; i++) {
+      this.loadingCtrl.show();
+      let today = new Date()
+      console.log(today)
+      let past = new Date(this.userOrder[i].createdAt);
+      console.log(past)
+      var a = this.calcDate(today,past)
+      console.log(a) 
+      if ( a <= 1 ) {
+          this.loadingCtrl.show();
+        this.recentOrder[j] = this.userOrder[i];
+        j++;
+          this.loadingCtrl.hide();
+      } else {
+        this.pastOrder[j] = this.userOrder[i];
+        j++;
+      }
+    }
+    console.log(this.recentOrder)
+    console.log(this.pastOrder)
+    if (this.recentOrder.length == 0) {
+      this.recentErrMsg = 'No recent order requests!';
+    }
+    if (this.pastOrder.length == 0) {
+      this.pastErrMsg = 'No order requests!';
+    }
+   }
+
+
+
+calcDate(date1,date2) {
+    var diff = Math.floor(date1.getTime() - date2.getTime());
+    var day = 1000 * 60 * 60 * 24;
+    var days = Math.floor(diff/day);
+    return days
+    }
+
 
   singleUpdateSignupReq(id){
     this.id = id;

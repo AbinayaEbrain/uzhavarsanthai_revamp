@@ -1,5 +1,5 @@
 <body class="bg" style="overflow-x: hidden;">
-  <div class="container card" style="margin-top: 5% !important;">
+  <div class="container card" style="margin-top: 7% !important;">
     <h4 class="myOrderHeading">My Orders</h4><br>
     <section id="tabs" style="margin-top: -20px;">
           <div class="container">
@@ -7,8 +7,8 @@
                 <div class="col-xs-12 ">
                       <nav>
                           <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Open Orders</a>
-                              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Closed Orders</a>
+                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Recent Orders</a>
+                              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" (click) = "getCancelledRequests()">Past Orders</a>
                           </div>
                       </nav>
                     </div>
@@ -17,53 +17,103 @@
       </section>
       <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div *ngIf="recentErrMsg">
+                <div class="col-md-3 col-lg-4 col-12"></div>
+                <div class="col-md-6 col-lg-4 col-12 errDesign">
+                    <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                    <p class="mt-4" style="font-style: italic;">{{recentErrMsg}}</p>
+                </div>
+                <div class="col-md-3 col-lg-4 col-12"></div>
+        </div>
             <div class="container">
-              <div class="row  mb-2" style="border-bottom: 1px solid #0d4608;" *ngFor="let order of userOrder | paginate: {id: 'foo', itemsPerPage:10,currentPage:d},let i = index">
-              <div class="container">
-                <div class="row headingrow" style="height: 45px;">
-                  <div class="col-md-4">
-                    <div><p class="orderHighlight">{{order.requestId}}</p></div>
+              <div class="row  mb-2" *ngFor="let order of recentOrder | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
+              <div class="container card">
+                <div class="row card-header" style="height:50px">
+                  <div class="col-md-6 col-6">
+                   <p class="orderHighlight">{{order.requestId}}</p>
                   </div>
-                  <div class="col-md-4">
-                      <!-- <p class="orderHead">Urgency</p>
-                      <p class="orderPara">{{order.urgency}}</p> -->
-                  </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6 col-6" style="font-weight: bold;">
                     <p class="orderHead2 float-right" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</p>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="col-md-2 col-sm-12">
-                  <img height="150px"  width="150px" src="{{order.image}}">
+                  <div class="col-md-2 col-sm-12" style="margin-top: 15px;">
+                  <img height="100px"  width="100px" src="{{order.image}}">
                   </div>
-                  <div class="col-md-4">
-                    <p class="orderHead1">{{order.prdctCategory}}</p>
+                  <div class="col-md-4" style="text-align: left;margin-top: 15px;">
+                    <p class="orderHead1" style="color: #0d4608;font-weight: bold;">{{order.prdctCategory}}</p>
                     <p class="orderHead">{{order.prdctName}}</p>
                     <p class="orderHead">{{order.prdctQty}}/{{order.prdctUnit}}</p>
                     <p class="orderHead">{{order.prdctAvlplace}}</p>
                   </div>
-                  <div class="col-md-4">
-                    <p class="orderHead1">Seller</p>
+                  <div class="col-md-4" style="text-align: left;margin-top: 15px;">
+                    <p class="orderHead1" style="color: #0d4608;font-weight: bold;">Seller</p>
                     <p class="orderHead">{{order.sellerName}}</p>
-                    <p class="orderHead1">Urgency</p>
+                    <p class="orderHead1" style="color: #0d4608;font-weight: bold;">Urgency</p>
                     <p class="orderHead">{{order.urgency}}</p>
                   </div>
-                  <div class="col-md-2">
-                   <a class=" text-center button_word1" data-toggle="modal" data-target="#myModal1"  (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Order cancelled' ? 'none' : '' }">Cancel Order</a>
+                  <div class="col-md-2 center" style="font-weight: bold;">
+                   <button class="btn btn-outline-danger text-center viewMoreBtn button_word" style="padding: 3px;" data-toggle="modal" data-target="#myModal1"  (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Order cancelled' ? 'none' : '' }">Cancel Order</button>
                   </div>
                 </div>
               </div>
               </div>
             </div>
-          </div>
+            <div class="mx-auto mt-3" *ngIf="!recentErrMsg">
+              <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div><br>
           <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-              <p class="product-description" style="text-align: justify">postProduct.description</p>
+          <div *ngIf="pastErrMsg">
+            <div class="col-md-3 col-lg-4 col-12"></div>
+            <div class="col-md-6 col-lg-4 col-12 errDesign">
+                <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                <p class="mt-4" style="font-style: italic;">{{pastErrMsg}}</p>
+            </div>
+            <div class="col-md-3 col-lg-4 col-12"></div>
+    </div>
+        <div class="container">
+          <div class="row  mb-2" *ngFor="let order of pastOrder | paginate: {id: 'foo', itemsPerPage:10,currentPage:d},let i = index">
+          <div class="container card">
+            <div class="row card-header" style="height:50px">
+              <div class="col-md-6 col-6">
+               <p class="orderHighlight">{{order.requestId}}</p>
+              </div>
+              <div class="col-md-6 col-6" style="font-weight: bold;">
+                <p class="orderHead2 float-right" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-2 col-sm-12" style="margin-top: 15px;">
+              <img height="100px"  width="100px" src="{{order.image}}">
+              </div>
+              <div class="col-md-4" style="text-align: left;margin-top: 15px;">
+                <p class="orderHead1" style="color: #0d4608;font-weight: bold;">{{order.prdctCategory}}</p>
+                <p class="orderHead">{{order.prdctName}}</p>
+                <p class="orderHead">{{order.prdctQty}}/{{order.prdctUnit}}</p>
+                <p class="orderHead">{{order.prdctAvlplace}}</p>
+              </div>
+              <div class="col-md-4" style="text-align: left;margin-top: 15px;">
+                <p class="orderHead1" style="color: #0d4608;font-weight: bold;">Seller</p>
+                <p class="orderHead">{{order.sellerName}}</p>
+                <p class="orderHead1" style="color: #0d4608;font-weight: bold;">Urgency</p>
+                <p class="orderHead">{{order.urgency}}</p>
+              </div>
+              <div class="col-md-2 center" style="font-weight: bold;">
+               <button class="btn btn-outline-danger text-center viewMoreBtn button_word" style="padding: 3px;" data-toggle="modal" data-target="#myModal1"  (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Order cancelled' ? 'none' : '' }">Cancel Order</button>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="mx-auto mt-3" *ngIf="!pastErrMsg">
+          <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="d = $event"></pagination-controls>
+        </div>
           </div>
       </div>
-      <div class="mx-auto mt-3">
-    <pagination-controls id="foo"  class="ngx-pagination" style="margin-right: 30px;" maxSize="5" (pageChange)="d = $event"></pagination-controls>
-  </div>
+    
     </div>
 
      <!-- modal -->
