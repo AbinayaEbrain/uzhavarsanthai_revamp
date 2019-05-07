@@ -16,11 +16,9 @@
     </ngx-slick-carousel>
   </div>
   </div> <!-- slider-product.// -->
+
   <div class="img-small-wrap">
   <div class="item-gallery"  *ngFor="let slide of arrayImage"> <img src="{{ slide }}"> </div>
-  <!-- <div class="item-gallery"> <img src="{{ slide }}"> </div>
-  <div class="item-gallery"> <img src="{{ slide }}"> </div>
-  <div class="item-gallery"> <img src="{{ slide }}"> </div> -->
   </div>
    <!-- slider-nav.// -->
   </article> <!-- gallery-wrap .end// -->
@@ -71,10 +69,12 @@
                                       </nav>
                                       <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                                           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                              <p class="product-description" style="text-align: justify">{{postProduct.description}}</p>
-                                          </div>
+                                              <p class="product-description" *ngIf="postProduct.description" style="text-align: justify">{{postProduct.description}}</p>
+                                              <p class="product-description" *ngIf="postProduct.description == '' || postProduct.description == undefined || postProduct.description == null" style="text-align: justify">No description.</p>
+                                            </div>
                                           <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                              <p class="product-description" style="text-align: justify">{{postProduct.description}}</p>
+                                              <p class="product-description" *ngIf="postProduct.description" style="text-align: justify">{{postProduct.description}}</p>
+                                              <p class="product-description" *ngIf="postProduct.description == '' || postProduct.description == undefined || postProduct.description == null" style="text-align: justify">No description.</p>
                                           </div>
                                       </div>
 
@@ -326,7 +326,7 @@
                                  ngModel [(ngModel)]="querydata.requiredQuantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="5" required>
                                <span class="text-danger float-left error_word"
                                 [class.d-none] = "requiredQuantity.valid || requiredQuantity.untouched">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i>Quantity is required</span>
+                                <i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>
                        </div>
                       </div>
 
@@ -345,7 +345,7 @@
                               </select>
                                <span class="text-danger float-left error_word"
                                 [class.d-none] = "requiredUnit.valid || requiredUnit.untouched">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i>Unit is required</span>
+                                <i class="fa fa-info-circle" aria-hidden="true"></i> Unit is required</span>
                        </div>
                       </div>
                       </div>
@@ -365,7 +365,7 @@
                      <span
                        class="text-danger float-left error_word"
                        [class.d-none]="urgency.valid || urgency.untouched"
-                       ><i class="fa fa-info-circle" aria-hidden="true"></i>Urgency
+                       ><i class="fa fa-info-circle" aria-hidden="true"></i> Urgency
                        is required</span
                      >
                     </div>
@@ -384,7 +384,7 @@
                          <span
                            class="text-danger float-left error_word"
                            [class.d-none]="description.valid || description.untouched"
-                           ><i class="fa fa-info-circle" aria-hidden="true"></i>Notes
+                           ><i class="fa fa-info-circle" aria-hidden="true"></i> Notes
                            is required</span
                          >
                           </div>

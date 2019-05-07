@@ -29,14 +29,13 @@ export class MyOrderComponent implements OnInit {
     private _dealService: DealsService,
     private http: HttpClient,
     public loadingCtrl: NgxSpinnerService
-  ) {
-   }
+  ) {}
 
   ngOnInit() {
     this.getSignupReq();
   }
 
-  getSignupReq(){
+  getSignupReq() {
     this.loadingCtrl.show();
     let j = 0;
     let curntDte = new Date().getTime();
@@ -150,30 +149,27 @@ calcDate(date1,date2) {
     this.id = id;
     for (let i = 0; i < this.userOrder.length; i++) {
       if (this.id == this.userOrder[i]._id) {
-       this.userOrder1 = this.userOrder[i];
-
+        this.userOrder1 = this.userOrder[i];
       }
     }
-    console.log(this.userOrder1)
+    console.log(this.userOrder1);
   }
 
-  singleUpdateSignupReq1(id){
+  singleUpdateSignupReq1(id) {
     this.id = id;
-    console.log(this.id )
+    console.log(this.id);
     for (let i = 0; i < this.userOrder.length; i++) {
-      console.log(this.userOrder);
-      console.log(this.userOrder.length);
       if (this.id == this.userOrder[i]._id) {
-       this.userOrder1 = this.userOrder[i];
+        this.userOrder1 = this.userOrder[i];
       }
     }
-    console.log(this.userOrder1)
+    console.log(this.userOrder1);
   }
 
   updateSignupReq1() {
-    console.log(this.id)
+    console.log(this.id);
     this.userOrder1.status = 'Order cancelled';
-       this._dealService.editOrderRequest(this.userOrder1,this.id).subscribe(
+    this._dealService.editOrderRequest(this.userOrder1, this.id).subscribe(
       res => {
         console.log(res);
         this.updateSignupReq(this.userOrder1.prdctId);
@@ -191,6 +187,7 @@ calcDate(date1,date2) {
 
   updateSignupReq(id) {
     this.userOrder1.orderStatus = 'Order cancelled';
+    console.log(this.userOrder1);
        this._dealService.addOrderReqPost(this.userOrder1,id).subscribe(
       res => {
         console.log(res);
@@ -214,5 +211,4 @@ calcDate(date1,date2) {
       }
     );
   }
-
 }

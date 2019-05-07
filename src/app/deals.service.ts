@@ -50,17 +50,19 @@ export class DealsService {
   private orderReqmailUrl = 'http://localhost:5000/api/sendorderrequest';
   private storeOrderReqUrl = 'http://localhost:5000/api/storeorderrequest';
   private _getOrderReqUrl = 'http://localhost:5000/api/getorderrequest';
-  private _updateOrderReqUrl = "https://uzhavarsanthai.herokuapp.com/api/updateorderrequest";
+  private _updateOrderReqUrl = "http://localhost:5000/api/updateorderrequest";
   private _getSinleOrderReqUrl =
     'https://uzhavarsanthai.herokuapp.com/api/getSingleOrderRequest';
     private _getSinleOrderReqUrl1 =
     'https://uzhavarsanthai.herokuapp.com/api/getSingleOrderRequest1';
   private sendSellerSmsUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendordersmstoseller';
   private sendBuyerSmsUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendbuyersmsUrl';
-  private mapUserIdPostUrl = "https://uzhavarsanthai.herokuapp.com/api/mapuserpostUrl";
+  private mapUserIdPostUrl = "http://localhost:5000/api/mapuserpostUrl";
 
-  private _orderReqPosturl = 'https://uzhavarsanthai.herokuapp.com/api/orderReqPost';
-  private _cancelOrderRequestUrl = "https://uzhavarsanthai.herokuapp.com/api/cancelorder";
+  private _orderReqPosturl = 'http://localhost:5000/api/orderReqPost';
+  private _cancelOrderRequestUrl = "http://localhost:5000/api/updateViewPost";
+
+  private _cancelRqstViewMore = "http://localhost:5000/api/updatevieworderrequest";
 
   constructor(private http: HttpClient) {}
 
@@ -191,29 +193,27 @@ export class DealsService {
     return this.http.put<any>(this._updateOrderReqUrl + '/' + id, data);
   }
 
+  updateViewOrderRqst(data){
+    return this.http.post<any>(this._cancelRqstViewMore, data);
+  }
+
   sendOrderSmsSeller(data){
-    console.log(data);
     return this.http.post<any>(this.sendSellerSmsUrl, data);
   }
 
   sendOrderSmsBuyer(data) {
-    console.log(data);
     return this.http.post<any>(this.sendBuyerSmsUrl, data);
   }
 
   addOrderReqPost(data, id) {
-    console.log(data)
-    console.log(id)
     return this.http.post<any>(this._orderReqPosturl  + '/' + id ,data);
   }
 
   mapUserIdinPost(data){
-    console.log(data);
     return this.http.post<any>(this.mapUserIdPostUrl, data);
   }
 
-  cancelOrderStatus(data){
-    console.log(data);
-    return this.http.post<any>(this._cancelOrderRequestUrl, data);
+  cancelOrderStatus(data,id){
+    return this.http.post<any>(this._cancelOrderRequestUrl + '/' + id, data);
   }
 }

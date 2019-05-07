@@ -1,5 +1,6 @@
 <div class="textSize tamil_word" [innerHTML]="currentText"></div>
 <a
+  *ngIf="show"
   class="btn btnmed float-right tamil_word"
   [class.hidden]="hideToggle"
   (click)="toggleView()"
