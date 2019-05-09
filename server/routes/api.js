@@ -1673,7 +1673,6 @@ router.post('/sendDisputeMail', (req, res) => {
            "<html><h3> Disputer Phone :</h3></html>" + req.body.sellerPhone +
            "<html><br></html>" + "<html><hr></html>" +
            
-
            "<html><h3 style='text-align:center'>Product Details</h3></html>" +
            "<html><h3> Request Id :</h3></html>" + req.body.requestId +
            "<html><br></html>" +
