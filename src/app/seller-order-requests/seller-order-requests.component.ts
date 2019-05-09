@@ -27,10 +27,11 @@ export class SellerOrderRequestsComponent implements OnInit {
   e: any;
   userData: any = {};
   disputeMailData: any = {};
-  disputeData:any;
-  submitted:any;
+  disputeData: any;
+  submitted: any;
   private sendMailForReject =
     'https://uzhavarsanthai.herokuapp.com/api/sendMailRejectSeller';
+  private disputeMail = 'http://localhost:5000/api/sendDisputeMail';
 
   constructor(
     private _dealService: DealsService,
@@ -183,6 +184,7 @@ export class SellerOrderRequestsComponent implements OnInit {
     this.userData.productId = this.singleOrderRequest.prdctId;
     this.userData.orderRqstId = this.singleOrderRequest._id;
     this.userData.dispute = this.userData.dispute;
+    this.userData.disputeStatus = 'Created';
     let curntDte = new Date().getTime();
     this.userData.createdAt = curntDte;
     console.log(this.userData);
@@ -195,7 +197,6 @@ export class SellerOrderRequestsComponent implements OnInit {
         this.updatePostDispute();
         this.mytemplateForm.reset();
         document.getElementById('closeCancelOrderModal').click();
-        //this.router.navigate['/seller-order-requests'];
       },
       err => {
         console.log(err);
@@ -203,35 +204,70 @@ export class SellerOrderRequestsComponent implements OnInit {
     );
   }
 
-  updatePostDispute(){
-    this._dealService.updatePostDispute(this.userData,this.userData.productId).subscribe(data =>{
-      console.log(data);
-      this.updateUserDispute();
-      this.updateUserSellerDispute();
-    }, err =>{
-      console.log(err);
-    })
+  updatePostDispute() {
+    this._dealService
+      .updatePostDispute(this.userData, this.userData.productId)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.updateUserDispute();
+          this.updateUserSellerDispute();
+        },
+        err => {
+          console.log(err);
+        }
+      );
   }
 
-  updateUserDispute(){
+  updateUserDispute() {
     this.userData.dispute = this.disputeData;
-    console.log(this.userData);
-    console.log(this.userData.dispute);
-    this._dealService.updateUserDispute(this.userData,this.userData.buyerId).subscribe(data =>{
-      console.log(data);
-    }, err =>{
-      console.log(err);
-    })
+    this._dealService
+      .updateUserDispute(this.userData, this.userData.buyerId)
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      );
   }
 
-  updateUserSellerDispute(){
+  updateUserSellerDispute() {
     this.userData.dispute = this.disputeData;
-    console.log(this.userData);
-    console.log(this.userData.dispute);
-    this._dealService.updateSellerUserDispute(this.userData,this.userData.disputerId).subscribe(data =>{
-      console.log(data);
-    }, err =>{
-      console.log(err);
-    })
+    this._dealService
+      .updateSellerUserDispute(this.userData, this.userData.disputerId)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.disputeMailSend();
+        },
+        err => {
+          console.log(err);
+        }
+      );
+  }
+
+  disputeMailSend() {
+    var todate = new Date(this.userData.createdAt).getDate();
+    var tomonth = new Date(this.userData.createdAt).getMonth() + 1;
+    var toyear = new Date(this.userData.createdAt).getFullYear();
+
+    this.disputeMailData = this.userData;
+    this.disputeMailData.createdAt = tomonth + '/' + todate + '/' + toyear;
+    this.disputeMailData.sellerPhone = this.singleOrderRequest.sellerPhone;
+    this.disputeMailData.prdctCategory = this.singleOrderRequest.prdctCategory;
+    this.disputeMailData.requestId = this.singleOrderRequest.requestId;
+    this.disputeMailData.prdctName = this.singleOrderRequest.prdctName;
+
+    console.log(this.disputeMailData);
+    this.http.post<any>(this.disputeMail, this.disputeMailData).subscribe(
+      data => {
+        console.log(data);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 }

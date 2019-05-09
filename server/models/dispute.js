@@ -10,6 +10,7 @@ const disputeSchema = new Schema({
   productId: String,
   orderRqstId: String,
   dispute: String,
+  disputeStatus: String,
   createdAt: Date
 });
 

@@ -1644,7 +1644,6 @@ router.get('/getDispute', (req, res) => {
 
 // Dispute mail for admin
 router.post('/sendDisputeMail', (req, res) => {
-  console.log(req.body);
   var server = email.server.connect({
     user: 'abishakshi1496@gmail.com',
     password: 'abiyuva14382',
@@ -1656,47 +1655,31 @@ router.post('/sendDisputeMail', (req, res) => {
       text: 'You have signed up',
       from: 'abishakshi1496@gmail.com',
       to: 'abishakshi1496@gmail.com',
-      subject: 'Buyer Cancelled Request - Uzhavarsanthai',
+      subject: 'Dispute against Buyer Order Request - Uzhavarsanthai',
       attachment: [
         {
           data:
           "<html><h2 style='text-align:center'>Dispute against Buyer Order Request</h2></html>" +
-           "<html><h3> Request Number:</h3></html>"+ req.body.requestId +
+           "<html><h3> Disputed against:</h3></html>"+ req.body.buyerName +
            "<html><br></html>" +
-           "<html><h3> Buyer Name :</h3></html>" + req.body.buyerName +
+           "<html><h3> Dispute :</h3></html>" + req.body.dispute +
            "<html><br></html>" +
-           "<html><h3>Buyer Phone :</h3></html>" + req.body.buyerPhone +
-           "<html><br></html>" +
-           "<html><h3>Buyer Address :</h3></html>" + req.body.buyerAddress +
-           "<html><br></html>" +
-           "<html><h3>Buyer City :</h3></html>" + req.body.buyerCity +
-           "<html><br></html>" +
-           "<html><h3>Buyer Query :</h3></html>" + req.body.description +
-           "<html><br></html>" +
-           "<html><h3>Buyer Urgency :</h3></html>" + req.body.urgency +
+           "<html><h3> Disputed on :</h3></html>" + req.body.createdAt +
            "<html><br></html>" + "<html><hr></html>" +
 
-           "<html><h3 style='text-align:center'>Seller Details</h3></html>" +
-           "<html><h3>Seller Name :</h3></html>" + req.body.sellerName +
+           "<html><h3 style='text-align:center'>Disputer Details</h3></html>" +
+           "<html><h3> Disputer Name :</h3></html>" + req.body.disputerName +
            "<html><br></html>" +
-           "<html><h3>Seller Phone :</h3></html>" + req.body.sellerPhone +
-           "<html><br></html>" +
-           "<html><h3>Seller Address :</h3></html>" + req.body.sellerAddress +
+           "<html><h3> Disputer Phone :</h3></html>" + req.body.sellerPhone +
            "<html><br></html>" + "<html><hr></html>" +
+           
 
            "<html><h3 style='text-align:center'>Product Details</h3></html>" +
-           "<html><h3>Product Category :</h3></html>" + req.body.prdctCategory +
+           "<html><h3> Request Id :</h3></html>" + req.body.requestId +
            "<html><br></html>" +
-           "<html><h3>Product Name :</h3></html>" + req.body.prdctName +
+           "<html><h3> Product Name :</h3></html>" + req.body.prdctName +
            "<html><br></html>" +
-           "<html><h3>Product Qty :</h3></html>" + req.body.prdctQty +
-           "<html><br></html>" +
-           "<html><h3>Product Unit :</h3></html>" + req.body.prdctUnit + 
-           "<html><br></html>" +
-           "<html><h3>Required Unit :</h3></html>" + req.body.requiredUnit +
-           "<html><br></html>" +
-           "<html><h3>Required Quantity :</h3></html>" + req.body.requiredQuantity,
-
+           "<html><h3> Product Category :</h3></html>" + req.body.prdctCategory ,
           alternative: true
         }
         //  {path:"pathtofile.zip", type:"application/zip", name:"renamed.zip"}
