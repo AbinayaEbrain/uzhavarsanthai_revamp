@@ -24,6 +24,18 @@ const userSchema = new Schema({
   status: String,
   role: String,
   roleStatus: String,
+  productreview: [
+    {
+      review: String,
+      starValue: String,
+      buyerId: String,
+      buyerName: String,
+      prdctId: String,
+      sellerId: String,
+      sellerName: String,
+      reviewRqstId: String,
+    }
+  ],
   dispute: [
     {
       buyerName: String,

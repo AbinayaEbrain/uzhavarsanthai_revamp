@@ -24,6 +24,10 @@ export class MyOrderComponent implements OnInit {
   private orderCancelmail = 'https://uzhavarsanthai.herokuapp.com/api/sendordercancelrequest';
   recentOrder = [];
   pastOrder = [];
+  count : any;
+  rating ="";
+  public reviewData: any = {};
+
   p:any;
 
   constructor(
@@ -59,61 +63,17 @@ export class MyOrderComponent implements OnInit {
     }
     this.createdRequests = [];
     this.filterMonth();
-    this.getCreatedRequests();
-    // if (this.userOrder.length == 0) {
-    //   this.errorMsg = 'No order requests!';
-    // }
     },err =>{
       console.log(err);
     });
   }
-
-  getCreatedRequests() {
-    console.log(this.userOrder)
-    let j = 0;
-    for (let i = 0; i < this.userOrder.length; i++) {
-      console.log(this.userOrder[i].status);
-      if (this.userOrder[i].status == 'Order created') {
-        this.createdRequests[j] = this.userOrder[i];
-        j++;
-      }
-    }
-    // if (this.createdRequests.length == 0) {
-    //   this.errorMsg = 'No order requests!';
-    // }
-    console.log(this.createdRequests);
-    this.loadingCtrl.hide();
-  }
-
-  getCancelledRequests() {
-    this.loadingCtrl.show();
-    let j = 0;
-    for (let i = 0; i < this.userOrder.length; i++) {
-      if (this.userOrder[i].status == 'Order cancelled') {
-        this.cancelledRequests[j] = this.userOrder[i];
-        j++;
-      }
-    }
-    console.log(this.cancelledRequests);
-    // if (this.cancelledRequests.length == 0) {
-    //   this.cancelledErrMsg = 'No order requests!';
-    // }
-    this.loadingCtrl.hide();
-  }
-
-//  monthDiff(dateFrom, dateTo) {
-//     return dateTo.getMonth() - dateFrom.getMonth() + 
-//       (12 * (dateTo.getFullYear() - dateFrom.getFullYear()))
-//    }
 
    filterMonth(){
     let j = 0;
     for (let i = 0; i < this.userOrder.length; i++) {
       this.loadingCtrl.show();
       let today = new Date()
-      console.log(today)
       let past = new Date(this.userOrder[i].createdAt);
-      console.log(past)
       var a = this.calcDate(today,past)
       console.log(a) 
       if ( a <= 1 ) {
@@ -150,26 +110,21 @@ singleUpdateSignupReq(id){
         this.userOrder1 = this.userOrder[i];
       }
     }
-    console.log(this.userOrder1);
   }
 
   singleUpdateSignupReq1(id) {
     this.id = id;
-    console.log(this.id);
     for (let i = 0; i < this.userOrder.length; i++) {
       if (this.id == this.userOrder[i]._id) {
         this.userOrder1 = this.userOrder[i];
       }
     }
-    console.log(this.userOrder1);
   }
 
   updateSignupReq1() {
-    console.log(this.id);
     this.userOrder1.status = 'Order cancelled';
     this._dealService.editOrderRequest(this.userOrder1, this.id).subscribe(
       res => {
-        console.log(res);
         this.updateSignupReq(this.userOrder1.prdctId);
              this.successMsg = 'Your order is cancelled';
               setTimeout(() => {
@@ -185,7 +140,6 @@ singleUpdateSignupReq(id){
 
   updateSignupReq(id) {
     this.userOrder1.orderStatus = 'Order cancelled';
-    console.log(this.userOrder1);
        this._dealService.addOrderReqPost(this.userOrder1,id).subscribe(
       res => {
         console.log(res);
@@ -209,4 +163,81 @@ singleUpdateSignupReq(id){
       }
     );
   }
+
+oneStar(){
+  this.reviewData.starValue = (<HTMLInputElement>document.getElementById("1-star")).value;
+    console.log(this.reviewData.starValue);
+}
+
+twoStar(){
+  this.reviewData.starValue = (<HTMLInputElement>document.getElementById("2-stars")).value;
+      console.log(this.reviewData.starValue);
+}
+
+threeStar(){
+  this.reviewData.starValue = (<HTMLInputElement>document.getElementById("3-stars")).value;
+        console.log(this.reviewData.starValue);
+}
+
+fourStar(){
+  this.reviewData.starValue = (<HTMLInputElement>document.getElementById("4-stars")).value;
+          console.log(this.reviewData.starValue);
+}
+
+fiveStar(){
+  this.reviewData.starValue = (<HTMLInputElement>document.getElementById("5-stars")).value;
+            console.log(this.reviewData.starValue);
+}
+
+reviewAndRating(){
+  console.log(this.reviewData);
+  console.log(this.reviewData.starValue);
+  console.log(this.userOrder1)
+  this.reviewData.buyerId = this.userOrder1.buyerId;
+  this.reviewData.buyerName = this.userOrder1.buyerName;
+  this.reviewData.prdctId =  this.userOrder1.prdctId;
+  this.reviewData.sellerId = this.userOrder1.sellerId;
+  this.reviewData.sellerName = this.userOrder1.sellerName;
+  let curntDte = new Date().getTime();
+    this.reviewData.createdAt = curntDte;
+  this._dealService.addReview(this.reviewData).subscribe(
+    res => {
+      console.log(res);
+      this.reviewData.reviewRqstId = res._id;
+      console.log(this.reviewData.reviewRqstId);
+      this.mapWithPost();
+      this.mapWithUser();
+    },
+    err => {
+      console.log(err);
+    }
+  );
+}
+
+//map with post
+mapWithPost(){
+  console.log(this.reviewData);
+
+  this._dealService.mapProductReviewinPost(this.reviewData).subscribe(
+    res => {
+      console.log(res);
+
+    },
+    err => {console.log(err);
+    }
+  );
+}
+
+//map with User
+mapWithUser(){
+  console.log(this.reviewData);
+  this._dealService.mapProductReviewinUser(this.reviewData).subscribe(
+    res => {
+      console.log(res);
+    },
+    err => {console.log(err);
+    }
+  );
+}
+
 }

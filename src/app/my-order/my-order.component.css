@@ -263,8 +263,64 @@ color: white;
   color: white;
 }
 
+.viewMoreBtn1 {
+  margin: auto;
+  font-weight: bold;
+  color: #0d4608 ;
+  border-color: #0d4608;
+  background-color: white;
+}
+.viewMoreBtn1:hover {
+  background-color: #0d4608;
+  color: white;
+}
+
 @media screen and (max-width: 320px) {
   .orderHead2{
    font-size: 13px;
 }
+}
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown-toggle::after {
+  display:none;
+}
+
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+
+/* component */
+
+.star-rating {
+  /* border:solid 1px #ccc; */
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+}
+
+.star-rating input {
+  display:none;
+}
+
+.star-rating label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-rating :checked ~ label {
+  color:#f90;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color:#fc0;
 }
