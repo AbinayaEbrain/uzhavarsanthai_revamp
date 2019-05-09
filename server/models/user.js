@@ -23,7 +23,20 @@ const userSchema = new Schema({
   phone: Number,
   status: String,
   role: String,
-  roleStatus: String
+  roleStatus: String,
+  dispute: [
+    {
+      buyerName: String,
+      buyerId: String,
+      disputerName: String,
+      disputerId: String,
+      productId: String,
+      orderRqstId: String,
+      disputeId: String,
+      dispute: String,
+      createdAt: Date
+    }
+  ]
 });
 
 module.exports = mongoose.model('user', userSchema, 'users');

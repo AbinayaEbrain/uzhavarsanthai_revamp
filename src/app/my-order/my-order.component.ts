@@ -131,11 +131,9 @@ export class MyOrderComponent implements OnInit {
       this.recentErrMsg = 'No recent order requests!';
     }
     if (this.pastOrder.length == 0) {
-      this.pastErrMsg = 'No order requests!';
+      this.pastErrMsg = 'No past order requests!';
     }
    }
-
-
 
 calcDate(date1,date2) {
     var diff = Math.floor(date1.getTime() - date2.getTime());
@@ -144,8 +142,7 @@ calcDate(date1,date2) {
     return days
     }
 
-
-  singleUpdateSignupReq(id){
+singleUpdateSignupReq(id){
     this.id = id;
     for (let i = 0; i < this.userOrder.length; i++) {
       if (this.id == this.userOrder[i]._id) {

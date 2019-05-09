@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DealsService } from '../deals.service';
 import { HttpClient } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NgForm } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-seller-order-requests',
@@ -9,6 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./seller-order-requests.component.css']
 })
 export class SellerOrderRequestsComponent implements OnInit {
+  @ViewChild('disputeForm') mytemplateForm: NgForm;
   orderRequests: any = [];
   acntID: any;
   errMsg: any;
@@ -22,12 +25,15 @@ export class SellerOrderRequestsComponent implements OnInit {
   queryString: any;
   p: any;
   e: any;
+  userData: any = {};
+  disputeData:any;
   private sendMailForReject =
     'https://uzhavarsanthai.herokuapp.com/api/sendMailRejectSeller';
 
   constructor(
     private _dealService: DealsService,
     private http: HttpClient,
+    private router: Router,
     public loadingCtrl: NgxSpinnerService
   ) {}
 
@@ -165,5 +171,65 @@ export class SellerOrderRequestsComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  disputeSave() {
+    this.userData.buyerName = this.singleOrderRequest.buyerName;
+    this.userData.buyerId = this.singleOrderRequest.buyerId;
+    this.userData.disputerName = this.singleOrderRequest.sellerName;
+    this.userData.disputerId = this.singleOrderRequest.sellerId;
+    this.userData.productId = this.singleOrderRequest.prdctId;
+    this.userData.orderRqstId = this.singleOrderRequest._id;
+    this.userData.dispute = this.userData.dispute;
+    let curntDte = new Date().getTime();
+    this.userData.createdAt = curntDte;
+    console.log(this.userData);
+
+    this._dealService.disputePost(this.userData).subscribe(
+      data => {
+        console.log(data);
+        this.userData.disputeId = data._id;
+        this.disputeData = data.dispute;
+        this.updatePostDispute();
+        this.mytemplateForm.reset();
+        document.getElementById('closeCancelOrderModal').click();
+        //this.router.navigate['/seller-order-requests'];
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  updatePostDispute(){
+    this._dealService.updatePostDispute(this.userData,this.userData.productId).subscribe(data =>{
+      console.log(data);
+      this.updateUserDispute();
+      this.updateUserSellerDispute();
+    }, err =>{
+      console.log(err);
+    })
+  }
+
+  updateUserDispute(){
+    this.userData.dispute = this.disputeData;
+    console.log(this.userData);
+    console.log(this.userData.dispute);
+    this._dealService.updateUserDispute(this.userData,this.userData.buyerId).subscribe(data =>{
+      console.log(data);
+    }, err =>{
+      console.log(err);
+    })
+  }
+
+  updateUserSellerDispute(){
+    this.userData.dispute = this.disputeData;
+    console.log(this.userData);
+    console.log(this.userData.dispute);
+    this._dealService.updateSellerUserDispute(this.userData,this.userData.disputerId).subscribe(data =>{
+      console.log(data);
+    }, err =>{
+      console.log(err);
+    })
   }
 }

@@ -21,6 +21,7 @@ const Device = require('../models/devicedata');
 const Notification = require('../models/notification');
 const Orderrequest = require('../models/orderrequest');
 const Signup = require('../models/signUp');
+const Dispute = require('../models/dispute');
 
 //email
 var email = require('emailjs/email');
@@ -1486,5 +1487,159 @@ router.post('/mapuserpostUrl', function(req, res) {
   )
 });
 
+// Post Dispute
+router.post('/disputePost', (req, res) => {
+  // let aaa = req.body.name;
+  // let name = aaa.toLowerCase();
+  // req.body.name = name.charAt(0).toUpperCase() + name.slice(1);
+  let disputeData = req.body;
+  let dispute = new Dispute(disputeData);
+  dispute.save((error, disputeData) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.status(200).send(disputeData);
+    }
+  });
+});
+
+// Dispute update in post
+router.post('/updateDisputePost/:id', function(req, res) {
+  Post.find(
+    {
+      _id:req.body.productId
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Post.update(
+          {
+            _id:req.body.productId
+          },
+          {
+            $push: {
+              dispute:{
+                buyerName: req.body.buyerName,
+                buyerId: req.body.buyerId,
+                disputerName: req.body.disputerName,
+                disputerId: req.body.disputerId,
+                productId: req.body.productId,
+                orderRqstId: req.body.orderRqstId,
+                disputeId: req.body.disputeId,
+                dispute: req.body.dispute,
+                createdAt: req.body.createdAt
+              }
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'Post updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
+// Dispute update in user
+router.post('/updateDisputeUser/:id', function(req, res) {
+  User.find(
+    {
+      _id:req.body.buyerId,
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await User.updateMany(
+          {
+            _id:req.body.buyerId,
+          },
+          {
+            $push: {
+              dispute:{
+                buyerName: req.body.buyerName,
+                buyerId: req.body.buyerId,
+                disputerName: req.body.disputerName,
+                disputerId: req.body.disputerId,
+                productId: req.body.productId,
+                orderRqstId: req.body.orderRqstId,
+                disputeId: req.body.disputeId,
+                dispute: req.body.dispute,
+                createdAt: req.body.createdAt
+              }
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'User updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
+// Dispute update in seller
+router.post('/updateDisputeUserSeller/:id', function(req, res) {
+  User.find(
+    {
+      _id:req.body.disputerId,
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await User.updateMany(
+          {
+            _id:req.body.disputerId,
+          },
+          {
+            $push: {
+              dispute:{
+                buyerName: req.body.buyerName,
+                buyerId: req.body.buyerId,
+                disputerName: req.body.disputerName,
+                disputerId: req.body.disputerId,
+                productId: req.body.productId,
+                orderRqstId: req.body.orderRqstId,
+                disputeId: req.body.disputeId,
+                dispute: req.body.dispute,
+                createdAt: req.body.createdAt
+              }
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'User updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
+// Get Single Dispute
+router.get('/getSingleDispute/:id', (req, res) => {
+  Dispute.findById(req.params.id, function(errors, getoneuser) {
+    if (errors) {
+      console.log('Error updating' + errors);
+    } else {
+      res.json(getoneuser);
+    }
+  });
+});
+
+//Get Dispute 
+router.get('/getDispute', (req, res) => {
+  Dispute.find(function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  }).sort({createdAt : -1});
+});
 
 module.exports = router;
