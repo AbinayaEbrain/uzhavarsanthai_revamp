@@ -123,7 +123,7 @@
                                        <td>{{deal.buyerName}}</td>
                                         <td>{{deal.buyerPhone}}</td>
                                         <td *ngIf = "deal.sellerStatus == 'Order cancelled'" class="text-danger">Cancelled by myself</td>
-                                        <td *ngIf = "!deal.sellerStatus == 'Order cancelled'" class="text-danger">Cancelled by {{deal.buyerName}}</td>
+                                        <td *ngIf = "deal.sellerStatus == 'Order created'" class="text-danger">Cancelled by {{deal.buyerName}}</td>
                                     </tr>
      
                                 </tbody>

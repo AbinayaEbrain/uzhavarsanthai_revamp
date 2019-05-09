@@ -58,6 +58,10 @@ export class DealsService {
   private sendSellerSmsUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendordersmstoseller';
   private sendBuyerSmsUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendbuyersmsUrl';
   private mapUserIdPostUrl = "http://localhost:5000/api/mapuserpostUrl";
+  private mapProductReviewPostUrl = "http://localhost:5000/api/mapproductreviewpostUrl";
+  private _posReviewtUrl = 'http://localhost:5000/api/postreviewrating';
+  private mapProductReviewUserUrl = "http://localhost:5000/api/mapproductreviewuserUrl";
+
 
   private _orderReqPosturl = 'http://localhost:5000/api/orderReqPost';
   private _cancelOrderRequestUrl = "http://localhost:5000/api/updateViewPost";
@@ -211,6 +215,18 @@ export class DealsService {
 
   mapUserIdinPost(data){
     return this.http.post<any>(this.mapUserIdPostUrl, data);
+  }
+
+  addReview(data) {
+    return this.http.post<any>(this._posReviewtUrl, data);
+  }
+
+  mapProductReviewinPost(data){
+    return this.http.post<any>(this.mapProductReviewPostUrl, data);
+  }
+
+  mapProductReviewinUser(data){
+    return this.http.post<any>(this.mapProductReviewUserUrl, data);
   }
 
   cancelOrderStatus(data,id){

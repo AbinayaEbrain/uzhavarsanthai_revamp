@@ -23,7 +23,20 @@ const userSchema = new Schema({
   phone: Number,
   status: String,
   role: String,
-  roleStatus: String
+  roleStatus: String,
+  productreview: [
+    {
+      review: String,
+      starValue: String,
+      buyerId: String,
+      buyerName: String,
+      prdctId: String,
+      sellerId: String,
+      sellerName: String,
+      reviewRqstId: String,
+      createdAt: Date
+    }
+  ]
 });
 
 module.exports = mongoose.model('user', userSchema, 'users');

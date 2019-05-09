@@ -41,6 +41,19 @@ const postSchema = new Schema({
       orderStatus: String,
       orderRqstId: String
     }
+  ],
+  productreview: [
+    {
+      review: String,
+      starValue: String,
+      buyerId: String,
+      buyerName: String,
+      prdctId: String,
+      sellerId: String,
+      sellerName: String,
+      reviewRqstId: String,
+      createdAt: Date
+    }
   ]
 });
 module.exports = mongoose.model('post', postSchema, 'post');

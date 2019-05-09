@@ -21,6 +21,8 @@ const Device = require('../models/devicedata');
 const Notification = require('../models/notification');
 const Orderrequest = require('../models/orderrequest');
 const Signup = require('../models/signUp');
+const Reviewrate = require('../models/reviewrate');
+
 
 //email
 var email = require('emailjs/email');
@@ -1486,5 +1488,92 @@ router.post('/mapuserpostUrl', function(req, res) {
   )
 });
 
+//map review and ratings with POST
+router.post('/mapproductreviewpostUrl', function(req, res) {
+  Post.find(
+    {
+      _id:req.body.prdctId
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Post.update(
+          {
+            _id:req.body.prdctId
+          },
+          {
+            $push: {
+              productreview:{
+                review: req.body.review,
+                starValue: req.body.starValue,
+                buyerId: req.body.buyerId,
+                buyerName: req.body.buyerName,
+                prdctId: req.body.prdctId,
+                sellerId: req.body.sellerId,
+                sellerName: req.body.sellerName,
+                reviewRqstId: req.body.reviewRqstId
+              }
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'post id updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
+//map review and ratings with POST
+router.post('/mapproductreviewuserUrl', function(req, res) {
+  User.find(
+    {
+      _id:req.body.sellerId
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await User.update(
+          {
+            _id:req.body.sellerId
+          },
+          {
+            $push: {
+              productreview:{
+                review: req.body.review,
+                starValue: req.body.starValue,
+                buyerId: req.body.buyerId,
+                buyerName: req.body.buyerName,
+                prdctId: req.body.prdctId,
+                sellerId: req.body.sellerId,
+                sellerName: req.body.sellerName,
+                reviewRqstId: req.body.reviewRqstId
+              }
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'post id updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
+router.post('/postreviewrating',(req,res)=>{
+  let reviewData = req.body
+  let reviewrate = new Reviewrate(reviewData)
+  reviewrate.save((error,reviewrateData)=>{
+      if(error){
+          console.log(error)
+      }else{
+          res.status(200).send(reviewrateData)
+      }
+  })
+});
 
 module.exports = router;
