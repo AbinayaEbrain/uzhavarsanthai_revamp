@@ -24,6 +24,7 @@ export class MyOrderComponent implements OnInit {
   private orderCancelmail = 'https://uzhavarsanthai.herokuapp.com/api/sendordercancelrequest';
   recentOrder = [];
   pastOrder = [];
+  p:any;
 
   constructor(
     private _dealService: DealsService,

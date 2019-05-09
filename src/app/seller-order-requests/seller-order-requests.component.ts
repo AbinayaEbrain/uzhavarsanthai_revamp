@@ -26,7 +26,9 @@ export class SellerOrderRequestsComponent implements OnInit {
   p: any;
   e: any;
   userData: any = {};
+  disputeMailData: any = {};
   disputeData:any;
+  submitted:any;
   private sendMailForReject =
     'https://uzhavarsanthai.herokuapp.com/api/sendMailRejectSeller';
 
