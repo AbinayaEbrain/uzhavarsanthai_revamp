@@ -47,10 +47,10 @@ export class DealsService {
     'https://uzhavarsanthai.herokuapp.com/api/notificationospecificeusers';
   private notificationtoPostedProductUrl =
     'https://uzhavarsanthai.herokuapp.com/api/notificationforpost';
-  private orderReqmailUrl = 'http://localhost:5000/api/sendorderrequest';
-  private storeOrderReqUrl = 'http://localhost:5000/api/storeorderrequest';
-  private _getOrderReqUrl = 'http://localhost:5000/api/getorderrequest';
-  private _updateOrderReqUrl = "http://localhost:5000/api/updateorderrequest";
+  private orderReqmailUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendorderrequest';
+  private storeOrderReqUrl = 'https://uzhavarsanthai.herokuapp.com/api/storeorderrequest';
+  private _getOrderReqUrl = 'https://uzhavarsanthai.herokuapp.com/api/getorderrequest';
+  private _updateOrderReqUrl = "https://uzhavarsanthai.herokuapp.com/api/updateorderrequest";
   private _getSinleOrderReqUrl =
     'https://uzhavarsanthai.herokuapp.com/api/getSingleOrderRequest';
     private _getSinleOrderReqUrl1 =
@@ -63,10 +63,17 @@ export class DealsService {
   private mapProductReviewUserUrl = "http://localhost:5000/api/mapproductreviewuserUrl";
 
 
-  private _orderReqPosturl = 'http://localhost:5000/api/orderReqPost';
-  private _cancelOrderRequestUrl = "http://localhost:5000/api/updateViewPost";
+  private _orderReqPosturl = 'https://uzhavarsanthai.herokuapp.com/api/orderReqPost';
+  private _cancelOrderRequestUrl = "https://uzhavarsanthai.herokuapp.com/api/updateViewPost";
 
-  private _cancelRqstViewMore = "http://localhost:5000/api/updatevieworderrequest";
+  private _cancelRqstViewMore = "https://uzhavarsanthai.herokuapp.com/api/updatevieworderrequest";
+
+  // Dispute
+  private _postDispute = "https://uzhavarsanthai.herokuapp.com/api/disputePost";
+  private _getDispute = "https://uzhavarsanthai.herokuapp.com/api/getDispute";
+  private _updatePostDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputePost";
+  private _updateUserDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUser";
+  private _updateUserSellerDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUserSeller";
 
   constructor(private http: HttpClient) {}
 
@@ -231,5 +238,26 @@ export class DealsService {
 
   cancelOrderStatus(data,id){
     return this.http.post<any>(this._cancelOrderRequestUrl + '/' + id, data);
+  }
+
+  // Dispute
+  disputePost(data){
+    return this.http.post<any>(this._postDispute, data);
+  }
+
+  getdispute() {
+    return this.http.get<any>(this._getDispute);
+  }
+
+  updatePostDispute(data,id){
+    return this.http.post<any>(this._updatePostDispute + '/' + id, data);
+  }
+
+  updateUserDispute(data,id){
+    return this.http.post<any>(this._updateUserDispute + '/' + id, data);
+  }
+
+  updateSellerUserDispute(data,id){
+    return this.http.post<any>(this._updateUserSellerDispute + '/' + id, data);
   }
 }

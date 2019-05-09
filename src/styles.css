@@ -33,6 +33,11 @@
   /* margin-top: 15px; */
 }
 
+.nav-link:active {
+  color: white !important;
+  font-weight: bold;
+}
+
 dl,
 ol {
   margin-left: -35px !important;

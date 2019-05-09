@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone, ElementRef, AfterViewChecked } from '@angular/core';
 import { DealsService } from '../deals.service';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
@@ -20,14 +20,12 @@ declare var google: any;
   templateUrl: './viewmore.component.html',
   styleUrls: ['./viewmore.component.css']
 })
-export class ViewmoreComponent implements OnInit {
-    // @ViewChild('queryform') mytemplateForm: NgForm;
-    // @ViewChild('loginform') mytemplateForm: NgForm;
-    @ViewChild('loginform') mytemplateForm1: NgForm;
-    @ViewChild('postform') mytemplateForm2: NgForm;
-    @ViewChild('queryform') mytemplateForm3: NgForm;
-    @ViewChild('forgotpwdform') mytemplateForm4: NgForm;
-
+export class ViewmoreComponent implements OnInit, AfterViewChecked {
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+  @ViewChild('loginform') mytemplateForm1: NgForm;
+  @ViewChild('postform') mytemplateForm2: NgForm;
+  @ViewChild('queryform') mytemplateForm3: NgForm;
+  @ViewChild('forgotpwdform') mytemplateForm4: NgForm;
 
   rqstId : any;
   id = '';
@@ -47,7 +45,7 @@ export class ViewmoreComponent implements OnInit {
   adrsArray: any;
   public previousUrl: any;
   private sendSignUpMail = 'https://uzhavarsanthai.herokuapp.com/api/sendMailSignUp';
-  private orderCancelmail = 'http://localhost:5000/api/sendordercancelrequest';
+  private orderCancelmail = 'https://uzhavarsanthai.herokuapp.com/api/sendordercancelrequest';
   imageArray = '';
   imageMultiArray = '';
   arrayImage = [];
@@ -101,6 +99,7 @@ export class ViewmoreComponent implements OnInit {
   };
   orderLiveStatus:any;
   orderCancelMsg:any;
+  disputeArr : any = [];
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -131,14 +130,23 @@ export class ViewmoreComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.loadingCtrl.show();
     this.lastvisit = localStorage.getItem('lastvisitproductid');
-    
+    this.scrollToBottom();  
     if(this.id){
       this.getDeals();
       this.getMultiPostDeals();
     }
-    
   }
   
+  ngAfterViewChecked() {        
+    this.scrollToBottom();        
+  }
+
+  scrollToBottom(): void {
+    try {
+        this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }                 
+  }
+
   getDeals(){
     this._dealsService.getDeals().subscribe(
       res => {
@@ -167,6 +175,7 @@ export class ViewmoreComponent implements OnInit {
             this.postProduct.phone = this.viewPost[i].userNumber;
             this.postProduct.userAddressLine = this.viewPost[i].userAddressLine;
             this.postProduct.address = this.viewPost[i].userAddress;
+            this.postProduct.dispute = this.viewPost[i].dispute;
             this.getToken = localStorage.getItem('token');
             var check = this.viewPost[i].orderrequests;
 
@@ -188,6 +197,8 @@ export class ViewmoreComponent implements OnInit {
           this.time,
           'dd/MM/yyyy'
         );
+        this.disputeArr = this.postProduct.dispute;
+        console.log(this.disputeArr);
         this.arrayImage = this.imageArray.split(',');
         // this.slideConfig = {"slidesToShow": 1, "slidesToScroll": 1};
         this.slideConfig = {
@@ -239,10 +250,8 @@ openloginModal(){
   document.getElementById("hideForm").style.display="block";
   document.getElementById("showForm").style.display="none";
   document.getElementById("secondDiv").style.display="none";
-
-
-  // $('#myModal').modal('show');
 }
+
 sendQuery(){
   this.loadingCtrl.show();
   var a = "UZHAVAN"
@@ -430,13 +439,11 @@ mapWithPost(){
               localStorage.removeItem('authorization');
             }else{
               if (previousUrl1 == '/blog-view') {
-                console.log('6');
                 this.router.navigate(['/blog']);
               } else if(role == "seller") {
-                console.log('7');
                 this.router.navigate(['/products']);
               }else{
-                this.router.navigate(['/blog']);
+                this.router.navigate(['/my-order']);
               }
             }
           }
@@ -452,7 +459,7 @@ mapWithPost(){
             this.mytemplateForm1.reset();
             this.removeLS();
           }else if(this.wholedata1 != 'Active' && role == "buyer"){
-            this.router.navigate(['/blog']);
+            this.router.navigate(['/my-order']);
           }
           this.loadingCtrl.hide();
         }

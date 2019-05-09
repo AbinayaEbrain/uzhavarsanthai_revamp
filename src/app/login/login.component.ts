@@ -187,7 +187,7 @@ export class LoginComponent implements OnInit {
               } else if(role == "seller"){
                 this.router.navigate(['/products']);
               }else{
-                this.router.navigate(['/blog']);
+                this.router.navigate(['/my-order']);
               }
             }
           }

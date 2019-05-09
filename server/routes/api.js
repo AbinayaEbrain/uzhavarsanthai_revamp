@@ -23,6 +23,7 @@ const Orderrequest = require('../models/orderrequest');
 const Signup = require('../models/signUp');
 const Reviewrate = require('../models/reviewrate');
 
+const Dispute = require('../models/dispute');
 
 //email
 var email = require('emailjs/email');

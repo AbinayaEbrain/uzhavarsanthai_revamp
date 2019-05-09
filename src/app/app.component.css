@@ -44,17 +44,19 @@ ul li a {
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #f5f6f6e8;
+  color: rgba(255, 255, 255, 0.81);
 }
 
-.navbar-dark .navbar-nav .nav-link:active {
-  color: white;
+.nav-link.active {
+  color: white !important;
   font-weight: bold;
 }
+
 .uzhavarsanthaiFooter {
   background-color: #072904 !important;
   color: white;
 }
+
 .EbrainTechnologies {
   color: white !important;
   font-family: 'Hind Madurai', sans-serif;
@@ -104,7 +106,6 @@ ul li a {
 }
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .onmobviewalign {
-   float: none !important;
+    float: none !important;
   }
- 
 }

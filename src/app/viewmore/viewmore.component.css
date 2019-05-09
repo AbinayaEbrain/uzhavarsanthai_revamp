@@ -90,7 +90,7 @@ section .section-title {
   background-color: transparent;
   border-color: transparent transparent #f3f3f3;
   border-bottom: 4px solid !important;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
 }
 #tabs .nav-tabs .nav-link {
@@ -98,7 +98,7 @@ section .section-title {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
   color: #eb0f2491;
-  font-size: 20px;
+  font-size: 15px;
 }
 textarea::placeholder {
   font-family: 'Nunito', sans-serif;
