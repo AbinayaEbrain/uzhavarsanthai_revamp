@@ -31,6 +31,7 @@ import { OrderRequestComponent } from 'src/app/order-request/order-request.compo
 import { BuyerAsSellerComponent } from './buyer-as-seller/buyer-as-seller.component';
 import { SellerOrderRequestsComponent } from './seller-order-requests/seller-order-requests.component';
 import { MyOrderComponent } from 'src/app/my-order/my-order.component';
+import { CreditsComponent } from './credits/credits.component';
 
 import { DummyComponent } from 'src/app/dummy/dummy.component';
 const routes: Routes = [
@@ -180,7 +181,7 @@ const routes: Routes = [
     path: 'dummy',
     component: DummyComponent
   },
-{
+  {
     path: 'buyerAsSeller',
     component: BuyerAsSellerComponent
   },
@@ -191,6 +192,10 @@ const routes: Routes = [
   {
     path: 'my-order',
     component: MyOrderComponent
+  },
+  {
+    path: 'credits',
+    component: CreditsComponent
   }
 ];
 

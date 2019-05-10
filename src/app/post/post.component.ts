@@ -28,11 +28,6 @@ interface FileReaderEventTarget extends EventTarget {
   result: string;
 }
 
-// interface FileReaderEvent extends Event {
-//   target: FileReaderEventTarget;
-//   getMessage():string;
-// }
-
 interface EventTarget {
   result: any;
 }
@@ -87,6 +82,9 @@ export class PostComponent implements OnInit {
   oldAvlplace: any;
   slideConfig: any;
   arrayImage = [];
+  credits: any = {};
+  creditMinus:any;
+  creditObj: any = {};
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -129,6 +127,7 @@ export class PostComponent implements OnInit {
     this.productData.avlPlace = JSON.parse(
       localStorage.getItem('currentUser')
     ).address.city.formatted_address;
+    this.getUser();
 
     //category
     this.today = new Date();
@@ -185,6 +184,24 @@ export class PostComponent implements OnInit {
         }
       );
     }
+  }
+
+  getUser() {
+    this._dealsService.getDetails().subscribe(
+      res => {
+        this.loadingCtrl.hide();
+        for (let i = 0; i < res.length; i++) {
+          if (this.currentuserId == res[i]._id) {
+            this.credits = res[i];
+            console.log(this.credits);
+          }
+        }
+      },
+      err => {
+        this.loadingCtrl.hide();
+        console.log(err);
+      }
+    );
   }
 
   slickInit(e) {
@@ -272,7 +289,7 @@ export class PostComponent implements OnInit {
   }
 
   postProduct() {
-    this.loadingCtrl.show();
+   // this.loadingCtrl.show();
     // var time = this.productData.validityTime;
     // this.productData.validityTime = time.getTime();
     this.productData.accountId = JSON.parse(
@@ -281,9 +298,6 @@ export class PostComponent implements OnInit {
     this.productData.username = JSON.parse(
       localStorage.getItem('currentUser')
     ).firstname;
-    this.productData.lastname = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).lastName;
     this.productData.userNumber = JSON.parse(
       localStorage.getItem('currentUser')
     ).phone;
@@ -296,7 +310,7 @@ export class PostComponent implements OnInit {
     this.productData.status = JSON.parse(
       localStorage.getItem('currentUser')
     ).status;
-
+    
     this.productData.ipAddress = this.privateIP;
     //  this.productData.avlPlace = this.addr;
 
@@ -317,9 +331,14 @@ export class PostComponent implements OnInit {
     let curntDte = new Date().getTime();
     this.productData.date = curntDte;
 
+    this.creditMinus = (this.productData.price * this.productData.quantity) * (1 / 100);
+    console.log(this.creditMinus);
+
     this._dealsService.addPost(this.productData).subscribe(
       res => {
         console.log(res);
+        this.creditObj.productId = res._id;
+        this.updateUser();
         this.success = 'Posted successfully!';
         this.loadingCtrl.hide();
         setTimeout(() => {
@@ -336,6 +355,41 @@ export class PostComponent implements OnInit {
             this.loadingCtrl.hide();
           }
         }
+      }
+    );
+  }
+
+  updateUser(){
+    this.credits.credits = this.credits.credits - this.creditMinus;
+    console.log(this.credits.credits);
+    this._dealsService.updateCustomer(this.credits, this.currentuserId).subscribe(
+      res => {
+        console.log(res);
+        this.updateCreditArr();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  updateCreditArr(){
+    this.creditObj.credit = this.creditMinus;
+    this.creditObj.productName = this.productData.name;
+    this.creditObj.category = this.productData.category;
+    this.creditObj.quantity = this.productData.quantity;
+    this.creditObj.qnty = this.productData.qnty;
+    this.creditObj.price = this.productData.price;
+    this.creditObj.image = this.productData.image;
+    this.creditObj.productCreatedAt = this.productData.date;
+    console.log(this.creditObj);
+
+    this._dealsService.updateUserCreditArr(this.creditObj,this.currentuserId).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
       }
     );
   }

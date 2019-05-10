@@ -377,7 +377,8 @@ router.post('/sendMailSignUp', (req, res) => {
         {
           data:
          "<html><h2>" + req.body.user.firstname + "</h2></html>" + "<html><h4>has requested to signup as a seller!</h4></html>" +
-          "<html><h3>Name :</h3></html>" + req.body.user.firstname + "<html><br></html>" + "<html><h3>Role :</h3></html>" + req.body.user.role
+          "<html><h3>Name :</h3></html>" + req.body.user.firstname + "<html><br></html>" + "<html><h3>Credits :</h3></html>" + req.body.user.credits + "<html><br></html>" 
+           + "<html><h3>Role :</h3></html>" + req.body.user.role
            + "<html><br></html>" + "<html><h3>Phone :</h3></html>" + req.body.user.phone + "<html><br></html>" + "<html><h3>Address :</h3></html>" + req.body.user.address.city.formatted_address
            + "<html><br></html>" + "<html><h3>City :</h3></html>" + req.body.user.address.city.locality ,
           alternative: true
@@ -604,7 +605,8 @@ router.put('/updateuser/:id', function(req, res) {
         password : req.body.password,
         address: req.body.address,
         role: req.body.role,
-        roleStatus : req.body.roleStatus
+        roleStatus : req.body.roleStatus,
+        credits : req.body.credits
       }
     },
     {
@@ -614,19 +616,52 @@ router.put('/updateuser/:id', function(req, res) {
       if (err) {
         res.send('Error updating userprofile');
       } else {
-        console.log(updatedUser);
         res.json(updatedUser);
       }
     }
   );
 });
 
+// Update credit arr
+router.post('/updateCreditArr/:id', function(req, res) {
+  User.find(
+    {
+      _id:req.params.id
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await User.update(
+          {
+            _id:req.params.id
+          },
+          {
+            $push: {
+              creditDetails:{
+                credit: req.body.credit,
+                productName: req.body.productName,
+                category: req.body.category,
+                quantity: req.body.quantity,
+                qnty: req.body.qnty,
+                price: req.body.price,
+                image: req.body.image,
+                productCreatedAt: req.body.productCreatedAt
+              }
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'User CreditArray updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
 //update deals
 router.put('/category/:id', function(req, res) {
-  // console.log('Update a user');
-  // console.log(req.body)
-  //let userData = req.body
-  // let User = new User(userData)
   Category.findByIdAndUpdate(
     req.params.id,
     {

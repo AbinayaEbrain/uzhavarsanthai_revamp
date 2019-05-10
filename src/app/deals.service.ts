@@ -38,7 +38,7 @@ export class DealsService {
   //Active URL
   private activeUrl =
     'https://uzhavarsanthai.herokuapp.com/api/admin-user/active';
-  private updateuserurl = 'https://uzhavarsanthai.herokuapp.com/api/updateuser';
+  private updateuserurl = 'http://localhost:5000/api/updateuser';
   // private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private notificationtoallurl =
@@ -74,6 +74,9 @@ export class DealsService {
   private _updatePostDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputePost";
   private _updateUserDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUser";
   private _updateUserSellerDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUserSeller";
+
+  // Credit
+  private _updateUserCreditArr = "http://localhost:5000/api/updateCreditArr";
 
   constructor(private http: HttpClient) {}
 
@@ -259,5 +262,10 @@ export class DealsService {
 
   updateSellerUserDispute(data,id){
     return this.http.post<any>(this._updateUserSellerDispute + '/' + id, data);
+  }
+
+  // Credit
+  updateUserCreditArr(data,id){
+    return this.http.post<any>(this._updateUserCreditArr + '/' + id, data);
   }
 }

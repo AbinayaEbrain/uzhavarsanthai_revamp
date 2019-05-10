@@ -120,7 +120,9 @@ export class ViewcategoryComponent implements OnInit {
           ) {
             this.totalDeals[j] = this.crdDeals[i];
             this.splitImage =  this.totalDeals[j].image;
-            this.totalDeals[j].image = this.splitImage.split(",",1);
+            if(this.splitImage != undefined || this.splitImage != null || this.splitImage != ''){
+              this.totalDeals[j].image = this.splitImage.split(",",1);
+            }
             this.getPrdtName = this.totalDeals[j].name;
             j++;
             this.loadingCtrl.hide();

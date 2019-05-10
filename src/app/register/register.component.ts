@@ -31,7 +31,8 @@ export class RegisterComponent implements OnInit {
     privateIP: '',
     status: '',
     role: '',
-    roleStatus: ''
+    roleStatus: '',
+    credits: 0
   };
   //registeredUserData: any = {};
   success: any;
@@ -47,11 +48,11 @@ export class RegisterComponent implements OnInit {
   verifyPhone1: any = {};
   errMsgVerfi: any;
 
-  private sendSignUpMail = 'https://uzhavarsanthai.herokuapp.com/api/sendMailSignUp';
-  optsent : any;
-  verifymsg:any;
-  authorize:any;
-  visitId:any;
+  private sendSignUpMail = 'http://localhost:5000/api/sendMailSignUp';
+  optsent: any;
+  verifymsg: any;
+  authorize: any;
+  visitId: any;
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -89,9 +90,11 @@ export class RegisterComponent implements OnInit {
     if (role != null) {
       this.registeredUserData.role = 'seller';
       this.registeredUserData.roleStatus = 'Deactive';
+      this.registeredUserData.credits = 1000;
     } else {
       this.registeredUserData.role = 'buyer';
       this.registeredUserData.roleStatus = 'Active';
+      this.registeredUserData.credits = 0;
     }
     this.registeredUserData.status = 'ACTIVE';
     this.registeredUserData.address.city = this.addr;
@@ -141,18 +144,18 @@ export class RegisterComponent implements OnInit {
           localStorage.setItem('currentUser', JSON.stringify(res.user));
           localStorage.setItem('firstname', JSON.stringify(res.user.firstname));
           localStorage.setItem('status', JSON.stringify(res.user.status));
+          localStorage.setItem('credits', JSON.stringify(res.user.credits));
           localStorage.setItem(
             'roleStatus',
             JSON.stringify(res.user.roleStatus)
           );
           this.authorize = localStorage.getItem('authorization');
-          if(this.authorize){
+          if (this.authorize) {
             this.visitId = localStorage.getItem('lastvisitproductid');
-            this.router.navigate(['/viewmore/' + this.visitId ]);
+            this.router.navigate(['/viewmore/' + this.visitId]);
             localStorage.removeItem('authorization');
-          }
-          else{
-          this.router.navigate(['/my-order']);
+          } else {
+            this.router.navigate(['/my-order']);
           }
         }
         if (res.statusText == 'Unauthorized') {
@@ -185,8 +188,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  
-  removeLS(){
+  removeLS() {
     localStorage.removeItem('payload');
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');

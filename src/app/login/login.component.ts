@@ -160,6 +160,7 @@ export class LoginComponent implements OnInit {
       res => {
         localStorage.setItem('currentUser', JSON.stringify(res.user));
         localStorage.setItem('status', JSON.stringify(res.user.status));
+        localStorage.setItem('credits', JSON.stringify(res.user.credits));
         localStorage.setItem('roleStatus', JSON.stringify(res.user.roleStatus));
         localStorage.setItem('role', JSON.stringify(res.user.role));
         localStorage.setItem('firstname', JSON.stringify(res.user.firstname));
@@ -228,6 +229,7 @@ export class LoginComponent implements OnInit {
     localStorage.removeItem('status');
     localStorage.removeItem('firstname');
     localStorage.removeItem('Image');
+    localStorage.removeItem('credits');
   }
 
   toggle() {

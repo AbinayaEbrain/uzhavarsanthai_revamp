@@ -24,6 +24,20 @@ const userSchema = new Schema({
   status: String,
   role: String,
   roleStatus: String,
+  credits: { type: Number, default: 0 },
+  creditDetails: [
+    {
+      credit: Number,
+      productName: String,
+      category: String,
+      quantity: String,
+      qnty: String,
+      price: Number,
+      image: String,
+      productId: String,
+      productCreatedAt: Date
+    }
+  ],
   productreview: [
     {
       review: String,
@@ -33,7 +47,7 @@ const userSchema = new Schema({
       prdctId: String,
       sellerId: String,
       sellerName: String,
-      reviewRqstId: String,
+      reviewRqstId: String
     }
   ],
   dispute: [
