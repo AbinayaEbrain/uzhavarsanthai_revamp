@@ -43,6 +43,7 @@ export class SignupRequestComponent implements OnInit {
   }
 
   getBalanceUser(){
+    this.userCategory = [];
     let j = 0;
     for (let i=0; i< this.signupUser.length; i++){
       if (this.signupUser[i].roleStatus == 'Deactive'){
@@ -83,6 +84,7 @@ singleUpdateSignupReq(id){
        this._dealService.updateCustomer(this.userCategory1, this.id).subscribe(
       res => {
         console.log(res);
+        this.getSignupReq();
            this.successMsg = 'Accepted user request';
               setTimeout(() => {
                 this.successMsg = '';
@@ -91,7 +93,6 @@ singleUpdateSignupReq(id){
           this._auth.sendSignUpreqst(this.userCategory1).subscribe(
             data => {
               console.log(data);
-              this.getSignupReq();
             },
             err => {
               console.log(err);

@@ -13,7 +13,6 @@ const postSchema = new Schema({
   description: String,
   accountId: String,
   date: String,
-  categoryId: String,
   ipAddress: String,
   validityTime: Date,
   image: String,
@@ -51,7 +50,7 @@ const postSchema = new Schema({
       prdctId: String,
       sellerId: String,
       sellerName: String,
-      reviewRqstId: String,
+      reviewRqstId: String
     }
   ],
   dispute: [

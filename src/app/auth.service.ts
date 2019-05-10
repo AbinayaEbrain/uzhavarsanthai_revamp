@@ -6,7 +6,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private _registerUrl = 'https://uzhavarsanthai.herokuapp.com/api/register';
+  private _registerUrl = 'http://localhost:5000/api/register';
   private _logInUrl = 'https://uzhavarsanthai.herokuapp.com/api/login';
   private _blogUrl = 'https://uzhavarsanthai.herokuapp.com/api/blog';
   private _blogViewUrl = 'https://uzhavarsanthai.herokuapp.com/api/blogview';
@@ -116,6 +116,7 @@ export class AuthService {
       localStorage.removeItem('status');
       localStorage.removeItem('firstname');
       localStorage.removeItem('Image');
+      localStorage.removeItem('credits');
     }
   }
 
@@ -139,6 +140,7 @@ export class AuthService {
     localStorage.removeItem('Image');
     localStorage.removeItem('role');
     localStorage.removeItem('lastvisitproductid');
+    localStorage.removeItem('credits');
     this.route.navigate(['/deals']);
   }
 }

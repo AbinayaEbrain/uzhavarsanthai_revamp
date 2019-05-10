@@ -1,0 +1,61 @@
+<div class="container-fluid bg1">
+  <div class="container  pt-5">
+    <div class="row">
+      <!-- <div class="col-md-1"></div> -->
+      <div class="col-md-12">
+        <h4 class="text-center mt-4">Your Credits</h4>
+
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-5">
+            <h5>Hai {{ credits.firstname }},</h5>
+          </div>
+          <div class="col-md-5">
+            <strong class="float-right">Total credits : {{ credits.credits }}</strong>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+
+        <!-- <p class="updateProfile">Used Credits</p> -->
+        <div class="row mt-4">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+              <div class="card mb-3" *ngFor="let credit of creditsArr">
+                  <div class="card-header cardShadow shadow-sm bg-white rounded text-left">
+                    <div><strong class="tamil_word">{{ credit.category }}</strong></div>
+                    <small>Posted On : {{ credit.productCreatedAt | date }}</small>
+                    <div class="float-right">
+                        <strong style="color: #eb0f2491"
+                        >Credits Used : {{ credit.credit }}</strong
+                      >
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-2">
+                          <img height="100px"  width="100px" src="{{credit.image}}" alt="" class="img-fluid z-depth-0">
+                      </div>
+                      <div class="col-md-3">
+                          <h6 class="clr english_wrd" style="font-weight: bold">Product Name</h6>
+                          <p class="text-muted">{{ credit.productName }}</p>
+                      </div>
+                      <div class="col-md-3">
+                          <h6 class="clr english_wrd" style="font-weight: bold">Quantity</h6>
+                          <p class="text-muted">{{credit.quantity}} / {{credit.qnty}}</p>
+                      </div>
+                      <div class="col-md-4">
+                          <h6 class="clr english_wrd" style="font-weight: bold">Price</h6>
+                          <p class="text-muted">{{ credit.price }}</p>
+                      </div>
+                    </div>
+                    <p class="creditPara"><i class="fa fa-check-square-o" aria-hidden="true"></i> You have used <span style="color: #eb0f2491;font-weight: 700">{{ credit.credit }} credits</span> to post this product.</p>
+                  </div>
+                </div>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+      <!-- <div class="col-md-1"></div> -->
+    </div>
+  </div>
+</div>
