@@ -75,6 +75,12 @@ export class DealsService {
   private _updateUserDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUser";
   private _updateUserSellerDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUserSeller";
 
+    // Buyer Dispute
+    private _postDisputeUrl = 'http://localhost:5000/api/postdispute';
+    private _updatePostBuyerDispute = "http://localhost:5000/api/updateBuyerDisputePost";
+    private _buyerUpdateUserDispute = "http://localhost:5000/api/buyerupdateDisputeUser";
+    private _updateUserBuyerDispute = "http://localhost:5000/api/updateDisputeUserBuyer";
+
   constructor(private http: HttpClient) {}
 
   sendImage(Image: FormData) {
@@ -227,7 +233,7 @@ export class DealsService {
   addReview(data) {
     return this.http.post<any>(this._posReviewtUrl, data);
   }
-
+ 
   mapProductReviewinPost(data){
     return this.http.post<any>(this.mapProductReviewPostUrl, data);
   }
@@ -260,4 +266,24 @@ export class DealsService {
   updateSellerUserDispute(data,id){
     return this.http.post<any>(this._updateUserSellerDispute + '/' + id, data);
   }
+
+  
+  // Buyer Dispute
+
+  addDispute(data) {
+    return this.http.post<any>(this._postDisputeUrl, data);
+  }
+
+  updatePostBuyerDispute(data,id){
+    return this.http.post<any>(this._updatePostBuyerDispute + '/' + id, data);
+  }
+
+  buyerUpdateUserDispute(data,id){
+    return this.http.post<any>(this._buyerUpdateUserDispute + '/' + id, data);
+  }
+
+  updateBuyerUserDispute(data,id){
+    return this.http.post<any>(this._updateUserBuyerDispute + '/' + id, data);
+  }
+
 }

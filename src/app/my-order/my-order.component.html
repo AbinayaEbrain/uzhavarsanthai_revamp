@@ -40,7 +40,7 @@
                     </p>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                       <a class="dropdown-item" data-toggle="modal" style="cursor: pointer;" data-target="#myModal" (click)="singleUpdateSignupReq(order._id)">Order review</a>
-                      <a class="dropdown-item" style="cursor: pointer;" >Dispute</a>
+                      <a class="dropdown-item" style="cursor: pointer;" (click)="singleUpdateSignupReq(order._id)" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static" >Dispute</a>
                     </div></div>
                   </div>
                 </div>
@@ -154,8 +154,10 @@
             <!-- Modal Header -->
             <div class="modal-header">
               <h4 class="modal-title">Order review</h4>
-              <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
-            </div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="text-white" id="closeCancelOrderModal1">&times;</span>
+              </button>
+             </div>
             
             <!-- Modal body -->
             <div class="modal-body">
@@ -185,7 +187,7 @@
                 <span class="text-danger float-left error_word" [class.d-none] = "review.valid || review.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Review is required</span>
               </div></div>
               <div class="mt-4 text-center">
-              <button type="submit" class="btn viewMoreBtn1" (click)="reviewAndRating()" [disabled]="reviewform.form.invalid" data-dismiss="modal" >Submit</button>
+              <button type="submit" class="btn viewMoreBtn1" (click)="reviewAndRating()" [disabled]="reviewform.form.invalid" data-dismiss="modal">Submit</button>
             </div>
             </form>
             </div> </div>
@@ -199,3 +201,30 @@
         </div>
       </div>
 
+   <!-- modal for dispute -->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="exampleModalLongTitle">Dispute</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="text-white" id="closeCancelOrderModal">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <span class="float-right"><span><b>Seller Name</b></span> : {{userOrder1.sellerName}}</span>
+        <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate> 
+            <div class="form-group mt-4">
+                <label class="english_wrd" for="dispute" ><span style="font-size: 14px" class="tamil_word"> </span>Dispute</label>
+                    <input type="text" #dispute="ngModel" [class.is-invalid]="dispute.invalid && dispute.touched" ngModel name="dispute" class="form-control" [(ngModel)]="userData.dispute" autocomplete="off" required>
+                    <span class="text-danger float-left error_word" [class.d-none] = "dispute.valid || dispute.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Dispute is required</span>
+            </div>
+            <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn mx-auto" (click)="disputeSave()">Save changes</button>
+        </form>
+        </div>
+        <!-- <div class="modal-footer">
+        </div> -->
+      </div>
+    </div>
+  </div>

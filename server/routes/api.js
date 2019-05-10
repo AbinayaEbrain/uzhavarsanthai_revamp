@@ -24,6 +24,8 @@ const Signup = require('../models/signUp');
 const Reviewrate = require('../models/reviewrate');
 
 const Dispute = require('../models/dispute');
+const Buyerdispute = require('../models/buyerdispute');
+
 
 //email
 var email = require('emailjs/email');
@@ -1564,7 +1566,7 @@ router.post('/mapproductreviewuserUrl', function(req, res) {
     }
   )
 });
-  
+
 router.post('/postreviewrating',(req,res)=>{
   let reviewData = req.body
   let reviewrate = new Reviewrate(reviewData)
@@ -1575,6 +1577,136 @@ router.post('/postreviewrating',(req,res)=>{
           res.status(200).send(reviewrateData)
       }
   })
+});
+
+// Post Buyer Dispute
+router.post('/postdispute', (req, res) => {
+  let disputeData = req.body;
+  let buyerdispute = new Buyerdispute(disputeData);
+  buyerdispute.save((error, disputeData) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.status(200).send(disputeData);
+    }
+  });
+});
+
+// Buyer Dispute update in post
+router.post('/updateBuyerDisputePost/:id', function(req, res) {
+  Post.find(
+    {
+      _id:req.body.prdctId
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Post.update(
+          {
+            _id:req.body.prdctId
+          },
+          {
+            $push: {
+              buyerdispute:{
+                sellerName: req.body.sellerName,
+                sellerId: req.body.sellerId,
+                disputerName: req.body.buyerName,
+                disputerId: req.body.disputerId,
+                prdctId: req.body.prdctId,
+                orderRqstId: req.body.orderRqstId,
+                disputeId: req.body.disputeId,
+                dispute: req.body.dispute,
+                createdAt: req.body.createdAt
+              }
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'Post updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
+//Buyer Dispute update in user
+router.post('/buyerupdateDisputeUser/:id', function(req, res) {
+  User.find(
+    {
+      _id:req.body.sellerId,
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await User.update(
+          {
+            _id:req.body.sellerId,
+          },
+          {
+            $push: {
+              buyerdispute:{
+                sellerName: req.body.sellerName,
+                sellerId: req.body.sellerId,
+                disputerName: req.body.buyerName,
+                disputerId: req.body.disputerId,
+                prdctId: req.body.prdctId,
+                orderRqstId: req.body.orderRqstId,
+                disputeId: req.body.disputeId,
+                dispute: req.body.dispute,
+                createdAt: req.body.createdAt
+              }
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'User updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
+// Dispute update in buyer
+router.post('/updateDisputeUserBuyer/:id', function(req, res) {
+  User.find(
+    {
+      _id:req.body.disputerId,
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await User.update(
+          {
+            _id:req.body.disputerId,
+          },
+          {
+            $push: {
+              buyerdispute:{
+                sellerName: req.body.sellerName,
+                sellerId: req.body.sellerId,
+                disputerName: req.body.buyerName,
+                disputerId: req.body.disputerId,
+                prdctId: req.body.prdctId,
+                orderRqstId: req.body.orderRqstId,
+                disputeId: req.body.disputeId,
+                dispute: req.body.dispute,
+                createdAt: req.body.createdAt
+              }
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'User updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
 });
 
 // Post Dispute

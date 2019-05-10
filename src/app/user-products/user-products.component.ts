@@ -3,12 +3,17 @@ import { DealsService } from '../deals.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router, ParamMap } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+
+declare var swal: any;
+
 @Component({
   selector: 'app-user-products',
   templateUrl: './user-products.component.html',
   styleUrls: ['./user-products.component.css']
 })
 export class UserProductsComponent implements OnInit {
+  myCredit: any;
+  credits: any;
   crdDeals = [];
   crdDeals1 = [];
   userDeals = [];
@@ -79,6 +84,43 @@ export class UserProductsComponent implements OnInit {
         console.log(err);
       }
     );
+    this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
+  }
+
+  getUser(){
+    this._dealsService.getDetails().subscribe(
+      res => {
+        this.loadingCtrl.hide();
+        for (let i = 0; i < res.length; i++) {
+          if (this.id == res[i]._id) {
+            this.credits = res[i];
+          }
+        }
+        console.log(this.credits);
+        this.checkSellerCredit();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  checkSellerCredit(){
+    console.log(this.credits)
+    this.myCredit = this.credits.credits
+    console.log(this.myCredit);
+      if (this.myCredit < 1) {
+        console.log('No credit')
+        swal({
+          title: 'You have no credit!',
+          text:
+            'If you post your product! Please pay MONEY.',
+          imageUrl: '../../assets/Images/progress.gif'
+        });
+      } else{
+        console.log('You have a credit')
+        this.router.navigate(['/post']);
+      }  
   }
 
   getMultiArray(){
