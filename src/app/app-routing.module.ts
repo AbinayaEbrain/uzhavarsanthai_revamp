@@ -32,6 +32,7 @@ import { BuyerAsSellerComponent } from './buyer-as-seller/buyer-as-seller.compon
 import { SellerOrderRequestsComponent } from './seller-order-requests/seller-order-requests.component';
 import { MyOrderComponent } from 'src/app/my-order/my-order.component';
 import { CreditsComponent } from './credits/credits.component';
+import { AdminDisputeComponent } from './admin-dispute/admin-dispute.component';
 
 import { DummyComponent } from 'src/app/dummy/dummy.component';
 const routes: Routes = [
@@ -196,6 +197,10 @@ const routes: Routes = [
   {
     path: 'credits',
     component: CreditsComponent
+  },
+  {
+    path: 'admin-dispute',
+    component: AdminDisputeComponent
   }
 ];
 

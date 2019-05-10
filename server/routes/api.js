@@ -644,6 +644,7 @@ router.post('/updateCreditArr/:id', function(req, res) {
                 qnty: req.body.qnty,
                 price: req.body.price,
                 image: req.body.image,
+                productId: req.body.productId,
                 productCreatedAt: req.body.productCreatedAt
               }
              }

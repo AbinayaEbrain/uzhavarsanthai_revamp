@@ -58,6 +58,7 @@ import { SellerOrderRequestsComponent } from './seller-order-requests/seller-ord
 import { MyOrderComponent } from './my-order/my-order.component';
 import { DummyComponent } from './dummy/dummy.component';
 import { CreditsComponent } from './credits/credits.component';
+import { AdminDisputeComponent } from './admin-dispute/admin-dispute.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { CreditsComponent } from './credits/credits.component';
     BuyerAsSellerComponent,
     SellerOrderRequestsComponent,
     MyOrderComponent,
-    CreditsComponent
+    CreditsComponent,
+    AdminDisputeComponent
   ],
   imports: [
     BrowserModule,
