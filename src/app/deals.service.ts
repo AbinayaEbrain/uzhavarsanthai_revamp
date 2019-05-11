@@ -82,6 +82,7 @@ export class DealsService {
     private _updateUserBuyerDispute = "http://localhost:5000/api/updateDisputeUserBuyer";
   // Credit
   private _updateUserCreditArr = "http://localhost:5000/api/updateCreditArr";
+  private _updateUserCreditArrCredit = "http://localhost:5000/api/updateCreditArrCredit";
 
   constructor(private http: HttpClient) {}
 
@@ -292,4 +293,9 @@ export class DealsService {
   updateUserCreditArr(data,id){
     return this.http.post<any>(this._updateUserCreditArr + '/' + id, data);
   }
+
+  updateUserCreditArrCredit(data,id){
+    return this.http.post<any>(this._updateUserCreditArrCredit + '/' + id, data);
+  }
+
 }
