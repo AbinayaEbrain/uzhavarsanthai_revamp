@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DealsService } from 'src/app/deals.service';
 import { HttpClient } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-my-order',
@@ -27,12 +31,16 @@ export class MyOrderComponent implements OnInit {
   count : any;
   rating ="";
   public reviewData: any = {};
-
   p:any;
+  @ViewChild('reviewform') mytemplateForm: NgForm;
+  userData: any = {};
+  disputeData: any;
 
   constructor(
     private _dealService: DealsService,
     private http: HttpClient,
+    private router: ActivatedRoute,
+    private route: Router ,
     public loadingCtrl: NgxSpinnerService
   ) {}
 
@@ -207,6 +215,8 @@ reviewAndRating(){
       console.log(this.reviewData.reviewRqstId);
       this.mapWithPost();
       this.mapWithUser();
+      this.mytemplateForm.reset();  
+      document.getElementById('closeCancelOrderModal1').click(); 
     },
     err => {
       console.log(err);
@@ -238,6 +248,78 @@ mapWithUser(){
     err => {console.log(err);
     }
   );
+}
+
+disputeSave() {
+  this.reviewData.disputerId = this.userOrder1.buyerId;
+  this.reviewData.disputerName = this.userOrder1.buyerName;
+  this.reviewData.prdctId =  this.userOrder1.prdctId;
+  this.reviewData.sellerId = this.userOrder1.sellerId;
+  this.reviewData.sellerName = this.userOrder1.sellerName;
+  this.reviewData.orderRqstId = this.userOrder1._id;
+  this.reviewData.dispute = this.userData.dispute;
+  this.reviewData.disputeStatus = 'Created';
+  let curntDte = new Date().getTime();
+    this.reviewData.createdAt = curntDte;
+
+  this._dealService.addDispute(this.reviewData).subscribe(
+    data => {
+      console.log(data);
+      this.reviewData.disputeId = data._id;
+      console.log(this.reviewData.disputeId)
+      this.disputeData = data.dispute;
+      console.log(this.disputeData);
+      this.updatePostDispute();
+      this.mytemplateForm.reset();
+      document.getElementById('closeCancelOrderModal').click();
+    },
+    err => {
+      console.log(err);
+    }
+  );
+}
+
+updatePostDispute() {
+  this._dealService.updatePostBuyerDispute(this.reviewData, this.reviewData.prdctId)
+    .subscribe(
+      data => {
+        console.log(data);
+        this.updateUserDispute();
+        this.updateUserBuyerDispute();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+}
+
+updateUserDispute() {
+  this.reviewData.dispute = this.disputeData;
+  this._dealService
+    .buyerUpdateUserDispute(this.reviewData, this.reviewData.sellerId)
+    .subscribe(
+      data => {
+        console.log(data);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+}
+
+updateUserBuyerDispute() {
+  this.reviewData.dispute = this.disputeData;
+  this._dealService
+    .updateBuyerUserDispute(this.reviewData, this.reviewData.disputerId)
+    .subscribe(
+      data => {
+        console.log(data);
+        // this.disputeMailSend();
+      },
+      err => {
+        console.log(err);
+      }
+    );
 }
 
 }

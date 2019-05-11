@@ -66,6 +66,19 @@ const postSchema = new Schema({
       dispute: String,
       createdAt: Date
     }
+  ],
+  buyerdispute: [
+    {
+      sellerName: String,
+      sellerId: String,
+      disputerName: String,
+      disputerId: String,
+      productId: String,
+      orderRqstId: String,
+      disputeId: String,
+      dispute: String,
+      createdAt: Date
+    }
   ]
 });
 module.exports = mongoose.model('post', postSchema, 'post');

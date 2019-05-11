@@ -35,6 +35,20 @@ interface EventTarget {
   styleUrls: ['./user-deals-edit.component.css']
 })
 export class UserDealsEditComponent implements OnInit {
+  addTotal: number;
+  addPriceQty: number;
+  addQtyPrice: number;
+  minusSellerCredit: number;
+  sellerCredit: any;
+  credits: any;
+  creditDetails = [];
+  cumulativecredit: number;
+  cumulativeprice: number;
+  cumulativequantity: number;
+  newprice: any;
+  newquantity: any;
+  lastprice: any;
+  lastquantity: any;
   public uploader: FileUploader = new FileUploader({
     url: URL,
     itemAlias: 'photo'
@@ -100,12 +114,14 @@ export class UserDealsEditComponent implements OnInit {
     this.InitialCall();
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.id = this.route.snapshot.params['id'];
+
     //edit deals
 
     this._dealsService.getDeals().subscribe(
       res => {
         this.loadingCtrl.hide();
         this.dealslists = res;
+        console.log(this.dealslists);
         for (let i = 0; i < this.dealslists.length; i++) {
           if (this.id == this.dealslists[i]._id) {
             this.deallistobj.category = this.dealslists[i].category;
@@ -122,6 +138,8 @@ export class UserDealsEditComponent implements OnInit {
             this.showUnit = this.dealslists[i].qnty;
           }
         }
+        this.lastquantity = this.deallistobj.quantity;
+        this.lastprice = this.deallistobj.price;
         this.deallistobj.avlPlace = this.address.formatted_address;
         this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
         this.deallistobj.validityTime = this.dateNrml;
@@ -227,9 +245,12 @@ export class UserDealsEditComponent implements OnInit {
       if (this.Image.length != 0) {
         this.deallistobj.image = this.Image;
       }
+
       this._dealsService.editDeals(this.deallistobj, this.id).subscribe(
         res => {
           console.log(res);
+          this.newquantity = res.quantity;
+          this.newprice = res.price;        
           this.loadingCtrl.hide();
           this.success = 'Updated successfully!';
           setTimeout(() => {
@@ -237,6 +258,32 @@ export class UserDealsEditComponent implements OnInit {
             this.router.navigate(['/products']);
             this.loadingCtrl.hide();
           }, 2000);
+          // minus credit
+      if(this.lastquantity < this.newquantity){
+        this.QuantityCredit();
+      }
+
+      if(this.lastprice < this.newprice){
+        this.PriceCredit();
+      }
+
+      if(this.lastquantity < this.newquantity && this.lastprice < this.newprice){
+        this.quantityPriceCredit();
+      }
+
+      //add credit
+
+      if(this.lastquantity > this.newquantity){
+        this.sellerReduceQuantity();
+      }
+
+      if(this.lastprice > this.newprice){
+        this.sellerReducePrice();
+      }
+
+      if(this.lastquantity > this.newquantity && this.lastprice > this.newprice){
+        this.sellerQuantityPrice();
+      }
         },
         err => console.log(err)
       );
@@ -244,6 +291,170 @@ export class UserDealsEditComponent implements OnInit {
       this.urls.shift();
       this.postImage();
     }
+  }
+
+  //Minus credits when edit post
+  QuantityCredit(){
+
+    if(this.lastquantity < this.newquantity){
+      this.cumulativequantity = this.newquantity - this.lastquantity;
+      console.log(this.cumulativequantity);
+    } else {
+      this.cumulativequantity = this.lastquantity;
+    }
+
+    this.cumulativeprice = this.newprice
+
+    // if(this.lastprice < this.newprice){
+    //   this.cumulativeprice = this.newprice - this.lastprice;
+    //   console.log(this.cumulativeprice);
+    // }  else {
+    //   this.cumulativeprice = this.lastprice;
+    // }
+
+    this.cumulativecredit = ((this.cumulativequantity * this.cumulativeprice) * 1/100);
+    console.log(this.cumulativecredit);
+    this.getUser();
+  }
+
+  PriceCredit(){
+
+    if(this.lastprice < this.newprice){
+      this.cumulativeprice = this.newprice - this.lastprice;
+      console.log(this.cumulativeprice);
+    }  else {
+      this.cumulativeprice = this.lastprice;
+    }
+      this.cumulativequantity = this.lastquantity;
+
+    this.cumulativecredit = ((this.cumulativequantity * this.cumulativeprice) * 1/100);
+    console.log(this.cumulativecredit);
+    this.getUser();
+  }
+
+  quantityPriceCredit(){
+
+    if(this.lastquantity < this.newquantity){
+      this.cumulativequantity = this.newquantity - this.lastquantity;
+      console.log(this.cumulativequantity);
+    } else {
+      this.cumulativequantity = this.lastquantity;
+    }
+
+    if(this.lastprice < this.newprice){
+      this.cumulativeprice = this.newprice - this.lastprice;
+      console.log(this.cumulativeprice);
+    }  else {
+      this.cumulativeprice = this.lastprice;
+    }
+
+    this.addQtyPrice = (this.cumulativequantity * this.newprice);
+    console.log(this.addQtyPrice);
+
+    this.addPriceQty = (this.cumulativeprice * this.lastquantity);
+    console.log(this.addPriceQty);
+
+    this.addTotal = this.addQtyPrice + this.addPriceQty;
+    console.log(this.addTotal);
+
+    this.cumulativecredit = ((this.addTotal) * 1/100);
+    console.log(this.cumulativecredit);
+    this.getUser();
+  }
+
+  getUser(){
+    this._dealsService.getDetails().subscribe(
+      res => {
+        console.log(res);
+        this.loadingCtrl.hide();
+        this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
+        for (let i = 0; i < res.length; i++) {
+          if (this.id == res[i]._id) {
+            this.credits = res[i];
+          }
+        }
+        console.log(this.credits);
+        this.sellerCredit = this.credits.credits;
+        console.log(this.sellerCredit)
+        this.minusSellerCredit = (this.sellerCredit-this.cumulativecredit);
+        console.log(this.minusSellerCredit);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  sellerReduceQuantity(){
+    if(this.lastquantity > this.newquantity){
+      this.cumulativequantity = this.lastquantity - this.newquantity ;
+      console.log(this.cumulativequantity);
+    } else {
+      this.cumulativequantity = this.lastquantity;
+    }
+    this.cumulativeprice = this.newprice
+    this.cumulativecredit = ((this.cumulativequantity * this.cumulativeprice) * 1/100);
+    console.log(this.cumulativecredit);
+    this.getUser1();
+  }
+
+  sellerReducePrice(){
+
+    if(this.lastprice > this.newprice){
+      this.cumulativeprice = this.lastprice - this.newprice;
+      console.log(this.cumulativeprice);
+    }  else {
+      this.cumulativeprice = this.lastprice;
+    }
+      this.cumulativequantity = this.lastquantity;
+
+    this.cumulativecredit = ((this.cumulativequantity * this.cumulativeprice) * 1/100);
+    console.log(this.cumulativecredit);
+    this.getUser1();
+  }
+
+  sellerQuantityPrice(){
+
+      this.cumulativequantity =  this.newquantity;
+      console.log(this.cumulativequantity);
+
+      this.cumulativeprice =  this.newprice;
+      console.log(this.cumulativeprice);
+
+    this.cumulativecredit = ((this.cumulativequantity * this.cumulativeprice) * 1/100);
+    console.log(this.cumulativecredit);
+    this.getUser1();
+  }
+
+  getUser1(){
+    this._dealsService.getDetails().subscribe(
+      res => {
+        console.log(res);
+        this.loadingCtrl.hide();
+        this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
+        for (let i = 0; i < res.length; i++) {
+          if (this.id == res[i]._id) {
+            this.credits = res[i];
+            this.creditDetails = res[i].creditDetails
+          }
+        }
+        console.log(this.credits);
+        console.log(this.creditDetails);
+        for (let i = 0; i < this.creditDetails.length; i++) {
+          // if (this.id == res[i]._id) {
+          //   this.credits = this.credits[i].creditDetails;
+          //   console.log()
+          // }
+        }
+        // this.sellerCredit = this.credits.credits;
+        // console.log(this.sellerCredit)
+        // this.minusSellerCredit = (this.sellerCredit + this.cumulativecredit);
+        // console.log(this.minusSellerCredit);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   // handleInput(evt)
