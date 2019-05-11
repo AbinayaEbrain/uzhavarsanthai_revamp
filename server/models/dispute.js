@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const disputeSchema = new Schema({
+  ticketId: String,
   buyerName: String,
   buyerId: String,
   disputerName: String,
@@ -10,6 +11,7 @@ const disputeSchema = new Schema({
   productId: String,
   orderRqstId: String,
   dispute: String,
+  requestId: String,
   disputeStatus: String,
   createdAt: Date
 });

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DealsService } from '../deals.service';
 
 @Component({
   selector: 'app-admin-dispute',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-dispute.component.css']
 })
 export class AdminDisputeComponent implements OnInit {
-
-  constructor() { }
+  disputeArr: any = [];
+  constructor(private _dealService: DealsService) {}
 
   ngOnInit() {
+    this.getdispute();
   }
 
+  getdispute() {
+    this._dealService.getdispute().subscribe(
+      data => {
+        console.log(data);
+        this.disputeArr = data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 }

@@ -55,6 +55,7 @@ const postSchema = new Schema({
   ],
   dispute: [
     {
+      ticketId: String,
       buyerName: String,
       buyerId: String,
       disputerName: String,

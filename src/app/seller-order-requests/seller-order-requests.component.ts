@@ -177,12 +177,18 @@ export class SellerOrderRequestsComponent implements OnInit {
   }
 
   disputeSave() {
+
+    var a = "UZ";
+    let reqId = Math.floor(100000 + Math.random() * 900000);
+    this.userData.ticketId = a + "-" + reqId;
+
     this.userData.buyerName = this.singleOrderRequest.buyerName;
     this.userData.buyerId = this.singleOrderRequest.buyerId;
     this.userData.disputerName = this.singleOrderRequest.sellerName;
     this.userData.disputerId = this.singleOrderRequest.sellerId;
     this.userData.productId = this.singleOrderRequest.prdctId;
     this.userData.orderRqstId = this.singleOrderRequest._id;
+    this.userData.requestId = this.singleOrderRequest.requestId
     this.userData.dispute = this.userData.dispute;
     this.userData.disputeStatus = 'Created';
     let curntDte = new Date().getTime();

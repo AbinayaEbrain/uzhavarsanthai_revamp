@@ -69,11 +69,11 @@ export class DealsService {
   private _cancelRqstViewMore = "https://uzhavarsanthai.herokuapp.com/api/updatevieworderrequest";
 
   // Dispute
-  private _postDispute = "https://uzhavarsanthai.herokuapp.com/api/disputePost";
+  private _postDispute = "http://localhost:5000/api/disputePost";
   private _getDispute = "https://uzhavarsanthai.herokuapp.com/api/getDispute";
-  private _updatePostDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputePost";
-  private _updateUserDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUser";
-  private _updateUserSellerDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUserSeller";
+  private _updatePostDispute = "http://localhost:5000/api/updateDisputePost";
+  private _updateUserDispute = "http://localhost:5000/api/updateDisputeUser";
+  private _updateUserSellerDispute = "http://localhost:5000/api/updateDisputeUserSeller";
 
   // Credit
   private _updateUserCreditArr = "http://localhost:5000/api/updateCreditArr";

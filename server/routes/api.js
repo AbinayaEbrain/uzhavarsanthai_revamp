@@ -1644,12 +1644,14 @@ router.post('/updateDisputePost/:id', function(req, res) {
           {
             $push: {
               dispute:{
+                ticketId: req.body.ticketId,
                 buyerName: req.body.buyerName,
                 buyerId: req.body.buyerId,
                 disputerName: req.body.disputerName,
                 disputerId: req.body.disputerId,
                 productId: req.body.productId,
                 orderRqstId: req.body.orderRqstId,
+                requestId: req.body.requestId,
                 disputeId: req.body.disputeId,
                 dispute: req.body.dispute,
                 createdAt: req.body.createdAt
@@ -1683,12 +1685,14 @@ router.post('/updateDisputeUser/:id', function(req, res) {
           {
             $push: {
               dispute:{
+                ticketId: req.body.ticketId,
                 buyerName: req.body.buyerName,
                 buyerId: req.body.buyerId,
                 disputerName: req.body.disputerName,
                 disputerId: req.body.disputerId,
                 productId: req.body.productId,
                 orderRqstId: req.body.orderRqstId,
+                requestId: req.body.requestId,
                 disputeId: req.body.disputeId,
                 dispute: req.body.dispute,
                 createdAt: req.body.createdAt
@@ -1722,12 +1726,14 @@ router.post('/updateDisputeUserSeller/:id', function(req, res) {
           {
             $push: {
               dispute:{
+                ticketId: req.body.ticketId,
                 buyerName: req.body.buyerName,
                 buyerId: req.body.buyerId,
                 disputerName: req.body.disputerName,
                 disputerId: req.body.disputerId,
                 productId: req.body.productId,
                 orderRqstId: req.body.orderRqstId,
+                requestId: req.body.requestId,
                 disputeId: req.body.disputeId,
                 dispute: req.body.dispute,
                 createdAt: req.body.createdAt
