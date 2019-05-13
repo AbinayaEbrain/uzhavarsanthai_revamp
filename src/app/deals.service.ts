@@ -70,10 +70,17 @@ export class DealsService {
 
   // Dispute
   private _postDispute = "http://localhost:5000/api/disputePost";
+  private _getSingleDispute = "http://localhost:5000/api/getSingleDispute";
   private _getDispute = "https://uzhavarsanthai.herokuapp.com/api/getDispute";
+  private _updateDispute = "http://localhost:5000/api/updateDispute";
   private _updatePostDispute = "http://localhost:5000/api/updateDisputePost";
   private _updateUserDispute = "http://localhost:5000/api/updateDisputeUser";
   private _updateUserSellerDispute = "http://localhost:5000/api/updateDisputeUserSeller";
+
+  // Resolve
+  private _updatePostDisputeSolution = "http://localhost:5000/api/updateDisputePostSolution";
+  private _updateUserDisputeSolution = "http://localhost:5000/api/updateDisputeUserSolution";
+  private _updateUserSellerDisputeSolution = "http://localhost:5000/api/updateDisputeUserSellerSolution";
 
     // Buyer Dispute
     private _postDisputeUrl = 'http://localhost:5000/api/postdispute';
@@ -258,6 +265,14 @@ export class DealsService {
     return this.http.get<any>(this._getDispute);
   }
 
+  getSingleDispute(id) {
+    return this.http.get<any>(this._getSingleDispute + '/' + id);
+  }
+
+  updateDispute(data,id){
+    return this.http.post<any>(this._updateDispute + '/' + id, data);
+  }
+
   updatePostDispute(data,id){
     return this.http.post<any>(this._updatePostDispute + '/' + id, data);
   }
@@ -268,6 +283,19 @@ export class DealsService {
 
   updateSellerUserDispute(data,id){
     return this.http.post<any>(this._updateUserSellerDispute + '/' + id, data);
+  }
+
+  // Resolve
+  updatePostDisputeSolution(data,id){
+    return this.http.post<any>(this._updatePostDisputeSolution + '/' + id, data);
+  }
+
+  updateUserDisputeSolution(data,id){
+    return this.http.post<any>(this._updateUserDisputeSolution + '/' + id, data);
+  }
+
+  updateSellerUserDisputeSolution(data,id){
+    return this.http.post<any>(this._updateUserSellerDisputeSolution + '/' + id, data);
   }
 
   

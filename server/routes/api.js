@@ -1783,6 +1783,133 @@ router.post('/disputePost', (req, res) => {
 });
 
 // Dispute update in post
+router.post('/updateDispute/:id', function(req, res) {
+  Dispute.find(
+    {
+      _id:req.params.id
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Dispute.update(
+          {
+            _id:req.params.id
+          },
+          {
+            $set:{
+              disputeStatus : req.body.disputeStatus,
+              solution : req.body.solution,
+              createdAt : req.body.createdAt
+            }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'Dispute updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
+// Dispute Solution update in post
+router.post('/updateDisputePostSolution/:id', function(req, res) {
+  Post.find(
+    {
+      _id:req.body.productId
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Post.update(
+          {
+            _id:req.body.productId,
+            'dispute.disputeId' :req.body.disputeId 
+          },
+          {
+            $set: {
+              'dispute.$.disputeStatus': req.body.disputeStatus ,
+              'dispute.$.createdAt': req.body.createdAt ,
+              'dispute.$.solution': req.body.solution 
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'Post updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
+// Dispute solution update in user
+router.post('/updateDisputeUserSolution/:id', function(req, res) {
+  User.find(
+    {
+      _id:req.body.buyerId,
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await User.update(
+          {
+            _id:req.body.buyerId,
+            'dispute.disputeId' :req.body.disputeId 
+          },
+          {
+            $set: {
+              'dispute.$.disputeStatus': req.body.disputeStatus ,
+              'dispute.$.createdAt': req.body.createdAt ,
+              'dispute.$.solution': req.body.solution 
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'User updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
+// DisputeSeller solution update in user
+router.post('/updateDisputeUserSellerSolution/:id', function(req, res) {
+  User.find(
+    {
+      _id:req.body.disputerId,
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await User.update(
+          {
+            _id:req.body.disputerId,
+            'dispute.disputeId' :req.body.disputeId 
+          },
+          {
+            $set: {
+              'dispute.$.disputeStatus': req.body.disputeStatus ,
+              'dispute.$.createdAt': req.body.createdAt ,
+              'dispute.$.solution': req.body.solution 
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'User updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
+// Dispute update in post
 router.post('/updateDisputePost/:id', function(req, res) {
   Post.find(
     {
@@ -1807,6 +1934,8 @@ router.post('/updateDisputePost/:id', function(req, res) {
                 requestId: req.body.requestId,
                 disputeId: req.body.disputeId,
                 dispute: req.body.dispute,
+                disputeStatus: req.body.disputeStatus,
+                solution: req.body.solution,
                 createdAt: req.body.createdAt
               }
              }
@@ -1848,6 +1977,8 @@ router.post('/updateDisputeUser/:id', function(req, res) {
                 requestId: req.body.requestId,
                 disputeId: req.body.disputeId,
                 dispute: req.body.dispute,
+                disputeStatus: req.body.disputeStatus,
+                solution: req.body.solution,
                 createdAt: req.body.createdAt
               }
              }
@@ -1889,6 +2020,8 @@ router.post('/updateDisputeUserSeller/:id', function(req, res) {
                 requestId: req.body.requestId,
                 disputeId: req.body.disputeId,
                 dispute: req.body.dispute,
+                disputeStatus: req.body.disputeStatus,
+                solution: req.body.solution,
                 createdAt: req.body.createdAt
               }
              }
