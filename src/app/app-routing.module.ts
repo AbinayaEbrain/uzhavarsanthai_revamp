@@ -33,7 +33,8 @@ import { SellerOrderRequestsComponent } from './seller-order-requests/seller-ord
 import { MyOrderComponent } from 'src/app/my-order/my-order.component';
 import { CreditsComponent } from './credits/credits.component';
 import { AdminDisputeComponent } from './admin-dispute/admin-dispute.component';
-
+import { MyTicketsComponent } from 'src/app/my-tickets/my-tickets.component';
+import { TicketviewComponent } from 'src/app/ticketview/ticketview.component';
 import { DummyComponent } from 'src/app/dummy/dummy.component';
 const routes: Routes = [
   {
@@ -201,6 +202,14 @@ const routes: Routes = [
   {
     path: 'admin-dispute',
     component: AdminDisputeComponent
+  },
+  {
+    path: 'my-tickets',
+    component: MyTicketsComponent
+  },
+  {
+    path: 'view-ticket/:id',
+    component: TicketviewComponent
   }
 ];
 

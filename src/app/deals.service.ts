@@ -90,6 +90,8 @@ export class DealsService {
   // Credit
   private _updateUserCreditArr = "http://localhost:5000/api/updateCreditArr";
   private _updateUserCreditArrCredit = "http://localhost:5000/api/updateCreditArrCredit";
+  private _sendticketUrl = "http://localhost:5000/api/sendticket";
+  private _getticketUrl = "http://localhost:5000/api/getticket";
 
   constructor(private http: HttpClient) {}
 
@@ -243,7 +245,7 @@ export class DealsService {
   addReview(data) {
     return this.http.post<any>(this._posReviewtUrl, data);
   }
- 
+
   mapProductReviewinPost(data){
     return this.http.post<any>(this.mapProductReviewPostUrl, data);
   }
@@ -297,10 +299,8 @@ export class DealsService {
   updateSellerUserDisputeSolution(data,id){
     return this.http.post<any>(this._updateUserSellerDisputeSolution + '/' + id, data);
   }
-
-  
+ 
   // Buyer Dispute
-
   addDispute(data) {
     return this.http.post<any>(this._postDisputeUrl, data);
   }
@@ -325,5 +325,12 @@ export class DealsService {
   updateUserCreditArrCredit(data,id){
     return this.http.post<any>(this._updateUserCreditArrCredit + '/' + id, data);
   }
-
+//send ticket
+  sendTicket(data) {
+    return this.http.post<any>(this._sendticketUrl, data);
+  }
+//get all ticket
+getTickets() {
+  return this.http.get<any>(this._getticketUrl);
+}
 }

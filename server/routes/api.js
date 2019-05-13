@@ -22,6 +22,7 @@ const Notification = require('../models/notification');
 const Orderrequest = require('../models/orderrequest');
 const Signup = require('../models/signUp');
 const Reviewrate = require('../models/reviewrate');
+const Ticket = require('../models/ticket');
 
 const Dispute = require('../models/dispute');
 const Buyerdispute = require('../models/buyerdispute');
@@ -379,7 +380,7 @@ router.post('/sendMailSignUp', (req, res) => {
         {
           data:
          "<html><h2>" + req.body.user.firstname + "</h2></html>" + "<html><h4>has requested to signup as a seller!</h4></html>" +
-          "<html><h3>Name :</h3></html>" + req.body.user.firstname + "<html><br></html>" + "<html><h3>Credits :</h3></html>" + req.body.user.credits + "<html><br></html>" 
+          "<html><h3>Name :</h3></html>" + req.body.user.firstname + "<html><br></html>" + "<html><h3>Credits :</h3></html>" + req.body.user.credits + "<html><br></html>"
            + "<html><h3>Role :</h3></html>" + req.body.user.role
            + "<html><br></html>" + "<html><h3>Phone :</h3></html>" + req.body.user.phone + "<html><br></html>" + "<html><h3>Address :</h3></html>" + req.body.user.address.city.formatted_address
            + "<html><br></html>" + "<html><h3>City :</h3></html>" + req.body.user.address.city.locality ,
@@ -459,7 +460,7 @@ router.post('/sendMailRejectSeller', (req, res) => {
           "<html><br></html>" +
           "<html><h3>Product Unit :</h3></html>" + req.body.prdctUnit +
           "<html><br></html>" +
-          "<html><h3>Product Available Place :</h3></html>" + req.body.prdctAvlplace + 
+          "<html><h3>Product Available Place :</h3></html>" + req.body.prdctAvlplace +
 
           "<html><br></html>" + "<html><hr></html>" +
           "<html><h3 style='text-align:center'>Buyer Details</h3></html>" +
@@ -624,7 +625,7 @@ router.put('/updateuser/:id', function(req, res) {
   );
 });
 
-//Update credit 
+//Update credit
 router.post('/updateCreditArrCredit/:id', function(req, res) {
   User.updateOne(
    {
@@ -1002,7 +1003,7 @@ router.post('/getdevicedata', (req, res) => {
 //notification to all
 router.post('/notificationtoall', (req, res) => {
   let userData = req.body;
- 
+
   let user = new Notification(userData);
 var sendNotification = function(data) {
   var headers = {
@@ -1048,7 +1049,7 @@ res.status(200).send(message);
 //notification for specific Users
 router.post('/notificationospecificeusers', (req, res) => {
   let userData = req.body;
-  
+
   let user = new Notification(userData);
 var sendNotification = function(data) {
   var headers = {
@@ -1246,7 +1247,7 @@ router.post('/sendordercancelrequest', (req, res) => {
            "<html><br></html>" +
            "<html><h3>Product Qty :</h3></html>" + req.body.prdctQty +
            "<html><br></html>" +
-           "<html><h3>Product Unit :</h3></html>" + req.body.prdctUnit + 
+           "<html><h3>Product Unit :</h3></html>" + req.body.prdctUnit +
            "<html><br></html>" +
            "<html><h3>Required Unit :</h3></html>" + req.body.requiredUnit +
            "<html><br></html>" +
@@ -1425,7 +1426,7 @@ router.post('/updatevieworderrequest', (req, res) => {
       .catch(err => {
         res.status(500).json({ message: 'Error occured' });
       });
-      } 
+      }
     }
   )
 });
@@ -2049,7 +2050,7 @@ router.get('/getSingleDispute/:id', (req, res) => {
   });
 });
 
-//Get Dispute 
+//Get Dispute
 router.get('/getDispute', (req, res) => {
   Dispute.find(function(err, result) {
     if (err) {
@@ -2090,7 +2091,7 @@ router.post('/sendDisputeMail', (req, res) => {
            "<html><br></html>" +
            "<html><h3> Disputer Phone :</h3></html>" + req.body.sellerPhone +
            "<html><br></html>" + "<html><hr></html>" +
-           
+
            "<html><h3 style='text-align:center'>Product Details</h3></html>" +
            "<html><h3> Request Id :</h3></html>" + req.body.requestId +
            "<html><br></html>" +
@@ -2109,4 +2110,27 @@ router.post('/sendDisputeMail', (req, res) => {
   );
 });
 
+//send ticket
+router.post('/sendticket', (req, res) => {
+  let ticketData = req.body;
+  let ticket = new Ticket(ticketData);
+  ticket.save((error, ticketData) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.status(200).send(ticketData);
+    }
+  });
+});
+
+// get tickets
+router.get('/getticket', (req, res) => {
+  Ticket.find(function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  }).sort({createddate : -1});
+});
 module.exports = router;

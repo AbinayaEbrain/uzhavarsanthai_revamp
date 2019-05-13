@@ -60,6 +60,8 @@ import { DummyComponent } from './dummy/dummy.component';
 import { CreditsComponent } from './credits/credits.component';
 import { AdminDisputeComponent } from './admin-dispute/admin-dispute.component';
 import { DisputeMoreComponent } from './dispute-more/dispute-more.component';
+import { MyTicketsComponent } from './my-tickets/my-tickets.component';
+import { TicketviewComponent } from './ticketview/ticketview.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +99,9 @@ import { DisputeMoreComponent } from './dispute-more/dispute-more.component';
     MyOrderComponent,
     CreditsComponent,
     AdminDisputeComponent,
-    DisputeMoreComponent
+    DisputeMoreComponent,
+    MyTicketsComponent,
+    TicketviewComponent
   ],
   imports: [
     BrowserModule,
