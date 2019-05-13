@@ -61,6 +61,9 @@ const userSchema = new Schema({
       orderRqstId: String,
       disputeId: String,
       dispute: String,
+      requestId: String,
+      disputeStatus: String,
+      solution: {type: String , default:''},
       createdAt: Date
     }
   ],
@@ -76,6 +79,8 @@ const userSchema = new Schema({
       disputeId: String,
       requestId: String,
       dispute: String,
+      disputeStatus: String,
+      solution: {type: String , default:''},
       createdAt: Date
     }
   ]

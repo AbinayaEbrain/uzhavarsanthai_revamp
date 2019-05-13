@@ -7,12 +7,13 @@ const disputeSchema = new Schema({
   buyerName: String,
   buyerId: String,
   disputerName: String,
-  disputerrId: String,
+  disputerId: String,
   productId: String,
   orderRqstId: String,
   dispute: String,
   requestId: String,
   disputeStatus: String,
+  solution: {type: String , default:''},
   createdAt: Date
 });
 
