@@ -1,0 +1,238 @@
+.bg {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: whitesmoke;
+    min-height: 100vh;
+    width: 100%;
+    min-height: -webkit-fill-available;
+  }
+  .card {
+    /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45); */
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    margin-bottom: 5px;
+    transition: all 0.25s;
+  }
+  .dummyLable {
+    margin-top: -6%;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 14px;
+    font-family: 'Hind Madurai', sans-serif;
+    color: #0d4608;
+    font-weight: bold;
+  }
+  .updateProfile {
+    color: #0d4608;
+    margin-top: 5px;
+    padding-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .welcomeUser {
+    color: #0d4608;
+    text-align: left;
+    margin-bottom: 5%;
+  }
+  .viewMoreBtn {
+    margin: auto;
+    font-weight: bold;
+    color: #0d4608;
+    border-color: #0d4608;
+  }
+  .viewMoreBtn:hover {
+    background-color: #0d4608;
+    color: white;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    .card {
+      margin-top: 10%;
+      /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45); */
+      overflow: hidden;
+      position: relative;
+      top: 0;
+      margin-bottom: 5px;
+      transition: all 0.25s;
+    }
+    .welcomeUser {
+      color: #0d4608;
+      text-align: left;
+      margin-bottom: 10%;
+    }
+  }
+  
+  input[type='text'],
+  input[type='password'] {
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    font-family: 'Hind Madurai', sans-serif;
+  }
+  
+  input:focus {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+  }
+  
+  select option {
+    margin: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #0d4608;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  label {
+    float: left;
+    font-weight: bold;
+    color: #0d4608;
+  }
+  
+  select:focus {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+  }
+  
+  input {
+    background-color: transparent;
+    border: 1px solid #0d4608 !important;
+    font-family: 'Hind Madurai', sans-serif;
+  }
+  
+  select {
+    background-color: transparent;
+    /* border: 1px solid #79828b; */
+    border-bottom: 1px solid #0d4608 !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+  ::placeholder {
+    color: #0d4608;
+    font-weight: bold;
+    opacity: 1; /* Firefox */
+  }
+  .modal_sccess {
+    border: 2px solid black;
+    background-color: #0d4608;
+    color: white;
+    padding: 20px;
+    width: 50%;
+  }
+  .btn {
+    font-size: 18px;
+    background-color: #0d4608;
+    border: none;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-control {
+    color: #0d4608 !important;
+  }
+  
+  .slect {
+    position: absolute;
+    top: 0;
+    padding: 7px 0 0 0px;
+    transition: all 200ms;
+    /* opacity: 0.5; */
+    font-size: 14px;
+    color: #0d4608;
+  }
+  .form-control-placeholder {
+    position: absolute;
+    top: 0;
+    padding: 7px 0 0 13px;
+    transition: all 200ms;
+    /* opacity: 0.5; */
+    left: -12px;
+    font-weight: 500;
+    font-size: 17px;
+    font-weight: bold;
+    color: #0d4608;
+  }
+  
+  .form-control:focus + .form-control-placeholder,
+  .form-control:valid + .form-control-placeholder {
+    font-size: 100%;
+    transform: translate3d(0, -100%, 0);
+    opacity: 1;
+    color: #0d4608;
+    font-weight: bold;
+  }
+  
+  .clr {
+    color: #0d4608;
+    font-family: 'Oxygen', sans-serif;
+  }
+  
+  .sent_font {
+    font-family: cursive;
+    font-weight: bold;
+    color: white;
+  }
+  .span_clr {
+    text-decoration: underline;
+  }
+  .english_wrd {
+    font-family: 'Mukta', sans-serif;
+  }
+  .tamil_word {
+    font-family: 'Hind Madurai', sans-serif;
+  }
+  .error_word {
+    font-family: 'Cabin', sans-serif;
+  }
+  input {
+    font-family: 'Nunito', sans-serif;
+    font-family: 'Hind Madurai', sans-serif;
+  }
+  .button_word {
+    font-family: 'Kanit', sans-serif;
+  }
+  ::-webkit-input-placeholder {
+    font-family: 'Hind Madurai', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  ::-moz-placeholder {
+    font-size: 14px;
+    font-family: 'Hind Madurai', sans-serif;
+    font-weight: bold;
+  }
+  :-ms-input-placeholder {
+    font-size: 14px;
+    font-family: 'Hind Madurai', sans-serif;
+    font-weight: bold;
+  }
+  ::placeholder {
+    font-size: 14px;
+    font-family: 'Hind Madurai', sans-serif;
+    font-weight: bold;
+  }
+  
+  input[readonly].classname {
+    background-color: transparent;
+    border: 0;
+    font-size: 1em;
+  }
+  
+  .cardShadow {
+    background-color: white;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  }
+  
+  .creditPara {
+    font-size: smaller;
+    margin-top: 10px;
+    margin-bottom: -7px;
+  }
+  

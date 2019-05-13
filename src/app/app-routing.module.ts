@@ -35,6 +35,7 @@ import { CreditsComponent } from './credits/credits.component';
 import { AdminDisputeComponent } from './admin-dispute/admin-dispute.component';
 
 import { DummyComponent } from 'src/app/dummy/dummy.component';
+import { MostSellingProductComponent } from 'src/app/most-selling-product/most-selling-product.component';
 const routes: Routes = [
   {
     path: '',
@@ -201,6 +202,10 @@ const routes: Routes = [
   {
     path: 'admin-dispute',
     component: AdminDisputeComponent
+  },
+  {
+    path: 'most-selling-product',
+    component: MostSellingProductComponent
   }
 ];
 
