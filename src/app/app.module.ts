@@ -60,6 +60,9 @@ import { DummyComponent } from './dummy/dummy.component';
 import { CreditsComponent } from './credits/credits.component';
 import { AdminDisputeComponent } from './admin-dispute/admin-dispute.component';
 import { MostSellingProductComponent } from './most-selling-product/most-selling-product.component';
+import { DisputeMoreComponent } from './dispute-more/dispute-more.component';
+import { MyTicketsComponent } from './my-tickets/my-tickets.component';
+import { TicketviewComponent } from './ticketview/ticketview.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +100,10 @@ import { MostSellingProductComponent } from './most-selling-product/most-selling
     MyOrderComponent,
     CreditsComponent,
     AdminDisputeComponent,
-    MostSellingProductComponent
+    MostSellingProductComponent,
+    DisputeMoreComponent,
+    MyTicketsComponent,
+    TicketviewComponent
   ],
   imports: [
     BrowserModule,

@@ -66,6 +66,7 @@ const userSchema = new Schema({
   ],
   buyerdispute: [
     {
+      ticketId: String,
       sellerName: String,
       sellerId: String,
       disputerName: String,
@@ -73,6 +74,7 @@ const userSchema = new Schema({
       productId: String,
       orderRqstId: String,
       disputeId: String,
+      requestId: String,
       dispute: String,
       createdAt: Date
     }

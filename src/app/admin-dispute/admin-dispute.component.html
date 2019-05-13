@@ -2,10 +2,61 @@
   <div class="container mt-5 pt-5">
     <h4 style="color:#0d4608;text-align:center">Support Tickets</h4>
     <br />
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4"></div>
-      <div class="col-md-4"></div>
+    <div class="container" *ngFor="let dispute of disputeArr">
+      <div class="notice notice-success">
+        <!-- <strong>Notice</strong> notice-success -->
+        <div class="row">
+          <div class="col-md-6">
+            <p style="color: #eb0f2491;font-weight: bold;">
+              {{ dispute.ticketId }}
+            </p>
+          </div>
+          <div class="col-md-6">
+            <div class="float-right">
+              <button class="btn btn-sm btn-success">
+                Resolve
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <span>
+              <p style="text-indent: 30px;">{{ dispute.dispute }}</p>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="float-right">
+              <div></div>
+            </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <span>
+              <small
+                >Disputed against :
+                <span style="font-size: 15px;">{{
+                  dispute.buyerName
+                }}</span></small
+              >
+            </span>
+          </div>
+          <div class="col-md-6">
+            <span class="float-right">
+              <span
+                >By {{ dispute.disputerName }}
+                <small>on {{ dispute.createdAt | date }}</small></span
+              >
+            </span>
+          </div>
+        </div>
+      </div>
+      <br>
+      <!-- <div class="notice notice-danger">
+        <strong>Notice</strong> notice-danger
+      </div> -->
     </div>
   </div>
 </body>

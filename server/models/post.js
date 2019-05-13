@@ -69,12 +69,14 @@ const postSchema = new Schema({
   ],
   buyerdispute: [
     {
+      ticketId: String,
       sellerName: String,
       sellerId: String,
       disputerName: String,
       disputerId: String,
       productId: String,
       orderRqstId: String,
+      requestId: String,
       disputeId: String,
       dispute: String,
       createdAt: Date

@@ -1,0 +1,345 @@
+.bg {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: whitesmoke;
+  min-height: 100vh;
+  width: 100%;
+  min-height: -webkit-fill-available;
+}
+
+.mt-5 {
+  margin-top: 6rem !important;
+}
+
+.tamil_word {
+  font-family: 'Hind Madurai', sans-serif;
+}
+
+.viewMoreBtn {
+  margin: auto;
+  font-weight: bold;
+  color: #0d4608;
+  border-color: #0d4608;
+}
+.viewMoreBtn:hover {
+  background-color: #0d4608;
+  color: white;
+}
+
+.button_word {
+  font-family: 'Kanit', sans-serif;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #0d4608 !important;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.btnClr {
+  border: 2px solid #0d4608;
+  color: #0d4608;
+  background-color: white;
+  font-weight: bolder;
+}
+
+.btnClr:hover {
+  background-color: #0d4608;
+  color: white;
+}
+
+.btnDanger {
+  border: 2px solid #dc3545;
+  color: #dc3545;
+  background-color: white;
+  font-weight: bolder;
+}
+
+.btnDanger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+#tabs h6.section-title {
+  color: white;
+  background-color: #0d4608;
+}
+section .section-title {
+  text-align: center;
+  color: #007b5e;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
+
+/* .imgRes {
+  width: inherit !important;
+} */
+
+.imgRes {
+width: 300px;
+}
+
+.errDesign {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+  color: red;
+}
+
+#tabs .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: #f3f3f3;
+  background-color: transparent;
+  border-color: transparent transparent #f3f3f3;
+  border-bottom: 4px solid !important;
+  font-weight: bold;
+}
+#tabs .nav-tabs .nav-link {
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  color: #0d4608 !important;
+  /* background-color: #0d4608; */
+  font-size: 1rem;
+}
+.nav-tabs .nav-link {
+  border: 1px solid #0d4608;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  color: white;
+  font-weight: bold;
+}
+.nav-tabs {
+  border-bottom: 2px solid white;
+  width: fit-content;
+}
+.button_word {
+  font-family: 'Kanit', sans-serif;
+}
+.english_wrd {
+  font-family: 'Mukta', sans-serif;
+  float: left;
+color: #0d4608;
+font-weight: bold;
+}
+.english_wrd1 {
+  font-family: 'Mukta', sans-serif;
+color: #0d4608;
+font-weight: bold;
+}
+.tabTitle {
+  font-size: 14px;
+  color: #0d4608 !important;
+}
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align glyph */
+.left-addon .glyphicon {
+  left: 0px;
+}
+.right-addon .glyphicon {
+  right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+  padding-left: 30px;
+}
+.right-addon input {
+  padding-right: 30px;
+}
+.card {
+  border-radius: 8px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  text-align: center;
+  margin-bottom: 5px;
+  transition: all 0.25s;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #0d4608;
+  /* width: 550px; */
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 1px;
+}
+.orderPara{
+  margin-top: -15px;
+  text-align: center;
+}
+.orderHighlight{
+float: left;
+background-color: #0d4608;
+padding: 3px;
+font-weight: bold;
+color: white;
+}
+.button_word1 {
+  font-family: 'Kanit', sans-serif;
+  cursor:pointer;
+  color: red !important;
+  float: right;
+  /* margin-top: 50%; */
+}
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .button_word1 {
+    font-family: 'Kanit', sans-serif;
+    cursor:pointer;
+    color: red !important;
+    float: right;
+    margin-top: 0px;
+  }
+  .myOrderHeading{
+    color:#0d4608;text-align:center;
+     margin-top: 20%;
+  }
+  .orderHighlight{
+    font-size: 11px;
+  }
+  .col-md-6{
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .imgRes {
+    width: inherit !important;
+  }
+}
+.headingrow{
+  background-color:#8080803d;padding:5px;
+}
+.myOrderHeading{
+  color:#0d4608;text-align:center
+}
+.orderHead{
+      margin-top: -15px;
+}
+
+.orderHead2{
+      margin-top: 0px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 3px;
+}
+
+.viewMoreBtn1 {
+  margin: auto;
+  font-weight: bold;
+  color: white ;
+  border-color: #0d4608;
+  background-color: #0d4608;
+}
+
+.viewMoreBtn1:hover {
+  background-color: white;
+  color: #0d4608;
+}
+
+@media screen and (max-width: 320px) {
+  .orderHead2{
+   font-size: 13px;
+}
+}
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown-toggle::after {
+  display:none;
+}
+
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+
+/* component */
+
+.star-rating {
+  /* border:solid 1px #ccc; */
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+}
+
+.star-rating input {
+  display:none;
+}
+
+.star-rating label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-rating :checked ~ label {
+  color:#f90;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color:#fc0;
+}
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: #0d4608;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+}
+.ticketId{
+  float:left;color: #0d4608;
+  font-weight: bold;
+}
+.ticketTitle{
+  font-weight: 600 !important;
+  color: #0d4608;
+}
+.ticketstate{
+  float:right;color: #0d4608;font-weight: bold;  background-color: white;width: 50px;
+}

@@ -1,0 +1,86 @@
+<body class="bg" style="overflow-x: hidden;">
+  <div class="container card" style="margin-top: 7% !important;">
+    <h4 class="myOrderHeading">My Tickets</h4><br>
+    <section id="tabs" style="margin-top: -20px;">
+          <div class="container">
+              <div class="row">
+                <div class="col-xs-12 ">
+                      <nav>
+                          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">My Tickets <span *ngIf="ticketlngth" class="badge">{{ticketlngth}}</span><span *ngIf="!ticketlngth" class="badge">0</span></a>
+                              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Create Ticket</a>
+                          </div>
+                      </nav>
+                    </div>
+                </div>
+          </div>
+      </section>
+      <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="container">
+              <div class="col-md-12">
+                <div class="row" *ngFor="let ticket of userTickets" >
+                  <div class="col-md-1"></div>
+                  <div class="col-md-10" style="background-color: #d3d3d35c !important; padding: 1%;margin-bottom: 1%;border: 1px solid lightgrey !important;">
+                    <p class="ticketId">{{ticket.ticketId}} &nbsp;<span class="ticketTitle">{{ticket.ticketTitle}}</span></p>
+                    <p class="ticketstate">
+                      <button class="btn btn-sm viewMoreBtn1  button_word">{{ticket.ticketStatus}}</button>
+                    </p>
+                    <br>
+                    <hr>
+                      <p style="float:left;color: #0d4608;font-size: 15px;">Created at : {{ticket.createddate | date}}</p>
+                      <p style="float:right;">
+                        <button class="btn btn-sm viewMoreBtn  button_word" routerLink="/view-ticket/{{ticket._id}}">
+                          More Details
+                        </button>
+                      </p>
+                  </div>
+                    <div class="col-md-1"></div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="container">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-3"></div>
+                <div class="col-md-6">
+                  <form  #ticketForm="ngForm" *ngIf ="!submitted" novalidate>
+                    <div class="row">
+                        <div class="col-md-12">
+                          <p *ngIf="successMsg" class="alert alert-success english_wrd1">
+                              {{successMsg}}
+                            </p>
+                            <div class="form-group">
+                                <label class=" english_wrd" for="firstname">Ticket Title</label>
+                                <input type="text" placeholder="Enter ticket title" #ticketTitle="ngModel" [class.is-invalid]="ticketTitle.invalid && ticketTitle.touched" ngModel name="ticketTitle" class="form-control"
+                                autocomplete="off" [(ngModel)]="ticketData.ticketTitle" required>
+                                <span class="text-danger float-left error_word" [class.d-none] = "ticketTitle.valid || ticketTitle.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Ticket title is required</span>
+                              </div>
+                         </div>
+                         <div class="col-md-12">
+                            <div class="form-group  mb-5 mt-2">
+                                  <label class="english_wrd" for="address">Ticket Description</label>
+                                <textarea type="text" style="height:150px;" placeholder="Enter ticket description" #ticketDescription="ngModel"
+                                [class.is-invalid]="ticketDescription.invalid && ticketDescription.touched" ngModel
+                                name="ticketDescription" class="form-control"
+                                 autocomplete="off"  [(ngModel)]="ticketData.ticketDescription" required></textarea>
+                                <span class="text-danger float-left error_word" [class.d-none] = "ticketDescription.valid || ticketDescription.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Ticket description is required</span>
+                              </div>
+                         </div>
+                         <div class="col-md-12 text-center">
+                            <button class="btn btn-outline-success text-center viewMoreBtn  button_word"  type="submit" [disabled]="ticketForm.form.invalid" (click)="sendticket()">Submit</button>&nbsp;
+                            <button type="reset" class="btn btn-outline-success text-center viewMoreBtn  button_word">Reset</button>
+                         </div>
+                    </div>
+                    <br>
+                  </form>
+                </div>
+              <div class="col-md-3"></div>
+            </div>
+          </div>
+        </div>
+          </div>
+      </div>
+    </div>
