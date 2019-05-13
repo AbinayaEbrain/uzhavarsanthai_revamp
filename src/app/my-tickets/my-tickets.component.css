@@ -22,10 +22,11 @@
   font-weight: bold;
   color: #0d4608;
   border-color: #0d4608;
+  background-color: white !important;
 }
 .viewMoreBtn:hover {
   background-color: #0d4608;
-  color: white;
+  color: #0d4608;
 }
 
 .button_word {
@@ -177,23 +178,14 @@ font-weight: bold;
   text-align: center;
   margin-bottom: 5px;
   transition: all 0.25s;
+  margin-top: 7% !important;
 }
 
 .nav-tabs {
   border-bottom: 1px solid #0d4608;
   /* width: 550px; */
 }
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 1px;
-}
+
 .orderPara{
   margin-top: -15px;
   text-align: center;
@@ -213,6 +205,17 @@ color: white;
   /* margin-top: 50%; */
 }
 @media screen and (min-width: 320px) and (max-width: 425px) {
+  .card {
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    text-align: center;
+    margin-bottom: 5px;
+    transition: all 0.25s;
+    margin-top: 0% !important;
+  }
   .button_word1 {
     font-family: 'Kanit', sans-serif;
     cursor:pointer;
@@ -223,6 +226,7 @@ color: white;
   .myOrderHeading{
     color:#0d4608;text-align:center;
      margin-top: 20%;
+     font-size: 20px;
   }
   .orderHighlight{
     font-size: 11px;
@@ -267,8 +271,8 @@ color: white;
 }
 
 .viewMoreBtn1:hover {
-  background-color: white;
-  color: #0d4608;
+  background-color: #0d4608;
+  color: white;
 }
 
 @media screen and (max-width: 320px) {
@@ -341,5 +345,15 @@ color: white;
   color: #0d4608;
 }
 .ticketstate{
-  float:right;color: #0d4608;font-weight: bold;  background-color: white;width: 50px;
+  float:right;color: #0d4608;font-weight: bold;  background-color: white;
+}
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .ticketId{
+    float:left;color: #0d4608;
+    font-weight: bold;
+    white-space: nowrap;
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

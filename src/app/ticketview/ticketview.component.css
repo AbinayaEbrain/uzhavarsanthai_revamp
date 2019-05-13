@@ -10,6 +10,7 @@
 }
 .card {
   border-radius: 8px;
+  margin-top:5% !important;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
   overflow: hidden;
   position: relative;
@@ -17,4 +18,44 @@
   text-align: center;
   margin-bottom: 5px;
   transition: all 0.25s;
+}
+.mytickets{
+  cursor: pointer;float:left;color: #0d4608;font-weight: bold;font-family: 'Mukta', sans-serif;margin-top: 1%;font-size: 20px;
+}
+.myticketsHead{
+  cursor: pointer;float:left;color: #0d4608;font-weight: bold;font-family: 'Mukta', sans-serif;margin-top: 1%;font-size: 20px;
+}
+.ticketsstate{
+  float:right;color: #0d4608;font-weight: bold;font-family: 'Mukta', sans-serif;margin-top: 1%;font-size: 20px;
+}
+.myticketsone{
+  color: #0d4608;font-family: 'Mukta', sans-serif;
+}
+.myticketstwo{
+  cursor: pointer;float:left;color: #0d4608;font-family: 'Mukta', sans-serif;font-size: 18px;margin-top: 1%;
+}
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+.mytickets{
+    cursor: pointer;float:left;color: #0d4608;font-weight: bold;font-family: 'Mukta', sans-serif;margin-top: 1%;font-size: 15px;
+}
+.myticketsHead{
+  cursor: pointer;float:left;color: #0d4608;font-weight: 100 !important;font-family: 'Mukta', sans-serif;margin-top: 1%;font-size: 20px;
+}
+.ticketsstate{
+  float:right;color: #0d4608;font-weight: bold;font-family: 'Mukta', sans-serif;margin-top: 1%;font-size: 15px;
+}
+.myticketstwo{
+  cursor: pointer;float:left;color: #0d4608;font-family: 'Mukta', sans-serif;font-size: 15px;margin-top: 1%;
+}
+.card {
+  border-radius: 8px;
+  margin-top:20% !important;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  text-align: center;
+  margin-bottom: 5px;
+  transition: all 0.25s;
+}
 }

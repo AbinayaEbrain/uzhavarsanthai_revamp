@@ -16,9 +16,12 @@ export class MyTicketsComponent implements OnInit {
   successMsg:any;
   ticketlngth:any;
   userid:any;
+  ticketId:any;
   totalTickets = [];
   userTickets = [];
+  p:any;
   zeroCount:any;
+  noTicketsMsg:any;
   @ViewChild('ticketForm') mytemplateForm: NgForm;
   constructor(private _dealsService: DealsService,public loadingCtrl: NgxSpinnerService,private router: Router,) { }
 
@@ -32,6 +35,10 @@ export class MyTicketsComponent implements OnInit {
           console.log(res);
           this.totalTickets = res;
           console.log(this.totalTickets.length);
+          if(this.totalTickets.length == 0){
+            this.noTicketsMsg = "No Tickets Available"
+            console.log(this.noTicketsMsg );
+          }
           let j = 0;
           for(let i = 0; i < this.totalTickets.length; i++){
             console.log(this.totalTickets.length);
