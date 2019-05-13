@@ -59,6 +59,7 @@ import { MyOrderComponent } from './my-order/my-order.component';
 import { DummyComponent } from './dummy/dummy.component';
 import { CreditsComponent } from './credits/credits.component';
 import { AdminDisputeComponent } from './admin-dispute/admin-dispute.component';
+import { DisputeMoreComponent } from './dispute-more/dispute-more.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { AdminDisputeComponent } from './admin-dispute/admin-dispute.component';
     SellerOrderRequestsComponent,
     MyOrderComponent,
     CreditsComponent,
-    AdminDisputeComponent
+    AdminDisputeComponent,
+    DisputeMoreComponent
   ],
   imports: [
     BrowserModule,
