@@ -84,6 +84,7 @@ export class DealsService {
 
     // Buyer Dispute
     private _postDisputeUrl = 'http://localhost:5000/api/postdispute';
+    private _getBuyerDispute = "http://localhost:5000/api/getBuyerDispute";
     private _updatePostBuyerDispute = "http://localhost:5000/api/updateBuyerDisputePost";
     private _buyerUpdateUserDispute = "http://localhost:5000/api/buyerupdateDisputeUser";
     private _updateUserBuyerDispute = "http://localhost:5000/api/updateDisputeUserBuyer";
@@ -92,6 +93,10 @@ export class DealsService {
   private _updateUserCreditArrCredit = "http://localhost:5000/api/updateCreditArrCredit";
   private _sendticketUrl = "http://localhost:5000/api/sendticket";
   private _getticketUrl = "http://localhost:5000/api/getticket";
+
+  //admin order closed
+  private updateUserOrderRequestStatus = "http://localhost:5000/api/mapuserOrderRequestStatus";
+
 
   constructor(private http: HttpClient) {}
 
@@ -305,6 +310,10 @@ export class DealsService {
     return this.http.post<any>(this._postDisputeUrl, data);
   }
 
+  getBuyerDispute() {
+    return this.http.get<any>(this._getBuyerDispute);
+  }
+
   updatePostBuyerDispute(data,id){
     return this.http.post<any>(this._updatePostBuyerDispute + '/' + id, data);
   }
@@ -333,4 +342,9 @@ export class DealsService {
 getTickets() {
   return this.http.get<any>(this._getticketUrl);
 }
+//update admin closed status in order request
+updateOrderRequestStatus(data,id){
+  return this.http.post<any>(this.updateUserOrderRequestStatus + '/' + id, data);
+}
+
 }

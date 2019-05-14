@@ -39,7 +39,7 @@
                      More <i class="fa fa-ellipsis-v"></i>
                     </p>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" data-toggle="modal" style="cursor: pointer;" data-target="#myModal" (click)="singleUpdateSignupReq(order._id)">Order review</a>
+                      <a class="dropdown-item" *ngIf="order.status == 'Closed' && order.sellerStatus == 'Closed'" data-toggle="modal" style="cursor: pointer;" data-target="#myModal" (click)="singleUpdateSignupReq(order._id)">Order review</a>
                       <a class="dropdown-item" style="cursor: pointer;" (click)="singleUpdateSignupReq(order._id)" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static" >Dispute</a>
                     </div></div>
                   </div>

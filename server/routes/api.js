@@ -1334,6 +1334,36 @@ router.put('/updateorderrequest/:id', function(req, res) {
   );
 });
 
+//  update admin closed order request
+router.post('/mapuserOrderRequestStatus/:id', function(req, res) {
+  Orderrequest.find(
+    {
+      _id:req.params.id,
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Orderrequest.update(
+          {
+            _id:req.params.id,
+          },
+          {
+            $set: {
+                status: req.body.status,
+                sellerStatus: req.body.sellerStatus
+             }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'order request updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
 //Update order request
 router.post('/orderReqPost/:id', function(req, res) {
          Post.updateOne(
@@ -1648,6 +1678,17 @@ router.post('/postdispute', (req, res) => {
       res.status(200).send(disputeData);
     }
   });
+});
+
+//Get Dispute
+router.get('/getBuyerDispute', (req, res) => {
+  Buyerdispute.find(function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  }).sort({createdAt : -1});
 });
 
 // Buyer Dispute update in post

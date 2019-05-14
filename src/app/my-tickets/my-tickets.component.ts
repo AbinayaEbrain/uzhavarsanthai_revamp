@@ -9,7 +9,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./my-tickets.component.css']
 })
 export class MyTicketsComponent implements OnInit {
+  ticketId: number;
   ticketData : any = {};
+  disputeArr : any = [];
   username:any;
   userphone:any;
   userrole:any;
@@ -25,6 +27,7 @@ export class MyTicketsComponent implements OnInit {
   ngOnInit() {
       this.userid = JSON.parse(localStorage.getItem('currentUser'))._id;
       this.getAlltickets();
+      this.getdispute();
   }
   getAlltickets(){
     this._dealsService.getTickets().subscribe(
@@ -83,4 +86,50 @@ sendticket(){
     }
   );
 }
+
+// getdispute() {
+//   this._dealsService.getBuyerDispute().subscribe(
+//     data => {
+//       console.log(data);
+//       let j = 0;
+//       for (let i = 0; i < data.length; i++) {
+//         console.log(this.userid);
+//         console.log(data.disputerId);
+//         if (this.userid == data[i].disputerId) {
+//           this.disputeArr[j] = data[i];
+//           j++;
+//         }
+//       }
+//       console.log(this.disputeArr);
+//     },
+//     err => {
+//       console.log(err);
+//     }
+//   );
+// }
+
+getdispute() {
+  this._dealsService.getdispute().subscribe(
+    data => {
+      console.log(data);
+      let j = 0;
+      for (let i = 0; i < data.length; i++) {
+        console.log(this.userid);
+        console.log(data[i].disputerId);
+        if (this.userid == data[i].disputerId) {
+          this.disputeArr[j] = data[i];
+          j++;
+        }
+      }
+      
+      console.log(this.disputeArr);
+    },
+    err => {
+      console.log(err);
+    }
+  );
+}
+
+
+
 }
