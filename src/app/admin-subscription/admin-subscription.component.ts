@@ -10,6 +10,17 @@ export class AdminSubscriptionComponent implements OnInit {
   constructor(private _dealsService : DealsService) { }
 
   ngOnInit() {
+  
+      this._dealsService.getSubscription().subscribe(
+        res => {
+          console.log(res);
+        },
+        err =>{
+          console.log(err);
+        }
+      )
+ 
+
   }
   onSubmit(){
     this._dealsService.addsubscription(this.subcriptionData).subscribe(
