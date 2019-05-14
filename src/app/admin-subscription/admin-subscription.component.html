@@ -1,0 +1,40 @@
+<body  class="bg" style="overflow-x: hidden">
+    <div class="container mt-5 pt-5">
+<form class="mt-5" #subcription="ngForm" *ngIf ="!submitted" novalidate>
+  <div class="row">
+    <div class="col-md-6">
+  <div class="form-group">
+    <label for="subcription">Subcription</label>
+    <input type="text" class="form-control" required name="subcription" #subcription="ngModel" [class.is-invalid]="subcription.invalid && subcription.touched" [(ngModel)]="subcriptionData.subcription">
+    <small class="text-danger" [class.d-none]="subcription.valid || subcription.untouched">Please enter subcription</small>
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="form-group">
+    <label for="amount">Amount</label>
+    <input type="text" class="form-control" required name="amount" #amount="ngModel" [class.is-invalid]="amount.invalid && amount.touched" [(ngModel)]="subcriptionData.amount">
+    <small class="text-danger" [class.d-none]="amount.valid || amount.untouched">Please enter amount</small>
+  </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+      <label for="credit">Credit</label>
+      <input type="text" class="form-control" required name="credit" #credit="ngModel" [class.is-invalid]="credit.invalid && credit.touched" [(ngModel)]="subcriptionData.credit">
+      <small class="text-danger" [class.d-none]="credit.valid || credit.untouched">Please enter credit value</small>
+    </div>
+  </div>
+  <div class="col-md-6">
+      <label for="status">Status</label>
+      <select class="form-control" name="status" required #status="ngModel" [class.is-invalid]="status.invalid && status.touched" [(ngModel)]="subcriptionData.status">
+        <option value="ACTIVE">ACTIVE</option>
+        <option value="INACTIVE">INACTIVE</option>
+      </select>
+      <small class="text-danger" [class.d-none]="status.valid || status.untouched">Please select status</small>
+    </div>
+</div>
+<div class="text-center">
+  <button type="submit" class="btn btn-success" (click)="onSubmit()">Create Subscription</button>
+</div>
+</form>
+</div>
+</body>

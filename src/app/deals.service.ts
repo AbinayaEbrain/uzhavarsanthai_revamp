@@ -101,7 +101,9 @@ export class DealsService {
 
   //admin order closed
   private updateUserOrderRequestStatus = "http://localhost:5000/api/mapuserOrderRequestStatus";
-
+  
+  //subscription
+  private subscription = "http://localhost:5000/api/subscription";
 
   constructor(private http: HttpClient) {}
 
@@ -362,4 +364,10 @@ export class DealsService {
   updateOrderRequestStatus(data,id){
     return this.http.post<any>(this.updateUserOrderRequestStatus + '/' + id, data);
   }
+
+  //subscription
+  addsubscription(data){
+     return this.http.post<any>(this.subscription,data);
+  }
+  
 }

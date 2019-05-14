@@ -63,6 +63,7 @@ import { MostSellingProductComponent } from './most-selling-product/most-selling
 import { DisputeMoreComponent } from './dispute-more/dispute-more.component';
 import { MyTicketsComponent } from './my-tickets/my-tickets.component';
 import { TicketviewComponent } from './ticketview/ticketview.component';
+import { AdminSubscriptionComponent } from './admin-subscription/admin-subscription.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { TicketviewComponent } from './ticketview/ticketview.component';
     MostSellingProductComponent,
     DisputeMoreComponent,
     MyTicketsComponent,
-    TicketviewComponent
+    TicketviewComponent,
+    AdminSubscriptionComponent
   ],
   imports: [
     BrowserModule,
