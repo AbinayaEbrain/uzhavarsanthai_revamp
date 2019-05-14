@@ -20,7 +20,7 @@ ul li a {
   color: white;
   text-align: center;
   margin: auto;
-  margin-left: 100px;
+  /* margin-left: 100px; */
 }
 
 .textAlign {

@@ -11,7 +11,9 @@ import { NgForm } from '@angular/forms';
 export class AdminDisputeComponent implements OnInit {
   @ViewChild('disputeForm') mytemplateForm: NgForm;
   disputeArr: any = [];
+  buyerDisputeArr: any = [];
   ticketArr: any = [];
+  disputeBuyerDisputeArr: any = [];
   disputeTicketArr: any = [];
   disputeObj: any = {};
   disputeObj1: any = {};
@@ -45,13 +47,30 @@ export class AdminDisputeComponent implements OnInit {
           }
         }
         console.log(this.disputeArr);
-        this.getAlltickets();
+        this.getBuyerDispute();
       },
       err => {
         console.log(err);
         this.loadingCtrl.hide();
       }
     );
+  }
+
+  getBuyerDispute(){
+    this._dealService.getBuyerDispute().subscribe(data =>{
+      console.log(data);
+      let j = 0;
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].disputeStatus == 'Created') {
+          this.buyerDisputeArr[j] = data[i];
+          j++;
+        }
+      }
+      this.disputeBuyerDisputeArr = this.disputeArr.concat(this.buyerDisputeArr);
+      this.getAlltickets();
+    }, err =>{
+      console.log(err);
+    })
   }
 
   getAlltickets() {
@@ -76,7 +95,7 @@ export class AdminDisputeComponent implements OnInit {
   }
 
   getDisputeTicketArr() {
-    this.disputeTicketArr = this.disputeArr.concat(this.ticketArr);
+    this.disputeTicketArr = this.disputeBuyerDisputeArr.concat(this.ticketArr);
     if (this.disputeTicketArr.length == 0) {
       this.errMsg = 'No Tickets';
     }

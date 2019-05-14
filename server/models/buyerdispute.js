@@ -13,7 +13,12 @@ const buyerdisputeSchema = new Schema({
   dispute: String,
   disputeStatus: String,
   requestId: String,
+  solution: { type: String, default: '' },
   createdAt: Date
 });
 
-module.exports = mongoose.model('buyerdispute', buyerdisputeSchema, 'buyerdispute');
+module.exports = mongoose.model(
+  'buyerdispute',
+  buyerdisputeSchema,
+  'buyerdispute'
+);

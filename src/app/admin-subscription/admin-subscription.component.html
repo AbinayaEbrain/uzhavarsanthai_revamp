@@ -5,7 +5,7 @@
     <div class="col-md-6">
   <div class="form-group">
     <label for="subcription">Subcription</label>
-    <input type="text" class="form-control" required name="subcription" #subcription="ngModel" [class.is-invalid]="subcription.invalid && subcription.touched" [(ngModel)]="subcriptionData.subcription">
+    <input type="text" class="form-control" required name="subcription" #subcription="ngModel" [class.is-invalid]="subcription.invalid && subcription.touched" [(ngModel)]="subcriptionData.subscription">
     <small class="text-danger" [class.d-none]="subcription.valid || subcription.untouched">Please enter subcription</small>
   </div>
 </div>
