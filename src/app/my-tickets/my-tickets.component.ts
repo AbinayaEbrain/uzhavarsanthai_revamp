@@ -9,7 +9,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./my-tickets.component.css']
 })
 export class MyTicketsComponent implements OnInit {
+  ticketId: number;
   ticketData : any = {};
+  disputeArr : any = [];
   username:any;
   userphone:any;
   userrole:any;
@@ -18,14 +20,17 @@ export class MyTicketsComponent implements OnInit {
   userid:any;
   totalTickets = [];
   userTickets = [];
+  p:any;
   zeroCount:any;
-  ticketId:any;
+  noTicketsMsg:any;
   @ViewChild('ticketForm') mytemplateForm: NgForm;
+
   constructor(private _dealsService: DealsService,public loadingCtrl: NgxSpinnerService,private router: Router,) { }
 
   ngOnInit() {
       this.userid = JSON.parse(localStorage.getItem('currentUser'))._id;
       this.getAlltickets();
+      this.getdispute();
   }
 
   getAlltickets(){
@@ -34,6 +39,10 @@ export class MyTicketsComponent implements OnInit {
           console.log(res);
           this.totalTickets = res;
           console.log(this.totalTickets.length);
+          if(this.totalTickets.length == 0){
+            this.noTicketsMsg = "No Tickets Available"
+            console.log(this.noTicketsMsg );
+          }
           let j = 0;
           for(let i = 0; i < this.totalTickets.length; i++){
             console.log(this.totalTickets.length);
@@ -56,7 +65,7 @@ sendticket(){
   var a = "UZ"
   this.ticketId = Math.floor(100000 + Math.random() * 900000);
   console.log(this.ticketId);
-  this.ticketData.ticketId = a+""+this.ticketId;
+  this.ticketData.ticketId = a + "-" + this.ticketId;
   this.ticketData.ticketStatus = 'Created';
   this.username = JSON.parse(localStorage.getItem('currentUser')).firstname;
   this.userphone = JSON.parse(localStorage.getItem('currentUser')).phone;
@@ -86,4 +95,50 @@ sendticket(){
     }
   );
 }
+
+// getdispute() {
+//   this._dealsService.getBuyerDispute().subscribe(
+//     data => {
+//       console.log(data);
+//       let j = 0;
+//       for (let i = 0; i < data.length; i++) {
+//         console.log(this.userid);
+//         console.log(data.disputerId);
+//         if (this.userid == data[i].disputerId) {
+//           this.disputeArr[j] = data[i];
+//           j++;
+//         }
+//       }
+//       console.log(this.disputeArr);
+//     },
+//     err => {
+//       console.log(err);
+//     }
+//   );
+// }
+
+getdispute() {
+  this._dealsService.getdispute().subscribe(
+    data => {
+      console.log(data);
+      let j = 0;
+      for (let i = 0; i < data.length; i++) {
+        console.log(this.userid);
+        console.log(data[i].disputerId);
+        if (this.userid == data[i].disputerId) {
+          this.disputeArr[j] = data[i];
+          j++;
+        }
+      }
+      
+      console.log(this.disputeArr);
+    },
+    err => {
+      console.log(err);
+    }
+  );
+}
+
+
+
 }

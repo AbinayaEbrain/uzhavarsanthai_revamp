@@ -1,0 +1,50 @@
+<body class="bg" style="overflow-x: hidden;">
+  <div class="container mt-4 pt-5">
+    <div class="card">
+    <h5 class="text-center mt-2">Most selling products</h5>
+
+      <!-- <p class="updateProfile">Used Credits</p> -->
+      <div class="row" style="padding: 10px;">
+        <div class="col-md-12">
+            <div class="card mb-3" *ngFor="let credit of orderrequests">
+                <div class="card-header cardShadow shadow-sm bg-white rounded text-left">
+                  <div><strong class="tamil_word">{{ credit.category }}</strong></div>
+                  <small>Posted On : {{ credit.date | date }}</small>
+                  <!-- <div class="float-right">
+                      <strong style="color: #eb0f2491"
+                      >Credits Used : {{ credit.credit }}</strong
+                    >
+                  </div> -->
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-2">
+                        <img height="100px"  width="100px" src="{{credit.image}}" alt="" class="img-fluid z-depth-0">
+                    </div>
+                    <div class="col-md-3">
+                        <h6 class="clr english_wrd" style="font-weight: bold">Product Name</h6>
+                        <p class="text-muted">{{ credit.name }}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <h6 class="clr english_wrd" style="font-weight: bold">Quantity</h6>
+                        <p class="text-muted">{{credit.quantity}} / {{credit.qnty}}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <h6 class="clr english_wrd" style="font-weight: bold">Price</h6>
+                        <p class="text-muted">{{ credit.price }}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h6 class="clr english_wrd" style="font-weight: bold">Availabilty</h6>
+                        <p class="text-muted">{{ credit.avlPlace.formatted_address }}</p>
+                    </div>
+                  </div>
+                  <!-- <p class="creditPara"><i class="fa fa-check-square-o" aria-hidden="true"></i> You have used <span style="color: #eb0f2491;font-weight: 700">{{ credit.credit }} credits</span> to post this product.</p> -->
+                </div>
+              </div>
+        </div>
+      </div>
+</div></div>
+</body>
+
+
+

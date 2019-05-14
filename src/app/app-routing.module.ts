@@ -36,6 +36,7 @@ import { AdminDisputeComponent } from './admin-dispute/admin-dispute.component';
 import { MyTicketsComponent } from 'src/app/my-tickets/my-tickets.component';
 import { TicketviewComponent } from 'src/app/ticketview/ticketview.component';
 import { DummyComponent } from 'src/app/dummy/dummy.component';
+import { MostSellingProductComponent } from 'src/app/most-selling-product/most-selling-product.component';
 const routes: Routes = [
   {
     path: '',
@@ -202,6 +203,11 @@ const routes: Routes = [
   {
     path: 'admin-dispute',
     component: AdminDisputeComponent
+  },
+  {
+
+    path: 'most-selling-product',
+    component: MostSellingProductComponent
   },
   {
     path: 'my-tickets',
