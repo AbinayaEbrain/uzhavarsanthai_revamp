@@ -2133,4 +2133,47 @@ router.get('/getticket', (req, res) => {
     }
   }).sort({createddate : -1});
 });
+
+// Get Single Ticket
+router.get('/getSingleTicket/:id', (req, res) => {
+  Ticket.findById(req.params.id, function(errors, getoneuser) {
+    if (errors) {
+      console.log('Error updating' + errors);
+    } else {
+      res.json(getoneuser);
+    }
+  });
+});
+
+// Ticket update in seller
+router.post('/updateTicket/:id', function(req, res) {
+  Ticket.find(
+    {
+      _id:req.params.id,
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Ticket.update(
+          {
+            _id:req.params.id,
+          },
+          {
+            $set:{
+              ticketStatus : req.body.ticketStatus,
+              solution : req.body.solution,
+              createddate : req.body.createddate
+            }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'Ticket updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
 module.exports = router;

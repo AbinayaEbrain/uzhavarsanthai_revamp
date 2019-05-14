@@ -11,10 +11,16 @@ import { NgForm } from '@angular/forms';
 export class AdminDisputeComponent implements OnInit {
   @ViewChild('disputeForm') mytemplateForm: NgForm;
   disputeArr: any = [];
+  ticketArr: any = [];
+  disputeTicketArr: any = [];
   disputeObj: any = {};
   disputeObj1: any = {};
+  ticketObj: any = {};
   solution: any;
   id: any;
+  errMsg: any;
+  ticketId: any;
+  successMsg: any;
 
   constructor(
     private _dealService: DealsService,
@@ -39,13 +45,42 @@ export class AdminDisputeComponent implements OnInit {
           }
         }
         console.log(this.disputeArr);
-        this.loadingCtrl.hide();
+        this.getAlltickets();
       },
       err => {
         console.log(err);
         this.loadingCtrl.hide();
       }
     );
+  }
+
+  getAlltickets() {
+    this.ticketArr = [];
+    this._dealService.getTickets().subscribe(
+      data => {
+        console.log(data);
+        let j = 0;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].ticketStatus == 'Open') {
+            this.ticketArr[j] = data[i];
+            j++;
+          }
+        }
+        this.getDisputeTicketArr();
+      },
+      err => {
+        console.log(err);
+        this.loadingCtrl.hide();
+      }
+    );
+  }
+
+  getDisputeTicketArr() {
+    this.disputeTicketArr = this.disputeArr.concat(this.ticketArr);
+    if (this.disputeTicketArr.length == 0) {
+      this.errMsg = 'No Tickets';
+    }
+    this.loadingCtrl.hide();
   }
 
   getSingleDispute(id) {
@@ -134,6 +169,10 @@ export class AdminDisputeComponent implements OnInit {
       )
       .subscribe(
         data => {
+          this.successMsg = "Ticket resolved successfully!";
+          setTimeout(() => {
+            this.successMsg = '';
+          }, 3000);
           console.log(data);
           this.getdispute();
           this.loadingCtrl.hide();
@@ -143,5 +182,50 @@ export class AdminDisputeComponent implements OnInit {
           this.loadingCtrl.hide();
         }
       );
+  }
+
+  getSingleTicket(id) {
+    this.ticketId = id;
+    this._dealService.getSingleTicket(id).subscribe(
+      data => {
+        console.log(data);
+        this.disputeObj1 = data;
+      },
+      err => {
+        console.log(err);
+        this.loadingCtrl.hide();
+      }
+    );
+  }
+
+  ticketUpdate() {
+    this.loadingCtrl.show();
+    this.solution = this.ticketObj;
+    console.log(this.disputeObj1);
+    this.ticketObj = this.disputeObj1;
+    this.ticketObj.ticketStatus = 'Resolved';
+    this.ticketObj.solution = this.solution.solution;
+
+    let curntDte = new Date().getTime();
+    this.ticketObj.createddate = curntDte;
+
+    console.log(this.ticketObj);
+    this._dealService.updateTicket(this.ticketObj, this.ticketId).subscribe(
+      data => {
+        console.log(data);
+        this.mytemplateForm.reset();
+        document.getElementById('closeCancelOrderModal1').click();
+        this.successMsg = "Ticket resolved successfully!";
+        setTimeout(() => {
+          this.successMsg = '';
+        }, 3000);
+        this.getdispute();
+        this.loadingCtrl.hide();
+      },
+      err => {
+        console.log(err);
+        this.loadingCtrl.hide();
+      }
+    );
   }
 }

@@ -2,7 +2,19 @@
   <div class="container mt-5 pt-5">
     <h4 style="color:#0d4608;text-align:center">Support Tickets</h4>
     <br />
-    <div class="container" *ngFor="let dispute of disputeArr">
+    <div class="row" *ngIf="successMsg || errMsg">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="alert alert-success text-center" *ngIf="successMsg">
+          {{successMsg}}
+        </div>
+        <div class="alert alert-danger text-center" *ngIf="errMsg">
+          {{errMsg}}
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+    <div class="container" *ngFor="let dispute of disputeTicketArr">
       <div class="notice notice-success">
         <!-- <strong>Notice</strong> notice-success -->
         <div class="row">
@@ -13,16 +25,25 @@
           </div>
           <div class="col-md-6 col-4">
             <div class="float-right">
-              <button class="btn btn-sm btn-success ticketRow" (click)="getSingleDispute(dispute._id)" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static">
+              <button class="btn btn-sm btn-success ticketRow" *ngIf="!dispute.ticketStatus" (click)="getSingleDispute(dispute._id)" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static">
                 Resolve
+              </button>
+              <button class="btn btn-sm btn-success ticketRow" *ngIf="dispute.ticketStatus" (click)="getSingleTicket(dispute._id)" data-toggle="modal" data-target="#exampleModalCenter1" data-backdrop="static">
+                  Resolve
               </button>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <span>
+            <span *ngIf="dispute.dispute">
               <p style="text-indent: 30px;">{{ dispute.dispute }}</p>
+            </span>
+            <span *ngIf="dispute.ticketDescription">
+              <p>{{
+                  dispute.ticketTitle
+                }} -</p>
+              <p style="text-indent: 30px;"> {{ dispute.ticketDescription }}</p>
             </span>
           </div>
           <div class="col-md-6">
@@ -34,7 +55,7 @@
 
         <div class="row">
           <div class="col-md-6">
-            <span>
+            <span *ngIf="dispute.buyerName">
               <small
                 >Disputed against :
                 <span style="font-size: 15px;">{{
@@ -45,9 +66,13 @@
           </div>
           <div class="col-md-6">
             <span class="float-right">
-              <span
+              <span *ngIf="dispute.disputerName"
                 >By {{ dispute.disputerName }}
                 <small>on {{ dispute.createdAt | date }}</small></span
+              >
+              <span *ngIf="dispute.username"
+                >By {{ dispute.username }}
+                <small>on {{ dispute.createddate | date }}</small></span
               >
             </span>
           </div>
@@ -64,7 +89,7 @@
 
 
 
-
+<!-- Modal for Dispute -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -83,6 +108,33 @@
                   <span class="text-danger float-left error_word" [class.d-none] = "solution.valid || solution.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Solution is required</span>
           </div>
           <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn mx-auto" (click)="disputeUpdate()">Save</button>
+      </form>
+      </div>
+      <!-- <div class="modal-footer">
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Ticket -->
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="exampleModalLongTitle">Resolving Tickets</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="text-white" id="closeCancelOrderModal1">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <span class="float-right"><span><b>Ticket Id</b></span> : {{disputeObj1.ticketId}}</span>
+      <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate> 
+          <div class="form-group mt-4">
+              <label class="english_wrd" for="solution" ><span style="font-size: 14px" class="tamil_word"> </span>Solution</label>
+                  <input type="text" #solution="ngModel" [class.is-invalid]="solution.invalid && solution.touched" ngModel name="solution" class="form-control" [(ngModel)]="ticketObj.solution" autocomplete="off" required>
+                  <span class="text-danger float-left error_word" [class.d-none] = "solution.valid || solution.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Solution is required</span>
+          </div>
+          <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn mx-auto" (click)="ticketUpdate()">Save</button>
       </form>
       </div>
       <!-- <div class="modal-footer">

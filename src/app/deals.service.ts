@@ -77,16 +77,21 @@ export class DealsService {
   private _updateUserDispute = "http://localhost:5000/api/updateDisputeUser";
   private _updateUserSellerDispute = "http://localhost:5000/api/updateDisputeUserSeller";
 
+  // Ticket
+  private _getSingleTicket = "http://localhost:5000/api/getSingleTicket";
+  private _updateTicket = "http://localhost:5000/api/updateTicket";
+
   // Resolve
   private _updatePostDisputeSolution = "http://localhost:5000/api/updateDisputePostSolution";
   private _updateUserDisputeSolution = "http://localhost:5000/api/updateDisputeUserSolution";
   private _updateUserSellerDisputeSolution = "http://localhost:5000/api/updateDisputeUserSellerSolution";
 
-    // Buyer Dispute
-    private _postDisputeUrl = 'http://localhost:5000/api/postdispute';
-    private _updatePostBuyerDispute = "http://localhost:5000/api/updateBuyerDisputePost";
-    private _buyerUpdateUserDispute = "http://localhost:5000/api/buyerupdateDisputeUser";
-    private _updateUserBuyerDispute = "http://localhost:5000/api/updateDisputeUserBuyer";
+  // Buyer Dispute
+  private _postDisputeUrl = 'http://localhost:5000/api/postdispute';
+  private _updatePostBuyerDispute = "http://localhost:5000/api/updateBuyerDisputePost";
+  private _buyerUpdateUserDispute = "http://localhost:5000/api/buyerupdateDisputeUser";
+  private _updateUserBuyerDispute = "http://localhost:5000/api/updateDisputeUserBuyer";
+
   // Credit
   private _updateUserCreditArr = "http://localhost:5000/api/updateCreditArr";
   private _updateUserCreditArrCredit = "http://localhost:5000/api/updateCreditArrCredit";
@@ -325,12 +330,22 @@ export class DealsService {
   updateUserCreditArrCredit(data,id){
     return this.http.post<any>(this._updateUserCreditArrCredit + '/' + id, data);
   }
-//send ticket
+
+
+  // Ticket
   sendTicket(data) {
     return this.http.post<any>(this._sendticketUrl, data);
   }
-//get all ticket
-getTickets() {
-  return this.http.get<any>(this._getticketUrl);
-}
+
+  getTickets() {
+    return this.http.get<any>(this._getticketUrl);
+  }
+
+  getSingleTicket(id) {
+    return this.http.get<any>(this._getSingleTicket + '/' + id);
+  }
+
+  updateTicket(data,id){
+    return this.http.post<any>(this._updateTicket + '/' + id, data);
+  }
 }

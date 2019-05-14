@@ -19,6 +19,7 @@ export class MyTicketsComponent implements OnInit {
   totalTickets = [];
   userTickets = [];
   zeroCount:any;
+  ticketId:any;
   @ViewChild('ticketForm') mytemplateForm: NgForm;
   constructor(private _dealsService: DealsService,public loadingCtrl: NgxSpinnerService,private router: Router,) { }
 
@@ -26,6 +27,7 @@ export class MyTicketsComponent implements OnInit {
       this.userid = JSON.parse(localStorage.getItem('currentUser'))._id;
       this.getAlltickets();
   }
+
   getAlltickets(){
     this._dealsService.getTickets().subscribe(
       res => {
@@ -48,13 +50,14 @@ export class MyTicketsComponent implements OnInit {
       }
     );
   }
+  
 sendticket(){
   this.loadingCtrl.show();
-  var a = "#"
+  var a = "UZ"
   this.ticketId = Math.floor(100000 + Math.random() * 900000);
   console.log(this.ticketId);
   this.ticketData.ticketId = a+""+this.ticketId;
-  this.ticketData.ticketStatus = 'Open';
+  this.ticketData.ticketStatus = 'Created';
   this.username = JSON.parse(localStorage.getItem('currentUser')).firstname;
   this.userphone = JSON.parse(localStorage.getItem('currentUser')).phone;
   this.userrole = JSON.parse(localStorage.getItem('currentUser')).role;
