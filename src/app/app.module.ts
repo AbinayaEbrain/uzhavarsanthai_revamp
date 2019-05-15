@@ -65,6 +65,7 @@ import { MyTicketsComponent } from './my-tickets/my-tickets.component';
 import { TicketviewComponent } from './ticketview/ticketview.component';
 import { ReadMoreViewComponent } from './read-more-view/read-more-view.component';
 import { AdminSubscriptionComponent } from './admin-subscription/admin-subscription.component';
+import { SubscriptionPlanComponent } from './subscription-plan/subscription-plan.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { AdminSubscriptionComponent } from './admin-subscription/admin-subscript
     MyTicketsComponent,
     TicketviewComponent,
     ReadMoreViewComponent,
-    AdminSubscriptionComponent
+    AdminSubscriptionComponent,
+    SubscriptionPlanComponent
   ],
   imports: [
     BrowserModule,

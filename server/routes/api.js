@@ -2237,6 +2237,7 @@ router.post('/updateTicket/:id', function(req, res) {
 
 // Subscription
 router.post('/subscription', (req, res) => {
+  console.log(req.body);
   let subscriptionData = req.body;
   let subscription = new Subscription(subscriptionData);
   subscription.save((error, subscriptionData) => {

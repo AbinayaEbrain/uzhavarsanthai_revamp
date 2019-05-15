@@ -198,6 +198,7 @@ fiveStar(){
 }
 
 reviewAndRating(){
+  this.loadingCtrl.show();
   console.log(this.reviewData);
   console.log(this.reviewData.starValue);
   console.log(this.userOrder1)
@@ -216,6 +217,7 @@ reviewAndRating(){
       this.mapWithPost();
       this.mapWithUser();
       this.mytemplateForm.reset();
+      this.loadingCtrl.hide();
       document.getElementById('closeCancelOrderModal1').click();
     },
     err => {

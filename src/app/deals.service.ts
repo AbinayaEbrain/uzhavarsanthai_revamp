@@ -386,7 +386,7 @@ export class DealsService {
   }
 
   editSubscription(data, id) {
-    return this.http.put<any>(this.updateSubscriptionUrl + '/' + id, data);
+    return this.http.post<any>(this.updateSubscriptionUrl + '/' + id, data);
   }
 
   deleteSubscription(id) {

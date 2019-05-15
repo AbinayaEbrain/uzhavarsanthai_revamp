@@ -40,16 +40,16 @@ export class MostSellingProductComponent implements OnInit {
         this.crdDeals = res;
         this.orderrequestsErr = '';
         console.log(this.crdDeals);
-        for (let i = 0; i < this.crdDeals.length; i++) {
-          if (
-            this.acntID == this.crdDeals[i].accountId) {
-            this.userDeals[j] = this.crdDeals[i];
-            this.productId = this.crdDeals[i]._id;
-            j++;
-          }
-        }
-        console.log(this.userDeals);
-        console.log(this.productId);
+        // for (let i = 0; i < this.crdDeals.length; i++) {
+        //   if (
+        //     this.acntID == this.crdDeals[i].accountId) {
+        //     this.userDeals[j] = this.crdDeals[i];
+        //     this.productId = this.crdDeals[i]._id;
+        //     j++;
+        //   }
+        // }
+        // console.log(this.userDeals);
+        // console.log(this.productId);
         this.getOrderRequests();
       },
       err => {
@@ -60,12 +60,12 @@ export class MostSellingProductComponent implements OnInit {
   }
 
 getOrderRequests(){
-  console.log(this.userDeals);
+  console.log(this.crdDeals);
   let j = 0;
-  for (let i = 1; i < this.userDeals.length; i++) {
-    console.log(this.userDeals[i].orderrequests.length);
-    if (this.userDeals[i].orderrequests.length > 2) {
-      this.orderrequests[j] = this.userDeals[i];
+  for (let i = 1; i < this.crdDeals.length; i++) {
+    console.log(this.crdDeals[i].orderrequests.length);
+    if (this.crdDeals[i].orderrequests.length > 2) {
+      this.orderrequests[j] = this.crdDeals[i];
       j++;
     }
     console.log(this.orderrequests);

@@ -21,6 +21,7 @@ declare var google: any;
   styleUrls: ['./viewmore.component.css']
 })
 export class ViewmoreComponent implements OnInit, AfterViewChecked {
+  reviewlngthErr: any;
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   @ViewChild('loginform') mytemplateForm1: NgForm;
   @ViewChild('postform') mytemplateForm2: NgForm;
@@ -205,10 +206,16 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
         );
         this.disputeArr = this.postProduct.dispute;
         console.log(this.disputeArr);
+        
         this.reviewArr = this.postProduct.productreview;
-        this.reviewlngth = this.reviewArr.length;
-             console.log(this.reviewlngth);
         console.log(this.reviewArr);
+        if(this.reviewArr != undefined){
+        this.reviewlngth = this.reviewArr.length;
+        console.log(this.reviewlngth);
+      }
+      if(this.reviewArr == 0){
+        this.reviewlngthErr = 'No review';
+      }
         this.arrayImage = this.imageArray.split(',');
         // this.slideConfig = {"slidesToShow": 1, "slidesToScroll": 1};
         this.slideConfig = {
