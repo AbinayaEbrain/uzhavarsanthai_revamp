@@ -594,6 +594,32 @@ router.put('/deals/:id', function(req, res) {
   );
 });
 
+//Update order request
+router.post('/updateRegister/:id', function(req, res) {
+  User.updateOne(
+   {
+     _id:req.params.id,
+   },
+   {
+       $push: {
+        subscription:{
+          subscription: req.body.subscription,
+          amount: req.body.amount,
+          credit: req.body.credit,
+          status: req.body.status,
+          createdAt: req.body.createdAt,
+        }
+       }
+   }
+ )
+   .then(() => {
+     res.status(200).json({ message: 'Updated successfully' });
+   })
+   .catch(err => {
+     res.status(500).json({ message: 'Error occurred' });
+   });
+});
+
 //update user
 router.put('/updateuser/:id', function(req, res) {
   // console.log('Update a userprofile');
