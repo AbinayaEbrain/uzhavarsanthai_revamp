@@ -123,6 +123,7 @@ changeColor1(){
 
 openTickets(){
   console.log('1');
+      this.userTickets = [];
   this.loadingCtrl.show();
   this._dealsService.getTickets().subscribe(
     res => {
@@ -136,9 +137,7 @@ openTickets(){
         for(let i = 0; i < this.totalTickets.length; i++){
           console.log('4');
           console.log(this.totalTickets.length);
-          if(this.userid == this.totalTickets[i].userid && this.totalTickets[i].ticketStatus == "Open"){
-            console.log('5');
-            console.log(this.userid == this.totalTickets[i].userid && this.totalTickets[i].ticketStatus == "Open");
+          if(this.userid == this.totalTickets[i].userid && this.totalTickets[i].ticketStatus == "Created"){
            this.userTickets[j] = this.totalTickets[i];
            j++;
            this.ticketlngth = this.userTickets.length;
