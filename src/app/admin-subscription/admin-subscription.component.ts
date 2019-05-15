@@ -30,28 +30,35 @@ export class AdminSubscriptionComponent implements OnInit {
     );
   }
 
+  resetObj() {
+    this.subcriptionData = {};
+  }
+
   onSubmit() {
     let date = new Date().getTime();
     this.subcriptionData.createdAt = date;
     console.log(this.subcriptionData);
-    if (this.id) {
+    console.log(this.id);
+    if (this.id != '') {
       this._dealsService
         .editSubscription(this.subcriptionData, this.id)
         .subscribe(
           data => {
             console.log(data);
-            this.id = '';
+            document.getElementById('closeCancelOrderModal1').click();
+            this.getSubscription();
           },
           err => {
             console.log(err);
           }
         );
     } else {
+      alert('1');
       this._dealsService.addsubscription(this.subcriptionData).subscribe(
         res => {
           console.log(res);
           this.myForm.reset();
-          document.getElementById('closeCancelOrderModal').click();
+          document.getElementById('closeCancelOrderModal1').click();
           this.getSubscription();
         },
         err => {
@@ -67,6 +74,25 @@ export class AdminSubscriptionComponent implements OnInit {
       data => {
         console.log(data);
         this.subcriptionData = data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  clear() {
+    this.id = '';
+    this.myForm.reset();
+  }
+
+  deleteSubscription() {
+    console.log(this.id);
+    this._dealsService.deleteSubscription(this.id).subscribe(
+      data => {
+        console.log(data);
+        document.getElementById('closeCancelOrderModal').click();
+        this.getSubscription();
       },
       err => {
         console.log(err);

@@ -372,6 +372,7 @@ export class DealsService {
 
   //subscription
   addsubscription(data){
+    console.log("1");
      return this.http.post<any>(this.subscription,data);
   }
 
@@ -380,7 +381,7 @@ export class DealsService {
   }
 
   editSubscription(data, id) {
-    return this.http.put<any>(this.updateSubscriptionUrl + '/' + id, data);
+    return this.http.post<any>(this.updateSubscriptionUrl + '/' + id, data);
   }
 
   deleteSubscription(id) {
