@@ -18,34 +18,36 @@
       </section>
       <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
           <div class="tab-pane fade " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <!-- <p style="float:left;padding:1%;cursor:pointer;border-radius: 20px;font-weight: 600;" id="paraTag1" (click)="changeColor1()" (click)="openTickets()">Open Tickets</p>&nbsp;&nbsp;
-            <p style="float:left;padding:1%;cursor:pointer;border-radius: 20px;font-weight: 600;" id="paraTag" (click)="changeColor()" (click)="closedTickets()">Closed Tickets</p> -->
+            <p style="float:left;padding:1%;cursor:pointer;border-radius: 20px;font-weight: 600;" id="paraTag1" (click)="changeColor1()" (click)="openTickets()">Open Tickets</p>&nbsp;&nbsp;
+            <p style="float:left;padding:1%;cursor:pointer;border-radius: 20px;font-weight: 600;" id="paraTag" (click)="changeColor()" (click)="closedTickets()">Closed Tickets</p>
             <div class="container">
                 <div >
                   <div class="col-md-3 col-lg-4 col-12"></div>
                   <div class="col-md-6 col-lg-4 col-12 errDesign" *ngIf="noTicketsMsg && !noOpenTicketsMsg && !noClosedTicketsMsg">
-                      <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                      <img src="../../assets/Images/empty_cart_retina.png"  class="imgRes" alt="cart">
                       <p class="mt-4" style="font-style: italic;">{{noTicketsMsg}}</p>
                   </div>
                   <div class="col-md-3 col-lg-4 col-12"></div>
           </div>
-          <div *ngIf="noOpenTicketsMsg">
+          <div >
             <div class="col-md-3 col-lg-4 col-12"></div>
-            <div class="col-md-6 col-lg-4 col-12 errDesign" *ngIf="noOpenTicketsMsg">
-                <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+            <div class="col-md-6 col-lg-4 col-12 errDesign" *ngIf="noOpenTicketsMsg ">
+                <img src="../../assets/Images/empty_cart_retina.png"  class="imgRes" alt="cart">
                 <p class="mt-4" style="font-style: italic;">{{noOpenTicketsMsg}}</p>
             </div>
             <div class="col-md-3 col-lg-4 col-12"></div>
     </div>
     <div >
+      <div  >
       <div class="col-md-3 col-lg-4 col-12"></div>
-      <div class="col-md-6 col-lg-4 col-12 errDesign" *ngIf="noClosedTicketsMsg">
-          <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+      <div class="col-md-6 col-lg-4 col-12 errDesign" *ngIf="noClosedTicketsMsg ">
+          <img src="../../assets/Images/empty_cart_retina.png" id="imgHide" class="imgRes" alt="cart">
           <p class="mt-4" style="font-style: italic;">{{noClosedTicketsMsg}}</p>
       </div>
       <div class="col-md-3 col-lg-4 col-12"></div>
+      </div>
 </div>
-              <div class="container-fluid"  routerLink="/view-ticket/{{ticket._id}}" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
+              <div class="container-fluid" style="margin-top:2%" routerLink="/view-ticket/{{ticket._id}}" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
                 <div class="notice notice-success">
                   <div class="row">
                     <div class="col-md-6 col-8">

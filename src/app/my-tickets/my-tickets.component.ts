@@ -122,15 +122,19 @@ changeColor1(){
   }
 
 openTickets(){
+  alert('1')
   console.log('1');
-      this.userTickets = [];
+  this.userTickets = [];
   this.loadingCtrl.show();
   this._dealsService.getTickets().subscribe(
     res => {
+        alert('2')
         console.log('2');
         console.log(res);
-        this.userTickets = [];
         this.totalTickets = res;
+          alert('3')
+        this.noClosedTicketsMsg = '';
+
         console.log('3');
         console.log(this.totalTickets.length);
         let j = 0;
