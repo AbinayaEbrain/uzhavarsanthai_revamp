@@ -372,7 +372,6 @@ export class DealsService {
 
   //subscription
   addsubscription(data){
-    console.log("1");
      return this.http.post<any>(this.subscription,data);
   }
 

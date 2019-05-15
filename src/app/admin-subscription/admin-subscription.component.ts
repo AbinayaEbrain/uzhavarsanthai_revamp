@@ -53,7 +53,6 @@ export class AdminSubscriptionComponent implements OnInit {
           }
         );
     } else {
-      alert('1');
       this._dealsService.addsubscription(this.subcriptionData).subscribe(
         res => {
           console.log(res);
