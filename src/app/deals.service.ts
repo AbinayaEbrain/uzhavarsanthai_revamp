@@ -104,6 +104,7 @@ export class DealsService {
   
   //subscription
   private subscription = "http://localhost:5000/api/subscription";
+  private getSubscriptionUrl = "http://localhost:5000/api/getSubscription";
 
   constructor(private http: HttpClient) {}
 
@@ -369,5 +370,7 @@ export class DealsService {
   addsubscription(data){
      return this.http.post<any>(this.subscription,data);
   }
-  
+  getSubscription() {
+    return this.http.get<any>(this.getSubscriptionUrl);
+  }
 }

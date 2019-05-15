@@ -12,7 +12,16 @@ export class AdminSubscriptionComponent implements OnInit {
 
   constructor(private _dealsService: DealsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._dealsService.getSubscription().subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 
   onSubmit() {
     let date = new Date().getTime();

@@ -47,7 +47,7 @@ export class AdminDisputeComponent implements OnInit {
           }
         }
         console.log(this.disputeArr);
-        this.getBuyerDispute();
+        this.getAlltickets();
       },
       err => {
         console.log(err);
@@ -56,22 +56,22 @@ export class AdminDisputeComponent implements OnInit {
     );
   }
 
-  getBuyerDispute(){
-    this._dealService.getBuyerDispute().subscribe(data =>{
-      console.log(data);
-      let j = 0;
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].disputeStatus == 'Created') {
-          this.buyerDisputeArr[j] = data[i];
-          j++;
-        }
-      }
-      this.disputeBuyerDisputeArr = this.disputeArr.concat(this.buyerDisputeArr);
-      this.getAlltickets();
-    }, err =>{
-      console.log(err);
-    })
-  }
+  // getBuyerDispute(){
+  //   this._dealService.getBuyerDispute().subscribe(data =>{
+  //     console.log(data);
+  //     let j = 0;
+  //     for (let i = 0; i < data.length; i++) {
+  //       if (data[i].disputeStatus == 'Created') {
+  //         this.buyerDisputeArr[j] = data[i];
+  //         j++;
+  //       }
+  //     }
+  //     this.disputeBuyerDisputeArr = this.disputeArr.concat(this.buyerDisputeArr);
+  //     this.getAlltickets();
+  //   }, err =>{
+  //     console.log(err);
+  //   })
+  // }
 
   getAlltickets() {
     this.ticketArr = [];
@@ -95,7 +95,7 @@ export class AdminDisputeComponent implements OnInit {
   }
 
   getDisputeTicketArr() {
-    this.disputeTicketArr = this.disputeBuyerDisputeArr.concat(this.ticketArr);
+    this.disputeTicketArr = this.disputeArr.concat(this.ticketArr);
     if (this.disputeTicketArr.length == 0) {
       this.errMsg = 'No Tickets';
     }

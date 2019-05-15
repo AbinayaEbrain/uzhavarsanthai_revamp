@@ -1670,7 +1670,7 @@ router.post('/postreviewrating',(req,res)=>{
 // Post Buyer Dispute
 router.post('/postdispute', (req, res) => {
   let disputeData = req.body;
-  let buyerdispute = new Buyerdispute(disputeData);
+  let buyerdispute = new Dispute(disputeData);
   buyerdispute.save((error, disputeData) => {
     if (error) {
       console.log(error);
@@ -1682,7 +1682,7 @@ router.post('/postdispute', (req, res) => {
 
 //Get Dispute
 router.get('/getBuyerDispute', (req, res) => {
-  Buyerdispute.find(function(err, result) {
+  Dispute.find(function(err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -1705,7 +1705,7 @@ router.post('/updateBuyerDisputePost/:id', function(req, res) {
           },
           {
             $push: {
-              buyerdispute:{
+              dispute:{
                 sellerName: req.body.sellerName,
                 sellerId: req.body.sellerId,
                 disputerName: req.body.buyerName,
@@ -1744,7 +1744,7 @@ router.post('/buyerupdateDisputeUser/:id', function(req, res) {
           },
           {
             $push: {
-              buyerdispute:{
+              dispute:{
                 sellerName: req.body.sellerName,
                 sellerId: req.body.sellerId,
                 disputerName: req.body.buyerName,
@@ -1783,7 +1783,7 @@ router.post('/updateDisputeUserBuyer/:id', function(req, res) {
           },
           {
             $push: {
-              buyerdispute:{
+              dispute:{
                 sellerName: req.body.sellerName,
                 sellerId: req.body.sellerId,
                 disputerName: req.body.buyerName,
