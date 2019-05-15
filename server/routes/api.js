@@ -25,7 +25,7 @@ const Reviewrate = require('../models/reviewrate');
 const Ticket = require('../models/ticket');
 
 const Dispute = require('../models/dispute');
-const Buyerdispute = require('../models/buyerdispute');
+// const Buyerdispute = require('../models/buyerdispute');
 
 
 //email
@@ -1601,7 +1601,8 @@ router.post('/mapproductreviewpostUrl', function(req, res) {
                 prdctId: req.body.prdctId,
                 sellerId: req.body.sellerId,
                 sellerName: req.body.sellerName,
-                reviewRqstId: req.body.reviewRqstId
+                reviewRqstId: req.body.reviewRqstId,
+                createdAt: req.body.createdAt
               }
              }
           }
@@ -1667,6 +1668,17 @@ router.post('/postreviewrating',(req,res)=>{
   })
 });
 
+//Get Review
+router.get('/getReview', (req, res) => {
+  Reviewrate.find(function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  }).sort({createdAt : -1});
+});
+
 // Post Buyer Dispute
 router.post('/postdispute', (req, res) => {
   let disputeData = req.body;
@@ -1714,7 +1726,8 @@ router.post('/updateBuyerDisputePost/:id', function(req, res) {
                 orderRqstId: req.body.orderRqstId,
                 disputeId: req.body.disputeId,
                 dispute: req.body.dispute,
-                createdAt: req.body.createdAt
+                createdAt: req.body.createdAt,
+                against: req.body.against
               }
              }
           }
@@ -1753,7 +1766,8 @@ router.post('/buyerupdateDisputeUser/:id', function(req, res) {
                 orderRqstId: req.body.orderRqstId,
                 disputeId: req.body.disputeId,
                 dispute: req.body.dispute,
-                createdAt: req.body.createdAt
+                createdAt: req.body.createdAt,
+                against: req.body.against
               }
              }
           }
@@ -1792,7 +1806,8 @@ router.post('/updateDisputeUserBuyer/:id', function(req, res) {
                 orderRqstId: req.body.orderRqstId,
                 disputeId: req.body.disputeId,
                 dispute: req.body.dispute,
-                createdAt: req.body.createdAt
+                createdAt: req.body.createdAt,
+                against : req.body.against
               }
              }
           }
@@ -1866,13 +1881,13 @@ router.post('/updateDisputePostSolution/:id', function(req, res) {
         await Post.update(
           {
             _id:req.body.productId,
-            'dispute.disputeId' :req.body.disputeId 
+            'dispute.disputeId' :req.body.disputeId
           },
           {
             $set: {
               'dispute.$.disputeStatus': req.body.disputeStatus ,
               'dispute.$.createdAt': req.body.createdAt ,
-              'dispute.$.solution': req.body.solution 
+              'dispute.$.solution': req.body.solution
              }
           }
         )
@@ -1898,13 +1913,13 @@ router.post('/updateDisputeUserSolution/:id', function(req, res) {
         await User.update(
           {
             _id:req.body.buyerId,
-            'dispute.disputeId' :req.body.disputeId 
+            'dispute.disputeId' :req.body.disputeId
           },
           {
             $set: {
               'dispute.$.disputeStatus': req.body.disputeStatus ,
               'dispute.$.createdAt': req.body.createdAt ,
-              'dispute.$.solution': req.body.solution 
+              'dispute.$.solution': req.body.solution
              }
           }
         )
@@ -1930,13 +1945,13 @@ router.post('/updateDisputeUserSellerSolution/:id', function(req, res) {
         await User.update(
           {
             _id:req.body.disputerId,
-            'dispute.disputeId' :req.body.disputeId 
+            'dispute.disputeId' :req.body.disputeId
           },
           {
             $set: {
               'dispute.$.disputeStatus': req.body.disputeStatus ,
               'dispute.$.createdAt': req.body.createdAt ,
-              'dispute.$.solution': req.body.solution 
+              'dispute.$.solution': req.body.solution
              }
           }
         )
@@ -1978,7 +1993,8 @@ router.post('/updateDisputePost/:id', function(req, res) {
                 dispute: req.body.dispute,
                 disputeStatus: req.body.disputeStatus,
                 solution: req.body.solution,
-                createdAt: req.body.createdAt
+                createdAt: req.body.createdAt,
+                against:req.body.against
               }
              }
           }
@@ -2021,7 +2037,8 @@ router.post('/updateDisputeUser/:id', function(req, res) {
                 dispute: req.body.dispute,
                 disputeStatus: req.body.disputeStatus,
                 solution: req.body.solution,
-                createdAt: req.body.createdAt
+                createdAt: req.body.createdAt,
+                against: req.body.against
               }
              }
           }
@@ -2064,7 +2081,8 @@ router.post('/updateDisputeUserSeller/:id', function(req, res) {
                 dispute: req.body.dispute,
                 disputeStatus: req.body.disputeStatus,
                 solution: req.body.solution,
-                createdAt: req.body.createdAt
+                createdAt: req.body.createdAt,
+                against:req.body.against
               }
              }
           }

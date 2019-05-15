@@ -357,6 +357,9 @@ color: white;
   font-size: 11px !important;
   padding: 14px !important;
 }
+.byWhom{
+  float: left !important;
+}
 }
 @media only screen and (min-width: 200px) and (max-width: 320px) {
   .nav-link{
@@ -417,7 +420,9 @@ color: white;
   background-color: #0d4608;
   color: white;
 }
-
+.byWhom{
+  float: right;
+}
 @media only screen and (min-width: 320px) and (max-width: 360px) {
   .ticketRow {
     font-weight: 500;

@@ -10,6 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./admin-user.component.css']
 })
 export class AdminUserComponent implements OnInit {
+
   public registerUser: any = [];
   mapDeals = [];
   id: any;
@@ -18,6 +19,8 @@ export class AdminUserComponent implements OnInit {
   activeMsg: any;
   p: any;
   data: any;
+  public postProduct: any = {};
+
 
   constructor(
     private _dealService: DealsService,

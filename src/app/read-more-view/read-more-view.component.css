@@ -1,0 +1,25 @@
+.btnmed {
+    font-family: 'Hind Madurai', sans-serif !important;
+    background-color: whitesmoke;
+    color: #0d4608;
+    font-weight: bold;
+    border: 1px solid #0d4608;
+  }
+  
+  .textSize {
+    font-size: 15px !important;
+    line-height: 1.6;
+    text-align: justify;
+    text-indent: 20px;
+  }
+  
+  .tamil_word {
+    font-family: 'Hind Madurai', sans-serif !important;
+  }
+  
+  @media screen and (min-width: 320px) and (max-width: 425px) {
+    .btnmed {
+      font-size: 13px;
+    }
+  }
+  

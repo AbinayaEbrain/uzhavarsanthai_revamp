@@ -122,23 +122,26 @@ changeColor1(){
   }
 
 openTickets(){
+  alert('1')
   console.log('1');
+  this.userTickets = [];
   this.loadingCtrl.show();
   this._dealsService.getTickets().subscribe(
     res => {
+        alert('2')
         console.log('2');
         console.log(res);
-        this.userTickets = [];
         this.totalTickets = res;
+          alert('3')
+        this.noClosedTicketsMsg = '';
+
         console.log('3');
         console.log(this.totalTickets.length);
         let j = 0;
         for(let i = 0; i < this.totalTickets.length; i++){
           console.log('4');
           console.log(this.totalTickets.length);
-          if(this.userid == this.totalTickets[i].userid && this.totalTickets[i].ticketStatus == "Open"){
-            console.log('5');
-            console.log(this.userid == this.totalTickets[i].userid && this.totalTickets[i].ticketStatus == "Open");
+          if(this.userid == this.totalTickets[i].userid && this.totalTickets[i].ticketStatus == "Created"){
            this.userTickets[j] = this.totalTickets[i];
            j++;
            this.ticketlngth = this.userTickets.length;

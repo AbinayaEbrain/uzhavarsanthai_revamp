@@ -21,6 +21,7 @@ declare var google: any;
   styleUrls: ['./viewmore.component.css']
 })
 export class ViewmoreComponent implements OnInit, AfterViewChecked {
+  reviewlngthErr: any;
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   @ViewChild('loginform') mytemplateForm1: NgForm;
   @ViewChild('postform') mytemplateForm2: NgForm;
@@ -28,6 +29,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   @ViewChild('forgotpwdform') mytemplateForm4: NgForm;
 
   rqstId : any;
+  show = 3;
   id = '';
   viewmore = [];
   viewPost = [];
@@ -100,6 +102,9 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   orderLiveStatus:any;
   orderCancelMsg:any;
   disputeArr : any = [];
+  reviewArr : any = [];
+  reviewlngth:any;
+
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -151,6 +156,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
     this._dealsService.getDeals().subscribe(
       res => {
         this.viewPost = res;
+        console.log(this.viewPost);
         for (let i = 0; i < this.viewPost.length; i++) {
           if (this.id == this.viewPost[i]._id) {
             this.postProduct.id = this.viewPost[i]._id;
@@ -176,6 +182,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
             this.postProduct.userAddressLine = this.viewPost[i].userAddressLine;
             this.postProduct.address = this.viewPost[i].userAddress;
             this.postProduct.dispute = this.viewPost[i].dispute;
+            this.postProduct.productreview = this.viewPost[i].productreview;
             this.getToken = localStorage.getItem('token');
             var check = this.viewPost[i].orderrequests;
 
@@ -199,6 +206,16 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
         );
         this.disputeArr = this.postProduct.dispute;
         console.log(this.disputeArr);
+        
+        this.reviewArr = this.postProduct.productreview;
+        console.log(this.reviewArr);
+        if(this.reviewArr != undefined){
+        this.reviewlngth = this.reviewArr.length;
+        console.log(this.reviewlngth);
+      }
+      if(this.reviewArr == 0){
+        this.reviewlngthErr = 'No review';
+      }
         this.arrayImage = this.imageArray.split(',');
         // this.slideConfig = {"slidesToShow": 1, "slidesToScroll": 1};
         this.slideConfig = {
@@ -876,4 +893,9 @@ updateOrderRqst(){
     console.log(err);
   })
 }
+
+increaseShow() {
+  this.show += 3;
+}
+
 }

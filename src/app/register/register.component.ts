@@ -6,6 +6,7 @@ import {
   NgZone
 } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { DealsService } from 'src/app/deals.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 // loader
@@ -20,6 +21,7 @@ declare var swal: any;
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  subscriptionName: any;
   @ViewChild('input1') inputEl: ElementRef;
   phoneObj: any = {};
   registeredUserData = {
@@ -32,7 +34,9 @@ export class RegisterComponent implements OnInit {
     status: '',
     role: '',
     roleStatus: '',
-    credits: 0
+    credits: 0,
+    subscription :'',
+    subscriptionName : ''
   };
   //registeredUserData: any = {};
   success: any;
@@ -53,7 +57,7 @@ export class RegisterComponent implements OnInit {
   verifymsg: any;
   authorize: any;
   visitId: any;
-
+  subscriptionArr: any = [];
   setAddress(addrObj) {
     this.zone.run(() => {
       this.addr = addrObj;
@@ -67,7 +71,8 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     public loadingCtrl: NgxSpinnerService,
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _dealsService: DealsService
   ) {
     // console.log(this.router.getCurrentNavigation().extras)
     this.registeredUserData.address.location = '';
@@ -82,6 +87,7 @@ export class RegisterComponent implements OnInit {
     setTimeout(() => {
       this.loadingCtrl.hide();
     }, 1000);
+    this.getSubscription();
   }
 
   post() {
@@ -99,6 +105,8 @@ export class RegisterComponent implements OnInit {
     this.registeredUserData.status = 'ACTIVE';
     this.registeredUserData.address.city = this.addr;
     this.registeredUserData.phone = this.phoneObj.phone;
+    this.registeredUserData.subscription = this.subscriptionArr;
+    this.registeredUserData.subscriptionName = this.subscriptionName;
     this.loadingCtrl.show();
     console.log(this.registeredUserData);
 
@@ -263,4 +271,21 @@ export class RegisterComponent implements OnInit {
       }, 4000);
     }
   }
+
+  getSubscription(){
+  this._dealsService.getSubscription().subscribe(
+    res => {
+      console.log(res);
+      this.subscriptionArr = res;
+      for (let i = 0; i < this.subscriptionArr.length; i++) {   
+          this.subscriptionName = this.subscriptionArr[i].subscription;
+      }
+      console.log(this.subscriptionName);
+    },
+    err => {
+      console.log(err);
+    }
+  );
+}
+
 }

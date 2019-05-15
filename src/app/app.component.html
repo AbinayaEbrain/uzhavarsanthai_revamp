@@ -283,6 +283,11 @@
             >Edit Profile</a
           >
           <a
+          *ngIf="
+          _authService.loggedIn() &&
+          !_authService.roleAdmin() &&
+          _authService.findActive() && !_authService.roleBuyer()
+        "
           class="dropdown-item"
           routerLink="/credits"
           style="cursor: pointer;color:#0d4608"
@@ -294,6 +299,17 @@
         style="cursor: pointer;color:#0d4608"
         >Most-sell-product</a
       >
+      <a
+      *ngIf="
+        _authService.loggedIn() &&
+        !_authService.roleAdmin() &&
+        _authService.findActive() && !_authService.roleBuyer()
+      "
+      class="dropdown-item"
+      routerLink="/subscription-plan"
+      style="cursor: pointer;color:#0d4608"
+      >Subscription plan
+    </a>
           <a
             class="dropdown-item"
             style="cursor: pointer;color:#0d4608"

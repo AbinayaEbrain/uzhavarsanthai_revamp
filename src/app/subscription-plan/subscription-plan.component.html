@@ -1,0 +1,84 @@
+<body class="bg" style="overflow-x: hidden;">
+    <div class="container mt-5 pt-5">
+      <h4 style="color:#0d4608;text-align:center">Subscription plan</h4>
+      <br />
+      <div class="row" *ngIf="successMsg || errMsg">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class="alert alert-success text-center" *ngIf="successMsg">
+            {{successMsg}}
+          </div>
+          <div class="alert alert-danger text-center" *ngIf="errMsg">
+            {{errMsg}}
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+      <div class="container" *ngFor="let dispute of disputeTicketArr">
+        <div class="notice notice-success">
+          <!-- <strong>Notice</strong> notice-success -->
+          <div class="row">
+            <div class="col-md-6 col-8">
+              <p style="color: #eb0f2491;font-weight: bold;" class="ticketPara">
+               <span style="color:#0d4608"> Ticket ID -</span> {{ dispute.ticketId }}
+              </p>
+            </div>
+            <div class="col-md-6 col-4">
+              <div class="float-right">
+                <button class="btn btn-sm btn-success ticketRow" *ngIf="!dispute.ticketStatus" (click)="getSingleDispute(dispute._id)" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static">
+                  Resolve
+                </button>
+                <button class="btn btn-sm btn-success ticketRow" *ngIf="dispute.ticketStatus" (click)="getSingleTicket(dispute._id)" data-toggle="modal" data-target="#exampleModalCenter1" data-backdrop="static">
+                    Resolve
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <span *ngIf="dispute.dispute">
+                <p style="text-indent: 30px;">{{ dispute.dispute }}</p>
+              </span>
+              <span *ngIf="dispute.ticketDescription">
+                <p>{{
+                    dispute.ticketTitle
+                  }} -</p>
+                <p style="text-indent: 30px;"> {{ dispute.ticketDescription }}</p>
+              </span>
+            </div>
+            <div class="col-md-6">
+              <span class="float-right">
+                <div></div>
+              </span>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6">
+              <span *ngIf="dispute.buyerName">
+                <small
+                  >Disputed against :
+                  <span style="font-size: 15px;">{{
+                    dispute.buyerName
+                  }}</span></small
+                >
+              </span>
+            </div>
+            <div class="col-md-6">
+              <span class="float-right">
+                <span *ngIf="dispute.disputerName"
+                  >By {{ dispute.disputerName }}
+                  <small>on {{ dispute.createdAt | date }}</small></span
+                >
+                <span *ngIf="dispute.username"
+                  >By {{ dispute.username }}
+                  <small>on {{ dispute.createddate | date }}</small></span
+                >
+              </span>
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </body>
