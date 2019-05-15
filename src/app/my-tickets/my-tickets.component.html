@@ -8,7 +8,8 @@
                       <nav>
                           <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                               <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Create Ticket</a>
-                              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">My Tickets <span *ngIf="ticketlngth" class="badge">{{ticketlngth}}</span><span *ngIf="!ticketlngth" class="badge">0</span></a>
+                              <a class="nav-item nav-link" id="nav-home-tab" (click)="getAlltickets()" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">My Tickets <span *ngIf="ticketlngth" class="badge">{{ticketlngth}}</span><span *ngIf="!ticketlngth" class="badge">0</span></a>
+                              <a class="nav-item nav-link" id="nav-home2-tab" (click)="getdisputes()" data-toggle="tab" href="#nav-home2" role="tab" aria-controls="nav-home2" aria-selected="true">My Disputes <span *ngIf="disputelength" class="badge">{{disputelength}}</span><span *ngIf="!disputelength" class="badge">{{disputelength1}}</span></a>
                           </div>
                       </nav>
                     </div>
@@ -17,33 +18,85 @@
       </section>
       <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
           <div class="tab-pane fade " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <p style="float:left;padding:1%;cursor:pointer;border-radius: 20px;font-weight: 600;" id="paraTag1" (click)="changeColor1()" (click)="openTickets()">Open Tickets</p>&nbsp;&nbsp;
+            <p style="float:left;padding:1%;cursor:pointer;border-radius: 20px;font-weight: 600;" id="paraTag" (click)="changeColor()" (click)="closedTickets()">Closed Tickets</p>
             <div class="container">
-              <div class="col-md-12">
-                <p *ngIf="noTicketsMsg" class="alert alert-danger english_wrd1">
-                    {{noTicketsMsg}}
-                </p>
-                <div class="row" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index" >
-                  <div class="col-md-1"></div>
-                  <div class="col-md-10" routerLink="/view-ticket/{{ticket._id}}" style="background-color: #d3d3d35c !important; padding: 1%;margin-bottom: 1%;border: 1px solid lightgrey !important;cursor:pointer;">
-                    <p class="ticketId">{{ticket.ticketId}} &nbsp;<span class="ticketTitle">{{ticket.ticketTitle}}</span></p>
-                    <p class="ticketstate">
-                      <button class="btn btn-sm viewMoreBtn1  button_word">{{ticket.ticketStatus}}</button>
-                    </p>
-                    <br>
-                    <hr>
-                      <p style="float:left;color: #0d4608;font-size: 15px;">Created at : {{ticket.createddate | date}}</p>
-                      <p style="float:right;">
-                        <button class="btn btn-sm viewMoreBtn  button_word" routerLink="/view-ticket/{{ticket._id}}">
-                          More Details
+                <div >
+                  <div class="col-md-3 col-lg-4 col-12"></div>
+                  <div class="col-md-6 col-lg-4 col-12 errDesign" *ngIf="noTicketsMsg && !noOpenTicketsMsg && !noClosedTicketsMsg">
+                      <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                      <p class="mt-4" style="font-style: italic;">{{noTicketsMsg}}</p>
+                  </div>
+                  <div class="col-md-3 col-lg-4 col-12"></div>
+          </div>
+          <div *ngIf="noOpenTicketsMsg">
+            <div class="col-md-3 col-lg-4 col-12"></div>
+            <div class="col-md-6 col-lg-4 col-12 errDesign" *ngIf="noOpenTicketsMsg">
+                <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                <p class="mt-4" style="font-style: italic;">{{noOpenTicketsMsg}}</p>
+            </div>
+            <div class="col-md-3 col-lg-4 col-12"></div>
+    </div>
+    <div >
+      <div class="col-md-3 col-lg-4 col-12"></div>
+      <div class="col-md-6 col-lg-4 col-12 errDesign" *ngIf="noClosedTicketsMsg">
+          <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+          <p class="mt-4" style="font-style: italic;">{{noClosedTicketsMsg}}</p>
+      </div>
+      <div class="col-md-3 col-lg-4 col-12"></div>
+</div>
+              <div class="container-fluid" style="margin-top: 2%;" routerLink="/view-ticket/{{ticket._id}}" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
+                <div class="notice notice-success">
+                  <div class="row">
+                    <div class="col-md-6 col-8">
+                      <p  style="color: #eb0f2491;font-weight: bold;">
+                       <span class="ticketId">Ticket ID - <font color="#ef5409">{{ticket.ticketId}}</font></span>
+                     </p>
+                     <div class="col-md-12" style="float:left;">
+                       <p style="float:left;margin-left: -13px;color: #0d4608;font-weight: 600;">{{ticket.ticketTitle}}</p>
+                     </div>
+                   </div>
+                    <div class="col-md-6 col-4">
+                      <div class="float-right">
+                        <button class="btn btn-sm btn-success">
+                        {{ticket.ticketStatus}}
                         </button>
-                      </p>
+                      </div>
+                    </div>
                   </div>
-                    <div class="col-md-1"></div>
+                  <!-- <div class="row">
+                    <div class="col-md-12">
+                      <span>
+                        <p style="text-indent: 30px;">{{ticket.ticketDescription}}</p>
+                      </span>
+                    </div>
+                    <div class="col-md-6">
+                      <span class="float-right">
+                        <div></div>
+                      </span>
+                    </div>
+                  </div> -->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <span>
+                       <p style="float:left;color: #0d4608;font-size: 15px;">Created: {{ticket.createddate | date}}</p>
+                      </span>
+                    </div>
+                    <div class="col-md-6">
+                      <!-- <span class="float-right">
+                        <span
+                          >By yreyeryerye
+                          <small>on yyyeryery</small></span
+                        >
+                      </span> -->
+                    </div>
                   </div>
-                  <div class="mx-auto mt-3">
-                    <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
-                  </div>
+                </div>
+                <br>
               </div>
+              <div class="mx-auto mt-3">
+                   <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
+                 </div>
             </div>
           </div>
           <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -87,6 +140,72 @@
             </div>
           </div>
         </div>
+          </div>
+          <div class="tab-pane fade " id="nav-home2" role="tabpanel" aria-labelledby="nav-home2-tab">
+            <div class="container">
+                <div *ngIf="noDisputesMsg">
+                  <div class="col-md-3 col-lg-4 col-12"></div>
+                  <div class="col-md-6 col-lg-4 col-12 errDesign">
+                      <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                      <p class="mt-4" style="font-style: italic;">{{noDisputesMsg}}</p>
+                  </div>
+                  <div class="col-md-3 col-lg-4 col-12"></div>
+          </div>
+              <div class="container" *ngFor="let dispute of getExactDisputes | paginate: {id: 'foo1', itemsPerPage:10,currentPage:p},let i = index">
+                <div class="notice notice-success">
+                  <div class="row">
+                    <div class="col-md-6 col-8">
+                      <p style="color: #eb0f2491;font-weight: bold;" class="ticketPara">
+                       <span style="color:#0d4608"> Ticket ID -</span>{{dispute.ticketId}}
+                      </p>
+                    </div>
+                    <div class="col-md-6 col-4">
+                      <div class="float-right">
+                        <button class="btn btn-sm btn-success ticketRow">
+                          {{dispute.disputeStatus}}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <span>
+                        <p style="text-indent: 30px;">{{ dispute.dispute }}</p>
+                      </span>
+                    </div>
+                    <div class="col-md-6">
+                      <span class="float-right">
+                        <div></div>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <span>
+                        <small
+                          >Disputed against :
+                          <span style="font-size: 15px;">{{
+                            dispute.buyerName
+                          }}</span></small
+                        >
+                      </span>
+                    </div>
+                    <div class="col-md-6">
+                      <span class="float-right">
+                        <span
+                          >By {{ dispute.disputerName }}
+                          <small>on {{ dispute.createdAt | date }}</small></span
+                        >
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="mx-auto mt-3">
+                     <pagination-controls id="foo1"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
+                   </div>
+              </div>
+            </div>
           </div>
       </div>
     </div>
