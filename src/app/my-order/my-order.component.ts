@@ -253,6 +253,9 @@ mapWithUser(){
 }
 
 disputeSave() {
+  var a = "UZ";
+  let reqId = Math.floor(100000 + Math.random() * 900000);
+  this.reviewData.ticketId = a + "-" + reqId;
   this.reviewData.disputerId = this.userOrder1.buyerId;
   this.reviewData.disputerName = this.userOrder1.buyerName;
   this.reviewData.prdctId =  this.userOrder1.prdctId;
