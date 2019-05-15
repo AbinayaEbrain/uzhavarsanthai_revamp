@@ -26,8 +26,9 @@ export class MyOrderComponent implements OnInit {
   pastErrMsg = '';
   d:any;
   private orderCancelmail = 'https://uzhavarsanthai.herokuapp.com/api/sendordercancelrequest';
-  recentOrder = [];
-  pastOrder = [];
+  private disputeMail = 'http://localhost:5000/api/sendDisputeMail';
+  recentOrder :any = [];
+  pastOrder :any = [];
   count : any;
   rating ="";
   public reviewData: any = {};
@@ -35,6 +36,7 @@ export class MyOrderComponent implements OnInit {
   @ViewChild('reviewform') mytemplateForm: NgForm;
   userData: any = {};
   disputeData: any;
+  disputeMailData: any = {};
 
   constructor(
     private _dealService: DealsService,
@@ -78,20 +80,18 @@ export class MyOrderComponent implements OnInit {
 
    filterMonth(){
     let j = 0;
+    let k = 0;
     for (let i = 0; i < this.userOrder.length; i++) {
-      this.loadingCtrl.show();
       let today = new Date()
       let past = new Date(this.userOrder[i].createdAt);
       var a = this.calcDate(today,past)
       console.log(a) 
       if ( a <= 1 ) {
-          this.loadingCtrl.show();
         this.recentOrder[j] = this.userOrder[i];
         j++;
-          this.loadingCtrl.hide();
       } else {
-        this.pastOrder[j] = this.userOrder[i];
-        j++;
+        this.pastOrder[k] = this.userOrder[i];
+        k++;
       }
     }
     console.log(this.recentOrder)
@@ -314,12 +314,35 @@ updateUserBuyerDispute() {
     .subscribe(
       data => {
         console.log(data);
-        // this.disputeMailSend();
+        this.disputeMailSend();
       },
       err => {
         console.log(err);
       }
     );
+}
+
+disputeMailSend() {
+  var todate = new Date(this.reviewData.createdAt).getDate();
+  var tomonth = new Date(this.reviewData.createdAt).getMonth() + 1;
+  var toyear = new Date(this.reviewData.createdAt).getFullYear();
+
+  this.disputeMailData = this.reviewData;
+  this.disputeMailData.createdAt = tomonth + '/' + todate + '/' + toyear;
+  this.disputeMailData.buyerPhone = this.userOrder1.buyerPhone;
+  this.disputeMailData.prdctCategory = this.userOrder1.prdctCategory;
+  this.disputeMailData.requestId = this.userOrder1.requestId;
+  this.disputeMailData.prdctName = this.userOrder1.prdctName;
+
+  console.log(this.disputeMailData);
+  this.http.post<any>(this.disputeMail, this.disputeMailData).subscribe(
+    data => {
+      console.log(data);
+    },
+    err => {
+      console.log(err);
+    }
+  );
 }
 
 }

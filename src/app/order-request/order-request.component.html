@@ -11,7 +11,7 @@
               <th style="width: 150px;">Request id</th>
               <th style="width: 150px;">Buyer name</th>
               <th style="width: 150px;">Buyer Phone</th>
-              <th style="width: 150px;">Buyer address</th>
+              <!-- <th style="width: 150px;">Buyer address</th> -->
               <th style="width: 150px;">Product category</th>
               <th style="width: 150px;">Product name</th>
               <th style="width: 150px;">Product available place</th>
@@ -19,7 +19,7 @@
               <th style="width: 150px;">Product urgency</th>
               <th style="width: 150px;">Seller name</th>
               <th style="width: 150px;">Seller Phone</th>
-
+              <th style="width: 150px;">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -28,11 +28,11 @@
                      {{errorMsg}}
                   </td>
               </tr>
-            <tr *ngFor="let order of userOrderReq | paginate: {id: 'foo', itemsPerPage:10,currentPage:d},let i = index">
+            <tr *ngFor="let order of userOrderReq1 | paginate: {id: 'foo', itemsPerPage:10,currentPage:d},let i = index">
               <td style="min-width: 150px;">{{order.requestId}}</td>
               <td style="min-width: 150px;">{{order.buyerName}}</td>
               <td style="min-width: 150px;">{{order.buyerPhone}}</td>
-              <td style="min-width: 150px;">{{order.buyerAddress}}</td>
+              <!-- <td style="min-width: 150px;">{{order.buyerAddress}}</td> -->
               <td style="min-width: 150px;">{{order.prdctCategory}}</td>
               <td style="min-width: 150px;">{{order.prdctName}}</td>
               <td style="min-width: 150px;">{{order.prdctAvlplace}}</td>
@@ -40,6 +40,11 @@
               <td style="min-width: 150px;">{{order.urgency}}</td>
               <td style="min-width: 150px;">{{order.sellerName}}</td>
               <td style="min-width: 150px;">{{order.sellerPhone}}</td>
+              <td style="min-width: 150px;">
+                <button id="hideEditBtn" class="btn btn-outline-success text-center viewMoreBtn button_word" (click)= "singleUpdateSignupReq1(order._id)" data-toggle="modal" data-target="#myModal1"><i class="fa fa-times" aria-hidden="true"></i>
+                Close
+               </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -49,3 +54,25 @@
           </div>
     </div>
     </body>
+
+         <!-- modal -->
+
+ <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;color: white;">Order Closed Confirmation</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="text-white">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to close this request?</h6>
+          <div class="text-center">
+           <button type="button" class="btn btnClr button_word" (click)="closeOrderRequest()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btnDanger button_word" routerLink="/my-order" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

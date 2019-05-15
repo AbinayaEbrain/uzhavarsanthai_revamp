@@ -253,37 +253,38 @@ export class UserDealsEditComponent implements OnInit {
       if (this.Image.length != 0) {
         this.deallistobj.image = this.Image;
       }
-      
-      console.log(this.newquantity);
-      console.log(this.newprice);
+
+      this.newquantity = this.deallistobj.quantity;
+      this.newprice = this.deallistobj.price;
+          console.log(this.newquantity);
+          console.log(this.newprice);
+          console.log(this.lastprice);
 
           // minus credit
-          if(this.lastquantity < this.newquantity && (this.newprice == undefined || this.newprice == null  || this.newprice == '')){
+          if(this.lastprice == this.newprice){
+          if(this.lastquantity < this.newquantity ){
             alert(1);
             this.QuantityCredit();
-          }
-    
-          if(this.lastprice < this.newprice && (this.newquantity == undefined || this.newquantity == null  || this.newquantity == '')){
+          }}
+
+          if(this.lastprice == this.newprice){
+          if(this.lastquantity > this.newquantity){
+            alert(4);
+            this.sellerReduceQuantity();
+          }}
+         
+          if(this.lastquantity == this.newquantity){
+          if(this.lastprice < this.newprice){
             alert(2);
             this.PriceCredit();
           }
-
-              //add credit
-    
-              if(this.lastquantity > this.newquantity && (this.newprice == undefined || this.newprice == null  || this.newprice == '')){
-                alert(4);
-                this.sellerReduceQuantity();
-              }
-        
-              if(this.lastprice > this.newprice && (this.newquantity == undefined || this.newquantity == null  || this.newquantity == '')){
+        }
+                if(this.lastquantity == this.newquantity){
+              if(this.lastprice > this.newprice){
                 alert(5);
                 this.sellerReducePrice();
               }
-
-          this.newquantity = this.deallistobj.quantity;
-          this.newprice = this.deallistobj.price;
-          console.log(this.newquantity);
-         console.log(this.newprice);
+            }
     
           if(this.lastquantity < this.newquantity && this.lastprice < this.newprice){
             alert(3);
@@ -323,6 +324,8 @@ export class UserDealsEditComponent implements OnInit {
 
       this.cumulativequantity = this.newquantity - this.lastquantity;
       console.log(this.cumulativequantity);
+
+      this.newprice = this.deallistobj.price;
      
     this.cumulativecredit = ((this.cumulativequantity * this.newprice) * 1/100);
     console.log(this.cumulativecredit);
@@ -393,8 +396,6 @@ export class UserDealsEditComponent implements OnInit {
         this.addSellerCredit = (this.totalCredit - this.cumulativecredit);
         console.log(this.addSellerCredit);
         this.updateUser1();
-        // this.sellerCredit = this.credits.credits;
-        // this.minusSellerCredit = (this.sellerCredit-this.cumulativecredit);
       },
       err => {
         console.log(err);
@@ -417,6 +418,7 @@ export class UserDealsEditComponent implements OnInit {
   }
 
   updateUserCreditArrCredit1(){
+    console.log(this.credit);
     this.credit.credit = this.minusSellerCredit;
     this.credit._id = this.prdtCreditId;
     console.log(this.credit._id);
@@ -479,7 +481,8 @@ export class UserDealsEditComponent implements OnInit {
             this.prdtCreditId = this.creditDetails[i]._id;
           }
         }
- 
+ console.log(this.credit);
+ console.log(this.prdtCredit)
         this.minusSellerCredit = (this.prdtCredit - this.cumulativecredit);
         console.log(this.minusSellerCredit);
 

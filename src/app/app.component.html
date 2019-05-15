@@ -213,6 +213,19 @@
       >Support Tickets</a
     >
   </li>
+  <li
+    *ngIf="_authService.roleAdmin() && _authService.loggedIn()"
+    class="nav-item"
+    data-toggle="collapse"
+    data-target="#navbarCollapse"
+    aria-controls="navbarCollapse"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <a class="nav-link" routerLink="/admin-subscription" routerLinkActive="active"
+      >Subscription</a
+    >
+  </li>
       <li
         *ngIf="_authService.roleAdmin() && _authService.loggedIn()"
         class="nav-item"
@@ -275,6 +288,12 @@
           style="cursor: pointer;color:#0d4608"
           >Credits</a
         >
+        <a
+        class="dropdown-item"
+        routerLink="/most-selling-product"
+        style="cursor: pointer;color:#0d4608"
+        >Most-sell-product</a
+      >
           <a
             class="dropdown-item"
             style="cursor: pointer;color:#0d4608"

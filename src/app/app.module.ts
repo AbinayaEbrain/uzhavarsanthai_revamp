@@ -59,9 +59,11 @@ import { MyOrderComponent } from './my-order/my-order.component';
 import { DummyComponent } from './dummy/dummy.component';
 import { CreditsComponent } from './credits/credits.component';
 import { AdminDisputeComponent } from './admin-dispute/admin-dispute.component';
+import { MostSellingProductComponent } from './most-selling-product/most-selling-product.component';
 import { DisputeMoreComponent } from './dispute-more/dispute-more.component';
 import { MyTicketsComponent } from './my-tickets/my-tickets.component';
 import { TicketviewComponent } from './ticketview/ticketview.component';
+import { AdminSubscriptionComponent } from './admin-subscription/admin-subscription.component';
 
 @NgModule({
   declarations: [
@@ -99,9 +101,11 @@ import { TicketviewComponent } from './ticketview/ticketview.component';
     MyOrderComponent,
     CreditsComponent,
     AdminDisputeComponent,
+    MostSellingProductComponent,
     DisputeMoreComponent,
     MyTicketsComponent,
-    TicketviewComponent
+    TicketviewComponent,
+    AdminSubscriptionComponent
   ],
   imports: [
     BrowserModule,

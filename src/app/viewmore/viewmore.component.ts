@@ -254,7 +254,7 @@ openloginModal(){
 
 sendQuery(){
   this.loadingCtrl.show();
-  var a = "UZHAVAN"
+  var a = "UZ"
   this.reqId = Math.floor(100000 + Math.random() * 900000);
   console.log(this.reqId);
   this.querydata.requestId = a+ "-" +this.reqId;
