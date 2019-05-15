@@ -10,7 +10,7 @@
       </div>
     <hr style="margin-top: -10px;">
     <p [ngStyle]="{'display':ticketStatus == 'Open' ? 'block' : 'none' }" class="myticketsone">This ticket is <b [ngStyle]="{'color': ticketStatus === 'Open' ? '#0d4608' : 'red' }">{{ticketStatus}}</b>, we will get back to you soon !</p>
-    <p [ngStyle]="{'display':ticketStatus == 'Closed' ? 'block' : 'none' }" class="myticketsone">This ticket is <b [ngStyle]="{'color': ticketStatus === 'Open' ? '#0d4608' : 'red' }">{{ticketStatus}}</b>, please <a style=" color: #0d4608;text-decoration: underline;" routerLink="/my-tickets">open a new ticket.</a></p>
+    <p [ngStyle]="{'display':ticketStatus == 'Resolved' ? 'block' : 'none' }" class="myticketsone">This ticket is <b [ngStyle]="{'color': ticketStatus === 'Open' ? '#0d4608' : 'red' }">{{ticketStatus}}</b>, please <a style=" color: #0d4608;text-decoration: underline;" routerLink="/my-tickets">open a new ticket.</a></p>
     <hr style="margin-top: -10px;">
     <p class="myticketsone">{{ticketDescrip}}</p>
     </div>
