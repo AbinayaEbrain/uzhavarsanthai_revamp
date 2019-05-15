@@ -1767,7 +1767,8 @@ router.post('/buyerupdateDisputeUser/:id', function(req, res) {
                 disputeId: req.body.disputeId,
                 dispute: req.body.dispute,
                 createdAt: req.body.createdAt,
-                against: req.body.against
+                against: req.body.against,
+                ticketId :req.bosy.ticketId
               }
              }
           }
@@ -1807,7 +1808,8 @@ router.post('/updateDisputeUserBuyer/:id', function(req, res) {
                 disputeId: req.body.disputeId,
                 dispute: req.body.dispute,
                 createdAt: req.body.createdAt,
-                against : req.body.against
+                against : req.body.against,
+                ticketId : req.body.ticketId
               }
              }
           }
