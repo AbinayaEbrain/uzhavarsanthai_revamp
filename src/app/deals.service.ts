@@ -105,8 +105,10 @@ export class DealsService {
   //subscription
   private subscription = "http://localhost:5000/api/subscription";
   private getSubscriptionUrl = "http://localhost:5000/api/getSubscription";
-  private editSubscriptionUrl = "http://localhost:5000/api/editSubscription";
-  private deleteSubscriptionUrl = 'https://uzhavarsanthai.herokuapp.com/api/deleteSubscription';
+  private updateSubscriptionUrl = "http://localhost:5000/api/updateSubscription";
+  private deleteSubscriptionUrl = 'http://localhost:5000/api/dltSubscription';
+  private getSingleSubscriptionUrl = 'http://localhost:5000/api/getSingleSubscription';
+
 
   constructor(private http: HttpClient) {}
 
@@ -372,13 +374,20 @@ export class DealsService {
   addsubscription(data){
      return this.http.post<any>(this.subscription,data);
   }
+
   getSubscription() {
     return this.http.get<any>(this.getSubscriptionUrl);
   }
+
   editSubscription(data, id) {
-    return this.http.put<any>(this.editSubscriptionUrl + '/' + id, data);
+    return this.http.put<any>(this.updateSubscriptionUrl + '/' + id, data);
   }
+
   deleteSubscription(id) {
     return this.http.delete<any>(this.deleteSubscriptionUrl + '/' + id);
+  }
+
+  getSingleSubscription(id) {
+    return this.http.get<any>(this.getSingleSubscriptionUrl + '/' + id);
   }
 }

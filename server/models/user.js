@@ -64,6 +64,7 @@ const userSchema = new Schema({
       requestId: String,
       disputeStatus: String,
       solution: {type: String , default:''},
+      against: String,
       createdAt: Date
     }
   ],
@@ -81,6 +82,7 @@ const userSchema = new Schema({
       dispute: String,
       disputeStatus: String,
       solution: {type: String , default:''},
+      against: String,
       createdAt: Date
     }
   ]

@@ -67,6 +67,7 @@ const postSchema = new Schema({
       requestId: String,
       disputeStatus: String,
       solution: {type: String , default:''},
+      against: String,
       createdAt: Date
     }
   ],

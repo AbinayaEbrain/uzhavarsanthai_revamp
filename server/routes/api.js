@@ -2285,4 +2285,15 @@ router.post('/updateSubscription/:id', function(req, res) {
   )
 });
 
+// Delete subscription
+router.delete('/dltSubscription/:id', (req, res) => {
+  Subscription.findByIdAndRemove(req.params.id, function(errors, deleteblog) {
+    if (errors) {
+      console.log('Error deleting' + errors);
+    } else {
+      res.json(deleteblog);
+    }
+  });
+});
+
 module.exports = router;
