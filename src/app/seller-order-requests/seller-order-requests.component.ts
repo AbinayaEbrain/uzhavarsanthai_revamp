@@ -191,6 +191,7 @@ export class SellerOrderRequestsComponent implements OnInit {
     this.userData.requestId = this.singleOrderRequest.requestId
     this.userData.dispute = this.userData.dispute;
     this.userData.disputeStatus = 'Created';
+    this.userData.against = 'buyer';
     let curntDte = new Date().getTime();
     this.userData.createdAt = curntDte;
     console.log(this.userData);
@@ -276,5 +277,5 @@ export class SellerOrderRequestsComponent implements OnInit {
       }
     );
   }
-  
+
 }

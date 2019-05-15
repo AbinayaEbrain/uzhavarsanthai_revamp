@@ -351,9 +351,84 @@ color: white;
   .ticketId{
     float:left;color: #0d4608;
     font-weight: bold;
-    white-space: nowrap;
-    width: 150px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 15px;
+  }
+.nav-link{
+  font-size: 11px !important;
+  padding: 14px !important;
+}
+.byWhom{
+  float: left !important;
+}
+}
+@media only screen and (min-width: 200px) and (max-width: 320px) {
+  .nav-link{
+    font-size: 10px !important;
+    padding: 14px !important;
+  }
+}
+.notice {
+  padding: 15px;
+  background-color: #fafafa;
+  border-left: 6px solid #7f7f84;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
+}
+.notice-sm {
+  padding: 10px;
+  font-size: 80%;
+}
+.notice-lg {
+  padding: 35px;
+  font-size: large;
+}
+.notice-success {
+  border-color: #80d651;
+}
+.notice-success > strong {
+  color: #80d651;
+}
+.notice-info {
+  border-color: #45abcd;
+}
+.notice-info > strong {
+  color: #45abcd;
+}
+.notice-warning {
+  border-color: #feaf20;
+}
+.notice-warning > strong {
+  color: #feaf20;
+}
+.notice-danger {
+  border-color: #d73814;
+}
+.notice-danger > strong {
+  color: #d73814;
+}
+
+.btnClr {
+  border: 2px solid #0d4608;
+  color: #0d4608;
+  background-color: white;
+  font-weight: bolder;
+}
+
+.btnClr:hover {
+  background-color: #0d4608;
+  color: white;
+}
+.byWhom{
+  float: right;
+}
+@media only screen and (min-width: 320px) and (max-width: 360px) {
+  .ticketRow {
+    font-weight: 500;
+    font-size: x-small;
+  }
+  .ticketPara{
+    font-size: smaller;
   }
 }

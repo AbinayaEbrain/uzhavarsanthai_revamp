@@ -85,7 +85,7 @@ export class MyOrderComponent implements OnInit {
       let today = new Date()
       let past = new Date(this.userOrder[i].createdAt);
       var a = this.calcDate(today,past)
-      console.log(a) 
+      console.log(a)
       if ( a <= 1 ) {
         this.recentOrder[j] = this.userOrder[i];
         j++;
@@ -138,7 +138,7 @@ singleUpdateSignupReq(id){
               setTimeout(() => {
                 this.successMsg = '';
               }, 2000);
-           this.getSignupReq();   
+           this.getSignupReq();
       },
       err => {
         console.log(err);
@@ -215,8 +215,8 @@ reviewAndRating(){
       console.log(this.reviewData.reviewRqstId);
       this.mapWithPost();
       this.mapWithUser();
-      this.mytemplateForm.reset();  
-      document.getElementById('closeCancelOrderModal1').click(); 
+      this.mytemplateForm.reset();
+      document.getElementById('closeCancelOrderModal1').click();
     },
     err => {
       console.log(err);
@@ -259,6 +259,7 @@ disputeSave() {
   this.reviewData.orderRqstId = this.userOrder1._id;
   this.reviewData.dispute = this.userData.dispute;
   this.reviewData.disputeStatus = 'Created';
+  this.reviewData.against = 'seller';
   let curntDte = new Date().getTime();
     this.reviewData.createdAt = curntDte;
 

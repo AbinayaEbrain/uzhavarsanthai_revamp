@@ -21,45 +21,188 @@ export class MyTicketsComponent implements OnInit {
   totalTickets = [];
   userTickets = [];
   p:any;
+  getExactDisputes = [];
+  getAllDisputes = [];
   zeroCount:any;
+  noDisputesMsg : any;
   noTicketsMsg:any;
+  disputelength :any;
+  disputelength1 :any;
+  noOpenTicketsMsg :any;
+  noClosedTicketsMsg : any;
   @ViewChild('ticketForm') mytemplateForm: NgForm;
 
   constructor(private _dealsService: DealsService,public loadingCtrl: NgxSpinnerService,private router: Router,) { }
 
   ngOnInit() {
+      this.loadingCtrl.show();
+      setTimeout(() => {
+      this.loadingCtrl.hide();
+      },3000);
       this.userid = JSON.parse(localStorage.getItem('currentUser'))._id;
       this.getAlltickets();
       this.getdispute();
   }
+  getdisputes(){
+    this.loadingCtrl.show();
+    this._dealsService.getdispute().subscribe(
+      res => {
+          console.log(res);
+          this.getAllDisputes = res;
+          let j = 0;
+          for(let i = 0; i < this.getAllDisputes.length;i++){
+            console.log(this.getAllDisputes.length);
+            if(this.userid == this.getAllDisputes[i].disputerId){
+              this.getExactDisputes[j] =  this.getAllDisputes[i];
+              j++;
+              this.loadingCtrl.hide();
+              this.disputelength = this.getExactDisputes.length;
+              console.log(this.getExactDisputes);
+            }
+          }
+          if(this.getExactDisputes.length == 0){
+            this.loadingCtrl.show();
+            console.log('no');
+            this.disputelength1 = this.getExactDisputes.length;
+            this.noDisputesMsg = "You have no disputes."
+            this.loadingCtrl.hide();
+          }
+      },
+      err => {
+        this.loadingCtrl.show();
+        console.log(err);
+        this.loadingCtrl.hide();
+      }
+    );
+  }
+
+changeColor(){
+  document.getElementById('paraTag').style.background = '#ff000052';
+  document.getElementById('paraTag1').style.background = 'white';
+}
+changeColor1(){
+  document.getElementById('paraTag1').style.background = '#ff000052';
+  document.getElementById('paraTag').style.background = 'white';
+}
 
   getAlltickets(){
+    this.userTickets = [];
+    this.loadingCtrl.show();
+    this.getdisputes();
     this._dealsService.getTickets().subscribe(
       res => {
           console.log(res);
+          this.userTickets = [];
           this.totalTickets = res;
           console.log(this.totalTickets.length);
-          if(this.totalTickets.length == 0){
-            this.noTicketsMsg = "No Tickets Available"
-            console.log(this.noTicketsMsg );
-          }
           let j = 0;
           for(let i = 0; i < this.totalTickets.length; i++){
             console.log(this.totalTickets.length);
             if(this.userid == this.totalTickets[i].userid){
              this.userTickets[j] = this.totalTickets[i];
              j++;
+             this.loadingCtrl.hide();
              this.ticketlngth = this.userTickets.length;
              console.log(this.userTickets);
             }
           }
+          if(this.userTickets.length == 0){
+            this.loadingCtrl.show();
+            this.noTicketsMsg = "You have no tickets."
+            this.loadingCtrl.hide();
+            console.log(this.noTicketsMsg );
+          }
       },
       err => {
+        this.loadingCtrl.show();
         console.log(err);
+        this.loadingCtrl.hide();
       }
     );
   }
-  
+
+openTickets(){
+  console.log('1');
+      this.userTickets = [];
+  this.loadingCtrl.show();
+  this._dealsService.getTickets().subscribe(
+    res => {
+        console.log('2');
+        console.log(res);
+        this.userTickets = [];
+        this.totalTickets = res;
+        console.log('3');
+        console.log(this.totalTickets.length);
+        let j = 0;
+        for(let i = 0; i < this.totalTickets.length; i++){
+          console.log('4');
+          console.log(this.totalTickets.length);
+          if(this.userid == this.totalTickets[i].userid && this.totalTickets[i].ticketStatus == "Created"){
+           this.userTickets[j] = this.totalTickets[i];
+           j++;
+           this.ticketlngth = this.userTickets.length;
+           console.log(this.userTickets);
+          }
+          this.loadingCtrl.hide();
+        }
+        console.log(this.userTickets.length);
+        if(this.userTickets.length == 0){
+          console.log(this.userTickets.length);
+          this.loadingCtrl.show();
+          this.noOpenTicketsMsg = "You have no open tickets."
+          this.noTicketsMsg = " ";
+          this.noClosedTicketsMsg = "";
+          this.loadingCtrl.hide();
+          console.log(this.noOpenTicketsMsg );
+        }
+    },
+    err => {
+      this.loadingCtrl.show();
+      console.log(err);
+      this.loadingCtrl.hide();
+    }
+  );
+}
+
+closedTickets(){
+  this.loadingCtrl.show();
+  this._dealsService.getTickets().subscribe(
+    res => {
+        console.log(res);
+        this.userTickets = [];
+        this.totalTickets = res;
+        console.log(this.totalTickets.length);
+        let j = 0;
+        for(let i = 0; i < this.totalTickets.length; i++){
+          console.log(this.totalTickets.length);
+          if(this.userid == this.totalTickets[i].userid && this.totalTickets[i].ticketStatus === "Resolved"){
+           this.userTickets[j] = this.totalTickets[i];
+           j++;
+           this.loadingCtrl.hide();
+           this.ticketlngth = this.userTickets.length;
+           console.log(this.userTickets);
+          }
+          this.loadingCtrl.hide();
+        }
+        this.noOpenTicketsMsg = "";
+        console.log(this.userTickets.length);
+        if(this.userTickets.length == 0){
+          this.loadingCtrl.show();
+          this.noClosedTicketsMsg = "You have no closed tickets."
+          this.noTicketsMsg = " ";
+          this.noOpenTicketsMsg = "";
+          this.loadingCtrl.hide();
+          console.log(this.noTicketsMsg );
+        }
+    },
+    err => {
+      this.loadingCtrl.show();
+      console.log(err);
+      this.loadingCtrl.hide();
+    }
+  );
+}
+
 sendticket(){
   this.loadingCtrl.show();
   var a = "UZ"
@@ -130,7 +273,7 @@ getdispute() {
           j++;
         }
       }
-      
+
       console.log(this.disputeArr);
     },
     err => {

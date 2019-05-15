@@ -13,7 +13,8 @@ const disputeSchema = new Schema({
   dispute: String,
   requestId: String,
   disputeStatus: String,
-  solution: {type: String , default:''},
+  solution: { type: String, default: '' },
+  against: String,
   createdAt: Date
 });
 
