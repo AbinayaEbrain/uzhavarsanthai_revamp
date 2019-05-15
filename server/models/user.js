@@ -25,6 +25,16 @@ const userSchema = new Schema({
   role: String,
   roleStatus: String,
   credits: { type: Number, default: 0 },
+  subscriptionName : String,
+  subscription: [
+    {
+      subscription: String,
+      amount: String,
+      credit: String,
+      status: String,
+      createdAt: Date
+    }
+  ],
   creditDetails: [
     {
       credit: Number,

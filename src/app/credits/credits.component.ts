@@ -9,8 +9,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class CreditsComponent implements OnInit {
   id: any;
+  errMsg: any;
   credits: any = {};
-  creditsArr: any = [];
+  creditsArr = [];
 
   constructor(
     private _dealsService: DealsService,
@@ -29,11 +30,17 @@ export class CreditsComponent implements OnInit {
         this.loadingCtrl.hide();
         for (let i = 0; i < res.length; i++) {
           if (this.id == res[i]._id) {
+            console.log(res[i]);
             this.credits = res[i];
             this.creditsArr = res[i].creditDetails;
             console.log(this.creditsArr);
-            this.creditsArr = this.creditsArr.reverse();
           }
+        }
+
+        if (this.creditsArr == undefined) {
+          this.errMsg = 'You have not posted products yet!';
+        } else {
+          this.creditsArr = this.creditsArr.reverse();
         }
       },
       err => {

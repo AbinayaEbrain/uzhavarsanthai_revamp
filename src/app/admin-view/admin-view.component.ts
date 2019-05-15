@@ -24,6 +24,7 @@ export class AdminViewComponent implements OnInit {
   locality: any;
   admin_area_l1: any;
   city: any;
+  subscriptionArr = [];
 
   constructor(
     private _dealsService: DealsService,
@@ -49,8 +50,12 @@ export class AdminViewComponent implements OnInit {
             this.register.address = this.registerUser[i].address.addressLine;
             this.city = this.registerUser[i].address.city.formatted_address;
             this.register.privateIP = this.registerUser[i].privateIP;
+            this.register.subscription = this.registerUser[i].subscription;
+
           }
         }
+        this.subscriptionArr = this.register.subscription;
+        console.log(this.subscriptionArr);
         this.register.city = this.city.split(',')[0];
         this.register.state = this.city.split(',')[1];
       },

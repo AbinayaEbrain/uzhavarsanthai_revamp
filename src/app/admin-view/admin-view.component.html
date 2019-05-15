@@ -25,7 +25,7 @@
    </div>
    &nbsp;&nbsp;
  
-    <div class="col-lg-5 post ">
+    <div class="col-lg-3 post ">
        <table class="english_wrd">
           <tr>
             <td><h6 class="mt-3 english_wrd clr">NAME</h6></td>
@@ -51,7 +51,7 @@
         </table>
       </div>
       &nbsp;&nbsp;
-      <div class="col-lg-5 post">
+      <div class="col-lg-4 post">
         <table class="english_wrd">
           <tr>
             <td> <h6 class="mt-3 english_wrd clr">ADDRESS</h6></td>
@@ -69,7 +69,33 @@
               <td> <h6 class="mt-3 english_wrd">{{register.state}}</h6></td>
             </tr>
         </table>
-       </div>
+       </div>&nbsp;&nbsp;
+
+       <div class="col-lg-3 post">
+          <table class="english_wrd" *ngFor = "let subscription of subscriptionArr" >
+            <tr>
+              <td> <h6 class="mt-3 english_wrd clr">Subscription</h6></td>
+              <td>&nbsp;:&nbsp;</td>
+                <td> <h6 class="mt-3 english_wrd">{{subscription.subscription}}</h6></td>
+              </tr>
+              <tr>
+                <td><h6  class="mt-3 english_wrd clr">Credit</h6></td>
+                <td>&nbsp;:&nbsp;</td>
+                <td> <h6 class="mt-3 english_wrd">{{subscription.credit}}</h6></td>
+              </tr>
+                <tr>
+                <td> <h6 class="mt-3 english_wrd clr">Amount</h6></td>
+                <td>&nbsp;:&nbsp;</td>
+                <td> <h6 class="mt-3 english_wrd">{{subscription.amount}}</h6></td>
+              </tr>
+              <tr>
+                  <td> <h6 class="mt-3 english_wrd clr">Created At</h6></td>
+                  <td>&nbsp;:&nbsp;</td>
+                  <td> <h6 class="mt-3 english_wrd">{{subscription.createdAt | date}}</h6></td>
+                </tr>
+          </table>
+         </div>
+
     </div>
   </div>
 

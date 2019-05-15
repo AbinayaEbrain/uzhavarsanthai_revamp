@@ -20,7 +20,7 @@ const Phone = require('../models/phone');
 const Device = require('../models/devicedata');
 const Notification = require('../models/notification');
 const Orderrequest = require('../models/orderrequest');
-const Signup = require('../models/signUp');
+const Subscription = require('../models/subscription');
 const Reviewrate = require('../models/reviewrate');
 const Ticket = require('../models/ticket');
 
@@ -1366,7 +1366,7 @@ router.post('/mapuserOrderRequestStatus/:id', function(req, res) {
 
 //Update order request
 router.post('/orderReqPost/:id', function(req, res) {
-         Post.updateOne(
+       Post.updateOne(
           {
             _id:req.params.id,
             'orderrequests.orderRqstId': req.body._id,
@@ -1682,7 +1682,7 @@ router.get('/getReview', (req, res) => {
 // Post Buyer Dispute
 router.post('/postdispute', (req, res) => {
   let disputeData = req.body;
-  let buyerdispute = new Buyerdispute(disputeData);
+  let buyerdispute = new Dispute(disputeData);
   buyerdispute.save((error, disputeData) => {
     if (error) {
       console.log(error);
@@ -1694,7 +1694,7 @@ router.post('/postdispute', (req, res) => {
 
 //Get Dispute
 router.get('/getBuyerDispute', (req, res) => {
-  Buyerdispute.find(function(err, result) {
+  Dispute.find(function(err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -1717,7 +1717,7 @@ router.post('/updateBuyerDisputePost/:id', function(req, res) {
           },
           {
             $push: {
-              buyerdispute:{
+              dispute:{
                 sellerName: req.body.sellerName,
                 sellerId: req.body.sellerId,
                 disputerName: req.body.buyerName,
@@ -1756,7 +1756,7 @@ router.post('/buyerupdateDisputeUser/:id', function(req, res) {
           },
           {
             $push: {
-              buyerdispute:{
+              dispute:{
                 sellerName: req.body.sellerName,
                 sellerId: req.body.sellerId,
                 disputerName: req.body.buyerName,
@@ -1795,7 +1795,7 @@ router.post('/updateDisputeUserBuyer/:id', function(req, res) {
           },
           {
             $push: {
-              buyerdispute:{
+              dispute:{
                 sellerName: req.body.sellerName,
                 sellerId: req.body.sellerId,
                 disputerName: req.body.buyerName,
@@ -2186,4 +2186,115 @@ router.get('/getticket', (req, res) => {
     }
   }).sort({createddate : -1});
 });
+
+// Get Single Ticket
+router.get('/getSingleTicket/:id', (req, res) => {
+  Ticket.findById(req.params.id, function(errors, getoneuser) {
+    if (errors) {
+      console.log('Error updating' + errors);
+    } else {
+      res.json(getoneuser);
+    }
+  });
+});
+
+// Ticket update
+router.post('/updateTicket/:id', function(req, res) {
+  Ticket.find(
+    {
+      _id:req.params.id,
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Ticket.update(
+          {
+            _id:req.params.id,
+          },
+          {
+            $set:{
+              ticketStatus : req.body.ticketStatus,
+              solution : req.body.solution,
+              createddate : req.body.createddate
+            }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'Ticket updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
+// Subscription
+router.post('/subscription', (req, res) => {
+  let subscriptionData = req.body;
+  let subscription = new Subscription(subscriptionData);
+  subscription.save((error, subscriptionData) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.status(200).send(subscriptionData);
+    }
+  });
+});
+
+// get Subscription
+router.get('/getSubscription', (req, res) => {
+  Subscription.find(function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  }).sort({createdAt : -1});
+});
+
+// Get Single Subscription
+router.get('/getSingleSubscription/:id', (req, res) => {
+  Subscription.findById(req.params.id, function(errors, getoneuser) {
+    if (errors) {
+      console.log('Error updating' + errors);
+    } else {
+      res.json(getoneuser);
+    }
+  });
+});
+
+// Subscription update
+router.post('/updateSubscription/:id', function(req, res) {
+  Subscription.find(
+    {
+      _id:req.params.id,
+    },
+    async (err,result) =>{
+      if(result.length > 0){
+        await Subscription.update(
+          {
+            _id:req.params.id,
+          },
+          {
+            $set:{
+              subscription : req.body.subscription,
+              amount : req.body.amount,
+              credit : req.body.credit,
+              status : req.body.status,
+              createdAt : req.body.createdAt
+            }
+          }
+        )
+        .then(() =>{
+          res.status(200).json({ message: 'Subscription updated'});
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error occured' });
+        });
+      }
+    }
+  )
+});
+
 module.exports = router;

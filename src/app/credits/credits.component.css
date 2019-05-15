@@ -7,6 +7,19 @@
   min-height: 100vh;
   width: 100%;
 }
+
+.imgRes {
+  width: 300px;
+}
+
+.errDesign {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+  color: red;
+}
+
 .card {
   /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45); */
   overflow: hidden;
@@ -121,7 +134,7 @@ select {
   width: 50%;
 }
 .btn {
-  font-size: 18px;
+  font-size: 14px;
   background-color: #0d4608;
   border: none;
   color: white;

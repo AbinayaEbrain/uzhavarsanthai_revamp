@@ -64,6 +64,7 @@ import { DisputeMoreComponent } from './dispute-more/dispute-more.component';
 import { MyTicketsComponent } from './my-tickets/my-tickets.component';
 import { TicketviewComponent } from './ticketview/ticketview.component';
 import { ReadMoreViewComponent } from './read-more-view/read-more-view.component';
+import { AdminSubscriptionComponent } from './admin-subscription/admin-subscription.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import { ReadMoreViewComponent } from './read-more-view/read-more-view.component
     DisputeMoreComponent,
     MyTicketsComponent,
     TicketviewComponent,
-    ReadMoreViewComponent
+    ReadMoreViewComponent,
+    AdminSubscriptionComponent
   ],
   imports: [
     BrowserModule,

@@ -248,3 +248,7 @@ input {
     font-size: 13px !important;
   }
 }
+
+input[type="checkbox"][readonly] {
+  pointer-events: none;
+}
