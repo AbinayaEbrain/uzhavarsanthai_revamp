@@ -50,7 +50,8 @@ const postSchema = new Schema({
       prdctId: String,
       sellerId: String,
       sellerName: String,
-      reviewRqstId: String
+      reviewRqstId: String,
+      createdAt: Date
     }
   ],
   dispute: [

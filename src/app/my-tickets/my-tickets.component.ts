@@ -18,7 +18,6 @@ export class MyTicketsComponent implements OnInit {
   successMsg:any;
   ticketlngth:any;
   userid:any;
-  ticketId:any;
   totalTickets = [];
   userTickets = [];
   p:any;

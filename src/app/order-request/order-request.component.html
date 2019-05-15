@@ -19,6 +19,7 @@
               <th style="width: 150px;">Product urgency</th>
               <th style="width: 150px;">Seller name</th>
               <th style="width: 150px;">Seller Phone</th>
+              <th style="width: 150px;">Status</th>
               <th style="width: 150px;">Action</th>
             </tr>
           </thead>
@@ -40,6 +41,7 @@
               <td style="min-width: 150px;">{{order.urgency}}</td>
               <td style="min-width: 150px;">{{order.sellerName}}</td>
               <td style="min-width: 150px;">{{order.sellerPhone}}</td>
+              <td style="min-width: 150px;" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</td>
               <td style="min-width: 150px;">
                 <button id="hideEditBtn" class="btn btn-outline-success text-center viewMoreBtn button_word" (click)= "singleUpdateSignupReq1(order._id)" data-toggle="modal" data-target="#myModal1"><i class="fa fa-times" aria-hidden="true"></i>
                 Close

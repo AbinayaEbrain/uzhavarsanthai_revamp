@@ -1601,7 +1601,8 @@ router.post('/mapproductreviewpostUrl', function(req, res) {
                 prdctId: req.body.prdctId,
                 sellerId: req.body.sellerId,
                 sellerName: req.body.sellerName,
-                reviewRqstId: req.body.reviewRqstId
+                reviewRqstId: req.body.reviewRqstId,
+                createdAt: req.body.createdAt
               }
              }
           }
@@ -1665,6 +1666,17 @@ router.post('/postreviewrating',(req,res)=>{
           res.status(200).send(reviewrateData)
       }
   })
+});
+
+//Get Review
+router.get('/getReview', (req, res) => {
+  Reviewrate.find(function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  }).sort({createdAt : -1});
 });
 
 // Post Buyer Dispute
