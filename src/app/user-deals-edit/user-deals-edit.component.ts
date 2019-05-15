@@ -120,7 +120,7 @@ export class UserDealsEditComponent implements OnInit {
     this.InitialCall();
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.id = this.route.snapshot.params['id'];
-
+console.log(this.id);
     //edit deals
 
     this._dealsService.getDeals().subscribe(
@@ -301,7 +301,7 @@ export class UserDealsEditComponent implements OnInit {
       this._dealsService.editDeals(this.deallistobj, this.id).subscribe(
         res => {
           console.log(res);
-          this.productId = res._id;        
+          // this.productId = res._id;        
           this.loadingCtrl.hide();
           this.success = 'Updated successfully!';
           setTimeout(() => {
@@ -370,10 +370,10 @@ export class UserDealsEditComponent implements OnInit {
       res => {
         console.log(res);
         this.loadingCtrl.hide();
-        this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
-        console.log(this.id);
+        // this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
+        console.log(this.currentuserId);
         for (let i = 0; i < res.length; i++) {
-          if (this.id == res[i]._id) {
+          if (this.currentuserId == res[i]._id) {
             this.credits = res[i];
             this.totalCredit = res[i].credits;
             this.creditDetails = res[i].creditDetails
@@ -382,8 +382,10 @@ export class UserDealsEditComponent implements OnInit {
         console.log(this.credits);
         console.log(this.totalCredit);
         console.log(this.creditDetails);
+        console.log(this.id);
         for (let i = 0; i < this.creditDetails.length; i++) {
-          if (this.productId == this.creditDetails[i].productId) {
+          console.log(this.creditDetails[i].productId);
+          if (this.id == this.creditDetails[i].productId) {
             this.credit = this.creditDetails[i];
             this.prdtCredit = this.creditDetails[i].credit;
             this.prdtCreditId = this.creditDetails[i]._id;
@@ -466,16 +468,16 @@ export class UserDealsEditComponent implements OnInit {
       res => {
         console.log(res);
         this.loadingCtrl.hide();
-        this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
+        // this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
         for (let i = 0; i < res.length; i++) {
-          if (this.id == res[i]._id) {
+          if (this.currentuserId == res[i]._id) {
             this.credits = res[i];
             this.totalCredit = res[i].credits;
             this.creditDetails = res[i].creditDetails
           }
         }
         for (let i = 0; i < this.creditDetails.length; i++) {
-          if (this.productId == this.creditDetails[i].productId) {
+          if (this.id == this.creditDetails[i].productId) {
             this.credit = this.creditDetails[i];
             this.prdtCredit = this.creditDetails[i].credit;
             this.prdtCreditId = this.creditDetails[i]._id;

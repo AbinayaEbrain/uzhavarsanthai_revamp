@@ -73,10 +73,13 @@
                                               <p class="product-description" *ngIf="postProduct.description" style="text-align: justify">{{postProduct.description}}</p>
                                               <p class="product-description" *ngIf="postProduct.description == '' || postProduct.description == undefined || postProduct.description == null" style="text-align: justify">No description.</p>
                                             </div>
-                                          <div class="tab-pane fade card" style="padding-top: 10px;" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                          <div class="container" *ngFor="let slide of reviewArr| slice:0:show;">
+                                          <div class="tab-pane fade" style="padding-top: 10px;" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                         <div class="card">
+                                            <div class="container" *ngFor="let slide of reviewArr| slice:0:show;">
                                               <div class="notice notice-success">
-                                                <!-- <strong>Notice</strong> notice-success -->
+                                                <div *ngIf="reviewlngthErr">
+                                                  <h6>{{reviewlngthErr}}</h6>
+                                                </div>
                                                 <div class="row">
                                                   <div class="col-md-2 col-2">
     
@@ -100,7 +103,7 @@
                                               <!-- <div class="notice notice-danger">
                                                 <strong>Notice</strong> notice-danger
                                               </div> -->
-                                            </div>
+                                            </div></div>
                                             <div *ngIf="show < reviewlngth" style="color: #0d4608;font-weight: bold;cursor: pointer;text-align: center;" (click)="increaseShow()">Load More...</div>
                                         </div>
                                           <!-- <div class="tab-pane fade" id="nav-dispute" role="tabpanel" aria-labelledby="nav-dispute-tab">

@@ -38,6 +38,7 @@ import { TicketviewComponent } from 'src/app/ticketview/ticketview.component';
 import { DummyComponent } from 'src/app/dummy/dummy.component';
 import { MostSellingProductComponent } from 'src/app/most-selling-product/most-selling-product.component';
 import { AdminSubscriptionComponent } from 'src/app/admin-subscription/admin-subscription.component';
+import { SubscriptionPlanComponent } from 'src/app/subscription-plan/subscription-plan.component';
 const routes: Routes = [
   {
     path: '',
@@ -221,6 +222,10 @@ const routes: Routes = [
   {
     path: 'admin-subscription',
     component: AdminSubscriptionComponent
+  },
+  {
+    path: 'subscription-plan',
+    component: SubscriptionPlanComponent
   }
 ];
 

@@ -115,9 +115,10 @@ export class UserProductsComponent implements OnInit {
         swal({
           title: 'You have no credit!',
           text:
-            'If you post your product! Please pay MONEY.',
+            'If you post your product! Please pay MONEY show your PLANS.',
           imageUrl: '../../assets/Images/progress.gif'
         });
+        this.router.navigate(['/subscription-plan']);
       } else{
         console.log('You have a credit')
         this.router.navigate(['/post']);
