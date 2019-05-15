@@ -97,61 +97,7 @@
               <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
             </div>
   </div>
-  
-  <!-- <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-     <div class="card"  id="hideTable">
-         <div class="card-content">
-           <div class="fresh-table table-responsive">
-                 <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                     <thead style="text-align: center;background-color: #0d460840;">
-                         <tr>
-                             <th>Category</th>
-                             <th>Name</th>
-                             <th>Quantity</th>
-                             <th> &#8377; Price/ Quantity</th>
-                             <th>Post Date</th>
-                             <th>Expiry Date</th>
-                             <th class="disabled-sorting">Action</th>
-                         </tr>
-                     </thead>
-                     <tbody style="text-align: center">
-                          <tr *ngIf="errMsg1">
-                                  <td colspan="7" class="text-danger" style="text-align: center">
-                                     {{errMsg1}}
-                                  </td>
-                              </tr>
-                         <tr id="hide1" *ngFor="let deal of userDeals1 | filterdata: queryString  : 'category'| paginate: {id: 'foo1', itemsPerPage:10,currentPage:d},let i = index"  >
-                              <td *ngIf="deal === -1 && !errMsg1" class="prdUnavil text-danger" style="text-align: center">
-                                      {{errMsg2}}
-                              </td>
-                          <td>{{deal.category}}</td>
-                             <div class="productFullName">{{deal.name}}</div>
-                             <td>{{deal.quantity}}{{deal.qnty}} </td>
-                            <td>{{deal.price}}</td>
-                             <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
-                             <td> {{deal.validityTime | date: 'dd/MM/yyyy'}} </td>
-                             <td style="display: flex;" *ngIf="deal !== -1">
-                                 <button  id="hideEditBtn1" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}">
-                                  <i class="fa fa-pencil" aria-hidden="true"></i> Edit
-                                 </button> &nbsp;
-                                 <button id="hideDeleteBtn1" class="btn btn-outline-success text-center viewMoreBtn button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
-                                  data-keyboard="false" routerLink="/products/{{deal._id}}">
-                                  <i class="fa fa-trash" aria-hidden="true"></i> Delete
-                                 </button>
-                             </td>
-                         </tr>
-  
-                     </tbody>
-  
-                 </table>
-  
-             </div>
-         </div>
-     </div>
-     <div class="mx-auto mt-3">
-      <pagination-controls id="foo1"  class="ngx-pagination" style="margin-right: 30px;" maxSize="5" (pageChange)="d = $event"></pagination-controls>
-    </div>
-  </div> -->
+
   </div>
   </div>
   </div>
@@ -169,6 +115,7 @@
           </div>
           <div class="modal-body">
               <form  #subcription="ngForm" *ngIf ="!submitted" novalidate>
+                {{ subcription.value | json}}
                   <div class="row">
                     <div class="col-md-6">
                   <div class="form-group">
