@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 export class AdminSubscriptionComponent implements OnInit {
   @ViewChild('subcription') myForm: NgForm;
   subcriptionData: any = {};
+  subscriptionArr: any = [];
 
   constructor(private _dealsService: DealsService) {}
 
@@ -16,6 +17,7 @@ export class AdminSubscriptionComponent implements OnInit {
     this._dealsService.getSubscription().subscribe(
       res => {
         console.log(res);
+        this.subscriptionArr = res;
       },
       err => {
         console.log(err);
