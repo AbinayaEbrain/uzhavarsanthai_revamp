@@ -351,6 +351,7 @@ color: white;
   .ticketId{
     float:left;color: #0d4608;
     font-weight: bold;
+    font-size: 15px;
   }
 .nav-link{
   font-size: 11px !important;

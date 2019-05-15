@@ -45,7 +45,7 @@
       </div>
       <div class="col-md-3 col-lg-4 col-12"></div>
 </div>
-              <div class="container-fluid" routerLink="/view-ticket/{{ticket._id}}" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
+              <div class="container-fluid" style="margin-top: 2%;" routerLink="/view-ticket/{{ticket._id}}" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
                 <div class="notice notice-success">
                   <div class="row">
                     <div class="col-md-6 col-8">
