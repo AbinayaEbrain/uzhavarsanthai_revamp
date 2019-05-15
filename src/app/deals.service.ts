@@ -106,6 +106,7 @@ export class DealsService {
   private subscription = "http://localhost:5000/api/subscription";
   private getSubscriptionUrl = "http://localhost:5000/api/getSubscription";
   private editSubscriptionUrl = "http://localhost:5000/api/editSubscription";
+  private deleteSubscriptionUrl = 'https://uzhavarsanthai.herokuapp.com/api/deleteSubscription';
 
   constructor(private http: HttpClient) {}
 
@@ -376,5 +377,8 @@ export class DealsService {
   }
   editSubscription(data, id) {
     return this.http.put<any>(this.editSubscriptionUrl + '/' + id, data);
+  }
+  deleteSubscription(id) {
+    return this.http.delete<any>(this.deleteSubscriptionUrl + '/' + id);
   }
 }
