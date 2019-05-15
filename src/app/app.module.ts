@@ -63,6 +63,7 @@ import { MostSellingProductComponent } from './most-selling-product/most-selling
 import { DisputeMoreComponent } from './dispute-more/dispute-more.component';
 import { MyTicketsComponent } from './my-tickets/my-tickets.component';
 import { TicketviewComponent } from './ticketview/ticketview.component';
+import { ReadMoreViewComponent } from './read-more-view/read-more-view.component';
 import { AdminSubscriptionComponent } from './admin-subscription/admin-subscription.component';
 
 @NgModule({
@@ -105,6 +106,7 @@ import { AdminSubscriptionComponent } from './admin-subscription/admin-subscript
     DisputeMoreComponent,
     MyTicketsComponent,
     TicketviewComponent,
+    ReadMoreViewComponent,
     AdminSubscriptionComponent
   ],
   imports: [

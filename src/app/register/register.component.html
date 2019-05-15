@@ -75,6 +75,12 @@
                               <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
                             <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
                           </div>
+                          <!-- Default checked -->
+                            <div class="mb-2">
+                            <!-- <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked  readonly #subscription="ngModel" [(ngModel)]="registeredUserData.subscription" ngModel name="subscription"> -->
+                            <input type="checkbox" onclick="return false" checked/>&nbsp;                            
+                            <label>Free subscribtion</label>
+                            </div>
                           <div class="row">
                             <div class="col-md-12 ">
                                 <button id="hideButton" class="btn btn-block button_word" [disabled]="postform.form.invalid" type="submit" (click)="post()"><span style="font-size: 14px" class="tamil_word">பதிவு செய்க</span> / Sign up</button>
