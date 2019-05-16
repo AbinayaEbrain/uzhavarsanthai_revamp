@@ -40,7 +40,10 @@ export class LoginComponent implements OnInit {
   verifymsg:any;
   authorize:any;
   visitId:any;
-
+  subscriptionArr: any = [];
+  subscriptionId : any;
+  freeSubscription : any;
+  subscriptionName :any;
   constructor(
     private router: Router,
     private _auth: AuthService,
@@ -67,7 +70,33 @@ export class LoginComponent implements OnInit {
         this.previousUrl = e[0].urlAfterRedirects;
         localStorage.setItem('previousUrl', e[0].urlAfterRedirects);
       });
+      this.getSubscription();
   }
+
+  getSubscription(){
+  this._dealsService.getSubscription().subscribe(
+    res => {
+      console.log(res);
+      this.subscriptionArr = res;
+      for (let i = 0; i < this.subscriptionArr.length; i++) {
+          this.subscriptionName = this.subscriptionArr[i].subscription;
+          this.subscriptionId = this.subscriptionArr[i]._id;
+          localStorage.setItem('subscriptionId', JSON.stringify(this.subscriptionId));
+      }
+      console.log(this.subscriptionName);
+      for (let i = 0; i < this.subscriptionArr.length; i++) {
+        if(this.subscriptionId == this.subscriptionArr[i]._id){
+        this.freeSubscription = this.subscriptionArr[i];
+        }
+
+    }
+    console.log(this.freeSubscription);
+    },
+    err => {
+      console.log(err);
+    }
+  );
+}
 
   phnTen() {
     if (this.phoneObj.phone1.length !== 10) {

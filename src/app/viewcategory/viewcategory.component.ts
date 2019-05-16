@@ -61,6 +61,7 @@ export class ViewcategoryComponent implements OnInit {
   errMsg2: any;
   errMsgSec: any;
   splitImage: '';
+  loggedUser:any;
   multiImage = [];
   bulkPost : boolean = false;
 
@@ -92,10 +93,99 @@ export class ViewcategoryComponent implements OnInit {
 
   ngOnInit() {
     this.loadingCtrl.show();
+    if (localStorage.getItem('currentUser')){
+        this.loggedUser = JSON.parse(localStorage.getItem('currentUser'))._id;
+        this._dealService.getDeals().subscribe(
+          res => {
+            let j = 0;
+            this.crdDeals = res;
+            console.log(this.crdDeals)
+            this.showDeals = true;
+            this.id = this.route.snapshot.params['id'];
+            let CurrentDate = new Date().toISOString();
+            for (let i = 0; i < this.crdDeals.length; i++) {
+              if (this.id == this.crdDeals[i].categoryId  && this.loggedUser != this.crdDeals[i].accountId && this.crdDeals[i].validityTime > CurrentDate && this.loggedUser != this.crdDeals[i].accountId && this.crdDeals[i].status == 'ACTIVE' ) {
+                console.log(this.crdDeals[i].accountId)
+                this.totalDeals[j] = this.crdDeals[i];
+                this.splitImage =  this.totalDeals[j].image;
+                if(this.splitImage != undefined || this.splitImage != null || this.splitImage != ''){
+                  this.totalDeals[j].image = this.splitImage.split(",",1);
+                }
+                this.getPrdtName = this.totalDeals[j].name;
+                j++;
+                this.loadingCtrl.hide();
+              }
+            }
+            this.getMultiArray();
+
+            if (this.totalDeals.length == 0) {
+              this.loadingCtrl.show();
+              this.errMsg = 'Currently no deals available';
+              document.getElementById('hidePagination').style.display = 'none';
+              document.getElementById('hideSearchDiv').style.display = 'none';
+              document.getElementById('hideSelectedCategory').style.display ='none';
+              document.getElementById('hideFilterButton').style.display = 'none';
+              document.getElementById('hideSearchlocDiv').style.display = 'none';
+              document.getElementById('hideFilterButton2').style.display = 'none';
+
+              this.loadingCtrl.hide();
+            }
+
+            this.showDeals = true;
+          },
+          err => {
+            console.log(err);
+          }
+        );
+    }else{
+      this._dealService.getDeals().subscribe(
+        res => {
+          let j = 0;
+          this.crdDeals = res;
+          console.log(this.crdDeals)
+          this.showDeals = true;
+          this.id = this.route.snapshot.params['id'];
+          let CurrentDate = new Date().toISOString();
+          for (let i = 0; i < this.crdDeals.length; i++) {
+            if (this.id == this.crdDeals[i].categoryId  && this.crdDeals[i].validityTime > CurrentDate && this.crdDeals[i].status == 'ACTIVE' ) {
+              console.log(this.crdDeals[i].accountId)
+              this.totalDeals[j] = this.crdDeals[i];
+              this.splitImage =  this.totalDeals[j].image;
+              if(this.splitImage != undefined || this.splitImage != null || this.splitImage != ''){
+                this.totalDeals[j].image = this.splitImage.split(",",1);
+              }
+              this.getPrdtName = this.totalDeals[j].name;
+              j++;
+              this.loadingCtrl.hide();
+            }
+          }
+          this.getMultiArray();
+
+          if (this.totalDeals.length == 0) {
+            this.loadingCtrl.show();
+            this.errMsg = 'Currently no deals available';
+            document.getElementById('hidePagination').style.display = 'none';
+            document.getElementById('hideSearchDiv').style.display = 'none';
+            document.getElementById('hideSelectedCategory').style.display ='none';
+            document.getElementById('hideFilterButton').style.display = 'none';
+            document.getElementById('hideSearchlocDiv').style.display = 'none';
+            document.getElementById('hideFilterButton2').style.display = 'none';
+
+            this.loadingCtrl.hide();
+          }
+
+          this.showDeals = true;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
     this.showDeals = true;
     this._dealService.getCategory().subscribe(
       res =>{
         this.crdCategory = res;
+        console.log(this.crdCategory);
         this.id = this.route.snapshot.params['id'];
         for (let i=0; i< this.crdCategory.length; i++){
           if (this.crdCategory[i]._id == this.id){
@@ -104,54 +194,33 @@ export class ViewcategoryComponent implements OnInit {
         }
       }
     )
-
-    this._dealService.getDeals().subscribe(
-      res => {
-        let j = 0;
-        this.crdDeals = res;
-        this.showDeals = true;
-        this.id = this.route.snapshot.params['id'];
-        let CurrentDate = new Date().toISOString();
-        for (let i = 0; i < this.crdDeals.length; i++) {
-          if (
-            this.id == this.crdDeals[i].categoryId &&
-            this.crdDeals[i].validityTime > CurrentDate &&
-            this.crdDeals[i].status == 'ACTIVE'
-          ) {
-            this.totalDeals[j] = this.crdDeals[i];
-            this.splitImage =  this.totalDeals[j].image;
-            if(this.splitImage != undefined || this.splitImage != null || this.splitImage != ''){
-              this.totalDeals[j].image = this.splitImage.split(",",1);
-            }
-            this.getPrdtName = this.totalDeals[j].name;
-            j++;
-            this.loadingCtrl.hide();
-          }
-        }
-        this.getMultiArray();
-
-        if (this.totalDeals.length == 0) {
-          this.loadingCtrl.show();
-          this.errMsg = 'Currently no deals available';
-          document.getElementById('hidePagination').style.display = 'none';
-          document.getElementById('hideSearchDiv').style.display = 'none';
-          document.getElementById('hideSelectedCategory').style.display ='none';
-          document.getElementById('hideFilterButton').style.display = 'none';
-          document.getElementById('hideSearchlocDiv').style.display = 'none';
-          document.getElementById('hideFilterButton2').style.display = 'none';
-
-          this.loadingCtrl.hide();
-        }
-
-        this.showDeals = true;
-      },
-      err => {
-        console.log(err);
-      }
-    );
   }
 
   getMultiArray(){
+  if (localStorage.getItem('currentUser')){
+    this.loggedUser = JSON.parse(localStorage.getItem('currentUser'))._id;
+    this._dealService.getMultiPost().subscribe(res =>{
+      let j = 0;
+      this.multiPost = res;
+        let CurrentDate = new Date().toISOString();
+      for (let i = 0; i < this.multiPost.length; i++) {
+        if (
+          this.id == this.multiPost[i].categoryId && this.loggedUser != this.crdDeals[i].accountId &&
+          this.multiPost[i].validityTime > CurrentDate &&
+          this.multiPost[i].status == 'ACTIVE'
+        ) {
+          this.multiPosts[j] = this.multiPost[i];
+          this.splitImage1 =  this.multiPosts[j].image;
+          this.multiPosts[j].image = this.splitImage1.split(",",1);
+          j++;
+          this.loadingCtrl.hide();
+        }
+      }
+      this.getArray();
+    },err =>{
+      console.log(err);
+    });
+  }else {
     this._dealService.getMultiPost().subscribe(res =>{
       let j = 0;
       this.multiPost = res;
@@ -175,10 +244,12 @@ export class ViewcategoryComponent implements OnInit {
     });
   }
 
+  }
+
   getArray(){
     this.singleMultiArray = this.totalDeals.concat(this.multiPosts);
   }
-  
+
   getGoogleAddress() {
     var pacContainerInitialized = false;
     $('#searchLocation').keypress(function() {

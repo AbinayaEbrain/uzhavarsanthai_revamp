@@ -61,6 +61,7 @@ export class RegisterComponent implements OnInit {
   authorize: any;
   visitId: any;
   subscriptionArr: any = [];
+
   setAddress(addrObj) {
     this.zone.run(() => {
       this.addr = addrObj;
@@ -113,13 +114,6 @@ export class RegisterComponent implements OnInit {
     this.registeredUserData.subscriptionId = this.subscriptionId
     this.loadingCtrl.show();
     console.log(this.registeredUserData);
-
-    // if(role != null){
-    //   this.sellerSignUp();
-    // }else{
-    //   this.buyerSignUp();
-    // }
-
     this._auth.registerUser(this.registeredUserData).subscribe(
       res => {
         console.log(res);
@@ -282,16 +276,16 @@ export class RegisterComponent implements OnInit {
     res => {
       console.log(res);
       this.subscriptionArr = res;
-      for (let i = 0; i < this.subscriptionArr.length; i++) {   
+      for (let i = 0; i < this.subscriptionArr.length; i++) {
           this.subscriptionName = this.subscriptionArr[i].subscription;
           this.subscriptionId = this.subscriptionArr[i]._id;
       }
       console.log(this.subscriptionName);
-      for (let i = 0; i < this.subscriptionArr.length; i++) {   
+      for (let i = 0; i < this.subscriptionArr.length; i++) {
         if(this.subscriptionId == this.subscriptionArr[i]._id){
         this.freeSubscription = this.subscriptionArr[i];
         }
-       
+
     }
     console.log(this.freeSubscription);
     },
