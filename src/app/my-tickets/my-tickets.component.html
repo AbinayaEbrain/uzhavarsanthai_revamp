@@ -18,8 +18,9 @@
       </section>
       <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
           <div class="tab-pane fade " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <p style="float:left;padding:0.5%;cursor:pointer;border-radius: 10px;font-weight: 600;" id="paraTag1" (click)="changeColor1()" (click)="openTickets()">Open Tickets</p>&nbsp;&nbsp;
-            <p style="float:left;padding:0.5%;cursor:pointer;border-radius: 10px;font-weight: 600;" id="paraTag" (click)="changeColor()" (click)="closedTickets()">Closed Tickets</p>
+            <p style="float:left;cursor:pointer;font-weight: 600;margin-left: 2%;
+    font-size: 13px;" id="paraTag1" (click)="changeColor1()" (click)="openTickets()">Open Tickets</p>  &nbsp;&nbsp;
+            <p style="float:left;cursor:pointer;font-weight: 600;margin-left: 1%;font-size: 13px;" id="paraTag" (click)="changeColor()" (click)="closedTickets()">Closed Tickets</p>
             <div class="container">
                 <div >
                   <div class="col-md-3 col-lg-4 col-12"></div>
@@ -47,53 +48,61 @@
       <div class="col-md-3 col-lg-4 col-12"></div>
       </div>
 </div>
-              <div class="container-fluid" style="margin-top:2%" routerLink="/view-ticket/{{ticket._id}}" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
+              <div class="container-fluid" routerLink="/view-ticket/{{ticket._id}}" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
                 <div class="notice notice-success">
                   <div class="row">
-                    <div class="col-md-6 col-8">
-                      <p  style="color: #eb0f2491;font-weight: bold;">
+                    <div class="col-md-12">
+                      <br>
+                      <div class="row">
+                        <div class="col-md-8">
+                          <p  style="color: #eb0f2491;font-weight: bold;">
+                           <span class="ticketId">Ticket ID - <font color="#ef5409">{{ticket.ticketId}}</font></span>
+                         </p>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="float-right">
+                            <button class="btn btn-sm btn-success">
+                            {{ticket.ticketStatus}}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6 col-8"> -->
+                      <!-- <p  style="color: #eb0f2491;font-weight: bold;">
                        <span class="ticketId">Ticket ID - <font color="#ef5409">{{ticket.ticketId}}</font></span>
-                     </p>
-                     <div class="col-md-12" style="float:left;">
+                     </p> -->
+                     <div class="col-md-12">
                        <br>
-                       <p style="float:left;margin-left: -13px;color: #0d4608;font-weight: 600;">{{ticket.ticketTitle}}</p>
+                       <div class="row">
+                         <div class="col-md-8">
+                              <p style="float:left;margin-left: -13px;color: #0d4608;font-weight: 600;">{{ticket.ticketTitle}}</p>
+                         </div>
+                         <div class="col-md-4">
+                           <p style="float:right;color: #0d4608;font-size: 15px;">Created: {{ticket.createddate | date}}</p>
+                         </div>
+                       </div>
+
                      </div>
-                   </div>
-                    <div class="col-md-6 col-4">
+                   <!-- </div> -->
+                    <!-- <div class="col-md-6 col-4">
                       <div class="float-right">
                         <button class="btn btn-sm btn-success">
                         {{ticket.ticketStatus}}
                         </button>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                   <!-- <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <span>
-                        <p style="text-indent: 30px;">{{ticket.ticketDescription}}</p>
+
                       </span>
                     </div>
                     <div class="col-md-6">
-                      <span class="float-right">
-                        <div></div>
-                      </span>
+
                     </div>
                   </div> -->
-                  <div class="row">
-                    <div class="col-md-6">
-                      <span>
-                       <p style="float:left;color: #0d4608;font-size: 15px;">Created: {{ticket.createddate | date}}</p>
-                      </span>
-                    </div>
-                    <div class="col-md-6">
-                      <!-- <span class="float-right">
-                        <span
-                          >By yreyeryerye
-                          <small>on yyyeryery</small></span
-                        >
-                      </span> -->
-                    </div>
-                  </div>
                 </div>
                 <br>
               </div>

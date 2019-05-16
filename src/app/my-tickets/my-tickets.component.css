@@ -360,6 +360,9 @@ color: white;
 .byWhom{
   float: left !important;
 }
+#paraTag{
+  margin-left: 3% !important;
+}
 }
 @media only screen and (min-width: 200px) and (max-width: 320px) {
   .nav-link{
