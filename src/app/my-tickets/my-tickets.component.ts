@@ -77,12 +77,12 @@ export class MyTicketsComponent implements OnInit {
   }
 
 changeColor(){
-  document.getElementById('paraTag').style.background = '#ff000052';
-  document.getElementById('paraTag1').style.background = 'white';
+  document.getElementById('paraTag').style.borderBottom = "solid #0d4608";
+  document.getElementById('paraTag1').style.borderBottom = "solid white";
 }
 changeColor1(){
-  document.getElementById('paraTag1').style.background = '#ff000052';
-  document.getElementById('paraTag').style.background = 'white';
+  document.getElementById('paraTag1').style.borderBottom = "solid #0d4608";
+  document.getElementById('paraTag').style.borderBottom = "solid white";
 }
 
   getAlltickets(){
@@ -131,7 +131,7 @@ openTickets(){
         console.log('2');
         console.log(res);
         this.totalTickets = res;
-      
+
         this.noClosedTicketsMsg = '';
 
         console.log('3');

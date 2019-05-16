@@ -1768,7 +1768,7 @@ router.post('/buyerupdateDisputeUser/:id', function(req, res) {
                 dispute: req.body.dispute,
                 createdAt: req.body.createdAt,
                 against: req.body.against,
-                ticketId :req.bosy.ticketId
+                ticketId :req.body.ticketId
               }
              }
           }
