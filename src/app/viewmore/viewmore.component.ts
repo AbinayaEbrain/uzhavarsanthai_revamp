@@ -213,9 +213,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
         this.reviewlngth = this.reviewArr.length;
         console.log(this.reviewlngth);
       }
-      if(this.reviewArr == 0){
-        this.reviewlngthErr = 'No review';
-      }
+      
         this.arrayImage = this.imageArray.split(',');
         // this.slideConfig = {"slidesToShow": 1, "slidesToScroll": 1};
         this.slideConfig = {

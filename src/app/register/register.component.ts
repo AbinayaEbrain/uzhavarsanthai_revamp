@@ -21,6 +21,8 @@ declare var swal: any;
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  freeSubscription: any;
+  subscriptionId: any;
   subscriptionName: any;
   @ViewChild('input1') inputEl: ElementRef;
   phoneObj: any = {};
@@ -36,7 +38,8 @@ export class RegisterComponent implements OnInit {
     roleStatus: '',
     credits: 0,
     subscription :'',
-    subscriptionName : ''
+    subscriptionName : '',
+    subscriptionId : ''
   };
   //registeredUserData: any = {};
   success: any;
@@ -105,8 +108,9 @@ export class RegisterComponent implements OnInit {
     this.registeredUserData.status = 'ACTIVE';
     this.registeredUserData.address.city = this.addr;
     this.registeredUserData.phone = this.phoneObj.phone;
-    this.registeredUserData.subscription = this.subscriptionArr;
+    this.registeredUserData.subscription = this.freeSubscription;
     this.registeredUserData.subscriptionName = this.subscriptionName;
+    this.registeredUserData.subscriptionId = this.subscriptionId
     this.loadingCtrl.show();
     console.log(this.registeredUserData);
 
@@ -153,6 +157,7 @@ export class RegisterComponent implements OnInit {
           localStorage.setItem('firstname', JSON.stringify(res.user.firstname));
           localStorage.setItem('status', JSON.stringify(res.user.status));
           localStorage.setItem('credits', JSON.stringify(res.user.credits));
+          localStorage.setItem('subscriptionId', JSON.stringify(res.user.subscriptionId));
           localStorage.setItem(
             'roleStatus',
             JSON.stringify(res.user.roleStatus)
@@ -279,8 +284,16 @@ export class RegisterComponent implements OnInit {
       this.subscriptionArr = res;
       for (let i = 0; i < this.subscriptionArr.length; i++) {   
           this.subscriptionName = this.subscriptionArr[i].subscription;
+          this.subscriptionId = this.subscriptionArr[i]._id;
       }
       console.log(this.subscriptionName);
+      for (let i = 0; i < this.subscriptionArr.length; i++) {   
+        if(this.subscriptionId == this.subscriptionArr[i]._id){
+        this.freeSubscription = this.subscriptionArr[i];
+        }
+       
+    }
+    console.log(this.freeSubscription);
     },
     err => {
       console.log(err);

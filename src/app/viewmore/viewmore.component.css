@@ -402,3 +402,10 @@ input {
     }
   }
   
+  .container {
+    width: 100%;
+    padding-right: 0px !important; 
+    padding-left: 0px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}

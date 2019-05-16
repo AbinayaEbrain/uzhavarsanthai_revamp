@@ -17,6 +17,7 @@ export class OrderRequestComponent implements OnInit {
   userOrderReq2: any = [];
   d: any;
   id: any;
+  errMsg = '';
 
   constructor(
     private _dealService: DealsService,
@@ -39,6 +40,7 @@ export class OrderRequestComponent implements OnInit {
       res => {
         console.log(res);
         this.userOrderReq = res;
+        this.errMsg = '';
         this.loadingCtrl.hide();
 
         let j = 0;
@@ -52,12 +54,16 @@ export class OrderRequestComponent implements OnInit {
           }
         }
         console.log(this.userOrderReq1);
-      },
+        if (this.userOrderReq1.length == 0) {
+          this.errMsg = "No order request";
+        }
       err => {
         console.log(err);
       }
+    }
     );
   }
+  
 
   singleUpdateSignupReq1(id) {
     this.id = id;

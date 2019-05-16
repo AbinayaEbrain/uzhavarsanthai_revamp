@@ -24,9 +24,9 @@
             </tr>
           </thead>
           <tbody>
-              <tr *ngIf="errorMsg">
-                  <td colspan="7" class="text-danger" style="text-align: center">
-                     {{errorMsg}}
+              <tr *ngIf="errMsg">
+                  <td colspan="12" class="text-danger" style="text-align: center">
+                     {{errMsg}}
                   </td>
               </tr>
             <tr *ngFor="let order of userOrderReq1 | paginate: {id: 'foo', itemsPerPage:10,currentPage:d},let i = index">
