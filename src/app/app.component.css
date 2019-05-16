@@ -109,3 +109,7 @@ ul li a {
     float: none !important;
   }
 }
+
+.navbarCollapse {
+  background-color: aliceblue;
+}

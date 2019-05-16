@@ -14,36 +14,27 @@
         </div>
         <div class="col-md-4"></div>
       </div>
-      <div class="container" *ngFor="let dispute of disputeTicketArr">
+      <div class="container" *ngFor="let dispute of subscriptionArr">
         <div class="notice notice-success">
           <!-- <strong>Notice</strong> notice-success -->
           <div class="row">
-            <div class="col-md-6 col-8">
+            <div class="col-md-6 col-12">
               <p style="color: #eb0f2491;font-weight: bold;" class="ticketPara">
-               <span style="color:#0d4608"> Ticket ID -</span> {{ dispute.ticketId }}
+               <span style="color:#0d4608"> Subscription Type -</span> {{ dispute.subscription }}
               </p>
             </div>
-            <div class="col-md-6 col-4">
+            <div class="col-md-6 col-12">
               <div class="float-right">
-                <button class="btn btn-sm btn-success ticketRow" *ngIf="!dispute.ticketStatus" (click)="getSingleDispute(dispute._id)" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static">
-                  Resolve
-                </button>
-                <button class="btn btn-sm btn-success ticketRow" *ngIf="dispute.ticketStatus" (click)="getSingleTicket(dispute._id)" data-toggle="modal" data-target="#exampleModalCenter1" data-backdrop="static">
-                    Resolve
-                </button>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <span *ngIf="dispute.dispute">
-                <p style="text-indent: 30px;">{{ dispute.dispute }}</p>
-              </span>
-              <span *ngIf="dispute.ticketDescription">
-                <p>{{
-                    dispute.ticketTitle
-                  }} -</p>
-                <p style="text-indent: 30px;"> {{ dispute.ticketDescription }}</p>
+              <!-- <span>
+                <p style="text-indent: 30px;">Amount{{ dispute.amount }}</p>
+              </span> -->
+              <span >
+                <p style="text-indent: 30px;">Credits - {{ dispute.credit }}&nbsp;&nbsp;Amount - {{ dispute.amount }}</p>
               </span>
             </div>
             <div class="col-md-6">
@@ -55,25 +46,18 @@
   
           <div class="row">
             <div class="col-md-6">
-              <span *ngIf="dispute.buyerName">
-                <small
-                  >Disputed against :
-                  <span style="font-size: 15px;">{{
-                    dispute.buyerName
-                  }}</span></small
+              <span>
+                <span
+                  >
+                  <small>{{ dispute.createdAt | date }}</small></span
                 >
               </span>
             </div>
             <div class="col-md-6">
               <span class="float-right">
-                <span *ngIf="dispute.disputerName"
-                  >By {{ dispute.disputerName }}
-                  <small>on {{ dispute.createdAt | date }}</small></span
-                >
-                <span *ngIf="dispute.username"
-                  >By {{ dispute.username }}
-                  <small>on {{ dispute.createddate | date }}</small></span
-                >
+                <button class="btn btn-sm btn-success ticketRow" (click)="getSingleDispute(dispute._id)">
+                  Buy
+                </button>
               </span>
             </div>
           </div>
