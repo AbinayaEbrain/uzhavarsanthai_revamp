@@ -1,5 +1,5 @@
 <div class="container mt-5 pt-3 pt-md-5">
-  <div class="card cardStyle">
+  <div class="card cardStyle" style="padding: 10px;">
   <div class="row">
   <aside class="col-sm-5">
   <article class="gallery-wrap">
@@ -75,6 +75,7 @@
                                             </div>
                                           <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                          <div class="card" style="padding: 10px;">
+                                            <p class="product-productreview" *ngIf="postProduct.productreview == '' || postProduct.productreview == undefined || postProduct.productreview == null" style="text-align: justify">No review.</p>
                                             <div class="container" *ngFor="let slide of reviewArr| slice:0:show;">
                                               <div class="notice notice-success">
                                                 <div *ngIf="reviewlngthErr">

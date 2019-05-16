@@ -2285,7 +2285,8 @@ router.get('/getSubscription', (req, res) => {
     } else {
       res.send(result);
     }
-  }).sort({createdAt : -1});
+  })
+  // .sort({createdAt : -1});
 });
 
 // Get Single Subscription

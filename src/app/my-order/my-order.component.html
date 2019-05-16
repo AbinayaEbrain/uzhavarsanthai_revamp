@@ -29,10 +29,10 @@
               <div class="row  mb-2" *ngFor="let order of recentOrder | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
               <div class="container card">
                 <div class="row card-header" style="height:50px">
-                  <div class="col-md-9 col-6">
+                  <div class="col-md-9 col-4">
                    <p class="orderHighlight">{{order.requestId}}</p>
                   </div>
-                  <div class="col-md-3 col-6 " style="font-weight: bold;display: inline-flex;">
+                  <div class="col-md-3 col-8 " style="font-weight: bold;display: inline-flex;">
                     <p class="orderHead2" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</p>&nbsp;&nbsp;&nbsp;
                     <div class="dropdown" style="margin-top: -7px;">
                     <p class="btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

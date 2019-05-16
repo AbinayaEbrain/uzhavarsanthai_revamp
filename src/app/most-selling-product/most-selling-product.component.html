@@ -3,6 +3,10 @@
     <div class="card">
     <h5 class="text-center mt-2">Most selling products</h5>
 
+    <div class="alert text-center error_word mt-3"  *ngIf="orderrequestsErr">
+        {{orderrequestsErr}}
+    </div>
+
       <!-- <p class="updateProfile">Used Credits</p> -->
       <div class="row" style="padding: 10px;">
         <div class="col-md-12">
@@ -18,7 +22,7 @@
                 </div>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-2 mobRes">
                         <img height="100px"  width="100px" src="{{credit.image}}" alt="" class="img-fluid z-depth-0">
                     </div>
                     <div class="col-md-3">

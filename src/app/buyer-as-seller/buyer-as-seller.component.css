@@ -263,4 +263,7 @@ input {
   .cardStyle {
     padding: 0px;
   }
+  .mobMargin{
+    margin-top: 15px !important;
+  }
 }

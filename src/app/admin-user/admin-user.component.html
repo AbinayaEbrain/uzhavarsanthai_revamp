@@ -35,7 +35,7 @@
                                         <td class="tamil_word">{{deal.address.city.formatted_address}}</td>
                                         <td class="tamil_word">{{deal.address.city.locality}}</td>
                                         <!-- <td>{{deal.address.city.admin_area_l1}}</td> -->
-                                        <td class="tamil_word">{{deal.subscriptionName}}</td>
+                                        <td class="tamil_word" style="color: mediumvioletred;font-weight: 600;">{{deal.subscriptionName}}</td>
                                         <td style="font-weight: bold;" [ngStyle]="{'color':deal.status === 'ACTIVE' ? 'green' : 'red' }">{{deal.status}}</td>
                                         <td>
                                             <button class="btn btn-simple mobfontsize viewMoreBtn button_word" style="margin-top: 8px;"  [ngStyle]="{'display':deal.status === 'ACTIVE' ? 'none' : '' }" data-toggle="modal" data-target="#myModal2" data-backdrop="static"

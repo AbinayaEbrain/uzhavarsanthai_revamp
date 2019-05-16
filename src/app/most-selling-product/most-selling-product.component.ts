@@ -68,10 +68,11 @@ getOrderRequests(){
       this.orderrequests[j] = this.crdDeals[i];
       j++;
     }
-    console.log(this.orderrequests);
-    if (this.orderrequests.length == 0) {
-      this.orderrequestsErr = 'No product available!';
-    }
+   
+}
+console.log(this.orderrequests);
+if (this.orderrequests.length == 0) {
+  this.orderrequestsErr = 'No product available!';
 }
 }
 
