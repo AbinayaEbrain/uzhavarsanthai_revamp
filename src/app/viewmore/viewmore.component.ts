@@ -34,7 +34,9 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   viewmore = [];
   viewPost = [];
   userData = {};
+  useracid :any;
   requestPerson = [];
+  omit:any;
   time: any;
   public postProduct: any = {};
   public querydata: any = {};
@@ -104,6 +106,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   disputeArr : any = [];
   reviewArr : any = [];
   reviewlngth:any;
+  userId : any;
 
 
   setAddress(addrObj) {
@@ -131,25 +134,28 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-    //this.userName = JSON.parse(localStorage.getItem('currentUser')).firstname;
     this.id = this.route.snapshot.params['id'];
     this.loadingCtrl.show();
+    if(localStorage.getItem('currentUser')){
+      this.userId = JSON.parse(localStorage.getItem('currentUser'))._id;
+      console.log(this.userId)
+    }
     this.lastvisit = localStorage.getItem('lastvisitproductid');
-    this.scrollToBottom();  
+    this.scrollToBottom();
     if(this.id){
       this.getDeals();
       this.getMultiPostDeals();
     }
   }
-  
-  ngAfterViewChecked() {        
-    this.scrollToBottom();        
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
   }
 
   scrollToBottom(): void {
     try {
         this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch(err) { }                 
+    } catch(err) { }
   }
 
   getDeals(){
@@ -183,9 +189,9 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
             this.postProduct.address = this.viewPost[i].userAddress;
             this.postProduct.dispute = this.viewPost[i].dispute;
             this.postProduct.productreview = this.viewPost[i].productreview;
+            this.useracid = this.viewPost[i].accountId
             this.getToken = localStorage.getItem('token');
             var check = this.viewPost[i].orderrequests;
-
             if(this.getToken && check){
               this.requestPerson = this.viewPost[i].orderrequests;
               for (let i = 0; i < this.requestPerson.length; i++) {
@@ -196,6 +202,15 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
                 }
               }
             }
+            if(localStorage.getItem('currentUser')){
+              if(this.userId == this.useracid){
+                localStorage.setItem('logged', JSON.stringify('sameseller'));
+                this.omit = localStorage.getItem('logged');
+                console.log(this.userId == this.useracid)
+              }
+            }
+
+
 
             this.loadingCtrl.hide();
           }
@@ -206,14 +221,14 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
         );
         this.disputeArr = this.postProduct.dispute;
         console.log(this.disputeArr);
-        
+
         this.reviewArr = this.postProduct.productreview;
         console.log(this.reviewArr);
         if(this.reviewArr != undefined){
         this.reviewlngth = this.reviewArr.length;
         console.log(this.reviewlngth);
       }
-      
+
         this.arrayImage = this.imageArray.split(',');
         // this.slideConfig = {"slidesToShow": 1, "slidesToScroll": 1};
         this.slideConfig = {
@@ -836,7 +851,7 @@ cancelOrderReq(){
   this.visitId = this.route.snapshot.params['id'];
   this.postProduct.requestedProductId = this.visitId;
   this.postProduct.orderRqstId = this.rqstId;
- 
+
   console.log(this.postProduct);
   this._dealsService.cancelOrderStatus(this.postProduct,this.visitId).subscribe(
     res => {

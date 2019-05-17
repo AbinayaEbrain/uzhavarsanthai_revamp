@@ -83,7 +83,7 @@
                                                 </div>
                                                 <div class="row">
                                                   <div class="col-md-2 col-2">
-    
+
                                                   </div>
                                                   <div class="col-md-10 col-10">
                                                     <div class=" ticketPara float-right" style="color: #eb0f2491;">
@@ -98,9 +98,9 @@
                                                         <!-- <p style="text-indent: 30px;">{{ slide.review }}</p> -->
                                                         <app-read-more-view class="mt-2" [text]="slide.review" [maxLength]="50"></app-read-more-view>
                                                       </span>
-                                                  </div> </div>  
+                                                  </div> </div>
                                               </div>
-                                            
+
                                               <!-- <div class="notice notice-danger">
                                                 <strong>Notice</strong> notice-danger
                                               </div> -->
@@ -129,12 +129,15 @@
                     </button>
                   </div>
 
-                  <div style="text-align:center;" *ngIf="getToken && !requestSent" >
+                  <div style="text-align:center;" *ngIf="getToken && !requestSent && !omit" >
                       <button type="button" (click)="createOrederModal()" class="btn btnStyle mx-auto contactbtn" style="padding: 13px;border-radius: unset"><p style="margin-top: -5px;
                       margin-bottom: -5px;font-weight: bold">Create Order Request</p>
                       </button>
-                  </div>
 
+                  </div>
+                  <div style="text-align:center;" *ngIf= "omit">
+                    <p style="color: red;font-weight: 600;">! Oops This product posted by you!</p>
+                  </div>
                   <p *ngIf="requestSent" style="text-align:center;color:#0d4608;font-weight:bold;"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{requestSent}}</p>                <!-- card-body.// -->
   </aside> <!-- col.// -->
   </div> <!-- row.// -->
