@@ -607,9 +607,42 @@ router.post('/updateRegister/:id', function(req, res) {
           amount: req.body.amount,
           credit: req.body.credit,
           status: req.body.status,
+          planType : req.body.planType,
           createdAt: req.body.createdAt,
         }
        }
+   }
+ )
+   .then(() => {
+     res.status(200).json({ message: 'Updated successfully' });
+   })
+   .catch(err => {
+     res.status(500).json({ message: 'Error occurred' });
+   });
+});
+
+//Update subscribtion request
+router.post('/updateUserSubscription/:id', function(req, res) {
+  console.log(req.params.id);
+  User.updateOne(
+   {
+     _id:req.params.id,
+   },
+   {
+     
+       $set: {
+        credits : req.body.currentCredits + parseInt(req.body.credit),
+          subscription:{
+        subscription: req.body.subscription,
+        amount: req.body.amount,
+        credit: req.body.credit,
+        status: req.body.status,
+        planType : req.body.planType,
+        createdAt: req.body.createdAt
+       },
+       subscriptionName : req.body.subscription
+      //  subscriptionId : req.body._id
+      }
    }
  )
    .then(() => {
@@ -2340,6 +2373,16 @@ router.delete('/dltSubscription/:id', (req, res) => {
       console.log('Error deleting' + errors);
     } else {
       res.json(deleteblog);
+    }
+  });
+});
+
+router.get('/currentUserCredits/:id', (req, res) => {
+  User.findById(req.params.id, function(errors, getoneuser) {
+    if (errors) {
+      console.log('Error updating' + errors);
+    } else {
+      res.send(getoneuser);
     }
   });
 });

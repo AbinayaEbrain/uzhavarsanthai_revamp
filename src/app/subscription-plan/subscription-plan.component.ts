@@ -10,12 +10,18 @@ export class SubscriptionPlanComponent implements OnInit {
   subscriptionArr: any = [];
   subcriptionData:any = {};
   id:any;
-  subcriptionId:any
-  
+  userId:any;
+  subcriptionId:any;
+  usersCurrentCredits:any;
+  currentCredits:any;
+
   constructor(private _dealService: DealsService) {}
 
   ngOnInit() {
     this.getSubscription();
+    this.userId = JSON.parse(localStorage.getItem('currentUser'))._id;
+    console.log(this.userId)
+    this.currentUserCredit();
   }
 
   getSubscription() {
@@ -30,17 +36,49 @@ export class SubscriptionPlanComponent implements OnInit {
     );
   }
 
-  getSingleSubsc(id) {
-    this.id = id;
-    this._dealService.getSingleSubscription(id).subscribe(
-      data => {
-        console.log(data);
-        this.subcriptionId = data._id;
-        this.subcriptionData = data;
+  currentUserCredit(){
+    this._dealService.getCurrentCredit(this.userId).subscribe(
+      res => {
+        console.log(res.credits)
+        this.usersCurrentCredits = res.credits
       },
       err => {
         console.log(err);
       }
     );
   }
+
+  getSingleSubsc(id) {
+    this.id = id;
+    console.log(this.id);
+    this._dealService.getSingleSubscription(id).subscribe(
+      data => {
+        console.log(data);
+        this.subcriptionId = data._id;
+        this.subcriptionData = data;
+        this.updateSubsc()
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+
+
+updateSubsc(){
+  this.subcriptionData.currentCredits = this.usersCurrentCredits;
+  this._dealService
+  .updateUserSubscription(this.subcriptionData, this.userId)
+  .subscribe(
+    data => {
+      console.log(data);
+      // this.getSubscription();
+    },
+    err => {
+      console.log(err);
+    }
+  );
+}
+
 }

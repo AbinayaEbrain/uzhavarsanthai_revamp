@@ -55,9 +55,10 @@
             </div>
             <div class="col-md-6">
               <span class="float-right">
-                <button class="btn btn-sm btn-success ticketRow" (click)="getSingleDispute(dispute._id)">
+                <button class="btn btn-sm btn-success ticketRow" [ngStyle]="{'display':dispute.planType == 'Paid plan' ? 'block' : 'none' }"  (click)="getSingleSubsc(dispute._id)">
                   Buy
                 </button>
+                <p class="ticketRow" [ngStyle]="{'display':dispute.planType == 'Free plan' ? 'block' : 'none' }" style="color: #1e7e34;font-weight: bold;">FREE</p>
               </span>
             </div>
           </div>

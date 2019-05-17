@@ -124,8 +124,16 @@
                     </select>
                     <small class="text-danger" [class.d-none]="status.valid || status.untouched"><b>Please select status</b></small>
                   </div>
+                  <div class="col-md-12">
+                    <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> திட்டம் </span>/ Plan</label>
+                    <select class="form-control" name="planType" required #planType="ngModel" [class.is-invalid]="planType.invalid && planType.touched" [(ngModel)]="subcriptionData.planType">
+                      <option value="Free plan">Free plan</option>
+                      <option value="Paid plan">Paid plan</option>
+                    </select>
+                    <small class="text-danger" [class.d-none]="planType.valid || planType.untouched"><b>Please select plan</b></small>
+                  </div>
               </div>
-              <div class="text-center">
+              <div class="text-center mt-3">
                 <button type="submit" class="btn button_word" (click)="onSubmit()">Create Subscription</button>
               </div>
               </form>

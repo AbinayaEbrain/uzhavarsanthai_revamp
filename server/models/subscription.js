@@ -7,6 +7,7 @@ const subscriptionSchema = new Schema({
   amount: String,
   credit: String,
   status: String,
+  planType : String,
   createdAt: Date
 });
 

@@ -110,6 +110,8 @@ export class DealsService {
   private updateSubscriptionUrl = "http://localhost:5000/api/updateSubscription";
   private deleteSubscriptionUrl = 'http://localhost:5000/api/dltSubscription';
   private getSingleSubscriptionUrl = 'http://localhost:5000/api/getSingleSubscription';
+  private updateUserSubscriptionUrl = "http://localhost:5000/api/updateUserSubscription";
+  private getCurrentuserCrditsUrl = "http://localhost:5000/api/currentUserCredits";
 
 
   constructor(private http: HttpClient) {}
@@ -389,11 +391,18 @@ export class DealsService {
     return this.http.post<any>(this.updateSubscriptionUrl + '/' + id, data);
   }
 
+  updateUserSubscription(data, id) {
+    return this.http.post<any>(this.updateUserSubscriptionUrl + '/' + id, data);
+  }
+
   deleteSubscription(id) {
     return this.http.delete<any>(this.deleteSubscriptionUrl + '/' + id);
   }
 
   getSingleSubscription(id) {
     return this.http.get<any>(this.getSingleSubscriptionUrl + '/' + id);
+  }
+  getCurrentCredit(id){
+    return this.http.get<any>(this.getCurrentuserCrditsUrl + '/' + id);
   }
 }

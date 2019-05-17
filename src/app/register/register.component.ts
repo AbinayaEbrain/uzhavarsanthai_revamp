@@ -277,17 +277,15 @@ export class RegisterComponent implements OnInit {
       console.log(res);
       this.subscriptionArr = res;
       for (let i = 0; i < this.subscriptionArr.length; i++) {
-          this.subscriptionName = this.subscriptionArr[i].subscription;
-          this.subscriptionId = this.subscriptionArr[i]._id;
-      }
-      console.log(this.subscriptionName);
-      for (let i = 0; i < this.subscriptionArr.length; i++) {
-        if(this.subscriptionId == this.subscriptionArr[i]._id){
-        this.freeSubscription = this.subscriptionArr[i];
+        if(this.subscriptionArr[i].planType == 'Free plan'){
+          this.freeSubscription = this.subscriptionArr[i];
+          this.subscriptionName = this.freeSubscription.subscription;
+          this.subscriptionId = this.freeSubscription._id;
         }
-
-    }
+      }
     console.log(this.freeSubscription);
+    console.log(this.subscriptionName);
+    console.log(this.subscriptionId);
     },
     err => {
       console.log(err);
