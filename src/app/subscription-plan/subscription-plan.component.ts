@@ -39,6 +39,7 @@ export class SubscriptionPlanComponent implements OnInit {
   currentUserCredit(){
     this._dealService.getCurrentCredit(this.userId).subscribe(
       res => {
+        console.log(res)
         console.log(res.credits)
         this.usersCurrentCredits = res.credits
       },
@@ -63,8 +64,6 @@ export class SubscriptionPlanComponent implements OnInit {
       }
     );
   }
-
-
 
 updateSubsc(){
   this.subcriptionData.currentCredits = this.usersCurrentCredits;
