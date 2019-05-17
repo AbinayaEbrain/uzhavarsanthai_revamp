@@ -220,8 +220,10 @@
                     <input type="text" #dispute="ngModel" [class.is-invalid]="dispute.invalid && dispute.touched" ngModel name="dispute" class="form-control" [(ngModel)]="userData.dispute" autocomplete="off" required>
                     <span class="text-danger float-left error_word" [class.d-none] = "dispute.valid || dispute.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Dispute is required</span>
             </div>
+            <div class="mt-4">
             <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn mx-auto" (click)="disputeSave()">Save changes</button>
-        </form>
+          </div>
+          </form>
         </div>
         <!-- <div class="modal-footer">
         </div> -->

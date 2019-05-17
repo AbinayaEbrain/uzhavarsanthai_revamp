@@ -35,6 +35,7 @@ export class MyOrderComponent implements OnInit {
   public reviewData: any = {};
   p:any;
   @ViewChild('reviewform') mytemplateForm: NgForm;
+  @ViewChild('disputeForm') mytemplateForm1: NgForm;
   userData: any = {};
   disputeData: any;
   disputeMailData: any = {};
@@ -277,7 +278,7 @@ disputeSave() {
       this.disputeData = data.dispute;
       console.log(this.disputeData);
       this.updatePostDispute();
-      this.mytemplateForm.reset();
+      this.mytemplateForm1.reset();
       document.getElementById('closeCancelOrderModal').click();
     },
     err => {

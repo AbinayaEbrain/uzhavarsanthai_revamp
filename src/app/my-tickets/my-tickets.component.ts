@@ -231,10 +231,10 @@ sendticket(){
         this.mytemplateForm.reset();
         setTimeout(() => {
           this.successMsg="";
-          this.loadingCtrl.show();
+          // this.loadingCtrl.show();
         this.router.navigateByUrl('/dummy', { skipLocationChange: true });
         setTimeout(() => this.router.navigate(['/my-tickets']),100);
-          this.loadingCtrl.hide();
+          // this.loadingCtrl.hide();
       }, 3000);
     },
     err => {

@@ -263,38 +263,32 @@ console.log(this.id);
           // minus credit
           if(this.lastprice == this.newprice){
           if(this.lastquantity < this.newquantity ){
-            alert(1);
             this.QuantityCredit();
           }}
 
           if(this.lastprice == this.newprice){
           if(this.lastquantity > this.newquantity){
-            alert(4);
             this.sellerReduceQuantity();
           }}
          
           if(this.lastquantity == this.newquantity){
           if(this.lastprice < this.newprice){
-            alert(2);
             this.PriceCredit();
           }
         }
                 if(this.lastquantity == this.newquantity){
               if(this.lastprice > this.newprice){
-                alert(5);
                 this.sellerReducePrice();
               }
             }
     
           if(this.lastquantity < this.newquantity && this.lastprice < this.newprice){
-            alert(3);
             this.quantityPriceCredit();
           }
     
           //add credit
     
           if(this.lastquantity > this.newquantity && this.lastprice > this.newprice){
-            alert(6);
             this.sellerQuantityPrice();
           }
 
