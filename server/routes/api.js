@@ -629,7 +629,7 @@ router.post('/updateUserSubscription/:id', function(req, res) {
      _id:req.params.id,
    },
    {
-     
+
        $set: {
         credits : req.body.currentCredits + parseInt(req.body.credit),
           subscription:{
@@ -937,7 +937,7 @@ router.post('/forgotPwd',(req , res) => {
       "method": "POST",
       "hostname": "control.msg91.com",
       "port": null,
-      "path": "/api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&sender=UZHAVAN&otp_expiry=1&otp=" + contactData.otp + "&mobile=" + contactData.phone1,
+      "path": "/api/sendotp.php?authkey=269636AJSKkqL65c9bbf07&sender=UZHAVAN&otp_expiry=1&otp=" + contactData.otp + "&mobile=" + contactData.phone1,
       "headers": {}
     };
     // /api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&otp_expiry=1&otp=" + req.body.phone + "&mobile=" + req.body.phone **** "path": "/api/sendotp.php?otp_length=4&authkey=267433AasRmmBdVC5c8a1c2b&message=Your verification code is&sender=ABCDEF&mobile=919677424386&otp=1234&otp_expiry=1440",
@@ -982,7 +982,7 @@ User.findOne({ phone: contactData.phone }, (err, exuser) => {
         "method": "POST",
         "hostname": "control.msg91.com",
         "port": null,
-        "path": "/api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&sender=UZHAVAN&otp_expiry=1&otp=" + contactData.otp + "&mobile=" + contactData.phone,
+        "path": "/api/sendotp.php?authkey=269636AJSKkqL65c9bbf07&sender=UZHAVAN&otp_expiry=1&otp=" + contactData.otp + "&mobile=" + contactData.phone,
         "headers": {}
       };
       // /api/sendotp.php?authkey=267433AasRmmBdVC5c8a1c2b&otp_expiry=1&otp=" + req.body.phone + "&mobile=" + req.body.phone **** "path": "/api/sendotp.php?otp_length=4&authkey=267433AasRmmBdVC5c8a1c2b&message=Your verification code is&sender=ABCDEF&mobile=919677424386&otp=1234&otp_expiry=1440",
@@ -1528,7 +1528,7 @@ router.post('/sendordersmstoseller',(req , res) => {
         "hostname": "api.msg91.com",
         "port": null,
         "path": "/api/sendhttp.php?route=4&sender=UZHAVA&mobiles="+sellerMsgData.sellerPhone+
-        "&authkey=267433AasRmmBdVC5c8a1c2b&message=Hai%20"+
+        "&authkey=269636AJSKkqL65c9bbf07&message=Hai%20"+
         sellerMsgData.sellerName+"%20!%20"+"Order%20Request%20No%20"+sellerMsgData.requestId+"%20" +sellerMsgData.buyerName+"%20wants%20to%20purchase%20your%20product.%20Our%20executive%20will%20contact%20you%20and%20provide%20additional%20information%20Thank%20You!&country=91",
         "headers": {}
       };
@@ -1556,7 +1556,7 @@ router.post('/sendbuyersmsUrl',(req , res) => {
         "hostname": "api.msg91.com",
         "port": null,
         "path": "/api/sendhttp.php?route=4&sender=UZHAVA&mobiles="+sellerMsgData.buyerPhone+
-        "&authkey=267433AasRmmBdVC5c8a1c2b&message=Hai%20"+
+        "&authkey=269636AJSKkqL65c9bbf07&message=Hai%20"+
         sellerMsgData.buyerName+"%20!%20"+"Your%20order%20request%20created%20successfully.%20Order%20Request%20No%20"+sellerMsgData.requestId+"%20Our%20executive%20will%20contact%20you%20and%20provide%20additional%20information%20Thank%20You!&country=91",
         "headers": {}
       };
@@ -1584,7 +1584,7 @@ router.post('/sendSmsToSeller',(req , res) => {
         "method": "GET",
         "hostname": "api.msg91.com",
         "port": null,
-        "path": "/api/sendhttp.php?route=4&sender=UZHAVA&mobiles=" + signupData.phone + "&authkey=267433AasRmmBdVC5c8a1c2b&message=Hai!%20You%20have%20been%20activated%20successfully%20by%20Uzhavarsanthai.%20You%20can%20login%20now.%20Connect%20with%20us%20and%20Do%20The%20Miracles%20in%20Agriculture!!!&country=91",
+        "path": "/api/sendhttp.php?route=4&sender=UZHAVA&mobiles=" + signupData.phone + "&authkey=269636AJSKkqL65c9bbf07&message=Hai!%20You%20have%20been%20activated%20successfully%20by%20Uzhavarsanthai.%20You%20can%20login%20now.%20Connect%20with%20us%20and%20Do%20The%20Miracles%20in%20Agriculture!!!&country=91",
         "headers": {}
       };
 
