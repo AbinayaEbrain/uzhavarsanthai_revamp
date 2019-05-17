@@ -141,6 +141,7 @@ export class AuthService {
     localStorage.removeItem('role');
     localStorage.removeItem('lastvisitproductid');
     localStorage.removeItem('credits');
+    localStorage.removeItem('logged');
     this.route.navigate(['/deals']);
   }
 }
