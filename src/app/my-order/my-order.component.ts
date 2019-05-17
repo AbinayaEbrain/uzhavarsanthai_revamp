@@ -18,6 +18,7 @@ export class MyOrderComponent implements OnInit {
   userOrder :any = [];
   createdRequests: any = [];
   cancelledRequests: any = [];
+  submitted :any;
   id: any;
   prdcIid : any;
   userOrder1 : any = {};

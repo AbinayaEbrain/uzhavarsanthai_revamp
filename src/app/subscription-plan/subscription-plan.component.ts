@@ -9,6 +9,8 @@ import { DealsService } from '../deals.service';
 export class SubscriptionPlanComponent implements OnInit {
   subscriptionArr: any = [];
   subcriptionData:any = {};
+  errMsg : any;
+  successMsg :any;
   id:any;
   userId:any;
   subcriptionId:any;

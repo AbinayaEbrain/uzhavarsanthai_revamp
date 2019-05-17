@@ -19,6 +19,7 @@ export class AdminDisputeComponent implements OnInit {
   disputeObj1: any = {};
   ticketObj: any = {};
   solution: any;
+  submitted :any;
   id: any;
   errMsg: any;
   ticketId: any;

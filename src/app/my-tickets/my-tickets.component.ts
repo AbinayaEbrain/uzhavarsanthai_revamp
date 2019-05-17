@@ -16,6 +16,7 @@ export class MyTicketsComponent implements OnInit {
   userphone:any;
   userrole:any;
   successMsg:any;
+  submitted:any;
   ticketlngth:any;
   userid:any;
   totalTickets = [];

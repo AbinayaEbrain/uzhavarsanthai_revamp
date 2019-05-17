@@ -11,7 +11,12 @@ export class AdminSubscriptionComponent implements OnInit {
   subcriptionData: any = {};
   subscriptionArr: any = [];
   id = '';
-
+  errMsg:any;
+  queryString  : any;
+  p:any;
+  submitted : any;
+  deleteuser : any;
+   
   constructor(private _dealsService: DealsService) {}
 
   ngOnInit() {
