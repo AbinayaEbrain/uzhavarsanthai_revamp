@@ -38,7 +38,7 @@ export class DealsService {
   //Active URL
   private activeUrl =
     'https://uzhavarsanthai.herokuapp.com/api/admin-user/active';
-  private updateuserurl = 'http://localhost:5000/api/updateuser';
+  private updateuserurl = 'https://uzhavarsanthai.herokuapp.com/api/updateuser';
   // private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private notificationtoallurl =
@@ -57,12 +57,12 @@ export class DealsService {
     'https://uzhavarsanthai.herokuapp.com/api/getSingleOrderRequest1';
   private sendSellerSmsUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendordersmstoseller';
   private sendBuyerSmsUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendbuyersmsUrl';
-  private mapUserIdPostUrl = "http://localhost:5000/api/mapuserpostUrl";
+  private mapUserIdPostUrl = "https://uzhavarsanthai.herokuapp.com/api/mapuserpostUrl";
   //Review
-  private mapProductReviewPostUrl = "http://localhost:5000/api/mapproductreviewpostUrl";
-  private _posReviewtUrl = 'http://localhost:5000/api/postreviewrating';
-  private _getReview = "http://localhost:5000/api/getReview";
-  private mapProductReviewUserUrl = "http://localhost:5000/api/mapproductreviewuserUrl";
+  private mapProductReviewPostUrl = "https://uzhavarsanthai.herokuapp.com/api/mapproductreviewpostUrl";
+  private _posReviewtUrl = 'https://uzhavarsanthai.herokuapp.com/api/postreviewrating';
+  private _getReview = "https://uzhavarsanthai.herokuapp.com/api/getReview";
+  private mapProductReviewUserUrl = "https://uzhavarsanthai.herokuapp.com/api/mapproductreviewuserUrl";
 
 
   private _orderReqPosturl = 'https://uzhavarsanthai.herokuapp.com/api/orderReqPost';
@@ -71,47 +71,47 @@ export class DealsService {
   private _cancelRqstViewMore = "https://uzhavarsanthai.herokuapp.com/api/updatevieworderrequest";
 
   // Dispute
-  private _postDispute = "http://localhost:5000/api/disputePost";
-  private _getSingleDispute = "http://localhost:5000/api/getSingleDispute";
+  private _postDispute = "https://uzhavarsanthai.herokuapp.com/api/disputePost";
+  private _getSingleDispute = "https://uzhavarsanthai.herokuapp.com/api/getSingleDispute";
   private _getDispute = "https://uzhavarsanthai.herokuapp.com/api/getDispute";
-  private _updateDispute = "http://localhost:5000/api/updateDispute";
-  private _updatePostDispute = "http://localhost:5000/api/updateDisputePost";
-  private _updateUserDispute = "http://localhost:5000/api/updateDisputeUser";
-  private _updateUserSellerDispute = "http://localhost:5000/api/updateDisputeUserSeller";
+  private _updateDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDispute";
+  private _updatePostDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputePost";
+  private _updateUserDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUser";
+  private _updateUserSellerDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUserSeller";
 
   // Ticket
-  private _getSingleTicket = "http://localhost:5000/api/getSingleTicket";
-  private _updateTicket = "http://localhost:5000/api/updateTicket";
+  private _getSingleTicket = "https://uzhavarsanthai.herokuapp.com/api/getSingleTicket";
+  private _updateTicket = "https://uzhavarsanthai.herokuapp.com/api/updateTicket";
 
   // Resolve
-  private _updatePostDisputeSolution = "http://localhost:5000/api/updateDisputePostSolution";
-  private _updateUserDisputeSolution = "http://localhost:5000/api/updateDisputeUserSolution";
-  private _updateUserSellerDisputeSolution = "http://localhost:5000/api/updateDisputeUserSellerSolution";
+  private _updatePostDisputeSolution = "https://uzhavarsanthai.herokuapp.com/api/updateDisputePostSolution";
+  private _updateUserDisputeSolution = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUserSolution";
+  private _updateUserSellerDisputeSolution = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUserSellerSolution";
 
     // Buyer Dispute
-  private _postDisputeUrl = 'http://localhost:5000/api/postdispute';
-  private _getBuyerDispute = "http://localhost:5000/api/getBuyerDispute";
-  private _updatePostBuyerDispute = "http://localhost:5000/api/updateBuyerDisputePost";
-  private _buyerUpdateUserDispute = "http://localhost:5000/api/buyerupdateDisputeUser";
-  private _updateUserBuyerDispute = "http://localhost:5000/api/updateDisputeUserBuyer";
+  private _postDisputeUrl = 'https://uzhavarsanthai.herokuapp.com/api/postdispute';
+  private _getBuyerDispute = "https://uzhavarsanthai.herokuapp.com/api/getBuyerDispute";
+  private _updatePostBuyerDispute = "https://uzhavarsanthai.herokuapp.com/api/updateBuyerDisputePost";
+  private _buyerUpdateUserDispute = "https://uzhavarsanthai.herokuapp.com/api/buyerupdateDisputeUser";
+  private _updateUserBuyerDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUserBuyer";
   
   // Credit
-  private _updateUserCreditArr = "http://localhost:5000/api/updateCreditArr";
-  private _updateUserCreditArrCredit = "http://localhost:5000/api/updateCreditArrCredit";
-  private _sendticketUrl = "http://localhost:5000/api/sendticket";
-  private _getticketUrl = "http://localhost:5000/api/getticket";
+  private _updateUserCreditArr = "https://uzhavarsanthai.herokuapp.com/api/updateCreditArr";
+  private _updateUserCreditArrCredit = "https://uzhavarsanthai.herokuapp.com/api/updateCreditArrCredit";
+  private _sendticketUrl = "https://uzhavarsanthai.herokuapp.com/api/sendticket";
+  private _getticketUrl = "https://uzhavarsanthai.herokuapp.com/api/getticket";
 
   //admin order closed
-  private updateUserOrderRequestStatus = "http://localhost:5000/api/mapuserOrderRequestStatus";
+  private updateUserOrderRequestStatus = "https://uzhavarsanthai.herokuapp.com/api/mapuserOrderRequestStatus";
   
   //subscription
-  private subscription = "http://localhost:5000/api/subscription";
-  private getSubscriptionUrl = "http://localhost:5000/api/getSubscription";
-  private updateSubscriptionUrl = "http://localhost:5000/api/updateSubscription";
-  private deleteSubscriptionUrl = 'http://localhost:5000/api/dltSubscription';
-  private getSingleSubscriptionUrl = 'http://localhost:5000/api/getSingleSubscription';
-  private updateUserSubscriptionUrl = "http://localhost:5000/api/updateUserSubscription";
-  private getCurrentuserCrditsUrl = "http://localhost:5000/api/currentUserCredits";
+  private subscription = "https://uzhavarsanthai.herokuapp.com/api/subscription";
+  private getSubscriptionUrl = "https://uzhavarsanthai.herokuapp.com/api/getSubscription";
+  private updateSubscriptionUrl = "https://uzhavarsanthai.herokuapp.com/api/updateSubscription";
+  private deleteSubscriptionUrl = 'https://uzhavarsanthai.herokuapp.com/api/dltSubscription';
+  private getSingleSubscriptionUrl = 'https://uzhavarsanthai.herokuapp.com/api/getSingleSubscription';
+  private updateUserSubscriptionUrl = "https://uzhavarsanthai.herokuapp.com/api/updateUserSubscription";
+  private getCurrentuserCrditsUrl = "https://uzhavarsanthai.herokuapp.com/api/currentUserCredits";
 
 
   constructor(private http: HttpClient) {}

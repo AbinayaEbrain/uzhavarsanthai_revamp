@@ -26,7 +26,7 @@ export class MyOrderComponent implements OnInit {
   pastErrMsg = '';
   d:any;
   private orderCancelmail = 'https://uzhavarsanthai.herokuapp.com/api/sendordercancelrequest';
-  private disputeMail = 'http://localhost:5000/api/sendDisputeMail';
+  private disputeMail = 'https://uzhavarsanthai.herokuapp.com/api/sendDisputeMail';
   recentOrder :any = [];
   pastOrder :any = [];
   count : any;
