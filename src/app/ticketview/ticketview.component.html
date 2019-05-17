@@ -1,8 +1,8 @@
-<body class="bg" style="overflow-x: hidden;">
+<body class="bg" style="overflow-x: hidden;padding: 10px;">
     <div class="container card">
       <p class="myticketsHead">Ticket Information</p>
       <div class="col-md-12" style="background-color: #d3d3d35c !important;">
-        <p class="mytickets" routerLink="/my-tickets">MY TICKETS&nbsp;> <span style="font-size:17px!important">{{ticketId}}</span></p>
+        <p class="mytickets" routerLink="/my-tickets">MY TICKETS &nbsp;<i class="fa fa-arrow-right" style= "font-size: 13px;" aria-hidden="true"></i>&nbsp;<span style="font-size:17px!important">{{ticketId}}</span></p>
         <p class="ticketsstate" [ngStyle]="{'color': ticketStatus === 'Open' ? '#0d4608' : 'red' }">{{ticketStatus}}</p>
       </div>
       <div class="col-md-12">

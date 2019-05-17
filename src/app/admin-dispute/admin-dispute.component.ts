@@ -39,6 +39,7 @@ export class AdminDisputeComponent implements OnInit {
     this._dealService.getdispute().subscribe(
       data => {
         console.log(data);
+        this.loadingCtrl.hide();
         let j = 0;
         for (let i = 0; i < data.length; i++) {
           if (data[i].disputeStatus == 'Created') {
@@ -51,7 +52,6 @@ export class AdminDisputeComponent implements OnInit {
       },
       err => {
         console.log(err);
-        this.loadingCtrl.hide();
       }
     );
   }
