@@ -33,7 +33,7 @@ export class MyTicketsComponent implements OnInit {
   noClosedTicketsMsg : any;
   @ViewChild('ticketForm') mytemplateForm: NgForm;
 
-  constructor(private _dealsService: DealsService,public loadingCtrl: NgxSpinnerService,private router: Router,) { 
+  constructor(private _dealsService: DealsService,public loadingCtrl: NgxSpinnerService,private router: Router,) {
     for (let i = 1; i <= this.userTickets.length; i++) {
       this.userTickets.push(`deal ${i}.0`);
     }
@@ -83,7 +83,6 @@ export class MyTicketsComponent implements OnInit {
       }
     );
   }
-
 changeColor(){
   document.getElementById('paraTag').style.borderBottom = "solid #0d4608";
   document.getElementById('paraTag1').style.borderBottom = "solid white";
