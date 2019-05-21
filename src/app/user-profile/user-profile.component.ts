@@ -20,14 +20,7 @@ export class UserProfileComponent implements OnInit {
   success: any;
   id: any;
   currentusername: any;
-  public crntUser: any = {
-    address: {
-      addressLine: '',
-      city: {
-        formatted_address: ''
-      }
-    }
-  };
+  public crntUser: any = {};
   public addrKeys: string[];
   public addr: {
     formatted_address: '';
@@ -62,28 +55,16 @@ export class UserProfileComponent implements OnInit {
     this._users.getDetails().subscribe(
       res => {
         this.loggedUser = res;
-        this.loadingCtrl.hide();
+        console.log(this.loggedUser);
         for (let i = 0; i < this.loggedUser.length; i++) {
           this.currentuserId = JSON.parse(
             localStorage.getItem('currentUser')
           )._id;
           if (this.currentuserId == this.loggedUser[i]._id) {
-            this.crntUser.firstname = this.loggedUser[i].firstname;
-            this.crntUser.lastName = this.loggedUser[i].lastName;
-            this.crntUser.gender = this.loggedUser[i].gender;
-            this.crntUser.address.addressLine = this.loggedUser[
-              i
-            ].address.addressLine;
-            this.crntUser.address.address1 = this.loggedUser[
-              i
-            ].address.address1;
-            this.crntUser.address.city.formatted_address = this.loggedUser[
-              i
-            ].address.city.formatted_address;
-            this.crntUser.password = this.loggedUser[i].password;
-            this.crntUser.phone = this.loggedUser[i].phone;
+            this.crntUser = this.loggedUser[i];
           }
         }
+        this.loadingCtrl.hide();
       },
       err => {
         console.log(err);
@@ -97,9 +78,14 @@ export class UserProfileComponent implements OnInit {
     if (this.addr != undefined || this.addr != null) {
       this.crntUser.address.city = this.addr;
     }
+    console.log(this.crntUser);
+
     this._users.updateCustomer(this.crntUser, this.id).subscribe(
       res => {
         console.log(res);
+        this.updatePostName();
+        this.updateReviewSellerName();
+        this.updateReviewBuyerName();
         this.loadingCtrl.hide();
         this.success = 'Updated successfully!';
         setTimeout(() => {
@@ -107,6 +93,42 @@ export class UserProfileComponent implements OnInit {
           this.router.navigate['/post'];
         }, 1000);
         this.router.navigate['/post'];
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  updatePostName() {
+    console.log(this.id);
+    this._users.updatePostName(this.crntUser, this.id).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  updateReviewSellerName() {
+    console.log(this.id);
+    this._users.updateReviewSellerName(this.crntUser, this.id).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  updateReviewBuyerName() {
+    console.log(this.id);
+    this._users.updateReviewBuyerName(this.crntUser, this.id).subscribe(
+      res => {
+        console.log(res);
       },
       err => {
         console.log(err);

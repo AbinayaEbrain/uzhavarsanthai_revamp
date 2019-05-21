@@ -310,7 +310,6 @@ router.post('/login',(req,res)=>{
                    // res.status(200).send(user)
 
                     //after add jwt
-
                  res.status(200).send({token,payload,user})
 
                 }
@@ -682,6 +681,66 @@ router.put('/updateuser/:id', function(req, res) {
       }
     }
   );
+});
+
+//Update username in post
+router.post('/updateNamePost/:id', function(req, res) {
+  Post.updateMany(
+   {
+    accountId:req.params.id,
+   },
+   {
+       $set: {
+        username: req.body.firstname ,
+       }
+   }
+ )
+   .then(() => {
+     res.status(200).json({ message: 'Updated successfully' });
+   })
+   .catch(err => {
+     res.status(500).json({ message: 'Error occurred' });
+   });
+});
+
+//Update username in review seller
+router.post('/updateSellerNameReview/:id', function(req, res) {
+  Post.updateMany(
+   {
+    'productreview.sellerId':req.params.id,
+   },
+   {
+      $set: {
+        'productreview.$.sellerName': req.body.firstname,
+      }
+   }
+  )
+   .then(() => {
+     res.status(200).json({ message: 'SellerName Review Updated successfully' });
+   })
+   .catch(err => {
+     res.status(500).json({ message: 'Error occurred' });
+   });
+});
+
+//Update username in review buyer
+router.post('/updateBuyerNameReview/:id', function(req, res) {
+  Post.updateMany(
+   {
+    'productreview.buyerId':req.params.id,
+   },
+   {
+      $set: {
+        'productreview.$.buyerName': req.body.firstname,
+      }
+   }
+  )
+   .then(() => {
+     res.status(200).json({ message: 'buyerName Review Updated successfully' });
+   })
+   .catch(err => {
+     res.status(500).json({ message: 'Error occurred' });
+   });
 });
 
 //Update credit

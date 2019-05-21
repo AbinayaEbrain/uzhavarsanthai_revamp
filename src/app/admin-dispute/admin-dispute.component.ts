@@ -36,6 +36,7 @@ export class AdminDisputeComponent implements OnInit {
   }
 
   getdispute() {
+    this.disputeTicketArr = [];
     this.disputeArr = [];
     this._dealService.getdispute().subscribe(
       data => {
@@ -81,7 +82,7 @@ export class AdminDisputeComponent implements OnInit {
         console.log(data);
         let j = 0;
         for (let i = 0; i < data.length; i++) {
-          if (data[i].ticketStatus == 'Open') {
+          if (data[i].ticketStatus == 'Created') {
             this.ticketArr[j] = data[i];
             j++;
           }
@@ -97,6 +98,7 @@ export class AdminDisputeComponent implements OnInit {
 
   getDisputeTicketArr() {
     this.disputeTicketArr = this.disputeArr.concat(this.ticketArr);
+    console.log(this.disputeTicketArr);
     if (this.disputeTicketArr.length == 0) {
       this.errMsg = 'No Tickets';
     }

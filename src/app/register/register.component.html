@@ -20,11 +20,12 @@
                     <i class="fa fa-check-square-o" aria-hidden="true"></i> {{success}}
                 </div>
                 <div  id="cardFocus">
-            <form  #postform="ngForm" class="mt-4" *ngIf ="!submitted" novalidate >
+            
                     <h5 class="h5 clr mobviewfonteng titilebold mt-2" ><span  class="tamil_word mobviewfontamil">பதிவு செய்க</span> / Sign up</h5>
                     <div id="firstDiv" class="mt-5">
-                    <div class="form-group ">
-                        <label class="english_wrd" for="phone"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
+                        <form  #postform1="ngForm" class="mt-4" *ngIf ="!submitted" novalidate >
+                            <div class="form-group ">
+                            <label class="english_wrd" for="phone"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
                             <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" (change)="phnTen()" [(ngModel)]="phoneObj.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
                             <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
                                 <span class="text-danger float-left error_word" *ngIf="phone.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
@@ -34,12 +35,13 @@
                             <span class="text-danger float-left error_word" *ngIf="phnErr"><i class="fa fa-info-circle" aria-hidden="true"></i> {{phnErr}}</span>
                     </div>
                     <div style="text-align: center;">
-                        <button class="mb-2 btn2" type="submit" [disabled]="!phoneObj.phone" (click)="sendOtp()">Get OTP</button>
+                        <button class="mb-2 btn2" type="submit" [disabled]="postform1.form.invalid" (click)="sendOtp()">Get OTP</button>
                     </div>
-
+                </form>
                 </div>
 
                 <div id="secondDiv" class="mt-5" style="display: none">
+                    <form  #postform2="ngForm" class="mt-4" *ngIf ="!submitted" novalidate >
                         <div class="alert alert-success text-center" style="margin-top: -10%;" *ngIf="optsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{optsent}}</div>
                     <div class="alert alert-danger text-center" style="margin-top: -10%;" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
                     <div class="form-group ">
@@ -48,12 +50,14 @@
                     </div>
                     <a class="mb-2 resend" id="resend" style="display: none;" (click)="sendOtp()">Resend</a>
                     <div style="text-align: center;">
-                    <button class="mb-2 btn2" type="submit" id="verify" [disabled]="!verifyPhone1.verifyPhone" (click)="verifyOtp()">Verify OTP</button>
+                    <button class="mb-2 btn2" type="submit" id="verify" [disabled]="postform2.form.invalid" (click)="verifyOtp()">Verify OTP</button>
                 </div>
+                </form>
                 </div>
 
                 <!-- AFTER OTP VERIFIED -->
                 <div id="afterotpverified" style="display: none">
+                    <form  #postform="ngForm" class="mt-4" *ngIf ="!submitted" novalidate >
                         <div class="alert alert-success text-center" *ngIf="verifymsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{verifymsg}}</div>
                     <div class="form-group ">
                         <label class="english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
@@ -89,9 +93,8 @@
                                             <button id="hideRestButton" type="reset" class="btn mt-4 btn1 button_word">Reset</button>
                                         </div> -->
                         </div>
+                    </form>
                 </div>
-
-            </form>
         </div>
             <br>
             <!-- <p class="clr english_wrd " style="font-size: 18px;margin-top: -10px;">Already have an account? <span routerLink="/login" class="span_clr"  style="cursor: pointer;font-size: 18px;">Login</span> </p> -->
