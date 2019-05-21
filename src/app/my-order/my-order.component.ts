@@ -32,6 +32,7 @@ export class MyOrderComponent implements OnInit {
   pastOrder :any = [];
   count : any;
   rating ="";
+  orderRequestMsg :any;
   public reviewData: any = {};
   p:any;
   @ViewChild('reviewform') mytemplateForm: NgForm;
@@ -284,7 +285,13 @@ disputeSave() {
       this.disputeData = data.dispute;
       this.updatePostDispute();
       this.mytemplateForm1.reset();
-      document.getElementById('closeCancelOrderModal').click();
+      this.orderRequestMsg = 'We got your dispute, Sorry! for the inconvenience';
+       setTimeout(() => {
+           this.orderRequestMsg='';
+          document.getElementById('closeCancelOrderModal').click();
+           // this.router.navigate(['/my-order']);
+       },3000)
+
     },
     err => {
       console.log(err);
@@ -364,7 +371,7 @@ formReset(){
 }
 clear(){
   this.router.navigateByUrl('/dummy', { skipLocationChange: true });
-        setTimeout(() => this.router.navigate(['/my-order']),0);    
+        setTimeout(() => this.router.navigate(['/my-order']),0);
         this.mytemplateForm.reset();
 }
 

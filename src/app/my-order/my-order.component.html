@@ -121,7 +121,7 @@
         </div>
           </div>
       </div>
-    
+
     </div>
 
      <!-- modal -->
@@ -150,7 +150,7 @@
     <div class="modal" id="myModal">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-          
+
             <!-- Modal Header -->
             <div class="modal-header">
               <p class="modal-title fntSize">Order Review</p>
@@ -158,7 +158,7 @@
                 <span aria-hidden="true" class="text-black x" id="closeCancelOrderModal1" (click)="clear()">X</span>
               </button>
              </div>
-            
+
             <!-- Modal body -->
             <div class="modal-body">
               <div style="color:#0d4608;">
@@ -210,8 +210,11 @@
           </button>
         </div>
         <div class="modal-body">
+          <div class="alert alert-success text-center error_word"  *ngIf="orderRequestMsg">
+            {{orderRequestMsg}}
+          </div>
             <!-- <span class="float-right"><span><b>Seller Name</b></span> : {{userOrder1.sellerName}}</span> -->
-        <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate> 
+        <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate>
             <div class="form-group">
                 <label class="english_wrd" for="dispute" style="color:#0d4608">Dispute</label>
                     <textarea type="text" #dispute="ngModel" [class.is-invalid]="dispute.invalid && dispute.touched" ngModel name="dispute" class="form-control borderClr" [(ngModel)]="userData.dispute" autocomplete="off" required></textarea>
@@ -222,8 +225,6 @@
           </div>
           </form>
         </div>
-        <!-- <div class="modal-footer">
-        </div> -->
       </div>
     </div>
   </div>
