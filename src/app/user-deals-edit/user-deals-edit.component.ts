@@ -39,7 +39,7 @@ export class UserDealsEditComponent implements OnInit {
   addSellerCredit: any;
   totalCredit: any;
   prdtCredit: any;
-  credit: any;
+  credit : any = {};
   productId: any;
   addTotal: number;
   addPriceQty: number;
@@ -212,19 +212,36 @@ export class UserDealsEditComponent implements OnInit {
         this.time = this.dealslists[i].validityTime;
       }
     }
+    console.log(this.deallistobj);
     this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
     this.deallistobj.validityTime = this.dateNrml;
   }
 
   postImage() {
     this.loadingCtrl.show();
+    console.log(this.deallistobj);
+    console.log(this.deallistobj.category);
 
     this.newquantity = this.deallistobj.quantity;
     this.newprice = this.deallistobj.price;
+    this.credit.quantity = this.deallistobj.quantity;
+    this.credit.price = this.deallistobj.price;
+    this.credit.category = this.deallistobj.category;
+    this.credit.name = this.deallistobj.name;
+    this.credit.qnty = this.deallistobj.qnty;
+    this.credit.image = this.deallistobj.image;
+    // this.credit.productCreatedAt = this.deallistobj.productCreatedAt;
+
+    console.log(this.credit);
         console.log(this.newquantity);
         console.log(this.newprice);
         console.log(this.lastprice);
+        console.log(this.lastquantity);
 
+        console.log(this.creditsOld)
+    this.myCredit = this.creditsOld.credits;
+    console.log(this.myCredit);
+    console.log(this.lastprice == this.newprice)
         // minus credit
         if(this.lastprice == this.newprice){
           if(this.lastquantity < this.newquantity ){
@@ -259,9 +276,7 @@ export class UserDealsEditComponent implements OnInit {
         if(this.lastquantity > this.newquantity && this.lastprice > this.newprice){
           this.sellerQuantityPrice();
         }
-    console.log(this.creditsOld)
-    this.myCredit = this.creditsOld.credits;
-    console.log(this.myCredit);
+    
 
     if(this.myCredit < this.cumulativecredit){
       console.log('No credit')
@@ -273,6 +288,8 @@ export class UserDealsEditComponent implements OnInit {
       });
       this.router.navigate(['/subscription-plan']);
       this.loadingCtrl.hide();
+    }else if (this.newprice == this.lastprice && this.newquantity == this.lastquantity){
+      this.update();
     }else{
       //Adding the image to the form data to be sent
     if (this.urls.length != 0 || this.urls != undefined) {
@@ -363,7 +380,7 @@ export class UserDealsEditComponent implements OnInit {
 
   //Minus credits when edit post
   QuantityCredit(){
-
+alert()
       this.cumulativequantity = this.newquantity - this.lastquantity;
       console.log(this.cumulativequantity);
 
@@ -371,7 +388,10 @@ export class UserDealsEditComponent implements OnInit {
      
     this.cumulativecredit = ((this.cumulativequantity * this.newprice) * 1/100);
     console.log(this.cumulativecredit);
+    console.log(this.myCredit);
     if(this.myCredit > this.cumulativecredit){
+    console.log(this.cumulativecredit);
+    console.log(this.myCredit);
       this.getUser();
     }
   }
@@ -390,7 +410,7 @@ export class UserDealsEditComponent implements OnInit {
     }
 
   quantityPriceCredit(){
-
+alert()
     if(this.lastquantity < this.newquantity){
       this.cumulativequantity = this.newquantity - this.lastquantity;
       console.log(this.cumulativequantity);
@@ -435,7 +455,7 @@ export class UserDealsEditComponent implements OnInit {
         for (let i = 0; i < this.creditDetails.length; i++) {
           console.log(this.creditDetails[i].productId);
           if (this.id == this.creditDetails[i].productId) {
-            this.credit = this.creditDetails[i];
+            //this.credit = this.creditDetails[i];
             this.prdtCredit = this.creditDetails[i].credit;
             this.prdtCreditId = this.creditDetails[i]._id;
           }
@@ -484,6 +504,7 @@ export class UserDealsEditComponent implements OnInit {
   }
 
   sellerReduceQuantity(){
+    alert()
       console.log(this.newquantity);
     console.log(this.lastprice)
     this.cumulativecredit = ((this.newquantity * this.lastprice) * 1/100);
@@ -504,7 +525,7 @@ export class UserDealsEditComponent implements OnInit {
   }
 
   sellerQuantityPrice(){
-
+alert()
       this.cumulativequantity =  this.newquantity;
       console.log(this.cumulativequantity);
 
@@ -533,7 +554,7 @@ export class UserDealsEditComponent implements OnInit {
         }
         for (let i = 0; i < this.creditDetails.length; i++) {
           if (this.id == this.creditDetails[i].productId) {
-            this.credit = this.creditDetails[i];
+            // this.credit = this.creditDetails[i];
             this.prdtCredit = this.creditDetails[i].credit;
             this.prdtCreditId = this.creditDetails[i]._id;
           }
@@ -571,6 +592,7 @@ export class UserDealsEditComponent implements OnInit {
     this.credit.credit = this.cumulativecredit;
     this.credit._id = this.prdtCreditId;
     console.log(this.credit._id);
+    console.log(this.credit);
     this._dealsService.updateUserCreditArrCredit(this.credit,this.currentuserId).subscribe(
       res => {
         console.log(res);

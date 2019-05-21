@@ -748,12 +748,29 @@ router.post('/updateCreditArrCredit/:id', function(req, res) {
   User.updateOne(
    {
      _id:req.params.id,
-     'creditDetails._id': req.body._id
+   'creditDetails._id': req.body._id
    },
    {
        $set: {
-         'creditDetails.$.credit': req.body.credit ,
-       }
+      //   creditDetails:{
+      //     credit: req.body.credit,
+      //     productName: req.body.productName,
+      //     category: req.body.category,
+      //     quantity: req.body.quantity,
+      //     qnty : req.body.qnty,
+      //     price: req.body.price,
+      //     image: req.body.image
+      //     // productId : req.body.productId,
+      //     // productCreatedAt: req.body.productCreatedAt
+      //  }
+      'creditDetails.$.credit' :  req.body.credit,
+      'creditDetails.$.productName' :  req.body.name,
+      'creditDetails.$.category' :  req.body.category,
+      'creditDetails.$.quantity' :  req.body.quantity,
+      'creditDetails.$.qnty' :  req.body.qnty,
+      'creditDetails.$.price' :  req.body.price,
+      'creditDetails.$.image' :  req.body.image,
+      }
    }
  )
    .then(() => {
