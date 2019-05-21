@@ -1,69 +1,37 @@
-<body class="bg" style="overflow-x: hidden;">
-    <div class="container mt-5 pt-5">
-      <h4 style="color:#0d4608;text-align:center">Subscription plan</h4>
-      <br />
-      <div class="row" *ngIf="successMsg || errMsg">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-          <div class="alert alert-success text-center" *ngIf="successMsg">
-            {{successMsg}}
-          </div>
-          <div class="alert alert-danger text-center" *ngIf="errMsg">
-            {{errMsg}}
-          </div>
+<body style="background-color:#d3d3d34a !important;">
+  <br>
+    <br>
+    <br>  <br>
+<div class="container-fluid" >
+  <h4 class="text-center clr" style="color: #0d4608;font-family: 'Oxygen', sans-serif;font-weight:bold;">Subscription Plans</h4>
+  <br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-5 btn-5" *ngFor="let dispute of subscriptionArr">
+            <div class="pricingTable">
+                <div class="pricingTable-header">
+                    <p class="title">{{ dispute.subscription }}</p>
+                    <div class="price-value">
+                        <div class="value">
+                            <span class="amount"><i class="fas fa-rupee-sign"></i> {{ dispute.amount }}</span>
+
+                        </div>
+                    </div>
+                </div>
+                <ul class="pricing-content">
+                    <li><b><i style="color: #0d4608;" class="far fa-hand-point-right"></i> {{ dispute.credit }}</b> Crdit Points</li>
+                    <li><i class="fa fa-clock-o" aria-hidden="true"></i> Lifetime Validity</li>
+                </ul>
+                <div class="col-md-12">
+                        <div class="text-center">
+                         <button  class="btn btn-outline-success text-center viewMoreBtn mx-auto"  [ngStyle]="{'display':dispute.planType == 'Paid plan' ? 'block' : 'none' }"  type="submit" (click)="getSingleSubsc(dispute._id)" style="font-family: 'Oxygen', sans-serif;">Buy Now</button>
+                         <p class="ticketRow" [ngStyle]="{'display':dispute.planType == 'Free plan' ? 'block' : 'none' }" style="color: #0d4608;font-weight: bold;margin-bottom: 7px;font-family: 'Oxygen', sans-serif;font-size: 20px;">FREE</p>
+                          </div>
+                    </div>
+            </div>
         </div>
-        <div class="col-md-4"></div>
-      </div>
-      <div class="container" *ngFor="let dispute of subscriptionArr">
-        <div class="notice notice-success">
-          <!-- <strong>Notice</strong> notice-success -->
-          <div class="row">
-            <div class="col-md-6 col-12">
-              <p style="color: #eb0f2491;font-weight: bold;" class="ticketPara">
-               <span style="color:#0d4608"> Subscription Type -</span> {{ dispute.subscription }}
-              </p>
-            </div>
-            <div class="col-md-6 col-12">
-              <div class="float-right">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <!-- <span>
-                <p style="text-indent: 30px;">Amount{{ dispute.amount }}</p>
-              </span> -->
-              <span >
-                <p style="text-indent: 30px;">Credits - {{ dispute.credit }}&nbsp;&nbsp;Amount - {{ dispute.amount }}</p>
-              </span>
-            </div>
-            <div class="col-md-6">
-              <span class="float-right">
-                <div></div>
-              </span>
-            </div>
-          </div>
-  
-          <div class="row">
-            <div class="col-md-6">
-              <span>
-                <span
-                  >
-                  <small>{{ dispute.createdAt | date }}</small></span
-                >
-              </span>
-            </div>
-            <div class="col-md-6">
-              <span class="float-right">
-                <button class="btn btn-sm btn-success ticketRow" [ngStyle]="{'display':dispute.planType == 'Paid plan' ? 'block' : 'none' }"  (click)="getSingleSubsc(dispute._id)">
-                  Buy
-                </button>
-                <p class="ticketRow" [ngStyle]="{'display':dispute.planType == 'Free plan' ? 'block' : 'none' }" style="color: #1e7e34;font-weight: bold;">FREE</p>
-              </span>
-            </div>
-          </div>
-        </div>
-        <br>
-      </div>
     </div>
-  </body>
+</div>
+</div>
+<br><br>
+</body>
