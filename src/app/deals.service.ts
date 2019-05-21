@@ -101,7 +101,7 @@ export class DealsService {
   
   // Credit
   private _updateUserCreditArr = "https://uzhavarsanthai.herokuapp.com/api/updateCreditArr";
-  private _updateUserCreditArrCredit = "http://localhost:5000/api/updateCreditArrCredit";
+  private _updateUserCreditArrCredit = "https://uzhavarsanthai.herokuapp.com/api/updateCreditArrCredit";
   private _sendticketUrl = "https://uzhavarsanthai.herokuapp.com/api/sendticket";
   private _getticketUrl = "https://uzhavarsanthai.herokuapp.com/api/getticket";
 
