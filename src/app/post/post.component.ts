@@ -310,7 +310,7 @@ export class PostComponent implements OnInit {
     this.productData.status = JSON.parse(
       localStorage.getItem('currentUser')
     ).status;
-    
+
     this.productData.ipAddress = this.privateIP;
     //  this.productData.avlPlace = this.addr;
 
@@ -356,6 +356,18 @@ export class PostComponent implements OnInit {
           }
         }
       }
+    );
+    this.notifyPush();
+  }
+
+  notifyPush(){
+    this._dealsService.notificationToPostedProduct(this.productData).subscribe(
+        res => {
+          console.log(res)
+        },
+        err => {
+            console.log(err)
+        }
     );
   }
 
