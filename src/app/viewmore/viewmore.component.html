@@ -11,7 +11,7 @@
             [config]="slideConfig"
             (init)="slickInit($event)">
         <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
-            <img src="{{ slide }}" alt="" class="viewImage">
+            <img src="{{ slide }}" alt="" class="viewImage" style="max-width: 100%;" height="200">
         </div>
     </ngx-slick-carousel>
   </div>
@@ -75,7 +75,7 @@
                                             </div>
                                           <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                          <div class="card" style="padding: 10px;">
-                                            <p class="product-productreview" *ngIf="postProduct.productreview == '' || postProduct.productreview == undefined || postProduct.productreview == null" style="text-align: justify">No review.</p>
+                                            <p class="product-productreview" *ngIf="postProduct.productreview == '' || postProduct.productreview == undefined || postProduct.productreview == null" style="text-align: justify">No reviews yet.</p>
                                             <div class="container" *ngFor="let slide of reviewArr| slice:0:show;">
                                               <div class="notice notice-success">
                                                 <div *ngIf="reviewlngthErr">
@@ -141,11 +141,13 @@
                   <p *ngIf="requestSent" style="text-align:center;color:#0d4608;font-weight:bold;"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{requestSent}}</p>                <!-- card-body.// -->
   </aside> <!-- col.// -->
   </div> <!-- row.// -->
-  <!-- <div class="col-md-12 text-center" style="margin-bottom: 1%;">
-    <button type="button" class="btn btn-outline-success viewMoreBtn" (click)="goToBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
-</div> -->
+  <div class="col-md-12 text-center first" style="margin-bottom: 1%;">
+    <button type="button" class="btn btnColor viewMoreBtn" (click)="goToBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
+</div>
   </div> <!-- card.// -->
-
+  <div class="second" style="display: none">
+      <button class="float1" style="float:left" id="hideFilterButton1"  (click)="goToBack()"><i class="fa fa-arrow-left"></i> </button>
+      </div>
 
   </div>
   <!--container.//-->
@@ -353,8 +355,8 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="">Requirement Details</h4>
-            <button type="button" class="close" id="closeRequirementModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <p class="modal-title fntSize">Requirement Details</p>
+            <button type="button" class="close x" id="closeRequirementModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
         </div>
         <div class="modal-body">
           <div class="alert alert-success text-center error_word"  *ngIf="orderRequestMsg">
@@ -367,7 +369,7 @@
                       <div class="col-md-6">
                         <div class="form-group">
                             <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">எடை </span>/ Quantity</label>
-                               <input type="text" placeholder="Enter Quantity"  class="form-control"  #requiredQuantity="ngModel"
+                               <input type="text" class="form-control" placeholder="Enter Quantity" #requiredQuantity="ngModel"
                                 name="requiredQuantity" [class.is-invalid]="requiredQuantity.invalid && requiredQuantity.touched"
                                  ngModel [(ngModel)]="querydata.requiredQuantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="5" required>
                                <span class="text-danger float-left error_word"
@@ -375,15 +377,14 @@
                                 <i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>
                        </div>
                       </div>
-
                       <div class="col-md-6">
                         <div class="form-group">
                             <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">அளவு </span>/ Unit</label>
-                            <select  class="form-control" class="form-control mobmargintop"   placeholder="Enter unit"
+                            <select  class="form-control" class="form-control mobmargintop"
                             style="background-color: transparent;color: #0d4608;"  #requiredUnit="ngModel"
                             name="requiredUnit" [class.is-invalid]="requiredUnit.invalid && requiredUnit.touched"
                             ngModel [(ngModel)]="querydata.requiredUnit" required>
-                              <option  selected="" disabled="" value="" >Choose unit</option>
+                            <option selected="" disabled="" value="" >Choose Unit</option>
                             <option value="Ml" class="categoryOption">Milli litre</option>
                             <option value="Litre" class="categoryOption">Litre</option>
                             <option value="g" class="categoryOption">Gram</option>

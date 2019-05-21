@@ -251,3 +251,13 @@ section .section-title {
   border: 2px solid gray;
   border-radius: 5px;
 }
+
+textarea{ 
+  height:70px; 
+  min-height:70px;  
+  max-height:70px;
+}
+
+.borderClr{
+  border: 1px solid #0d4608 !important;
+}

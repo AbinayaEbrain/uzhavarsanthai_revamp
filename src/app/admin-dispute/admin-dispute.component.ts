@@ -28,7 +28,11 @@ export class AdminDisputeComponent implements OnInit {
   constructor(
     private _dealService: DealsService,
     public loadingCtrl: NgxSpinnerService
-  ) {}
+  ) {
+    for (let i = 1; i <= this.disputeTicketArr.length; i++) {
+      this.disputeTicketArr.push('Angular ${i}.0');
+    }
+  }
 
   ngOnInit() {
     this.loadingCtrl.show();
@@ -248,4 +252,8 @@ export class AdminDisputeComponent implements OnInit {
       }
     );
   }
+clear(){
+  this.mytemplateForm.reset();
+}
+
 }

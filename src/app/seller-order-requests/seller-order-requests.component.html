@@ -47,9 +47,6 @@
                                                                 </tr>
                            
                                                           <tr  id="hide" *ngFor="let deal of createdRequests | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
-                                                               <td *ngIf="deal === -1" class="prdUnavil" style="text-align: center">
-                                                                   {{errMsg2}}
-                                                               </td>
                                                                <td>{{deal.requestId}}</td>
                                                            <td>{{deal.prdctCategory}}</td>
                                                               <td>
@@ -67,7 +64,7 @@
                                                                    data-keyboard="false">
                                                                    Reject
                                                                   </button>&nbsp;
-                                                                  <button id="hideViewBtn" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" (click)="view(deal._id)" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static">
+                                                                  <button id="hideViewBtn" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" (click)="view(deal._id)" (click) ="formReset()" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static">
                                                                     Dispute
                                                                    </button>
                                                               </td>
@@ -82,7 +79,7 @@
                                               </div>
                                           </div>
                                       </div>
-             <div class="mx-auto mt-3">
+             <div class="mx-auto mt-3" *ngIf="!errMsg">
               <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
             </div>
             </div>
@@ -137,7 +134,7 @@
                         </div>
                     </div>
                 </div>
-      <div class="mx-auto mt-3">
+      <div class="mx-auto mt-3" *ngIf="!cancelledErrMsg">
           <pagination-controls id="foo1"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="e = $event"></pagination-controls>
       </div>
             </div>
@@ -159,7 +156,7 @@ aria-hidden="true">
       <p class="heading lead">Order Request Id : {{singleOrderRequest.requestId}}</p>
 
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true" class="text-white">&times;</span>
+        <span aria-hidden="true" class="text-black x"> X </span>
       </button>
     </div>
 
@@ -231,21 +228,21 @@ aria-hidden="true">
  <!-- modal -->
 
  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
+    <div class="modal-dialog modal-dialog-centered">
+ 
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;color: white;">Reject Confirmation</h4>
+          <p class="modal-title fntSize" style="font-family:'Oxygen', sans-serif;">Reject Confirmation</p>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" class="text-white">&times;</span>
+            <span aria-hidden="true" class="text-black x">X</span>
           </button>
         </div>
         <div class="modal-body">
-          <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to reject this request?</h6>
+          <p class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to reject this request?</p>
           <div class="text-center">
-           <button type="button" class="btn btnClr button_word" (click)="reject()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" class="btn btnDanger button_word" data-dismiss="modal">No</button>
+           <button type="button" class="btn btnClr button_word modelBtn" (click)="reject()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btnDanger button_word modelBtn" data-dismiss="modal">No</button>
           </div>
         </div>
       </div>
@@ -260,21 +257,23 @@ aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 id="exampleModalLongTitle">Dispute</h5>
+          <p id="exampleModalLongTitle" class="modal-title fntSize">Dispute against <span style="font-style:italic">{{singleOrderRequest.buyerName}}</span> </p>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" class="text-white" id="closeCancelOrderModal">&times;</span>
+            <span aria-hidden="true" class="text-black x" (click) ="formReset()" id="closeCancelOrderModal"> X </span>
           </button>
         </div>
         <div class="modal-body">
-            <span class="float-right"><span><b>Buyer Name</b></span> : {{singleOrderRequest.buyerName}}</span>
+            <!-- <span class="float-right"><span><b>Buyer Name</b></span> : {{singleOrderRequest.buyerName}}</span> -->
         <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate> 
-            <div class="form-group mt-4">
-                <label class="english_wrd" for="dispute" ><span style="font-size: 14px" class="tamil_word"> </span>Dispute</label>
-                    <input type="text" #dispute="ngModel" [class.is-invalid]="dispute.invalid && dispute.touched" ngModel name="dispute" class="form-control" [(ngModel)]="userData.dispute" autocomplete="off" required>
+            <div class="form-group">
+                <label class="english_wrd" for="dispute" style="color:#0d4608">Dispute</label>
+                    <textarea  type="text" rows="2" #dispute="ngModel" [class.is-invalid]="dispute.invalid && dispute.touched" ngModel name="dispute" class="form-control borderClr" [(ngModel)]="userData.dispute" autocomplete="off" required></textarea>
                     <span class="text-danger float-left error_word" [class.d-none] = "dispute.valid || dispute.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Dispute is required</span>
             </div>
-            <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn mx-auto" (click)="disputeSave()">Save changes</button>
-        </form>
+            <div class="mt-4" style="text-align: center;" >
+            <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn" (click)="disputeSave()">Send Dispute</button>
+          </div>
+          </form>
         </div>
         <!-- <div class="modal-footer">
         </div> -->
