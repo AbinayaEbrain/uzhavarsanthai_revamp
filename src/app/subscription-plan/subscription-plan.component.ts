@@ -17,15 +17,15 @@ export class SubscriptionPlanComponent implements OnInit {
   subcriptionId:any;
   usersCurrentCredits:any;
   currentCredits:any;
+  crntSUbscription:any;
 
-  constructor(private _dealService: DealsService ,   public loadingCtrl: NgxSpinnerService,) {}
+  constructor(private _dealService: DealsService ,public loadingCtrl: NgxSpinnerService) {}
 
   ngOnInit() {
     this.loadingCtrl.show();
     this.getSubscription();
     this.userId = JSON.parse(localStorage.getItem('currentUser'))._id;
     console.log(this.userId)
-    this.loadingCtrl.hide();
     this.currentUserCredit();
   }
 
@@ -47,12 +47,14 @@ export class SubscriptionPlanComponent implements OnInit {
       this.loadingCtrl.show();
     this._dealService.getCurrentCredit(this.userId).subscribe(
       res => {
-        console.log(res)
+        console.log(res);
+        this.crntSUbscription = res.subscriptionName;
         this.usersCurrentCredits = res.credits
           this.loadingCtrl.hide();
       },
       err => {
         console.log(err);
+        this.loadingCtrl.hide();
       }
     );
   }
@@ -84,7 +86,6 @@ updateSubsc(){
     data => {
       console.log(data);
       this.loadingCtrl.hide();
-      // this.getSubscription();
     },
     err => {
       console.log(err);

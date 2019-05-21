@@ -39,10 +39,10 @@ export class DealsService {
   private activeUrl =
     'https://uzhavarsanthai.herokuapp.com/api/admin-user/active';
 
-  private updateuserurl = 'http://localhost:5000/api/updateuser';
-  private _updatePostName = 'http://localhost:5000/api/updateNamePost';
-  private _updateReviewSellerName = 'http://localhost:5000/api/updateSellerNameReview';
-  private _updateReviewBuyerName = 'http://localhost:5000/api/updateBuyerNameReview';
+  private updateuserurl = 'https://uzhavarsanthai.herokuapp.com/api/updateuser';
+  private _updatePostName = 'https://uzhavarsanthai.herokuapp.com/api/updateNamePost';
+  private _updateReviewSellerName = 'https://uzhavarsanthai.herokuapp.com/api/updateSellerNameReview';
+  private _updateReviewBuyerName = 'https://uzhavarsanthai.herokuapp.com/api/updateBuyerNameReview';
 
   private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private notificationtoallurl =

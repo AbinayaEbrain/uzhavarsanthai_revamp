@@ -55,14 +55,16 @@
                               <div class="col-md-12">
                                 <div class="row">
                                   <div class="col-md-3">
-                          <p style=" text-align: start;color: #0d4608;font-weight: bold;">Ticket ID -{{ticket.ticketId}} &nbsp;<span style="font-weight: bold;color:white;
-    border-radius: 0px 10px 0px 10px;padding: 1.2%;" [ngStyle]="{'background-color': ticket.ticketStatus === 'Created' ? 'rgba(13, 70, 8, 0.74)' : '#f44336e6' }">{{ticket.ticketStatus}}</span></p>
+                                      <!-- [ngStyle]="{'background-color': ticket.ticketStatus === 'Created' ? 'rgba(13, 70, 8, 0.74)' : '#f44336e6' }" -->
+                          <p style=" text-align: start;color: #0d4608;font-weight: bold;">{{ticket.ticketId}}</p>
+                          
                                   </div>
                                   <div class="col-md-6">
-                                     <p class="ticketTit" >{{ticket.ticketTitle}}</p>
+                                     <p class="ticketTit text-center" >{{ticket.ticketTitle}}</p>
                                   </div>
                                   <div class="col-md-3">
-                                     <p class="ticketdate" style="font-weight: 500;">{{ticket.createddate | date}}</p>
+                                     <p class="ticketdate" style="font-weight: 500;" [ngStyle]="{'color': ticket.ticketStatus === 'Created' ? '#0d4608' : '#f44336e6' }">{{ticket.ticketStatus}}</p>
+                                     <small style="float: right;color: black">{{ticket.createddate | date}}</small>
                                   </div>
                                 </div>
                               </div>

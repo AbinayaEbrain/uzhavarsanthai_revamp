@@ -2,10 +2,10 @@
   <br>
     <br>
     <br>  <br>
-<div class="container-fluid" >
+<div class="container-fluid">
   <h4 class="text-center clr" style="color: #0d4608;font-family: 'Oxygen', sans-serif;font-weight:bold;">Subscription Plans</h4>
   <br>
-<div class="container">
+<div class="container mt-3">
   <div class="row" *ngIf="successMsg || errMsg">
        <div class="col-md-4"></div>
        <div class="col-md-4">
@@ -20,13 +20,13 @@
      </div>
     <div class="row">
         <div class="col-md-3 col-sm-5 btn-5" *ngFor="let dispute of subscriptionArr">
-            <div class="pricingTable">
+            <div style="display:none" [ngClass]="{'zoom': crntSUbscription == dispute.subscription}">Current plan</div>
+            <div class="pricingTable" [ngClass]="{'zoom': crntSUbscription == dispute.subscription}">
                 <div class="pricingTable-header">
                     <p class="title">{{ dispute.subscription }}</p>
                     <div class="price-value">
                         <div class="value">
                             <span class="amount"><i class="fas fa-rupee-sign"></i> {{ dispute.amount }}</span>
-
                         </div>
                     </div>
                 </div>
@@ -36,8 +36,8 @@
                 </ul>
                 <div class="col-md-12">
                         <div class="text-center">
-                         <button  class="btn btn-outline-success text-center viewMoreBtn mx-auto"  [ngStyle]="{'display':dispute.planType == 'Paid plan' ? 'block' : 'none' }"  type="submit" (click)="getSingleSubsc(dispute._id)" style="font-family: 'Oxygen', sans-serif;">Buy Now</button>
-                         <p class="ticketRow" [ngStyle]="{'display':dispute.planType == 'Free plan' ? 'block' : 'none' }" style="color: #0d4608;font-weight: bold;margin-bottom: 7px;font-family: 'Oxygen', sans-serif;font-size: 20px;">FREE</p>
+                         <button  class="btn btn-outline-success btn-sm text-center viewMoreBtn mx-auto"  [ngStyle]="{'display':dispute.planType == 'Paid plan' ? 'block' : 'none' }"  type="submit" (click)="getSingleSubsc(dispute._id)" style="font-family: 'Oxygen', sans-serif;">Buy Now</button>
+                         <p class="ticketRow" [ngStyle]="{'display':dispute.planType == 'Free plan' ? 'block' : 'none' }" style="color: #0d4608;font-weight: bold;margin-bottom: 7px;font-family: 'Oxygen', sans-serif;font-size: 16px;">FREE</p>
                           </div>
                     </div>
             </div>

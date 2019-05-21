@@ -34,18 +34,18 @@
 }
 
 .form-control {
-    display: block;
-    width: 100%;
-    height: calc(2.25rem + 2px);
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #0d4608 !important;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  display: block;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #0d4608 !important;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .btnClr {
   border: 2px solid #0d4608;
@@ -87,7 +87,7 @@ section .section-title {
 } */
 
 .imgRes {
-width: 300px;
+  width: 300px;
 }
 
 .errDesign {
@@ -132,13 +132,13 @@ width: 300px;
 .english_wrd {
   font-family: 'Mukta', sans-serif;
   float: left;
-color: #0d4608;
-font-weight: bold;
+  color: #0d4608;
+  font-weight: bold;
 }
 .english_wrd1 {
   font-family: 'Mukta', sans-serif;
-color: #0d4608;
-font-weight: bold;
+  color: #0d4608;
+  font-weight: bold;
 }
 .tabTitle {
   font-size: 14px;
@@ -187,20 +187,20 @@ font-weight: bold;
   /* width: 550px; */
 }
 
-.orderPara{
+.orderPara {
   margin-top: -15px;
   text-align: center;
 }
-.orderHighlight{
-float: left;
-background-color: #0d4608;
-padding: 3px;
-font-weight: bold;
-color: white;
+.orderHighlight {
+  float: left;
+  background-color: #0d4608;
+  padding: 3px;
+  font-weight: bold;
+  color: white;
 }
 .button_word1 {
   font-family: 'Kanit', sans-serif;
-  cursor:pointer;
+  cursor: pointer;
   color: red !important;
   float: right;
   /* margin-top: 50%; */
@@ -219,27 +219,28 @@ color: white;
   }
   .button_word1 {
     font-family: 'Kanit', sans-serif;
-    cursor:pointer;
+    cursor: pointer;
     color: red !important;
     float: right;
     margin-top: 0px;
   }
-  .myOrderHeading{
-    color:#0d4608;text-align:center;
-     margin-top: 20%;
-     font-size: 20px;
+  .myOrderHeading {
+    color: #0d4608;
+    text-align: center;
+    margin-top: 20%;
+    font-size: 20px;
   }
-  .orderHighlight{
+  .orderHighlight {
     font-size: 11px;
   }
-  .col-md-6{
+  .col-md-6 {
     position: relative;
     width: 100%;
     min-height: 1px;
     padding-right: 5px;
     padding-left: 5px;
   }
-  .col-md-12{
+  .col-md-12 {
     position: relative;
     width: 100%;
     min-height: 1px;
@@ -250,18 +251,20 @@ color: white;
     width: inherit !important;
   }
 }
-.headingrow{
-  background-color:#8080803d;padding:5px;
+.headingrow {
+  background-color: #8080803d;
+  padding: 5px;
 }
-.myOrderHeading{
-  color:#0d4608;text-align:center
+.myOrderHeading {
+  color: #0d4608;
+  text-align: center;
 }
-.orderHead{
-      margin-top: -15px;
+.orderHead {
+  margin-top: -15px;
 }
 
-.orderHead2{
-      margin-top: 0px;
+.orderHead2 {
+  margin-top: 0px;
 }
 
 .center {
@@ -273,7 +276,7 @@ color: white;
 .viewMoreBtn1 {
   margin: auto;
   font-weight: bold;
-  color: white ;
+  color: white;
   border-color: #0d4608;
   background-color: #0d4608;
 }
@@ -284,115 +287,120 @@ color: white;
 }
 
 @media screen and (max-width: 320px) {
-  .orderHead2{
-   font-size: 13px;
-}
+  .orderHead2 {
+    font-size: 13px;
+  }
 }
 
-.dropdown:hover>.dropdown-menu {
+.dropdown:hover > .dropdown-menu {
   display: block;
 }
 
 .dropdown-toggle::after {
-  display:none;
+  display: none;
 }
 
-.dropdown>.dropdown-toggle:active {
+.dropdown > .dropdown-toggle:active {
   /*Without this, clicking will make it sticky*/
-    pointer-events: none;
+  pointer-events: none;
 }
 
 /* component */
 
 .star-rating {
   /* border:solid 1px #ccc; */
-  display:flex;
+  display: flex;
   flex-direction: row-reverse;
-  font-size:1.5em;
-  justify-content:space-around;
-  padding:0 .2em;
-  text-align:center;
-  width:5em;
+  font-size: 1.5em;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 5em;
 }
 
 .star-rating input {
-  display:none;
+  display: none;
 }
 
 .star-rating label {
-  color:#ccc;
-  cursor:pointer;
+  color: #ccc;
+  cursor: pointer;
 }
 
 .star-rating :checked ~ label {
-  color:#f90;
+  color: #f90;
 }
 
 .star-rating label:hover,
 .star-rating label:hover ~ label {
-  color:#fc0;
+  color: #fc0;
 }
 .badge {
-    display: inline-block;
-    padding: 0.25em 0.4em;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    background-color: #0d4608;
-    color: white;
-    font-weight: bold;
-    border-radius: 10px;
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #0d4608;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
 }
-.ticketId{
-  float:left;color: #0d4608;
+.ticketId {
+  float: left;
+  color: #0d4608;
   font-weight: bold;
 }
-.ticketTitle{
+.ticketTitle {
   font-weight: 600 !important;
   color: #0d4608;
 }
-.ticketstate{
-  float:right;color: #0d4608;font-weight: bold;  background-color: white;
+.ticketstate {
+  float: right;
+  color: #0d4608;
+  font-weight: bold;
+  background-color: white;
 }
 
 @media only screen and (min-width: 375px) and (max-width: 425px) {
-  .ticketId{
-    float:left;color: #0d4608;
+  .ticketId {
+    float: left;
+    color: #0d4608;
     font-weight: bold;
     font-size: 15px;
   }
 }
 
 @media only screen and (min-width: 320px) and (max-width: 375px) {
-  .ticketId{
+  .ticketId {
     font-size: 12px;
   }
 }
 
 @media only screen and (min-width: 320px) and (max-width: 425px) {
-.nav-link{
-  font-size: 11px !important;
-  padding: 14px !important;
-}
-.byWhom{
-  float: left !important;
-}
-#paraTag{
-  margin-left: 3% !important;
-}
-.ticketTit{
-   text-align: center !important; color: #0d4608;font-weight: 600;
-}
-.ticketdate{
-  float: left!important;
-color: #0d4608;
-font-size: 15px;
-}
-
+  .nav-link {
+    font-size: 11px !important;
+    padding: 14px !important;
+  }
+  .byWhom {
+    float: left !important;
+  }
+  #paraTag {
+    margin-left: 3% !important;
+  }
+  .ticketTit {
+    text-align: center !important;
+    color: #0d4608;
+    font-weight: 600;
+  }
+  .ticketdate {
+    color: #0d4608;
+    font-size: 15px;
+  }
 }
 @media only screen and (min-width: 200px) and (max-width: 320px) {
-  .nav-link{
+  .nav-link {
     font-size: 10px !important;
     padding: 14px !important;
   }
@@ -450,7 +458,7 @@ font-size: 15px;
   background-color: #0d4608;
   color: white;
 }
-.byWhom{
+.byWhom {
   float: right;
 }
 @media only screen and (min-width: 320px) and (max-width: 360px) {
@@ -458,75 +466,75 @@ font-size: 15px;
     font-weight: 500;
     font-size: x-small;
   }
-  .ticketPara{
+  .ticketPara {
     font-size: smaller;
   }
 }
 
-#accordion .panel{
-    border-radius: 0px;
-    box-shadow: none;
-    border: 1px solid #d5d5d5;
-    margin-bottom: 6px;
+#accordion .panel {
+  border-radius: 0px;
+  box-shadow: none;
+  border: 1px solid #d5d5d5;
+  margin-bottom: 6px;
 }
-#accordion .panel-heading{
-    border-radius: 0px;
-    background-color:#fff;
-    padding:0;
+#accordion .panel-heading {
+  border-radius: 0px;
+  background-color: #fff;
+  padding: 0;
 }
-#accordion .panel-title a{
-    display: block;
-    color: #2ca093;
-    font-size: 15px;
-    padding:14px 28px;
-    font-weight: bold;
-    position: relative;
-
+#accordion .panel-title a {
+  display: block;
+  color: #2ca093;
+  font-size: 15px;
+  padding: 14px 28px;
+  font-weight: bold;
+  position: relative;
 }
-#accordion .panel-title a.collapsed{
-    border-top:0;
-
+#accordion .panel-title a.collapsed {
+  border-top: 0;
 }
 #accordion .panel-title a:hover,
-#accordion .panel-title a:focus{
-    text-decoration: none;
-    outline: none;
-    border-top:1px solid #0d4608;
+#accordion .panel-title a:focus {
+  text-decoration: none;
+  outline: none;
+  border-top: 1px solid #0d4608;
 }
 #accordion .panel-title a:before,
-#accordion .panel-title a.collapsed:before{
-content: "More...";
-font-family: "Font Awesome 5 Free";
-font-weight: bold;
-color: #2ca093;
-position: absolute;
-top: 40px;
-right: 12px;
+#accordion .panel-title a.collapsed:before {
+  /* content: "More..."; */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: bold;
+  color: #2ca093;
+  position: absolute;
+  top: 40px;
+  right: 12px;
 }
 #accordion .panel-title a:after,
-#accordion .panel-title a.collapsed:after{
-    content: "";
-    font-family: "Font Awesome 5 Free";
-    font-weight: bold;
-    color: #2ca093;
-    position: absolute;
-    top: 40px;
-    right: 12px;
+#accordion .panel-title a.collapsed:after {
+  content: '';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: bold;
+  color: #2ca093;
+  position: absolute;
+  top: 40px;
+  right: 12px;
 }
 
-#accordion .panel-body{
-    color: #8a8a8a;
-    font-size: 14px;
-    line-height: 20px;
-    background:#fff;
-    padding: 5px 27px 15px;
-    border-top: 0px none;
+#accordion .panel-body {
+  color: #8a8a8a;
+  font-size: 14px;
+  line-height: 20px;
+  background: #fff;
+  padding: 5px 27px 15px;
+  border-top: 0px none;
 }
-.ticketTit{
-   text-align: start ;color: #0d4608;font-weight: 600;
+.ticketTit {
+  text-align: start;
+  color: #0d4608;
+  /* color: #0d4608;font-weight: 600; */
 }
-.ticketdate{
+.ticketdate {
   text-align: end !important;
-color: #0d4608;
-font-size: 15px;
+  color: #0d4608;
+  font-size: 15px;
 }
