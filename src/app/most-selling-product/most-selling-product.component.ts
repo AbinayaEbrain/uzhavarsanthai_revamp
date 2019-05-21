@@ -24,7 +24,11 @@ export class MostSellingProductComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public loadingCtrl: NgxSpinnerService
-  ) { }
+  ) { 
+    for (let i = 1; i <= this.orderrequests.length; i++) {
+      this.orderrequests.push(`deal ${i}.0`);
+    }
+  }
 
   ngOnInit() {
     this.getUser();

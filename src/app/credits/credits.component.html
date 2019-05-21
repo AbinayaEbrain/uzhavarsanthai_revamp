@@ -11,7 +11,7 @@
             <h5>Hai {{ credits.firstname }},</h5>
           </div>
           <div class="col-md-5">
-            <strong class="float-right">Total credits : {{ credits.credits }}</strong>
+            <strong class="float-right">Total credits : {{ credits.credits}}</strong>
           </div>
           <div class="col-md-1"></div>
         </div>
@@ -30,13 +30,13 @@
         <div class="row mt-4">
           <div class="col-md-1"></div>
           <div class="col-md-10">
-              <div class="card mb-3" *ngFor="let credit of creditsArr">
+              <div class="card mb-3" *ngFor="let credit of creditsArr | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
                   <div class="card-header cardShadow shadow-sm bg-white rounded text-left">
                     <div><strong class="tamil_word">{{ credit.category }}</strong></div>
                     <small>Posted On : {{ credit.productCreatedAt | date }}</small>
                     <div class="float-right">
                         <strong style="color: #eb0f2491"
-                        >Credits Used : {{ credit.credit }}</strong
+                        >Credits Used : {{ credit.credit}}</strong
                       >
                     </div>
                   </div>
@@ -63,6 +63,9 @@
                 </div>
           </div>
           <div class="col-md-1"></div>
+        </div>
+        <div class="mx-auto mt-3" *ngIf="!errMsg">
+          <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
         </div>
       </div>
       <!-- <div class="col-md-1"></div> -->

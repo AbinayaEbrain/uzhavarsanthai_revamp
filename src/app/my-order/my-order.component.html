@@ -35,10 +35,10 @@
                   <div class="col-md-3 col-8 " style="font-weight: bold;display: inline-flex;">
                     <p class="orderHead2" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</p>&nbsp;&nbsp;&nbsp;
                     <div class="dropdown" style="margin-top: -7px;">
-                    <p class="btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <p class="btn dropdown-toggle" data-toggle="dropdown">
                      More <i class="fa fa-ellipsis-v"></i>
                     </p>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <div class="dropdown-menu dropdown-menu-right">
                       <a class="dropdown-item" *ngIf="order.status == 'Closed' && order.sellerStatus == 'Closed'" data-toggle="modal" style="cursor: pointer;" data-target="#myModal" (click)="singleUpdateSignupReq(order._id)">Order review</a>
                       <a class="dropdown-item" style="cursor: pointer;" (click)="singleUpdateSignupReq(order._id)" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static" >Dispute</a>
                     </div></div>
@@ -62,7 +62,7 @@
                     <p class="orderHead">{{order.urgency}}</p>
                   </div>
                   <div class="col-md-4 center" style="font-weight: bold;text-align: left;">
-                   <button class="btn btn-outline-danger text-center viewMoreBtn button_word" style="padding: 3px;" data-toggle="modal" data-target="#myModal1"  (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Order cancelled' ? 'none' : '' }">Cancel Order</button>
+                   <button class="btn btn-outline-danger text-center viewMoreBtn button_word" style="padding: 3px;" data-toggle="modal" data-target="#myModal1"  (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Closed'? 'none' : '' }" [ngStyle]="{'display':order.status === 'Order cancelled'? 'none' : '' }">Cancel Order</button>
                   </div>
                 </div>
               </div>
@@ -82,7 +82,7 @@
             <div class="col-md-3 col-lg-4 col-12"></div>
     </div>
         <div class="container">
-          <div class="row  mb-2" *ngFor="let order of pastOrder | paginate: {id: 'foo', itemsPerPage:10,currentPage:d},let i = index">
+          <div class="row  mb-2" *ngFor="let order of pastOrder | paginate: {id: 'foo1', itemsPerPage:10,currentPage:d},let i = index">
           <div class="container card">
             <div class="row card-header" style="height:50px">
               <div class="col-md-6 col-6">
@@ -117,7 +117,7 @@
           </div>
         </div>
         <div class="mx-auto mt-3" *ngIf="!pastErrMsg">
-          <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="d = $event"></pagination-controls>
+          <pagination-controls id="foo1"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="d = $event"></pagination-controls>
         </div>
           </div>
       </div>
@@ -127,19 +127,19 @@
      <!-- modal -->
 
  <div class="modal fade" id="myModal1" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;color: white;">Cancel Confirmation</h4>
+          <p class="modal-title fntSize" style="font-family:'Oxygen', sans-serif;">Cancel Confirmation</p>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" class="text-white">&times;</span>
+            <span aria-hidden="true" class="text-black x">X</span>
           </button>
         </div>
         <div class="modal-body">
-          <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to cancel this request?</h6>
+          <p class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to cancel this request?</p>
           <div class="text-center">
-           <button type="button" class="btn btnClr button_word" (click)="updateSignupReq1()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" class="btn btnDanger button_word" routerLink="/my-order" data-dismiss="modal">No</button>
+           <button type="button" class="btn btnClr button_word modelBtn" (click)="updateSignupReq1()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btnDanger button_word modelBtn" routerLink="/my-order" data-dismiss="modal">No</button>
           </div>
         </div>
       </div>
@@ -148,14 +148,14 @@
 
     <!-- The Modal -->
     <div class="modal" id="myModal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
           
             <!-- Modal Header -->
             <div class="modal-header">
-              <h4 class="modal-title">Order review</h4>
+              <p class="modal-title fntSize">Order Review</p>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true" class="text-white" id="closeCancelOrderModal1">&times;</span>
+                <span aria-hidden="true" class="text-black x" id="closeCancelOrderModal1" (click)="clear()">X</span>
               </button>
              </div>
             
@@ -164,39 +164,36 @@
               <div style="color:#0d4608;">
                 <div class="row">
                   <div class="col-md-8">
-              <h6>Category : {{userOrder1.prdctCategory}}</h6></div>
+              <h6 class="english_wrd">Category : {{userOrder1.prdctCategory}}</h6></div>
               <div class="col-md-4">
-              <h6>Name : {{userOrder1.prdctName}}</h6></div>
-            </div><hr>
+              <h6 class="english_wrd">Name : {{userOrder1.prdctName}}</h6></div>
+            </div>
             <form #reviewform="ngForm" *ngIf ="!submitted" novalidate>
               <div class="form-group">
-                  <div class="star-rating">
-                      <input type="radio" id="5-stars" name="rating" value="5" />
-                      <label for="5-stars" class="star" (click)="fiveStar()">&#9733;</label>
-                      <input type="radio" id="4-stars" name="rating" value="4" />
-                      <label for="4-stars" class="star" (click)="fourStar()">&#9733;</label>
-                      <input type="radio" id="3-stars" name="rating" value="3" />
-                      <label for="3-stars" class="star" (click)="threeStar()">&#9733;</label>
-                      <input type="radio" id="2-stars" name="rating" value="2" />
-                      <label for="2-stars" class="star" (click)="twoStar()">&#9733;</label>
-                      <input type="radio" id="1-star" name="rating" value="1" />
-                      <label for="1-star" class="star" (click)="oneStar()">&#9733;</label>
-                    </div>
-                    <div class="form-group">
-                <textarea class="form-control" #review="ngModel" ngModel [(ngModel)]="reviewData.review" [class.is-invalid]="review.invalid && review.touched" rows="2" id="comment" name="review" placeholder="Enter your review" autocomplete="off" required></textarea>
+                    <div class="form-group mt-3">
+                <textarea class="form-control borderClr" #review="ngModel" ngModel [(ngModel)]="reviewData.review" [class.is-invalid]="review.invalid && review.touched" rows="2" id="comment" name="review" placeholder="Enter your review" autocomplete="off" required></textarea>
                 <span class="text-danger float-left error_word" [class.d-none] = "review.valid || review.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Review is required</span>
-              </div></div>
+              </div>
+              <div style="display:inline-flex;">
+              <label class="english_wrd" for="dispute" >Rating : </label>
+              <div class="star-rating" id="starRating" style="margin-top: -9px;">
+                  <input type="radio" id="5-stars" name="rating" value="5" />
+                  <label for="5-stars" class="star" (click)="fiveStar()">&#9733;</label>
+                  <input type="radio" id="4-stars" name="rating" value="4" />
+                  <label for="4-stars" class="star" (click)="fourStar()">&#9733;</label>
+                  <input type="radio" id="3-stars" name="rating" value="3" />
+                  <label for="3-stars" class="star" (click)="threeStar()">&#9733;</label>
+                  <input type="radio" id="2-stars" name="rating" value="2" />
+                  <label for="2-stars" class="star" (click)="twoStar()">&#9733;</label>
+                  <input type="radio" id="1-star" name="rating" value="1" />
+                  <label for="1-star" class="star" (click)="oneStar()">&#9733;</label>
+                </div></div>
+            </div><hr>
               <div class="mt-4 text-center">
-              <button type="submit" class="btn viewMoreBtn1" (click)="reviewAndRating()" [disabled]="reviewform.form.invalid">Submit</button>
+              <button type="submit" class="btn viewMoreBtn1" (click)="reviewAndRating()" [disabled]="reviewform.form.invalid">Send Review</button>
             </div>
             </form>
             </div> </div>
-            
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-            
           </div>
         </div>
       </div>
@@ -207,21 +204,21 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 id="exampleModalLongTitle">Dispute</h5>
+          <p id="exampleModalLongTitle" class="modal-title fntSize">Dispute against <span style="font-style:italic">{{userOrder1.sellerName}}</span></p>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" class="text-white" id="closeCancelOrderModal">&times;</span>
+            <span aria-hidden="true" class="text-black x" id="closeCancelOrderModal" (click) = "formReset()">X</span>
           </button>
         </div>
         <div class="modal-body">
-            <span class="float-right"><span><b>Seller Name</b></span> : {{userOrder1.sellerName}}</span>
+            <!-- <span class="float-right"><span><b>Seller Name</b></span> : {{userOrder1.sellerName}}</span> -->
         <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate> 
-            <div class="form-group mt-4">
-                <label class="english_wrd" for="dispute" ><span style="font-size: 14px" class="tamil_word"> </span>Dispute</label>
-                    <input type="text" #dispute="ngModel" [class.is-invalid]="dispute.invalid && dispute.touched" ngModel name="dispute" class="form-control" [(ngModel)]="userData.dispute" autocomplete="off" required>
+            <div class="form-group">
+                <label class="english_wrd" for="dispute" style="color:#0d4608">Dispute</label>
+                    <textarea type="text" #dispute="ngModel" [class.is-invalid]="dispute.invalid && dispute.touched" ngModel name="dispute" class="form-control borderClr" [(ngModel)]="userData.dispute" autocomplete="off" required></textarea>
                     <span class="text-danger float-left error_word" [class.d-none] = "dispute.valid || dispute.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Dispute is required</span>
             </div>
-            <div class="mt-4">
-            <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn mx-auto" (click)="disputeSave()">Save changes</button>
+            <div class="mt-4" style="text-align:center">
+            <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn" (click)="disputeSave()">Save changes</button>
           </div>
           </form>
         </div>

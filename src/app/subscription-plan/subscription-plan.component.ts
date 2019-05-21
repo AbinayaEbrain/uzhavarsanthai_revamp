@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DealsService } from '../deals.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-subscription-plan',
@@ -17,20 +18,24 @@ export class SubscriptionPlanComponent implements OnInit {
   usersCurrentCredits:any;
   currentCredits:any;
 
-  constructor(private _dealService: DealsService) {}
+  constructor(private _dealService: DealsService ,   public loadingCtrl: NgxSpinnerService,) {}
 
   ngOnInit() {
+    this.loadingCtrl.show();
     this.getSubscription();
     this.userId = JSON.parse(localStorage.getItem('currentUser'))._id;
     console.log(this.userId)
+    this.loadingCtrl.hide();
     this.currentUserCredit();
   }
 
   getSubscription() {
+      this.loadingCtrl.show();
     this._dealService.getSubscription().subscribe(
       res => {
         console.log(res);
         this.subscriptionArr = res;
+          this.loadingCtrl.hide();
       },
       err => {
         console.log(err);
@@ -39,10 +44,12 @@ export class SubscriptionPlanComponent implements OnInit {
   }
 
   currentUserCredit(){
+      this.loadingCtrl.show();
     this._dealService.getCurrentCredit(this.userId).subscribe(
       res => {
         console.log(res)
         this.usersCurrentCredits = res.credits
+          this.loadingCtrl.hide();
       },
       err => {
         console.log(err);
@@ -51,6 +58,7 @@ export class SubscriptionPlanComponent implements OnInit {
   }
 
   getSingleSubsc(id) {
+    this.loadingCtrl.show();
     this.id = id;
     console.log(this.id);
     this._dealService.getSingleSubscription(id).subscribe(
@@ -58,7 +66,8 @@ export class SubscriptionPlanComponent implements OnInit {
         console.log(data);
         this.subcriptionId = data._id;
         this.subcriptionData = data;
-        this.updateSubsc()
+        this.loadingCtrl.hide();
+        this.updateSubsc();
       },
       err => {
         console.log(err);
@@ -67,12 +76,14 @@ export class SubscriptionPlanComponent implements OnInit {
   }
 
 updateSubsc(){
+  this.loadingCtrl.show();
   this.subcriptionData.currentCredits = this.usersCurrentCredits;
   this._dealService
   .updateUserSubscription(this.subcriptionData, this.userId)
   .subscribe(
     data => {
       console.log(data);
+      this.loadingCtrl.hide();
       // this.getSubscription();
     },
     err => {

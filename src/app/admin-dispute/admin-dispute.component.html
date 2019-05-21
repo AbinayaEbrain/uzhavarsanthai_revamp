@@ -14,7 +14,7 @@
       </div>
       <div class="col-md-4"></div>
     </div>
-    <div class="container" *ngFor="let dispute of disputeTicketArr">
+    <div class="container" *ngFor="let dispute of disputeTicketArr | paginate: {id: 'foo', itemsPerPage:10,currentPage:d},let i = index">
       <div class="notice notice-success">
         <!-- <strong>Notice</strong> notice-success -->
         <div class="row">
@@ -25,10 +25,10 @@
           </div>
           <div class="col-md-6 col-4">
             <div class="float-right">
-              <button class="btn btn-sm btn-success ticketRow" *ngIf="!dispute.ticketStatus" (click)="getSingleDispute(dispute._id)" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static">
+              <button class="btn btn-sm btn-success ticketRow" *ngIf="!dispute.ticketStatus" (click)="getSingleDispute(dispute._id)" (click)="clear()" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static">
                 Resolve
               </button>
-              <button class="btn btn-sm btn-success ticketRow" *ngIf="dispute.ticketStatus" (click)="getSingleTicket(dispute._id)" data-toggle="modal" data-target="#exampleModalCenter1" data-backdrop="static">
+              <button class="btn btn-sm btn-success ticketRow" *ngIf="dispute.ticketStatus" (click)="getSingleTicket(dispute._id)" (click)="clear()" data-toggle="modal" data-target="#exampleModalCenter1" data-backdrop="static">
                   Resolve
               </button>
             </div>
@@ -83,6 +83,9 @@
         <strong>Notice</strong> notice-danger
       </div> -->
     </div>
+    <div class="mx-auto mt-3" *ngIf="!errMsg">
+      <pagination-controls id="foo"  class="ngx-pagination" style="margin-right: 30px;" maxSize="5" (pageChange)="d = $event"></pagination-controls>
+    </div>
   </div>
 </body>
 
@@ -94,21 +97,23 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 id="exampleModalLongTitle">Resolving Tickets</h5>
+        <p id="exampleModalLongTitle" class="modal-title fntSize">Resolving Tickets</p>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" class="text-white" id="closeCancelOrderModal">&times;</span>
+          <span aria-hidden="true" class="text-black x" id="closeCancelOrderModal">X</span>
         </button>
       </div>
       <div class="modal-body">
           <span class="float-right"><span><b>Ticket Id</b></span> : {{disputeObj1.ticketId}}</span>
       <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate> 
-          <div class="form-group mt-4">
-              <label class="english_wrd" for="solution" ><span style="font-size: 14px" class="tamil_word"> </span>Solution</label>
-                  <input type="text" #solution="ngModel" [class.is-invalid]="solution.invalid && solution.touched" ngModel name="solution" class="form-control" [(ngModel)]="disputeObj.solution" autocomplete="off" required>
+          <div class="form-group mt-2">
+              <label class="english_wrd" for="solution" style="color:#0d4608" >Solution</label>
+                  <textarea type="text" #solution="ngModel" [class.is-invalid]="solution.invalid && solution.touched" ngModel name="solution" class="form-control borderClr" [(ngModel)]="disputeObj.solution" autocomplete="off" required></textarea>
                   <span class="text-danger float-left error_word" [class.d-none] = "solution.valid || solution.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Solution is required</span>
           </div>
+          <div class="mt-4" style="text-align:center">
           <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn mx-auto" (click)="disputeUpdate()">Save</button>
-      </form>
+        </div>
+        </form>
       </div>
       <!-- <div class="modal-footer">
       </div> -->
@@ -121,21 +126,23 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 id="exampleModalLongTitle">Resolving Tickets</h5>
+        <h5 id="exampleModalLongTitle" class="modal-title fntSize">Resolving Tickets</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" class="text-white" id="closeCancelOrderModal1">&times;</span>
+          <span aria-hidden="true" class="text-black x" id="closeCancelOrderModal1">X</span>
         </button>
       </div>
       <div class="modal-body">
           <span class="float-right"><span><b>Ticket Id</b></span> : {{disputeObj1.ticketId}}</span>
       <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate> 
           <div class="form-group mt-4">
-              <label class="english_wrd" for="solution" ><span style="font-size: 14px" class="tamil_word"> </span>Solution</label>
-                  <input type="text" #solution="ngModel" [class.is-invalid]="solution.invalid && solution.touched" ngModel name="solution" class="form-control" [(ngModel)]="ticketObj.solution" autocomplete="off" required>
+              <label class="english_wrd" for="solution" style="color:#0d4608" >Solution</label>
+                  <textarea type="text" #solution="ngModel" [class.is-invalid]="solution.invalid && solution.touched" ngModel name="solution" class="form-control borderClr" [(ngModel)]="ticketObj.solution" autocomplete="off" required></textarea>
                   <span class="text-danger float-left error_word" [class.d-none] = "solution.valid || solution.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Solution is required</span>
           </div>
-          <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn mx-auto" (click)="ticketUpdate()">Save</button>
-      </form>
+          <div class="mt-4" style="text-align:center">
+          <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn" (click)="ticketUpdate()">Save</button>
+        </div>
+        </form>
       </div>
       <!-- <div class="modal-footer">
       </div> -->

@@ -380,6 +380,15 @@ color: white;
 #paraTag{
   margin-left: 3% !important;
 }
+.ticketTit{
+   text-align: center !important; color: #0d4608;font-weight: 600;
+}
+.ticketdate{
+  float: left!important;
+color: #0d4608;
+font-size: 15px;
+}
+
 }
 @media only screen and (min-width: 200px) and (max-width: 320px) {
   .nav-link{
@@ -451,4 +460,67 @@ color: white;
   .ticketPara{
     font-size: smaller;
   }
+}
+
+#accordion .panel{
+    border-radius: 0px;
+    box-shadow: none;
+    border: 1px solid #d5d5d5;
+    margin-bottom: 6px;
+}
+#accordion .panel-heading{
+    border-radius: 0px;
+    background-color:#fff;
+    padding:0;
+}
+#accordion .panel-title a{
+    display: block;
+    color: #2ca093;
+    font-size: 15px;
+    padding:14px 28px;
+    font-weight: bold;
+    position: relative;
+
+}
+#accordion .panel-title a.collapsed{
+    border-top:0;
+
+}
+#accordion .panel-title a:hover,
+#accordion .panel-title a:focus{
+    text-decoration: none;
+    outline: none;
+    border-top:1px solid #0d4608;
+}
+#accordion .panel-title a:before,
+#accordion .panel-title a.collapsed:before{
+
+    content: "\f068";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color:#2ca093;
+    position: absolute;
+    top:10px;
+    right:12px;
+    font-size: 14px;
+    line-height: 24px;
+}
+#accordion .panel-title a.collapsed:before{
+    content: "\f067";
+}
+#accordion .panel-body{
+    color: #8a8a8a;
+    font-size: 14px;
+    line-height: 20px;
+    background:#fff;
+    padding: 5px 27px 15px;
+    border-top: 0px none;
+}
+.ticketTit{
+   text-align: start ;color: #0d4608;font-weight: 600;
+}
+.ticketdate{
+  text-align: end !important;
+color: #0d4608;
+font-size: 15px;
 }

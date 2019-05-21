@@ -309,18 +309,17 @@ color: white;
   color: white;
 }
 
-.dropdown:hover>.dropdown-menu {
+/* .dropdown:hover>.dropdown-menu {
   display: block;
-}
+} */
 
 .dropdown-toggle::after {
   display:none;
 }
-
+/* 
 .dropdown>.dropdown-toggle:active {
-  /*Without this, clicking will make it sticky*/
     pointer-events: none;
-}
+} */
 
 /* component */
 
@@ -345,10 +344,24 @@ color: white;
 }
 
 .star-rating :checked ~ label {
-  color:#f90;
+  color:#0d4608;
 }
 
 .star-rating label:hover,
 .star-rating label:hover ~ label {
-  color:#fc0;
+  color:#0d4608;
+}
+
+textarea{ 
+  height:70px; 
+  min-height:70px;  
+  max-height:70px;
+}
+
+.borderClr{
+  border: 1px solid #0d4608 !important;
+}
+
+.english_wrd {
+  font-family: 'Mukta', sans-serif;
 }

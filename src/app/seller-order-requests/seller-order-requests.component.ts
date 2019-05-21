@@ -11,7 +11,8 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./seller-order-requests.component.css']
 })
 export class SellerOrderRequestsComponent implements OnInit {
-  @ViewChild('disputeForm') mytemplateForm: NgForm;
+
+  @ViewChild('disputeForm') mytemplateForm1: NgForm;
   orderRequests: any = [];
   acntID: any;
   errMsg: any;
@@ -29,6 +30,8 @@ export class SellerOrderRequestsComponent implements OnInit {
   disputeMailData: any = {};
   disputeData: any;
   submitted: any;
+  id = '';
+
   private sendMailForReject =
     'https://uzhavarsanthai.herokuapp.com/api/sendMailRejectSeller';
   private disputeMail = 'https://uzhavarsanthai.herokuapp.com/api/sendDisputeMail';
@@ -38,7 +41,14 @@ export class SellerOrderRequestsComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     public loadingCtrl: NgxSpinnerService
-  ) {}
+  ) {
+    for (let i = 1; i <= this.createdRequests.length; i++) {
+      this.createdRequests.push(`deal ${i}.0`);
+    }
+    for (let i = 1; i <= this.cancelledRequests.length; i++) {
+      this.cancelledRequests.push(`deal ${i}.0`);
+    }
+  }
 
   ngOnInit() {
     this.loadingCtrl.show();
@@ -64,6 +74,7 @@ export class SellerOrderRequestsComponent implements OnInit {
       data => {
         console.log(data);
         this.orderRequests = data;
+        this.cancelledErrMsg = '';
         this.createdRequests = [];
         this.getCreatedRequests();
       },
@@ -177,11 +188,9 @@ export class SellerOrderRequestsComponent implements OnInit {
   }
 
   disputeSave() {
-
     var a = "UZ";
     let reqId = Math.floor(100000 + Math.random() * 900000);
     this.userData.ticketId = a + "-" + reqId;
-
     this.userData.buyerName = this.singleOrderRequest.buyerName;
     this.userData.buyerId = this.singleOrderRequest.buyerId;
     this.userData.disputerName = this.singleOrderRequest.sellerName;
@@ -202,7 +211,8 @@ export class SellerOrderRequestsComponent implements OnInit {
         this.userData.disputeId = data._id;
         this.disputeData = data.dispute;
         this.updatePostDispute();
-        this.mytemplateForm.reset();
+        this.mytemplateForm1.reset();
+        this.formReset();
         document.getElementById('closeCancelOrderModal').click();
       },
       err => {
@@ -276,6 +286,10 @@ export class SellerOrderRequestsComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  formReset(){
+    this.mytemplateForm1.reset();
   }
 
 }

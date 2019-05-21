@@ -1,6 +1,6 @@
 <div class="container mobviewmt" style="margin-top:8%;height: 77vh;">
   <button type="submit" class="btn  btn1 button_word btn-success" style="float:left;" routerLink="/admin" >Back</button>
-  <button type="submit" class="btn  btn1 button_word btn-success" data-toggle="modal" data-target="#myModal" style="float:right;">Specified Users</button>
+  <button type="submit" class="btn  btn1 button_word btn-success" data-toggle="modal" data-target="#myModal" (click)="clear()" style="float:right;">Specified Users</button>
     <br><br>
             <h4  style="color: #0d4608;text-align: center;">Notification</h4>
             <div class="row mt-3">
@@ -72,8 +72,8 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-              <h4 class="modal-title">Specific Notification</h4>
-          <button type="button" class="close" style="color:white" data-dismiss="modal">&times;</button>
+              <p class="modal-title fntSize">Specific Notification</p>
+          <button type="button" class="close x" style="color:black" data-dismiss="modal">X</button>
       </div>
         <div class="modal-body">
           <form
@@ -99,8 +99,7 @@
                 is required</span
               >
             </div>
-            <br>
-            <div class="form-group" style="color:#0d4608;">
+            <div class="form-group mt-4" style="color:#0d4608;">
               <label class="blgtitle" for="usr">Notification Title</label>
               <textarea
                #msgBodyone="ngModel" ngModel [(ngModel)]="notificationMsg.msgBodyone" name="msgBodyone"
@@ -118,7 +117,7 @@
                 is required</span
               >
             </div>
-            <br>
+            <div class="form-group mt-4">
             <label class="blgtitle" for="phone" >Select Category</label>
              <div class="form-group" style="color:#0d4608;">
                  <select required class="form-control" style="border-color: #0d4608;" placeholder="Choose unit" #msgCategory="ngModel" name="msgCategory" [class.is-invalid]="msgCategory.invalid && msgCategory.touched" ngModel [(ngModel)]="notificationMsg.msgCategory" >
@@ -128,9 +127,10 @@
                      <option value="Engaged Users" class="categoryOption">Engaged Users</option>
                      <option value="Inactive Users" class="categoryOption">Inactive Users</option>
                    </select>
-                       <span class="text-danger float-left error_word" [class.d-none] = "msgCategory.valid || msgCategory.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i>Category is required</span>
+                       <span class="text-danger float-left error_word" [class.d-none] = "msgCategory.valid || msgCategory.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span>
                </div>
-            <div class="mt-5 mb-3" style="text-align:center">
+              </div>
+            <div class="mt-4 mb-3" style="text-align:center">
               <button
                 type="button"
                 [disabled]="specifynotificationForm.form.invalid"
@@ -143,9 +143,6 @@
               </button>
             </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
   

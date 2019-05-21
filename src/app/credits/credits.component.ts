@@ -16,7 +16,11 @@ export class CreditsComponent implements OnInit {
   constructor(
     private _dealsService: DealsService,
     public loadingCtrl: NgxSpinnerService
-  ) {}
+  ) {
+    for (let i = 1; i <= this.creditsArr.length; i++) {
+      this.creditsArr.push(`deal ${i}.0`);
+    }
+  }
 
   ngOnInit() {
     this.loadingCtrl.show();
