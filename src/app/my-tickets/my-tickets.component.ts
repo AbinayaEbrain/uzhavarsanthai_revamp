@@ -87,6 +87,9 @@ changeColor1(){
 }
 
   getAlltickets(){
+    this.noClosedTicketsMsg = '';
+    document.getElementById('paraTag').style.borderBottom = "solid white";
+    document.getElementById('paraTag1').style.borderBottom = "solid white";
     this.userTickets = [];
     this.loadingCtrl.show();
     this.getdisputes();
