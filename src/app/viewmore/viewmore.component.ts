@@ -129,7 +129,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
     private http: HttpClient
   ) {
       this.registeredUserData.address.location = '';
-      this.registeredUserData.address.city = '';     
+      this.registeredUserData.address.city = '';
   }
 
   ngOnInit() {
@@ -321,11 +321,12 @@ sendQuery(){
       this.storeOrderRequest();
       this.mytemplateForm3.reset();
         this.orderRequestMsg = 'We got your order query, we get back to you soon!';
-        document.getElementById("closeRequirementModal").click();
          setTimeout(() => {
              this.orderRequestMsg='';
+            document.getElementById("closeRequirementModal").click();
+             this.router.navigate(['/my-order']);
          },3000)
-        this.router.navigate(['/my-order']);
+
         this.loadingCtrl.hide();
     },
     err => {console.log(err);
