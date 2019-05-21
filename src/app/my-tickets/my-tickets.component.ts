@@ -33,7 +33,14 @@ export class MyTicketsComponent implements OnInit {
   noClosedTicketsMsg : any;
   @ViewChild('ticketForm') mytemplateForm: NgForm;
 
-  constructor(private _dealsService: DealsService,public loadingCtrl: NgxSpinnerService,private router: Router,) { }
+  constructor(private _dealsService: DealsService,public loadingCtrl: NgxSpinnerService,private router: Router,) { 
+    for (let i = 1; i <= this.userTickets.length; i++) {
+      this.userTickets.push(`deal ${i}.0`);
+    }
+    for (let i = 1; i <= this.getExactDisputes.length; i++) {
+      this.getExactDisputes.push(`deal ${i}.0`);
+    }
+  }
 
   ngOnInit() {
       this.loadingCtrl.show();

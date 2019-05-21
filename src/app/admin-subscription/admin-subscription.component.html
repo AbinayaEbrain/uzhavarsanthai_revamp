@@ -84,9 +84,9 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" style="font-family:'Oxygen', sans-serif;color: white;"><b>Create Subscription</b></h5>
+          <p class="modal-title fntSize" style="font-family:'Oxygen', sans-serif;"><b>Create Subscription</b></p>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" class="text-white" (click)="clear()" id="closeCancelOrderModal1">&times;</span>
+            <span aria-hidden="true" class="text-black x" (click)="clear()" id="closeCancelOrderModal1">X</span>
           </button>
         </div>
         <div class="modal-body">
@@ -134,7 +134,7 @@
                   </div>
               </div>
               <div class="text-center mt-3">
-                <button type="submit" class="btn button_word" (click)="onSubmit()">Create Subscription</button>
+                <button type="submit" class="btn btnClr button_word" (click)="onSubmit()">Create Subscription</button>
               </div>
               </form>
         </div>
@@ -146,20 +146,18 @@
  <!-- modal -->
 
  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
+    <div class="modal-dialog modal-dialog-centered">
+ 
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-
-          <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;color: white;">Delete Confirmation</h4>
+          <p class="modal-title fntSize" style="font-family:'Oxygen', sans-serif;">Delete Confirmation</p>
         </div>
         <div class="modal-body">
-          <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete?</h6>
+          <p class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete?</p>
           <div class="text-center">
-
-           <button type="button" class="btn btnClr button_word" (click)="deleteuser()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" class="btn btnDanger button_word" routerLink="/products" data-dismiss="modal">No</button>
+           <button type="button" class="btn btnClr button_word modelBtn" (click)="deleteuser()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btnDanger button_word modelBtn" routerLink="/products" data-dismiss="modal">No</button>
           </div>
         </div>
 
@@ -170,22 +168,22 @@
 
 
   <div class="modal fade" id="myModal1" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
 
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" style="font-family:'Oxygen', sans-serif;color: white;">Delete Confirmation</h4>
+          <h4 class="modal-title fntSize" style="font-family:'Oxygen', sans-serif;">Delete Confirmation</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" class="text-white" (click)="clear()" id="closeCancelOrderModal">&times;</span>
+            <span aria-hidden="true" class="text-black x" (click)="clear()" id="closeCancelOrderModal">X</span>
           </button>
         </div>
         <div class="modal-body">
           <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete?</h6>
           <div class="text-center">
 
-           <button type="button" class="btn btnClr button_word" (click)="deleteSubscription()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
-           <button type="button" class="btn btnDanger button_word" data-dismiss="modal">No</button>
+           <button type="button" class="btn btnClr button_word modelBtn" (click)="deleteSubscription()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btnDanger button_word modelBtn" data-dismiss="modal">No</button>
           </div>
         </div>
 

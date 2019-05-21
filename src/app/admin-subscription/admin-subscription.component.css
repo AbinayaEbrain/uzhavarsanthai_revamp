@@ -22,3 +22,27 @@
     width: 100%;
     min-height: -webkit-fill-available;
   }
+
+  .btnClr {
+    border: 2px solid #0d4608;
+    color: #0d4608;
+    background-color: white;
+    font-weight: bolder;
+  }
+  
+  .btnClr:hover {
+    background-color: #0d4608;
+    color: white;
+  }
+  
+  .btnDanger {
+    border: 2px solid #dc3545;
+    color: #dc3545;
+    background-color: white;
+    font-weight: bolder;
+  }
+  
+  .btnDanger:hover {
+    background-color: #dc3545;
+    color: white;
+  }

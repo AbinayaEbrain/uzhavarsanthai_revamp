@@ -12,8 +12,9 @@
   color: transparent !important;
 }
 .modal-header {
-  background-color: #0d4608;
-  color: white;
+  background-color: white;
+  color: #0d4608;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 .ngx-pagination a {
   border: 1px solid #0d4608;
@@ -119,4 +120,17 @@ ol {
 .sweet-alert button {
   background-color: #0d4608 !important;
   padding: 6px 20px !important;
+}
+
+.modelBtn{
+  padding: 0.0rem 0.5rem !important;
+}
+
+.fntSize{
+  font-size: 18px !important;
+  font-weight:bold !important;
+}
+
+.x{
+  font-weight: 400 !important;  
 }

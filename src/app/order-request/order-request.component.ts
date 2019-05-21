@@ -24,8 +24,8 @@ export class OrderRequestComponent implements OnInit {
     private _auth: AuthService,
     public loadingCtrl: NgxSpinnerService
   ) {
-    for (let i = 1; i <= this.userOrderReq.length; i++) {
-      this.userOrderReq.push('Angular ${i}.0');
+    for (let i = 1; i <= this.userOrderReq1.length; i++) {
+      this.userOrderReq1.push('Angular ${i}.0');
     }
   }
 

@@ -85,6 +85,7 @@ export class PostComponent implements OnInit {
   credits: any = {};
   creditMinus:any;
   creditObj: any = {};
+  myCredit: any;
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -125,6 +126,10 @@ export class PostComponent implements OnInit {
     this.editId = this.router.snapshot.params['id'];
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.productData.avlPlace = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).address.city.formatted_address;
+
+    this.multiData.avlPlace = JSON.parse(
       localStorage.getItem('currentUser')
     ).address.city.formatted_address;
     this.getUser();
@@ -228,19 +233,35 @@ export class PostComponent implements OnInit {
 
   postImage() {
     this.loadingCtrl.show();
-    if (this.singleImage) {
-      var image = new FormData(); //FormData creation
-      image.append('Image', this.singleImage);
-      //Adding the image to the form data to be sent
-      this._dealsService.sendImage(image).subscribe(res => {
-        this.loadingCtrl.hide();
-        this.productData.image = res;
-        this.postProduct();
+    console.log(this.credits)
+    this.myCredit = this.credits.credits;
+    console.log(this.myCredit);
+    this.creditMinus = (this.productData.price * this.productData.quantity) * (1 / 100);
+    console.log(this.creditMinus);
+    if(this.myCredit < this.creditMinus){
+      console.log('No credit')
+      swal({
+        title: 'You have no credit!',
+        text:
+          'If you post your product! Please pay MONEY show your PLANS.',
+        imageUrl: '../../assets/Images/progress.gif'
       });
-    } else {
-      this.productData.image =
-        'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
-      this.postProduct();
+      this.route.navigate(['/subscription-plan']);
+      this.loadingCtrl.hide();
+    }else{
+      if (this.singleImage) {
+        var image = new FormData(); //FormData creation
+        image.append('Image', this.singleImage);
+        //Adding the image to the form data to be sent
+        this._dealsService.sendImage(image).subscribe(res => {
+          this.productData.image = res;
+          this.postProduct();
+        });
+      } else {
+        this.productData.image =
+          'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
+        this.postProduct();
+      }
     }
   }
 
@@ -252,7 +273,6 @@ export class PostComponent implements OnInit {
           var image = new FormData(); //FormData creation
           image.append('Image', this.urls[i]);
           this._dealsService.sendImage(image).subscribe(res => {
-            this.loadingCtrl.hide();
             console.log(res);
             this.Image.push(res);
             this.postMultiProduct();
@@ -263,7 +283,6 @@ export class PostComponent implements OnInit {
         this.multiData.image = this.splitImage;
         this.productData.image =
           'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
-        this.loadingCtrl.hide();
         this.postMultiProduct();
       }
     } else {
@@ -272,7 +291,6 @@ export class PostComponent implements OnInit {
           var image = new FormData(); //FormData creation
           image.append('Image', this.urls[i]);
           this._dealsService.sendImage(image).subscribe(res => {
-            this.loadingCtrl.hide();
             console.log(res);
             this.Image.push(res);
             this.postMultiProduct();
@@ -282,7 +300,6 @@ export class PostComponent implements OnInit {
       } else {
         this.multiData.image =
           'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
-        this.loadingCtrl.hide();
         this.postMultiProduct();
       }
     }
@@ -331,21 +348,23 @@ export class PostComponent implements OnInit {
     let curntDte = new Date().getTime();
     this.productData.date = curntDte;
 
-    this.creditMinus = (this.productData.price * this.productData.quantity) * (1 / 100);
-    console.log(this.creditMinus);
-
     this._dealsService.addPost(this.productData).subscribe(
       res => {
         console.log(res);
+        if (this.addr == undefined || this.addr == null) {
+          this.productData.avlPlace = this.productData.avlPlace.formatted_address;
+        } else {
+          this.productData.avlPlace = this.addr.formatted_address;
+        }
         this.creditObj.productId = res._id;
+        this.getUser();
         this.updateUser();
         this.success = 'Posted successfully!';
-        this.loadingCtrl.hide();
+        document.getElementById('idView').scrollIntoView();
         setTimeout(() => {
-          this.loadingCtrl.show();
           this.route.navigate(['products']);
           this.loadingCtrl.hide();
-        }, 1000);
+        }, 3000);
       },
       err => {
         if (err instanceof HttpErrorResponse) {
@@ -457,18 +476,24 @@ export class PostComponent implements OnInit {
         let curntDte = new Date().getTime();
         this.multiData.date = curntDte;
 
+        console.log(this.multiData);
         this._dealsService
           .updateMultiPost(this.multiData, this.editId)
           .subscribe(
             res => {
               console.log(res);
+              if (this.addr == undefined || this.addr == null) {
+                this.multiData.avlPlace = this.oldAvlplace.formatted_address;
+              } else {
+                this.multiData.avlPlace = this.addr.formatted_address;
+              }
               this.success = 'Posted successfully!';
-              this.loadingCtrl.hide();
+              document.getElementById('idView').scrollIntoView();
               setTimeout(() => {
                 this.loadingCtrl.show();
                 this.route.navigate(['products']);
                 this.loadingCtrl.hide();
-              }, 1000);
+              }, 2000);
             },
             err => {
               if (err instanceof HttpErrorResponse) {
@@ -494,6 +519,14 @@ export class PostComponent implements OnInit {
           this.multiData.image = this.Image;
         }
 
+        if (this.addr == undefined || this.addr == null) {
+          this.multiData.avlPlace = JSON.parse(
+            localStorage.getItem('currentUser')
+          ).address.city;
+        } else {
+          this.multiData.avlPlace = this.addr;
+        }
+
         for (let i = 0; i < this.categoryArr.length; i++) {
           if (this.multiData.categoryId == this.categoryArr[i]._id) {
             this.multiData.category = this.categoryArr[i].productCategory;
@@ -501,20 +534,21 @@ export class PostComponent implements OnInit {
         }
 
         this.multiData.ipAddress = this.privateIP;
-        this.multiData.avlPlace = this.addr;
+        // this.multiData.avlPlace = this.addr;
         let curntDte = new Date().getTime();
         this.multiData.date = curntDte;
 
+        console.log(this.multiData);
         this._dealsService.addMultiPost(this.multiData).subscribe(
           res => {
             console.log(res);
             this.success = 'Posted successfully!';
-            this.loadingCtrl.hide();
+            document.getElementById('idView').scrollIntoView();
             setTimeout(() => {
               this.loadingCtrl.show();
               this.route.navigate(['products']);
               this.loadingCtrl.hide();
-            }, 1000);
+            }, 2000);
           },
           err => {
             if (err instanceof HttpErrorResponse) {

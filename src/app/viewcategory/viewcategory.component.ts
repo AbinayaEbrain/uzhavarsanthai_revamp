@@ -118,18 +118,18 @@ export class ViewcategoryComponent implements OnInit {
             }
             this.getMultiArray();
 
-            if (this.totalDeals.length == 0) {
-              this.loadingCtrl.show();
-              this.errMsg = 'Currently no deals available';
-              document.getElementById('hidePagination').style.display = 'none';
-              document.getElementById('hideSearchDiv').style.display = 'none';
-              document.getElementById('hideSelectedCategory').style.display ='none';
-              document.getElementById('hideFilterButton').style.display = 'none';
-              document.getElementById('hideSearchlocDiv').style.display = 'none';
-              document.getElementById('hideFilterButton2').style.display = 'none';
+            // if (this.totalDeals.length == 0) {
+            //   this.loadingCtrl.show();
+            //   this.errMsg = 'Currently no deals available';
+            //   document.getElementById('hidePagination').style.display = 'none';
+            //   document.getElementById('hideSearchDiv').style.display = 'none';
+            //   document.getElementById('hideSelectedCategory').style.display ='none';
+            //   document.getElementById('hideFilterButton').style.display = 'none';
+            //   document.getElementById('hideSearchlocDiv').style.display = 'none';
+            //   document.getElementById('hideFilterButton2').style.display = 'none';
 
-              this.loadingCtrl.hide();
-            }
+            //   this.loadingCtrl.hide();
+            // }
 
             this.showDeals = true;
           },
@@ -161,18 +161,18 @@ export class ViewcategoryComponent implements OnInit {
           }
           this.getMultiArray();
 
-          if (this.totalDeals.length == 0) {
-            this.loadingCtrl.show();
-            this.errMsg = 'Currently no deals available';
-            document.getElementById('hidePagination').style.display = 'none';
-            document.getElementById('hideSearchDiv').style.display = 'none';
-            document.getElementById('hideSelectedCategory').style.display ='none';
-            document.getElementById('hideFilterButton').style.display = 'none';
-            document.getElementById('hideSearchlocDiv').style.display = 'none';
-            document.getElementById('hideFilterButton2').style.display = 'none';
+          // if (this.totalDeals.length == 0) {
+          //   this.loadingCtrl.show();
+          //   this.errMsg = 'Currently no deals available';
+          //   document.getElementById('hidePagination').style.display = 'none';
+          //   document.getElementById('hideSearchDiv').style.display = 'none';
+          //   document.getElementById('hideSelectedCategory').style.display ='none';
+          //   document.getElementById('hideFilterButton').style.display = 'none';
+          //   document.getElementById('hideSearchlocDiv').style.display = 'none';
+          //   document.getElementById('hideFilterButton2').style.display = 'none';
 
-            this.loadingCtrl.hide();
-          }
+          //   this.loadingCtrl.hide();
+          // }
 
           this.showDeals = true;
         },
@@ -202,6 +202,7 @@ export class ViewcategoryComponent implements OnInit {
     this._dealService.getMultiPost().subscribe(res =>{
       let j = 0;
       this.multiPost = res;
+      console.log(this.multiPost);
         let CurrentDate = new Date().toISOString();
       for (let i = 0; i < this.multiPost.length; i++) {
         if (
@@ -216,6 +217,7 @@ export class ViewcategoryComponent implements OnInit {
           this.loadingCtrl.hide();
         }
       }
+      console.log(this.multiPost);
       this.getArray();
     },err =>{
       console.log(err);
@@ -224,6 +226,7 @@ export class ViewcategoryComponent implements OnInit {
     this._dealService.getMultiPost().subscribe(res =>{
       let j = 0;
       this.multiPost = res;
+      console.log(this.multiPost);
         let CurrentDate = new Date().toISOString();
       for (let i = 0; i < this.multiPost.length; i++) {
         if (
@@ -247,7 +250,29 @@ export class ViewcategoryComponent implements OnInit {
   }
 
   getArray(){
-    this.singleMultiArray = this.totalDeals.concat(this.multiPosts);
+    if(this.totalDeals && this.multiPosts){
+      this.singleMultiArray = this.totalDeals.concat(this.multiPosts);
+      console.log(this.singleMultiArray);
+    }else if(this.totalDeals){
+      this.singleMultiArray = this.totalDeals;
+      console.log(this.singleMultiArray);
+    }else{
+      this.singleMultiArray = this.multiPosts;
+      console.log(this.singleMultiArray);
+    }
+
+      if (this.singleMultiArray.length == 0) {
+            this.loadingCtrl.show();
+            this.errMsg = 'Currently no deals available';
+            document.getElementById('hidePagination').style.display = 'none';
+            document.getElementById('hideSearchDiv').style.display = 'none';
+            document.getElementById('hideSelectedCategory').style.display ='none';
+            document.getElementById('hideFilterButton').style.display = 'none';
+            document.getElementById('hideSearchlocDiv').style.display = 'none';
+            document.getElementById('hideFilterButton2').style.display = 'none';
+
+            this.loadingCtrl.hide();
+          }
   }
 
   getGoogleAddress() {

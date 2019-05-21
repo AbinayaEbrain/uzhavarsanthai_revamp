@@ -17,7 +17,11 @@ export class AdminSubscriptionComponent implements OnInit {
   submitted : any;
   deleteuser : any;
    
-  constructor(private _dealsService: DealsService) {}
+  constructor(private _dealsService: DealsService) {
+    for (let i = 1; i <= this.subscriptionArr.length; i++) {
+      this.subscriptionArr.push('Angular ${i}.0');
+    }
+  }
 
   ngOnInit() {
     this.getSubscription();

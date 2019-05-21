@@ -43,10 +43,17 @@ export class MyOrderComponent implements OnInit {
   constructor(
     private _dealService: DealsService,
     private http: HttpClient,
-    private router: ActivatedRoute,
-    private route: Router ,
+    private route: ActivatedRoute,
+    private router: Router ,
     public loadingCtrl: NgxSpinnerService
-  ) {}
+  ) {
+    for (let i = 1; i <= this.recentOrder.length; i++) {
+      this.recentOrder.push(`deal ${i}.0`);
+    }
+    for (let i = 1; i <= this.pastOrder.length; i++) {
+      this.pastOrder.push(`deal ${i}.0`);
+    }
+  }
 
   ngOnInit() {
     this.getSignupReq();
@@ -274,9 +281,7 @@ disputeSave() {
     data => {
       console.log(data);
       this.reviewData.disputeId = data._id;
-      console.log(this.reviewData.disputeId)
       this.disputeData = data.dispute;
-      console.log(this.disputeData);
       this.updatePostDispute();
       this.mytemplateForm1.reset();
       document.getElementById('closeCancelOrderModal').click();
@@ -351,6 +356,16 @@ disputeMailSend() {
       console.log(err);
     }
   );
+}
+
+formReset(){
+  this.id = '';
+  this.mytemplateForm1.reset();
+}
+clear(){
+  this.router.navigateByUrl('/dummy', { skipLocationChange: true });
+        setTimeout(() => this.router.navigate(['/my-order']),0);    
+        this.mytemplateForm.reset();
 }
 
 }

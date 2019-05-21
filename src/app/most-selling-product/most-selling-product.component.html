@@ -10,7 +10,7 @@
       <!-- <p class="updateProfile">Used Credits</p> -->
       <div class="row" style="padding: 10px;">
         <div class="col-md-12">
-            <div class="card mb-3" *ngFor="let credit of orderrequests">
+            <div class="card mb-3" *ngFor="let credit of orderrequests | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
                 <div class="card-header cardShadow shadow-sm bg-white rounded text-left">
                   <div><strong class="tamil_word">{{ credit.category }}</strong></div>
                   <small>Posted On : {{ credit.date | date }}</small>
@@ -46,6 +46,9 @@
                 </div>
               </div>
         </div>
+      </div>
+      <div class="mx-auto mt-3" *ngIf="!orderrequestsErr">
+        <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
       </div>
 </div></div>
 </body>

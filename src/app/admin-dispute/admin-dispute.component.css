@@ -72,3 +72,13 @@
     font-size: smaller;
   }
 }
+
+textarea{ 
+  height:70px; 
+  min-height:70px;  
+  max-height:70px;
+}
+
+.borderClr{
+  border: 1px solid #0d4608 !important;
+}

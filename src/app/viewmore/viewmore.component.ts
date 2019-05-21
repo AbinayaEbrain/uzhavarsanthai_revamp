@@ -129,8 +129,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
     private http: HttpClient
   ) {
       this.registeredUserData.address.location = '';
-      this.registeredUserData.address.city = '';
-      this.querydata.requiredUnit = '';
+      this.registeredUserData.address.city = '';     
   }
 
   ngOnInit() {

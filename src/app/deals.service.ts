@@ -38,8 +38,12 @@ export class DealsService {
   //Active URL
   private activeUrl =
     'https://uzhavarsanthai.herokuapp.com/api/admin-user/active';
-  private updateuserurl = 'https://uzhavarsanthai.herokuapp.com/api/updateuser';
-  // private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
+
+  private updateuserurl = 'http://localhost:5000/api/updateuser';
+  private _updatePostName = 'http://localhost:5000/api/updateNamePost';
+  private _updateReviewSellerName = 'http://localhost:5000/api/updateSellerNameReview';
+  private _updateReviewBuyerName = 'http://localhost:5000/api/updateBuyerNameReview';
+
   private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private notificationtoallurl =
     'https://uzhavarsanthai.herokuapp.com/api/notificationtoall';
@@ -152,8 +156,19 @@ export class DealsService {
   }
 
   updateCustomer(data, id) {
-    console.log(data);
     return this.http.put<any>(this.updateuserurl + '/' + id, data);
+  }
+
+  updatePostName(data, id) {
+    return this.http.post<any>(this._updatePostName + '/' + id, data);
+  }
+
+  updateReviewSellerName(data, id) {
+    return this.http.post<any>(this._updateReviewSellerName + '/' + id, data);
+  }
+
+  updateReviewBuyerName(data, id) {
+    return this.http.post<any>(this._updateReviewBuyerName + '/' + id, data);
   }
 
   addMultiPost(data) {

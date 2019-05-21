@@ -273,7 +273,7 @@
           id="dropdown03"
           data-toggle="dropdown"
           aria-haspopup="true"
-          aria-expanded="false"
+          aria-expanded="true"
           >{{this._authService.getUserName()}} <i class="fa fa-caret-down" aria-hidden="true"></i></a
         >
         <div class="dropdown-menu" aria-labelledby="dropdown03">
@@ -281,6 +281,7 @@
             class="dropdown-item"
             routerLink="/updateuser"
             style="cursor: pointer;color:#0d4608"
+            aria-expanded="true"
             >Edit Profile</a
           >
           <a
@@ -292,12 +293,14 @@
           class="dropdown-item"
           routerLink="/credits"
           style="cursor: pointer;color:#0d4608"
+          aria-expanded="true"
           >Credits</a
         >
         <a
         class="dropdown-item"
         routerLink="/most-selling-product"
         style="cursor: pointer;color:#0d4608"
+        aria-expanded="true"
         >Most-sell-product</a
       >
       <a
@@ -309,12 +312,14 @@
       class="dropdown-item"
       routerLink="/subscription-plan"
       style="cursor: pointer;color:#0d4608"
+      aria-expanded="true"
       >Subscription plan
     </a>
           <a
             class="dropdown-item"
             style="cursor: pointer;color:#0d4608"
             (click)="_authService.logoutUser()"
+            aria-expanded="true"
             >Logout</a
           >
         </div>

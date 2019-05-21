@@ -77,8 +77,7 @@
                       </div>
                   </div>
               </div>
-          </div>
-              <div class="mx-auto mt-3">
+              <div class="mx-auto mt-3" *ngIf="!noTicketsMsg">
                    <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
                  </div>
             </div>
@@ -166,9 +165,7 @@ border-radius: 0px 10px 0px 10px;padding: 1.2%;" [ngStyle]="{'background-color':
                         }}</p>
                   </div>
               </div>
-          </div>
-      </div>
-              <div class="mx-auto mt-3">
+              <div class="mx-auto mt-3" *ngIf="!noDisputesMsg">
                    <pagination-controls id="foo1"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
                  </div>
             </div>

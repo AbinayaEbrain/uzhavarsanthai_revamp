@@ -57,4 +57,9 @@ export class NotificationsComponent implements OnInit {
         }
       );
   }
+
+  clear(){
+    this.mytemplateFormmdl.reset();
+  }
+
 }
