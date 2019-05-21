@@ -6,6 +6,18 @@
   <h4 class="text-center clr" style="color: #0d4608;font-family: 'Oxygen', sans-serif;font-weight:bold;">Subscription Plans</h4>
   <br>
 <div class="container">
+  <div class="row" *ngIf="successMsg || errMsg">
+       <div class="col-md-4"></div>
+       <div class="col-md-4">
+         <div class="alert alert-success text-center" *ngIf="successMsg">
+           {{successMsg}}
+         </div>
+         <div class="alert alert-danger text-center" *ngIf="errMsg">
+           {{errMsg}}
+         </div>
+       </div>
+       <div class="col-md-4"></div>
+     </div>
     <div class="row">
         <div class="col-md-3 col-sm-5 btn-5" *ngFor="let dispute of subscriptionArr">
             <div class="pricingTable">
