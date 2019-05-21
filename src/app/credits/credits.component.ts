@@ -37,11 +37,12 @@ export class CreditsComponent implements OnInit {
             console.log(res[i]);
             this.credits = res[i];
             this.creditsArr = res[i].creditDetails;
-            console.log(this.creditsArr);
           }
         }
+        console.log(this.creditsArr.length);
 
-        if (this.creditsArr == undefined) {
+        if (this.creditsArr.length == 0 || this.creditsArr == [] || this.creditsArr == undefined) {
+                      console.log(this.creditsArr);
           this.errMsg = 'You have not posted products yet!';
         } else {
           this.creditsArr = this.creditsArr.reverse();
