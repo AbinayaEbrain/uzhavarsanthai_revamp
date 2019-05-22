@@ -380,7 +380,6 @@ export class UserDealsEditComponent implements OnInit {
 
   //Minus credits when edit post
   QuantityCredit(){
-alert()
       this.cumulativequantity = this.newquantity - this.lastquantity;
       console.log(this.cumulativequantity);
 
@@ -410,7 +409,6 @@ alert()
     }
 
   quantityPriceCredit(){
-alert()
     if(this.lastquantity < this.newquantity){
       this.cumulativequantity = this.newquantity - this.lastquantity;
       console.log(this.cumulativequantity);
@@ -504,7 +502,6 @@ alert()
   }
 
   sellerReduceQuantity(){
-    alert()
       console.log(this.newquantity);
     console.log(this.lastprice)
     this.cumulativecredit = ((this.newquantity * this.lastprice) * 1/100);
@@ -525,7 +522,6 @@ alert()
   }
 
   sellerQuantityPrice(){
-alert()
       this.cumulativequantity =  this.newquantity;
       console.log(this.cumulativequantity);
 

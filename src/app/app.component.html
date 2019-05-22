@@ -94,7 +94,7 @@
         *ngIf="
           _authService.loggedIn() &&
           !_authService.roleAdmin() &&
-          _authService.findActive() && !_authService.roleBuyer()
+          _authService.findActive()  
         "
         class="nav-item"
         data-toggle="collapse"
@@ -111,7 +111,7 @@
       *ngIf="
         _authService.loggedIn() &&
         !_authService.roleAdmin() &&
-        _authService.findActive() && !_authService.roleBuyer()
+        _authService.findActive() 
       "
       class="nav-item"
       data-toggle="collapse"
@@ -162,7 +162,7 @@
       *ngIf="
         _authService.loggedIn() &&
         !_authService.roleAdmin() &&
-        _authService.findActive() && _authService.roleBuyer()
+        _authService.findActive()
       "
       class="nav-item"
       data-toggle="collapse"
@@ -282,13 +282,13 @@
             routerLink="/updateuser"
             style="cursor: pointer;color:#0d4608"
             aria-expanded="true"
-            >Edit Profile</a
+            >My Profile</a
           >
           <a
           *ngIf="
           _authService.loggedIn() &&
           !_authService.roleAdmin() &&
-          _authService.findActive() && !_authService.roleBuyer()
+          _authService.findActive() 
         "
           class="dropdown-item"
           routerLink="/credits"
@@ -307,7 +307,7 @@
       *ngIf="
         _authService.loggedIn() &&
         !_authService.roleAdmin() &&
-        _authService.findActive() && !_authService.roleBuyer()
+        _authService.findActive() 
       "
       class="dropdown-item"
       routerLink="/subscription-plan"
