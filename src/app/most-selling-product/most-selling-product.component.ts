@@ -14,6 +14,7 @@ export class MostSellingProductComponent implements OnInit {
   productId: any;
   acntID: any;
   crdDeals = [];
+  p:any;
   userDeals = [];
   orderrequests: any = [];
   orderrequestsErr = '';

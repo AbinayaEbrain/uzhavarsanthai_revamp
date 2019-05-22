@@ -21,6 +21,7 @@ export class AdminDisputeComponent implements OnInit {
   solution: any;
   submitted :any;
   id: any;
+  d:any;
   errMsg: any;
   ticketId: any;
   successMsg: any;

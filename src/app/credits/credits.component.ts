@@ -9,6 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class CreditsComponent implements OnInit {
   id: any;
+  p:any;
   errMsg: any;
   credits: any = {};
   creditsArr = [];
