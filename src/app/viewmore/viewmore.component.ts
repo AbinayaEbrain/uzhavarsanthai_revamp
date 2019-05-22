@@ -333,8 +333,8 @@ sendQuery(){
       this.loadingCtrl.hide();}
   );
 
-// this.smsToSeller();
-// this.smsToBuyer();
+this.smsToSeller();
+this.smsToBuyer();
 
 }
 
