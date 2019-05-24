@@ -17,6 +17,10 @@
   font-family: 'Hind Madurai', sans-serif !important;
 }
 
+.btn {
+  padding: 0.175rem 0.75rem !important;
+}
+
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .btnmed {
     font-size: 13px;

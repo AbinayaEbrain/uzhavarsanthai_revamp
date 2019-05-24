@@ -287,13 +287,13 @@ color: white;
 .viewMoreBtn {
   margin: auto;
   font-weight: bold;
-  color: #eb0f2491;
-  border-color: #eb0f2491;
+  color: #ef6806d9;
+  border-color: #ef6806d9;
   /* background-color: white; */
 
 }
 .viewMoreBtn:hover {
-  background-color: #eb0f2491;
+  background-color: #ef6806d9;
   color: white;
 }
 

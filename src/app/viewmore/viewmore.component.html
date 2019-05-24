@@ -26,8 +26,8 @@
   <aside class="col-sm-7">
       <button  *ngIf="requestSent" type="button" (click)="cancelOrderModal()" class=" btn-danger btnCancel float-right">Cancel order
       </button>
-  <h3 style="font-size: 2rem;color: #f47682" *ngIf="!postProduct.bulk">{{postProduct.name}}</h3>
-  <h3 style="font-size: 2rem;color: #f47682" class="tamil_word" *ngIf="postProduct.bulk">{{postProduct.category}}</h3>
+  <h3 style="font-size: 2rem;color: #ef6806d9" *ngIf="!postProduct.bulk">{{postProduct.name}}</h3>
+  <h3 style="font-size: 2rem;color: #ef6806d9" class="tamil_word" *ngIf="postProduct.bulk">{{postProduct.category}}</h3>
   <hr>
   <p class="seller float-right" style="font-weight: bold">Seller: <span style="font-weight:400;">{{postProduct.firstName}}</span></p>
   <p style="color: #0d4608;font-size: larger;" *ngIf="!postProduct.bulk"><b>Rs.{{postProduct.price}}.00 / {{postProduct.qnty}}</b></p>
@@ -86,7 +86,7 @@
 
                                                   </div>
                                                   <div class="col-md-10 col-10">
-                                                    <div class=" ticketPara float-right" style="color: #eb0f2491;">
+                                                    <div class=" ticketPara float-right" style="color: #ef6806d9;">
                                                             <span style="color:#0d4608"> #</span><span style="font-size:13px;color:black">{{ slide.buyerName }}</span>&nbsp;
                                                             <span style="color:#0d4608">{{slide.starValue}}</span><i class="fa fa-star" aria-hidden="true"></i>
                                                     </div>
