@@ -75,8 +75,8 @@
                                             </div>
                                           <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                             <p class="product-productreview" *ngIf="postProduct.productreview == '' || postProduct.productreview == undefined || postProduct.productreview == null" style="text-align: justify">No reviews yet.</p>
-                                            <div class="container" *ngFor="let slide of reviewArr| slice:0:show;">
-                                              <div class="card" style="padding: 10px;">
+                                            <div class="container card" *ngFor="let slide of reviewArr| slice:0:show;">
+                                              <div style="padding: 10px;">
                                               <div class="notice notice-success">
                                                 <div *ngIf="reviewlngthErr">
                                                   <h6>{{reviewlngthErr}}</h6>
@@ -105,8 +105,8 @@
                                                 <strong>Notice</strong> notice-danger
                                               </div> -->
                                             </div>
-                                            <div *ngIf="show < reviewlngth" style="color: #0d4608;font-weight: bold;cursor: pointer;text-align: center;" (click)="increaseShow()">Load More...</div>
                                           </div>
+                                          <div *ngIf="show < reviewlngth" style="color: #0d4608;font-weight: bold;cursor: pointer;text-align: center;" (click)="increaseShow()">Load More...</div>
                                         </div>
                                           <!-- <div class="tab-pane fade" id="nav-dispute" role="tabpanel" aria-labelledby="nav-dispute-tab">
                                               <div #scrollMe style="overflow: scroll; height: 150px;">

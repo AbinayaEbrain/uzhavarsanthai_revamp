@@ -57,6 +57,14 @@
   font-weight: bold;
 }
 
+.styl{
+  /* margin-top: 25px; */
+  color: #0d4608;
+  font-family: "Varela Round",Arial,"Helvetica Neue",Helvetica,serif;
+  font-weight: bold;
+  text-align: left;
+}
+
 .float {
   float: right;
 }

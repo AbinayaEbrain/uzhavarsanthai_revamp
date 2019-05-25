@@ -234,9 +234,6 @@ input {
     margin-top: 35%;
   }
 }
-.titilebold {
-  font-weight: bold;
-}
 
 .resend {
   color: #0d4608 !important;
@@ -251,4 +248,11 @@ input {
 
 input[type="checkbox"][readonly] {
   pointer-events: none;
+}
+
+.styl{
+  /* margin-top: 25px; */
+  color: #0d4608;
+  font-family: "Varela Round",Arial,"Helvetica Neue",Helvetica,serif;
+  font-weight: bold;
 }

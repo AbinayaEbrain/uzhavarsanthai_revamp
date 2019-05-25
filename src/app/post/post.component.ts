@@ -18,6 +18,7 @@ import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
 import {} from '@types/googlemaps';
 import { FileUploader } from 'ng2-file-upload';
 import { DatePipe } from '@angular/common';
+import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 // const URL = 'http://localhost:8080/api/upload';
 
@@ -86,6 +87,7 @@ export class PostComponent implements OnInit {
   creditMinus:any;
   creditObj: any = {};
   myCredit: any;
+  public carForm: FormGroup;
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -103,7 +105,8 @@ export class PostComponent implements OnInit {
     private router: ActivatedRoute,
     public loadingCtrl: NgxSpinnerService,
     public zone: NgZone,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private fb: FormBuilder
   ) {
     this.privateIP = ClientIP;
     console.log(this.privateIP);
@@ -123,9 +126,11 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.loadingCtrl.show();
+    this.getForm();
+
     this.editId = this.router.snapshot.params['id'];
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
-    this.productData.avlPlace = JSON.parse(
+    this.carForm.value.avlPlace = JSON.parse(
       localStorage.getItem('currentUser')
     ).address.city.formatted_address;
 
@@ -189,6 +194,97 @@ export class PostComponent implements OnInit {
         }
       );
     }
+  }
+
+  onSubmit() {
+    console.log(this.carForm.value);
+
+    this.carForm.value.accountId = JSON.parse(
+      localStorage.getItem('currentUser')
+    )._id;
+    this.carForm.value.username = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).firstname;
+    this.carForm.value.userNumber = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).phone;
+    this.carForm.value.userAddressLine = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).address.addressLine;
+    this.carForm.value.userAddress = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).address.city.formatted_address;
+    this.carForm.value.status = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).status;
+
+    this.carForm.value.ipAddress = this.privateIP;
+
+    if (this.addr == undefined || this.addr == null) {
+      this.carForm.value.avlPlace = JSON.parse(
+        localStorage.getItem('currentUser')
+      ).address.city;
+    } else {
+      this.carForm.value.avlPlace = this.addr;
+    }
+
+    for (let i = 0; i < this.categoryArr.length; i++) {
+      if (this.carForm.value.categoryId == this.categoryArr[i]._id) {
+        this.carForm.value.category = this.categoryArr[i].productCategory;
+      }
+    }
+
+    console.log(this.carForm.value);
+
+    // this._dealsService.addPost(this.carForm.value).subscribe(
+    //     res => {
+    //       console.log(this.carForm.value);
+    //       console.log(res);
+    //     },
+    //     err => {
+    //       console.log(err);
+    //     }
+    //   );
+
+    }
+  
+
+  getForm(){
+    this.carForm = this.fb.group({
+      categoryId: new FormControl (""),
+      avlPlace:  new FormControl (""),
+      product: this.fb.array([this.fb.group({
+        name:  ['', Validators.required],
+        quantity:  ['', Validators.required],
+        qnty: ['', Validators.required],
+        price:  ['', Validators.required],
+        description: '',
+        validityTime: ['', Validators.required],
+        image:''
+      })])
+    })
+  }
+
+  get product() {
+    return this.carForm.get('product') as FormArray;
+  }
+
+  addSellingPoint() {
+    this.product.push(this.fb.group({
+      name:  '',
+      quantity:  '',
+      qnty:  '',
+      price:  '',
+      description:  '',
+      validityTime:  '',
+      image: ''
+    })
+  );
+  }
+
+  deleteSellingPoint(index) {
+    console.log(index);
+    this.product.removeAt(index);
   }
 
   getUser() {
@@ -568,7 +664,11 @@ export class PostComponent implements OnInit {
   }
 
   getunits() {
-    this.showUnit = this.productData.qnty;
+    console.log(this.carForm.value.product)
+    for(let i = 0 ; i < this.carForm.value.product.length; i++){
+      this.showUnit = this.carForm.value.product[i].qnty;
+    }
+    console.log(this.showUnit);
   }
 
   getLatitudeLongitude1(callback, address) {

@@ -2,8 +2,8 @@
   <div class="container pt-4">
     <div class="row mt-5 mb-3" id="focus">
       <div class="col-md-2"></div>
-      <div class="col-md-8 card" style="padding: 10px;">
-        <p class="blogTitle mt-3">வலைப்பதிவு / Blog</p>
+      <div class="col-md-8 card mt-3" style="padding: 10px;">
+        <p class="container styl mt-3">வலைப்பதிவு / Blog</p>
         <div class="row" *ngIf="success">
           <div class="col-md-4"></div>
           <div class="col-md-4 text-center">
@@ -81,7 +81,7 @@
         <div class="mb-2 noBlog" style="text-align: center" *ngIf="noBlog">
             {{noBlog}}
           </div>
-      <p *ngIf="!noBlog" class="blogTitle mt-3">பதிவுகள்</p>
+      <p *ngIf="!noBlog" class="container styl mt-3">பதிவுகள்</p>
       <div
         id="cardFocus"
         class="card mb-2 cardBorder"
