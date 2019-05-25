@@ -3,6 +3,7 @@ import { DealsService } from '../deals.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router, ParamMap } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Location } from '@angular/common';
 
 declare var swal: any;
 
@@ -31,12 +32,16 @@ export class UserProductsComponent implements OnInit {
   hideProduct = true;
   multiPost = [];
   singleMultiArray = [];
+  crntUser: any = {};
+  roleStatus: any;
+  role: any;
 
   constructor(
     private _dealsService: DealsService,
     private route: ActivatedRoute,
     private router: Router,
-    public loadingCtrl: NgxSpinnerService
+    public loadingCtrl: NgxSpinnerService,
+    private location: Location
   ) {
     for (let i = 1; i <= this.userDeals.length; i++) {
       this.userDeals.push('Angular ${i}.0');
@@ -48,6 +53,34 @@ export class UserProductsComponent implements OnInit {
 
   ngOnInit() {
     this.loadingCtrl.show();
+    this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
+    this.getSingleUser();
+  }
+
+  goToBack() {
+    this.location.back();
+  }
+
+  getSingleUser(){
+    this._dealsService.getSingleUser(this.id).subscribe(data =>{
+      console.log(data);
+      this.crntUser = data;
+      this.roleStatus = data.roleStatus;
+      this.role = data.role;
+      if(this.role == "buyer" || this.roleStatus =="Deactive"){
+        // document.getElementById("fgfg").click()
+        this.loadingCtrl.hide();
+      }
+    },err =>{
+      console.log(err);
+    })
+
+    if(this.role == "seller" && this.roleStatus =="Active"){
+      this.getDeals();
+    }
+  }
+
+  getDeals(){
     this._dealsService.getDeals().subscribe(
       res => {
         this.loadingCtrl.hide();
@@ -69,23 +102,12 @@ export class UserProductsComponent implements OnInit {
           }
         }
         this.getMultiArray();
-       
-        // for (let j = 0; j < this.userDeals.length; j++) {
-        //   if (this.userDeals[j].category == undefined) {
-        //     this.errMsg = "Still you haven't post any deals";
-        //     document.getElementById('hideEditBtn').style.display = 'none';
-        //     document.getElementById('hideDeleteBtn').style.display = 'none';
-        //     // document.getElementById('hideSearchDiv').style.display = 'none';
-        //     document.getElementById('hide').style.display = 'none';
-        //   }
-        // }
       },
       err => {
         this.loadingCtrl.hide();
         console.log(err);
       }
     );
-    this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
   }
 
   getUser(){

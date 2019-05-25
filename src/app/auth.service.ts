@@ -88,6 +88,14 @@ export class AuthService {
     }
   }
 
+  roleStatus() {
+    let roleStatus = JSON.parse(localStorage.getItem('roleStatus'));
+
+    if (roleStatus == 'Admin') {
+      return !!roleStatus;
+    }
+  }
+
   roleBuyer() {
     let role1 = JSON.parse(localStorage.getItem('role'));
 
@@ -139,6 +147,7 @@ export class AuthService {
     localStorage.removeItem('firstname');
     localStorage.removeItem('Image');
     localStorage.removeItem('role');
+    localStorage.removeItem('roleStatus');
     localStorage.removeItem('lastvisitproductid');
     localStorage.removeItem('credits');
     localStorage.removeItem('logged');

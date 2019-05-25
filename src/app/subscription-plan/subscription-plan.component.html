@@ -1,8 +1,10 @@
-<body style="background-color:#d3d3d34a !important;">
+<body class="bg" style="background-color:#d3d3d34a !important;overflow-x: hidden;">
   <br>
     <br>
-    <br>  <br>
+    <br>  
+    <br>
 <div class="container-fluid">
+    <div *ngIf="role == 'seller' && roleStatus == 'Active'">
   <h4 class="text-center clr" style="color: #0d4608;font-family: 'Oxygen', sans-serif;font-weight:bold;">Subscription Plans</h4>
   <br>
 <div class="container mt-3">
@@ -45,5 +47,32 @@
     </div>
 </div>
 </div>
+</div>
+
+<div class="mt-5 pt-5" *ngIf="role == 'buyer' && roleStatus == 'Active'">
+        <div style="margin-bottom: 6%">
+            <div class="col-md-3 col-lg-3 col-12"></div>
+            <div class="col-md-6 col-lg-6 col-12 errDesign">
+                <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                <p class="mt-4">You have to be a "<font style="color: #f53636;font-style: italic">seller</font>" to see <span style="font-style: italic">Order Requests</span>.</p>
+                <a routerLink="/buyerAsSeller" style="cursor: pointer;text-decoration: underline;color: #0d4608;">SignUp as seller</a>
+            </div>
+            <div class="col-md-3 col-lg-3 col-12"></div>
+        </div>
+    </div>
+
+    <div class="mt-5" *ngIf="role == 'buyer' && roleStatus == 'Deactive'">
+      <div style="margin-bottom: 6%">
+          <div class="col-md-3 col-lg-3 col-12"></div>
+          <div class="col-md-6 col-lg-6 col-12 errDesign">
+              <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+              <p class="mt-4">Your seller request is on processing.Please wait until you get confirmation message.</p>
+              <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #0d4608;">Go to back</a>
+          </div>
+          <div class="col-md-3 col-lg-3 col-12"></div>
+      </div>
+  </div>
+
+
 <br><br>
 </body>

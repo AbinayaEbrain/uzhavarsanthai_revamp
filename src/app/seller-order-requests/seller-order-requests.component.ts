@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgForm } from '@angular/forms';
 import { Route, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-seller-order-requests',
@@ -31,6 +32,9 @@ export class SellerOrderRequestsComponent implements OnInit {
   disputeData: any;
   submitted: any;
   id = '';
+  crntUser: any = {};
+  roleStatus: any;
+  role: any;
 
   private sendMailForReject =
     'https://uzhavarsanthai.herokuapp.com/api/sendMailRejectSeller';
@@ -40,7 +44,8 @@ export class SellerOrderRequestsComponent implements OnInit {
     private _dealService: DealsService,
     private http: HttpClient,
     private router: Router,
-    public loadingCtrl: NgxSpinnerService
+    public loadingCtrl: NgxSpinnerService,
+    private location: Location
   ) {
     for (let i = 1; i <= this.createdRequests.length; i++) {
       this.createdRequests.push(`deal ${i}.0`);
@@ -54,7 +59,29 @@ export class SellerOrderRequestsComponent implements OnInit {
     this.loadingCtrl.show();
     this.acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
     console.log(this.acntID);
-    this.getSignUpRqst();
+    this.getSingleUser();
+  }
+
+  goToBack() {
+    this.location.back();
+  }
+
+  getSingleUser(){
+    this._dealService.getSingleUser(this.acntID).subscribe(data =>{
+      console.log(data);
+      this.crntUser = data;
+      this.roleStatus = data.roleStatus;
+      this.role = data.role;
+      if(this.role == "buyer" || this.roleStatus =="Deactive"){
+        this.loadingCtrl.hide();
+      }
+    },err =>{
+      console.log(err);
+    })
+
+    if(this.role == "seller" && this.roleStatus =="Active"){
+      this.getSignUpRqst();
+    }
   }
 
   getSignUpRqst() {

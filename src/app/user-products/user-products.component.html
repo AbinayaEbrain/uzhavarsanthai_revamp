@@ -1,171 +1,197 @@
 <body class="bg" style="overflow-x: hidden;">
-  <div class="container mt-5 pt-5">
-    <div class="row">
-      <div class="col-md-4">
-         <nav>
-             <div class="nav nav-tabs " id="nav-tab" role="tablist">
-               <a class="nav-item nav-link active button_word tabTitle" (click)="getActiveDeals()" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Active Products <i class="fa fa-star-o" aria-hidden="true"></i></a>
-               <a class="nav-item nav-link button_word tabTitle" (click)="getExpiredDeals()" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Expired Products <i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+    <div class="container mt-5 pt-5">
+        <div *ngIf="role == 'seller' && roleStatus == 'Active'">
+            <div class="row">
+                <div class="col-md-4">
+                   <nav>
+                       <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                         <a class="nav-item nav-link active button_word tabTitle" (click)="getActiveDeals()" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Active Products <i class="fa fa-star-o" aria-hidden="true"></i></a>
+                         <a class="nav-item nav-link button_word tabTitle" (click)="getExpiredDeals()" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Expired Products <i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+                        </div>
+                     </nav><br>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-4 onmobiviewpadding" >
+                   <div class="inner-addon left-addon" id="hideSearchDiv">
+                       <i class="fa fa-search glyphicon" aria-hidden="true"></i>
+                       <input type="text" class="form-control searchBorder"   [(ngModel)]="queryString" name="search" (keyup)="case()" autocomplete="off" placeholder="Search by product category..." />
+          
+                     </div>
+                </div>
+                <div class="col-md-2">
+                   <button type="button" class="btn btn-outline-success text-center viewMoreBtn  button_word" (click)="getUser()" >New Product <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                   <!-- <div class="dropdown-content">
+                      <a routerLink="/post">Single product</a>
+                      <a routerLink="/multi-post">Multi product</a>
+                    </div> -->
+                  </div>
               </div>
-           </nav><br>
-      </div>
-      <div class="col-md-2"></div>
-      <div class="col-md-4 onmobiviewpadding" >
-         <div class="inner-addon left-addon" id="hideSearchDiv">
-             <i class="fa fa-search glyphicon" aria-hidden="true"></i>
-             <input type="text" class="form-control searchBorder"   [(ngModel)]="queryString" name="search" (keyup)="case()" autocomplete="off" placeholder="Search by product category..." />
+              <div class=" mt-3">
+                 <div class="tab-content" id="nav-tabContent">
+                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                          <!-- <nav>
+                              <div class="nav nav-tabs" id="nav-tab1" role="tablist">
+                                    <a class="nav-item nav-link active button_word tabTitle" (click)="getActiveDeals()" id="nav-home-tab1" data-toggle="tab" href="#nav-home1" role="tab" aria-controls="nav-home1" aria-selected="true">Single <i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                    <a class="nav-item nav-link button_word tabTitle" (click)="getExpiredDeals()" id="nav-profile-tab1" data-toggle="tab" href="#nav-profile1" role="tab" aria-controls="nav-profile1" aria-selected="false">Multiple <i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+                              </div>
+                          </nav> -->
+                                          <div class="card mt-1"  id="hideTable" >
+                                                  <div class="card-content">
+                                                    <div class="fresh-table table-responsive">
+                                                          <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                                              <thead style="text-align: center; background-color: #0d460840;">
+                                                                  <tr>
+                                                                      <th>Category</th>
+                                                                      <th>Name</th>
+                                                                      <th>Quantity</th>
+                                                                      <th><i class="fa fa-inr" aria-hidden="true"></i> Price/ Quantity</th>
+                                                                      <th>Post Date</th>
+                                                                      <th>Expiry Date</th>
+                                                                      <th class="disabled-sorting">Action</th>
+                                                                  </tr>
+                                                              </thead>
+                                                              <tbody style="text-align: center">
+                                                                   <tr *ngIf="errMsg">
+                                                                           <td colspan="7" class="text-danger" style="text-align: center">
+                                                                              {{errMsg}}
+                                                                           </td>
+                                                                       </tr>
+                                   
+                                                                  <tr  id="hide" *ngFor="let deal of singleMultiArray | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
+                                                                    
+                                                                      <td *ngIf="deal === -1" class="prdUnavil text-danger">
+                                                                           {{errMsg2}}
+                                                                       </td>
+                                                                        
+                                                                      <td>{{deal.category}}</td>
+          
+                                                                      <td *ngIf="deal.name">
+                                                                      <div class="productFullName">{{deal.name}}</div>
+                                                                       </td>
+                                                                       <td *ngIf="!deal.name">--</td>
+          
+                                                                      <td *ngIf="deal.quantity">{{deal.quantity}}{{deal.qnty}} </td>
+                                                                      <td *ngIf="!deal.quantity">--</td>
+          
+                                                                     <td *ngIf="deal.price">{{deal.price}}</td>
+                                                                     <td *ngIf="!deal.price">--</td>
+          
+                                                                      <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
+                                                                      <td> {{deal.validityTime | date: 'dd/MM/yyyy'}} </td>
+                                                                      <td style="display: flex;" *ngIf="deal !== -1" >
+                                                                          <button id="hideEditBtn" *ngIf="!deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                           Edit
+                                                                          </button>
+                                                                          <button id="hideEditBtn" *ngIf="deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/post/{{deal._id}}"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                              Edit
+                                                                          </button> &nbsp;
+                                                                          <button id="hideDeleteBtn" *ngIf="!deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
+                                                                           data-keyboard="false" routerLink="/products/{{deal._id}}">
+                                                                           <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                                                                          </button>
+                                                                          <button id="hideDeleteBtn" *ngIf="deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
+                                                                          data-keyboard="false" routerLink="/products/{{deal._id}}">
+                                                                          <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                                                                         </button>
+                                                                      </td>
+                                   
+                                                                  </tr>
+                                   
+                                                              </tbody>
+                                   
+                                                          </table>
+                                   
+                                   
+                                                      </div>
+                                                  </div>
+                                              </div>
+                     <div class="mx-auto mt-3" *ngIf="!errMsg">
+                      <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
+                    </div>
+          </div>
+          
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+             <div class="card"  id="hideTable">
+                 <div class="card-content">
+                   <div class="fresh-table table-responsive">
+                         <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                             <thead style="text-align: center;background-color: #0d460840;">
+                                 <tr>
+                                     <th>Category</th>
+                                     <th>Name</th>
+                                     <th>Quantity</th>
+                                     <th> &#8377; Price/ Quantity</th>
+                                     <th>Post Date</th>
+                                     <th>Expiry Date</th>
+                                     <th class="disabled-sorting">Action</th>
+                                 </tr>
+                             </thead>
+                             <tbody style="text-align: center">
+                                  <tr *ngIf="errMsg1">
+                                          <td colspan="7" class="text-danger" style="text-align: center">
+                                             {{errMsg1}}
+                                          </td>
+                                      </tr>
+                                 <tr id="hide1" *ngFor="let deal of userDeals1 | filterdata: queryString  : 'category'| paginate: {id: 'foo1', itemsPerPage:10,currentPage:d},let i = index"  >
+                                      <td *ngIf="deal === -1 && !errMsg1" class="prdUnavil text-danger" style="text-align: center">
+                                              {{errMsg2}}
+                                      </td>
+                                      <td>{{deal.category}}</td>
+                                      <div class="productFullName">{{deal.name}}</div>
+                                      <td>{{deal.quantity}}{{deal.qnty}} </td>
+                                      <td *ngIf="deal.price">{{deal.price}}</td>
+                                      <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
+                                      <td> {{deal.validityTime | date: 'dd/MM/yyyy'}} </td>
+                                      <td style="display: flex;" *ngIf="deal !== -1">
+                                         <button  id="hideEditBtn1" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}">
+                                          <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+                                         </button> &nbsp;
+                                         <button id="hideDeleteBtn1" class="btn btn-outline-success text-center viewMoreBtn button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
+                                          data-keyboard="false" routerLink="/products/{{deal._id}}">
+                                          <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                                         </button>
+                                     </td>
+                                 </tr>
+          
+                             </tbody>
+          
+                         </table>
+          
+                     </div>
+                 </div>
+             </div>
+             <div class="mx-auto mt-3" *ngIf="!errMsg1">
+              <pagination-controls id="foo1"  class="ngx-pagination" style="margin-right: 30px;" maxSize="5" (pageChange)="d = $event"></pagination-controls>
+            </div>
+          </div>
+          </div>
+          </div>
+        </div>
 
-           </div>
-      </div>
-      <div class="col-md-2">
-         <button type="button" class="btn btn-outline-success text-center viewMoreBtn  button_word" (click)="getUser()" >New Product <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
-         <!-- <div class="dropdown-content">
-            <a routerLink="/post">Single product</a>
-            <a routerLink="/multi-post">Multi product</a>
-          </div> -->
+        <div class="mt-5" *ngIf="role == 'buyer' && roleStatus == 'Active'">
+            <div style="margin-bottom: 6%">
+                <div class="col-md-3 col-lg-3 col-12"></div>
+                <div class="col-md-6 col-lg-6 col-12 errDesign">
+                    <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                    <p class="mt-4">You have to be a "<font style="color: #f53636;font-style: italic">seller</font>" to see <span style="font-style: italic">My Products</span>.</p>
+                    <a routerLink="/buyerAsSeller" style="cursor: pointer;text-decoration: underline;color: #0d4608;">SignUp as seller</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-12"></div>
+            </div>
+        </div>
+
+        <div class="mt-5" *ngIf="role == 'buyer' && roleStatus == 'Deactive'">
+            <div style="margin-bottom: 6%">
+                <div class="col-md-3 col-lg-3 col-12"></div>
+                <div class="col-md-6 col-lg-6 col-12 errDesign">
+                    <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                    <p class="mt-4">Your seller request is on processing.Please wait until you get confirmation message.</p>
+                    <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #0d4608;">Go to back</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-12"></div>
+            </div>
         </div>
     </div>
-    <div class=" mt-3">
-       <div class="tab-content" id="nav-tabContent">
-           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <!-- <nav>
-                    <div class="nav nav-tabs" id="nav-tab1" role="tablist">
-                          <a class="nav-item nav-link active button_word tabTitle" (click)="getActiveDeals()" id="nav-home-tab1" data-toggle="tab" href="#nav-home1" role="tab" aria-controls="nav-home1" aria-selected="true">Single <i class="fa fa-star-o" aria-hidden="true"></i></a>
-                          <a class="nav-item nav-link button_word tabTitle" (click)="getExpiredDeals()" id="nav-profile-tab1" data-toggle="tab" href="#nav-profile1" role="tab" aria-controls="nav-profile1" aria-selected="false">Multiple <i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
-                    </div>
-                </nav> -->
-                                <div class="card mt-1"  id="hideTable" >
-                                        <div class="card-content">
-                                          <div class="fresh-table table-responsive">
-                                                <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                                    <thead style="text-align: center; background-color: #0d460840;">
-                                                        <tr>
-                                                            <th>Category</th>
-                                                            <th>Name</th>
-                                                            <th>Quantity</th>
-                                                            <th><i class="fa fa-inr" aria-hidden="true"></i> Price/ Quantity</th>
-                                                            <th>Post Date</th>
-                                                            <th>Expiry Date</th>
-                                                            <th class="disabled-sorting">Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody style="text-align: center">
-                                                         <tr *ngIf="errMsg">
-                                                                 <td colspan="7" class="text-danger" style="text-align: center">
-                                                                    {{errMsg}}
-                                                                 </td>
-                                                             </tr>
-                         
-                                                        <tr  id="hide" *ngFor="let deal of singleMultiArray | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
-                                                          
-                                                            <td *ngIf="deal === -1" class="prdUnavil text-danger">
-                                                                 {{errMsg2}}
-                                                             </td>
-                                                              
-                                                            <td>{{deal.category}}</td>
-
-                                                            <td *ngIf="deal.name">
-                                                            <div class="productFullName">{{deal.name}}</div>
-                                                             </td>
-                                                             <td *ngIf="!deal.name">--</td>
-
-                                                            <td *ngIf="deal.quantity">{{deal.quantity}}{{deal.qnty}} </td>
-                                                            <td *ngIf="!deal.quantity">--</td>
-
-                                                           <td *ngIf="deal.price">{{deal.price}}</td>
-                                                           <td *ngIf="!deal.price">--</td>
-
-                                                            <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
-                                                            <td> {{deal.validityTime | date: 'dd/MM/yyyy'}} </td>
-                                                            <td style="display: flex;" *ngIf="deal !== -1" >
-                                                                <button id="hideEditBtn" *ngIf="!deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}"><i class="fa fa-pencil" aria-hidden="true"></i>
-                                                                 Edit
-                                                                </button>
-                                                                <button id="hideEditBtn" *ngIf="deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/post/{{deal._id}}"><i class="fa fa-pencil" aria-hidden="true"></i>
-                                                                    Edit
-                                                                </button> &nbsp;
-                                                                <button id="hideDeleteBtn" *ngIf="!deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
-                                                                 data-keyboard="false" routerLink="/products/{{deal._id}}">
-                                                                 <i class="fa fa-trash" aria-hidden="true"></i> Delete
-                                                                </button>
-                                                                <button id="hideDeleteBtn" *ngIf="deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
-                                                                data-keyboard="false" routerLink="/products/{{deal._id}}">
-                                                                <i class="fa fa-trash" aria-hidden="true"></i> Delete
-                                                               </button>
-                                                            </td>
-                         
-                                                        </tr>
-                         
-                                                    </tbody>
-                         
-                                                </table>
-                         
-                         
-                                            </div>
-                                        </div>
-                                    </div>
-           <div class="mx-auto mt-3" *ngIf="!errMsg">
-            <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
-          </div>
-</div>
-
-<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-   <div class="card"  id="hideTable">
-       <div class="card-content">
-         <div class="fresh-table table-responsive">
-               <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                   <thead style="text-align: center;background-color: #0d460840;">
-                       <tr>
-                           <th>Category</th>
-                           <th>Name</th>
-                           <th>Quantity</th>
-                           <th> &#8377; Price/ Quantity</th>
-                           <th>Post Date</th>
-                           <th>Expiry Date</th>
-                           <th class="disabled-sorting">Action</th>
-                       </tr>
-                   </thead>
-                   <tbody style="text-align: center">
-                        <tr *ngIf="errMsg1">
-                                <td colspan="7" class="text-danger" style="text-align: center">
-                                   {{errMsg1}}
-                                </td>
-                            </tr>
-                       <tr id="hide1" *ngFor="let deal of userDeals1 | filterdata: queryString  : 'category'| paginate: {id: 'foo1', itemsPerPage:10,currentPage:d},let i = index"  >
-                            <td *ngIf="deal === -1 && !errMsg1" class="prdUnavil text-danger" style="text-align: center">
-                                    {{errMsg2}}
-                            </td>
-                            <td>{{deal.category}}</td>
-                            <div class="productFullName">{{deal.name}}</div>
-                            <td>{{deal.quantity}}{{deal.qnty}} </td>
-                            <td *ngIf="deal.price">{{deal.price}}</td>
-                            <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
-                            <td> {{deal.validityTime | date: 'dd/MM/yyyy'}} </td>
-                            <td style="display: flex;" *ngIf="deal !== -1">
-                               <button  id="hideEditBtn1" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}">
-                                <i class="fa fa-pencil" aria-hidden="true"></i> Edit
-                               </button> &nbsp;
-                               <button id="hideDeleteBtn1" class="btn btn-outline-success text-center viewMoreBtn button_word"   style="width: 50%;" data-toggle="modal" data-target="#myModal" data-backdrop="static"
-                                data-keyboard="false" routerLink="/products/{{deal._id}}">
-                                <i class="fa fa-trash" aria-hidden="true"></i> Delete
-                               </button>
-                           </td>
-                       </tr>
-
-                   </tbody>
-
-               </table>
-
-           </div>
-       </div>
-   </div>
-   <div class="mx-auto mt-3" *ngIf="!errMsg1">
-    <pagination-controls id="foo1"  class="ngx-pagination" style="margin-right: 30px;" maxSize="5" (pageChange)="d = $event"></pagination-controls>
-  </div>
-</div>
-</div>
-</div>
-</div>
 </body>
 
  <!-- modal -->
@@ -216,3 +242,22 @@
 
     </div>
   </div>
+
+  <a href="#myErrModal" id="fgfg" class="trigger-btn" data-toggle="modal" style="display: none">Click to Open Error Modal</a>
+  <div id="myErrModal" class="modal fade in">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="material-icons"></i>
+				</div>
+				<!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+			</div>
+			<div class="modal-body text-center">
+				<h4>Ooops!</h4>	
+				<p>Something went wrong. File was not uploaded.</p>
+				<button class="btn btn-success">Try Again</button>
+			</div>
+		</div>
+	</div>
+</div>

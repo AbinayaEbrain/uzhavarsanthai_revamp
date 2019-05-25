@@ -125,13 +125,22 @@ export class PostComponent implements OnInit {
     this.loadingCtrl.show();
     this.editId = this.router.snapshot.params['id'];
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
-    this.productData.avlPlace = JSON.parse(
+    
+    if(JSON.parse(
       localStorage.getItem('currentUser')
-    ).address.city.formatted_address;
+    ).address.city.formatted_address){
+      
+      this.productData.avlPlace = JSON.parse(
+        localStorage.getItem('currentUser')
+      ).address.city.formatted_address;
 
-    this.multiData.avlPlace = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).address.city.formatted_address;
+      this.multiData.avlPlace = JSON.parse(
+        localStorage.getItem('currentUser')
+      ).address.city.formatted_address;
+    }
+    
+
+   
     this.getUser();
 
     //category

@@ -230,10 +230,10 @@ export class RegisterComponent implements OnInit {
     this._auth.sendOtp(this.phoneObj).subscribe(
       res => {
         console.log(res);
-        this.optsent = 'OTP has been sent successfully!';
-        setTimeout(() => {
-          this.optsent = '';
-        }, 3000);
+        this.optsent = ' ' +  this.phoneObj.phone;
+        // setTimeout(() => {
+        //   this.optsent = '';
+        // }, 3000);
         document.getElementById('firstDiv').style.display = 'none';
         document.getElementById('secondDiv').style.display = 'block';
         document.getElementById('resend').style.display = 'block';

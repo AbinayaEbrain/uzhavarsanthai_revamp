@@ -174,7 +174,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="headingEng"><span class="headingTamil">உள்நுழைக</span> / Login</h5>
+          <h5 class="headingEng"><span class="tamil_word">உள்நுழைக</span> / Login</h5>
 
           <button type="button" class="close" id="closeLoginModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
@@ -229,7 +229,7 @@
   <!-- //second div -->
   <div id="secondDiv" class="mt-2" style="display: none">
       <form>
-        <div class="alert alert-success text-center" *ngIf="optsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{optsent}}</div>
+        <div class="text-center" *ngIf="optsent">OTP has been sent to this number successfully!<br><b>'{{optsent}}'</b></div>
     <div class="alert alert-danger text-center" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
     <div class="form-group ">
         <label class="english_wrd" for="verifyPhone"><span style="font-size: 14px" class="tamil_word">Enter your OTP</span></label>
@@ -279,7 +279,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="headingEng"><span class="headingTamil">பதிவு செய்க</span> / Sign Up</h5>
+          <h6 class="headingEng"><span class="tamil_word">பதிவு செய்க</span> / Sign Up</h6>
             <button type="button" class="close" data-dismiss="modal" id="closeSignUpModal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
@@ -302,7 +302,7 @@
           </div>
 
           <div id="signUpsecondDiv" style="display: none">
-                  <div class="alert alert-success text-center"  *ngIf="signUoptsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{signUoptsent}}</div>
+                  <div class="text-center"  *ngIf="signUoptsent">OTP has been sent to this number successfully!<br> <b>'{{signUoptsent}}'</b></div>
               <div class="alert alert-danger text-center"  *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
               <div class="form-group ">
                   <label class="english_wrd" for="phone">Enter your OTP</label>

@@ -66,6 +66,7 @@ import { TicketviewComponent } from './ticketview/ticketview.component';
 import { ReadMoreViewComponent } from './read-more-view/read-more-view.component';
 import { AdminSubscriptionComponent } from './admin-subscription/admin-subscription.component';
 import { SubscriptionPlanComponent } from './subscription-plan/subscription-plan.component';
+import { OrderViewComponent } from './order-view/order-view.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { SubscriptionPlanComponent } from './subscription-plan/subscription-plan
     TicketviewComponent,
     ReadMoreViewComponent,
     AdminSubscriptionComponent,
-    SubscriptionPlanComponent
+    SubscriptionPlanComponent,
+    OrderViewComponent
   ],
   imports: [
     BrowserModule,

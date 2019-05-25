@@ -12,6 +12,7 @@ import {
   CircleManager,
   AgmCircle
 } from '@agm/core';
+import { DealsService } from './deals.service';
 
 //  var request = require("request");
 var url = 'https://geoip-db.com/json';
@@ -39,6 +40,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     public _authService: AuthService,
+    private _dealsService: DealsService,
     public loadingCtrl: NgxSpinnerService,
     private router: Router
   ) {
@@ -54,6 +56,32 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (JSON.parse(localStorage.getItem('currentUser'))) {
+      this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
+    }
+
+    if (this.currentuserId) {
+      this._dealsService.getSingleUser(this.currentuserId).subscribe(
+        data => {
+          console.log(data);
+          // localStorage.setItem('currentUser', JSON.stringify(data.user));
+          if (data != null) {
+            localStorage.setItem('status', JSON.stringify(data.status));
+            localStorage.setItem('credits', JSON.stringify(data.credits));
+            localStorage.setItem('roleStatus', JSON.stringify(data.roleStatus));
+            localStorage.setItem('role', JSON.stringify(data.role));
+            localStorage.setItem('firstname', JSON.stringify(data.firstname));
+          }
+
+          if (data == null) {
+            this._authService.logoutUser();
+          }
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
   }
 
   register() {

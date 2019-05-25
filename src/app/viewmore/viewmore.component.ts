@@ -320,13 +320,7 @@ sendQuery(){
       console.log(res);
       this.storeOrderRequest();
       this.mytemplateForm3.reset();
-        this.orderRequestMsg = 'We got your order query, we get back to you soon!';
-         setTimeout(() => {
-             this.orderRequestMsg='';
-            document.getElementById("closeRequirementModal").click();
-             this.router.navigate(['/my-order']);
-         },3000)
-
+        // this.orderRequestMsg = 'We got your order query, we get back to you soon!';
         this.loadingCtrl.hide();
     },
     err => {console.log(err);
@@ -345,7 +339,17 @@ storeOrderRequest(){
     res => {
       console.log(res);
       this.requestData.orderRqstId = res._id;
+      this.requestData.requestId = res.requestId;
       console.log(this.requestData.orderRqstId);
+      console.log(this.requestData.requestId);
+      swal({
+        title: 'Order requested successfully!',
+        text:
+          'We got your order query, we get back to you soon! Requested ID:'+ this.requestData.requestId,
+        imageUrl: '../../assets/Images/progress.gif'
+      });
+      document.getElementById("closeRequirementModal").click();
+      this.router.navigate(['/my-order']);
       this.mapWithPost();
     },
     err => console.log(err)
@@ -546,10 +550,10 @@ mapWithPost(){
             this.errormsg1 = '';
           }
           // this.phoneObj.phone1 = '';
-          this.optsent = 'OTP has been sent to this number successfully! '+ resultpath;
-          setTimeout(() => {
-            this.optsent = '';
-          }, 3000);
+          this.optsent = ' '+ resultpath;
+          // setTimeout(() => {
+          //   this.optsent = '';
+          // }, 3000);
           document.getElementById('showForm').style.display = 'none';
           document.getElementById('secondDiv').style.display = 'block';
         },
@@ -789,10 +793,10 @@ mapWithPost(){
       this._auth.sendOtp(this.phoneObj).subscribe(
         res => {
           console.log(res);
-          this.signUoptsent = 'OTP has been sent to this number successfully! '+ resultpath;
-          setTimeout(() => {
-            this.signUoptsent = '';
-          }, 3000);
+          this.signUoptsent = ' '+ resultpath;
+          // setTimeout(() => {
+          //   this.signUoptsent = '';
+          // }, 3000);
           document.getElementById('signUpfirstDiv').style.display = 'none';
           document.getElementById('signUpsecondDiv').style.display = 'block';
         },

@@ -1,5 +1,5 @@
-<div class="container-fluid bg1">
-  <div class="pt-5">
+<div class="bg" style="overflow-x: hidden;">
+  <div *ngIf="role == 'seller' && roleStatus == 'Active'" class="pt-5">
     <div class="row">
       <!-- <div class="col-md-1"></div> -->
       <div class="col-md-12">
@@ -26,7 +26,7 @@
 
         <div class="row mt-5" *ngIf="errMsg">
               <div class="col-md-3 col-lg-4 col-12"></div>
-              <div class="col-md-6 col-lg-4 col-12 errDesign">
+              <div class="col-md-6 col-lg-4 col-12 errDesign1">
                   <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
                   <p class="mt-4" style="font-style: italic;">{{errMsg}}</p>
                   <button class="btn btn-success btn-sm" routerLink="/post">Post Products</button>
@@ -79,4 +79,27 @@
       <!-- <div class="col-md-1"></div> -->
     </div>
   </div>
+  <div class="mt-5 pt-5" *ngIf="role == 'buyer' && roleStatus == 'Active'">
+    <div style="margin-bottom: 6%">
+        <div class="col-md-3 col-lg-3 col-12"></div>
+        <div class="col-md-6 col-lg-6 col-12 errDesign">
+            <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+            <p class="mt-4">You have to be a "<font style="color: #f53636;font-style: italic">seller</font>" to see <span style="font-style: italic">My Products</span>.</p>
+            <a routerLink="/buyerAsSeller" style="cursor: pointer;text-decoration: underline;color: #0d4608;">SignUp as seller</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-12"></div>
+    </div>
+</div>
+
+<div class="mt-5 pt-5" *ngIf="role == 'buyer' && roleStatus == 'Deactive'">
+    <div style="margin-bottom: 6%">
+        <div class="col-md-3 col-lg-3 col-12"></div>
+        <div class="col-md-6 col-lg-6 col-12 errDesign">
+            <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+            <p class="mt-4">Your seller request is on processing.Please wait until you get confirmation message.</p>
+            <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #0d4608;">Go to back</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-12"></div>
+    </div>
+</div>
 </div>
