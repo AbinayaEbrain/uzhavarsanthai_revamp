@@ -48,15 +48,16 @@ export class CreditsComponent implements OnInit {
         if (this.role == 'buyer' || this.roleStatus == 'Deactive') {
           this.loadingCtrl.hide();
         }
+
+        if (this.role == 'seller' && this.roleStatus == 'Active') {
+          this.getUser();
+        }
       },
       err => {
         console.log(err);
       }
     );
 
-    if (this.role == 'seller' && this.roleStatus == 'Active') {
-      this.getUser();
-    }
   }
 
   getUser() {

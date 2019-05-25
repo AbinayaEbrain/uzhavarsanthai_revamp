@@ -3,14 +3,16 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-color: whitesmoke;
-  min-height: 92vh;
+  background-color: #d3d3d34a;
+  min-height: 100vh;
   width: 100%;
+  min-height: -webkit-fill-available;
 }
 
 .demo {
   background: #f7f7f7;
 }
+
 .pricingTable {
   background: #fff;
   text-align: center;
@@ -185,4 +187,10 @@
 
 .imgRes {
   width: 354px;
+}
+.styl {
+  /* margin-top: 25px; */
+  color: #0d4608;
+  font-family: 'Varela Round', Arial, 'Helvetica Neue', Helvetica, serif;
+  font-weight: bold;
 }

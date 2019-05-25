@@ -75,13 +75,14 @@ export class SellerOrderRequestsComponent implements OnInit {
       if(this.role == "buyer" || this.roleStatus =="Deactive"){
         this.loadingCtrl.hide();
       }
+
+      if(this.role == "seller" && this.roleStatus =="Active"){
+        this.getSignUpRqst();
+      }
     },err =>{
       console.log(err);
     })
 
-    if(this.role == "seller" && this.roleStatus =="Active"){
-      this.getSignUpRqst();
-    }
   }
 
   getSignUpRqst() {

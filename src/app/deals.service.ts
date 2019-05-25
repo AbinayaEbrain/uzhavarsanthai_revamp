@@ -14,7 +14,7 @@ import { timer, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class DealsService {
-  private _getSingleUser = "http://localhost:5000/api/getSingleUser";
+  private _getSingleUser = "https://uzhavarsanthai.herokuapp.com/api/getSingleUser";
   private _getCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/getCount';
   // https://farmers-market-ebrain.herokuapp.com
   private _dealsUrl = 'https://uzhavarsanthai.herokuapp.com/api/deals';

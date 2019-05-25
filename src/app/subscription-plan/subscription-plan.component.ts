@@ -50,16 +50,16 @@ export class SubscriptionPlanComponent implements OnInit {
         if (this.role == 'buyer' || this.roleStatus == 'Deactive') {
           this.loadingCtrl.hide();
         }
+
+        if (this.role == 'seller' && this.roleStatus == 'Active') {
+          this.getSubscription();
+          this.currentUserCredit();
+        }
       },
       err => {
         console.log(err);
       }
     );
-
-    if (this.role == 'seller' && this.roleStatus == 'Active') {
-      this.getSubscription();
-      this.currentUserCredit();
-    }
   }
 
   getSubscription() {

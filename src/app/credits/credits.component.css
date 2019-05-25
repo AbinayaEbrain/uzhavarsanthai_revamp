@@ -83,6 +83,11 @@
     margin-bottom: 5px;
     transition: all 0.25s;
   }
+
+.container{
+  padding-left: 0px !important;
+}
+
   .welcomeUser {
     color: #0d4608;
     text-align: left;
@@ -265,4 +270,12 @@ input[readonly].classname {
   font-size: smaller;
   margin-top: 10px;
   margin-bottom: -7px;
+}
+ 
+.styl{
+  /* margin-top: 25px; */
+  color: #0d4608;
+  font-family: "Varela Round",Arial,"Helvetica Neue",Helvetica,serif;
+  font-weight: bold;
+  text-align: left;
 }

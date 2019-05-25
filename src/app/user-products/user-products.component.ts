@@ -68,16 +68,16 @@ export class UserProductsComponent implements OnInit {
       this.roleStatus = data.roleStatus;
       this.role = data.role;
       if(this.role == "buyer" || this.roleStatus =="Deactive"){
-        // document.getElementById("fgfg").click()
         this.loadingCtrl.hide();
+      }
+
+      if(this.role == "seller" && this.roleStatus =="Active"){
+        this.getDeals();
       }
     },err =>{
       console.log(err);
     })
 
-    if(this.role == "seller" && this.roleStatus =="Active"){
-      this.getDeals();
-    }
   }
 
   getDeals(){

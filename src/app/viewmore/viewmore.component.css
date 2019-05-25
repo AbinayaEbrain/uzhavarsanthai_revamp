@@ -97,7 +97,7 @@ section .section-title {
   border: 1px solid transparent;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
-  color: #eb0f2491;
+  color: #ef6806d9;
   font-size: 15px;
 }
 textarea::placeholder {
@@ -106,7 +106,7 @@ textarea::placeholder {
 }
 
 .nav-tabs {
-  border-bottom: 1px solid #f47682;
+  border-bottom: 1px solid #ef6806d9;
   /* width: 550px; */
 }
 
@@ -117,7 +117,7 @@ textarea::placeholder {
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  background-color: #f47682;
+  background-color: #ef6806d9;
   color: white;
   font-weight: bold;
   border-radius: 10px;

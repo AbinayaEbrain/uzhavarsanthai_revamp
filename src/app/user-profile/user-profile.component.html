@@ -7,7 +7,7 @@
           <div *ngIf = "success" class="alert alert-success error_word" style="text-align: center;">
               {{success}}
           </div>
-          <form  #editForm="ngForm" *ngIf ="!submitted" novalidate class="mt-3">
+          <form  #editForm="ngForm" *ngIf ="!submitted" novalidate>
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group  mt-2">
@@ -29,6 +29,7 @@
                         <input google-place type="text" placeholder="Enter your city" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="crntUser.address.city.formatted_address" required>
                         <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
                 </div>
+                <p style="float:left;margin-top: -25px;cursor:pointer;text-decoration:underline;" (click)="changePwd()">Change my password?</p>
                  </div>
                  <div class="col-md-12 text-center">
                     <button class="btn btn-outline-success viewMoreBtn button_word" type="submit" [disabled]="editForm.form.invalid" (click)="updateUser()">Update Profile</button>&nbsp;
@@ -39,6 +40,49 @@
           </form>
         </div>
         <div class="col-md-3"></div>
+    </div>
+  </div>
+</div>
+
+
+<button type="button" class="btn btn-success" [hidden]="true" style="display:none;" data-toggle="modal" data-target="#myModal1" name="button" id="openChangePwdModal"></button>
+<!-- modal dialogues -->
+<div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="headingEng">Change Password</h5>
+          <button type="button" class="close" data-dismiss="modal" id="closePwdModal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf = "notOldpwderr" class="alert alert-danger error_word" style="text-align: center;">
+            {{notOldpwderr}}
+        </div>
+        <div *ngIf = "success" class="alert alert-success error_word" style="text-align: center;">
+            {{success}}
+        </div>
+        <form  #forgotpwdform="ngForm" *ngIf ="!submitted" novalidate id ="firstDiv">
+              <div class="form-group ">
+                  <label class="english_wrd" for="phone1"><span style="font-size: 14px" class="tamil_word">முந்தைய கடவுச்சொல் </span>/ Old Password</label>
+                      <input type="text"  #oldotp="ngModel" [class.is-invalid]="oldotp.invalid && oldotp.touched" ngModel name="oldotp" class="form-control" [(ngModel)]="crntUser.oldotp" autocomplete="off"  required>
+    <span class="text-danger float-left error_word" [class.d-none] = "oldotp.valid || oldotp.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Old password is required</span>
+              </div>
+              <div style="text-align: center;" >
+              <button class="btn2" type="submit"   [disabled]="forgotpwdform.form.invalid" (click)="verifyPwd()">Submit</button>
+            </div>
+            </form>
+            <!-- password provision -->
+            <form  #pwdform="ngForm" *ngIf ="!submitted" novalidate style="display:none;" id="secondDiv">
+                  <div class="form-group ">
+                      <label class="english_wrd" for="phone1"><span style="font-size: 14px" class="tamil_word">புதிய கடவுச்சொல் </span>/ New Password</label>
+                          <input type="text"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="crntUser.password" autocomplete="off"  required>
+                          <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> New password is required</span>
+                  </div>
+                  <div style="text-align: center;" >
+                  <button class="btn2" [disabled]="pwdform.form.invalid" type="submit" (click)="updateUser()">Submit</button>
+                </div>
+                </form>
+      </div>
     </div>
   </div>
 </div>

@@ -26,8 +26,8 @@
   <aside class="col-sm-7">
       <button  *ngIf="requestSent" type="button" (click)="cancelOrderModal()" class=" btn-danger btnCancel float-right">Cancel order
       </button>
-  <h3 style="font-size: 2rem;color: #f47682" *ngIf="!postProduct.bulk">{{postProduct.name}}</h3>
-  <h3 style="font-size: 2rem;color: #f47682" class="tamil_word" *ngIf="postProduct.bulk">{{postProduct.category}}</h3>
+  <h3 style="font-size: 2rem;color: #ef6806d9" *ngIf="!postProduct.bulk">{{postProduct.name}}</h3>
+  <h3 style="font-size: 2rem;color: #ef6806d9" class="tamil_word" *ngIf="postProduct.bulk">{{postProduct.category}}</h3>
   <hr>
   <p class="seller float-right" style="font-weight: bold">Seller: <span style="font-weight:400;">{{postProduct.firstName}}</span></p>
   <p style="color: #0d4608;font-size: larger;" *ngIf="!postProduct.bulk"><b>Rs.{{postProduct.price}}.00 / {{postProduct.qnty}}</b></p>
@@ -75,8 +75,8 @@
                                             </div>
                                           <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                             <p class="product-productreview" *ngIf="postProduct.productreview == '' || postProduct.productreview == undefined || postProduct.productreview == null" style="text-align: justify">No reviews yet.</p>
-                                            <div class="container" *ngFor="let slide of reviewArr| slice:0:show;">
-                                              <div class="card" style="padding: 10px;">
+                                            <div class="container card" *ngFor="let slide of reviewArr| slice:0:show;">
+                                              <div style="padding: 10px;">
                                               <div class="notice notice-success">
                                                 <div *ngIf="reviewlngthErr">
                                                   <h6>{{reviewlngthErr}}</h6>
@@ -86,7 +86,7 @@
 
                                                   </div>
                                                   <div class="col-md-10 col-10">
-                                                    <div class=" ticketPara float-right" style="color: #eb0f2491;">
+                                                    <div class=" ticketPara float-right" style="color: #ef6806d9;">
                                                             <span style="color:#0d4608"> #</span><span style="font-size:13px;color:black">{{ slide.buyerName }}</span>&nbsp;
                                                             <span style="color:#0d4608">{{slide.starValue}}</span><i class="fa fa-star" aria-hidden="true"></i>
                                                     </div>
@@ -105,8 +105,8 @@
                                                 <strong>Notice</strong> notice-danger
                                               </div> -->
                                             </div>
-                                            <div *ngIf="show < reviewlngth" style="color: #0d4608;font-weight: bold;cursor: pointer;text-align: center;" (click)="increaseShow()">Load More...</div>
                                           </div>
+                                          <div *ngIf="show < reviewlngth" style="color: #0d4608;font-weight: bold;cursor: pointer;text-align: center;" (click)="increaseShow()">Load More...</div>
                                         </div>
                                           <!-- <div class="tab-pane fade" id="nav-dispute" role="tabpanel" aria-labelledby="nav-dispute-tab">
                                               <div #scrollMe style="overflow: scroll; height: 150px;">
@@ -193,7 +193,7 @@
         <div class="alert alert-success text-center" *ngIf="message"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{message}}</div>
         <div class="form-group mt-2">
        <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> தொலைபேசி எண் </span>/ Phone Number</label>
-            <input type="text"  #input1 #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" autofocus required>
+            <input type="text"  #input1 #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
             <span class="text-danger float-left error_word" [class.d-none] = "phone.valid || phone.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone Number is required</span>
           </div>
         <div class="form-group">
