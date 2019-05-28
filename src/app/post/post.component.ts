@@ -133,9 +133,15 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.loadingCtrl.show();
-    this.getForm();
+
 
     this.editId = this.router.snapshot.params['id'];
+       
+    // if(!this.editId){
+    //   this.getForm();
+    // }
+    this.getForm();
+    
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.carForm.value.avlPlace = JSON.parse(
       localStorage.getItem('currentUser')
@@ -164,20 +170,19 @@ export class PostComponent implements OnInit {
         res => {
           console.log(res);
           this.oldAvlplace = res;
-          for(let i =1 ; i < this.oldAvlplace.product.length;i++){
-            this.addSellingPoint();
-          }
-          // document.getElementById('nav-home').classList.remove('show');
-          // document.getElementById('nav-home').classList.remove('active');
-          // document.getElementById('nav-profile').classList.add('show');
-          // document.getElementById('nav-profile').classList.add('active');
+          // for(let i =1 ; i < this.oldAvlplace.product.length;i++){
+          //   this.addSellingPoint();
+          // }
+          
           this.carForm.patchValue({
-            categoryId: this.oldAvlplace.category,
+            categoryId: this.oldAvlplace.categoryId,
             avlPlace: this.oldAvlplace.avlPlace.formatted_address,
-            
+            //...this.oldAvlplace
           });
+           this.setExpenseCategories();
+         // this.carForm.setControl('product', this.fb.array(this.oldAvlplace.product || []));
 
-          this.carForm.setValue(this.oldAvlplace.product.map(control => control.value));
+          //this.carForm.setValue(this.oldAvlplace.product.map(control => control.value));
 
           // this.oldAvlplace = this.multiData.avlPlace;
           // this.multiData.avlPlace = this.multiData.avlPlace.formatted_address;
@@ -213,46 +218,37 @@ export class PostComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    console.log( this.carForm.value.product);
-
-    this.carForm.value.accountId = JSON.parse(
-      localStorage.getItem('currentUser')
-    )._id;
-    this.carForm.value.username = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).firstname;
-    this.carForm.value.userNumber = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).phone;
-    this.carForm.value.userAddressLine = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).address.addressLine;
-    this.carForm.value.userAddress = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).address.city.formatted_address;
-    this.carForm.value.status = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).status;
-    let curntDte = new Date().getTime();
-    this.carForm.value.date = curntDte;
-
-    this.carForm.value.ipAddress = this.privateIP;
-
-    if (this.addr == undefined || this.addr == null) {
-      this.carForm.value.avlPlace = JSON.parse(
-        localStorage.getItem('currentUser')
-      ).address.city;
-    } else {
-      this.carForm.value.avlPlace = this.addr;
+  setExpenseCategories(){
+    let control = <FormArray>this.carForm.controls.product;
+    this.oldAvlplace.product.forEach(x => {
+      control.push(this.fb.group(x));
+    })
+    for ( let  i = 0; i< this.oldAvlplace.product.length ; i++ ){
+      console.log(this.oldAvlplace.product);
     }
+    console.log(control.length);
+    let arr = [];
+    arr = control.value;
+    for ( let  i = 0; i < arr.length ; i++ ){
+      // if(control)
+      console.log(arr);
+      if(arr[i]._id){
+        console.log(arr[i].name);
+      }else{
+        console.log(i);
+        this.deleteSellingPoint(i);
+      }
+    }
+  }
+
+  onSubmit() {
+    console.log(this.carForm.value.product);
 
     for (let i = 0; i < this.categoryArr.length; i++) {
       if (this.carForm.value.categoryId == this.categoryArr[i]._id) {
         this.carForm.value.category = this.categoryArr[i].productCategory;
       }
     }
-
 
     this.productArr = this.carForm.value.product;
     if(this.isAlready == false){
@@ -269,9 +265,6 @@ export class PostComponent implements OnInit {
  
      console.log(this.price);
      console.log(this.quantity);
-
-     this.carForm.value.totalPrice = this.price;
-     this.carForm.value.totalQuantity = this.quantity;
  
      console.log(this.credits)
      this.myCredit = this.credits.credits;
@@ -291,25 +284,26 @@ export class PostComponent implements OnInit {
       this.loadingCtrl.hide();
     }
     else{
-      this._dealsService.addPost(this.carForm.value).subscribe(
+      console.log(this.carForm.value);
+      for(let i = 0 ; i < this.carForm.value.product.length ; i++){
+         this._dealsService.addPost(this.carForm.value.product[i]).subscribe(
         res => {
-          console.log(this.carForm.value);
           console.log(res);
-          this.creditObj.productId = res._id;
-          this.getUser();
-          this.updateUser();
-          this.success = 'Posted successfully!';
+          // this.creditObj.productId = res._id;
+          // this.getUser();
+          // this.updateUser();
+          // this.success = 'Posted successfully!';
          // document.getElementById('idView').scrollIntoView();
-          setTimeout(() => {
-            this.route.navigate(['products']);
-            this.loadingCtrl.hide();
-          }, 3000);
+          // setTimeout(() => {
+          //   this.route.navigate(['products']);
+          //   this.loadingCtrl.hide();
+          // }, 3000);
         },
         err => {
           console.log(err);
-          this.loadingCtrl.hide();
         }
       );
+      }
     }
    }
   }
@@ -337,11 +331,41 @@ export class PostComponent implements OnInit {
         for(let i = 0 ; i < this.carForm.value.product.length ; i++){
             i = this.imglen;
             this.carForm.value.product[i].image = this.Image;
+            this.carForm.value.product[i].accountId = JSON.parse(
+              localStorage.getItem('currentUser')
+            )._id;
+            this.carForm.value.product[i].username = JSON.parse(
+              localStorage.getItem('currentUser')
+            ).firstname;
+            this.carForm.value.product[i].userNumber = JSON.parse(
+              localStorage.getItem('currentUser')
+            ).phone;
+            this.carForm.value.product[i].userAddressLine = JSON.parse(
+              localStorage.getItem('currentUser')
+            ).address.addressLine;
+            this.carForm.value.product[i].userAddress = JSON.parse(
+              localStorage.getItem('currentUser')
+            ).address.city.formatted_address;
+            this.carForm.value.product[i].status = JSON.parse(
+              localStorage.getItem('currentUser')
+            ).status;
+            let curntDte = new Date().getTime();
+            this.carForm.value.product[i].date = curntDte;
+            console.log(this.carForm.value.product[i].date);
+        
+            this.carForm.value.product[i].ipAddress = this.privateIP;
+        
+            if (this.addr == undefined || this.addr == null) {
+              this.carForm.value.product[i].avlPlace = JSON.parse(
+                localStorage.getItem('currentUser')
+              ).address.city;
+            } else {
+              this.carForm.value.product[i].avlPlace = this.addr;
+            }
             this.carForm.value.product[i].category = this.carForm.value.category;
             this.carForm.value.product[i].date = this.carForm.value.date;
-            this.carForm.value.product[i].totalPrice = this.carForm.value.category;
-            this.carForm.value.product[i].totalQuantity = this.carForm.value.date;
-            console.log(this.carForm.value.product[i].image);
+            this.carForm.value.product[i].categoryId = this.carForm.value.categoryId;
+            console.log(this.carForm.value.product[i]);
             this.imglen = i+1;
             this.imageUrl();
             break;
@@ -353,16 +377,20 @@ export class PostComponent implements OnInit {
     this.carForm = this.fb.group({
       categoryId: new FormControl (""),
       avlPlace:  new FormControl (""),
-      product: this.fb.array([this.fb.group({
-        name:  ['', Validators.required],
-        quantity:  ['', Validators.required],
-        qnty: ['', Validators.required],
-        price:  ['', Validators.required],
-        description: '',
-        validityTime: ['', Validators.required],
-        category:'',
-        image: this.fb.array([])
-      })])
+      product: this.fb.array([this.getItem()])
+    })
+  }
+
+  getItem(){
+    return this.fb.group({
+      name:  ['', Validators.required],
+      quantity:  ['', Validators.required],
+      qnty: ['', Validators.required],
+      price:  ['', Validators.required],
+      description: '',
+      validityTime: ['', Validators.required],
+      category:'',
+      image: this.fb.array([])
     })
   }
 
@@ -371,22 +399,14 @@ export class PostComponent implements OnInit {
   }
 
   addSellingPoint() {
-    this.product.push(this.fb.group({
-      name:  '',
-      quantity:  '',
-      qnty:  '',
-      price:  '',
-      description:  '',
-      validityTime:  '',
-      category: '',
-      image: this.fb.array([])
-    })
-  );
+    this.product.push(this.getItem());
   }
 
   deleteSellingPoint(index) {
+    console.log(this.product)
     console.log(index);
     this.product.removeAt(index);
+    console.log(this.product)
   }
 
   getUser() {

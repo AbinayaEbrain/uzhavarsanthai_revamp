@@ -4,26 +4,18 @@ const Schema = mongoose.Schema;
 const postSchema = new Schema({
   category: String,
   categoryId: String,
+  name: String,
+  quantity: String,
+  qnty: String,
   subQuantity: String,
   subqnty: String,
+  price: Number,
+  description: String,
   accountId: String,
   date: String,
   ipAddress: String,
-  totalPrice: String,
-  totalQuantity: String,
-  product: [
-    {
-      name: String,
-      quantity: String,
-      qnty: String,
-      price: Number,
-      description: String,
-      validityTime: Date,
-      category: String,
-      date: String,
-      image: String
-    }
-  ],
+  validityTime: Date,
+  image: String,
   avlPlace: {
     lat: '',
     lng: '',
@@ -75,7 +67,7 @@ const postSchema = new Schema({
       dispute: String,
       requestId: String,
       disputeStatus: String,
-      solution: {type: String , default:''},
+      solution: { type: String, default: '' },
       against: String,
       createdAt: Date
     }
@@ -93,7 +85,7 @@ const postSchema = new Schema({
       disputeId: String,
       dispute: String,
       disputeStatus: String,
-      solution: {type: String , default:''},
+      solution: { type: String, default: '' },
       createdAt: Date
     }
   ]
