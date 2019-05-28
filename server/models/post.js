@@ -17,7 +17,9 @@ const postSchema = new Schema({
       price: Number,
       description: String,
       validityTime: Date,
-      image: String
+      category: String,
+      date: String,
+      image: []
     }
   ],
   avlPlace: {

@@ -54,22 +54,31 @@ export class UserProductsComponent implements OnInit {
         let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
         let j = 0;
         let l = 0;
-        this.crdDeals = res;
-        console.log(this.crdDeals);
+        let k = 0;
+        
+        console.log(res);
         let CurrentDate = new Date().toISOString();
-        for (let i = 0; i < this.crdDeals.length; i++) {
-          if (
-            acntID == this.crdDeals[i].accountId &&
-            this.crdDeals[i].validityTime > CurrentDate
-          ) {
-            this.userDeals[j] = this.crdDeals[i];
-            this.getPrdtName[l] = this.userDeals[j].name;
-            j++;
-            l++;
+        for (let i = 0; i < res.length; i++) {
+          if ( acntID == res[i].accountId ) {
+            this.crdDeals = res._id;
+            let arr = [];
+            arr = res[i].product
+            console.log(arr);
+            for(let j = 0 ; j < arr.length;j++){
+              if(arr[j].validityTime > CurrentDate){
+                this.userDeals[k] = arr[j];
+                // this.userDeals[k].category = res[j].category;
+                // this.userDeals[k].date = res[j].date;
+                this.getPrdtName[l] = this.userDeals[k].name;
+                j++;
+                k++;
+                l++;
+              }
+            }
           }
         }
-        this.getMultiArray();
-       
+        // this.getMultiArray();
+        
         // for (let j = 0; j < this.userDeals.length; j++) {
         //   if (this.userDeals[j].category == undefined) {
         //     this.errMsg = "Still you haven't post any deals";
@@ -176,14 +185,14 @@ export class UserProductsComponent implements OnInit {
         this.loadingCtrl.hide();
         let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
         let j = 0;
-        this.crdDeals = res;
+        //this.crdDeals = res;
         let CurrentDate = new Date().toISOString();
-        for (let i = 0; i < this.crdDeals.length; i++) {
+        for (let i = 0; i < res.length; i++) {
           if (
-            acntID == this.crdDeals[i].accountId &&
-            this.crdDeals[i].validityTime < CurrentDate
+            acntID == res[i].accountId &&
+            res[i].validityTime < CurrentDate
           ) {
-            this.userDeals1[j] = this.crdDeals[i];
+            this.userDeals1[j] = res[i];
             j++;
           }
         }

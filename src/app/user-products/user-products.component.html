@@ -56,7 +56,7 @@
                                                                  </td>
                                                              </tr>
                          
-                                                        <tr  id="hide" *ngFor="let deal of singleMultiArray | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
+                                                        <tr  id="hide" *ngFor="let deal of userDeals | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
                                                           
                                                             <td *ngIf="deal === -1" class="prdUnavil text-danger">
                                                                  {{errMsg2}}
@@ -78,7 +78,7 @@
                                                             <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
                                                             <td> {{deal.validityTime | date: 'dd/MM/yyyy'}} </td>
                                                             <td style="display: flex;" *ngIf="deal !== -1" >
-                                                                <button id="hideEditBtn" *ngIf="!deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/user-deals-edit/{{deal._id}}"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                <button id="hideEditBtn" *ngIf="!deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/post/{{deal.}}"><i class="fa fa-pencil" aria-hidden="true"></i>
                                                                  Edit
                                                                 </button>
                                                                 <button id="hideEditBtn" *ngIf="deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/post/{{deal._id}}"><i class="fa fa-pencil" aria-hidden="true"></i>
