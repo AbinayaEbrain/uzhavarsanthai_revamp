@@ -168,6 +168,13 @@ export class PostComponent implements OnInit {
           // document.getElementById('nav-profile').classList.add('show');
           // document.getElementById('nav-profile').classList.add('active');
           this.carForm = res;
+          this.carForm.patchValue({
+            categoryId: this.oldAvlplace.category,
+            avlPlace: this.oldAvlplace.avlPlace.formatted_address,
+            
+          });
+
+          this.carForm.setValue(this.oldAvlplace.product.map(control => control.value));
 
           // this.oldAvlplace = this.multiData.avlPlace;
           // this.multiData.avlPlace = this.multiData.avlPlace.formatted_address;
@@ -259,6 +266,9 @@ export class PostComponent implements OnInit {
  
      console.log(this.price);
      console.log(this.quantity);
+
+     this.carForm.value.totalPrice = this.price;
+     this.carForm.value.totalQuantity = this.quantity;
  
      console.log(this.credits)
      this.myCredit = this.credits.credits;
@@ -345,6 +355,7 @@ export class PostComponent implements OnInit {
         price:  ['', Validators.required],
         description: '',
         validityTime: ['', Validators.required],
+        category:'',
         image: this.fb.array([])
       })])
     })
@@ -362,6 +373,7 @@ export class PostComponent implements OnInit {
       price:  '',
       description:  '',
       validityTime:  '',
+      category: '',
       image: this.fb.array([])
     })
   );

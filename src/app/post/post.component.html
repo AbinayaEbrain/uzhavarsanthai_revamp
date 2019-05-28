@@ -42,7 +42,14 @@
                         <option *ngFor="let val of categoryArr" class="tamil_word" value="{{val._id}}">{{val.productCategory}}</option>
                       </select>
                       <span class="text-danger float-left error_word" *ngIf="carForm.controls.categoryId.invalid && carForm.controls.categoryId.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span>
-                    </div>
+                </div>
+                <!-- <div class="form-group" *ngIf="editId">
+                      <select required class="form-control" formControlName="category" name="category">
+                        <option class="opt" selected="" disabled="" value="" >Choose product category</option>
+                          <option *ngFor="let val of categoryArr" class="tamil_word" value="{{val.productCategory}}">{{val.productCategory}}</option>
+                        </select>
+                      <span class="text-danger float-left error_word" *ngIf="carForm.controls.category.invalid && carForm.controls.category.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span>
+                    </div> -->
               </div>
             <div class="col-md-5 mb-3">
               <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">கிடைக்குமிடம் </span>/ Available Place</label>
@@ -50,12 +57,17 @@
                       <input google-place type="text" placeholder="Enter your address" formControlName="avlPlace" class="form-control" (onSelect)="setAddress($event)" name="avlPlace" required>
                       <span class="text-danger float-left error_word" *ngIf="carForm.controls.avlPlace.invalid && carForm.controls.avlPlace.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
                     </div>
+
+                    <!-- <div class="form-group" *ngIf="editId">
+                      <input google-place type="text" placeholder="Enter your address" value="{{avlPlace.formatted_address}}" formControlName="avlPlace" class="form-control" (onSelect)="setAddress($event)" name="avlPlace" required>
+                      <span class="text-danger float-left error_word" *ngIf="carForm.controls.avlPlace.invalid && carForm.controls.avlPlace.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
+                    </div> -->
             </div>
           <div class="col-md-1"></div>
           </div>
         
           <div formArrayName="product">
-              <div *ngFor="let item of product.controls; let i=index" formGroupName="{{i}}">
+              <div *ngFor="let item of product.controls; let i=index" [formGroupName]="i">
       
                 <!-- First Row -->
 

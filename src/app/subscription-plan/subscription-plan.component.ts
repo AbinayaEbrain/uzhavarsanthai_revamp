@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DealsService } from '../deals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-subscription-plan',
@@ -9,33 +10,51 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class SubscriptionPlanComponent implements OnInit {
   subscriptionArr: any = [];
-  subcriptionData:any = {};
-  errMsg : any;
-  successMsg :any;
-  id:any;
-  userId:any;
-  subcriptionId:any;
-  usersCurrentCredits:any;
-  currentCredits:any;
-  crntSUbscription:any;
+  subcriptionData: any = {};
+  errMsg: any;
+  successMsg: any;
+  id: any;
+  userId: any;
+  subcriptionId: any;
+  usersCurrentCredits: any;
+  currentCredits: any;
+  crntSUbscription: any;
+  crntUser: any = {};
+  roleStatus: any;
+  role: any;
 
-  constructor(private _dealService: DealsService ,public loadingCtrl: NgxSpinnerService) {}
+  constructor(
+    private _dealService: DealsService,
+    public loadingCtrl: NgxSpinnerService,
+    private location: Location
+  ) {}
 
   ngOnInit() {
     this.loadingCtrl.show();
-    this.getSubscription();
     this.userId = JSON.parse(localStorage.getItem('currentUser'))._id;
-    console.log(this.userId)
-    this.currentUserCredit();
+    console.log(this.userId);
+    this.getSingleUser();
   }
 
-  getSubscription() {
-      this.loadingCtrl.show();
-    this._dealService.getSubscription().subscribe(
-      res => {
-        console.log(res);
-        this.subscriptionArr = res;
+  goToBack() {
+    this.location.back();
+  }
+
+  getSingleUser() {
+    this._dealService.getSingleUser(this.userId).subscribe(
+      data => {
+        console.log(data);
+        this.crntUser = data;
+        this.roleStatus = data.roleStatus;
+        this.role = data.role;
+        if (this.role == 'buyer' || this.roleStatus == 'Deactive') {
           this.loadingCtrl.hide();
+        }
+
+        if (this.role == 'seller' && this.roleStatus == 'Active') {
+          this.getSubscription();
+          this.currentUserCredit();
+        }
       },
       err => {
         console.log(err);
@@ -43,14 +62,28 @@ export class SubscriptionPlanComponent implements OnInit {
     );
   }
 
-  currentUserCredit(){
-      this.loadingCtrl.show();
+  getSubscription() {
+    this.loadingCtrl.show();
+    this._dealService.getSubscription().subscribe(
+      res => {
+        console.log(res);
+        this.subscriptionArr = res;
+        this.loadingCtrl.hide();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  currentUserCredit() {
+    this.loadingCtrl.show();
     this._dealService.getCurrentCredit(this.userId).subscribe(
       res => {
         console.log(res);
         this.crntSUbscription = res.subscriptionName;
-        this.usersCurrentCredits = res.credits
-          this.loadingCtrl.hide();
+        this.usersCurrentCredits = res.credits;
+        this.loadingCtrl.hide();
       },
       err => {
         console.log(err);
@@ -77,20 +110,19 @@ export class SubscriptionPlanComponent implements OnInit {
     );
   }
 
-updateSubsc(){
-  this.loadingCtrl.show();
-  this.subcriptionData.currentCredits = this.usersCurrentCredits;
-  this._dealService
-  .updateUserSubscription(this.subcriptionData, this.userId)
-  .subscribe(
-    data => {
-      console.log(data);
-      this.loadingCtrl.hide();
-    },
-    err => {
-      console.log(err);
-    }
-  );
-}
-
+  updateSubsc() {
+    this.loadingCtrl.show();
+    this.subcriptionData.currentCredits = this.usersCurrentCredits;
+    this._dealService
+      .updateUserSubscription(this.subcriptionData, this.userId)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.loadingCtrl.hide();
+        },
+        err => {
+          console.log(err);
+        }
+      );
+  }
 }

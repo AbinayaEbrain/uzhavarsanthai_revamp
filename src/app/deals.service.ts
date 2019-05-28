@@ -14,6 +14,7 @@ import { timer, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class DealsService {
+  private _getSingleUser = "https://uzhavarsanthai.herokuapp.com/api/getSingleUser";
   private _getCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/getCount';
   // https://farmers-market-ebrain.herokuapp.com
   private _dealsUrl = 'https://uzhavarsanthai.herokuapp.com/api/deals';
@@ -25,7 +26,7 @@ export class DealsService {
   private _getMultiUrl =
     'https://uzhavarsanthai.herokuapp.com/api/getMultipost';
   private _getSingleMultiUrl =
-    'https://uzhavarsanthai.herokuapp.com/api/singleMultipost';
+    'http://localhost:5000/api/singleMultipost';
   private _updateMultiPost =
     'https://uzhavarsanthai.herokuapp.com/api/updateMultipost';
   private _deleteMultiPost =
@@ -417,7 +418,12 @@ export class DealsService {
   getSingleSubscription(id) {
     return this.http.get<any>(this.getSingleSubscriptionUrl + '/' + id);
   }
+
   getCurrentCredit(id){
     return this.http.get<any>(this.getCurrentuserCrditsUrl + '/' + id);
+  }
+
+  getSingleUser(id) {
+    return this.http.get<any>(this._getSingleUser + '/' + id);
   }
 }

@@ -41,11 +41,11 @@
                                                     <thead style="text-align: center; background-color: #0d460840;">
                                                         <tr>
                                                             <th>Category</th>
-                                                            <th>Name</th>
-                                                            <th>Quantity</th>
-                                                            <th><i class="fa fa-inr" aria-hidden="true"></i> Price/ Quantity</th>
+                                                            <th>Posetd Products</th>
+                                                            <th>Total Quantity</th>
+                                                            <th><i class="fa fa-inr" aria-hidden="true"></i>Total Price</th>
                                                             <th>Post Date</th>
-                                                            <th>Expiry Date</th>
+                                                            <!-- <th>Expiry Date</th> -->
                                                             <th class="disabled-sorting">Action</th>
                                                         </tr>
                                                     </thead>
@@ -64,21 +64,21 @@
                                                               
                                                             <td>{{deal.category}}</td>
 
-                                                            <td *ngIf="deal.name">
-                                                            <div class="productFullName">{{deal.name}}</div>
+                                                            <td>
+                                                            <div class="productFullName">{{deal.product.length}}</div>
                                                              </td>
-                                                             <td *ngIf="!deal.name">--</td>
+                                                             <!-- <td *ngIf="!deal.name">--</td> -->
 
-                                                            <td *ngIf="deal.quantity">{{deal.quantity}}{{deal.qnty}} </td>
-                                                            <td *ngIf="!deal.quantity">--</td>
+                                                            <td>{{deal.totalQuantity}}</td>
+                                                            <!-- <td *ngIf="!deal.quantity">--</td> -->
 
-                                                           <td *ngIf="deal.price">{{deal.price}}</td>
-                                                           <td *ngIf="!deal.price">--</td>
+                                                           <td>{{deal.totalPrice}}</td>
+                                                           <!-- <td *ngIf="!deal.price">--</td> -->
 
                                                             <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
-                                                            <td> {{deal.validityTime | date: 'dd/MM/yyyy'}} </td>
+                                                            <!-- <td> {{deal.validityTime | date: 'dd/MM/yyyy'}} </td> -->
                                                             <td style="display: flex;" *ngIf="deal !== -1" >
-                                                                <button id="hideEditBtn" *ngIf="!deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/post/{{deal.}}"><i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                <button id="hideEditBtn" *ngIf="!deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/post/{{deal._id}}"><i class="fa fa-pencil" aria-hidden="true"></i>
                                                                  Edit
                                                                 </button>
                                                                 <button id="hideEditBtn" *ngIf="deal.bulk" class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;" routerLink="/post/{{deal._id}}"><i class="fa fa-pencil" aria-hidden="true"></i>

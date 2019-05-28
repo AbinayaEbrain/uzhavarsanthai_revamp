@@ -1,16 +1,17 @@
 <body class="bg" style="overflow-x: hidden;">
     <div class="container pt-3 mt-5">
-        <h5 class="clr sent_font styl mt-5">Order Requests</h5>
+        <div *ngIf="role == 'seller' && roleStatus == 'Active'">
+                <h5 class="text-center clr sent_font styl mt-3">Order Requests</h5>
         <div class="row">
           <div class="col-md-4">
               <nav>
                   <div class="nav nav-tabs " id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active button_word tabTitle" style="margin-top: 8%;" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true" (click)="getCreatedRequests()">Active Requests <i class="fa fa-star-o" aria-hidden="true" ></i></a>&nbsp;&nbsp;
-                    <a class="nav-item nav-link button_word tabTitle"  style="margin-top: 8%;"  id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" (click)="getCancelledRequests()">Cancel Requests <i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+                    <a class="nav-item nav-link active button_word tabTitle" style="margin-top: 6%;" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true" (click)="getCreatedRequests()">Active Requests <i class="fa fa-star-o" aria-hidden="true" ></i></a>
+                    <a class="nav-item nav-link button_word tabTitle"  style="margin-top: 6%;"  id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" (click)="getCancelledRequests()">Cancel Requests <i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
                    </div>
                 </nav>
            </div>
-   </div>
+        </div>
 
    <div class="row" *ngIf="successMsg">
         <div class="col-md-4"></div>
@@ -140,7 +141,32 @@
             </div>
             </div>
   </div>
-  </div>
+        </div>
+
+        <div class="mt-5 pt-5" *ngIf="role == 'buyer' && roleStatus == 'Active'">
+          <div style="margin-bottom: 6%">
+              <div class="col-md-3 col-lg-3 col-12"></div>
+              <div class="col-md-6 col-lg-6 col-12 errDesign">
+                  <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                  <p class="mt-4">You have to be a "<font style="color: #f53636;font-style: italic">seller</font>" to see <span style="font-style: italic">Order Requests</span>.</p>
+                  <a routerLink="/buyerAsSeller" style="cursor: pointer;text-decoration: underline;color: #0d4608;">SignUp as seller</a>
+              </div>
+              <div class="col-md-3 col-lg-3 col-12"></div>
+          </div>
+      </div>
+
+      <div class="mt-5 pt-5" *ngIf="role == 'buyer' && roleStatus == 'Deactive'">
+        <div style="margin-bottom: 6%">
+            <div class="col-md-3 col-lg-3 col-12"></div>
+            <div class="col-md-6 col-lg-6 col-12 errDesign">
+                <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                <p class="mt-4">Your seller request is on processing.Please wait until you get confirmation message.</p>
+                <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #0d4608;">Go to back</a>
+            </div>
+            <div class="col-md-3 col-lg-3 col-12"></div>
+        </div>
+    </div>
+    </div>
   </body>
   
    <!-- modal -->

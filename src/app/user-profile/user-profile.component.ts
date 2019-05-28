@@ -5,12 +5,15 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { DealsService } from '../deals.service';
 import { AuthService } from '../auth.service';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  @ViewChild('forgotpwdform') mytemplateForm1: NgForm;
+  @ViewChild('pwdform') mytemplateForm2: NgForm;
   loggedUser = [];
   @ViewChild('editForm') form;
   currentuserId: any;
@@ -28,6 +31,10 @@ export class UserProfileComponent implements OnInit {
   public address: any;
   adrss: any;
   addrs: any;
+  checkpassword = false
+  notOldpwderr : any;
+  pwd : any;
+
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
     //to the object in the DOM.
@@ -49,6 +56,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.loadingCtrl.show();
+    this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
     this.InitialCall();
     // this.id = this.route.snapshot.params['id']
     this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
@@ -90,9 +98,12 @@ export class UserProfileComponent implements OnInit {
         this.success = 'Updated successfully!';
         setTimeout(() => {
           this.success = '';
-          this.router.navigate['/post'];
-        }, 1000);
-        this.router.navigate['/post'];
+          if(this.checkpassword == true){
+            document.getElementById("closePwdModal").click();
+            this._authService.logoutUser();
+            this.router.navigate(['/login']);
+          }
+        }, 2000);
       },
       err => {
         console.log(err);
@@ -159,10 +170,31 @@ export class UserProfileComponent implements OnInit {
       }
     }
   }
+
   onSubmit() {
     this.form.form.markAsPristine();
     this.form.form.markAsUntouched();
     this.form.form.updateValueAndValidity();
     this.InitialCall();
+  }
+
+  changePwd(){
+    document.getElementById("openChangePwdModal").click();
+      this.notOldpwderr = '';
+      this.mytemplateForm1.reset();
+      this.mytemplateForm2.reset();
+      document.getElementById("firstDiv").style.display = 'block';
+      document.getElementById("secondDiv").style.display = 'none';
+  }
+
+  verifyPwd(){
+    if(this.crntUser.oldotp == this.pwd){
+      this.notOldpwderr = '';
+      document.getElementById("secondDiv").style.display = 'block';
+      document.getElementById("firstDiv").style.display = 'none';
+      this.checkpassword = true;
+    }else{
+      this.notOldpwderr = 'You have entered wrong password'
+    }
   }
 }

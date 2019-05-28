@@ -60,13 +60,13 @@ export class UserProductsComponent implements OnInit {
         let CurrentDate = new Date().toISOString();
         for (let i = 0; i < res.length; i++) {
           if ( acntID == res[i].accountId ) {
-            this.crdDeals = res._id;
+            //this.crdDeals = res[i];
             let arr = [];
             arr = res[i].product
             console.log(arr);
             for(let j = 0 ; j < arr.length;j++){
               if(arr[j].validityTime > CurrentDate){
-                this.userDeals[k] = arr[j];
+                this.userDeals[k] = res[i];
                 // this.userDeals[k].category = res[j].category;
                 // this.userDeals[k].date = res[j].date;
                 this.getPrdtName[l] = this.userDeals[k].name;
@@ -79,6 +79,10 @@ export class UserProductsComponent implements OnInit {
         }
         // this.getMultiArray();
         
+        if (res.length == 0) {
+          this.errMsg = "Still you haven't post any deals";
+        }
+
         // for (let j = 0; j < this.userDeals.length; j++) {
         //   if (this.userDeals[j].category == undefined) {
         //     this.errMsg = "Still you haven't post any deals";

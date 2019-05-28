@@ -456,3 +456,7 @@ input {
   border: 1px solid #0d4608;
   padding: 0.15rem 0.75rem !important;
 }
+
+.swal{
+  cursor: pointer !important;
+}

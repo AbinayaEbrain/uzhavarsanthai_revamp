@@ -12,13 +12,13 @@
               </div>
               <div class="col-md-2">
               </div>
-              <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">
+              <div class="col-md-3 col-6 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">
                   <div class="inner-addon left-addon" >
                           <i class="fa fa-search glyphicon" aria-hidden="true"></i>
                           <input type="text" class="form-control searchBorder searchtop1" name="search" [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
                   </div>
                </div>
-               <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchlocDiv">
+               <div class="col-md-3 col-6 onmobiviewpadding topLoc mt-md-0 mt-2 one" id="hideSearchlocDiv">
                   <div class="inner-addon left-addon" >
                           <i class="fa fa-search glyphicon" aria-hidden="true"></i>
                           <input google-place type="text" class="form-control searchBorder"  [(ngModel)]="getLocationDeals" (keyup)="adrsChange()" (onSelect)="setAddress($event)" placeholder="Search by location.." />

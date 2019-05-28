@@ -9,6 +9,8 @@ const postSchema = new Schema({
   accountId: String,
   date: String,
   ipAddress: String,
+  totalPrice: String,
+  totalQuantity: String,
   product: [
     {
       name: String,

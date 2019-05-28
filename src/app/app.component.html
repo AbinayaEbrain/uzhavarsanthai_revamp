@@ -3,7 +3,7 @@
   <!-- <a class="navbar-brand apptitle" routerLink="/">உழவர் சந்தை</a> -->
   <div>
   <img src="../../assets/Images/logo2.png" routerLink="/" alt="logo"><br>
-  <p class="every clr tamil_word hideMobile d-lg-block d-md-none d-none" style="margin-left: 20px;font-weight: bold;">
+  <p class="every clr tamil_word hideMobile d-lg-block" style="margin-left: 20px;">
     ஏரின்றி அமையாது உலகு!
   </p></div>
   <!-- <a class="textAlign">
@@ -30,8 +30,6 @@
         data-toggle="collapse"
         data-target="#navbarCollapse"
         aria-controls="navbarCollapse"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
       >
       <!-- <span class="tamil_word" >விற்க</span> /  -->
         <a class="nav-link " routerLink="/dealCategory" routerLinkActive="active"
@@ -44,12 +42,10 @@
       data-toggle="collapse"
       data-target="#navbarCollapse"
       aria-controls="navbarCollapse"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
     >
     <!-- <span class="tamil_word" >விற்க</span> /  -->
       <a class="nav-link" routerLink="/login" routerLinkActive="active"
-        >Sell</a
+        >Login</a
       >
     </li>
       <li
@@ -58,8 +54,6 @@
         data-toggle="collapse"
         data-target="#navbarCollapse"
         aria-controls="navbarCollapse"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
       >
         <a
           class="nav-link"
@@ -75,8 +69,6 @@
         data-toggle="collapse"
         data-target="#navbarCollapse"
         aria-controls="navbarCollapse"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
       ><!-- <span class="tamil_word" >வலைப்பதிவு</span> /  -->
         <a class="nav-link" routerLink="/blog-view" routerLinkActive="active"
           >Blog</a>
@@ -351,7 +343,7 @@
 </ngx-spinner>
 <footer class="footer uzhavarsanthaiFooter">
   <div class="container">
-    <div class="row">
+    <div class="row" style="font-size: 15px;">
         <div class="col-lg-4 col-md-6 col-sm-12 col-12 ">
             <div class="footer-copyright text-center onmobviewalign" style="margin-top: 4%;float:left">
               © 2019 Copyright
@@ -371,8 +363,8 @@
         <p class="footerOptions" routerLink="/about">Terms Of Use</p>
       </div> -->
       <div class="col-lg-8 col-md-6 col-sm-12 col-12 textCenter float-right" style="margin-top: 1%;">
-          <p class="onmobviewalign"  style="float: right;">
-              <span class="footerOptions"
+          <p class="onmobviewalign" style="float: right;">
+              <span class="footerOptions" *ngIf="!_authService.loggedIn()"
               >Want to be a seller ? <span style="text-decoration: underline" (click)="register()">SignUp</span> &nbsp;&nbsp; &nbsp;&nbsp;</span
             >
             <span class="footerOptions" routerLink="/about"

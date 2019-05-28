@@ -175,7 +175,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="headingEng"><span class="headingTamil">உள்நுழைக</span> / Login</h5>
+          <h5 class="headingEng"><span class="tamil_word">உள்நுழைக</span> / Login</h5>
 
           <button type="button" class="close" id="closeLoginModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
@@ -194,7 +194,7 @@
         <div class="alert alert-success text-center" *ngIf="message"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{message}}</div>
         <div class="form-group mt-2">
        <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> தொலைபேசி எண் </span>/ Phone Number</label>
-            <input type="text"  #input1 #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" autofocus required>
+            <input type="text"  #input1 #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
             <span class="text-danger float-left error_word" [class.d-none] = "phone.valid || phone.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone Number is required</span>
           </div>
         <div class="form-group">
@@ -230,7 +230,7 @@
   <!-- //second div -->
   <div id="secondDiv" class="mt-2" style="display: none">
       <form>
-        <div class="alert alert-success text-center" *ngIf="optsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{optsent}}</div>
+        <div class="text-center" *ngIf="optsent">OTP has been sent to this number successfully!<br><b>'{{optsent}}'</b></div>
     <div class="alert alert-danger text-center" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
     <div class="form-group ">
         <label class="english_wrd" for="verifyPhone"><span style="font-size: 14px" class="tamil_word">Enter your OTP</span></label>
@@ -280,7 +280,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="headingEng"><span class="headingTamil">பதிவு செய்க</span> / Sign Up</h5>
+          <h6 class="headingEng"><span class="tamil_word">பதிவு செய்க</span> / Sign Up</h6>
             <button type="button" class="close" data-dismiss="modal" id="closeSignUpModal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
@@ -303,7 +303,7 @@
           </div>
 
           <div id="signUpsecondDiv" style="display: none">
-                  <div class="alert alert-success text-center"  *ngIf="signUoptsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{signUoptsent}}</div>
+                  <div class="text-center"  *ngIf="signUoptsent">OTP has been sent to this number successfully!<br> <b>'{{signUoptsent}}'</b></div>
               <div class="alert alert-danger text-center"  *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
               <div class="form-group ">
                   <label class="english_wrd" for="phone">Enter your OTP</label>
@@ -358,7 +358,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <p class="modal-title fntSize">Requirement Details</p>
-            <button type="button" class="close x" id="closeRequirementModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+            <button type="button" class="close x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
         </div>
         <div class="modal-body">
           <div class="alert alert-success text-center error_word"  *ngIf="orderRequestMsg">
@@ -440,7 +440,7 @@
                   </div>
                   <br>
                   <div class="text-center">
-                      <button type="submit" [disabled]="queryform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn" (click)="sendQuery()" >Send Order Request</button>
+                      <button type="submit" [disabled]="queryform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn" (click)="sendQuery()" data-toggle="modal" data-target="#myModalswal" id="closeCancelOrderModal1" data-dismiss="modal" aria-label="Close">Send Order Request</button>
                   </div>
                 </form>
         </div>
@@ -473,3 +473,23 @@
      </div>
   </div>
   </div>
+
+   <!-- The Modal -->
+   <div class="modal fade" id="myModalswal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="width: auto;">
+          <!-- Modal body -->
+          <div class="modal-body" style="padding: 25px;">
+            <h5 class="text-center" style="color:#0d4608">Order requested successfully!</h5>
+            <p class="text-center">We got your order query, we get back to you soon ! <br>
+              <span style="color:#0d4608;font-weight: bold;cursor: pointer;">Request ID : {{requestData.requestId}}</span> 
+            </p>
+            <div class="text-center">
+                <button type="button" class="btn btn-success button_word" routerLink="/my-order">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
