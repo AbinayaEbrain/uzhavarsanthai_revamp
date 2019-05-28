@@ -1,4 +1,4 @@
-<div class="container mt-5 pt-3 pt-md-5">
+<div class="bg1 container mt-5 pt-3 pt-md-5">
   <div class="card cardStyle" style="padding: 10px;">
   <div class="row">
   <aside class="col-sm-5">
@@ -8,10 +8,11 @@
     <!-- <img src="{{postProduct.image}}" style="cursor: pointer;" class="viewImage"> -->
     <ngx-slick-carousel class="carousel"
     #slickModal="slick-carousel"
+    style="text-align: center;"
             [config]="slideConfig"
             (init)="slickInit($event)">
         <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
-            <img src="{{ slide }}" alt="" class="viewImage" style="max-width: 100%;" height="200">
+            <img src="{{ slide }}" alt="" class="viewImage" style="max-width: 80%;" height="200">
         </div>
     </ngx-slick-carousel>
   </div>
@@ -451,11 +452,11 @@
   </div>
 
   <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal3">
-   <div class="modal-dialog" role="document">
+   <div class="modal-dialog modal-dialog-centered" role="document">
      <div class="modal-content">
        <div class="modal-header">
-         <h4  style="font-family:'Oxygen', sans-serif;color: #0d4608;">Order Cancel Confirmation</h4>
-           <button type="button" class="close" id="closeCancelOrderModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <p class="modal-title fntSize">Order Cancel Confirmation</p>
+           <button type="button" class="close x" id="closeCancelOrderModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
        </div>
        <div class="modal-body">
          <div class="alert alert-success text-center error_word"  *ngIf="orderCancelMsg">
@@ -464,8 +465,8 @@
          <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete this order request?</h6>
          <div class="text-center">
 
-      <button type="button" class="btn btn-success button_word"  (click)="updateOrderRqst()">Yes</button>&nbsp;&nbsp;&nbsp;
-      <button style="background-color:#e43d3d !important;" type="button" class="btn btn-danger button_word" data-dismiss="modal">No</button>
+      <button type="button" class="btn btn-success button_word modelBtn"  (click)="updateOrderRqst()">Yes</button>&nbsp;&nbsp;&nbsp;
+      <button style="background-color:#e43d3d !important;" type="button" class="btn btn-danger button_word modelBtn" data-dismiss="modal">No</button>
      </div>
        </div>
 
