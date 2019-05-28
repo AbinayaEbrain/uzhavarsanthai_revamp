@@ -99,9 +99,9 @@ router.get('/getSingleUser/:id', (req, res) => {
 //postdeals
 
 router.post('/post', (req, res) => {
-  let aaa = req.body.name;
-  let name = aaa.toLowerCase();
-  req.body.name = name.charAt(0).toUpperCase() + name.slice(1);
+  // let aaa = req.body.name;
+  // let name = aaa.toLowerCase();
+  // req.body.name = name.charAt(0).toUpperCase() + name.slice(1);
   let userData = req.body;
   let user = new Post(userData);
   user.save((error, productData) => {
@@ -212,7 +212,7 @@ router.get('/blogetone/:id', (req, res) => {
 
 // get one multi post
 router.get('/singleMultipost/:id', (req, res) => {
-  Multipost.findById(req.params.id, function(errors, getoneuser) {
+  Post.findById(req.params.id, function(errors, getoneuser) {
     if (errors) {
       console.log('Error updating' + errors);
     } else {

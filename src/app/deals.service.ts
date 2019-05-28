@@ -18,7 +18,7 @@ export class DealsService {
   private _getCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/getCount';
   // https://farmers-market-ebrain.herokuapp.com
   private _dealsUrl = 'https://uzhavarsanthai.herokuapp.com/api/deals';
-  private _postUrl = 'https://uzhavarsanthai.herokuapp.com/api/post';
+  private _postUrl = 'http://localhost:5000/api/post';
   private _getUrl = 'https://uzhavarsanthai.herokuapp.com/api/details';
 
   // Multipost
@@ -26,7 +26,7 @@ export class DealsService {
   private _getMultiUrl =
     'https://uzhavarsanthai.herokuapp.com/api/getMultipost';
   private _getSingleMultiUrl =
-    'https://uzhavarsanthai.herokuapp.com/api/singleMultipost';
+    'http://localhost:5000/api/singleMultipost';
   private _updateMultiPost =
     'https://uzhavarsanthai.herokuapp.com/api/updateMultipost';
   private _deleteMultiPost =

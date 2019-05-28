@@ -231,6 +231,10 @@ const routes: Routes = [
   {
     path: 'orderView',
     component: OrderViewComponent
+  },
+  {
+    path: 'orderView/:id',
+    component: OrderViewComponent
   }
 ];
 

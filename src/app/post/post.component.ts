@@ -18,6 +18,7 @@ import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
 import {} from '@types/googlemaps';
 import { FileUploader } from 'ng2-file-upload';
 import { DatePipe } from '@angular/common';
+import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 // const URL = 'http://localhost:8080/api/upload';
 
@@ -86,6 +87,14 @@ export class PostComponent implements OnInit {
   creditMinus:any;
   creditObj: any = {};
   myCredit: any;
+  public carForm: FormGroup;
+  imglen = 0;
+  imglen1 = 0;
+  productArr: any = [];
+  isAlready: boolean = false;
+  price = 0;
+  quantity = 0;
+  lastImage: any;
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -103,7 +112,8 @@ export class PostComponent implements OnInit {
     private router: ActivatedRoute,
     public loadingCtrl: NgxSpinnerService,
     public zone: NgZone,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private fb: FormBuilder
   ) {
     this.privateIP = ClientIP;
     console.log(this.privateIP);
@@ -123,24 +133,17 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.loadingCtrl.show();
+    this.getForm();
+
     this.editId = this.router.snapshot.params['id'];
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
-    
-    if(JSON.parse(
+    this.carForm.value.avlPlace = JSON.parse(
       localStorage.getItem('currentUser')
-    ).address.city.formatted_address){
-      
-      this.productData.avlPlace = JSON.parse(
-        localStorage.getItem('currentUser')
-      ).address.city.formatted_address;
+    ).address.city.formatted_address;
 
-      this.multiData.avlPlace = JSON.parse(
-        localStorage.getItem('currentUser')
-      ).address.city.formatted_address;
-    }
-    
-
-   
+    this.multiData.avlPlace = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).address.city.formatted_address;
     this.getUser();
 
     //category
@@ -160,36 +163,46 @@ export class PostComponent implements OnInit {
       this._dealsService.getSingleMultiPost(this.editId).subscribe(
         res => {
           console.log(res);
-          document.getElementById('nav-home').classList.remove('show');
-          document.getElementById('nav-home').classList.remove('active');
-          document.getElementById('nav-profile').classList.add('show');
-          document.getElementById('nav-profile').classList.add('active');
-          this.multiData = res;
+          this.oldAvlplace = res;
+          for(let i =1 ; i < this.oldAvlplace.product.length;i++){
+            this.addSellingPoint();
+          }
+          // document.getElementById('nav-home').classList.remove('show');
+          // document.getElementById('nav-home').classList.remove('active');
+          // document.getElementById('nav-profile').classList.add('show');
+          // document.getElementById('nav-profile').classList.add('active');
+          this.carForm.patchValue({
+            categoryId: this.oldAvlplace.category,
+            avlPlace: this.oldAvlplace.avlPlace.formatted_address,
+            
+          });
 
-          this.oldAvlplace = this.multiData.avlPlace;
-          this.multiData.avlPlace = this.multiData.avlPlace.formatted_address;
+          this.carForm.setValue(this.oldAvlplace.product.map(control => control.value));
 
-          this.splitImage = this.multiData.image;
-          this.multiData.image = this.splitImage.split(',', 1);
+          // this.oldAvlplace = this.multiData.avlPlace;
+          // this.multiData.avlPlace = this.multiData.avlPlace.formatted_address;
 
-          this.multiPostTime = this.multiData.validityTime;
-          this.dateNrml = this.datePipe.transform(
-            this.multiPostTime,
-            'dd/MM/yyyy'
-          );
-          this.multiData.validityTime = this.dateNrml;
+          // this.splitImage = this.multiData.image;
+          // this.multiData.image = this.splitImage.split(',', 1);
 
-          this.arrayImage = this.splitImage.split(',');
-          console.log(this.arrayImage);
-          this.slideConfig = {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            dots: true,
-            infinite: false,
-            arrows: true,
-            autoplay: true,
-            autoplaySpeed: 800
-          };
+          // this.multiPostTime = this.multiData.validityTime;
+          // this.dateNrml = this.datePipe.transform(
+          //   this.multiPostTime,
+          //   'dd/MM/yyyy'
+          // );
+          // this.multiData.validityTime = this.dateNrml;
+
+          // this.arrayImage = this.splitImage.split(',');
+          // console.log(this.arrayImage);
+          // this.slideConfig = {
+          //   slidesToShow: 1,
+          //   slidesToScroll: 1,
+          //   dots: true,
+          //   infinite: false,
+          //   arrows: true,
+          //   autoplay: true,
+          //   autoplaySpeed: 800
+          // };
           this.loadingCtrl.hide();
         },
         err => {
@@ -198,6 +211,182 @@ export class PostComponent implements OnInit {
         }
       );
     }
+  }
+
+  onSubmit() {
+    console.log( this.carForm.value.product);
+
+    this.carForm.value.accountId = JSON.parse(
+      localStorage.getItem('currentUser')
+    )._id;
+    this.carForm.value.username = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).firstname;
+    this.carForm.value.userNumber = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).phone;
+    this.carForm.value.userAddressLine = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).address.addressLine;
+    this.carForm.value.userAddress = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).address.city.formatted_address;
+    this.carForm.value.status = JSON.parse(
+      localStorage.getItem('currentUser')
+    ).status;
+    let curntDte = new Date().getTime();
+    this.carForm.value.date = curntDte;
+
+    this.carForm.value.ipAddress = this.privateIP;
+
+    if (this.addr == undefined || this.addr == null) {
+      this.carForm.value.avlPlace = JSON.parse(
+        localStorage.getItem('currentUser')
+      ).address.city;
+    } else {
+      this.carForm.value.avlPlace = this.addr;
+    }
+
+    for (let i = 0; i < this.categoryArr.length; i++) {
+      if (this.carForm.value.categoryId == this.categoryArr[i]._id) {
+        this.carForm.value.category = this.categoryArr[i].productCategory;
+      }
+    }
+
+
+    this.productArr = this.carForm.value.product;
+    if(this.isAlready == false){
+      this.imageUrl();
+    }
+
+    console.log(this.carForm.value);
+
+   if(this.isAlready){
+    for(let i = 0 ; i < this.carForm.value.product.length ; i++){
+      this.price = this.price + parseInt(this.carForm.value.product[i].price);
+      this.quantity = this.quantity + parseInt(this.carForm.value.product[i].quantity);
+     }
+ 
+     console.log(this.price);
+     console.log(this.quantity);
+
+     this.carForm.value.totalPrice = this.price;
+     this.carForm.value.totalQuantity = this.quantity;
+ 
+     console.log(this.credits)
+     this.myCredit = this.credits.credits;
+     console.log(this.myCredit);
+     this.creditMinus = (this.price * this.quantity) * (1 / 100);
+     console.log(this.creditMinus);
+     
+    if(this.myCredit < this.creditMinus){
+      console.log('No credit')
+      swal({
+        title: 'You have no credit!',
+        text:
+          'If you post your product! Please pay MONEY show your PLANS.',
+        imageUrl: '../../assets/Images/progress.gif'
+      });
+      this.route.navigate(['/subscription-plan']);
+      this.loadingCtrl.hide();
+    }
+    else{
+      this._dealsService.addPost(this.carForm.value).subscribe(
+        res => {
+          console.log(this.carForm.value);
+          console.log(res);
+          this.creditObj.productId = res._id;
+          this.getUser();
+          this.updateUser();
+          this.success = 'Posted successfully!';
+         // document.getElementById('idView').scrollIntoView();
+          setTimeout(() => {
+            this.route.navigate(['products']);
+            this.loadingCtrl.hide();
+          }, 3000);
+        },
+        err => {
+          console.log(err);
+          this.loadingCtrl.hide();
+        }
+      );
+    }
+   }
+  }
+
+    imageUrl(){
+      console.log(this.imglen1)
+      if(this.imglen1 != this.productArr.length){
+        for(let i = 0 ; i < this.productArr.length ; i++){
+              i = this.imglen1;
+              this.urls = this.productArr[i].image;
+              console.log(this.urls);
+              this.imglen1 = i+1;
+              this.postMultiImage();
+          break;
+          }
+      }else{
+        this.isAlready = true;
+        this.onSubmit();
+      }
+    }
+  
+    imageAppend(){
+      console.log(this.imglen);
+      if(this.imglen != this.carForm.value.product.length){
+        for(let i = 0 ; i < this.carForm.value.product.length ; i++){
+            i = this.imglen;
+            this.carForm.value.product[i].image = this.Image;
+            this.carForm.value.product[i].category = this.carForm.value.category;
+            this.carForm.value.product[i].date = this.carForm.value.date;
+            this.carForm.value.product[i].totalPrice = this.carForm.value.category;
+            this.carForm.value.product[i].totalQuantity = this.carForm.value.date;
+            console.log(this.carForm.value.product[i].image);
+            this.imglen = i+1;
+            this.imageUrl();
+            break;
+        }
+      }
+    }
+
+  getForm(){
+    this.carForm = this.fb.group({
+      categoryId: new FormControl (""),
+      avlPlace:  new FormControl (""),
+      product: this.fb.array([this.fb.group({
+        name:  ['', Validators.required],
+        quantity:  ['', Validators.required],
+        qnty: ['', Validators.required],
+        price:  ['', Validators.required],
+        description: '',
+        validityTime: ['', Validators.required],
+        category:'',
+        image: this.fb.array([])
+      })])
+    })
+  }
+
+  get product() {
+    return this.carForm.get('product') as FormArray;
+  }
+
+  addSellingPoint() {
+    this.product.push(this.fb.group({
+      name:  '',
+      quantity:  '',
+      qnty:  '',
+      price:  '',
+      description:  '',
+      validityTime:  '',
+      category: '',
+      image: this.fb.array([])
+    })
+  );
+  }
+
+  deleteSellingPoint(index) {
+    console.log(index);
+    this.product.removeAt(index);
   }
 
   getUser() {
@@ -222,14 +411,19 @@ export class PostComponent implements OnInit {
     console.log('slick initialized');
   }
 
-  onFileChange(event) {
-    //Method to set the value of the file to the selected file by the user
-    this.singleImage = event.target.files[0];
-    //console.log(this.Image.name); //To get the image selected by the user
-    this.valid = true;
-  }
+  // onFileChange(event) {
+  //   //Method to set the value of the file to the selected file by the user
+  //   this.singleImage = event.target.files[0];
+  //   //console.log(this.Image.name); //To get the image selected by the user
+  //   this.valid = true;
+  //   console.log(this.singleImage)
+  
+  //   this.product.
+      
+  // }
 
   onFileChangeMulti(event) {
+    this.urls = [];
     var filesAmount = event.target.files.length;
     if (filesAmount > 0) {
       var filesAmount = event.target.files.length;
@@ -238,6 +432,12 @@ export class PostComponent implements OnInit {
         this.imageLength = this.urls.length;
       }
     }
+    for(let i = 0 ; i < this.carForm.value.product.length ; i++){
+      if(this.carForm.value.product[i].image.length == 0){
+        this.carForm.value.product[i].image = this.urls;
+      }
+    }
+    console.log(this.urls)
   }
 
   postImage() {
@@ -295,22 +495,28 @@ export class PostComponent implements OnInit {
         this.postMultiProduct();
       }
     } else {
+      this.Image = [];
       if (this.urls.length != 0) {
         for (let i = 0; i < this.urls.length; i++) {
           var image = new FormData(); //FormData creation
           image.append('Image', this.urls[i]);
           this._dealsService.sendImage(image).subscribe(res => {
             console.log(res);
+            this.lastImage = res;
             this.Image.push(res);
-            this.postMultiProduct();
+            if(this.urls.length == this.Image.length){
+              console.log(this.productArr);
+              this.imageAppend();
+            }
           });
-          break;
         }
+       
       } else {
         this.multiData.image =
           'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
-        this.postMultiProduct();
-      }
+          this.Image.push(this.multiData.image);
+          this.imageAppend();
+        }
     }
   }
 
@@ -415,13 +621,13 @@ export class PostComponent implements OnInit {
 
   updateCreditArr(){
     this.creditObj.credit = this.creditMinus;
-    this.creditObj.productName = this.productData.name;
-    this.creditObj.category = this.productData.category;
-    this.creditObj.quantity = this.productData.quantity;
-    this.creditObj.qnty = this.productData.qnty;
-    this.creditObj.price = this.productData.price;
-    this.creditObj.image = this.productData.image;
-    this.creditObj.productCreatedAt = this.productData.date;
+    this.creditObj.productName = this.carForm.value.product.length;
+    this.creditObj.category = this.carForm.value.category;
+    this.creditObj.quantity = this.quantity;
+    //this.creditObj.qnty = this.productData.qnty;
+    this.creditObj.price = this.price;
+    this.creditObj.image = this.lastImage;
+    this.creditObj.productCreatedAt = this.carForm.value.date;
     console.log(this.creditObj);
 
     this._dealsService.updateUserCreditArr(this.creditObj,this.currentuserId).subscribe(
@@ -577,7 +783,11 @@ export class PostComponent implements OnInit {
   }
 
   getunits() {
-    this.showUnit = this.productData.qnty;
+    console.log(this.carForm.value.product)
+    for(let i = 0 ; i < this.carForm.value.product.length; i++){
+      this.showUnit = this.carForm.value.product[i].qnty;
+    }
+    console.log(this.showUnit);
   }
 
   getLatitudeLongitude1(callback, address) {

@@ -133,6 +133,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
+
     this.id = this.route.snapshot.params['id'];
     this.loadingCtrl.show();
     if(localStorage.getItem('currentUser')){
@@ -342,18 +343,34 @@ storeOrderRequest(){
       this.requestData.requestId = res.requestId;
       console.log(this.requestData.orderRqstId);
       console.log(this.requestData.requestId);
-      swal({
-        title: 'Order requested successfully!',
-        text:
-          'We got your order query, we get back to you soon! Requested ID:'+ this.requestData.requestId,
-        imageUrl: '../../assets/Images/progress.gif'
-      });
-      document.getElementById("closeRequirementModal").click();
-      this.router.navigate(['/my-order']);
+      document.getElementById('closeCancelOrderModal1').click();
+      // setTimeout(function () { 
+      //   swal({
+      //     title: 'Order requested successfully!',
+      //   text:
+      //     'We got your order query, we get back to you soon!',
+      //   imageUrl: '../../assets/Images/progress.gif'
+      //   },
+      //   (isConfirm) =>{
+      //     if (isConfirm) {
+      //       // window.history.replaceState('','','/orderView');
+      //       window.location.replace('/orderView')
+      //     }
+      //   }); }, 1000);
       this.mapWithPost();
+  
+      // let snap = this.route.snapshot.params['id'];
+      // if(snap){
+      //   this.router.navigate(['/orderView']);
+      // }
     },
     err => console.log(err)
   );
+}
+
+gotoView(){
+  alert("1")
+  this.router.navigate(['/orderView']);
 }
 
 //sms to seller
