@@ -67,7 +67,7 @@
           </div>
         
           <div formArrayName="product">
-              <div *ngFor="let item of product.controls; let i=index" [formGroupName]="i">
+              <div *ngFor="let item of product.controls; let i=index" formGroupName="{{i}}">
       
                 <!-- First Row -->
 
@@ -134,9 +134,21 @@
                       <label class="english_wrd postLble" for="phone"><span style="font-size: 14px" class="tamil_word">பொருளைப் பற்றி </span>/ Description</label>
                         <div class="form-group">
                             <input type="text"  placeholder="Enter description" formControlName="description"  name="description" class="form-control" maxlength="500" autocomplete="off" >
-                          </div>
+                        </div>
                     </div>
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-3 mb-3" *ngIf="!editId">
+                        <label class="english_wrd" for=""><span style="font-size: 14px" class="tamil_word">காலாவதி தேதி </span>/ Expiry Date</label>
+                              <div class="form-group">
+                                <input type="text" placeholder="Enter expiry date" name="validityTime" formControlName="validityTime" class="form-control" autocomplete="off"  bsDatepicker [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"  required>
+                                <!-- <span class="text-danger float-left error_word" *ngIf="carForm.controls.validityTime.invalid && carForm.controls.validityTime.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span> -->
+                                <div *ngIf="item.controls.validityTime.dirty || item.controls.validityTime.touched">
+                                    <div class="text-danger float-left error_word" *ngIf="item.hasError('required', 'validityTime')"><i class="fa fa-info-circle" aria-hidden="true"></i>
+                                     Expiry Date is Required</div>  
+                                  </div>
+                              </div>
+                      </div>
+
+                      <div class="col-md-3 mb-3" *ngIf="editId">
                         <label class="english_wrd" for=""><span style="font-size: 14px" class="tamil_word">காலாவதி தேதி </span>/ Expiry Date</label>
                               <div class="form-group">
                                 <input type="text" placeholder="Enter expiry date" name="validityTime" formControlName="validityTime" class="form-control" autocomplete="off"  bsDatepicker [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"  required>
@@ -164,6 +176,7 @@
                             <label for="image" class="english_wrd" ><span span style="font-size: 14px" class="tamil_word">படத்தை பதிவேற்றம் செய்யவும்</span> / Upload product image</label>
                             <input multiple type="file" class="upload" (change)="onFileChangeMulti($event)"
                              autocomplete="off" >
+                             <img *ngIf="editId" src="oldAvlplace.product.image" alt="jjj">
                           </div>
                      </div>
                   </div>
