@@ -195,13 +195,13 @@
         <div class="form-group mt-2">
        <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> தொலைபேசி எண் </span>/ Phone Number</label>
             <input type="text"  #input1 #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
-            <span class="text-danger float-left error_word" [class.d-none] = "phone.valid || phone.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone Number is required</span>
+            <span class="text-danger float-left error_word errFont" [class.d-none] = "phone.valid || phone.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone Number is required</span>
           </div>
         <div class="form-group">
             <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> கடவுச்சொல் </span>/ Password</label>
           <input type="password" id="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="userData.password" autocomplete="off"  required>
           <span toggle="#password" id="password1" (click)="eyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-          <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
+          <span class="text-danger float-left error_word errFont" [class.d-none] = "password.valid || password.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
         </div>
 
         <a (click)="toggle()" style="cursor: pointer;text-decoration: underline">Forgot password?</a>
@@ -216,7 +216,7 @@
             <label class="english_wrd" for="phone1"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
                 <input type="tel"  #phone1="ngModel" [class.is-invalid]="phone1.invalid && phone1.touched" ngModel name="phone1" class="form-control" (change)="phnTen()" [(ngModel)]="phoneObj.phone1" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
                 <div *ngIf="phone1.errors && (phone1.invalid && phone1.touched)">
-                    <span class="text-danger float-left error_word" *ngIf="phone1.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
+                    <span class="text-danger float-left error_word errFont" *ngIf="phone1.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
                 </div>
                 <span class="text-danger float-left mb-2"  [class.d-none] = "phone1.invalid && phone1.touched" *ngIf="errormsg1">{{errormsg1}}</span>
                 <span class="text-danger float-left error_word" *ngIf="phnErr">{{phnErr}}</span>
@@ -251,14 +251,14 @@
               <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> கடவுச்சொல் </span>/ Password</label>
             <input type="password" id="resetPassword"  #resetPassword="ngModel" [class.is-invalid]="resetPassword.invalid && resetPassword.touched" ngModel name="resetPassword" class="form-control" [(ngModel)]="resetPasswordObj.resetPassword" autocomplete="off"  required>
             <span toggle="#resetPassword" id="resetPassword1" (click)="reseteyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-            <span class="text-danger float-left error_word" [class.d-none] = "resetPassword.valid || resetPassword.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
+            <span class="text-danger float-left error_word errFont" [class.d-none] = "resetPassword.valid || resetPassword.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
           </div>
 
           <div class="form-group">
               <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> உறுதிப்படுத்த </span>/ Confirm Password</label>
             <input type="password" id="confirmPassword" (keyup)="equalPwd()"  #confirmPassword="ngModel" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" ngModel name="confirmPassword" class="form-control" [(ngModel)]="resetPasswordObj.confirmPassword" autocomplete="off"  required>
             <span toggle="#confirmPassword" id="confirmPassword1" (click)="confirmeyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-            <span class="text-danger float-left error_word" [class.d-none] = "confirmPassword.valid || confirmPassword.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
+            <span class="text-danger float-left error_word errFont" [class.d-none] = "confirmPassword.valid || confirmPassword.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
             <span class="text-danger float-left error_word" *ngIf="notEqual">{{notEqual}}</span>
           </div>
           <div style="text-align: center;" >
@@ -291,11 +291,11 @@
                   <label class="english_wrd" for="phone"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
                       <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" (change)="phnTen1()" [(ngModel)]="phoneObj.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
                       <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
-                          <span class="text-danger float-left error_word" *ngIf="phone.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
+                          <span class="text-danger float-left error_word errFont" *ngIf="phone.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
                       </div>
                      <span class="text-danger float-left mb-3 errfont"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="signUpNumbrExisterrormsg">{{signUpNumbrExisterrormsg}}
                          <span style="color: #0d4608"> Please <span style="text-decoration: underline;cursor: pointer;" (click)="showLogin()">login</span> </span> </span>
-                      <span class="text-danger float-left error_word" *ngIf="phnErr"><i class="fa fa-info-circle" aria-hidden="true"></i> {{phnErr}}</span>
+                      <span class="text-danger float-left error_word errFont" *ngIf="phnErr"><i class="fa fa-info-circle" aria-hidden="true"></i> {{phnErr}}</span>
               </div>
               <div style="text-align: center;">
                   <button class="btn2" type="submit" id="hideGetOtp" [disabled]="!phoneObj.phone" (click)="signUpSendOtp()">Get OTP</button>
@@ -320,22 +320,22 @@
               <div class="form-group ">
                   <label class="english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
                         <input type="text" #input1 id="firstinput"   #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="registeredUserData.firstname" autocomplete="off" required >
-                        <span class="text-danger float-left error_word" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Name is required</span>
+                        <span class="text-danger float-left error_word errFont" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Name is required</span>
                 </div>
                 <div class="form-group">
                     <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
                             <input type="text" #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control"  [(ngModel)]="registeredUserData.address.addressLine" autocomplete="off" required>
-                            <span class="text-danger float-left error_word" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
+                            <span class="text-danger float-left error_word errFont" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
                  </div>
                  <div class="form-group">
                      <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">மாவட்டம்  </span>/ City</label>
                         <input google-place type="text" placeholder="" id="city" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)"  name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="registeredUserData.address.city" required>
-                        <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
+                        <span class="text-danger float-left error_word errFont" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
                 </div>
                  <div class="form-group">
                      <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word">கடவுச்சொல் </span>/ Password</label>
                         <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
-                      <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
+                      <span class="text-danger float-left error_word errFont" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
                     </div>
                     <div class="row">
                       <div class="col-md-12 ">
@@ -374,7 +374,7 @@
                                <input type="text" class="form-control" placeholder="Enter Quantity" #requiredQuantity="ngModel"
                                 name="requiredQuantity" [class.is-invalid]="requiredQuantity.invalid && requiredQuantity.touched"
                                  ngModel [(ngModel)]="querydata.requiredQuantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="5" required>
-                               <span class="text-danger float-left error_word"
+                               <span class="text-danger float-left error_word errFont"
                                 [class.d-none] = "requiredQuantity.valid || requiredQuantity.untouched">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>
                        </div>
@@ -392,7 +392,7 @@
                             <option value="g" class="categoryOption">Gram</option>
                             <option value="Kg" class="categoryOption">Kilogram</option>
                               </select>
-                               <span class="text-danger float-left error_word"
+                               <span class="text-danger float-left error_word errFont"
                                 [class.d-none] = "requiredUnit.valid || requiredUnit.untouched">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i> Unit is required</span>
                        </div>
@@ -412,7 +412,7 @@
                         <option style="color: black" value="Within 1 week">Within 1 week</option>
                      </select>
                      <span
-                       class="text-danger float-left error_word"
+                       class="text-danger float-left error_word errFont"
                        [class.d-none]="urgency.valid || urgency.untouched"
                        ><i class="fa fa-info-circle" aria-hidden="true"></i> Urgency
                        is required</span
@@ -431,7 +431,7 @@
                              required
                          ></textarea>
                          <span
-                           class="text-danger float-left error_word"
+                           class="text-danger float-left error_word errFont"
                            [class.d-none]="description.valid || description.untouched"
                            ><i class="fa fa-info-circle" aria-hidden="true"></i> Notes
                            is required</span
@@ -479,10 +479,10 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="width: auto;">
           <!-- Modal body -->
-          <div class="modal-body" style="padding: 25px;">
+          <div class="modal-body" style="padding: 25px;" *ngFor="let order of requestData" >
             <h5 class="text-center" style="color:#0d4608">Order requested successfully!</h5>
             <p class="text-center">We got your order query, we get back to you soon ! <br>
-              <span style="color:#0d4608;font-weight: bold;cursor: pointer;">Request ID : {{requestData.requestId}}</span> 
+              <span style="color:#0d4608;font-weight: bold;cursor: pointer;" routerLink="/orderView/{{order._id}}">Request ID : {{order.requestId}}</span> 
             </p>
             <div class="text-center">
                 <button type="button" class="btn btn-success button_word" routerLink="/my-order">OK</button>

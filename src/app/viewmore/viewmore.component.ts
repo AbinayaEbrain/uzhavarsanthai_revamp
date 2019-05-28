@@ -40,7 +40,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   time: any;
   public postProduct: any = {};
   public querydata: any = {};
-  public requestData: any ={};
+  public requestData: any =[];
   public cancelOrderData: any ={};
   resetPasswordObj: any = {};
   city: any;
