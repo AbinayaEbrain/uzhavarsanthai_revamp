@@ -363,7 +363,7 @@ export class PostComponent implements OnInit {
               this.carForm.value.product[i].avlPlace = this.addr;
             }
             this.carForm.value.product[i].category = this.carForm.value.category;
-            this.carForm.value.product[i].date = this.carForm.value.date;
+            //this.carForm.value.product[i].date = this.carForm.value.date;
             this.carForm.value.product[i].categoryId = this.carForm.value.categoryId;
             console.log(this.carForm.value.product[i]);
             this.imglen = i+1;
