@@ -269,7 +269,6 @@ export class UserDealsEditComponent implements OnInit {
     console.log(this.myCredit);
     console.log(this.lastprice == this.newprice)
     console.log(this.lastquantity == this.newquantity)
-      
         // minus credit
         if(this.lastprice == this.newprice){
           if(this.lastquantity < this.newquantity ){
