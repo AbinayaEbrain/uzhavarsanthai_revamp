@@ -318,6 +318,7 @@ sendQuery(){
   this.querydata.prdctName = this.postProduct.name;
   this.querydata.prdctUnit = this.postProduct.qnty;
   this.querydata.prdctQty = this.postProduct.quantity
+  this.querydata.prdctPrice = this.postProduct.price
   this.querydata.prdctAvlplace = this.postProduct.avlPlace;
   this.querydata.image = this.imageArray;
   this.querydata.status = 'Order created';
@@ -336,8 +337,8 @@ sendQuery(){
       this.loadingCtrl.hide();}
   );
 
-this.smsToSeller();
-this.smsToBuyer();
+// this.smsToSeller();
+// this.smsToBuyer();
 
 }
 

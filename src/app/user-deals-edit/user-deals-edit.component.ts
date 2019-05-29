@@ -116,6 +116,8 @@ export class UserDealsEditComponent implements OnInit {
         this.urls.push(event.target.files[i]);
         this.imageLength = this.urls.length;
       }
+      console.log(this.urls);
+      console.log(this.imageLength);
     }
   }
 
@@ -308,10 +310,21 @@ export class UserDealsEditComponent implements OnInit {
       });
       this.router.navigate(['/subscription-plan']);
       this.loadingCtrl.hide();
-    }else if (this.newprice == this.lastprice && this.newquantity == this.lastquantity){
-      this.update();
     }else{
       //Adding the image to the form data to be sent
+      this.imageUpload();
+    }
+    
+
+    if(this.myCredit > this.cumulativecredit){
+      if (this.urls.length == 0 || this.urls == undefined || this.urls == []) {
+        this.loadingCtrl.hide();
+        this.update();
+      }
+    }
+  }
+
+  imageUpload(){
     if (this.urls.length != 0 || this.urls != undefined) {
       for (let i = 0; i < this.urls.length; i++) {
         var image = new FormData(); //FormData creation
@@ -325,18 +338,11 @@ export class UserDealsEditComponent implements OnInit {
         break;
       }
     }
-    }
-    
-
-    if(this.myCredit > this.cumulativecredit){
-      if (this.urls.length == 0 || this.urls == undefined || this.urls == []) {
-        this.loadingCtrl.hide();
-        this.update();
-      }
-    }
   }
 
   update() {
+    console.log(this.Image.length);
+    console.log(this.imageLength);
     if (this.Image.length == this.imageLength) {
       this.loadingCtrl.show();
       let curntDte = new Date().toLocaleDateString();
@@ -371,7 +377,7 @@ export class UserDealsEditComponent implements OnInit {
       if (this.Image.length != 0) {
         this.deallistobj.image = this.Image;
       }
-
+console.log(this.deallistobj);
       this._dealsService.editDeals(this.deallistobj, this.id).subscribe(
         res => {
           console.log(res);
@@ -394,7 +400,7 @@ export class UserDealsEditComponent implements OnInit {
       );
     } else {
       this.urls.shift();
-      this.postImage();
+      this.imageUpload();
     }
   }
 
@@ -408,11 +414,11 @@ export class UserDealsEditComponent implements OnInit {
     this.cumulativecredit = ((this.cumulativequantity * this.newprice) * 1/100);
     console.log(this.cumulativecredit);
     console.log(this.myCredit);
-    if(this.myCredit > this.cumulativecredit){
-    console.log(this.cumulativecredit);
-    console.log(this.myCredit);
-      this.getUser();
-    }
+    // if(this.myCredit > this.cumulativecredit){
+    // console.log(this.cumulativecredit);
+    // console.log(this.myCredit);
+    //   this.getUser();
+    // }
   }
 
   PriceCredit(){
@@ -423,9 +429,9 @@ export class UserDealsEditComponent implements OnInit {
       this.cumulativecredit = ((this.lastquantity * this.cumulativeprice) * 1/100);
 
       console.log(this.cumulativecredit);
-      if(this.myCredit > this.cumulativecredit){
-        this.getUser();
-      }
+      // if(this.myCredit > this.cumulativecredit){
+      //   this.getUser();
+      // }
     }
 
   quantityPriceCredit(){
@@ -447,9 +453,9 @@ export class UserDealsEditComponent implements OnInit {
 
     this.cumulativecredit = ((this.addTotal) * 1/100);
 
-    if(this.myCredit > this.cumulativecredit){
-      this.getUser();
-    }
+    // if(this.myCredit > this.cumulativecredit){
+    //   this.getUser();
+    // }
   }
 
   getUser(){
@@ -526,9 +532,9 @@ export class UserDealsEditComponent implements OnInit {
     console.log(this.lastprice)
     this.cumulativecredit = ((this.newquantity * this.lastprice) * 1/100);
     console.log(this.cumulativecredit);
-    if(this.myCredit > this.cumulativecredit){
-      this.getUser1();
-    }
+    // if(this.myCredit > this.cumulativecredit){
+    //   this.getUser1();
+    // }
   }
 
   sellerReducePrice(){   
@@ -536,9 +542,9 @@ export class UserDealsEditComponent implements OnInit {
       console.log(this.lastquantity);
     this.cumulativecredit = ((this.newprice * this.lastquantity) * 1/100);
     console.log(this.cumulativecredit);
-    if(this.myCredit > this.cumulativecredit){
-      this.getUser1();
-    }
+    // if(this.myCredit > this.cumulativecredit){
+    //   this.getUser1();
+    // }
   }
 
   sellerQuantityPrice(){
@@ -550,9 +556,9 @@ export class UserDealsEditComponent implements OnInit {
 
     this.cumulativecredit = ((this.cumulativequantity * this.cumulativeprice) * 1/100);
     console.log(this.cumulativecredit);
-    if(this.myCredit > this.cumulativecredit){
-      this.getUser1();
-    }
+    // if(this.myCredit > this.cumulativecredit){
+    //   this.getUser1();
+    // }
   }
 
   getUser1(){

@@ -17,7 +17,7 @@ export class DealsService {
   private _getSingleUser = "https://uzhavarsanthai.herokuapp.com/api/getSingleUser";
   private _getCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/getCount';
   // https://farmers-market-ebrain.herokuapp.com
-  private _dealsUrl = 'https://uzhavarsanthai.herokuapp.com/api/deals';
+  private _dealsUrl = 'http://localhost:5000/api/deals';
   private _postUrl = 'http://localhost:5000/api/post';
   private _getUrl = 'https://uzhavarsanthai.herokuapp.com/api/details';
 
@@ -53,7 +53,7 @@ export class DealsService {
   private notificationtoPostedProductUrl =
     'https://uzhavarsanthai.herokuapp.com/api/notificationforpost';
   private orderReqmailUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendorderrequest';
-  private storeOrderReqUrl = 'https://uzhavarsanthai.herokuapp.com/api/storeorderrequest';
+  private storeOrderReqUrl = 'http://localhost:5000/api/storeorderrequest';
   private _getOrderReqUrl = 'https://uzhavarsanthai.herokuapp.com/api/getorderrequest';
   private _updateOrderReqUrl = "https://uzhavarsanthai.herokuapp.com/api/updateorderrequest";
   private _getSinleOrderReqUrl =

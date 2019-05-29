@@ -23,6 +23,7 @@ const orderrequestSchema = new Schema({
   prdctName: String,
   prdctUnit: String,
   prdctQty: String,
+  prdctPrice: String,
   prdctAvlplace: String,
   status: String,
   requiredQuantity: String,
