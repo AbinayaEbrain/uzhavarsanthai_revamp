@@ -23,6 +23,7 @@ export class DealsComponent implements OnInit {
   isTracking = false;
   status: any;
   categoryArr: any;
+  splitImage1 = '';
   public userdetails: any = [];
   public crdDeals: any = [];
   public totalDeals1: any = [];
@@ -95,6 +96,8 @@ export class DealsComponent implements OnInit {
           if(this.crdDeals[i].status == 'ACTIVE'){
             if(this.crdDeals[i].validityTime > CurrentDate){
               this.crdDeals1[j] = this.crdDeals[i];
+              this.splitImage1 =  this.crdDeals1[j].image;
+              this.crdDeals1[j].image = this.splitImage1.split(",",1);
               this.getPrdtName[k] = this.crdDeals1[j].name;
               j++;
               k++;
