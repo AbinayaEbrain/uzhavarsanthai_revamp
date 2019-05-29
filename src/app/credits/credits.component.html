@@ -4,12 +4,12 @@
     <div class="row">
       <!-- <div class="col-md-1"></div> -->
       <div class="col-md-12">
-        <h4 class="text-center mt-4">Your Credits</h4>
+        <h5 class="mt-5 container styl">Your Credits</h5>
 
         <div class="row">
           <div class="col-md-1"></div>
           <div class="col-md-5">
-            <h5>Hai {{ credits.firstname }},</h5>
+            <h6>Hai <span style="font-style:italic;color:#0d4608;font-weight:bold">{{ credits.firstname }}</span>,</h6>
           </div>
           <div class="col-md-5">
             <strong class="float-right">Total credits : {{ credits.credits}}</strong>
@@ -27,7 +27,7 @@
 
         <div class="row mt-5" *ngIf="errMsg">
               <div class="col-md-3 col-lg-4 col-12"></div>
-              <div class="col-md-6 col-lg-4 col-12 errDesign">
+              <div class="col-md-6 col-lg-4 col-12 errDesign1">
                   <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
                   <p class="mt-4" style="font-style: italic;">{{errMsg}}</p>
                   <button class="btn btn-success btn-sm" routerLink="/post">Post Products</button>
@@ -55,15 +55,15 @@
                           <img height="100px"  width="100px" src="{{credit.image}}" alt="" class="img-fluid z-depth-0">
                       </div>
                       <div class="col-md-3">
-                          <h6 class="clr english_wrd" style="font-weight: bold">Product Name</h6>
+                          <h6 class="clr english_wrd" style="font-weight: bold">Posted Products</h6>
                           <p class="text-muted">{{ credit.productName }}</p>
                       </div>
                       <div class="col-md-3">
-                          <h6 class="clr english_wrd" style="font-weight: bold">Quantity</h6>
-                          <p class="text-muted">{{credit.quantity}} / {{credit.qnty}}</p>
+                          <h6 class="clr english_wrd" style="font-weight: bold">Total Quantity</h6>
+                          <p class="text-muted">{{credit.quantity}}</p>
                       </div>
                       <div class="col-md-4">
-                          <h6 class="clr english_wrd" style="font-weight: bold">Price</h6>
+                          <h6 class="clr english_wrd" style="font-weight: bold">Total Price</h6>
                           <p class="text-muted">{{ credit.price }}</p>
                       </div>
                     </div>
@@ -80,4 +80,27 @@
       <!-- <div class="col-md-1"></div> -->
     </div>
   </div>
+  <div style="margin-top: 14%" *ngIf="role == 'buyer' && roleStatus == 'Active'">
+    <div style="margin-bottom: 6%">
+        <div class="col-md-3 col-lg-3 col-12"></div>
+        <div class="col-md-6 col-lg-6 col-12 errDesign">
+            <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+            <p class="mt-4">You have to be a "<font style="color: #f53636;font-style: italic">seller</font>" to see <span style="font-style: italic">My Products</span>.</p>
+            <a routerLink="/buyerAsSeller" style="cursor: pointer;text-decoration: underline;color: #0d4608;">SignUp as seller</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-12"></div>
+    </div>
+</div>
+
+<div style="margin-top: 14%" *ngIf="role == 'buyer' && roleStatus == 'Deactive'">
+    <div style="margin-bottom: 6%">
+        <div class="col-md-3 col-lg-3 col-12"></div>
+        <div class="col-md-6 col-lg-6 col-12 errDesign">
+            <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+            <p class="mt-4">Your seller request is on processing.Please wait until you get confirmation message.</p>
+            <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #0d4608;">Go to back</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-12"></div>
+    </div>
+</div>
 </div>

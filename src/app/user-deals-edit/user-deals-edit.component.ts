@@ -35,6 +35,8 @@ interface EventTarget {
   styleUrls: ['./user-deals-edit.component.css']
 })
 export class UserDealsEditComponent implements OnInit {
+  splitImage: '';
+  arrayImage = [];
   prdtCreditId: any;
   addSellerCredit: any;
   totalCredit: any;
@@ -77,6 +79,7 @@ export class UserDealsEditComponent implements OnInit {
   public formatted_address: any;
   url: '';
   dateNrml: any;
+  slideConfig: any;
   currentImg: any;
   valid: boolean = false;
   Image = [];
@@ -155,6 +158,23 @@ export class UserDealsEditComponent implements OnInit {
         this.deallistobj.avlPlace = this.address.formatted_address;
         this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
         this.deallistobj.validityTime = this.dateNrml;
+
+        this.splitImage = this.deallistobj.image;
+        this.deallistobj.image = this.splitImage.split(',', 1);
+
+
+          this.arrayImage = this.splitImage.split(',');
+          console.log(this.arrayImage);
+
+          this.slideConfig = {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: true,
+            infinite: false,
+            arrows: true,
+            autoplay: true,
+            autoplaySpeed: 800
+          };
       },
       err => {
         this.loadingCtrl.hide();

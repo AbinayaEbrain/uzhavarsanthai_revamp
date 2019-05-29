@@ -55,7 +55,7 @@
       <div style="margin-bottom: 20px">
         <input type="text" name="name" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel
          [(ngModel)]="contact.name" autocomplete="off" placeholder="Your Name" required />
-         <span class="text-danger float-left error_word mb-2" [class.d-none] = "name.valid || name.untouched">
+         <span class="text-danger float-left error_word mb-2 errFont" [class.d-none] = "name.valid || name.untouched">
            <i class="fa fa-info-circle" aria-hidden="true"></i> Name is required</span>
       </div>
 
@@ -69,7 +69,7 @@
         type="text" name="phone" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched"  maxlength="10" ngModel
         oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
         [(ngModel)]="contact.phone" placeholder="Phone Number" required />
-        <span class="text-danger float-left error_word" [class.d-none] = "phone.valid || phone.untouched">
+        <span class="text-danger float-left error_word errFont" [class.d-none] = "phone.valid || phone.untouched">
             <i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
       </div>
     </div>
@@ -77,7 +77,7 @@
       <textarea name="message" #message="ngModel" [class.is-invalid]="message.invalid && message.touched" ngModel
       [(ngModel)]="contact.message" autocomplete="off" placeholder="Message" required></textarea>
 
-      <span class="text-danger float-left error_word mb-2" [class.d-none] = "message.valid || message.untouched">
+      <span class="text-danger float-left error_word mb-2 errFont" [class.d-none] = "message.valid || message.untouched">
           <i class="fa fa-info-circle" aria-hidden="true"></i> Message is required</span>
 
       <button type="submit" class="btn btnClr btn-block" [disabled]="contactform.form.invalid" (click)="contactDetail()">Send</button>

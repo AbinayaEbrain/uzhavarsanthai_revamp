@@ -86,9 +86,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   message: any;
   registeredUserData = {
     address: {
-      addressLine:'',
       city: {},
-      location: ''
     },
     phone: '',
     privateIP: '',
@@ -140,8 +138,8 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
     private _auth: AuthService,
     private http: HttpClient
   ) {
-      this.registeredUserData.address.location = '';
-      this.registeredUserData.address.city = '';
+      // this.registeredUserData.address.location = '';
+      // this.registeredUserData.address.city = '';
   }
 
   ngOnInit() {
@@ -268,6 +266,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
       }
 
         this.arrayImage = this.imageArray.split(',');
+        console.log(this.arrayImage)
         // this.slideConfig = {"slidesToShow": 1, "slidesToScroll": 1};
         this.slideConfig = {
           slidesToShow: 1,
@@ -282,6 +281,13 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
       err => console.log(err)
     );
   }
+
+  // clik(i){
+  //   console.log(i);
+  //   this.slideConfig = {
+  //     : i,
+  //   };
+  // }
 
   getMultiPostDeals(){
     this._dealsService.getMultiPost().subscribe(res =>{
@@ -359,22 +365,18 @@ sendQuery(){
       console.log(res);
       this.storeOrderRequest();
       this.mytemplateForm3.reset();
-        this.orderRequestMsg = 'We got your order query, we get back to you soon!';
-         setTimeout(() => {
-             this.orderRequestMsg='';
-            document.getElementById("closeRequirementModal").click();
-             this.router.navigate(['/my-order']);
-         },3000)
+        // this.orderRequestMsg = 'We got your order query, we get back to you soon!';
+        //  setTimeout(() => {
+        //      this.orderRequestMsg='';
+        //     document.getElementById("closeRequirementModal").click();
+        //      this.router.navigate(['/my-order']);
+        //  },3000)
 
         this.loadingCtrl.hide();
     },
     err => {console.log(err);
       this.loadingCtrl.hide();}
   );
-
-this.smsToSeller();
-this.smsToBuyer();
-
 }
 
 //store order request
@@ -383,12 +385,19 @@ storeOrderRequest(){
   this._dealsService.storeOrderRequest(this.querydata).subscribe(
     res => {
       console.log(res);
+      document.getElementById("closeCancelOrderModal1").click();
+      document.getElementById("openConfirmModal").click();
       this.requestData.orderRqstId = res._id;
+      this.requestData.requestId = res.requestId;
       console.log(this.requestData.orderRqstId);
+
       this.mapWithPost();
     },
     err => console.log(err)
   );
+}
+closeModel(){
+
 }
 
 //sms to seller
@@ -420,6 +429,9 @@ mapWithPost(){
   this._dealsService.mapUserIdinPost(this.requestData).subscribe(
     res => {
       console.log(res);
+      // this.smsToSeller();
+      // this.smsToBuyer();
+
       this.loadingCtrl.hide();
     },
     err => {console.log(err);
@@ -746,8 +758,8 @@ mapWithPost(){
         this.registeredUserData.roleStatus = 'Active';
       }
       this.registeredUserData.status = 'ACTIVE';
-      this.registeredUserData.address.city = '';
-      this.registeredUserData.address.addressLine = '';
+      this.registeredUserData.address = this.addr;
+      // this.registeredUserData.address.addressLine = '';
       this.registeredUserData.phone = this.phoneObj.phone;
       this.loadingCtrl.show();
       console.log(this.registeredUserData);

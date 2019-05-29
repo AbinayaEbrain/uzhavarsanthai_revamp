@@ -1,0 +1,123 @@
+<div class="bg">
+  <div class="container mt-5 pt-5">
+  
+    <div class="container">
+      <div class="row  mb-2">
+          <div>
+              <p style="font-size: 15px;color: #0d4608;font-weight: bold">
+                  Order ID : {{ userOrder.requestId }}</p>   
+                 </div>
+        <div class="container card">
+          <div class="row">
+            <div class="col-md-2 col-sm-12" style="margin-top: 15px;">
+              <img width="100%;" src="{{singleImg}}" />
+            </div>
+            <div
+              class="col-md-4"
+              style="text-align: left;margin-top: 15px;font-size: 14px"
+            >
+              <p class="tamil_word" style="color: #0d4608;font-weight: bold;">
+                {{ userOrder.prdctCategory }}
+              </p>
+              <p class="orderHead" style="margin-bottom: 2px">Name : {{ userOrder.prdctName }}</p>
+              <p class="orderHead" style="margin-bottom: 2px">
+                Qty : {{ userOrder.prdctQty }}/{{ userOrder.prdctUnit }}
+              </p>
+              <p class="orderHead" style="margin-bottom: 2px">Place : {{ userOrder.prdctAvlplace }}</p>
+            </div>
+            <div
+              class="col-md-6" style="text-align: right;">
+              <span [ngStyle]="{'color':userOrder.status === 'Order created' ? 'green' : 'red' }" style="font-weight: bold;">{{userOrder.status}}</span>
+            </div>
+            <!-- <div class="col-md-4 center" style="font-weight: bold;text-align: left;">
+             <button class="btn btn-outline-danger text-center viewMoreBtn button_word" style="padding: 3px;" data-toggle="modal" data-target="#myModal1"  (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Closed'? 'none' : '' }" [ngStyle]="{'display':order.status === 'Order cancelled'? 'none' : '' }">Cancel Order</button>
+            </div> -->
+          </div>
+          <hr />
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-4">
+                <p style="font-size: 15px;color: #0d4608;font-weight: bold">
+                  <span><i class="fa fa-warning"></i> Urgency : {{userOrder.urgency}}</span> 
+                 </p>
+              </div>
+              <div class="col-md-4">
+                <!-- <p style="font-size: 15px;color: #0d4608;font-weight: bold">
+                  <span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Status : {{order.status}}</span> 
+                 </p> -->
+              </div>
+              <div class="col-md-4">
+                <div style="text-align: right;color: blue;font-size: 14px;">
+                  <p data-toggle="modal" data-target="#myModal" (click)="singleUpdateSignupReq(userOrder._id)" style="cursor: pointer;">
+                    <i class="fa fa-star" aria-hidden="true"></i> RATE & REVIEW
+                    PRODUCT
+                  </p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container card mt-2" style="padding: 15px">
+            <div class="row">
+              <div class="col-md-12">
+            <h6 style="font-weight: bold">Seller Details</h6>
+                    <p class="orderHead" style="margin-bottom: 2px">{{userOrder.sellerName}}</p>
+                    <p class="orderHead">{{userOrder.sellerAddress}}, {{userOrder.sellerCity}}</p>
+          </div></div></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <p class="modal-title fntSize">Order Review</p>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="text-black x" (click)="clear()" id="closeCancelOrderModal1">X</span>
+              </button>
+             </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div style="color:#0d4608;">
+                <div class="row">
+                  <!-- <div class="col-md-8">
+              <h6 class="english_wrd">Category : {{userOrder1.prdctCategory}}</h6></div>
+              <div class="col-md-4">
+              <h6 class="english_wrd">Name : {{userOrder1.prdctName}}</h6></div> -->
+            </div>
+            <form #reviewform="ngForm" *ngIf ="!submitted" novalidate>
+                <div class="form-group mt-3">
+                <textarea class="form-control borderClr" #review="ngModel" ngModel [(ngModel)]="reviewData.review" [class.is-invalid]="review.invalid && review.touched" rows="2" id="comment" name="review" placeholder="Enter your review" autocomplete="off" required></textarea>
+                <span class="text-danger error_word errFont" [class.d-none] = "review.valid || review.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Review is required</span>
+                </div>
+                
+              <div class="form-group" style="display:inline-flex;">
+              <label class="english_wrd" for="dispute" >Rating : </label>
+              <div class="star-rating" id="starRating" style="margin-top: -9px;">
+                  <input type="radio" id="5-stars" name="rating" value="5" />
+                  <label for="5-stars" class="star" (click)="fiveStar()">&#9733;</label>
+                  <input type="radio" id="4-stars" name="rating" value="4" />
+                  <label for="4-stars" class="star" (click)="fourStar()">&#9733;</label>
+                  <input type="radio" id="3-stars" name="rating" value="3" />
+                  <label for="3-stars" class="star" (click)="threeStar()">&#9733;</label>
+                  <input type="radio" id="2-stars" name="rating" value="2" />
+                  <label for="2-stars" class="star" (click)="twoStar()">&#9733;</label>
+                  <input type="radio" id="1-star" name="rating" value="1" />
+                  <label for="1-star" class="star" (click)="oneStar()">&#9733;</label>
+                </div>
+              </div>
+           <hr>
+              <div class="mt-4 text-center">
+              <button type="submit" class="btn viewMoreBtn1" (click)="reviewAndRating()" [disabled]="reviewform.form.invalid">Send Review</button>
+            </div>
+            </form>
+            </div> </div>
+          </div>
+        </div>
+      </div>

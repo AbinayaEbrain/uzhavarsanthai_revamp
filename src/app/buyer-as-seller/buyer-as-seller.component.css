@@ -202,6 +202,9 @@ input {
   .sent_font {
     font-size: 15px;
   }
+  .sent_font1{
+    font-size: 18px;
+  }
   .greetmsg {
     display: block;
   }

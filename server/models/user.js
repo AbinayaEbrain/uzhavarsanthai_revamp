@@ -43,7 +43,7 @@ const userSchema = new Schema({
       productName: String,
       category: String,
       quantity: String,
-      qnty: String,
+      // qnty: String,
       price: Number,
       image: String,
       productId: String,

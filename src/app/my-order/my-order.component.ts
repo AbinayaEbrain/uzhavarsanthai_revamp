@@ -100,6 +100,7 @@ export class MyOrderComponent implements OnInit {
       if ( a <= 1 ) {
         this.recentOrder[j] = this.userOrder[i];
         j++;
+        console.log( this.recentOrder)
       } else {
         this.pastOrder[k] = this.userOrder[i];
         k++;

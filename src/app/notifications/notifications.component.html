@@ -24,7 +24,7 @@
               required
             />
             <span
-              class="text-danger float-left error_word"
+              class="text-danger float-left error_word errFont"
               [class.d-none]="msgTile.valid || msgTile.untouched"
               ><i class="fa fa-info-circle" aria-hidden="true"></i> Notification title
               is required</span
@@ -43,7 +43,7 @@
               required
             ></textarea>
             <span
-              class="text-danger float-left error_word"
+              class="text-danger float-left error_word errFont"
               [class.d-none]="msgBody.valid || msgBody.untouched"
               ><i class="fa fa-info-circle" aria-hidden="true"></i> Notification Msg
               is required</span
@@ -94,7 +94,7 @@
                 required
               />
               <span
-                class="text-danger float-left error_word"
+                class="text-danger float-left error_word errFont"
                 [class.d-none]="msgTileone.valid || msgTileone.untouched"
                 ><i class="fa fa-info-circle" aria-hidden="true"></i> Notification title
                 is required</span
@@ -112,7 +112,7 @@
                 required
               ></textarea>
               <span
-                class="text-danger float-left error_word"
+                class="text-danger float-left error_word errFont"
                 [class.d-none]="msgBodyone.valid || msgBodyone.untouched"
                 ><i class="fa fa-info-circle" aria-hidden="true"></i> Notification msg
                 is required</span
@@ -128,7 +128,7 @@
                      <option value="Engaged Users" class="categoryOption">Engaged Users</option>
                      <option value="Inactive Users" class="categoryOption">Inactive Users</option>
                    </select>
-                       <span class="text-danger float-left error_word" [class.d-none] = "msgCategory.valid || msgCategory.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span>
+                       <span class="text-danger float-left error_word errFont" [class.d-none] = "msgCategory.valid || msgCategory.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span>
                </div>
               </div>
             <div class="mt-4 mb-3" style="text-align:center">

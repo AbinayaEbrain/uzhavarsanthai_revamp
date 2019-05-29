@@ -4,10 +4,11 @@
   background-attachment: fixed;
   background-size: cover;
   background-color: whitesmoke;
-  min-height: 100vh;
+  min-height: 92vh;
   width: 100%;
   min-height: -webkit-fill-available;
 }
+
 .viewMoreBtn {
   margin: auto;
   font-weight: bold;
@@ -32,7 +33,7 @@
   font-family: 'Hind Madurai', sans-serif !important;
 }
 .card {
-  border-radius: 8px;
+  border-radius: 5px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
   overflow: hidden;
   position: relative;
@@ -252,12 +253,36 @@ section .section-title {
   border-radius: 5px;
 }
 
-textarea{ 
-  height:70px; 
-  min-height:70px;  
-  max-height:70px;
+textarea {
+  height: 70px;
+  min-height: 70px;
+  max-height: 70px;
 }
 
-.borderClr{
+.borderClr {
   border: 1px solid #0d4608 !important;
+}
+
+.errDesign {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+  color: #0d4608;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .imgRes {
+    width: inherit !important;
+  }
+}
+
+.imgRes {
+  width: 354px;
+}
+.styl{
+  /* margin-top: 25px; */
+  color: #0d4608;
+  font-family: "Varela Round",Arial,"Helvetica Neue",Helvetica,serif;
+  font-weight: bold;
 }

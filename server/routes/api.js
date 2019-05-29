@@ -86,35 +86,22 @@ router.post('/register', (req, res) => {
  })
 });
 
-// router.post('/registerSeller', (req, res) => {
-//   let userData = req.body;
-//   let user = new User(userData);
-//   user.save((error, data) => {
-//     if (error) {
-//       console.log(error);
-//     } else {
-//       //  jwt
-//           // let payload = { subject: data._id };
-//           // let token = jwt.sign(payload, 'secretKey');
-
-//          // before adding jwt
-//          console.log(registeredUser);
-//          res.status(200).send(registeredUser)
-
-//          //after add jwt
-//          //console.log(payload)
-//       //res.status(200).send({ token, payload, user });
-//       //console.log(token, payload, user);
-//     }
-//  })
-// });
+router.get('/getSingleUser/:id', (req, res) => {
+  User.findById(req.params.id, function(errors, getoneuser) {
+    if (errors) {
+      console.log('Error updating' + errors);
+    } else {
+      res.json(getoneuser);
+    }
+  });
+});
 
 //postdeals
 
 router.post('/post', (req, res) => {
-  let aaa = req.body.name;
-  let name = aaa.toLowerCase();
-  req.body.name = name.charAt(0).toUpperCase() + name.slice(1);
+  // let aaa = req.body.name;
+  // let name = aaa.toLowerCase();
+  // req.body.name = name.charAt(0).toUpperCase() + name.slice(1);
   let userData = req.body;
   let user = new Post(userData);
   user.save((error, productData) => {
@@ -225,7 +212,7 @@ router.get('/blogetone/:id', (req, res) => {
 
 // get one multi post
 router.get('/singleMultipost/:id', (req, res) => {
-  Multipost.findById(req.params.id, function(errors, getoneuser) {
+  Post.findById(req.params.id, function(errors, getoneuser) {
     if (errors) {
       console.log('Error updating' + errors);
     } else {

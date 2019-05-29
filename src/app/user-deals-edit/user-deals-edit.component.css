@@ -13,6 +13,10 @@ label {
   color: #0d4608;
 }
 
+.slick-dotted.slick-slider{
+  margin-bottom: 0px !important;
+}
+
 .card {
   /* margin-top: 5% !important; */
   border-radius: 8px;

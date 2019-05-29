@@ -13,10 +13,10 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  loggedUser = [];
-  @ViewChild('editForm') form;
   @ViewChild('forgotpwdform') mytemplateForm1: NgForm;
   @ViewChild('pwdform') mytemplateForm2: NgForm;
+  loggedUser = [];
+  @ViewChild('editForm') form;
   currentuserId: any;
   public dummyname: any = {};
   submitted: boolean;
@@ -57,46 +57,51 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
 document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
-    setTimeout(() => {
-      this.loadingCtrl.hide();
-    }, 3000);
-    this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
-    this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
-    this._users.getDetails().subscribe(
-      res => {
-        this.loggedUser = res;
-        console.log(this.loggedUser)
-        for (let i = 0; i < this.loggedUser.length; i++) {
-          this.currentuserId = JSON.parse(
-            localStorage.getItem('currentUser')
-          )._id;
-          if (this.currentuserId == this.loggedUser[i]._id) {
-            this.crntUser = this.loggedUser[i];
-            console.log(this.crntUser)
-          }
-        }
-console.log(( this.crntUser.address.addressLine == "Not yet update" || this.crntUser.address.addressLine == "" || this.crntUser.address.addressLine == null) || (this.crntUser.address.city == ""
-|| this.crntUser.address.city == undefined || this.crntUser.address.city == "Not yet update"))
-        if((this.crntUser.address.addressLine == "" || this.crntUser.address.addressLine == null) || (this.crntUser.address.city == ""
-      || this.crntUser.address.city == undefined || this.crntUser.address.city == "Not yet update")){
-            this.crntUser.address.addressLine = "Not yet update";
-            this.crntUser.address.city = " Not yet update";
-            // this.crntUser.address.city.formatted_address = " Not yet update";
-            console.log(this.crntUser.address.city)
-            console.log(this.crntUser.address.addressLine)
-        }
-        this.InitialCall();
-
-      },
-      err => {
-        console.log(err);
-      }
-    );
-
-
+setTimeout(() => {
+  this.callback();
+}, 1000);
   }
 
+callback(){
+  this.loadingCtrl.show();
+  this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
+  // this.InitialCall();
+  // this.id = this.route.snapshot.params['id']
+  this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
+  this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
+  this._users.getDetails().subscribe(
+    res => {
+      this.loggedUser = res;
 
+      console.log(this.loggedUser)
+      for (let i = 0; i < this.loggedUser.length; i++) {
+        this.currentuserId = JSON.parse(
+          localStorage.getItem('currentUser')
+        )._id;
+        if (this.currentuserId == this.loggedUser[i]._id) {
+            this.loadingCtrl.hide();
+          this.crntUser = this.loggedUser[i];
+          console.log(this.crntUser)
+        }
+      }
+console.log(( this.crntUser.address.addressLine == "Not yet update" || this.crntUser.address.addressLine == "" || this.crntUser.address.addressLine == null) || (this.crntUser.address.city == ""
+|| this.crntUser.address.city == undefined || this.crntUser.address.city == "Not yet update"))
+      if((this.crntUser.address.addressLine == "" || this.crntUser.address.addressLine == null) || (this.crntUser.address.city == ""
+    || this.crntUser.address.city == undefined || this.crntUser.address.city == "Not yet update")){
+          this.crntUser.address.addressLine = "Not yet update";
+          this.crntUser.address.city = " Not yet update";
+          // this.crntUser.address.city.formatted_address = " Not yet update";
+          console.log(this.crntUser.address.city)
+          console.log(this.crntUser.address.addressLine)
+      }
+      this.InitialCall();
+
+    },
+    err => {
+      console.log(err);
+    }
+  );
+}
 
 
   updateUser() {
@@ -183,11 +188,12 @@ console.log(( this.crntUser.address.addressLine == "Not yet update" || this.crnt
         this.crntUser.gender = this.loggedUser[i].gender;
         this.crntUser.address.addressLine = this.loggedUser[i].address.addressLine;
         this.crntUser.address.address1 = this.loggedUser[i].address.address1;
-        this.crntUser.address.city.formatted_address = this.loggedUser[i].address.city.formatted_address;
+        //this.crntUser.address.city.formatted_address = this.loggedUser[i].address.city.formatted_address;
       }
     }
     console.log(this.crntUser);
   }
+
   onSubmit() {
     this.form.form.markAsPristine();
     this.form.form.markAsUntouched();

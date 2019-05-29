@@ -1,7 +1,7 @@
 <div id='focusDiv' tabindex="1"></div>
 <body class="bg" style="overflow-x: hidden;">
   <div class="container card">
-    <h4 class="myOrderHeading">My Tickets</h4><br>
+    <h5 class="styl mt-3">My Tickets</h5><br>
     <section id="tabs" style="margin-top: -20px;">
           <div class="container">
               <div class="row">
@@ -102,7 +102,7 @@
                                 <label class=" english_wrd" for="firstname">Ticket Title</label>
                                 <input type="text" placeholder="Enter ticket title" #ticketTitle="ngModel" [class.is-invalid]="ticketTitle.invalid && ticketTitle.touched" ngModel name="ticketTitle" class="form-control"
                                 autocomplete="off" [(ngModel)]="ticketData.ticketTitle" required>
-                                <span class="text-danger float-left error_word" [class.d-none] = "ticketTitle.valid || ticketTitle.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Ticket title is required</span>
+                                <span class="text-danger float-left error_word errFont" [class.d-none] = "ticketTitle.valid || ticketTitle.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Ticket title is required</span>
                               </div>
                          </div>
                          <div class="col-md-12">
@@ -112,7 +112,7 @@
                                 [class.is-invalid]="ticketDescription.invalid && ticketDescription.touched" ngModel
                                 name="ticketDescription" class="form-control"
                                  autocomplete="off"  [(ngModel)]="ticketData.ticketDescription" required></textarea>
-                                <span class="text-danger float-left error_word" [class.d-none] = "ticketDescription.valid || ticketDescription.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Ticket description is required</span>
+                                <span class="text-danger float-left error_word errFont" [class.d-none] = "ticketDescription.valid || ticketDescription.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Ticket description is required</span>
                               </div>
                          </div>
                          <div class="col-md-12 text-center">

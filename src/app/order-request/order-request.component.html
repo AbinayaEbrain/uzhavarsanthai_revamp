@@ -8,18 +8,25 @@
       <div class="table-responsive">
         <table class="table" id="cardFocus">
           <thead>
-            <tr>
+              <tr style="font-size:15px;text-align:center;border-left: 1px solid red;border-right: 1px solid red;">
+                  <th colspan="1">ID</th>
+                  <th colspan="2">Buyer Details</th>
+                  <th colspan="5">Product Details</th>
+                  <th colspan="2">Seller Details</th>
+                  <th colspan="2"></th>
+                </tr>
+            <tr style="font-size:15px">
               <th style="width: 150px;">Request id</th>
-              <th style="width: 150px;">Buyer name</th>
-              <th style="width: 150px;">Buyer Phone</th>
+              <th style="width: 150px;">Name</th>
+              <th style="width: 150px;">Phone</th>
               <!-- <th style="width: 150px;">Buyer address</th> -->
-              <th style="width: 150px;">Product category</th>
-              <th style="width: 150px;">Product name</th>
-              <th style="width: 150px;">Product available place</th>
-              <th style="width: 150px;">Product qty</th>
-              <th style="width: 150px;">Product urgency</th>
-              <th style="width: 150px;">Seller name</th>
-              <th style="width: 150px;">Seller Phone</th>
+              <th style="width: 150px;"> Category</th>
+              <th style="width: 150px;"> Name</th>
+              <th style="width: 150px;"> Available place</th>
+              <th style="width: 150px;"> Qty</th>
+              <th style="width: 150px;"> Urgency</th>
+              <th style="width: 150px;"> Name</th>
+              <th style="width: 150px;"> Phone</th>
               <th style="width: 150px;">Status</th>
               <th style="width: 150px;">Action</th>
             </tr>
@@ -30,7 +37,7 @@
                      {{errMsg}}
                   </td>
               </tr>
-            <tr *ngFor="let order of userOrderReq1 | paginate: {id: 'foo', itemsPerPage:10,currentPage:d},let i = index">
+            <tr *ngFor="let order of userOrderReq1 | paginate: {id: 'foo', itemsPerPage:5,currentPage:d},let i = index" style="font-size:14px">
               <td style="min-width: 150px;">{{order.requestId}}</td>
               <td style="min-width: 150px;">{{order.buyerName}}</td>
               <td style="min-width: 150px;">{{order.buyerPhone}}</td>

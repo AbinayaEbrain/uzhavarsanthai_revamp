@@ -1,7 +1,7 @@
 <div id='focusDiv' tabindex="1"></div>
 <body class="bg" style="overflow-x: hidden;">
-  <div class="container card" style="margin-top: 7% !important;">
-    <h4 class="myOrderHeading">My Orders</h4><br>
+  <div class="container card marTop">
+    <h5 class="styl mt-3">My Orders</h5><br>
     <section id="tabs" style="margin-top: -20px;">
           <div class="container">
               <div class="row">
@@ -35,12 +35,13 @@
                   </div>
                   <div class="col-md-3 col-8 " style="font-weight: bold;display: inline-flex;">
                     <p class="orderHead2" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</p>&nbsp;&nbsp;&nbsp;
+                    <!-- <p style="cursor: pointer;" >View</p> -->
                     <div class="dropdown" style="margin-top: -7px;">
                     <p class="btn dropdown-toggle" data-toggle="dropdown">
                      More <i class="fa fa-ellipsis-v"></i>
                     </p>
                     <div class="dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item" *ngIf="order.status == 'Closed' && order.sellerStatus == 'Closed'" data-toggle="modal" style="cursor: pointer;" data-target="#myModal" (click)="singleUpdateSignupReq(order._id)">Order review</a>
+                      <a class="dropdown-item" routerLink="/orderView/{{(order._id)}}" style="cursor: pointer;" >View</a>
                       <a class="dropdown-item" style="cursor: pointer;" (click)="singleUpdateSignupReq(order._id)" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static" >Dispute</a>
                     </div></div>
                   </div>
@@ -173,7 +174,7 @@
               <div class="form-group">
                     <div class="form-group mt-3">
                 <textarea class="form-control borderClr" #review="ngModel" ngModel [(ngModel)]="reviewData.review" [class.is-invalid]="review.invalid && review.touched" rows="2" id="comment" name="review" placeholder="Enter your review" autocomplete="off" required></textarea>
-                <span class="text-danger float-left error_word" [class.d-none] = "review.valid || review.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Review is required</span>
+                <span class="text-danger float-left error_word errFont" [class.d-none] = "review.valid || review.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Review is required</span>
               </div>
               <div style="display:inline-flex;">
               <label class="english_wrd" for="dispute" >Rating : </label>
@@ -219,7 +220,7 @@
             <div class="form-group">
                 <label class="english_wrd" for="dispute" style="color:#0d4608">Dispute</label>
                     <textarea type="text" #dispute="ngModel" [class.is-invalid]="dispute.invalid && dispute.touched" ngModel name="dispute" class="form-control borderClr" [(ngModel)]="userData.dispute" autocomplete="off" required></textarea>
-                    <span class="text-danger float-left error_word" [class.d-none] = "dispute.valid || dispute.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Dispute is required</span>
+                    <span class="text-danger float-left error_word errFont" [class.d-none] = "dispute.valid || dispute.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Dispute is required</span>
             </div>
             <div class="mt-4" style="text-align:center">
             <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn" (click)="disputeSave()">Save changes</button>

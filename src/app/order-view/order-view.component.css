@@ -1,0 +1,92 @@
+.bg {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: whitesmoke;
+  min-height: 100vh;
+  width: 100%;
+  min-height: -webkit-fill-available;
+}
+
+.tamil_word {
+  font-family: 'Hind Madurai', sans-serif;
+}
+
+/* p {
+  margin-bottom: 2px !important;
+} */
+
+.star-rating {
+  /* border:solid 1px #ccc; */
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+}
+
+.star-rating input {
+  display:none;
+}
+
+.star-rating label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-rating :checked ~ label {
+  color:#0d4608;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color:#0d4608;
+}
+
+textarea{ 
+  height:70px; 
+  min-height:70px;  
+  max-height:70px;
+}
+
+.borderClr{
+  border: 1px solid #0d4608 !important;
+}
+
+.english_wrd {
+  font-family: 'Mukta', sans-serif;
+}
+
+.styl{
+  /* margin-top: 25px; */
+  color: #0d4608;
+  font-family: "Varela Round",Arial,"Helvetica Neue",Helvetica,serif;
+  font-weight: bold;
+  text-align: left;
+}
+
+.marTop{
+  margin-top: 7%;
+}
+
+.viewMoreBtn1 {
+  margin: auto;
+  font-weight: bold;
+  color: #0d4608 ;
+  border-color: #0d4608;
+  background-color: white;
+}
+.viewMoreBtn1:hover {
+  background-color: #0d4608;
+  color: white;
+}
+
+.btnColor{
+  background-color: white !important;
+  color: #0d4608;
+  border: 1px solid #0d4608;
+  padding: 0.15rem 0.75rem !important;
+}

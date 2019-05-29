@@ -21,14 +21,14 @@
                             <option selected="" value="" disabled="">Category</option>
                             <option *ngFor="let val of categoryArr" value="{{val.productCategory}}">{{val.productCategory}}</option>
                           </select>
-                          <span class="text-danger float-left error_word" [class.d-none] = "category.valid || category.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span>
+                          <span class="text-danger float-left error_word errFont" [class.d-none] = "category.valid || category.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span>
                     </div>
               </div>
               <div class="col-md-5 mb-3">
                   <label class="english_wrd" for="name"><span class="tamil_wrd">பொருளின் பெயர் </span>/ Product Name</label>
                     <div class="form-group">
                       <input type="text"  placeholder="Name" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" ngModel  [(ngModel)]="deallistobj.name"  name="name" class="form-control" maxlength="50"  autocomplete="off"  required>
-                      <span class="text-danger float-left error_word" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product Name is required</span>
+                      <span class="text-danger float-left error_word errFont" [class.d-none] = "name.valid || name.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Product Name is required</span>
                     </div>
               </div>
               <div class="col-md-1"></div>
@@ -40,7 +40,7 @@
                           <label class="english_wrd" for="quantity"><span class="tamil_wrd">அளவு </span>/ Quantity</label>
                           <div class="form-group">
                               <input type="text"  placeholder="Quantity" #quantity="ngModel" [class.is-invalid]="quantity.invalid && quantity.touched"  maxlength="5" ngModel oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" [(ngModel)]="deallistobj.quantity"  name="quantity" class="form-control"  autocomplete="off"  required>
-                              <span class="text-danger float-left error_word" [class.d-none] = "quantity.valid || quantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>
+                              <span class="text-danger float-left error_word errFont" [class.d-none] = "quantity.valid || quantity.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>
                             </div>
                       </div>
                       <div class="col-md-5  mb-3">
@@ -54,7 +54,7 @@
                                   <option value="Milli litre">Milli litre</option>
                               </select>
                             </div>
-                            <span class="text-danger float-left error_word" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> required</span>
+                            <span class="text-danger float-left error_word errFont" [class.d-none] = "qnty.valid || qnty.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> required</span>
                           </div>
                           <div class="col-md-1"></div>
                   </div>
@@ -66,7 +66,7 @@
                           <label class="english_wrd" for="name"><span class="tamil_wrd">விலை </span>/ Price / {{showUnit}}</label>
                           <div class="form-group">
                             <input type="text"  placeholder="Price" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"  #price="ngModel" [class.is-invalid]="price.invalid && price.touched" ngModel  [(ngModel)]="deallistobj.price"  name="price" class="form-control" maxlength="5" autocomplete="off"  required>
-                            <span class="text-danger float-left error_word" [class.d-none] = "price.valid || price.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Price is required</span>
+                            <span class="text-danger float-left error_word errFont" [class.d-none] = "price.valid || price.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Price is required</span>
                           </div>
                     </div>
 
@@ -74,7 +74,7 @@
                             <label class="lab english_wrd" for="category"><span class="tamil_wrd">கிடைக்குமிடம் </span>/ Available Place</label>
                         <div class="form-group">
                               <input google-place type="text" placeholder="Search" class="form-control"  #avlPlace="ngModel" (onSelect)="setAddress($event)" name="avlPlace" [class.is-invalid]="avlPlace.invalid && avlPlace.touched" ngModel [(ngModel)]="deallistobj.avlPlace" required>
-                              <span class="text-danger float-left error_word" [class.d-none] = "avlPlace.valid || avlPlace.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
+                              <span class="text-danger float-left error_word errFont" [class.d-none] = "avlPlace.valid || avlPlace.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
                           </div>
                     </div>
                     <div class="col-md-1"></div>
@@ -92,7 +92,7 @@
                           <label class="english_wrd" for="date"><span class="tamil_wrd">காலாவதியாகும் தேதி </span>/ Expiry Date </label>
                             <div class="form-group">
                                 <input type="text"  placeholder="Date" #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  name="validityTime" class="form-control" [(ngModel)]="deallistobj.validityTime" bsDatepicker autocomplete="off" [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" required>
-                                <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>
+                                <span class="text-danger float-left error_word errFont" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>
                               </div>
                         </div>
                         <!-- <div class="col-md-5 mb-3">
@@ -135,15 +135,24 @@
               </div>
   </div>
 
-  <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
+
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog  modal-dialog-centered">
           <div class="modal-content" >
-            <div class="modal-header">
+            <!-- <div class="modal-header">
               <h5 class="modal-title ">Product Image</h5>
               <button type="button" class="close"  data-dismiss="modal">&times;</button>
-            </div>
+            </div> -->
             <div class="modal-body">
-                    <img src="{{deallistobj.image}}" height="250px" width= "100%" alt="Card image cap">
+                    <!-- <img src="{{arrayImage}}" height="250px" width= "100%" alt="Card image cap"> -->
+                    <ngx-slick-carousel class="carousel"
+                    #slickModal="slick-carousel"
+                            [config]="slideConfig"
+                            (init)="slickInit($event)">
+                        <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
+                            <img src="{{ slide }}" alt="Card image" height="250px" width= "100%" class="viewImage">
+                        </div>
+                    </ngx-slick-carousel>
             </div>
           </div>
         </div>
