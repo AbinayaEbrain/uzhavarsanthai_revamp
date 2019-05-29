@@ -25,6 +25,7 @@ export class MyOrderComponent implements OnInit {
   userOrder2 : any = {};
   recentErrMsg = '';
   pastErrMsg = '';
+  splitImage1 = '';
   d:any;
   private orderCancelmail = 'https://uzhavarsanthai.herokuapp.com/api/sendordercancelrequest';
   private disputeMail = 'https://uzhavarsanthai.herokuapp.com/api/sendDisputeMail';
@@ -68,7 +69,7 @@ export class MyOrderComponent implements OnInit {
     this.userOrder.createdAt = curntDte;
     console.log(this.userOrder.createdAt)
     this._dealService.getOrderRequest().subscribe(res =>{
-      let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
     console.log(acntID);
     console.log(res);
     this.userOrderReq = res;
@@ -99,10 +100,14 @@ export class MyOrderComponent implements OnInit {
       console.log(a)
       if ( a <= 1 ) {
         this.recentOrder[j] = this.userOrder[i];
+        this.splitImage1 =  this.recentOrder[j].image;
+        this.recentOrder[j].image = this.splitImage1.split(",",1);
         j++;
         console.log( this.recentOrder)
       } else {
         this.pastOrder[k] = this.userOrder[i];
+        this.splitImage1 =  this.pastOrder[j].image;
+        this.pastOrder[j].image = this.splitImage1.split(",",1);
         k++;
       }
     }

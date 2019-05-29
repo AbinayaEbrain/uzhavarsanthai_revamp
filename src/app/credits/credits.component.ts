@@ -58,7 +58,6 @@ export class CreditsComponent implements OnInit {
         console.log(err);
       }
     );
-
   }
 
   getUser() {

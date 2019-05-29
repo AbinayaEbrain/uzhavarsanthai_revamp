@@ -18,6 +18,10 @@ export class OrderRequestComponent implements OnInit {
   d: any;
   id: any;
   errMsg = '';
+  credits: any = {};
+  creditObj: any = {};
+  creditMinus: any;
+  splitImage = '';
 
   constructor(
     private _dealService: DealsService,
@@ -37,32 +41,30 @@ export class OrderRequestComponent implements OnInit {
   getSignupReq() {
     this.userOrderReq1 = [];
     this.loadingCtrl.show();
-    this._dealService.getOrderRequest().subscribe(
-      res => {
-        console.log(res);
-        this.userOrderReq = res;
-        this.errMsg = '';
-        this.loadingCtrl.hide();
+    this._dealService.getOrderRequest().subscribe(res => {
+      console.log(res);
+      this.userOrderReq = res;
+      this.errMsg = '';
+      this.loadingCtrl.hide();
 
-        let j = 0;
-        for (let i = 0; i < this.userOrderReq.length; i++) {
-          if (
-            this.userOrderReq[i].sellerStatus != 'Closed' &&
-            this.userOrderReq[i].status != 'Closed'
-          ) {
-            this.userOrderReq1[j] = this.userOrderReq[i];
-            j++;
-          }
+      let j = 0;
+      for (let i = 0; i < this.userOrderReq.length; i++) {
+        if (
+          this.userOrderReq[i].sellerStatus != 'Closed' &&
+          this.userOrderReq[i].status != 'Closed'
+        ) {
+          this.userOrderReq1[j] = this.userOrderReq[i];
+          j++;
         }
-        console.log(this.userOrderReq1);
-        if (this.userOrderReq1.length == 0) {
-          this.errMsg = "No order request";
-        }
+      }
+      console.log(this.userOrderReq1);
+      if (this.userOrderReq1.length == 0) {
+        this.errMsg = 'No order request';
+      }
       err => {
         console.log(err);
-      }
-    }
-    );
+      };
+    });
   }
 
 
@@ -74,10 +76,29 @@ export class OrderRequestComponent implements OnInit {
       }
     }
     console.log(this.userOrderReq2);
+    this.getSingleUser();
+  }
+
+  getSingleUser() {
+    this._dealService.getSingleUser(this.userOrderReq2.sellerId).subscribe(
+      data => {
+        console.log(data);
+        this.credits = data;
+        console.log(this.credits);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   closeOrderRequest() {
     console.log(this.id);
+    this.creditMinus =
+      this.userOrderReq2.prdctPrice *
+      this.userOrderReq2.requiredQuantity *
+      (1 / 100);
+    console.log(this.creditMinus);
     this.loadingCtrl.show();
     this.userOrderReq2.sellerStatus = 'Closed';
     this.userOrderReq2.status = 'Closed';
@@ -87,12 +108,49 @@ export class OrderRequestComponent implements OnInit {
         res => {
           console.log(res);
           this.updatePostOrderqst();
+          this.updateUser();
           this.loadingCtrl.hide();
         },
         err => {
           console.log(err);
         }
       );
+  }
+
+  updateUser(){
+    this.credits.credits = this.credits.credits - this.creditMinus;
+    console.log(this.credits.credits);
+    this._dealService.updateCustomer(this.credits, this.userOrderReq2.sellerId).subscribe(
+      res => {
+        console.log(res);
+        this.updateCreditArr();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  updateCreditArr(){
+    this.creditObj.credit = this.creditMinus;
+    this.creditObj.productName = this.userOrderReq2.prdctName;
+    this.creditObj.category = this.userOrderReq2.prdctCategory;
+    this.creditObj.quantity = this.userOrderReq2.requiredQuantity;
+    this.creditObj.price = this.userOrderReq2.prdctPrice;
+    this.splitImage = this.userOrderReq2.image;
+    this.creditObj.image = this.splitImage.split(',', 1);
+    let crntDate = new Date().getTime();
+    this.creditObj.productCreatedAt = crntDate;
+    console.log(this.creditObj);
+
+    this._dealService.updateUserCreditArr(this.creditObj,this.userOrderReq2.sellerId).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   updatePostOrderqst() {

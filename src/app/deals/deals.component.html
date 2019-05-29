@@ -14,16 +14,25 @@
                         <input type="text" class="form-control searchDiv mobviewmargintop " id="search_box"  [(ngModel)]="queryString" (keyup)="case()" name="search" autocomplete="off" placeholder="Search by product.." />
                     </div>
               </div>
-              <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">
+              <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv1">
                 <div class="inner-addon left-addon" >
                         <i class="fa fa-search glyphicon" aria-hidden="true"></i>
                         <input google-place type="text" class="form-control searchBorder mobviewmargin "  [(ngModel)]="getLocationDeals" (onSelect)="setAddress($event)" placeholder="Search by location.." />
                     </div>
              </div>
           </div>
-          <div class="errDiv">
-                <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
-          </div>
+          
+          <div style="margin-bottom: 10%" *ngIf="errMsg">
+            <div style="margin-bottom: 6%">
+                <div class="col-md-3 col-lg-4 col-12"></div>
+                <div class="col-md-6 col-lg-4 col-12 errDesign">
+                    <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                    <p class="mt-4 text-danger">{{errMsg}}</p>
+                    <!-- <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">Go to back</a> -->
+                </div>
+                <div class="col-md-3 col-lg-4 col-12"></div>
+            </div>
+        </div>
     <div *ngIf="showDeals">
             <div class="mt-5" *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'name'">
                     <div *ngIf="deal === -1">
@@ -44,7 +53,7 @@
                                 <tr>
                                    <!-- <td><strong>Product &nbsp; </strong></td>
                                    <td>:</td> -->
-                                   <div class="productFullName" style="font-weight: bold;font-style: italic;">{{deal.name}}</div>
+                                   <div class="productFullName" style="font-weight: bold;">{{deal.name}}</div>
                                </tr>
                                <div class="row">
                              <div class="col-md-5">
@@ -102,7 +111,7 @@
                                     <tr>
                                             <!-- <td><strong>Product &nbsp; </strong></td>
                                             <td>:</td> -->
-                                            <div class="productFullName" style="font-weight: bold;font-style: italic;">{{deal.name}}</div>
+                                            <div class="productFullName" style="font-weight: bold;">{{deal.name}}</div>
                                         </tr>
                                         <div class="row">
                                       <div class="col-md-5">

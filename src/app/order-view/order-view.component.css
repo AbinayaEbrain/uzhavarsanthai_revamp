@@ -4,13 +4,17 @@
   background-attachment: fixed;
   background-size: cover;
   background-color: whitesmoke;
-  min-height: 100vh;
+  min-height: 84vh;
   width: 100%;
-  min-height: -webkit-fill-available;
+  /* min-height: -webkit-fill-available; */
 }
 
 .tamil_word {
   font-family: 'Hind Madurai', sans-serif;
+}
+
+.txtAlign{
+  text-align: right;
 }
 
 /* p {
@@ -89,4 +93,13 @@ textarea{
   color: #0d4608;
   border: 1px solid #0d4608;
   padding: 0.15rem 0.75rem !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .txtAlign{
+    text-align: center !important;
+  }
+  .txtAlign1{
+    text-align: center !important;
+  }
 }

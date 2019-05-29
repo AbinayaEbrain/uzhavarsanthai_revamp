@@ -16,7 +16,7 @@
                 </div>
           </div>
       </section>
-      <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+      <div class="tab-content py-3" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
               <div *ngIf="recentErrMsg">
                 <div class="col-md-3 col-lg-4 col-12"></div>
@@ -33,12 +33,13 @@
                   <div class="col-md-9 col-4">
                    <p class="orderHighlight">{{order.requestId}}</p>
                   </div>
-                  <div class="col-md-3 col-8 " style="font-weight: bold;display: inline-flex;">
-                    <p class="orderHead2" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</p>&nbsp;&nbsp;&nbsp;
+                  <div class="col-md-3 col-8" style="text-align: right;">
+                    <div style="font-weight: bold;display: inline-flex;">
+                    <p class="orderHead2" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</p>
                     <!-- <p style="cursor: pointer;" >View</p> -->
                     <div class="dropdown" style="margin-top: -7px;">
-                    <p class="btn dropdown-toggle" data-toggle="dropdown">
-                     More <i class="fa fa-ellipsis-v"></i>
+                    <p class="btn dropdown-toggle fntSizeMob" data-toggle="dropdown">
+                     <span class="mobHide">More</span>&nbsp;<i class="fa fa-ellipsis-v"></i>
                     </p>
                     <div class="dropdown-menu dropdown-menu-right">
                       <a class="dropdown-item" routerLink="/orderView/{{(order._id)}}" style="cursor: pointer;" >View</a>
@@ -46,13 +47,14 @@
                     </div></div>
                   </div>
                 </div>
+              </div>
 
                 <div class="row">
                   <div class="col-md-2 col-sm-12" style="margin-top: 15px;">
                   <img height="100px"  width="100px" src="{{order.image}}">
                   </div>
                   <div class="col-md-4" style="text-align: left;margin-top: 15px;">
-                    <p class="orderHead1" style="color: #0d4608;font-weight: bold;">{{order.prdctCategory}}</p>
+                    <p class="orderHead1 tamil_word " style="color: #0d4608;font-weight: bold;">{{order.prdctCategory}}</p>
                     <p class="orderHead">{{order.prdctName}}</p>
                     <p class="orderHead">{{order.prdctQty}}/{{order.prdctUnit}}</p>
                     <p class="orderHead">{{order.prdctAvlplace}}</p>

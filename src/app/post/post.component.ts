@@ -608,8 +608,8 @@ export class PostComponent implements OnInit {
           this.productData.avlPlace = this.addr.formatted_address;
         }
         this.creditObj.productId = res._id;
-        this.getUser();
-        this.updateUser();
+        //this.getUser();
+        //this.updateUser();
         this.success = 'Posted successfully!';
         document.getElementById('idView').scrollIntoView();
         setTimeout(() => {

@@ -111,7 +111,7 @@
                                 <div class="form-group">
                                     <div class="upload-btn-wrapper">
                                         <label for="ImageUpload" style="color:#0d4608;float: left;font-family: 'Mukta', sans-serif;font-size: 16px;font-weight: bolder">Upload product image</label>
-                                          <input type="file" id="Image" name="Image" class="upload" (change)="onFileChange($event)" #fileInput>
+                                          <input multiple type="file" id="Image" name="Image" class="upload" (change)="onFileChange($event)" #fileInput>
                                         </div>
                                     <img data-toggle="modal" data-target="#myModal"  style="height: 50px;width: 50px;cursor: pointer;margin-top: -20%;" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
                                </div>

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router, ParamMap } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgForm } from '@angular/forms';
+import { Location } from '@angular/common';
 declare var swal: any;
 declare var $:any;
 @Component({
@@ -47,6 +48,9 @@ export class UserProductsComponent implements OnInit {
   public addr: {
     formatted_address: '';
   };
+  crntUser: any = {};
+  roleStatus: any;
+  role: any;
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -57,12 +61,16 @@ export class UserProductsComponent implements OnInit {
     });
   }
 
+
+
   constructor(
     private _dealsService: DealsService,
     private route: ActivatedRoute,
     private router: Router,
     public zone: NgZone,
     public loadingCtrl: NgxSpinnerService
+    public loadingCtrl: NgxSpinnerService,
+    private location: Location
   ) {
     for (let i = 1; i <= this.userDeals.length; i++) {
       this.userDeals.push('Angular ${i}.0');
@@ -86,9 +94,35 @@ export class UserProductsComponent implements OnInit {
     console.log(this.currentUserid)
     this.loadingCtrl.show();
     this.checkAddress();
+    this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
+    this.getSingleUser();
+  }
+
+  getSingleUser(){
+    this._dealsService.getSingleUser(this.id).subscribe(data =>{
+      console.log(data);
+      this.crntUser = data;
+      this.roleStatus = data.roleStatus;
+      this.role = data.role;
+      if(this.role == "buyer" || this.roleStatus =="Deactive"){
+        this.loadingCtrl.hide();
+      }
+
+      if(this.role == "seller" && this.roleStatus =="Active"){
+        this.getDeals();
+      }
+    },err =>{
+      console.log(err);
+    })
+  }
+
+  goToBack() {
+    this.location.back();
+  }
+
+  getDeals(){
     this._dealsService.getDeals().subscribe(
       res => {
-        this.loadingCtrl.hide();
         let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
         let j = 0;
         let l = 0;
@@ -106,6 +140,7 @@ export class UserProductsComponent implements OnInit {
             l++;
           }
         }
+        this.loadingCtrl.hide();
         this.getMultiArray();
       },
       err => {
@@ -113,7 +148,6 @@ export class UserProductsComponent implements OnInit {
         console.log(err);
       }
     );
-    this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
   }
 
 checkAddress(){

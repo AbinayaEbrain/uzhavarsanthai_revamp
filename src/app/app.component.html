@@ -158,7 +158,8 @@
       *ngIf="
         _authService.loggedIn() &&
         !_authService.roleAdmin() &&
-        _authService.findActive()
+        _authService.findActive() && 
+        _authService.roleBuyer()
       "
       class="nav-item"
       data-toggle="collapse"
