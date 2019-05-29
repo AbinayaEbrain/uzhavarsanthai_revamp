@@ -229,6 +229,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
       }
 
         this.arrayImage = this.imageArray.split(',');
+        console.log(this.arrayImage)
         // this.slideConfig = {"slidesToShow": 1, "slidesToScroll": 1};
         this.slideConfig = {
           slidesToShow: 1,
@@ -243,6 +244,13 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
       err => console.log(err)
     );
   }
+
+  // clik(i){
+  //   console.log(i);
+  //   this.slideConfig = {
+  //     : i,
+  //   };
+  // }
 
   getMultiPostDeals(){
     this._dealsService.getMultiPost().subscribe(res =>{

@@ -95,6 +95,7 @@ export class PostComponent implements OnInit {
   price = 0;
   quantity = 0;
   lastImage: any;
+  postLenght: any = [];
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -289,7 +290,9 @@ export class PostComponent implements OnInit {
          this._dealsService.addPost(this.carForm.value.product[i]).subscribe(
         res => {
           console.log(res);
-          this.loadingCtrl.hide();
+          // this.loadingCtrl.hide();
+          this.postLenght.push(res);
+          console.log(this.postLenght);
           // this.creditObj.productId = res._id;
           // this.getUser();
           // this.updateUser();
@@ -299,12 +302,22 @@ export class PostComponent implements OnInit {
           //   this.route.navigate(['products']);
           //   this.loadingCtrl.hide();
           // }, 3000);
+          console.log(this.carForm.value.product.length);
+          if(this.carForm.value.product.length == this.postLenght.length){
+            this.success = 'Posted successfully!';
+             document.getElementById('idView').scrollIntoView();
+              setTimeout(() => {
+                this.route.navigate(['products']);
+                this.loadingCtrl.hide();
+              }, 3000);
+          }
         },
         err => {
           console.log(err);
         }
       );
       }
+
     }
    }
   }
