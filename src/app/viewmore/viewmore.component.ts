@@ -40,7 +40,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   time: any;
   public postProduct: any = {};
   public querydata: any = {};
-  public requestData: any =[];
+  public requestData: any ={};
   public cancelOrderData: any ={};
   resetPasswordObj: any = {};
   city: any;
@@ -133,7 +133,6 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-
     this.id = this.route.snapshot.params['id'];
     this.loadingCtrl.show();
     if(localStorage.getItem('currentUser')){
@@ -331,6 +330,12 @@ sendQuery(){
       this.storeOrderRequest();
       this.mytemplateForm3.reset();
         // this.orderRequestMsg = 'We got your order query, we get back to you soon!';
+        //  setTimeout(() => {
+        //      this.orderRequestMsg='';
+        //     document.getElementById("closeRequirementModal").click();
+        //      this.router.navigate(['/my-order']);
+        //  },3000)
+
         this.loadingCtrl.hide();
     },
     err => {console.log(err);
@@ -348,38 +353,19 @@ storeOrderRequest(){
   this._dealsService.storeOrderRequest(this.querydata).subscribe(
     res => {
       console.log(res);
+      document.getElementById("closeCancelOrderModal1").click();
+      document.getElementById("openConfirmModal").click();
       this.requestData.orderRqstId = res._id;
       this.requestData.requestId = res.requestId;
       console.log(this.requestData.orderRqstId);
-      console.log(this.requestData.requestId);
-      document.getElementById('closeCancelOrderModal1').click();
-      // setTimeout(function () { 
-      //   swal({
-      //     title: 'Order requested successfully!',
-      //   text:
-      //     'We got your order query, we get back to you soon!',
-      //   imageUrl: '../../assets/Images/progress.gif'
-      //   },
-      //   (isConfirm) =>{
-      //     if (isConfirm) {
-      //       // window.history.replaceState('','','/orderView');
-      //       window.location.replace('/orderView')
-      //     }
-      //   }); }, 1000);
+     
       this.mapWithPost();
-  
-      // let snap = this.route.snapshot.params['id'];
-      // if(snap){
-      //   this.router.navigate(['/orderView']);
-      // }
     },
     err => console.log(err)
   );
 }
-
-gotoView(){
-  alert("1")
-  this.router.navigate(['/orderView']);
+closeModel(){
+  
 }
 
 //sms to seller
@@ -411,6 +397,9 @@ mapWithPost(){
   this._dealsService.mapUserIdinPost(this.requestData).subscribe(
     res => {
       console.log(res);
+      // this.smsToSeller();
+      // this.smsToBuyer();
+
       this.loadingCtrl.hide();
     },
     err => {console.log(err);
@@ -576,10 +565,10 @@ mapWithPost(){
             this.errormsg1 = '';
           }
           // this.phoneObj.phone1 = '';
-          this.optsent = ' '+ resultpath;
-          // setTimeout(() => {
-          //   this.optsent = '';
-          // }, 3000);
+          this.optsent = 'OTP has been sent to this number successfully! '+ resultpath;
+          setTimeout(() => {
+            this.optsent = '';
+          }, 3000);
           document.getElementById('showForm').style.display = 'none';
           document.getElementById('secondDiv').style.display = 'block';
         },
@@ -819,10 +808,10 @@ mapWithPost(){
       this._auth.sendOtp(this.phoneObj).subscribe(
         res => {
           console.log(res);
-          this.signUoptsent = ' '+ resultpath;
-          // setTimeout(() => {
-          //   this.signUoptsent = '';
-          // }, 3000);
+          this.signUoptsent = 'OTP has been sent to this number successfully! '+ resultpath;
+          setTimeout(() => {
+            this.signUoptsent = '';
+          }, 3000);
           document.getElementById('signUpfirstDiv').style.display = 'none';
           document.getElementById('signUpsecondDiv').style.display = 'block';
         },

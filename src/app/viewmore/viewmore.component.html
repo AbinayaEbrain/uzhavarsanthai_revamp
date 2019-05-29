@@ -161,7 +161,7 @@
   <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal" name="button" id="openLoginModal"></button>
   <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal1" name="button" id="openSignupModal"></button>
   <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal2" name="button" id="openOrderReqModal"></button>
-    <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal3" name="button" id="cancelOrderReqModal"></button>
+  <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal3" name="button" id="cancelOrderReqModal"></button>
 
 
 
@@ -360,7 +360,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <p class="modal-title fntSize">Requirement Details</p>
-            <button type="button" class="close x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+            <button type="button" class="close x" id="closeCancelOrderModal1" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
         </div>
         <div class="modal-body">
           <div class="alert alert-success text-center error_word"  *ngIf="orderRequestMsg">
@@ -442,7 +442,7 @@
                   </div>
                   <br>
                   <div class="text-center">
-                      <button type="submit" [disabled]="queryform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn" (click)="sendQuery()" data-toggle="modal" data-target="#myModalswal" id="closeCancelOrderModal1" data-dismiss="modal" aria-label="Close">Send Order Request</button>
+                      <button type="submit" [disabled]="queryform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn" (click)="sendQuery()">Send Order Request</button>
                   </div>
                 </form>
         </div>
@@ -475,12 +475,11 @@
      </div>
   </div>
   </div>
-
+  <!-- <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModalswal" name="button" id="openConfirmModal"></button> -->
    <!-- The Modal -->
-   <div class="modal fade" id="myModalswal">
+   <!-- <div class="modal fade" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModalswal">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="width: auto;">
-          <!-- Modal body -->
           <div class="modal-body" style="padding: 25px;" *ngFor="let order of requestData" >
             <h5 class="text-center" style="color:#0d4608">Order requested successfully!</h5>
             <p class="text-center">We got your order query, we get back to you soon ! <br>
@@ -492,6 +491,25 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-  
+    <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal5" name="button" id="openConfirmModal"></button>
+  <!-- //open login modal -->
+  <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal5">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style="width: auto;">
+        <div class="modal-body" style="padding: 25px;">
+            <h5 class="text-center" style="color:#0d4608">Order requested successfully!</h5>
+            <p class="text-center">We got your order query, we get back to you soon ! <br>
+              <span style="color:#0d4608;font-weight: bold;cursor: pointer;" data-dismiss="modal" aria-label="Close" routerLink="/orderView/{{requestData.orderRqstId}}" >Request ID : {{requestData.requestId}}</span> 
+            </p>
+            <div class="text-center">
+                <button type="button" class="btn btn-success button_word" data-dismiss="modal" aria-label="Close" routerLink="/my-order">OK</button>
+            </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
+        </div> -->
+      </div>
+    </div>
+  </div>

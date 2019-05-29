@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Location } from '@angular/common';
 import { ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-view',
@@ -16,43 +17,59 @@ export class OrderViewComponent implements OnInit {
   createdRequests: any = [];
   id: any;
   acntID: any;
+  userOrderReq = [];
+  userOrder : any = {};
+  passingId : any;
+  singleImg :any;
+  splitImage1 = '';
   userReview: any = {};
   public reviewData: any = {};
 
   constructor(
     private _dealService: DealsService,
     public loadingCtrl: NgxSpinnerService,
-    private location: Location
-  ) {}
+    private location: Location,
+    private route: ActivatedRoute,
+    private router: Router ,
+    ) {}
 
   ngOnInit() {
     this.loadingCtrl.show();
-    this.acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
-    console.log(this.acntID);
-    this.getSignUpRqst();
+    this.passingId = this.route.snapshot.params['id'];
+    this.totalOrders();
   }
+  totalOrders(){
+    this._dealService.getOrderRequest().subscribe(res =>{
+    console.log(res);
+    this.userOrderReq = res;
+    this.loadingCtrl.hide();
+    let j =0;
+    for (let i = 0; i < this.userOrderReq.length; i++) {
+      if (
+        this.passingId == this.userOrderReq[i]._id
+      ) {
+        this.userOrder = this.userOrderReq[i];
+        console.log(this.userOrder)
+        console.log(this.userOrder.status)
+         console.log (this.userOrder.image)
+         var str = this.userOrder.image;
+         var res = str.split(",",1);
+         console.log(res)
+         this.singleImg = res;
+        // this.singleImg[j].image = this.splitImage1.split(",",1);
+        // console.log(this.singleImg[j].image)
+        j++;
+      }
+    }
+    },err =>{
+      console.log(err);
+    });
+  }
+
 
   goToBack() {
     this.location.back();
   }
-  // getSingleUser(){
-  //   this._dealService.getSingleUser(this.acntID).subscribe(data =>{
-  //     console.log(data);
-  //     this.crntUser = data;
-  //     this.roleStatus = data.roleStatus;
-  //     this.role = data.role;
-  //     if(this.role == "buyer" || this.roleStatus =="Deactive"){
-  //       this.loadingCtrl.hide();
-  //     }
-
-  //     if(this.role == "seller" && this.roleStatus =="Active"){
-  //       this.getSignUpRqst();
-  //     }
-  //   },err =>{
-  //     console.log(err);
-  //   })
-
-  // }
 
   getSignUpRqst() {
     this._dealService.getOrderRequest().subscribe(
@@ -142,12 +159,14 @@ export class OrderViewComponent implements OnInit {
     this.loadingCtrl.show();
     console.log(this.reviewData);
     console.log(this.reviewData.starValue);
-    console.log(this.userReview);
-    this.reviewData.buyerId = this.userReview.buyerId;
-    this.reviewData.buyerName = this.userReview.buyerName;
-    this.reviewData.prdctId = this.userReview.prdctId;
-    this.reviewData.sellerId = this.userReview.sellerId;
-    this.reviewData.sellerName = this.userReview.sellerName;
+    console.log(this.reviewData.review);
+    console.log(this.userOrder);
+    this.reviewData.buyerId = this.userOrder.buyerId;
+    this.reviewData.buyerName = this.userOrder.buyerName;
+    this.reviewData.prdctId = this.userOrder.prdctId;
+    this.reviewData.sellerId = this.userOrder.sellerId;
+    this.reviewData.sellerName = this.userOrder.sellerName;
+    console.log(this.reviewData);
     let curntDte = new Date().getTime();
     this.reviewData.createdAt = curntDte;
     this._dealService.addReview(this.reviewData).subscribe(
@@ -157,7 +176,7 @@ export class OrderViewComponent implements OnInit {
         console.log(this.reviewData.reviewRqstId);
         this.mapWithPost();
         this.mapWithUser();
-        this.mytemplateForm.reset();
+        //this.mytemplateForm.reset();
         this.loadingCtrl.hide();
         document.getElementById('closeCancelOrderModal1').click();
       },
@@ -193,4 +212,9 @@ export class OrderViewComponent implements OnInit {
       }
     );
   }
+
+  clear(){
+          this.mytemplateForm.reset();
+  }
+
 }
