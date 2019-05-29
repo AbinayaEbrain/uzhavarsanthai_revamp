@@ -357,11 +357,11 @@ export class PostComponent implements OnInit {
               localStorage.getItem('currentUser')
             ).phone;
             this.carForm.value.product[i].userAddressLine = JSON.parse(
-              localStorage.getItem('currentUser')
+              localStorage.getItem('currentUpdateAddr')
             ).address.addressLine;
             this.carForm.value.product[i].userAddress = JSON.parse(
-              localStorage.getItem('currentUser')
-            ).address.city.formatted_address;
+              localStorage.getItem('currentUpdateAddr')
+            ).address.formatted_address;
             this.carForm.value.product[i].status = JSON.parse(
               localStorage.getItem('currentUser')
             ).status;

@@ -1,19 +1,15 @@
-<div class="bg" style="overflow-x: hidden;">
-    <div *ngIf="role == 'seller' && roleStatus == 'Active'" class="pt-5">
-      <div class="row">
-        <!-- <div class="col-md-1"></div> -->
-        <div class="col-md-12">
-          <h5 class="mt-5 container styl text-center">Your Credits</h5>
-  
-          <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-              <h6>Hai <span style="font-style:italic;color:#0d4608;font-weight:bold">{{ credits.firstname }}</span>,</h6>
-            </div>
-            <div class="col-md-5">
-              <strong class="float-right">Total credits : {{ credits.credits}}</strong>
-            </div>
-            <div class="col-md-1"></div>
+<div id='focusDiv' tabindex="1"></div>
+<div class="container-fluid bg">
+  <div class="pt-5">
+    <div class="row">
+      <!-- <div class="col-md-1"></div> -->
+      <div class="col-md-12">
+        <h5 class="mt-5 container styl text-center">Your Credits</h5>
+
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-5">
+            <h6>Hai <span style="font-style:italic;color:#0d4608;font-weight:bold">{{ credits.firstname }}</span>,</h6>
           </div>
   
           <!-- <div class="row">

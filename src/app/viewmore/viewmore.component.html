@@ -1,530 +1,517 @@
 <div id='focusDiv' tabindex="1"></div>
-<div class="container mt-5 pt-3 pt-md-5">
-  <div class="card cardStyle" style="padding: 10px;">
-  <div class="row">
-  <aside class="col-sm-5">
-  <article class="gallery-wrap">
-  <div class="img-big-wrap">
-  <div>
-    <!-- <img src="{{postProduct.image}}" style="cursor: pointer;" class="viewImage"> -->
-    <ngx-slick-carousel class="carousel"
-    #slickModal="slick-carousel"
-            [config]="slideConfig"
-            (init)="slickInit($event)">
-        <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
-            <img src="{{ slide }}" alt="" class="viewImage" style="max-width: 100%;" height="200">
-        </div>
-    </ngx-slick-carousel>
-  </div>
-  </div> <!-- slider-product.// -->
-
-  <div class="img-small-wrap">
-  <div class="item-gallery"  *ngFor="let slide of arrayImage"> <img src="{{ slide }}"> </div>
-  </div>
-   <!-- slider-nav.// -->
-  </article> <!-- gallery-wrap .end// -->
-  </aside>
-  <aside class="col-sm-7">
-      <button  *ngIf="requestSent" type="button" (click)="cancelOrderModal()" class=" btn-danger btnCancel float-right">Cancel order
-      </button>
-  <h3 style="font-size: 2rem;color: #ef6806d9" *ngIf="!postProduct.bulk">{{postProduct.name}}</h3>
-  <h3 style="font-size: 2rem;color: #ef6806d9" class="tamil_word" *ngIf="postProduct.bulk">{{postProduct.category}}</h3>
-  <hr>
-  <p class="seller float-right" style="font-weight: bold">Seller: <span style="font-weight:400;">{{postProduct.firstName}}</span></p>
-  <p style="color: #0d4608;font-size: larger;" *ngIf="!postProduct.bulk"><b>Rs.{{postProduct.price}}.00 / {{postProduct.qnty}}</b></p>
-  <!--<i class="fa" style="font-size: larger;">Rs.</i>  &#xf156;   -->
-  <table class="table table-borderless teble-responsive" style="text-align: justify;">
-                            <tbody>
-                                  <tr>
-                                          <td><strong>Category</strong></td>
-                                          <td>:</td>
-                                          <td class="tamil_word">{{postProduct.category}}</td>
-                                        </tr>
-                              <tr>
-                                <td><strong>Expiry Date</strong></td>
-                                <td>:</td>
-                                <td>{{postProduct.validityTime}}</td>
-                              </tr>
-                              <tr *ngIf="!postProduct.bulk">
-                                <td><strong>Quantity</strong></td>
-                                <td>:</td>
-                                <td>{{postProduct.quantity}} {{postProduct.qnty}}</td>
-                              </tr>
-                              <tr *ngIf="!postProduct.bulk">
-                                <td><strong>Location</strong></td>
-                                <td>:</td>
-                                <td>{{postProduct.avlPlace}}</td>
-                              </tr>
-                            </tbody>
-                    </table>
-
-                    <section id="tabs">
-                          <div class="container">
-                              <!-- <div class="row">
-                                  <div class="col-xs-12 "> -->
-                                      <nav>
-                                          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Description</a>
-                                              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews <span *ngIf="reviewlngth" class="badge">{{reviewlngth}}</span><span *ngIf="!reviewlngth" class="badge">0</span></a>
-                                              <!-- <a class="nav-item nav-link" id="nav-dispute-tab" data-toggle="tab" href="#nav-dispute" role="tab" aria-controls="nav-dispute" aria-selected="false">Dispute({{this.disputeArr.length}})</a> -->
-                                            </div>
-                                      </nav>
-                                      <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                                          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                              <p class="product-description" *ngIf="postProduct.description" style="text-align: justify">{{postProduct.description}}</p>
-                                              <p class="product-description" *ngIf="postProduct.description == '' || postProduct.description == undefined || postProduct.description == null" style="text-align: justify">No description.</p>
-                                            </div>
-                                          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                            <p class="product-productreview" *ngIf="postProduct.productreview == '' || postProduct.productreview == undefined || postProduct.productreview == null" style="text-align: justify">No reviews yet.</p>
-                                            <div class="container" *ngFor="let slide of reviewArr| slice:0:show;">
-                                              <div class="card" style="padding: 10px;">
-                                              <div class="notice notice-success">
-                                                <div *ngIf="reviewlngthErr">
-                                                  <h6>{{reviewlngthErr}}</h6>
-                                                </div>
-                                                <div class="row">
-                                                  <div class="col-md-2 col-2">
-
+<div class="bg1 container mt-5 pt-3 pt-md-5">
+    <div class="card cardStyle" style="padding: 10px;">
+    <div class="row">
+    <aside class="col-sm-5">
+    <article class="gallery-wrap">
+    <div class="img-big-wrap">
+    <div>
+      <!-- <img src="{{postProduct.image}}" style="cursor: pointer;" class="viewImage"> -->
+      <ngx-slick-carousel class="carousel"
+      #slickModal="slick-carousel"
+      style="text-align: center;"
+              [config]="slideConfig"
+              (init)="slickInit($event)">
+          <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
+              <img src="{{ slide }}"  alt="" class="viewImage" style="max-width: 80%;" height="200">
+          </div>
+      </ngx-slick-carousel>
+    </div>
+    </div> <!-- slider-product.// -->
+  
+    <div class="img-small-wrap">
+    <div class="item-gallery" *ngFor="let slide of arrayImage ; let i = index"> 
+      <img src="{{ slide }}" height="30" width="43" (click)="slickModal.slickGoTo(i)"> 
+    </div>
+    </div>
+     <!-- slider-nav.// -->
+    </article> <!-- gallery-wrap .end// -->
+    </aside>
+    <aside class="col-sm-7">
+        <button  *ngIf="requestSent" type="button" (click)="cancelOrderModal()" class=" btn-danger btnCancel float-right">Cancel order
+        </button>
+    <h3 style="font-size: 2rem;color: #ef6806d9" *ngIf="!postProduct.bulk">{{postProduct.name}}</h3>
+    <h3 style="font-size: 2rem;color: #ef6806d9" class="tamil_word" *ngIf="postProduct.bulk">{{postProduct.category}}</h3>
+    <hr>
+    <p class="seller float-right" style="font-weight: bold">Seller: <span style="font-weight:400;">{{postProduct.firstName}}</span></p>
+    <p style="color: #0d4608;font-size: larger;" *ngIf="!postProduct.bulk"><b>Rs.{{postProduct.price}}.00 / {{postProduct.qnty}}</b></p>
+    <!--<i class="fa" style="font-size: larger;">Rs.</i>  &#xf156;   -->
+    <table class="table table-borderless teble-responsive" style="text-align: justify;">
+                              <tbody>
+                                    <tr>
+                                            <td><strong>Category</strong></td>
+                                            <td>:</td>
+                                            <td class="tamil_word">{{postProduct.category}}</td>
+                                          </tr>
+                                <tr>
+                                  <td><strong>Expiry Date</strong></td>
+                                  <td>:</td>
+                                  <td>{{postProduct.validityTime}}</td>
+                                </tr>
+                                <tr *ngIf="!postProduct.bulk">
+                                  <td><strong>Quantity</strong></td>
+                                  <td>:</td>
+                                  <td>{{postProduct.quantity}} {{postProduct.qnty}}</td>
+                                </tr>
+                                <tr *ngIf="!postProduct.bulk">
+                                  <td><strong>Location</strong></td>
+                                  <td>:</td>
+                                  <td>{{postProduct.avlPlace}}</td>
+                                </tr>
+                              </tbody>
+                      </table>
+  
+                      <section id="tabs">
+                            <div class="container">
+                                <!-- <div class="row">
+                                    <div class="col-xs-12 "> -->
+                                        <nav>
+                                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Description</a>
+                                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Reviews <span *ngIf="reviewlngth" class="badge">{{reviewlngth}}</span><span *ngIf="!reviewlngth" class="badge">0</span></a>
+                                                <!-- <a class="nav-item nav-link" id="nav-dispute-tab" data-toggle="tab" href="#nav-dispute" role="tab" aria-controls="nav-dispute" aria-selected="false">Dispute({{this.disputeArr.length}})</a> -->
+                                              </div>
+                                        </nav>
+                                        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                <p class="product-description" *ngIf="postProduct.description" style="text-align: justify">{{postProduct.description}}</p>
+                                                <p class="product-description" *ngIf="postProduct.description == '' || postProduct.description == undefined || postProduct.description == null" style="text-align: justify">No description.</p>
+                                              </div>
+                                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                              <p class="product-productreview" *ngIf="postProduct.productreview == '' || postProduct.productreview == undefined || postProduct.productreview == null" style="text-align: justify">No reviews yet.</p>
+                                              <div class="container card" *ngFor="let slide of reviewArr| slice:0:show;">
+                                                <div style="padding: 10px;">
+                                                <div class="notice notice-success">
+                                                  <div *ngIf="reviewlngthErr">
+                                                    <h6>{{reviewlngthErr}}</h6>
                                                   </div>
-                                                  <div class="col-md-10 col-10">
-                                                    <div class=" ticketPara float-right" style="color: #ef6806d9;">
-                                                            <span style="color:#0d4608"> #</span><span style="font-size:13px;color:black">{{ slide.buyerName }}</span>&nbsp;
-                                                            <span style="color:#0d4608">{{slide.starValue}}</span><i class="fa fa-star" aria-hidden="true"></i>
+                                                  <div class="row">
+                                                    <div class="col-md-2 col-2">
+  
+                                                    </div>
+                                                    <div class="col-md-10 col-10">
+                                                      <div class=" ticketPara float-right" style="color: #ef6806d9;">
+                                                              <span style="color:#0d4608"> #</span><span style="font-size:13px;color:black">{{ slide.buyerName }}</span>&nbsp;
+                                                              <span style="color:#0d4608">{{slide.starValue}}</span><i class="fa fa-star" aria-hidden="true"></i>
+                                                      </div>
                                                     </div>
                                                   </div>
+                                                  <div class="row">
+                                                  <div class="col-md-12">
+                                                      <span style="color: black;" class="ticketPara">
+                                                          <!-- <p style="text-indent: 30px;">{{ slide.review }}</p> -->
+                                                          <app-read-more-view class="mt-2" [text]="slide.review" [maxLength]="50"></app-read-more-view>
+                                                        </span>
+                                                    </div> </div>
                                                 </div>
-                                                <div class="row">
-                                                <div class="col-md-12">
-                                                    <span style="color: black;" class="ticketPara">
-                                                        <!-- <p style="text-indent: 30px;">{{ slide.review }}</p> -->
-                                                        <app-read-more-view class="mt-2" [text]="slide.review" [maxLength]="50"></app-read-more-view>
-                                                      </span>
-                                                  </div> </div>
+  
+                                                <!-- <div class="notice notice-danger">
+                                                  <strong>Notice</strong> notice-danger
+                                                </div> -->
                                               </div>
-
-                                              <!-- <div class="notice notice-danger">
-                                                <strong>Notice</strong> notice-danger
-                                              </div> -->
                                             </div>
                                             <div *ngIf="show < reviewlngth" style="color: #0d4608;font-weight: bold;cursor: pointer;text-align: center;" (click)="increaseShow()">Load More...</div>
                                           </div>
-                                        </div>
-                                          <!-- <div class="tab-pane fade" id="nav-dispute" role="tabpanel" aria-labelledby="nav-dispute-tab">
-                                              <div #scrollMe style="overflow: scroll; height: 150px;">
-                                                <div *ngFor="let dispute of disputeArr">
-                                                  <p class="product-description" style="text-align: justify">Disputer name : {{dispute.disputerName}}</p>
-                                                  <p class="product-description" style="text-align: justify">{{dispute.dispute}}</p>
-                                                  <hr>
+                                            <!-- <div class="tab-pane fade" id="nav-dispute" role="tabpanel" aria-labelledby="nav-dispute-tab">
+                                                <div #scrollMe style="overflow: scroll; height: 150px;">
+                                                  <div *ngFor="let dispute of disputeArr">
+                                                    <p class="product-description" style="text-align: justify">Disputer name : {{dispute.disputerName}}</p>
+                                                    <p class="product-description" style="text-align: justify">{{dispute.dispute}}</p>
+                                                    <hr>
+                                                  </div>
                                                 </div>
-                                              </div>
-                                        </div> -->
-                                      </div>
-
-                                  <!-- </div>
-                              </div> -->
-                          </div>
-                      </section>
-
-                    <div style="text-align:center;" *ngIf="!getToken" ><button (click)="checkBuyer()" type="button" class="btn btnStyle mx-auto contactbtn" style="padding: 13px;border-radius: unset"><p style="margin-top: -5px;
-                      margin-bottom: -5px;font-weight: bold">Contact Seller</p>
-                  <!-- <p class="askbest">Ask for best deal</p> -->
-                    </button>
-                  </div>
-
-                  <div style="text-align:center;" *ngIf="getToken && !requestSent && !omit" >
-                      <button type="button" (click)="createOrederModal()" class="btn btnStyle mx-auto contactbtn" style="padding: 13px;border-radius: unset"><p style="margin-top: -5px;
-                      margin-bottom: -5px;font-weight: bold">Create Order Request</p>
+                                          </div> -->
+                                        </div>
+  
+                                    <!-- </div>
+                                </div> -->
+                            </div>
+                        </section>
+  
+                      <div style="text-align:center;" *ngIf="!getToken" ><button (click)="checkBuyer()" type="button" class="btn btnStyle mx-auto contactbtn" style="padding: 13px;border-radius: unset"><p style="margin-top: -5px;
+                        margin-bottom: -5px;font-weight: bold">Contact Seller</p>
+                    <!-- <p class="askbest">Ask for best deal</p> -->
                       </button>
-
-                  </div>
-                  <div style="text-align:center;" *ngIf= "omit">
-                    <p style="color: red;font-weight: 600;">! Oops This product posted by you!</p>
-                  </div>
-                  <p *ngIf="requestSent" style="text-align:center;color:#0d4608;font-weight:bold;"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{requestSent}}</p>                <!-- card-body.// -->
-  </aside> <!-- col.// -->
-  </div> <!-- row.// -->
-  <div class="col-md-12 text-center first" style="margin-bottom: 1%;">
-    <button type="button" class="btn btnColor viewMoreBtn" (click)="goToBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
-</div>
-  </div> <!-- card.// -->
-  <div class="second" style="display: none">
-      <button class="float1" style="float:left" id="hideFilterButton1"  (click)="goToBack()"><i class="fa fa-arrow-left"></i> </button>
-      </div>
-
+                    </div>
+  
+                    <div style="text-align:center;" *ngIf="getToken && !requestSent && !omit" >
+                        <button type="button" (click)="createOrederModal()" class="btn btnStyle mx-auto contactbtn" style="padding: 13px;border-radius: unset"><p style="margin-top: -5px;
+                        margin-bottom: -5px;font-weight: bold">Create Order Request</p>
+                        </button>
+  
+                    </div>
+                    <div style="text-align:center;" *ngIf= "omit">
+                      <p style="color: red;font-weight: 600;">! Oops This product posted by you!</p>
+                    </div>
+                    <p *ngIf="requestSent" style="text-align:center;color:#0d4608;font-weight:bold;"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{requestSent}}</p>                <!-- card-body.// -->
+    </aside> <!-- col.// -->
+    </div> <!-- row.// -->
+    <div class="col-md-12 text-center first" style="margin-bottom: 1%;">
+      <button type="button" class="btn btnColor viewMoreBtn" (click)="goToBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
   </div>
-  <!--container.//-->
-  <br>
-
-
-  <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal" name="button" id="openLoginModal"></button>
-  <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal1" name="button" id="openSignupModal"></button>
-  <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal2" name="button" id="openOrderReqModal"></button>
-    <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal3" name="button" id="cancelOrderReqModal"></button>
-
-
-
-
-
-
-
-
-
-
-  <!-- //open login modal -->
-  <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="headingEng"><span class="headingTamil">உள்நுழைக</span> / Login</h5>
-
-          <button type="button" class="close" id="closeLoginModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div> <!-- card.// -->
+    <div class="second" style="display: none">
+        <button class="float1" style="float:left" id="hideFilterButton1"  (click)="goToBack()"><i class="fa fa-arrow-left"></i> </button>
         </div>
-        <div class="modal-body">
-          <div class="alert alert-danger text-center error_word onmobviewfont"  *ngIf="errormsg">
-              {{errormsg}}
-            </div>
-              <div class="alert alert-danger text-center error_word"  *ngIf="deactiveErrorMsg">
-                {{deactiveErrorMsg}}
-              </div>
-              <div class="alert alert-danger text-center error_word"  *ngIf="adminVerifyErr">
-                  {{adminVerifyErr}}
-                </div>
-              <div id="hideForm">
-      <form #loginform="ngForm" *ngIf ="!submitted" novalidate >
-        <div class="alert alert-success text-center" *ngIf="message"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{message}}</div>
-        <div class="form-group mt-2">
-       <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> தொலைபேசி எண் </span>/ Phone Number</label>
-            <input type="text"  #input1 #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" autofocus required>
-            <span  class="text-danger float-left error_word" [class.d-none] = "phone.valid || phone.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone Number is required</span>
-          </div>
-        <div class="form-group">
-            <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> கடவுச்சொல் </span>/ Password</label>
-          <input type="password" id="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="userData.password" autocomplete="off"  required>
-          <span toggle="#password" id="password1" (click)="eyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-          <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
-        </div>
-
-        <a (click)="toggle()" style="cursor: pointer;text-decoration: underline">Forgot password?</a>
-        <button [disabled]="loginform.form.invalid " class="btn mt-4 mb-4 btn-block button_word" type="submit" (click)="logform()"><span style="font-size: 14px" class="tamil_word">உள் நுழைக </span> / Login</button>
-      </form>
-          <p class="clr txtalign" style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>
-  </div>
-  <!-- //show form -->
-  <div id="showForm" style="display: none" class="mt-2">
-  <form  #forgotpwdform="ngForm" *ngIf ="!submitted" novalidate>
-        <div class="form-group ">
-            <label class="english_wrd" for="phone1"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
-                <input type="tel"  #phone1="ngModel" [class.is-invalid]="phone1.invalid && phone1.touched" ngModel name="phone1" class="form-control" (change)="phnTen()" [(ngModel)]="phoneObj.phone1" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
-                <div *ngIf="phone1.errors && (phone1.invalid && phone1.touched)">
-                    <span class="text-danger float-left error_word" *ngIf="phone1.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
-                </div>
-                <span class="text-danger float-left mb-2"  [class.d-none] = "phone1.invalid && phone1.touched" *ngIf="errormsg1">{{errormsg1}}</span>
-                <span class="text-danger float-left error_word" *ngIf="phnErr">{{phnErr}}</span>
-        </div>
-        <div style="text-align: center;" >
-        <button class="btn2" type="submit" [disabled]="!phoneObj.phone1" (click)="sendOtp()">Get OTP</button>
-      </div>
-      </form>
-  <p class="clr mt-3  txtalign" style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>
-  </div>
-  <!-- //second div -->
-  <div id="secondDiv" class="mt-2" style="display: none">
-      <form>
-        <div class="alert alert-success text-center" *ngIf="optsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{optsent}}</div>
-    <div class="alert alert-danger text-center" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
-    <div class="form-group ">
-        <label class="english_wrd" for="verifyPhone"><span style="font-size: 14px" class="tamil_word">Enter your OTP</span></label>
-            <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone"  autocomplete="off" required>
+  
     </div>
-    <div style="text-align: center;" >
-    <button class="mb-2 btn2" type="submit" id="verify1" [disabled]="!verifyPhone1.verifyPhone" (click)="verifyOtp()">Verify OTP</button>
-  </div>
-    <p style="text-align: center;"><span>Not received otp yet? </span><a class="resend" (click)="sendOtp()">Resend OTP</a></p>
-  </form>
-  <p class="clr txtalign mt-3 " style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>
-  </div>
-  <!-- first div -->
-  <div id="firstDiv" class="mt-2" style="display: none">
-      <div class="alert alert-success text-center" *ngIf="verifymsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{verifymsg}}</div>
-      <form  #resetForm="ngForm" *ngIf ="!submitted" novalidate>
+    <!--container.//-->
+    <br>
+  
+  
+    <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal" name="button" id="openLoginModal"></button>
+    <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal1" name="button" id="openSignupModal"></button>
+    <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal2" name="button" id="openOrderReqModal"></button>
+    <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal3" name="button" id="cancelOrderReqModal"></button>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <!-- //open login modal -->
+    <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="headingEng"><span class="tamil_word">உள்நுழைக</span> / Login</h5>
+  
+            <button type="button" class="close" id="closeLoginModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-danger text-center error_word onmobviewfont"  *ngIf="errormsg">
+                {{errormsg}}
+              </div>
+                <div class="alert alert-danger text-center error_word"  *ngIf="deactiveErrorMsg">
+                  {{deactiveErrorMsg}}
+                </div>
+                <div class="alert alert-danger text-center error_word"  *ngIf="adminVerifyErr">
+                    {{adminVerifyErr}}
+                  </div>
+                <div id="hideForm">
+        <form #loginform="ngForm" *ngIf ="!submitted" novalidate >
+          <div class="alert alert-success text-center" *ngIf="message"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{message}}</div>
+          <div class="form-group mt-2">
+         <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> தொலைபேசி எண் </span>/ Phone Number</label>
+              <input type="text"  #input1 #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" [(ngModel)]="userData.phone" autocomplete="off" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
+              <span class="text-danger float-left error_word errFont" [class.d-none] = "phone.valid || phone.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone Number is required</span>
+            </div>
           <div class="form-group">
               <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> கடவுச்சொல் </span>/ Password</label>
-            <input type="password" id="resetPassword"  #resetPassword="ngModel" [class.is-invalid]="resetPassword.invalid && resetPassword.touched" ngModel name="resetPassword" class="form-control" [(ngModel)]="resetPasswordObj.resetPassword" autocomplete="off"  required>
-            <span toggle="#resetPassword" id="resetPassword1" (click)="reseteyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-            <span class="text-danger float-left error_word" [class.d-none] = "resetPassword.valid || resetPassword.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
+            <input type="password" id="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="userData.password" autocomplete="off"  required>
+            <span toggle="#password" id="password1" (click)="eyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+            <span class="text-danger float-left error_word errFont" [class.d-none] = "password.valid || password.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
           </div>
-
-          <div class="form-group">
-              <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> உறுதிப்படுத்த </span>/ Confirm Password</label>
-            <input type="password" id="confirmPassword" (keyup)="equalPwd()"  #confirmPassword="ngModel" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" ngModel name="confirmPassword" class="form-control" [(ngModel)]="resetPasswordObj.confirmPassword" autocomplete="off"  required>
-            <span toggle="#confirmPassword" id="confirmPassword1" (click)="confirmeyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-            <span class="text-danger float-left error_word" [class.d-none] = "confirmPassword.valid || confirmPassword.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
-            <span class="text-danger float-left error_word" *ngIf="notEqual">{{notEqual}}</span>
+  
+          <a (click)="toggle()" style="cursor: pointer;text-decoration: underline">Forgot password?</a>
+          <button [disabled]="loginform.form.invalid " class="btn mt-4 mb-4 btn-block button_word" type="submit" (click)="logform()"><span style="font-size: 14px" class="tamil_word">உள் நுழைக </span> / Login</button>
+        </form>
+            <p class="clr txtalign" style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>
+    </div>
+    <!-- //show form -->
+    <div id="showForm" style="display: none" class="mt-2">
+    <form  #forgotpwdform="ngForm" *ngIf ="!submitted" novalidate>
+          <div class="form-group ">
+              <label class="english_wrd" for="phone1"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
+                  <input type="tel"  #phone1="ngModel" [class.is-invalid]="phone1.invalid && phone1.touched" ngModel name="phone1" class="form-control" (change)="phnTen()" [(ngModel)]="phoneObj.phone1" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
+                  <div *ngIf="phone1.errors && (phone1.invalid && phone1.touched)">
+                      <span class="text-danger float-left error_word errFont" *ngIf="phone1.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
+                  </div>
+                  <span class="text-danger float-left mb-2"  [class.d-none] = "phone1.invalid && phone1.touched" *ngIf="errormsg1">{{errormsg1}}</span>
+                  <span class="text-danger float-left error_word" *ngIf="phnErr">{{phnErr}}</span>
           </div>
           <div style="text-align: center;" >
-          <button class="mb-2 btn2" type="submit" id="reset" [disabled]="notEqual" (click)="resetConPassword()">Reset password</button>
+          <button class="btn2" type="submit" [disabled]="!phoneObj.phone1" (click)="sendOtp()">Get OTP</button>
         </div>
-  </form>
-  <p class="clr txtalign mt-3 " style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>
-  </div>
+        </form>
+    <p class="clr mt-3  txtalign" style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>
+    </div>
+    <!-- //second div -->
+    <div id="secondDiv" class="mt-2" style="display: none">
+        <form>
+          <div class="text-center" *ngIf="optsent">OTP has been sent to this number successfully!<br><b>'{{optsent}}'</b></div>
+      <div class="alert alert-danger text-center" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
+      <div class="form-group ">
+          <label class="english_wrd" for="verifyPhone"><span style="font-size: 14px" class="tamil_word">Enter your OTP</span></label>
+              <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone"  autocomplete="off" required>
+      </div>
+      <div style="text-align: center;" >
+      <button class="mb-2 btn2" type="submit" id="verify1" [disabled]="!verifyPhone1.verifyPhone" (click)="verifyOtp()">Verify OTP</button>
+    </div>
+      <p style="text-align: center;"><span>Not received otp yet? </span><a class="resend" (click)="sendOtp()">Resend OTP</a></p>
+    </form>
+    <p class="clr txtalign mt-3 " style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>
+    </div>
+    <!-- first div -->
+    <div id="firstDiv" class="mt-2" style="display: none">
+        <div class="alert alert-success text-center" *ngIf="verifymsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{verifymsg}}</div>
+        <form  #resetForm="ngForm" *ngIf ="!submitted" novalidate>
+            <div class="form-group">
+                <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> கடவுச்சொல் </span>/ Password</label>
+              <input type="password" id="resetPassword"  #resetPassword="ngModel" [class.is-invalid]="resetPassword.invalid && resetPassword.touched" ngModel name="resetPassword" class="form-control" [(ngModel)]="resetPasswordObj.resetPassword" autocomplete="off"  required>
+              <span toggle="#resetPassword" id="resetPassword1" (click)="reseteyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+              <span class="text-danger float-left error_word errFont" [class.d-none] = "resetPassword.valid || resetPassword.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
+            </div>
+  
+            <div class="form-group">
+                <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> உறுதிப்படுத்த </span>/ Confirm Password</label>
+              <input type="password" id="confirmPassword" (keyup)="equalPwd()"  #confirmPassword="ngModel" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" ngModel name="confirmPassword" class="form-control" [(ngModel)]="resetPasswordObj.confirmPassword" autocomplete="off"  required>
+              <span toggle="#confirmPassword" id="confirmPassword1" (click)="confirmeyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+              <span class="text-danger float-left error_word errFont" [class.d-none] = "confirmPassword.valid || confirmPassword.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
+              <span class="text-danger float-left error_word" *ngIf="notEqual">{{notEqual}}</span>
+            </div>
+            <div style="text-align: center;" >
+            <button class="mb-2 btn2" type="submit" id="reset" [disabled]="notEqual" (click)="resetConPassword()">Reset password</button>
+          </div>
+    </form>
+    <p class="clr txtalign mt-3 " style="font-size: 18px;">Don't have an account yet? <span class="span_clr" (click)="register()" style="font-size: 18px;">Sign up</span> </p>
+    </div>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
+          </div> -->
         </div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
-        </div> -->
       </div>
     </div>
-  </div>
-
-  <!-- signUp modal -->
-  <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal1">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="headingEng"><span class="headingTamil">பதிவு செய்க</span> / Sign Up</h5>
-            <button type="button" class="close" data-dismiss="modal" id="closeSignUpModal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-          <div  id="cardFocus">
-      <form  #postform="ngForm" *ngIf ="!submitted" novalidate >
-              <div id="signUpfirstDiv">
-              <div class="form-group ">
-                  <label class="english_wrd" for="phone"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
-                      <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" (change)="phnTen1()" [(ngModel)]="phoneObj.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
-                      <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
-                          <span class="text-danger float-left error_word" *ngIf="phone.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
+  
+    <!-- signUp modal -->
+    <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal1">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="headingEng"><span class="tamil_word">பதிவு செய்க</span> / Sign Up</h6>
+              <button type="button" class="close" data-dismiss="modal" id="closeSignUpModal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <div  id="cardFocus">
+        <form  #postform="ngForm" *ngIf ="!submitted" novalidate >
+                <div id="signUpfirstDiv">
+                <div class="form-group ">
+                    <label class="english_wrd" for="phone"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
+                        <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" (change)="phnTen1()" [(ngModel)]="phoneObj.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
+                        <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
+                            <span class="text-danger float-left error_word errFont" *ngIf="phone.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
+                        </div>
+                       <span class="text-danger float-left mb-3 errfont"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="signUpNumbrExisterrormsg">{{signUpNumbrExisterrormsg}}
+                           <span style="color: #0d4608"> Please <span style="text-decoration: underline;cursor: pointer;" (click)="showLogin()">login</span> </span> </span>
+                        <span class="text-danger float-left error_word errFont" *ngIf="phnErr"><i class="fa fa-info-circle" aria-hidden="true"></i> {{phnErr}}</span>
+                </div>
+                <div style="text-align: center;">
+                    <button class="btn2" type="submit" id="hideGetOtp" [disabled]="!phoneObj.phone" (click)="signUpSendOtp()">Get OTP</button>
+                </div>
+            </div>
+  
+            <div id="signUpsecondDiv" style="display: none">
+                    <div class="text-center"  *ngIf="signUoptsent">OTP has been sent to this number successfully!<br> <b>'{{signUoptsent}}'</b></div>
+                <div class="alert alert-danger text-center"  *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
+                <div class="form-group ">
+                    <label class="english_wrd" for="phone">Enter your OTP</label>
+                        <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone"  autocomplete="off" required>
+                </div>
+                <div style="text-align: center;">
+                <button class="mb-2 btn2" type="submit" id="verify" [disabled]="!verifyPhone1.verifyPhone" (click)="sigunUpverifyOtp()">Verify OTP</button>
+            </div>
+                <p style="text-align: center;"><span>Not received otp yet? </span><a class="resend" (click)="signUpSendOtp()">Resend OTP</a></p>
+            </div>
+            <!-- AFTER OTP VERIFIED -->
+            <div id="afterotpverified" style="display: none">
+                    <div class="alert alert-success text-center" *ngIf="verifymsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{verifymsg}}</div>
+                <div class="form-group ">
+                    <label class="english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
+                          <input type="text" #input1 id="firstinput"   #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="registeredUserData.firstname" autocomplete="off" required >
+                          <span class="text-danger float-left error_word errFont" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Name is required</span>
+                  </div>
+                  <div class="form-group">
+                      <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
+                              <input type="text" #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control"  [(ngModel)]="registeredUserData.address.addressLine" autocomplete="off" required>
+                              <span class="text-danger float-left error_word errFont" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
+                   </div>
+                   <div class="form-group">
+                       <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">மாவட்டம்  </span>/ City</label>
+                          <input google-place type="text" placeholder="" id="city" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)"  name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="registeredUserData.address.city" required>
+                          <span class="text-danger float-left error_word errFont" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
+                  </div>
+                   <div class="form-group">
+                       <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word">கடவுச்சொல் </span>/ Password</label>
+                          <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
+                        <span class="text-danger float-left error_word errFont" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
                       </div>
-                     <span class="text-danger float-left mb-3 errfont"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="signUpNumbrExisterrormsg">{{signUpNumbrExisterrormsg}}
-                         <span style="color: #0d4608"> Please <span style="text-decoration: underline;cursor: pointer;" (click)="showLogin()">login</span> </span> </span>
-                      <span class="text-danger float-left error_word" *ngIf="phnErr"><i class="fa fa-info-circle" aria-hidden="true"></i> {{phnErr}}</span>
-              </div>
-              <div style="text-align: center;">
-                  <button class="btn2" type="submit" id="hideGetOtp" [disabled]="!phoneObj.phone" (click)="signUpSendOtp()">Get OTP</button>
-              </div>
-          </div>
-
-          <div id="signUpsecondDiv" style="display: none">
-                  <div class="alert alert-success text-center"  *ngIf="signUoptsent"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{signUoptsent}}</div>
-              <div class="alert alert-danger text-center"  *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
-              <div class="form-group ">
-                  <label class="english_wrd" for="phone">Enter your OTP</label>
-                      <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone"  autocomplete="off" required>
-              </div>
-              <div style="text-align: center;">
-              <button class="mb-2 btn2" type="submit" id="verify" [disabled]="!verifyPhone1.verifyPhone" (click)="sigunUpverifyOtp()">Verify OTP</button>
-          </div>
-              <p style="text-align: center;"><span>Not received otp yet? </span><a class="resend" (click)="signUpSendOtp()">Resend OTP</a></p>
-          </div>
-          <!-- AFTER OTP VERIFIED -->
-          <div id="afterotpverified" style="display: none">
-                  <div class="alert alert-success text-center" *ngIf="verifymsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{verifymsg}}</div>
-              <div class="form-group ">
-                  <label class="english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
-                        <input type="text" #input1 id="firstinput"   #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="registeredUserData.firstname" autocomplete="off" required >
-                        <span class="text-danger float-left error_word" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Name is required</span>
-                </div>
-                <div class="form-group">
-                    <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
-                            <input type="text" #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control"  [(ngModel)]="registeredUserData.address.addressLine" autocomplete="off" required>
-                            <span class="text-danger float-left error_word" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
-                 </div>
-                 <div class="form-group">
-                     <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">மாவட்டம்  </span>/ City</label>
-                        <input google-place type="text" placeholder="" id="city" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)"  name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="registeredUserData.address.city" required>
-                        <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
-                </div>
-                 <div class="form-group">
-                     <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word">கடவுச்சொல் </span>/ Password</label>
-                        <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
-                      <span class="text-danger float-left error_word" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12 ">
-                          <button id="hideButton" class="btn btn-block button_word" [disabled]="postform.form.invalid" type="submit" (click)="post()"><span style="font-size: 14px" class="tamil_word">பதிவு செய்க</span> / Sign up</button>
-                  </div>
-                  </div>
-          </div>
-      </form>
-  </div>
-        </div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
-        </div> -->
-      </div><!-- /.modal-content -->
-    </div>
-  </div>
-
-   <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal2">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <p class="modal-title fntSize">Requirement Details</p>
-            <button type="button" class="close x" id="closeRequirementModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
-        </div>
-        <div class="modal-body">
-          <div class="alert alert-success text-center error_word"  *ngIf="orderRequestMsg">
-            {{orderRequestMsg}}
-          </div>
-          <form #queryform="ngForm" *ngIf ="!submitted" novalidate>
-                  <div class="row">
-                    <div class="col-md-12 mt-2">
                       <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">எடை </span>/ Quantity</label>
-                               <input type="text" class="form-control" placeholder="Enter Quantity" #requiredQuantity="ngModel"
-                                name="requiredQuantity" [class.is-invalid]="requiredQuantity.invalid && requiredQuantity.touched"
-                                 ngModel [(ngModel)]="querydata.requiredQuantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="5" required>
-                               <span class="text-danger float-left error_word"
-                                [class.d-none] = "requiredQuantity.valid || requiredQuantity.untouched">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>
-                       </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">அளவு </span>/ Unit</label>
-                            <select  class="form-control" class="form-control mobmargintop"
-                            style="background-color: transparent;color: #0d4608;"  #requiredUnit="ngModel"
-                            name="requiredUnit" [class.is-invalid]="requiredUnit.invalid && requiredUnit.touched"
-                            ngModel [(ngModel)]="querydata.requiredUnit" required>
-                            <option selected="" disabled="" value="" >Choose Unit</option>
-                            <option value="Ml" class="categoryOption">Milli litre</option>
-                            <option value="Litre" class="categoryOption">Litre</option>
-                            <option value="g" class="categoryOption">Gram</option>
-                            <option value="Kg" class="categoryOption">Kilogram</option>
-                              </select>
-                               <span class="text-danger float-left error_word"
-                                [class.d-none] = "requiredUnit.valid || requiredUnit.untouched">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i> Unit is required</span>
-                       </div>
-                      </div>
-                      </div>
-                      </div>
-
-                    <div class="col-md-12 mt-2" >
-                    <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">பொருள் தேவை </span>/ Product Urgency</label>
-                   <select  class="form-control" class="form-control mobmargintop"   placeholder="Enter unit"
-                   style="background-color: transparent;color: #0d4608;"  #urgency="ngModel"
-                   name="urgency" [class.is-invalid]="urgency.invalid && urgency.touched"
-                   ngModel [(ngModel)]="querydata.urgency" required>
-                         <option selected="" disabled="" value="" >Choose Urgency</option>
-                         <option style="color: black" value="Today">Today</option>
-                         <option style="color: black" value="Within 3 days">Within 3 days</option>
-                        <option style="color: black" value="Within 1 week">Within 1 week</option>
-                     </select>
-                     <span
-                       class="text-danger float-left error_word"
-                       [class.d-none]="urgency.valid || urgency.untouched"
-                       ><i class="fa fa-info-circle" aria-hidden="true"></i> Urgency
-                       is required</span
-                     >
+                        <div class="col-md-12 ">
+                            <button id="hideButton" class="btn btn-block button_word" [disabled]="postform.form.invalid" type="submit" (click)="post()"><span style="font-size: 14px" class="tamil_word">பதிவு செய்க</span> / Sign up</button>
                     </div>
-
-                    <div class="col-md-12 mt-2">
-                          <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">குறிப்பு </span>/ Notes</label>
-                          <textarea
-                           class="form-control" style="height: 75px;border-color: #0d4608;"
-                           name="description" placeholder="Type your notes here..."  #description="ngModel"
-                           [class.is-invalid]="description.invalid && description.touched"
-                             class="form-control"
-                             [(ngModel)]="querydata.description"
-                             autocomplete="off"
-                             required
-                         ></textarea>
-                         <span
-                           class="text-danger float-left error_word"
-                           [class.d-none]="description.valid || description.untouched"
-                           ><i class="fa fa-info-circle" aria-hidden="true"></i> Notes
-                           is required</span
-                         >
-                          </div>
-                  </div>
-                  <br>
-                  <div class="text-center">
-                      <button type="submit" [disabled]="queryform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn" (click)="sendQuery()" >Send Order Request</button>
-                  </div>
-                </form>
-        </div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
-        </div> -->
+                    </div>
+            </div>
+        </form>
+    </div>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
+          </div> -->
+        </div><!-- /.modal-content -->
       </div>
-  </div>
-  </div>
-
-  <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal3">
-   <div class="modal-dialog" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <h4  style="font-family:'Oxygen', sans-serif;color: #0d4608;">Order Cancel Confirmation</h4>
-           <button type="button" class="close" id="closeCancelOrderModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-       </div>
-       <div class="modal-body">
-         <div class="alert alert-success text-center error_word"  *ngIf="orderCancelMsg">
-           {{orderCancelMsg}}
+    </div>
+  
+     <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal2">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p class="modal-title fntSize">Requirement Details</p>
+              <button type="button" class="close x" id="closeCancelOrderModal1" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-success text-center error_word"  *ngIf="orderRequestMsg">
+              {{orderRequestMsg}}
+            </div>
+            <form #queryform="ngForm" *ngIf ="!submitted" novalidate>
+                    <div class="row">
+                      <div class="col-md-12 mt-2">
+                        <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                              <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">எடை </span>/ Quantity</label>
+                                 <input type="text" class="form-control" placeholder="Enter Quantity" #requiredQuantity="ngModel"
+                                  name="requiredQuantity" [class.is-invalid]="requiredQuantity.invalid && requiredQuantity.touched"
+                                   ngModel [(ngModel)]="querydata.requiredQuantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="5" required>
+                                 <span class="text-danger float-left error_word errFont"
+                                  [class.d-none] = "requiredQuantity.valid || requiredQuantity.untouched">
+                                  <i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span>
+                         </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                              <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">அளவு </span>/ Unit</label>
+                              <select  class="form-control" class="form-control mobmargintop"
+                              style="background-color: transparent;color: #0d4608;"  #requiredUnit="ngModel"
+                              name="requiredUnit" [class.is-invalid]="requiredUnit.invalid && requiredUnit.touched"
+                              ngModel [(ngModel)]="querydata.requiredUnit" required>
+                              <option selected="" disabled="" value="" >Choose Unit</option>
+                              <option value="Ml" class="categoryOption">Milli litre</option>
+                              <option value="Litre" class="categoryOption">Litre</option>
+                              <option value="g" class="categoryOption">Gram</option>
+                              <option value="Kg" class="categoryOption">Kilogram</option>
+                                </select>
+                                 <span class="text-danger float-left error_word errFont"
+                                  [class.d-none] = "requiredUnit.valid || requiredUnit.untouched">
+                                  <i class="fa fa-info-circle" aria-hidden="true"></i> Unit is required</span>
+                         </div>
+                        </div>
+                        </div>
+                        </div>
+  
+                      <div class="col-md-12 mt-2" >
+                      <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">பொருள் தேவை </span>/ Product Urgency</label>
+                     <select  class="form-control" class="form-control mobmargintop"   placeholder="Enter unit"
+                     style="background-color: transparent;color: #0d4608;"  #urgency="ngModel"
+                     name="urgency" [class.is-invalid]="urgency.invalid && urgency.touched"
+                     ngModel [(ngModel)]="querydata.urgency" required>
+                           <option selected="" disabled="" value="" >Choose Urgency</option>
+                           <option style="color: black" value="Today">Today</option>
+                           <option style="color: black" value="Within 3 days">Within 3 days</option>
+                          <option style="color: black" value="Within 1 week">Within 1 week</option>
+                       </select>
+                       <span
+                         class="text-danger float-left error_word errFont"
+                         [class.d-none]="urgency.valid || urgency.untouched"
+                         ><i class="fa fa-info-circle" aria-hidden="true"></i> Urgency
+                         is required</span
+                       >
+                      </div>
+  
+                      <div class="col-md-12 mt-2">
+                            <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">குறிப்பு </span>/ Notes</label>
+                            <textarea
+                             class="form-control" style="height: 75px;border-color: #0d4608;"
+                             name="description" placeholder="Type your notes here..."  #description="ngModel"
+                             [class.is-invalid]="description.invalid && description.touched"
+                               class="form-control"
+                               [(ngModel)]="querydata.description"
+                               autocomplete="off"
+                               required
+                           ></textarea>
+                           <span
+                             class="text-danger float-left error_word errFont"
+                             [class.d-none]="description.valid || description.untouched"
+                             ><i class="fa fa-info-circle" aria-hidden="true"></i> Notes
+                             is required</span
+                           >
+                            </div>
+                    </div>
+                    <br>
+                    <div class="text-center">
+                        <button type="submit" [disabled]="queryform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn" (click)="sendQuery()">Send Order Request</button>
+                    </div>
+                  </form>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
+          </div> -->
+        </div>
+    </div>
+    </div>
+  
+    <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal3">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <p class="modal-title fntSize">Order Cancel Confirmation</p>
+             <button type="button" class="close x" id="closeCancelOrderModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
          </div>
-         <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete this order request?</h6>
-         <div class="text-center">
-
-      <button type="button" class="btn btn-success button_word"  (click)="updateOrderRqst()">Yes</button>&nbsp;&nbsp;&nbsp;
-      <button style="background-color:#e43d3d !important;" type="button" class="btn btn-danger button_word" data-dismiss="modal">No</button>
-     </div>
-       </div>
-
-     </div>
-  </div>
-  </div>
-
-
-  <button type="button" style="display:none;" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal5" name="button" id="updateAddressModal"></button>
-<!-- address modal -->
-  <div class="modal fade" id="myModal5" role="dialog" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <p class="modal-title fntSize" style="font-family:'Oxygen', sans-serif;">Add Address</p>
-           <button type="button" id="closeAddressModal" class="close" data-dismiss="modal">X</button>
-        </div>
-        <div class="modal-body">
-              <div class="alert alert-success text-center" *ngIf="successMsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{successMsg}}</div>
-          <form  #updateAddressform="ngForm" *ngIf ="!submitted" novalidate >
-          <div class="form-group">
-              <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
-                      <input type="text" #addressLine="ngModel" placeholder="Enter your address" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" [(ngModel)]="updateAddressData.addressLine" class="form-control"   autocomplete="off" required>
-                      <span class="text-danger float-left error_word" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
+         <div class="modal-body">
+           <div class="alert alert-success text-center error_word"  *ngIf="orderCancelMsg">
+             {{orderCancelMsg}}
            </div>
-           <div class="form-group ">
-               <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">மாவட்டம்  </span>/ City</label>
-                  <input google-place type="text" placeholder="Enter your city" id="cityOne" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)"  name="city" [class.is-invalid]="city.invalid && city.touched"  [(ngModel)]="updateAddressData.city" ngModel  required>
-                  <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
+           <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete this order request?</h6>
+           <div class="text-center">
+  
+        <button type="button" class="btn btn-success button_word modelBtn"  (click)="updateOrderRqst()">Yes</button>&nbsp;&nbsp;&nbsp;
+        <button style="background-color:#e43d3d !important;" type="button" class="btn btn-danger button_word modelBtn" data-dismiss="modal">No</button>
+       </div>
+         </div>
+  
+       </div>
+    </div>
+    </div>
+    <!-- <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModalswal" name="button" id="openConfirmModal"></button> -->
+     <!-- The Modal -->
+     <!-- <div class="modal fade" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModalswal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content" style="width: auto;">
+            <div class="modal-body" style="padding: 25px;" *ngFor="let order of requestData" >
+              <h5 class="text-center" style="color:#0d4608">Order requested successfully!</h5>
+              <p class="text-center">We got your order query, we get back to you soon ! <br>
+                <span style="color:#0d4608;font-weight: bold;cursor: pointer;" routerLink="/orderView/{{order._id}}">Request ID : {{order.requestId}}</span> 
+              </p>
+              <div class="text-center">
+                  <button type="button" class="btn btn-success button_word" routerLink="/my-order">OK</button>
+              </div>
+            </div>
           </div>
-          <div class="text-center">
-           <button type="button" [disabled]="updateAddressform.form.invalid"  class="btn btnClr button_word modelBtn" (click)="updateAddress()">Submit</button>&nbsp;&nbsp;&nbsp;
-           <button type="reset" class="btn btnClr button_word modelBtn">Reset</button>
+        </div>
+      </div> -->
+  
+      <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal5" name="button" id="openConfirmModal"></button>
+    <!-- //open login modal -->
+    <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal5">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="width: auto;">
+          <div class="modal-body" style="padding: 25px;">
+              <h5 class="text-center" style="color:#0d4608">Order requested successfully!</h5>
+              <p class="text-center">We got your order query, we get back to you soon ! <br>
+                <span style="color:#0d4608;font-weight: bold;cursor: pointer;" data-dismiss="modal" aria-label="Close" routerLink="/orderView/{{requestData.orderRqstId}}" >Request ID : {{requestData.requestId}}</span> 
+              </p>
+              <div class="text-center">
+                  <button type="button" class="btn btn-success button_word" data-dismiss="modal" aria-label="Close" routerLink="/my-order">OK</button>
+              </div>
           </div>
-          </form>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
+          </div> -->
         </div>
       </div>
     </div>
-  </div>
-
-  <button type="button" style="display:none;" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal4" name="button" id="updateAddressConfirmationModal"></button>
-<!-- address modal -->
-  <div class="modal fade" id="myModal4" role="dialog" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <p class="modal-title fntSize" style="font-family:'Oxygen', sans-serif;">Add your address</p>
-           <button type="button" id="closeAddressModal1" class="close" data-dismiss="modal">X</button>
-        </div>
-        <div class="modal-body">
-          <p style="text-align: center;color: #072304;">To make this process please add your address.</p>
-          <div class="text-center" style="margin-top: -3%;">
-          <img class="updateAddrees" src="https://png2.kisspng.com/sh/6ba706fecf7cc4cd45e0674a4b5acd68/L0KzQYm3WMIzN5ZsfpH0aYP2gLBuTfNwdaF6jNd7LXnmf7B6Tf1ieF5mfNZ7ZYP2PcT7kvVmfF5uhdNwZT33eLa0lvVzcZNmi9c2cHjkgr7oTfNzdV5ohN82NXK6dYK8hPVmP2VqUKc3MUS3QoW4UsAyPWQ5UaoEN0mzSYWAVL5xdpg=/kisspng-computer-icons-map-address-street-image-the-veribase-pharma-crm-clm-5b7e15dee74e85.1442412015349897909474.png">
-          </div>
-          <div class="text-center">
-          <button type="button" class="btn btnClr button_word modelBtn" (click)="confirmAddAddr()">Add Address</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  

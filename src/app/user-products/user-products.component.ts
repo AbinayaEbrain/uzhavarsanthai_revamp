@@ -173,6 +173,7 @@ confirmAddAddr(){
 
   getUser(){
   
+    // this.mytemplateForm.reset();
     var pacContainerInitialized = false;
      $('#city').keypress(function() {
       if (!pacContainerInitialized) {
