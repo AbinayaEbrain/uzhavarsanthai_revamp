@@ -35,7 +35,7 @@
           </div>
           <hr />
           <div class="col-md-12">
-            <div class="row">
+            <div class="row txtAlign1">
               <div class="col-md-4">
                 <p style="font-size: 15px;color: #0d4608;font-weight: bold">
                   <span><i class="fa fa-warning"></i> Urgency : {{userOrder.urgency}}</span> 
@@ -47,7 +47,7 @@
                  </p> -->
               </div>
               <div class="col-md-4">
-                <div style="text-align: right;color: blue;font-size: 14px;">
+                <div class="txtAlign" style="color: blue;font-size: 14px;">
                   <p data-toggle="modal" data-target="#myModal" (click)="singleUpdateSignupReq(userOrder._id)" style="cursor: pointer;">
                     <i class="fa fa-star" aria-hidden="true"></i> RATE & REVIEW
                     PRODUCT
@@ -65,6 +65,9 @@
           </div></div></div>
 
       </div>
+    </div>
+    <div class="col-md-12 text-center first" style="margin-bottom: 1%;margin-top: 5%;">
+        <button type="button" class="btn btnColor viewMoreBtn" (click)="goToBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
     </div>
   </div>
 </div>
