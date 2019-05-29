@@ -1,3 +1,4 @@
+<div id='focusDiv' tabindex="1"></div>
 <div class="container mobviewmt" style="margin-top:8%;height: 77vh;">
   <button type="submit" class="btn  btn1 button_word btn-success" style="float:left;" routerLink="/admin" >Back</button>
   <button type="submit" class="btn  btn1 button_word btn-success" data-toggle="modal" data-target="#myModal" (click)="clear()" style="float:right;">Specified Users</button>
@@ -19,7 +20,7 @@
               [class.is-invalid]="msgTile.invalid && msgTile.touched"
               class="form-control"
               autocomplete="off"
-  
+
               required
             />
             <span
@@ -38,7 +39,7 @@
               [class.is-invalid]="msgBody.invalid && msgBody.touched"
               class="form-control"
               autocomplete="off"
-  
+
               required
             ></textarea>
             <span
@@ -65,10 +66,10 @@
       <div class="col-md-3 col-sm-12 col-12"></div>
     </div>
 </div>
-  
+
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-  
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -89,7 +90,7 @@
                 [class.is-invalid]="msgTileone.invalid && msgTileone.touched"
                 class="form-control"
                 autocomplete="off"
-  
+
                 required
               />
               <span
@@ -107,7 +108,7 @@
                 [class.is-invalid]="msgBodyone.invalid && msgBodyone.touched"
                 class="form-control"
                 autocomplete="off"
-  
+
                 required
               ></textarea>
               <span
@@ -145,8 +146,6 @@
           </form>
         </div>
       </div>
-  
+
     </div>
   </div>
-  
- 

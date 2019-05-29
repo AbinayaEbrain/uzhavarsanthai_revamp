@@ -57,6 +57,7 @@ export class MyOrderComponent implements OnInit {
   }
 
   ngOnInit() {
+        document.getElementById('focusDiv').focus();
     this.getSignupReq();
   }
 

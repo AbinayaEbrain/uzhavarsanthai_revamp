@@ -1,3 +1,4 @@
+<div id='focusDiv' tabindex="1"></div>
 <body class="bg" style="overflow-x: hidden;">
     <div class="container pt-3 mt-5">
         <h4 class="text-center clr sent_font">Order Requests</h4>
@@ -45,7 +46,7 @@
                                                                        {{errMsg}}
                                                                     </td>
                                                                 </tr>
-                           
+
                                                           <tr  id="hide" *ngFor="let deal of createdRequests | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
                                                                <td>{{deal.requestId}}</td>
                                                            <td>{{deal.prdctCategory}}</td>
@@ -68,14 +69,14 @@
                                                                     Dispute
                                                                    </button>
                                                               </td>
-                           
+
                                                           </tr>
-                           
+
                                                       </tbody>
-                           
+
                                                   </table>
-                           
-                           
+
+
                                               </div>
                                           </div>
                                       </div>
@@ -109,7 +110,7 @@
                                                 {{cancelledErrMsg}}
                                              </td>
                                          </tr>
-     
+
                                     <tr  id="hide" *ngFor="let deal of cancelledRequests | filterdata: queryString  : 'category'| paginate: {id: 'foo1', itemsPerPage:10,currentPage:e},let i = index"  >
                                          <td *ngIf="deal === -1" class="prdUnavil" style="text-align: center">
                                              {{errMsg2}}
@@ -125,12 +126,12 @@
                                         <td *ngIf = "deal.sellerStatus == 'Order cancelled'" class="text-danger">Cancelled by myself</td>
                                         <td *ngIf = "deal.sellerStatus == 'Order created'" class="text-danger">Cancelled by {{deal.buyerName}}</td>
                                     </tr>
-     
+
                                 </tbody>
-     
+
                             </table>
-     
-     
+
+
                         </div>
                     </div>
                 </div>
@@ -142,7 +143,7 @@
   </div>
   </div>
   </body>
-  
+
    <!-- modal -->
 
    <!-- Central Modal Medium Info -->
@@ -229,7 +230,7 @@ aria-hidden="true">
 
  <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
- 
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -264,7 +265,7 @@ aria-hidden="true">
         </div>
         <div class="modal-body">
             <!-- <span class="float-right"><span><b>Buyer Name</b></span> : {{singleOrderRequest.buyerName}}</span> -->
-        <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate> 
+        <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate>
             <div class="form-group">
                 <label class="english_wrd" for="dispute" style="color:#0d4608">Dispute</label>
                     <textarea  type="text" rows="2" #dispute="ngModel" [class.is-invalid]="dispute.invalid && dispute.touched" ngModel name="dispute" class="form-control borderClr" [(ngModel)]="userData.dispute" autocomplete="off" required></textarea>

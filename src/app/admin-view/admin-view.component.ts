@@ -34,8 +34,8 @@ export class AdminViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    document.getElementById('focusDiv').focus();
     this.id = this.route.snapshot.params['id'];
-
     this._dealsService.getDetails().subscribe(
       res => {
         this.loadingCtrl.hide();

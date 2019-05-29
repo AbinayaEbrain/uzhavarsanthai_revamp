@@ -3,6 +3,7 @@
       z-index: 10000 !important;
   }
 </style>
+<div id='focusDiv' tabindex="1"></div>
 <body class="backgrd">
       <div class="container mainCntainer">
           <div class="row mt-md-5 pt-md-5 mt-sm-1 pt-sm-1 mt-5 pt-3 frstRow">
@@ -12,16 +13,16 @@
               </div>
               <div class="col-md-2">
               </div>
-              <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">
+              <div class="col-md-3 col-6 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv">
                   <div class="inner-addon left-addon" >
                           <i class="fa fa-search glyphicon" aria-hidden="true"></i>
-                          <input type="text" class="form-control searchBorder searchtop1" name="search" [(ngModel)]="queryString" (keyup)="case()" placeholder="Search by product name.." />
+                          <input type="text" class="form-control searchBorder searchtop1" name="search" [(ngModel)]="queryString" (keyup)="case()" placeholder="Search product.." />
                   </div>
                </div>
-               <div class="col-md-3 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchlocDiv">
+               <div class="col-md-3 col-6 onmobiviewpadding topLoc mt-md-0 mt-2 one" id="hideSearchlocDiv">
                   <div class="inner-addon left-addon" >
                           <i class="fa fa-search glyphicon" aria-hidden="true"></i>
-                          <input google-place type="text" class="form-control searchBorder"  [(ngModel)]="getLocationDeals" (keyup)="adrsChange()" (onSelect)="setAddress($event)" placeholder="Search by location.." />
+                          <input google-place type="text" class="form-control searchBorder"  [(ngModel)]="getLocationDeals" (keyup)="adrsChange()" (onSelect)="setAddress($event)" placeholder="Search location.." />
                       </div>
 
                </div>
@@ -61,7 +62,7 @@
                        <font *ngIf="addr.locality" style="color: #f53636;font-style: italic">"{{addr.locality}}"</font>
                        <font *ngIf="!addr.locality" style="color: #f53636;font-style: italic">"{{addr.formatted_address}}"</font>
                       </p>
-                  <p (click)="reset()" style="cursor: pointer;text-decoration: underline">Go to back</p>                 
+                  <p (click)="reset()" style="cursor: pointer;text-decoration: underline">Go to back</p>
               </div>
               <div class="col-md-3 col-lg-4 col-12"></div>
           </div>
@@ -73,7 +74,7 @@
                       <p (click)="reset()" style="cursor: pointer;text-decoration: underline">Go to back</p>
                   </div>
                   <div class="col-md-3 col-lg-4 col-12"></div>
-              </div>         
+              </div>
           <div *ngIf="showDeals">
                   <div class="mt-5" *ngFor = "let deal of singleMultiArray | filterdata: queryString  : 'name'">
                        <div *ngIf="errMsg2 && !errMsgSec">
@@ -105,7 +106,7 @@
                                                             <div class="productFullName">{{deal.category}}</div>
                                                     </tr>
                                                        <div class="row" *ngIf="!deal.bulk">
-                                                     
+
                                                       <div class="col-md-5">
                                                         <tr>
                                                            <!-- <td><strong>Quantity &nbsp;</strong></td>

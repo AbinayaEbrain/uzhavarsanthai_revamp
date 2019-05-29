@@ -25,13 +25,14 @@ export class MostSellingProductComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public loadingCtrl: NgxSpinnerService
-  ) { 
+  ) {
     for (let i = 1; i <= this.orderrequests.length; i++) {
       this.orderrequests.push(`deal ${i}.0`);
     }
   }
 
   ngOnInit() {
+        document.getElementById('focusDiv').focus();
     this.getUser();
   }
 
@@ -73,7 +74,7 @@ getOrderRequests(){
       this.orderrequests[j] = this.crdDeals[i];
       j++;
     }
-   
+
 }
 console.log(this.orderrequests);
 if (this.orderrequests.length == 0) {

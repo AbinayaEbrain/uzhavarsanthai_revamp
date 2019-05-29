@@ -10,6 +10,7 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    document.getElementById('focusDiv').focus();
   }
 
 }

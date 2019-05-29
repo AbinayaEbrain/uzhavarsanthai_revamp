@@ -20,12 +20,12 @@ export class AdminDealsComponent implements OnInit {
    }
 
   ngOnInit() {
-
+document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
 
     this._dealsService.getDeals()
     .subscribe(
-      res =>{ 
+      res =>{
       this.loadingCtrl.hide();
         this.crdDeals = res
         if(this.crdDeals.length == 0){

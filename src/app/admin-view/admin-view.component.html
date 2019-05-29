@@ -1,13 +1,12 @@
-
+<div id='focusDiv' tabindex="1"></div>
 <body class="bg" style="overflow-x: hidden;">
-
     <div class="container mt-5 pt-5" >
         <div class="register">
             <div class="container">
               <button class="btn btn-success mb-3 button_word" routerLink="/admin-user">BACK</button>
             </div>
           </div>
-         
+
       <div class="container-fluid ">
       <div class="row ">
         &nbsp;&nbsp;&nbsp;
@@ -24,7 +23,7 @@
       </div>
    </div>
    &nbsp;&nbsp;
- 
+
     <div class="col-lg-3 post ">
        <table class="english_wrd">
           <tr>
@@ -32,7 +31,7 @@
             <td>&nbsp;:&nbsp;</td>
             <td><h6 class="mt-3 english_wrd">{{register.firstName}}</h6></td>
           </tr>
-        
+
           <!-- <tr>
             <td><h5  class="mt-3 english_wrd"> LAST NAME</h5></td>
             <td>&nbsp;:&nbsp;</td>
@@ -108,10 +107,10 @@
     </div>
     <div class="col-md-3"></div>
   </div> -->
-  
+
 
   <!-- <div class="row">
-    
+
       <div class="col-lg-4 col-md-6 col-xs-12 col-sm-12 "  *ngFor = "let product of postProduct | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }">
         <div class="card">
           <h2 class="info mt-2 text-center english_wrd">Product Info</h2>
@@ -145,14 +144,14 @@
                 <th class="info1">{{product.avlPlace.locality}}</th>
               </tr>
             </div>
-            
+
               </table>
               <div class="mx-auto text-center">
                   <button class="mt-2 btn btn-primary btn2 button_word" data-toggle="modal" (click)="modalDes(product._id)"  data-target="#myModal" style="cursor: pointer;">View Description</button>
                 </div>
      </div>
        </div>
-       </div> 
+       </div>
        </div> -->
        <h5 class="mt-5 head">Posted products</h5>
        <div class="card "  id="hideTable" >
@@ -165,7 +164,7 @@
                               <th>Name</th>
                               <th>Quantity</th>
                               <th> Price</th>
-                              <th>Location</th> 
+                              <th>Location</th>
                               <th>Description</th>
                           </tr>
                       </thead>
@@ -174,8 +173,8 @@
                           <span class="prdUnavil" colspan="7" style="text-align: center">{{errMsg}}</span>
                         </div>
                           <tr  id="hide" *ngFor = "let product of postProduct | filterdata: queryString  : 'category' | paginate: { itemsPerPage:6,currentPage:p }" >
-                              
-                                
+
+
                            <td>{{product.category}}</td>
                               <td>
                                   {{product.name}}
@@ -203,15 +202,15 @@
         <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
       </div>
        </div>
-       
-      
-    </body>
-      
 
-    
+
+    </body>
+
+
+
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-            
+
               <!-- Modal content-->
               <div class="modal-content">
               <div class="modal-header">
@@ -225,6 +224,6 @@
                   <button type="button" class="btn btn-danger button_word" data-dismiss="modal">Close</button>
                 </div>
               </div>
-              
+
             </div>
           </div>

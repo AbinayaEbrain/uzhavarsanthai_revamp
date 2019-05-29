@@ -28,6 +28,7 @@ export class BlogViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this.getAllBlog();
   }

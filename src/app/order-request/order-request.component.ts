@@ -30,6 +30,7 @@ export class OrderRequestComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.getElementById('focusDiv').focus();
     this.getSignupReq();
   }
 
@@ -63,7 +64,7 @@ export class OrderRequestComponent implements OnInit {
     }
     );
   }
-  
+
 
   singleUpdateSignupReq1(id) {
     this.id = id;

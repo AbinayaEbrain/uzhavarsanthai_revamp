@@ -23,12 +23,12 @@ export class AdminIpComponent implements OnInit {
    }
 
   ngOnInit() {
-
+document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
 
     this._dealsService.getDeals()
     .subscribe(
-      res =>{ 
+      res =>{
       this.loadingCtrl.hide();
         this.crdDeals = res
 
@@ -55,4 +55,3 @@ export class AdminIpComponent implements OnInit {
   }
 
 }
-

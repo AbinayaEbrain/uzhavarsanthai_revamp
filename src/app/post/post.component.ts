@@ -122,16 +122,18 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this.editId = this.router.snapshot.params['id'];
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
-    this.productData.avlPlace = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).address.city.formatted_address;
+    console.log( this.currentuserId)
+      this.productData.avlPlace = JSON.parse(
+        localStorage.getItem('currentUpdateAddr')
+      ).address.formatted_address;
+      this.multiData.avlPlace = JSON.parse(
+        localStorage.getItem('currentUpdateAddr')
+      ).address.formatted_address;
 
-    this.multiData.avlPlace = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).address.city.formatted_address;
     this.getUser();
 
     //category

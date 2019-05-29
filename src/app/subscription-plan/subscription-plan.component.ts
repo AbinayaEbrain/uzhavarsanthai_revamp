@@ -22,6 +22,7 @@ export class SubscriptionPlanComponent implements OnInit {
   constructor(private _dealService: DealsService ,public loadingCtrl: NgxSpinnerService) {}
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this.getSubscription();
     this.userId = JSON.parse(localStorage.getItem('currentUser'))._id;

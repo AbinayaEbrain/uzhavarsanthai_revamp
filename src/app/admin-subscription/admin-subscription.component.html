@@ -1,9 +1,10 @@
+<div id='focusDiv' tabindex="1"></div>
 <body class="bg" style="overflow-x: hidden;">
   <div class="container mt-5 pt-5">
     <div class="row">
       <div class="col-md-5"></div>
       <div class="col-md-5" >
-       
+
       </div>
       <div class="col-md-2">
          <button type="button" class="btn btn-outline-success text-center viewMoreBtn  button_word" (click)="resetObj()" data-toggle="modal" data-target="#myModal" >New Subscription <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
@@ -32,7 +33,7 @@
                                                                     {{errMsg}}
                                                                  </td>
                                                              </tr>
-                         
+
                                                         <tr  id="hide" *ngFor="let subscription of subscriptionArr | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
                                                              <td *ngIf="deal === -1" class="prdUnavil text-danger" style="text-align: center">
                                                                  {{errMsg2}}
@@ -44,9 +45,9 @@
                                                            <td>{{subscription.credit}}</td>
                                                            <td> {{subscription.status}} </td>
                                                             <td>{{subscription.createdAt | date: 'dd/MM/yyyy'}}</td>
-                                                            
+
                                                             <td style="display: flex;" *ngIf="deal !== -1" >
-                                                                <button id="hideEditBtn" (click)="getSingleSubsc(subscription._id)" data-toggle="modal" data-target="#myModal" 
+                                                                <button id="hideEditBtn" (click)="getSingleSubsc(subscription._id)" data-toggle="modal" data-target="#myModal"
                                                                 class="btn btn-outline-success text-center viewMoreBtn button_word" style="width: 50%;"><i class="fa fa-pencil" aria-hidden="true"></i>
                                                                  Edit
                                                                 </button>
@@ -56,14 +57,14 @@
                                                                  <i class="fa fa-trash" aria-hidden="true"></i> Delete
                                                                 </button>
                                                             </td>
-                         
+
                                                         </tr>
-                         
+
                                                     </tbody>
-                         
+
                                                 </table>
-                         
-                         
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -94,7 +95,7 @@
                 <div class="row">
                   <div class="col-md-6">
                 <div class="form-group">
-                    <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> 
+                    <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">
                         நன்கொடை </span>/ Subscription</label>
                   <input type="text" class="form-control" required name="subscription" #subscription="ngModel" [class.is-invalid]="subscription.invalid && subscription.touched" [(ngModel)]="subcriptionData.subscription">
                   <small class="text-danger" [class.d-none]="subscription.valid || subscription.untouched"><b>Please enter subscription</b></small>
@@ -102,7 +103,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                    <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> 
+                    <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">
                         தொகை </span>/ Amount</label>
                   <input type="text" class="form-control" required name="amount" #amount="ngModel" [class.is-invalid]="amount.invalid && amount.touched" [(ngModel)]="subcriptionData.amount">
                   <small class="text-danger" [class.d-none]="amount.valid || amount.untouched"><b>Please enter amount</b></small>
@@ -110,7 +111,7 @@
               </div>
               <div class="col-md-6">
                   <div class="form-group">
-                      <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> 
+                      <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">
                           நன்கொடை </span>/ Credit</label>
                     <input type="text" class="form-control" required name="credit" #credit="ngModel" [class.is-invalid]="credit.invalid && credit.touched" [(ngModel)]="subcriptionData.credit">
                     <small class="text-danger" [class.d-none]="credit.valid || credit.untouched"><b>Please enter credit value</b></small>
@@ -147,7 +148,7 @@
 
  <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
- 
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -191,4 +192,3 @@
 
     </div>
   </div>
-    

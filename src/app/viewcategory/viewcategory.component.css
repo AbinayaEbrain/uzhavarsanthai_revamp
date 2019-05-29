@@ -403,6 +403,25 @@ input {
   .scrollbtn {
     display: none !important;
   }
+  #hideifNoData{
+    margin-top: -45px !important;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 374px) {
+  .topLoc{
+    margin-top: -7% !important;
+  }
+}
+@media only screen and (min-width: 375px) and (max-width: 425px) {
+  .topLoc{
+    margin-top: -6% !important;
+  }
+}
+@media only screen and (min-width: 425px) and (max-width:426px) {
+  .topLoc{
+    margin-top: -5% !important;
+  }
 }
 
 .imgRes {

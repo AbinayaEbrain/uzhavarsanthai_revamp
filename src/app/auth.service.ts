@@ -117,6 +117,8 @@ export class AuthService {
       localStorage.removeItem('firstname');
       localStorage.removeItem('Image');
       localStorage.removeItem('credits');
+      localStorage.removeItem('currentUpdateAddr');
+      localStorage.removeItem('roleStatus');
     }
   }
 
