@@ -34,12 +34,13 @@
                   </div>
                   <div class="col-md-3 col-8 " style="font-weight: bold;display: inline-flex;">
                     <p class="orderHead2" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</p>&nbsp;&nbsp;&nbsp;
+                    <!-- <p style="cursor: pointer;" >View</p> -->
                     <div class="dropdown" style="margin-top: -7px;">
                     <p class="btn dropdown-toggle" data-toggle="dropdown">
                      More <i class="fa fa-ellipsis-v"></i>
                     </p>
                     <div class="dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item" *ngIf="order.status == 'Closed' && order.sellerStatus == 'Closed'" data-toggle="modal" style="cursor: pointer;" data-target="#myModal" (click)="singleUpdateSignupReq(order._id)">Order review</a>
+                      <a class="dropdown-item" routerLink="/orderView/{{(order._id)}}" style="cursor: pointer;" >View</a>
                       <a class="dropdown-item" style="cursor: pointer;" (click)="singleUpdateSignupReq(order._id)" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static" >Dispute</a>
                     </div></div>
                   </div>

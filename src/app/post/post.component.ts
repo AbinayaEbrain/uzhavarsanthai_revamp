@@ -289,6 +289,7 @@ export class PostComponent implements OnInit {
          this._dealsService.addPost(this.carForm.value.product[i]).subscribe(
         res => {
           console.log(res);
+          this.loadingCtrl.hide();
           // this.creditObj.productId = res._id;
           // this.getUser();
           // this.updateUser();
