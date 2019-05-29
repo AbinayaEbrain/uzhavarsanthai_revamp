@@ -763,7 +763,7 @@ mapWithPost(){
         this.registeredUserData.roleStatus = 'Active';
       }
       this.registeredUserData.status = 'ACTIVE';
-      this.registeredUserData.address = this.addr;
+      this.registeredUserData.address.city = this.addr;
       // this.registeredUserData.address.addressLine = '';
       this.registeredUserData.phone = this.phoneObj.phone;
       this.loadingCtrl.show();
