@@ -17,7 +17,7 @@
 }
 
 .productFullName {
-  font-family: 'Hind Madurai', sans-serif;
+  /* font-family: 'Hind Madurai', sans-serif; */
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 200px;
