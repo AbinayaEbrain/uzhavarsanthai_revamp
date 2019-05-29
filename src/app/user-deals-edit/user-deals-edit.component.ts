@@ -194,6 +194,10 @@ export class UserDealsEditComponent implements OnInit {
     );
   }
 
+  slickInit(e) {
+    console.log('slick initialized');
+  }
+  
   getUserCredits() {
     this._dealsService.getDetails().subscribe(
       res => {

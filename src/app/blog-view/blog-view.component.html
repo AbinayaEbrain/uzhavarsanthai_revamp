@@ -5,10 +5,7 @@
               <div class="row">
                   <div class="col-md-12 text-center">
                       <h4 class="head mt-2">
-                          <span class="tamil_word" style="font-size: 20px">வலைப்பதிவுகள் </span>/ Blogs</h4>
-                          <div class="mb-2 noBlog" style="text-align: center" *ngIf="noBlog">
-                              {{noBlog}}
-                            </div>
+                          <span class="tamil_word" style="font-size: 18px">வலைப்பதிவுகள் </span>/ Blogs</h4>
                           <div class="row">
                       <div class="col-md-4"></div>
                       <div class="col-md-4"  *ngIf="errMsg">
@@ -39,6 +36,9 @@
                     </div>
                     <button class="btn writeBlog" id="btnShow" (click)="addBlog()">Write Blog</button>
                   </div>
+                </div>
+                <div class="mb-2 noBlog text-danger" style="text-align: center" *ngIf="noBlog">
+                  {{noBlog}}
                 </div>
             <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr | slice:0:show;">
                   <div class="card-header" style="color:#0d4608;padding: 5px;">

@@ -5,6 +5,24 @@
 ::-webkit-scrollbar {
   display: none;
 }
+.errDesign {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+  /* color: #0d4608; */
+}
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .imgRes {
+    width: inherit !important;
+  }
+}
+
+.imgRes {
+  width: 354px;
+}
+
 .card {
   border-radius: 8px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
@@ -369,7 +387,7 @@ input {
 .card-1:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
-.onpadding{
+.onpadding {
   margin-bottom: -10px;
   margin-top: -10px;
 }

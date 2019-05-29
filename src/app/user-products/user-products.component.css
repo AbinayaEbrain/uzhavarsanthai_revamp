@@ -8,6 +8,25 @@
   width: 100%;
   min-height: -webkit-fill-available;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .imgRes {
+    width: inherit !important;
+  }
+}
+
+.imgRes {
+  width: 354px;
+}
+
+.errDesign {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+  color: #0d4608;
+}
+
 .viewMoreBtn {
   margin: auto;
   font-weight: bold;
