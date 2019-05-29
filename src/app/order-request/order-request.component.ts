@@ -118,6 +118,7 @@ export class OrderRequestComponent implements OnInit {
   updateUser(){
     this.credits.credits = this.credits.credits - this.creditMinus;
     console.log(this.credits.credits);
+    // this.updateCreditArr();
     this._dealService.updateCustomer(this.credits, this.userOrderReq2.sellerId).subscribe(
       res => {
         console.log(res);

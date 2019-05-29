@@ -40,7 +40,7 @@ export class DealsService {
   private activeUrl =
     'https://uzhavarsanthai.herokuapp.com/api/admin-user/active';
 
-  private updateuserurl = 'https://uzhavarsanthai.herokuapp.com/api/updateuser';
+  private updateuserurl = 'http://localhost:5000/api/updateuser';
   private _updatePostName = 'https://uzhavarsanthai.herokuapp.com/api/updateNamePost';
   private _updateReviewSellerName = 'https://uzhavarsanthai.herokuapp.com/api/updateSellerNameReview';
   private _updateReviewBuyerName = 'https://uzhavarsanthai.herokuapp.com/api/updateBuyerNameReview';
@@ -101,13 +101,13 @@ export class DealsService {
   private _updateUserBuyerDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUserBuyer";
   
   // Credit
-  private _updateUserCreditArr = "https://uzhavarsanthai.herokuapp.com/api/updateCreditArr";
-  private _updateUserCreditArrCredit = "https://uzhavarsanthai.herokuapp.com/api/updateCreditArrCredit";
+  private _updateUserCreditArr = "http://localhost:5000/api/updateCreditArr";
+  private _updateUserCreditArrCredit = "http://localhost:5000/api/updateCreditArrCredit";
   private _sendticketUrl = "https://uzhavarsanthai.herokuapp.com/api/sendticket";
   private _getticketUrl = "https://uzhavarsanthai.herokuapp.com/api/getticket";
 
   //admin order closed
-  private updateUserOrderRequestStatus = "https://uzhavarsanthai.herokuapp.com/api/mapuserOrderRequestStatus";
+  private updateUserOrderRequestStatus = "http://localhost:5000/api/mapuserOrderRequestStatus";
   
   //subscription
   private subscription = "https://uzhavarsanthai.herokuapp.com/api/subscription";
