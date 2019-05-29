@@ -69,7 +69,6 @@ export class UserProductsComponent implements OnInit {
     private router: Router,
     public zone: NgZone,
     public loadingCtrl: NgxSpinnerService
-    public loadingCtrl: NgxSpinnerService,
     private location: Location
   ) {
     for (let i = 1; i <= this.userDeals.length; i++) {

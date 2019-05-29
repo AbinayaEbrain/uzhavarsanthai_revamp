@@ -122,7 +122,6 @@ export class UserDealsEditComponent implements OnInit {
   }
 
   ngOnInit() {
-      document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this.today = new Date();
     this.InitialCall();
@@ -343,15 +342,6 @@ export class UserDealsEditComponent implements OnInit {
         break;
       }
     }
-    }
-
-
-    if(this.myCredit > this.cumulativecredit){
-      if (this.urls.length == 0 || this.urls == undefined || this.urls == []) {
-        this.loadingCtrl.hide();
-        this.update();
-      }
-    }
   }
 
   update() {
@@ -425,7 +415,7 @@ console.log(this.deallistobj);
 
       this.newprice = this.deallistobj.price;
 
-    this.cumulativecredit = ((this.cumulativequantity * this.newprice) * 1/100);
+    this.cumulativecredit = ((this.cumulativequantity  this.newprice)  1/100);
     console.log(this.cumulativecredit);
     console.log(this.myCredit);
     // if(this.myCredit > this.cumulativecredit){
@@ -440,7 +430,7 @@ console.log(this.deallistobj);
       this.cumulativeprice = this.newprice - this.lastprice;
       console.log(this.cumulativeprice);
 
-      this.cumulativecredit = ((this.lastquantity * this.cumulativeprice) * 1/100);
+      this.cumulativecredit = ((this.lastquantity  this.cumulativeprice)  1/100);
 
       console.log(this.cumulativecredit);
       // if(this.myCredit > this.cumulativecredit){
@@ -544,7 +534,7 @@ console.log(this.deallistobj);
   sellerReduceQuantity(){
       console.log(this.newquantity);
     console.log(this.lastprice)
-    this.cumulativecredit = ((this.newquantity * this.lastprice) * 1/100);
+    this.cumulativecredit = ((this.newquantity  this.lastprice)  1/100);
     console.log(this.cumulativecredit);
     // if(this.myCredit > this.cumulativecredit){
     //   this.getUser1();
@@ -554,7 +544,7 @@ console.log(this.deallistobj);
   sellerReducePrice(){
       console.log(this.newprice);
       console.log(this.lastquantity);
-    this.cumulativecredit = ((this.newprice * this.lastquantity) * 1/100);
+    this.cumulativecredit = ((this.newprice  this.lastquantity)  1/100);
     console.log(this.cumulativecredit);
     // if(this.myCredit > this.cumulativecredit){
     //   this.getUser1();
@@ -568,7 +558,7 @@ console.log(this.deallistobj);
       this.cumulativeprice =  this.newprice;
       console.log(this.cumulativeprice);
 
-    this.cumulativecredit = ((this.cumulativequantity * this.cumulativeprice) * 1/100);
+    this.cumulativecredit = ((this.cumulativequantity  this.cumulativeprice)  1/100);
     console.log(this.cumulativecredit);
     // if(this.myCredit > this.cumulativecredit){
     //   this.getUser1();
