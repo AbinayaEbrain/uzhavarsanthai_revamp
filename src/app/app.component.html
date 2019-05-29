@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<nav class="navbar navbar-expand-md fixed-top navbar-dark nav_clr">
+<nav class="navbar navbar-expand-md fixed-top heightNav navbar-dark nav_clr">
   <!-- <a class="navbar-brand apptitle" routerLink="/">உழவர் சந்தை</a> -->
   <div>
   <img src="../../assets/Images/logo2.png" routerLink="/" alt="logo"><br>
@@ -90,7 +90,7 @@
         *ngIf="
           _authService.loggedIn() &&
           !_authService.roleAdmin() &&
-          _authService.findActive()  
+          _authService.findActive()
         "
         class="nav-item"
         data-toggle="collapse"
@@ -107,7 +107,7 @@
       *ngIf="
         _authService.loggedIn() &&
         !_authService.roleAdmin() &&
-        _authService.findActive() 
+        _authService.findActive()
       "
       class="nav-item"
       data-toggle="collapse"
@@ -278,45 +278,45 @@
             class="dropdown-item"
             routerLink="/updateuser"
             style="cursor: pointer;color:#0d4608"
-            aria-expanded="true"
+            aria-expanded="false"
             >My Profile</a
           >
           <a
           *ngIf="
           _authService.loggedIn() &&
           !_authService.roleAdmin() &&
-          _authService.findActive() 
+          _authService.findActive()
         "
           class="dropdown-item"
           routerLink="/credits"
           style="cursor: pointer;color:#0d4608"
-          aria-expanded="true"
+          aria-expanded="false"
           >Credits</a
         >
         <a
         class="dropdown-item"
         routerLink="/most-selling-product"
         style="cursor: pointer;color:#0d4608"
-        aria-expanded="true"
+        aria-expanded="false"
         >Most-sell-product</a
       >
       <a
       *ngIf="
         _authService.loggedIn() &&
         !_authService.roleAdmin() &&
-        _authService.findActive() 
+        _authService.findActive()
       "
       class="dropdown-item"
       routerLink="/subscription-plan"
       style="cursor: pointer;color:#0d4608"
-      aria-expanded="true"
+      aria-expanded="false"
       >Subscription plan
     </a>
           <a
             class="dropdown-item"
             style="cursor: pointer;color:#0d4608"
             (click)="_authService.logoutUser()"
-            aria-expanded="true"
+            aria-expanded="false"
             >Logout</a
           >
         </div>

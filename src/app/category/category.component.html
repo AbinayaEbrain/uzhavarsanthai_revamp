@@ -1,11 +1,11 @@
-
+<div id='focusDiv' tabindex="1"></div>
 <div class="bg" style="overflow: hidden;">
     <div class="container mt-5 pt-5">
         <div class="row" >
             <div class="mb-3 pl-3" style="width: 50%;">
             <button class="btn btn-success" routerLink="/admin">BACK</button>
             </div>
-           
+
             <div  class="mb-3 pr-3"  style="width: 50%;">
                 <button type="button" class="btn btn-success" style="float: right;" data-toggle="modal" data-target="#myModal1" data-backdrop="static"
                 data-keyboard="false" routerLink="/category">New Category</button>
@@ -14,20 +14,20 @@
         <div *ngIf="errMsg">
                 <p style="text-align: center;font-weight: bold;color:red">{{errMsg}}</p>
             </div>
-            
+
 
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-content">
                         <!-- <br> -->
-  
+
                         <div class="fresh-table table-responsive">
                             <table id="postList" class=" table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                 <thead style="text-align: center; background-color: #0d460840;">
                                     <tr>
                                         <th>Category</th>
-                                    
+
                                         <th class="disabled-sorting">Action</th>
                                     </tr>
                                 </thead>
@@ -45,37 +45,37 @@
                                             </button>
                                         </td>
                                     </tr>
-  
+
                                 </tbody>
                             </table>
-                            
+
                         </div>
-                        
+
                     </div>
                     <!-- end content-->
-  
+
                 </div>
-                
+
                 <!--  end card  -->
             </div>
             <!-- end col-md-12 -->
         </div>
-        
+
         <div class="mx-auto page mt-2">
             <pagination-controls class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
           </div>
         <!-- end row -->
     </div>
-  
+
   </div>
-  
-  
-  
+
+
+
    <!-- modal -->
-  
+
    <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -91,35 +91,35 @@
            <button type="button" class="btn btnDanger modelBtn" routerLink="/category" data-dismiss="modal">No</button>
           </div>
         </div>
-      
+
       </div>
-      
+
     </div>
   </div>
 
    <!-- modal -->
-  
+
    <div class="modal fade" id="myModal2" role="dialog">
         <div class="modal-dialog">
-        
+
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
               <p class="modal-title fntSize">Edit a Category</p>
-              <button type="button" class="close x" data-dismiss="modal" routerLink="category" 
+              <button type="button" class="close x" data-dismiss="modal" routerLink="category"
               >X</button>
             </div>
             <div class="modal-body">
                 <form #cateform="ngForm" *ngIf ="!submitted" novalidate>
-       
+
                     <div class="form-group mb-3 mt-4">
                         <input type="text"  #productCategory="ngModel" [class.is-invalid]="productCategory.invalid && productCategory.touched" ngModel name="productCategory" class="form-control" [(ngModel)]="deallistobj.productCategory" autocomplete="off" required>
                         <label class="form-control-placeholder" for="productCategory">Category</label>
-                        <span class="text-danger float-left" [class.d-none] = "productCategory.valid || productCategory.untouched">Category is required</span>  
+                        <span class="text-danger float-left" [class.d-none] = "productCategory.valid || productCategory.untouched">Category is required</span>
                       </div>
 
                       <div class="text-center mb-2">
-                      
+
                             <img height="150px" id="show" class="card-img-top" src="{{deallistobj.image}}" alt="Card image cap">
                             <img [src]="url" height="150px" class="card-img-top" id="hide" style="display: none">
                       </div>
@@ -135,7 +135,7 @@
                         Select an Image
                       </label> -->
                       <!-- <input type="file" value=""  #image="ngModel" name="image" [(ngModel)]="deallistobj.image" (change)="onSelectFile($event)" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
-                     
+
                       <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
                         Upload Image
                     </button>  -->
@@ -143,7 +143,7 @@
                             <div class="col-md-6">
                                     <button [disabled]="cateform.form.invalid " class="btn mt-3 mb-5 btn-block" type="submit" (click)="updateImage()" routerLink="category" data-dismiss="modal">Update</button>
                             </div>
-                    
+
                     <div class="col-md-6">
                             <button  class="btn mt-3 mb-5 btn-block" type="submit"  (click)="onSubmit()">Reset</button>
                     </div>
@@ -151,17 +151,17 @@
                   </form>
             </div>
           </div>
-          
+
         </div>
       </div>
-    
 
-  
+
+
    <!-- add modal -->
-  
+
    <div class="modal fade" id="myModal1" role="dialog">
       <div class="modal-dialog">
-      
+
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
@@ -170,11 +170,11 @@
           </div>
           <div class="modal-body">
               <form #cateform="ngForm" *ngIf ="!submitted" novalidate>
-     
+
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        <h6 *ngIf = "sucessMsg" class="alert alert-success text-center">{{this.sucessMsg}}</h6> 
+                        <h6 *ngIf = "sucessMsg" class="alert alert-success text-center">{{this.sucessMsg}}</h6>
                     </div>
                     <div class="col-md-3"></div>
                 </div>
@@ -182,15 +182,15 @@
                   <div class="form-group mb-5 mt-4">
                       <input type="text"  #productCategory="ngModel" [class.is-invalid]="productCategory.invalid && productCategory.touched" ngModel name="productCategory" class="form-control" [(ngModel)]="cateData.productCategory" autocomplete="off" required>
                       <label class="form-control-placeholder" for="productCategory">Category</label>
-                      <span class="text-danger float-left" [class.d-none] = "productCategory.valid || productCategory.untouched">Category is required</span>  
+                      <span class="text-danger float-left" [class.d-none] = "productCategory.valid || productCategory.untouched">Category is required</span>
                     </div>
 
                     <div class="form-group mb-4 mt-4 mx-auto">
                     <!-- <input type="file"  #image="ngModel" name="image" [(ngModel)]="cateData.image" [class.is-invalid]="image.invalid && image.touched" ngModel ng2FileSelect [uploader]="uploader" />
-                        
+
                         <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
                             Upload Image
-                        </button> 
+                        </button>
                          <span class="text-danger float-left" [class.d-none] = "image.valid || image.untouched">Image is required</span>   -->
 
                          <div class="upload-btn-wrapper">
@@ -198,13 +198,13 @@
                             <input type="file" id="Image" #Image="ngModel" name="Image" class="upload"(change)="onFileChange($event)" #fileInput ngModel  [(ngModel)]="cateData.Image" autocomplete="off">
                             <!-- <button class="btn" [disabled]="cateform.form.invalid " (click)="postImage()" [disabled]="!this.Image">Upload</button> -->
                         </div>
-                       
+
                             <!-- Category Image
                             <label class="file-upload-container" for="file-upload" style="border: 2px solid green;padding: 5px;color: black">
                               <input id="file-upload" type="file" style="display:none;">
                               Select an Image
                             </label> -->
-                        
+
                     </div>
                     <!-- <img [src]="url" height="200"> <br/>
                         <input type='file' name="image" [(ngModel)]="cateData.image" (change)="onSelectFile($event)"> -->

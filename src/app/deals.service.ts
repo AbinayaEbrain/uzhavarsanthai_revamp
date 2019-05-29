@@ -41,9 +41,10 @@ export class DealsService {
     'https://uzhavarsanthai.herokuapp.com/api/admin-user/active';
 
   private updateuserurl = 'http://localhost:5000/api/updateuser';
-  private _updatePostName = 'https://uzhavarsanthai.herokuapp.com/api/updateNamePost';
-  private _updateReviewSellerName = 'https://uzhavarsanthai.herokuapp.com/api/updateSellerNameReview';
-  private _updateReviewBuyerName = 'https://uzhavarsanthai.herokuapp.com/api/updateBuyerNameReview';
+  private updateaddressuserurl = 'http://localhost:5000/api/updateuseraddress';
+  private _updatePostName = 'http://localhost:5000/api/updateNamePost';
+  private _updateReviewSellerName = 'http://localhost:5000/api/updateSellerNameReview';
+  private _updateReviewBuyerName = 'http://localhost:5000/api/updateBuyerNameReview';
 
   private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private notificationtoallurl =
@@ -99,7 +100,7 @@ export class DealsService {
   private _updatePostBuyerDispute = "https://uzhavarsanthai.herokuapp.com/api/updateBuyerDisputePost";
   private _buyerUpdateUserDispute = "https://uzhavarsanthai.herokuapp.com/api/buyerupdateDisputeUser";
   private _updateUserBuyerDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUserBuyer";
-  
+
   // Credit
   private _updateUserCreditArr = "http://localhost:5000/api/updateCreditArr";
   private _updateUserCreditArrCredit = "http://localhost:5000/api/updateCreditArrCredit";
@@ -158,6 +159,9 @@ export class DealsService {
 
   updateCustomer(data, id) {
     return this.http.put<any>(this.updateuserurl + '/' + id, data);
+  }
+  updateCustomerAddress(data, id) {
+    return this.http.put<any>(this.updateaddressuserurl + '/' + id, data);
   }
 
   updatePostName(data, id) {
@@ -278,7 +282,7 @@ export class DealsService {
   mapUserIdinPost(data){
     return this.http.post<any>(this.mapUserIdPostUrl, data);
   }
-// review and rating 
+// review and rating
   addReview(data) {
     return this.http.post<any>(this._posReviewtUrl, data);
   }
@@ -340,7 +344,7 @@ export class DealsService {
   updateSellerUserDisputeSolution(data,id){
     return this.http.post<any>(this._updateUserSellerDisputeSolution + '/' + id, data);
   }
- 
+
   // Buyer Dispute
   addDispute(data) {
     return this.http.post<any>(this._postDisputeUrl, data);

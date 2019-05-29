@@ -92,6 +92,7 @@ export class ViewcategoryComponent implements OnInit {
   }
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     if (localStorage.getItem('currentUser')){
         this.loggedUser = JSON.parse(localStorage.getItem('currentUser'))._id;

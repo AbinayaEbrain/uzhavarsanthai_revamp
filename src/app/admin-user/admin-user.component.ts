@@ -34,6 +34,7 @@ export class AdminUserComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this._dealService.getDetails().subscribe(
       res => {

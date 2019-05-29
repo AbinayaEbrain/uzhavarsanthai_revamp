@@ -47,6 +47,7 @@ export class CategoryComponent implements OnInit {
  }
 
   ngOnInit() {
+        document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this.InitialCall();
    //category
@@ -61,7 +62,7 @@ export class CategoryComponent implements OnInit {
 
          }
        },
-   
+
        err => {
         this.loadingCtrl.hide();
            this.categoryArr = [];
@@ -81,7 +82,7 @@ export class CategoryComponent implements OnInit {
             this.deallistobj.image = this.categoryArr[i].image
           }
         }
-        
+
       },
       err=>{
         console.log(err)
@@ -90,12 +91,12 @@ export class CategoryComponent implements OnInit {
   }
 
   InitialCall() {
-    
+
     for(let i=0; i < this.categoryArr.length; i++){
       if(this.id == this.categoryArr[i]._id){
-        
+
         this.deallistobj.productCategory = this.categoryArr[i].productCategory
-       
+
       }
     }
   }
@@ -114,7 +115,7 @@ export class CategoryComponent implements OnInit {
           this.addCategory();
        });
     }
-    
+
 
     updateImage(){
       this.loadingCtrl.show();
@@ -131,26 +132,26 @@ export class CategoryComponent implements OnInit {
           this.update();
        });
     }
-    
+
   addCategory(){
-    
+
     this.loadingCtrl.show();
     //this.cateData.image =  this.cateData.image
     this._adminService.addCate(this.cateData)
       .subscribe(
        res =>{
-         
+
           this.sucessMsg="Category Added";
-          
+
           setTimeout(()=>{
             this.sucessMsg = ''
             this.router.navigate[('/category')]
           },2000)
-          
-        
+
+
           this.loadingCtrl.hide();
-         
-         
+
+
        },
         err =>{
           this.loadingCtrl.hide();
@@ -170,7 +171,7 @@ export class CategoryComponent implements OnInit {
          },
          err=>{ console.log(err);
         },
-      
+
       )
     }
     update(){
@@ -184,22 +185,22 @@ export class CategoryComponent implements OnInit {
             //this.router.navigate(['/category']);
            // this.loadingCtrl.hide();
         }, 3000);
-        
+
         },
         err=>console.log(err),
-  
+
       )
       localStorage.removeItem('Image')
     }
 
     onSubmit(){
-     
+
       this.form.form.markAsPristine();
       this.form.form.markAsUntouched();
       this.form.form.updateValueAndValidity();
-     
-      this.InitialCall(); 
+
+      this.InitialCall();
     }
 
-   
+
 }

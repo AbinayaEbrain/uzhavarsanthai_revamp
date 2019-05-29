@@ -133,24 +133,26 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
 
 
     this.editId = this.router.snapshot.params['id'];
-       
+
     // if(!this.editId){
     //   this.getForm();
     // }
     this.getForm();
-    
-    this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
-    this.carForm.value.avlPlace = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).address.city.formatted_address;
 
-    this.multiData.avlPlace = JSON.parse(
-      localStorage.getItem('currentUser')
-    ).address.city.formatted_address;
+    this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
+    console.log( this.currentuserId)
+      this.productData.avlPlace = JSON.parse(
+        localStorage.getItem('currentUpdateAddr')
+      ).address.formatted_address;
+      this.multiData.avlPlace = JSON.parse(
+        localStorage.getItem('currentUpdateAddr')
+      ).address.formatted_address;
+
     this.getUser();
 
     //category
@@ -174,7 +176,7 @@ export class PostComponent implements OnInit {
           // for(let i =1 ; i < this.oldAvlplace.product.length;i++){
           //   this.addSellingPoint();
           // }
-          
+
           this.carForm.patchValue({
             categoryId: this.oldAvlplace.categoryId,
             avlPlace: this.oldAvlplace.avlPlace.formatted_address,
@@ -263,16 +265,16 @@ export class PostComponent implements OnInit {
       this.price = this.price + parseInt(this.carForm.value.product[i].price);
       this.quantity = this.quantity + parseInt(this.carForm.value.product[i].quantity);
      }
- 
+
      console.log(this.price);
      console.log(this.quantity);
- 
+
      console.log(this.credits)
      this.myCredit = this.credits.credits;
      console.log(this.myCredit);
      this.creditMinus = (this.price * this.quantity) * (1 / 100);
      console.log(this.creditMinus);
-     
+
     if(this.myCredit < this.creditMinus){
       console.log('No credit')
       swal({
@@ -338,7 +340,7 @@ export class PostComponent implements OnInit {
         this.onSubmit();
       }
     }
-  
+
     imageAppend(){
       console.log(this.imglen);
       if(this.imglen != this.carForm.value.product.length){
@@ -366,9 +368,9 @@ export class PostComponent implements OnInit {
             let curntDte = new Date().getTime();
             this.carForm.value.product[i].date = curntDte;
             console.log(this.carForm.value.product[i].date);
-        
+
             this.carForm.value.product[i].ipAddress = this.privateIP;
-        
+
             if (this.addr == undefined || this.addr == null) {
               this.carForm.value.product[i].avlPlace = JSON.parse(
                 localStorage.getItem('currentUser')
@@ -451,9 +453,9 @@ export class PostComponent implements OnInit {
   //   //console.log(this.Image.name); //To get the image selected by the user
   //   this.valid = true;
   //   console.log(this.singleImage)
-  
+
   //   this.product.
-      
+
   // }
 
   onFileChangeMulti(event) {
@@ -544,7 +546,7 @@ export class PostComponent implements OnInit {
             }
           });
         }
-       
+
       } else {
         this.multiData.image =
           'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';

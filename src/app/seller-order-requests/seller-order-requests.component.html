@@ -1,3 +1,4 @@
+<div id='focusDiv' tabindex="1"></div>
 <body class="bg" style="overflow-x: hidden;">
     <div class="container pt-3 mt-5">
         <div *ngIf="role == 'seller' && roleStatus == 'Active'">
@@ -46,7 +47,7 @@
                                                                        {{errMsg}}
                                                                     </td>
                                                                 </tr>
-                           
+
                                                           <tr  id="hide" *ngFor="let deal of createdRequests | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
                                                                <td>{{deal.requestId}}</td>
                                                            <td>{{deal.prdctCategory}}</td>
@@ -69,14 +70,14 @@
                                                                     Dispute
                                                                    </button>
                                                               </td>
-                           
+
                                                           </tr>
-                           
+
                                                       </tbody>
-                           
+
                                                   </table>
-                           
-                           
+
+
                                               </div>
                                           </div>
                                       </div>
@@ -110,7 +111,7 @@
                                                 {{cancelledErrMsg}}
                                              </td>
                                          </tr>
-     
+
                                     <tr  id="hide" *ngFor="let deal of cancelledRequests | filterdata: queryString  : 'category'| paginate: {id: 'foo1', itemsPerPage:10,currentPage:e},let i = index"  >
                                          <td *ngIf="deal === -1" class="prdUnavil" style="text-align: center">
                                              {{errMsg2}}
@@ -126,12 +127,12 @@
                                         <td *ngIf = "deal.sellerStatus == 'Order cancelled'" class="text-danger">Cancelled by myself</td>
                                         <td *ngIf = "deal.sellerStatus == 'Order created'" class="text-danger">Cancelled by {{deal.buyerName}}</td>
                                     </tr>
-     
+
                                 </tbody>
-     
+
                             </table>
-     
-     
+
+
                         </div>
                     </div>
                 </div>
@@ -149,7 +150,7 @@
               <div class="col-md-6 col-lg-6 col-12 errDesign">
                   <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
                   <p class="mt-4">You have to be a "<font style="color: #f53636;font-style: italic">seller</font>" to see <span style="font-style: italic">Order Requests</span>.</p>
-                  <a routerLink="/buyerAsSeller" style="cursor: pointer;text-decoration: underline;color: #0d4608;">SignUp as seller</a>
+                  <a routerLink="/buyerAsSeller" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">SignUp as seller</a>
               </div>
               <div class="col-md-3 col-lg-3 col-12"></div>
           </div>
@@ -161,14 +162,14 @@
             <div class="col-md-6 col-lg-6 col-12 errDesign">
                 <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
                 <p class="mt-4">Your seller request is on processing.Please wait until you get confirmation message.</p>
-                <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #0d4608;">Go to back</a>
+                <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">Go to back</a>
             </div>
             <div class="col-md-3 col-lg-3 col-12"></div>
         </div>
     </div>
     </div>
   </body>
-  
+
    <!-- modal -->
 
    <!-- Central Modal Medium Info -->
@@ -255,7 +256,7 @@ aria-hidden="true">
 
  <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
- 
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -290,7 +291,7 @@ aria-hidden="true">
         </div>
         <div class="modal-body">
             <!-- <span class="float-right"><span><b>Buyer Name</b></span> : {{singleOrderRequest.buyerName}}</span> -->
-        <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate> 
+        <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate>
             <div class="form-group">
                 <label class="english_wrd" for="dispute" style="color:#0d4608">Dispute</label>
                     <textarea  type="text" rows="2" #dispute="ngModel" [class.is-invalid]="dispute.invalid && dispute.touched" ngModel name="dispute" class="form-control borderClr" [(ngModel)]="userData.dispute" autocomplete="off" required></textarea>

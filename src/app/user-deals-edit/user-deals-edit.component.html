@@ -1,4 +1,4 @@
-
+<div id='focusDiv' tabindex="1"></div>
  <div class="bg1" style="overflow-x:hidden">
     <div class="text-center container mt-5 pt-1" id="idView">
           <form  #postform="ngForm" *ngIf ="!submitted" novalidate class="card mt-5 pt-2">
@@ -23,7 +23,7 @@
                           </select>
                           <span class="text-danger float-left error_word errFont" [class.d-none] = "category.valid || category.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Category is required</span>
                     </div>
-              </div> 
+              </div>
               <div class="col-md-5 mb-3">
                   <label class="english_wrd" for="name"><span class="tamil_wrd">பொருளின் பெயர் </span>/ Product Name</label>
                     <div class="form-group">

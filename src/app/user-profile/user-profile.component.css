@@ -32,7 +32,7 @@
     margin-top:5px;
     padding-top: 10px;
     font-size: 20px;
-    font-weight: bold;  
+    font-weight: bold;
     font-family: "Varela Round",Arial,"Helvetica Neue",Helvetica,serif;
     text-align: left;
   }
@@ -230,14 +230,13 @@ select{
     border: 0;
     font-size: 1em;
   }
-
   .btn2 {
     font-size: 16px;
     border: 1px solid #0d4608 !important;
     border: none;
     color: #0d4608;
     font-weight: 600;
-    / float: right; /
+    /* / float: right; / */
     border-radius: 4px;
     background-color: transparent;
     cursor: pointer;

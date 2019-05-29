@@ -55,6 +55,7 @@ export class LocationdealsComponent implements OnInit {
   }
 
   ngOnInit() {
+        document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this.showDeals = true;
     this._dealsService.getDeals().subscribe(

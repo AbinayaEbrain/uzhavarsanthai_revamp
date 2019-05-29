@@ -15,7 +15,9 @@ export class ContactComponent implements OnInit {
 
   constructor(private adminService: AdminService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+      document.getElementById('focusDiv').focus();
+  }
 
   contactDetail() {
     this.adminService.addContact(this.contact);

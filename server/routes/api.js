@@ -642,7 +642,7 @@ router.post('/updateUserSubscription/:id', function(req, res) {
 //update user
 router.put('/updateuser/:id', function(req, res) {
   // console.log('Update a userprofile');
-
+console.log(req.body)
   User.findByIdAndUpdate(
     req.params.id,
     {
@@ -670,6 +670,52 @@ router.put('/updateuser/:id', function(req, res) {
   );
 });
 
+// update user address only
+router.put('/updateuseraddress/:id', function(req, res) {
+  // console.log('Update a userprofile');
+console.log(req.body);
+console.log(req.params.id)
+console.log(req.body.addressLine)
+  User.findByIdAndUpdate(
+  req.params.id,
+    // req.params.id,
+
+    {
+      $set: {
+        address:{
+          addressLine:req.body.addressLine,
+          city:{
+          lat:  req.body.address.lat,
+          lng: req.body.address.lng,
+          formatted_address: req.body.address.formatted_address,
+          locality: req.body.address.locality,
+          admin_area_l1: req.body.address.admin_area_l1,
+          country: req.body.address.country,
+        },
+        },
+        phone : req.body.phone,
+        status: req.body.status,
+        firstname: req.body.firstname,
+        password : req.body.password,
+        role: req.body.role,
+        roleStatus : req.body.roleStatus,
+        credits : req.body.credits
+
+      }
+    },
+    {
+      new: true
+    },
+    function(err, updatedUser) {
+      if (err) {
+        res.send('Error updating userprofile');
+      } else {
+        res.json(updatedUser);
+      }
+    }
+  );
+});
+
 //Update username in post
 router.post('/updateNamePost/:id', function(req, res) {
   Post.updateMany(
@@ -679,6 +725,7 @@ router.post('/updateNamePost/:id', function(req, res) {
    {
        $set: {
         username: req.body.firstname ,
+        address: req.body.address,
        }
    }
  )
@@ -699,6 +746,7 @@ router.post('/updateSellerNameReview/:id', function(req, res) {
    {
       $set: {
         'productreview.$.sellerName': req.body.firstname,
+          address: req.body.address,
       }
    }
   )
@@ -719,6 +767,7 @@ router.post('/updateBuyerNameReview/:id', function(req, res) {
    {
       $set: {
         'productreview.$.buyerName': req.body.firstname,
+          address: req.body.address,
       }
    }
   )

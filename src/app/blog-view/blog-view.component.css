@@ -105,8 +105,8 @@
 
 .noBlog {
   font-weight: bold;
-  font-size: 18px;
-  color: #0d4608;
+  font-size: 16px;
+  /* color: #0d4608; */
 }
 
 .viewmrebtn {
@@ -205,13 +205,13 @@ button {
   color: #0d4608;
   font-weight: 200 !important;
 }
-.alertbtncss{
+.alertbtncss {
   font-size: 19px;
   padding: 2px;
   margin-top: 1px;
   border: none;
 }
-@media screen  and (max-width: 320px) {
+@media screen and (max-width: 320px) {
   .onmobviewfont {
     font-size: 14px;
   }

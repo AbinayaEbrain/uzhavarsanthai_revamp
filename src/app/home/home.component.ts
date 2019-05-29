@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
+        document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     setTimeout(() => {
       // swal.close();

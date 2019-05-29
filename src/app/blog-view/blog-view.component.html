@@ -1,3 +1,4 @@
+<div id='focusDiv' tabindex="1"></div>
 <div class="container-fluid bg1">
     <div class="container  pt-5">
       <div class="row mt-2 mb-2">
@@ -5,10 +6,7 @@
               <div class="row">
                   <div class="col-md-12 text-center">
                       <h4 class="head mt-2">
-                          <span class="tamil_word" style="font-size: 20px">வலைப்பதிவுகள் </span>/ Blogs</h4>
-                          <div class="mb-2 noBlog" style="text-align: center" *ngIf="noBlog">
-                              {{noBlog}}
-                            </div>
+                          <span class="tamil_word" style="font-size: 18px">வலைப்பதிவுகள் </span>/ Blogs</h4>
                           <div class="row">
                       <div class="col-md-4"></div>
                       <div class="col-md-4"  *ngIf="errMsg">
@@ -16,20 +14,20 @@
                         <!-- <div  class="alert alert-warning fade show onmobviewfont" style="display: none">
                             <button type="button" class="close alertbtncss" data-dismiss="alert"   aria-label="close">&times;</button>
                           {{errMsg}}
-                          <a class="pt-2" id="onErrMsg" routerLink="/login">Proceed</a> 
+                          <a class="pt-2" id="onErrMsg" routerLink="/login">Proceed</a>
                         </div>  -->
                       </div>
-                      <div class="showAlert"> 
+                      <div class="showAlert">
                       <div  class="alert alert-warning fade show onmobviewfont">
                           <button type="button" class="close alertbtncss" onclick="$('.showAlert').hide()">x</button>
-                        {{errMsg}} 
-                        <a class="pt-2" id="onErrMsg" routerLink="/login">Login now</a> 
-                      </div>   
+                        {{errMsg}}
+                        <a class="pt-2" id="onErrMsg" routerLink="/login">Login now</a>
+                      </div>
                     </div>
-                    
-                   
+
+
                         <!-- <div class="container" style="display:none;" id="myAlert">
-                         
+
                           <div class="alert alert-success alert-dismissable" id="myAlert2">
                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                               Success! message sent successfully.
@@ -40,6 +38,9 @@
                     <button class="btn writeBlog" id="btnShow" (click)="addBlog()">Write Blog</button>
                   </div>
                 </div>
+                <div class="mb-2 noBlog text-danger" style="text-align: center" *ngIf="noBlog">
+                  {{noBlog}}
+                </div>
             <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr | slice:0:show;">
                   <div class="card-header" style="color:#0d4608;padding: 5px;">
                       <!-- <p style="float:right" class="blogAuthor">#{{blog.bloggerName}}<span class="postedOn"> Posted on {{blog.createdAt | date}}</span> </p> -->
@@ -49,7 +50,7 @@
                   <app-read-more class="mt-2" [text]="blog.commenttext" [maxLength]="200"></app-read-more>
 
                   </div>
-                
+
                 </div>
              </div>
              <div *ngIf="show < blogArr.length" class="mx-auto mb-3" style="color: #0d4608;font-weight: bold;cursor: pointer" (click)="increaseShow()">Load More...</div>

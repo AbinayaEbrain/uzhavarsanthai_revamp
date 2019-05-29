@@ -27,7 +27,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   @ViewChild('postform') mytemplateForm2: NgForm;
   @ViewChild('queryform') mytemplateForm3: NgForm;
   @ViewChild('forgotpwdform') mytemplateForm4: NgForm;
-
+  @ViewChild('updateAddressform') mytemplateForm5: NgForm;
   rqstId : any;
   show = 3;
   id = '';
@@ -38,6 +38,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   requestPerson = [];
   omit:any;
   time: any;
+  public updateAddressData: any = {};
   public postProduct: any = {};
   public querydata: any = {};
   public requestData: any ={};
@@ -86,7 +87,6 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   registeredUserData = {
     address: {
       city: {},
-      location: ''
     },
     phone: '',
     privateIP: '',
@@ -107,6 +107,16 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   reviewArr : any = [];
   reviewlngth:any;
   userId : any;
+  currentuserAddress : any;
+  currentUserid:any;
+  currentUserName:any;
+  currentUserPwd:any;
+  currentUserPhone:any;
+  currentUserRole:any;
+  currentUserRoleStatus:any;
+  currentUserCredits:any;
+  currentUserStatus:any;
+  successMsg:any;
 
 
   setAddress(addrObj) {
@@ -128,15 +138,25 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
     private _auth: AuthService,
     private http: HttpClient
   ) {
-      this.registeredUserData.address.location = '';
-      this.registeredUserData.address.city = '';
+      // this.registeredUserData.address.location = '';
+      // this.registeredUserData.address.city = '';
   }
 
   ngOnInit() {
+    document.getElementById('focusDiv').focus();
     this.id = this.route.snapshot.params['id'];
     this.loadingCtrl.show();
+    this.checkAddress();
     if(localStorage.getItem('currentUser')){
       this.userId = JSON.parse(localStorage.getItem('currentUser'))._id;
+      this.currentUserid = JSON.parse(localStorage.getItem('currentUser'))._id;
+      this.currentUserName = JSON.parse(localStorage.getItem('currentUser')).firstname;
+      this.currentUserPwd = JSON.parse(localStorage.getItem('currentUser')).password;
+      this.currentUserPhone = JSON.parse(localStorage.getItem('currentUser')).phone;
+      this.currentUserRole = JSON.parse(localStorage.getItem('currentUser')).role;
+      this.currentUserRoleStatus = JSON.parse(localStorage.getItem('currentUser')).roleStatus;
+      this.currentUserCredits = JSON.parse(localStorage.getItem('currentUser')).credits;
+      this.currentUserStatus = JSON.parse(localStorage.getItem('currentUser')).status;
       console.log(this.userId)
     }
     this.lastvisit = localStorage.getItem('lastvisitproductid');
@@ -145,6 +165,23 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
       this.getDeals();
       this.getMultiPostDeals();
     }
+  }
+
+  checkAddress(){
+    this._dealsService.getDetails().subscribe(
+      res => {
+        this.loadingCtrl.hide();
+        for (let i = 0; i < res.length; i++) {
+          if (this.userId == res[i]._id) {
+            this.currentuserAddress = res[i].address.addressLine;
+            console.log(this.currentuserAddress )
+          }
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   ngAfterViewChecked() {
@@ -297,8 +334,8 @@ sendQuery(){
   this.querydata.requestId = a+ "-" +this.reqId;
   this.buyerName = JSON.parse(localStorage.getItem('currentUser')).firstname;
   this.buyerPhone = JSON.parse(localStorage.getItem('currentUser')).phone;
-  this.buyerAddress = JSON.parse(localStorage.getItem('currentUser')).address.addressLine;
-  this.buyerCity = JSON.parse(localStorage.getItem('currentUser')).address.city.formatted_address;
+  this.buyerAddress = JSON.parse(localStorage.getItem('currentUpdateAddr')).address.addressLine;
+  this.buyerCity = JSON.parse(localStorage.getItem('currentUpdateAddr')).address.formatted_address;
   this.querydata.buyerName =  this.buyerName;
   this.querydata.buyerPhone =  this.buyerPhone;
   this.querydata.buyerAddress =  this.buyerAddress;
@@ -358,14 +395,14 @@ storeOrderRequest(){
       this.requestData.orderRqstId = res._id;
       this.requestData.requestId = res.requestId;
       console.log(this.requestData.orderRqstId);
-     
+
       this.mapWithPost();
     },
     err => console.log(err)
   );
 }
 closeModel(){
-  
+
 }
 
 //sms to seller
@@ -416,13 +453,15 @@ mapWithPost(){
   }
 
   checkBuyer() {
-    console.log('function works');
+
     this.getToken = localStorage.getItem('token');
     if (
       this.getToken == null ||
       this.getToken == undefined ||
       this.getToken == ''
     ) {
+
+      this.mytemplateForm1.reset();
       console.log('not logged');
       var a = 'wait for login';
       localStorage.setItem('authorization', JSON.stringify(a));
@@ -430,7 +469,6 @@ mapWithPost(){
       this.errormsg ='';
       this.adminVerifyErr ='';
       this.deactiveErrorMsg ='';
-      this.mytemplateForm1.reset();
      this.openloginModal();
 
     }else {
@@ -488,10 +526,13 @@ mapWithPost(){
               localStorage.removeItem('authorization');
             }else{
               if (previousUrl1 == '/blog-view') {
+                document.getElementById("closeLoginModal").click();
                 this.router.navigate(['/blog']);
               } else if(role == "seller") {
+                document.getElementById("closeLoginModal").click();
                 this.router.navigate(['/products']);
               }else{
+                document.getElementById("closeLoginModal").click();
                 this.router.navigate(['/my-order']);
               }
             }
@@ -722,7 +763,8 @@ mapWithPost(){
         this.registeredUserData.roleStatus = 'Active';
       }
       this.registeredUserData.status = 'ACTIVE';
-      this.registeredUserData.address.city = this.addr;
+      this.registeredUserData.address = this.addr;
+      // this.registeredUserData.address.addressLine = '';
       this.registeredUserData.phone = this.phoneObj.phone;
       this.loadingCtrl.show();
       console.log(this.registeredUserData);
@@ -850,12 +892,61 @@ mapWithPost(){
       return false;
     }
 
+    confirmAddAddr(){
+      document.getElementById("closeAddressModal1").click();
+      document.getElementById("updateAddressModal").click();
+    }
+
 //create order modal
 createOrederModal(){
-  this.mytemplateForm3.reset();
-  document.getElementById("openOrderReqModal").click();
-  this.querydata.urgency = '';
-  this.querydata.requiredUnit = '';
+  var pacContainerInitialized = false;
+   $('#cityOne').keypress(function() {
+    if (!pacContainerInitialized) {
+            $('.pac-container').css('z-index', '9999');
+            pacContainerInitialized = true;
+    }
+});
+  console.log(this.currentuserAddress == null || this.currentuserAddress == '')
+  if(this.currentuserAddress == null || this.currentuserAddress == ''){
+    this.mytemplateForm5.reset();
+      document.getElementById("updateAddressConfirmationModal").click();
+    // document.getElementById("updateAddressModal").click();
+  }else{
+    this.mytemplateForm3.reset();
+    document.getElementById("openOrderReqModal").click();
+    this.querydata.urgency = '';
+    this.querydata.requiredUnit = '';
+  }
+
+}
+
+updateAddress(){
+  this.updateAddressData.firstname = this.currentUserName;
+  this.updateAddressData.password =   this.currentUserPwd ;
+  this.updateAddressData.phone = this.currentUserPhone;
+  this.updateAddressData.roleStatus = this.currentUserRoleStatus;
+  this.updateAddressData.status = this.currentUserStatus;
+  this.updateAddressData.role = this.currentUserRole;
+  this.updateAddressData.credits =  this.currentUserCredits;
+  this.updateAddressData.address = this.addr;
+  console.log(this.updateAddressData)
+  this._dealsService.updateCustomerAddress(this.updateAddressData, this.currentUserid).subscribe(
+    res => {
+      console.log(res);
+       localStorage.setItem('currentUpdateAddr', JSON.stringify(this.updateAddressData));
+      this.loadingCtrl.hide();
+      this.successMsg = 'Updated successfully!';
+      setTimeout(() => {
+        this.successMsg = '';
+        document.getElementById('closeAddressModal').click();
+        document.getElementById("openOrderReqModal").click();
+      }, 2000);
+
+    },
+    err => {
+      console.log(err);
+    }
+  );
 }
 
 cancelOrderModal(){

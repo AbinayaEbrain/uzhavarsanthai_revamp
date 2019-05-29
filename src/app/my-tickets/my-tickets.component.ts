@@ -43,6 +43,7 @@ export class MyTicketsComponent implements OnInit {
   }
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
       this.loadingCtrl.show();
       setTimeout(() => {
       this.loadingCtrl.hide();

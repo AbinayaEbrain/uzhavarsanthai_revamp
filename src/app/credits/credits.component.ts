@@ -29,6 +29,7 @@ export class CreditsComponent implements OnInit {
   }
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.getSingleUser();

@@ -24,6 +24,7 @@ ticketDate:any;
     private router: Router, public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
       this.loadingCtrl.show();
         this.id = this.route.snapshot.params['id'];
         console.log(this.id);

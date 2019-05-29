@@ -56,6 +56,7 @@ export class SellerOrderRequestsComponent implements OnInit {
   }
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this.acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
     console.log(this.acntID);

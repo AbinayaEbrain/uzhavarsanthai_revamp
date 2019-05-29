@@ -30,6 +30,7 @@ export class SubscriptionPlanComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this.userId = JSON.parse(localStorage.getItem('currentUser'))._id;
     console.log(this.userId);
