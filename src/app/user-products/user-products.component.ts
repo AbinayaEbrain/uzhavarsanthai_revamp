@@ -172,7 +172,7 @@ confirmAddAddr(){
 }
 
   getUser(){
-    this.mytemplateForm.reset();
+    // this.mytemplateForm.reset();
     var pacContainerInitialized = false;
      $('#city').keypress(function() {
       if (!pacContainerInitialized) {
@@ -184,7 +184,7 @@ confirmAddAddr(){
 console.log(this.userAddress == null || this.userAddress == '')
 if(this.userAddress == null || this.userAddress == ''){
   document.getElementById("updateAddressConfirmationModal").click();
-
+  this.mytemplateForm.reset();
 }
 else{
   this._dealsService.getDetails().subscribe(

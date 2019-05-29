@@ -372,11 +372,11 @@ export class UserDealsEditComponent implements OnInit {
         localStorage.getItem('currentUser')
       ).phone;
       this.deallistobj.userAddressLine = JSON.parse(
-        localStorage.getItem('currentUser')
+        localStorage.getItem('currentUpdateAddr')
       ).address.addressLine;
       this.deallistobj.userAddress = JSON.parse(
-        localStorage.getItem('currentUser')
-      ).address.city.formatted_address;
+        localStorage.getItem('currentUpdateAddr')
+      ).address.formatted_address;
 
       if (this.Image.length != 0) {
         this.deallistobj.image = this.Image;

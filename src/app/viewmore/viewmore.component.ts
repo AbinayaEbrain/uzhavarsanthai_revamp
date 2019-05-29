@@ -906,17 +906,18 @@ createOrederModal(){
             pacContainerInitialized = true;
     }
 });
-  console.log(this.currentuserAddress == null || this.currentuserAddress == '')
-  if(this.currentuserAddress == null || this.currentuserAddress == ''){
-    this.mytemplateForm5.reset();
-      document.getElementById("updateAddressConfirmationModal").click();
-    // document.getElementById("updateAddressModal").click();
-  }else{
-    this.mytemplateForm3.reset();
-    document.getElementById("openOrderReqModal").click();
-    this.querydata.urgency = '';
-    this.querydata.requiredUnit = '';
-  }
+document.getElementById("openOrderReqModal").click();
+this.mytemplateForm3.reset();
+this.querydata.urgency = '';
+this.querydata.requiredUnit = '';
+  // console.log(this.currentuserAddress == null || this.currentuserAddress == '')
+  // if(this.currentuserAddress == null || this.currentuserAddress == ''){
+  //     document.getElementById("updateAddressConfirmationModal").click();
+  //     this.mytemplateForm5.reset();
+  //   // document.getElementById("updateAddressModal").click();
+  // }else{
+   
+  // }
 
 }
 
