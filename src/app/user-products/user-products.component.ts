@@ -68,7 +68,7 @@ export class UserProductsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public zone: NgZone,
-    public loadingCtrl: NgxSpinnerService
+    public loadingCtrl: NgxSpinnerService,
     private location: Location
   ) {
     for (let i = 1; i <= this.userDeals.length; i++) {
@@ -172,7 +172,7 @@ confirmAddAddr(){
 }
 
   getUser(){
-    this.mytemplateForm.reset();
+  
     var pacContainerInitialized = false;
      $('#city').keypress(function() {
       if (!pacContainerInitialized) {
@@ -184,7 +184,7 @@ confirmAddAddr(){
 console.log(this.userAddress == null || this.userAddress == '')
 if(this.userAddress == null || this.userAddress == ''){
   document.getElementById("updateAddressConfirmationModal").click();
-
+  this.mytemplateForm.reset();
 }
 else{
   this._dealsService.getDetails().subscribe(

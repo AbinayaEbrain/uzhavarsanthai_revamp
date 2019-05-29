@@ -197,7 +197,7 @@ export class UserDealsEditComponent implements OnInit {
   slickInit(e) {
     console.log('slick initialized');
   }
-
+  
   getUserCredits() {
     this._dealsService.getDetails().subscribe(
       res => {
@@ -257,7 +257,7 @@ export class UserDealsEditComponent implements OnInit {
     this.credit.qnty = this.deallistobj.qnty;
     this.credit.image = this.deallistobj.image;
     // this.credit.productCreatedAt = this.deallistobj.productCreatedAt;
-
+   
     console.log(this.credit);
         console.log(this.newquantity);
         console.log(this.newprice);
@@ -268,6 +268,8 @@ export class UserDealsEditComponent implements OnInit {
     this.myCredit = this.creditsOld.credits;
     console.log(this.myCredit);
     console.log(this.lastprice == this.newprice)
+    console.log(this.lastquantity == this.newquantity)
+      
         // minus credit
         if(this.lastprice == this.newprice){
           if(this.lastquantity < this.newquantity ){
@@ -280,7 +282,7 @@ export class UserDealsEditComponent implements OnInit {
             this.sellerReduceQuantity();
           }
         }
-
+       
         if(this.lastquantity == this.newquantity){
           if(this.lastprice < this.newprice){
             this.PriceCredit();
@@ -292,17 +294,17 @@ export class UserDealsEditComponent implements OnInit {
             this.sellerReducePrice();
           }
         }
-
+  
         if(this.lastquantity < this.newquantity && this.lastprice < this.newprice){
           this.quantityPriceCredit();
         }
-
+  
         //add credit
-
+  
         if(this.lastquantity > this.newquantity && this.lastprice > this.newprice){
           this.sellerQuantityPrice();
         }
-
+    
 
     if(this.myCredit < this.cumulativecredit){
       console.log('No credit')
@@ -314,11 +316,14 @@ export class UserDealsEditComponent implements OnInit {
       });
       this.router.navigate(['/subscription-plan']);
       this.loadingCtrl.hide();
-    }else{
+    }else if(this.lastprice == this.newprice && this.lastquantity == this.newquantity){
+      this.update();
+    }
+    else{
       //Adding the image to the form data to be sent
       this.imageUpload();
     }
-
+    
 
     if(this.myCredit > this.cumulativecredit){
       if (this.urls.length == 0 || this.urls == undefined || this.urls == []) {
@@ -390,7 +395,7 @@ console.log(this.deallistobj);
           } else {
             this.deallistobj.avlPlace = this.addr.formatted_address;
           }
-          // this.productId = res._id;
+          // this.productId = res._id;        
           this.success = 'Updated successfully!';
           document.getElementById('idView').scrollIntoView();
           setTimeout(() => {
@@ -398,7 +403,7 @@ console.log(this.deallistobj);
             this.router.navigate(['/products']);
             this.loadingCtrl.hide();
           }, 2000);
-
+      
         },
         err => console.log(err)
       );
@@ -410,12 +415,14 @@ console.log(this.deallistobj);
 
   //Minus credits when edit post
   QuantityCredit(){
+    this.loadingCtrl.show();
       this.cumulativequantity = this.newquantity - this.lastquantity;
       console.log(this.cumulativequantity);
 
       this.newprice = this.deallistobj.price;
-
-    this.cumulativecredit = ((this.cumulativequantity  this.newprice)  1/100);
+     
+    this.cumulativecredit = ((this.cumulativequantity *  this.newprice) * 1/100);
+    this.loadingCtrl.hide();
     console.log(this.cumulativecredit);
     console.log(this.myCredit);
     // if(this.myCredit > this.cumulativecredit){
@@ -426,28 +433,31 @@ console.log(this.deallistobj);
   }
 
   PriceCredit(){
-
+    this.loadingCtrl.show();
       this.cumulativeprice = this.newprice - this.lastprice;
       console.log(this.cumulativeprice);
-
-      this.cumulativecredit = ((this.lastquantity  this.cumulativeprice)  1/100);
+   
+      this.cumulativecredit = ((this.lastquantity * this.cumulativeprice) * 1/100);
 
       console.log(this.cumulativecredit);
+      this.loadingCtrl.hide();
       // if(this.myCredit > this.cumulativecredit){
       //   this.getUser();
       // }
     }
 
   quantityPriceCredit(){
+    this.loadingCtrl.show();
     if(this.lastquantity < this.newquantity){
       this.cumulativequantity = this.newquantity - this.lastquantity;
       console.log(this.cumulativequantity);
-    }
+      this.loadingCtrl.hide();
+    } 
 
     if(this.lastprice < this.newprice){
       this.cumulativeprice = this.newprice - this.lastprice;
       console.log(this.cumulativeprice);
-    }
+    } 
 
     this.addQtyPrice = (this.cumulativequantity * this.newprice);
 
@@ -532,34 +542,40 @@ console.log(this.deallistobj);
   }
 
   sellerReduceQuantity(){
+    this.loadingCtrl.show();
       console.log(this.newquantity);
     console.log(this.lastprice)
-    this.cumulativecredit = ((this.newquantity  this.lastprice)  1/100);
+    this.cumulativecredit = ((this.newquantity * this.lastprice) * 1/100);
     console.log(this.cumulativecredit);
+    this.loadingCtrl.hide();
     // if(this.myCredit > this.cumulativecredit){
     //   this.getUser1();
     // }
   }
 
-  sellerReducePrice(){
+  sellerReducePrice(){   
+    this.loadingCtrl.show();
       console.log(this.newprice);
       console.log(this.lastquantity);
-    this.cumulativecredit = ((this.newprice  this.lastquantity)  1/100);
+    this.cumulativecredit = ((this.newprice * this.lastquantity) * 1/100);
     console.log(this.cumulativecredit);
+    this.loadingCtrl.hide();
     // if(this.myCredit > this.cumulativecredit){
     //   this.getUser1();
     // }
   }
 
   sellerQuantityPrice(){
+    this.loadingCtrl.show();
       this.cumulativequantity =  this.newquantity;
       console.log(this.cumulativequantity);
 
       this.cumulativeprice =  this.newprice;
       console.log(this.cumulativeprice);
 
-    this.cumulativecredit = ((this.cumulativequantity  this.cumulativeprice)  1/100);
+    this.cumulativecredit = ((this.cumulativequantity * this.cumulativeprice) * 1/100);
     console.log(this.cumulativecredit);
+    this.loadingCtrl.hide();
     // if(this.myCredit > this.cumulativecredit){
     //   this.getUser1();
     // }
