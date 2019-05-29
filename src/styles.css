@@ -134,3 +134,7 @@ ol {
 .x {
   font-weight: 400 !important;
 }
+
+.errFont{
+  font-size: 13px !important;
+}

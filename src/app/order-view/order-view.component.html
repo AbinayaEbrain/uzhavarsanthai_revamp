@@ -52,6 +52,7 @@
                     <p class="orderHead">{{order.sellerName}}</p>
                     <p class="orderHead">{{order.sellerAddress}}</p>
           </div></div></div>
+
       </div>
     </div>
   </div>
@@ -83,7 +84,7 @@
               <div class="form-group">
                     <div class="form-group mt-3">
                 <textarea class="form-control borderClr" #review="ngModel" ngModel [(ngModel)]="reviewData.review" [class.is-invalid]="review.invalid && review.touched" rows="2" id="comment" name="review" placeholder="Enter your review" autocomplete="off" required></textarea>
-                <span class="text-danger float-left error_word" [class.d-none] = "review.valid || review.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Review is required</span>
+                <span class="text-danger float-left error_word errFont" [class.d-none] = "review.valid || review.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Review is required</span>
               </div>
               <div style="display:inline-flex;">
               <label class="english_wrd" for="dispute" >Rating : </label>

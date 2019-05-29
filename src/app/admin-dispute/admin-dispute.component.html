@@ -108,7 +108,7 @@
           <div class="form-group mt-2">
               <label class="english_wrd" for="solution" style="color:#0d4608" >Solution</label>
                   <textarea type="text" #solution="ngModel" [class.is-invalid]="solution.invalid && solution.touched" ngModel name="solution" class="form-control borderClr" [(ngModel)]="disputeObj.solution" autocomplete="off" required></textarea>
-                  <span class="text-danger float-left error_word" [class.d-none] = "solution.valid || solution.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Solution is required</span>
+                  <span class="text-danger float-left error_word errFont" [class.d-none] = "solution.valid || solution.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Solution is required</span>
           </div>
           <div class="mt-4" style="text-align:center">
           <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn mx-auto" (click)="disputeUpdate()">Save</button>
@@ -137,7 +137,7 @@
           <div class="form-group mt-4">
               <label class="english_wrd" for="solution" style="color:#0d4608" >Solution</label>
                   <textarea type="text" #solution="ngModel" [class.is-invalid]="solution.invalid && solution.touched" ngModel name="solution" class="form-control borderClr" [(ngModel)]="ticketObj.solution" autocomplete="off" required></textarea>
-                  <span class="text-danger float-left error_word" [class.d-none] = "solution.valid || solution.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Solution is required</span>
+                  <span class="text-danger float-left error_word errFont" [class.d-none] = "solution.valid || solution.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Solution is required</span>
           </div>
           <div class="mt-4" style="text-align:center">
           <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn" (click)="ticketUpdate()">Save</button>

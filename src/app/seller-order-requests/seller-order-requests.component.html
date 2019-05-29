@@ -294,7 +294,7 @@ aria-hidden="true">
             <div class="form-group">
                 <label class="english_wrd" for="dispute" style="color:#0d4608">Dispute</label>
                     <textarea  type="text" rows="2" #dispute="ngModel" [class.is-invalid]="dispute.invalid && dispute.touched" ngModel name="dispute" class="form-control borderClr" [(ngModel)]="userData.dispute" autocomplete="off" required></textarea>
-                    <span class="text-danger float-left error_word" [class.d-none] = "dispute.valid || dispute.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Dispute is required</span>
+                    <span class="text-danger float-left error_word errFont" [class.d-none] = "dispute.valid || dispute.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Dispute is required</span>
             </div>
             <div class="mt-4" style="text-align: center;" >
             <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn" (click)="disputeSave()">Send Dispute</button>
