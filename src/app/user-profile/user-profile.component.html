@@ -9,7 +9,7 @@
               {{success}}
           </div>
           <form  #editForm="ngForm" *ngIf ="!submitted" novalidate>
-            <div class="row">
+            <div class="row" *ngIf="crntUser.firstname">
                 <div class="col-md-12">
                     <div class="form-group  mt-2">
                         <label class=" english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
@@ -17,14 +17,40 @@
                         <span class="text-danger float-left error_word errFont" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Name is required</span>
                       </div>
                  </div></div>
-                 <div class="row">
+
+                 <div class="row" *ngIf="!crntUser.firstname">
+                  <div class="col-md-12">
+                      <div class="form-group  mt-2">
+                          <label class=" english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
+                          <input type="text" placeholder="Enter your name" name="firstname" class="form-control" autocomplete="off" required>
+                        </div>
+                   </div></div>
+
+                   <div class="row" *ngIf="!crntUser.firstname">
+                    <div class="col-md-12">
+                       <div class="form-group mt-2" >
+                            <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
+                           <input type="text" placeholder="Enter your address" name="addressLine" class="form-control" autocomplete="off" required>
+                         </div>
+                    </div></div>
+
+                    <div class="row" *ngIf="!crntUser.firstname">
+                      <div class="col-md-12">
+                         <div class="form-group mb-5 mt-2" >
+                              <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">மாவட்டம் </span>/ City</label>
+                             <input type="text" placeholder="Enter your address" name="addressLine" class="form-control" autocomplete="off" required>
+                           </div>
+                      </div></div>
+
+                   <div class="row" *ngIf="crntUser.address.addressLine">
                  <div class="col-md-12">
-                    <div class="form-group  mb-5 mt-2" >
+                    <div class="form-group mb-5 mt-2" >
                           <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
                         <input type="text" placeholder="Enter your address" #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control" [(ngModel)]="crntUser.address.addressLine" autocomplete="off" required>
                         <span class="text-danger float-left error_word errFont" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
                       </div>
                  </div> </div>
+
                   <div class="row">
                  <div class="col-md-12 well" >
                     <div class="form-group mb-5 mt-2" *ngIf="crntUser.address.city == ''" >
@@ -36,7 +62,7 @@
                   <label class="dummyLable">     மாவட்டம் / City</label>
                     <input  google-place type="text" placeholder="Update your address"   class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)" name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="crntUser.address.city.formatted_address"  autocomplete ="off" required>
                     <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
-            </div>
+                </div>
                   <p style="float:left;margin-top: -25px;cursor:pointer;text-decoration:underline;" (click)="changePwd()">Change my password?</p>
                  </div></div>
                    <div class="row">

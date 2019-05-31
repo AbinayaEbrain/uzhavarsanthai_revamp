@@ -185,7 +185,7 @@ confirmAddAddr(){
 console.log(this.userAddress == null || this.userAddress == '')
 if(this.userAddress == null || this.userAddress == ''){
   document.getElementById("updateAddressConfirmationModal").click();
-  this.mytemplateForm.reset();
+  // this.mytemplateForm.reset();
 }
 else{
   this._dealsService.getDetails().subscribe(
@@ -221,13 +221,15 @@ else{
         console.log(res);
         localStorage.setItem('currentUpdateAddr', JSON.stringify(this.updateAddressData));
         this.loadingCtrl.hide();
-        this.successMsg = 'Updated successfully!';
-        setTimeout(() => {
-          this.successMsg = '';
-          this.router.navigateByUrl('/dummy', { skipLocationChange: true });
-          setTimeout(() => this.router.navigate(['/products']),100);
-          document.getElementById('closeAddressModal').click();
-        }, 2000);
+        document.getElementById('closeAddressModal').click();
+        document.getElementById("openConfirmModal").click();
+        // this.successMsg = 'Updated successfully!';
+        // setTimeout(() => {
+        //   this.successMsg = '';
+        //   this.router.navigateByUrl('/dummy', { skipLocationChange: true });
+        //   setTimeout(() => this.router.navigate(['/products']),100);
+        //   document.getElementById('closeAddressModal').click();
+        // }, 2000);
 
       },
       err => {

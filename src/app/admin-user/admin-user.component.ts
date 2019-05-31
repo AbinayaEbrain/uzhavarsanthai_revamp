@@ -56,12 +56,13 @@ export class AdminUserComponent implements OnInit {
           //   this.registerUser[i].address.city.locality = city.split(',')[1];
           // }
         }
+        console.log(this.registerUser);
         if (this.registerUser.length == 0) {
           this.errMsg = 'No users found';
         }
       },
       err => {
-        this.loadingCtrl.hide();
+        // this.loadingCtrl.hide();
         console.log(err);
       }
     );

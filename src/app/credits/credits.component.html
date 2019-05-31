@@ -1,6 +1,5 @@
-<div id='focusDiv' tabindex="1"></div>
-<div class="container-fluid bg">
-  <div class="pt-5">
+<div class="bg" style="overflow-x: hidden;">
+  <div *ngIf="role == 'seller' && roleStatus == 'Active'" class="pt-5">
     <div class="row">
       <!-- <div class="col-md-1"></div> -->
       <div class="col-md-12">
@@ -11,91 +10,96 @@
           <div class="col-md-5">
             <h6>Hai <span style="font-style:italic;color:#0d4608;font-weight:bold">{{ credits.firstname }}</span>,</h6>
           </div>
-  
-          <!-- <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-              <span>Your current plan - {{ credits.subscriptionName }}</span>
-            </div>
-            <div class="col-md-1"></div>
-          </div> -->
-  
-          <div class="row mt-5" *ngIf="errMsg">
-                <div class="col-md-3 col-lg-4 col-12"></div>
-                <div class="col-md-6 col-lg-4 col-12 errDesign1">
-                    <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
-                    <p class="mt-4" style="font-style: italic;">{{errMsg}}</p>
-                    <button class="btn btn-success btn-sm" routerLink="/post">Post Products</button>
-                </div>
-                <div class="col-md-3 col-lg-4 col-12"></div>
+          <div class="col-md-5">
+            <strong class="float-right">Total credits : {{ credits.credits}}</strong>
           </div>
-  
-          <!-- <p class="updateProfile">Used Credits</p> -->
-          <div class="row mt-4">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <div class="card mb-3" *ngFor="let credit of creditsArr | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
-                    <div class="card-header cardShadow shadow-sm bg-white rounded text-left">
-                      <div><strong class="tamil_word">{{ credit.category }}</strong></div>
-                      <small>Posted On : {{ credit.productCreatedAt | date }}</small>
-                      <div class="float-right">
-                          <strong style="color: #ef6806d9"
-                          >Credits Used : {{ credit.credit}}</strong
-                        >
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-2 mobRes">
-                            <img height="100px"  width="100px" src="{{credit.image}}" alt="" class="img-fluid z-depth-0">
-                        </div>
-                        <div class="col-md-3">
-                            <h6 class="clr english_wrd" style="font-weight: bold">Posted Products</h6>
-                            <p class="text-muted">{{ credit.productName }}</p>
-                        </div>
-                        <div class="col-md-3">
-                            <h6 class="clr english_wrd" style="font-weight: bold">Total Quantity</h6>
-                            <p class="text-muted">{{credit.quantity}}</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h6 class="clr english_wrd" style="font-weight: bold">Total Price</h6>
-                            <p class="text-muted">{{ credit.price }}</p>
-                        </div>
-                      </div>
-                      <p class="creditPara"><i class="fa fa-check-square-o" aria-hidden="true"></i> You have used <span style="color: #ef6806d9;font-weight: 700">{{ credit.credit }} credits</span> to post this product.</p>
+          <div class="col-md-1"></div>
+        </div>
+
+        <!-- <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <span>Your current plan - {{ credits.subscriptionName }}</span>
+          </div>
+          <div class="col-md-1"></div>
+        </div> -->
+
+        <div class="row mt-5" *ngIf="errMsg">
+              <div class="col-md-3 col-lg-4 col-12"></div>
+              <div class="col-md-6 col-lg-4 col-12 errDesign1">
+                  <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                  <p class="mt-4" style="font-style: italic;">{{errMsg}}</p>
+                  <button class="btn btn-success btn-sm" routerLink="/post">Post Products</button>
+              </div>
+              <div class="col-md-3 col-lg-4 col-12"></div>
+        </div>
+
+        <!-- <p class="updateProfile">Used Credits</p> -->
+        <div class="row mt-4">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+              <div class="card mb-3" *ngFor="let credit of creditsArr | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
+                  <div class="card-header cardShadow shadow-sm bg-white rounded text-left">
+                    <div><strong class="tamil_word">{{ credit.category }}</strong></div>
+                    <small>Posted On : {{ credit.productCreatedAt | date }}</small>
+                    <div class="float-right">
+                        <strong style="color: #ef6806d9"
+                        >Credits Used : {{ credit.credit}}</strong
+                      >
                     </div>
                   </div>
-            </div>
-            <div class="col-md-1"></div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-2 mobRes">
+                          <img height="100px"  width="100px" src="{{credit.image}}" alt="" class="img-fluid z-depth-0">
+                      </div>
+                      <div class="col-md-3">
+                          <h6 class="clr english_wrd" style="font-weight: bold">Posted Products</h6>
+                          <p class="text-muted">{{ credit.productName }}</p>
+                      </div>
+                      <div class="col-md-3">
+                          <h6 class="clr english_wrd" style="font-weight: bold">Total Quantity</h6>
+                          <p class="text-muted">{{credit.quantity}}</p>
+                      </div>
+                      <div class="col-md-4">
+                          <h6 class="clr english_wrd" style="font-weight: bold">Total Price</h6>
+                          <p class="text-muted">{{ credit.price }}</p>
+                      </div>
+                    </div>
+                    <p class="creditPara"><i class="fa fa-check-square-o" aria-hidden="true"></i> You have used <span style="color: #ef6806d9;font-weight: 700">{{ credit.credit }} credits</span> to post this product.</p>
+                  </div>
+                </div>
           </div>
-          <div class="mx-auto mt-3" *ngIf="!errMsg">
-            <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
-          </div>
+          <div class="col-md-1"></div>
         </div>
-        <!-- <div class="col-md-1"></div> -->
+        <div class="mx-auto mt-3" *ngIf="!errMsg">
+          <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
+        </div>
       </div>
+      <!-- <div class="col-md-1"></div> -->
     </div>
-    <div style="margin-top: 14%" *ngIf="role == 'buyer' && roleStatus == 'Active'">
-      <div style="margin-bottom: 6%">
-          <div class="col-md-3 col-lg-4 col-12"></div>
-          <div class="col-md-6 col-lg-4 col-12 errDesign">
-              <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
-              <p class="mt-4">You have to be a "<font style="color: #f53636;font-style: italic">seller</font>" to see <span style="font-style: italic">My Products</span>.</p>
-              <a routerLink="/buyerAsSeller" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">SignUp as seller</a>
-          </div>
-          <div class="col-md-3 col-lg-4 col-12"></div>
-      </div>
   </div>
-  
-  <div style="margin-top: 14%" *ngIf="role == 'buyer' && roleStatus == 'Deactive'">
-      <div style="margin-bottom: 6%">
-          <div class="col-md-3 col-lg-4 col-12"></div>
-          <div class="col-md-6 col-lg-4 col-12 errDesign">
-              <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
-              <p class="mt-4">Your seller request is on processing.Please wait until you get confirmation message.</p>
-              <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">Go to back</a>
-          </div>
-          <div class="col-md-3 col-lg-4 col-12"></div>
-      </div>
-  </div>
-  </div>
+  <div style="margin-top: 14%" *ngIf="role == 'buyer' && roleStatus == 'Active'">
+    <div style="margin-bottom: 6%">
+        <div class="col-md-3 col-lg-4 col-12"></div>
+        <div class="col-md-6 col-lg-4 col-12 errDesign">
+            <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+            <p class="mt-4">You have to be a "<font style="color: #f53636;font-style: italic">seller</font>" to see <span style="font-style: italic">Credits</span>.</p>
+            <a routerLink="/buyerAsSeller" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">SignUp as seller</a>
+        </div>
+        <div class="col-md-3 col-lg-4 col-12"></div>
+    </div>
+</div>
+
+<div style="margin-top: 14%" *ngIf="role == 'buyer' && roleStatus == 'Deactive'">
+    <div style="margin-bottom: 6%">
+        <div class="col-md-3 col-lg-4 col-12"></div>
+        <div class="col-md-6 col-lg-4 col-12 errDesign">
+            <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+            <p class="mt-4">Your seller request is on processing.Please wait until you get confirmation message.</p>
+            <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">Go to back</a>
+        </div>
+        <div class="col-md-3 col-lg-4 col-12"></div>
+    </div>
+</div>
+</div>

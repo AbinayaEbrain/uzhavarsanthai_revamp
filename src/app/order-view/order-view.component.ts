@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+declare var swal: any;
 
 @Component({
   selector: 'app-order-view',
@@ -179,6 +180,14 @@ export class OrderViewComponent implements OnInit {
         //this.mytemplateForm.reset();
         this.loadingCtrl.hide();
         document.getElementById('closeCancelOrderModal1').click();
+        document.getElementById("openConfirmModal").click();
+        // swal("Sent successfully!", "Your Rate & Review has been sent succesfully!", "success")
+        // swal({
+        //   title: 'Rate & Review sent successfully!',
+        //   text:
+        //     'Your Rate & Review has been sent succesfully!',
+        //   imageUrl: '../../assets/Images/progress.gif'
+        // });
       },
       err => {
         console.log(err);

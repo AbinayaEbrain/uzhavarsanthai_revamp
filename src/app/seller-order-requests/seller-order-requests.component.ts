@@ -243,6 +243,7 @@ export class SellerOrderRequestsComponent implements OnInit {
         this.mytemplateForm1.reset();
         this.formReset();
         document.getElementById('closeCancelOrderModal').click();
+        document.getElementById("openConfirmModal").click();
       },
       err => {
         console.log(err);

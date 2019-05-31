@@ -292,12 +292,10 @@ disputeSave() {
       this.disputeData = data.dispute;
       this.updatePostDispute();
       this.mytemplateForm1.reset();
-      this.orderRequestMsg = 'We got your dispute, Sorry! for the inconvenience';
-       setTimeout(() => {
-           this.orderRequestMsg='';
+      // this.orderRequestMsg = 'We got your dispute, Sorry! for the inconvenience';
           document.getElementById('closeCancelOrderModal').click();
-           // this.router.navigate(['/my-order']);
-       },3000)
+          document.getElementById("openConfirmModal").click();
+   
 
     },
     err => {

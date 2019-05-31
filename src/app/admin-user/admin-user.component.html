@@ -32,8 +32,10 @@
                                     <tr class="mobtblfont"  id="dltHide" *ngFor="let deal of registerUser | paginate: { itemsPerPage:6,currentPage:p};">
                                         <td class="tamil_word">{{deal.firstname}} {{deal.lastName}}</td>
                                         <td class="tamil_word">{{deal.phone}}</td>
-                                        <td class="tamil_word">{{deal.address.city.formatted_address}}</td>
-                                        <td class="tamil_word">{{deal.address.city.locality}}</td>
+                                        <td class="tamil_word" *ngIf = "deal.address.city">{{deal.address.city.formatted_address}}</td>
+                                        <td class="tamil_word" *ngIf = "deal.address.addressLine == ''">Not yet update</td>
+                                        <td class="tamil_word" *ngIf = "deal.address.city">{{deal.address.city.locality}}</td>
+                                        <td class="tamil_word" *ngIf = "deal.address.addressLine == ''">Not yet update</td>
                                         <!-- <td>{{deal.address.city.admin_area_l1}}</td> -->
                                         <td class="tamil_word" style="color: mediumvioletred;font-weight: 600;">{{deal.subscriptionName}}</td>
                                         <td style="font-weight: bold;" [ngStyle]="{'color':deal.status === 'ACTIVE' ? 'green' : 'red' }">{{deal.status}}</td>
