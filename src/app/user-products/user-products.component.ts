@@ -51,6 +51,7 @@ export class UserProductsComponent implements OnInit {
   crntUser: any = {};
   roleStatus: any;
   role: any;
+  crdits:any;
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -103,13 +104,8 @@ export class UserProductsComponent implements OnInit {
       this.crntUser = data;
       this.roleStatus = data.roleStatus;
       this.role = data.role;
-      if(this.role == "buyer" || this.roleStatus =="Deactive"){
-        this.loadingCtrl.hide();
-      }
-
-      if(this.role == "seller" && this.roleStatus =="Active"){
-        this.getDeals();
-      }
+      this.credits = data.credits;
+      this.loadingCtrl.hide();
     },err =>{
       console.log(err);
     })
@@ -172,8 +168,6 @@ confirmAddAddr(){
 }
 
   getUser(){
-  
-    // this.mytemplateForm.reset();
     var pacContainerInitialized = false;
      $('#city').keypress(function() {
       if (!pacContainerInitialized) {
@@ -186,23 +180,8 @@ console.log(this.userAddress == null || this.userAddress == '')
 if(this.userAddress == null || this.userAddress == ''){
   document.getElementById("updateAddressConfirmationModal").click();
   this.mytemplateForm.reset();
-}
-else{
-  this._dealsService.getDetails().subscribe(
-    res => {
-      this.loadingCtrl.hide();
-      for (let i = 0; i < res.length; i++) {
-        if (this.id == res[i]._id) {
-          this.credits = res[i];
-        }
-      }
-      console.log(this.credits);
-      this.checkSellerCredit();
-    },
-    err => {
-      console.log(err);
-    }
-  );
+}else{
+  this.router.navigate(['/post'])
 }
   }
 
@@ -210,11 +189,11 @@ else{
     this.updateAddressData.firstname = this.currentUserName;
     this.updateAddressData.password =   this.currentUserPwd ;
     this.updateAddressData.phone = this.currentUserPhone;
-    this.updateAddressData.roleStatus = this.currentUserRoleStatus;
+    this.updateAddressData.roleStatus =  this.roleStatus;
     this.updateAddressData.status = this.currentUserStatus;
-    this.updateAddressData.role = this.currentUserRole;
-    this.updateAddressData.credits =  this.currentUserCredits;
-      this.updateAddressData.address = this.addr;
+    this.updateAddressData.role = this.role ;
+    this.updateAddressData.credits = this.credits ;
+    this.updateAddressData.address = this.addr;
     console.log(this.updateAddressData)
     this._dealsService.updateCustomerAddress(this.updateAddressData, this.currentUserid).subscribe(
       res => {
@@ -222,10 +201,11 @@ else{
         localStorage.setItem('currentUpdateAddr', JSON.stringify(this.updateAddressData));
         this.loadingCtrl.hide();
         this.successMsg = 'Updated successfully!';
+        this.getSingleUser();
         setTimeout(() => {
           this.successMsg = '';
           this.router.navigateByUrl('/dummy', { skipLocationChange: true });
-          setTimeout(() => this.router.navigate(['/products']),100);
+          setTimeout(() => this.router.navigate(['/post']),100);
           document.getElementById('closeAddressModal').click();
         }, 2000);
 

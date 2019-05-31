@@ -91,6 +91,7 @@ export class DealsComponent implements OnInit {
       res => {
         this.showDeals = true;
         this.crdDeals = res;
+        console.log(this.crdDeals )
         let CurrentDate = new Date().toISOString();
         let j = 0, k =0;
         for(let i=0;i < this.crdDeals.length ; i++){

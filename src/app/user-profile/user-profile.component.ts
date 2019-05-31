@@ -52,57 +52,47 @@ export class UserProfileComponent implements OnInit {
     private _users: DealsService,
     private route: ActivatedRoute,
     public zone: NgZone
-  ) {}
-
-  ngOnInit() {
-document.getElementById('focusDiv').focus();
-    this.loadingCtrl.show();
-setTimeout(() => {
-  this.callback();
-}, 1000);
+  ) {
   }
 
-callback(){
-  this.loadingCtrl.show();
-  this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
-  // this.InitialCall();
-  // this.id = this.route.snapshot.params['id']
-  this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
-  this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
-  this._users.getDetails().subscribe(
-    res => {
-      this.loggedUser = res;
-
-      console.log(this.loggedUser)
-      for (let i = 0; i < this.loggedUser.length; i++) {
-        this.currentuserId = JSON.parse(
-          localStorage.getItem('currentUser')
-        )._id;
-        if (this.currentuserId == this.loggedUser[i]._id) {
-            this.loadingCtrl.hide();
-          this.crntUser = this.loggedUser[i];
-          console.log(this.crntUser)
+  ngOnInit() {
+    document.getElementById('focusDiv').focus();
+    this.loadingCtrl.show();
+    this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
+    this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
+    this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
+    this._users.getDetails().subscribe(
+      res => {
+        this.loggedUser = res;
+    this.loadingCtrl.hide();
+        console.log(this.loggedUser)
+        for (let i = 0; i < this.loggedUser.length; i++) {
+          this.currentuserId = JSON.parse(
+            localStorage.getItem('currentUser')
+          )._id;
+          if (this.currentuserId == this.loggedUser[i]._id) {
+            this.crntUser = this.loggedUser[i];
+            console.log(this.crntUser)
+          }
         }
-      }
-console.log(( this.crntUser.address.addressLine == "Not yet update" || this.crntUser.address.addressLine == "" || this.crntUser.address.addressLine == null) || (this.crntUser.address.city == ""
-|| this.crntUser.address.city == undefined || this.crntUser.address.city == "Not yet update"))
-      if((this.crntUser.address.addressLine == "" || this.crntUser.address.addressLine == null) || (this.crntUser.address.city == ""
-    || this.crntUser.address.city == undefined || this.crntUser.address.city == "Not yet update")){
-          this.crntUser.address.addressLine = "Not yet update";
-          this.crntUser.address.city = " Not yet update";
-          // this.crntUser.address.city.formatted_address = " Not yet update";
-          console.log(this.crntUser.address.city)
-          console.log(this.crntUser.address.addressLine)
-      }
-      this.InitialCall();
+  console.log(( this.crntUser.address.addressLine == "Not yet update" || this.crntUser.address.addressLine == "" || this.crntUser.address.addressLine == null) || (this.crntUser.address.city == ""
+  || this.crntUser.address.city == undefined || this.crntUser.address.city == "Not yet update"))
+        if((this.crntUser.address.addressLine == "" || this.crntUser.address.addressLine == null) || (this.crntUser.address.city == ""
+      || this.crntUser.address.city == undefined || this.crntUser.address.city == "Not yet update")){
+            this.crntUser.address.addressLine = "Not yet update";
+            this.crntUser.address.city = " Not yet update";
+            // this.crntUser.address.city.formatted_address = " Not yet update";
+            console.log(this.crntUser.address.city)
+            console.log(this.crntUser.address.addressLine)
+        }
+        this.InitialCall();
 
-    },
-    err => {
-      console.log(err);
-    }
-  );
-}
-
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 
   updateUser() {
     this.loadingCtrl.show();
@@ -116,7 +106,7 @@ console.log(( this.crntUser.address.addressLine == "Not yet update" || this.crnt
     this._users.updateCustomer(this.crntUser, this.id).subscribe(
       res => {
         console.log(res);
-        // localStorage.setItem('currentUser', JSON.stringify(this.crntUser));
+         localStorage.setItem('currentUpdateAddr', JSON.stringify(this.crntUser));
         this.updatePostName();
         this.updateReviewSellerName();
         this.updateReviewBuyerName();
@@ -183,11 +173,12 @@ console.log(( this.crntUser.address.addressLine == "Not yet update" || this.crnt
   InitialCall() {
     for (let i = 0; i < this.loggedUser.length; i++) {
       if (this.id == this.loggedUser[i]._id) {
+
         this.crntUser.firstname = this.loggedUser[i].firstname;
         this.crntUser.lastName = this.loggedUser[i].lastName;
         this.crntUser.gender = this.loggedUser[i].gender;
         this.crntUser.address.addressLine = this.loggedUser[i].address.addressLine;
-        this.crntUser.address.address1 = this.loggedUser[i].address.address1;
+        //this.crntUser.address.address1 = this.loggedUser[i].address.address1;
         //this.crntUser.address.city.formatted_address = this.loggedUser[i].address.city.formatted_address;
       }
     }

@@ -86,6 +86,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   message: any;
   registeredUserData = {
     address: {
+      addressLine:'',
       city: {},
     },
     phone: '',
@@ -143,6 +144,9 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
+    this.querydata.requiredQuantity = '';
+    this.querydata.requiredUnit = '';
+    this.querydata.urgency = '';
     document.getElementById('focusDiv').focus();
     this.id = this.route.snapshot.params['id'];
     this.loadingCtrl.show();
@@ -763,8 +767,10 @@ mapWithPost(){
         this.registeredUserData.roleStatus = 'Active';
       }
       this.registeredUserData.status = 'ACTIVE';
-      this.registeredUserData.address.city = this.addr;
+      // this.registeredUserData.address.city = this.addr;
       // this.registeredUserData.address.addressLine = '';
+      this.registeredUserData.address.city = '';
+      this.registeredUserData.address.addressLine = '';
       this.registeredUserData.phone = this.phoneObj.phone;
       this.loadingCtrl.show();
       console.log(this.registeredUserData);
@@ -899,6 +905,9 @@ mapWithPost(){
 
 //create order modal
 createOrederModal(){
+  this.querydata.requiredQuantity = '';
+  this.querydata.requiredUnit = '';
+  this.querydata.urgency = '';
   var pacContainerInitialized = false;
    $('#cityOne').keypress(function() {
     if (!pacContainerInitialized) {
@@ -916,7 +925,7 @@ this.querydata.requiredUnit = '';
   //     this.mytemplateForm5.reset();
   //   // document.getElementById("updateAddressModal").click();
   // }else{
-   
+
   // }
 
 }

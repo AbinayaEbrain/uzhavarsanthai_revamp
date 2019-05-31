@@ -1507,8 +1507,10 @@ router.put('/updateorderrequest/:id', function(req, res) {
 
 //  update admin closed order request
 router.post('/mapuserOrderRequestStatus/:id', function(req, res) {
+  console.log(req.params.id);
   Orderrequest.find(
     {
+
       _id:req.params.id,
     },
     async (err,result) =>{

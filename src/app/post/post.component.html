@@ -1,6 +1,6 @@
 <div id='focusDiv' tabindex="1"></div>
 <body class="bg1" style="overflow-x:hidden">
-  <div class="text-center container onmobiview mt-4 mb-4">
+  <div class="text-center container onmobiview mt-1 mb-4">
       <div class="row">
           <div class="col-md-4">
               <nav>
@@ -55,7 +55,7 @@
             <div class="col-md-5 mb-3">
               <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">கிடைக்குமிடம் </span>/ Available Place</label>
                 <div class="form-group">
-                      <input google-place type="text" placeholder="Enter your address" formControlName="avlPlace" class="form-control" (onSelect)="setAddress($event)" name="avlPlace" required>
+                      <input google-place type="text" placeholder="Enter your address" formControlName="avlPlace" class="form-control" (onSelect)="setAddress($event)" [(ngModel)]="this.productData.avlPlace" name="avlPlace" required>
                       <span class="text-danger float-left error_word errFont" *ngIf="carForm.controls.avlPlace.invalid && carForm.controls.avlPlace.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
                     </div>
 
@@ -66,22 +66,22 @@
             </div>
           <div class="col-md-1"></div>
           </div>
-        
+
           <div formArrayName="product">
               <div *ngFor="let item of product.controls; let i=index" formGroupName="{{i}}">
-      
+
                 <!-- First Row -->
 
               <div class="row ">
                   <div class="col-md-1"></div>
                     <div class="col-md-4  mb-3">
-                      <label class="english_wrd postLble" for="phone" ><span style="font-size: 14px" class="tamil_word"> பொருள் பெயர் </span>/ Product Name</label>
+                      <label class="english_wrd postLble" for="phone" ><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Product Name</label>
                         <div class="form-group">
                           <input type="text" placeholder="Enter product name" formControlName="name" maxlength="50" name="name" class="form-control"  autocomplete="off"  required>
                           <!-- <span class="text-danger float-left error_word" *ngIf="carForm.controls.name.invalid && carForm.controls.name.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Product name is required</span> -->
                           <div *ngIf="item.controls.name.dirty || item.controls.name.touched">
                               <div class="text-danger float-left error_word errFont" *ngIf="item.hasError('required', 'name')"><i class="fa fa-info-circle" aria-hidden="true"></i>
-                              Name is Required</div>  
+                              Name is Required</div>
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                             <!-- <span class="text-danger float-left error_word" *ngIf="carForm.controls.quantity.invalid && carForm.controls.quantity.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span> -->
                             <div *ngIf="item.controls.quantity.dirty || item.controls.quantity.touched">
                                 <div class="text-danger float-left error_word errFont" *ngIf="item.hasError('required', 'quantity')"><i class="fa fa-info-circle" aria-hidden="true"></i>
-                                 Quantity is Required</div>  
+                                 Quantity is Required</div>
                               </div>
                           </div>
                     </div>
@@ -109,7 +109,7 @@
                             <!-- <span class="text-danger float-left error_word" *ngIf="carForm.controls.qnty.invalid && carForm.controls.qnty.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Unit is required</span> -->
                             <div *ngIf="item.controls.qnty.dirty || item.controls.qnty.touched">
                                 <div class="text-danger float-left error_word errFont" *ngIf="item.hasError('required', 'qnty')"><i class="fa fa-info-circle" aria-hidden="true"></i>
-                                  Unit is Required</div>  
+                                  Unit is Required</div>
                               </div>
                           </div>
                   </div>
@@ -127,24 +127,24 @@
                           <!-- <span class="text-danger float-left error_word" *ngIf="carForm.controls.price.invalid && carForm.controls.price.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Price is required</span> -->
                           <div *ngIf="item.controls.price.dirty || item.controls.price.touched">
                               <div class="text-danger float-left error_word errFont" *ngIf="item.hasError('required', 'price')"><i class="fa fa-info-circle" aria-hidden="true"></i>
-                               Price is Required</div>  
+                               Price is Required</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                      <label class="english_wrd postLble" for="phone"><span style="font-size: 14px" class="tamil_word">பொருளைப் பற்றி </span>/ Description</label>
+                      <label class="english_wrd postLble" for="phone"><span style="font-size: 14px" class="tamil_word">குறிப்பு </span>/ Description</label>
                         <div class="form-group">
                             <input type="text"  placeholder="Enter description" formControlName="description"  name="description" class="form-control" maxlength="500" autocomplete="off" >
                         </div>
                     </div>
                     <div class="col-md-3 mb-3" *ngIf="!editId">
-                        <label class="english_wrd" for=""><span style="font-size: 14px" class="tamil_word">காலாவதி தேதி </span>/ Expiry Date</label>
+                        <label class="english_wrd" for=""><span style="font-size: 14px" class="tamil_word">காலாவதி </span>/ Expiry</label>
                               <div class="form-group">
                                 <input type="text" placeholder="Enter expiry date" name="validityTime" formControlName="validityTime" class="form-control" autocomplete="off"  bsDatepicker [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"  required>
                                 <!-- <span class="text-danger float-left error_word" *ngIf="carForm.controls.validityTime.invalid && carForm.controls.validityTime.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span> -->
                                 <div *ngIf="item.controls.validityTime.dirty || item.controls.validityTime.touched">
                                     <div class="text-danger float-left error_word" *ngIf="item.hasError('required', 'validityTime')"><i class="fa fa-info-circle" aria-hidden="true"></i>
-                                     Expiry Date is Required</div>  
+                                     Expiry Date is Required</div>
                                   </div>
                               </div>
                       </div>
@@ -156,14 +156,14 @@
                                 <!-- <span class="text-danger float-left error_word" *ngIf="carForm.controls.validityTime.invalid && carForm.controls.validityTime.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span> -->
                                 <div *ngIf="item.controls.validityTime.dirty || item.controls.validityTime.touched">
                                     <div class="text-danger float-left error_word errFont" *ngIf="item.hasError('required', 'validityTime')"><i class="fa fa-info-circle" aria-hidden="true"></i>
-                                     Expiry Date is Required</div>  
+                                     Expiry Date is Required</div>
                                   </div>
                               </div>
                       </div>
                   <div class="col-md-1">
                     <div style="color:#0d4608">
                       <a (click)="addSellingPoint()"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                      <a *ngIf="i != 0" (click)="deleteSellingPoint(i)"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>        
+                      <a *ngIf="i != 0" (click)="deleteSellingPoint(i)"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
                     </div>
                     </div>
               </div>
@@ -184,9 +184,9 @@
       <hr>
               </div>
             </div>
-        
+
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" style="padding-bottom: 1%;">
                         <div class="text-center">
                          <button [disabled]= "!carForm.valid"  class="btn btn-outline-success text-center button_word" id="submitBtn" type="submit">Submit</button>&nbsp;
                          <button type="reset" class="btn button_word">Reset</button>
@@ -195,7 +195,7 @@
           </div>
 
         </form>
-      
+
   </div>
 </body>
 

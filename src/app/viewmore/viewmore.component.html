@@ -18,10 +18,10 @@
       </ngx-slick-carousel>
     </div>
     </div> <!-- slider-product.// -->
-  
+
     <div class="img-small-wrap">
-    <div class="item-gallery" *ngFor="let slide of arrayImage ; let i = index"> 
-      <img src="{{ slide }}" height="30" width="43" (click)="slickModal.slickGoTo(i)"> 
+    <div class="item-gallery" *ngFor="let slide of arrayImage ; let i = index">
+      <img src="{{ slide }}" height="30" width="43" (click)="slickModal.slickGoTo(i)">
     </div>
     </div>
      <!-- slider-nav.// -->
@@ -60,7 +60,7 @@
                                 </tr>
                               </tbody>
                       </table>
-  
+
                       <section id="tabs">
                             <div class="container">
                                 <!-- <div class="row">
@@ -87,7 +87,7 @@
                                                   </div>
                                                   <div class="row">
                                                     <div class="col-md-2 col-2">
-  
+
                                                     </div>
                                                     <div class="col-md-10 col-10">
                                                       <div class=" ticketPara float-right" style="color: #ef6806d9;">
@@ -104,7 +104,7 @@
                                                         </span>
                                                     </div> </div>
                                                 </div>
-  
+
                                                 <!-- <div class="notice notice-danger">
                                                   <strong>Notice</strong> notice-danger
                                                 </div> -->
@@ -122,23 +122,23 @@
                                                 </div>
                                           </div> -->
                                         </div>
-  
+
                                     <!-- </div>
                                 </div> -->
                             </div>
                         </section>
-  
+
                       <div style="text-align:center;" *ngIf="!getToken" ><button (click)="checkBuyer()" type="button" class="btn btnStyle mx-auto contactbtn" style="padding: 13px;border-radius: unset"><p style="margin-top: -5px;
                         margin-bottom: -5px;font-weight: bold">Contact Seller</p>
                     <!-- <p class="askbest">Ask for best deal</p> -->
                       </button>
                     </div>
-  
+
                     <div style="text-align:center;" *ngIf="getToken && !requestSent && !omit" >
                         <button type="button" (click)="createOrederModal()" class="btn btnStyle mx-auto contactbtn" style="padding: 13px;border-radius: unset"><p style="margin-top: -5px;
                         margin-bottom: -5px;font-weight: bold">Create Order Request</p>
                         </button>
-  
+
                     </div>
                     <div style="text-align:center;" *ngIf= "omit">
                       <p style="color: red;font-weight: 600;">! Oops This product posted by you!</p>
@@ -153,33 +153,33 @@
     <div class="second" style="display: none">
         <button class="float1" style="float:left" id="hideFilterButton1"  (click)="goToBack()"><i class="fa fa-arrow-left"></i> </button>
         </div>
-  
+
     </div>
     <!--container.//-->
     <br>
-  
-  
+
+
     <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal" name="button" id="openLoginModal"></button>
     <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal1" name="button" id="openSignupModal"></button>
     <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal2" name="button" id="openOrderReqModal"></button>
     <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal3" name="button" id="cancelOrderReqModal"></button>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
     <!-- //open login modal -->
     <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="headingEng"><span class="tamil_word">உள்நுழைக</span> / Login</h5>
-  
+
             <button type="button" class="close" id="closeLoginModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
@@ -206,7 +206,7 @@
             <span toggle="#password" id="password1" (click)="eyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
             <span class="text-danger float-left error_word errFont" [class.d-none] = "password.valid || password.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
           </div>
-  
+
           <a (click)="toggle()" style="cursor: pointer;text-decoration: underline">Forgot password?</a>
           <button [disabled]="loginform.form.invalid " class="btn mt-4 mb-4 btn-block button_word" type="submit" (click)="logform()"><span style="font-size: 14px" class="tamil_word">உள் நுழைக </span> / Login</button>
         </form>
@@ -256,7 +256,7 @@
               <span toggle="#resetPassword" id="resetPassword1" (click)="reseteyeClick()" class="fa fa-fw fa-eye field-icon toggle-password"></span>
               <span class="text-danger float-left error_word errFont" [class.d-none] = "resetPassword.valid || resetPassword.untouched "><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
             </div>
-  
+
             <div class="form-group">
                 <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word"> உறுதிப்படுத்த </span>/ Confirm Password</label>
               <input type="password" id="confirmPassword" (keyup)="equalPwd()"  #confirmPassword="ngModel" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" ngModel name="confirmPassword" class="form-control" [(ngModel)]="resetPasswordObj.confirmPassword" autocomplete="off"  required>
@@ -277,7 +277,7 @@
         </div>
       </div>
     </div>
-  
+
     <!-- signUp modal -->
     <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal1">
       <div class="modal-dialog" role="document">
@@ -304,7 +304,7 @@
                     <button class="btn2" type="submit" id="hideGetOtp" [disabled]="!phoneObj.phone" (click)="signUpSendOtp()">Get OTP</button>
                 </div>
             </div>
-  
+
             <div id="signUpsecondDiv" style="display: none">
                     <div class="text-center"  *ngIf="signUoptsent">OTP has been sent to this number successfully!<br> <b>'{{signUoptsent}}'</b></div>
                 <div class="alert alert-danger text-center"  *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
@@ -325,16 +325,16 @@
                           <input type="text" #input1 id="firstinput"   #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="registeredUserData.firstname" autocomplete="off" required >
                           <span class="text-danger float-left error_word errFont" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Name is required</span>
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                       <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
                               <input type="text" #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control"  [(ngModel)]="registeredUserData.address.addressLine" autocomplete="off" required>
                               <span class="text-danger float-left error_word errFont" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
-                   </div>
-                   <div class="form-group">
+                   </div> -->
+                   <!-- <div class="form-group">
                        <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">மாவட்டம்  </span>/ City</label>
                           <input google-place type="text" placeholder="" id="city" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)"  name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="registeredUserData.address.city" required>
                           <span class="text-danger float-left error_word errFont" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
-                  </div>
+                  </div> -->
                    <div class="form-group">
                        <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word">கடவுச்சொல் </span>/ Password</label>
                           <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
@@ -355,7 +355,7 @@
         </div><!-- /.modal-content -->
       </div>
     </div>
-  
+
      <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal2">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -402,7 +402,7 @@
                         </div>
                         </div>
                         </div>
-  
+
                       <div class="col-md-12 mt-2" >
                       <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">பொருள் தேவை </span>/ Product Urgency</label>
                      <select  class="form-control" class="form-control mobmargintop"   placeholder="Enter unit"
@@ -421,7 +421,7 @@
                          is required</span
                        >
                       </div>
-  
+
                       <div class="col-md-12 mt-2">
                             <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">குறிப்பு </span>/ Notes</label>
                             <textarea
@@ -453,7 +453,7 @@
         </div>
     </div>
     </div>
-  
+
     <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal3">
      <div class="modal-dialog modal-dialog-centered" role="document">
        <div class="modal-content">
@@ -467,12 +467,12 @@
            </div>
            <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete this order request?</h6>
            <div class="text-center">
-  
+
         <button type="button" class="btn btn-success button_word modelBtn"  (click)="updateOrderRqst()">Yes</button>&nbsp;&nbsp;&nbsp;
         <button style="background-color:#e43d3d !important;" type="button" class="btn btn-danger button_word modelBtn" data-dismiss="modal">No</button>
        </div>
          </div>
-  
+
        </div>
     </div>
     </div>
@@ -484,7 +484,7 @@
             <div class="modal-body" style="padding: 25px;" *ngFor="let order of requestData" >
               <h5 class="text-center" style="color:#0d4608">Order requested successfully!</h5>
               <p class="text-center">We got your order query, we get back to you soon ! <br>
-                <span style="color:#0d4608;font-weight: bold;cursor: pointer;" routerLink="/orderView/{{order._id}}">Request ID : {{order.requestId}}</span> 
+                <span style="color:#0d4608;font-weight: bold;cursor: pointer;" routerLink="/orderView/{{order._id}}">Request ID : {{order.requestId}}</span>
               </p>
               <div class="text-center">
                   <button type="button" class="btn btn-success button_word" routerLink="/my-order">OK</button>
@@ -493,7 +493,7 @@
           </div>
         </div>
       </div> -->
-  
+
       <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal5" name="button" id="openConfirmModal"></button>
     <!-- //open login modal -->
     <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal5">
@@ -502,7 +502,7 @@
           <div class="modal-body" style="padding: 25px;">
               <h5 class="text-center" style="color:#0d4608">Order requested successfully!</h5>
               <p class="text-center">We got your order query, we get back to you soon ! <br>
-                <span style="color:#0d4608;font-weight: bold;cursor: pointer;" data-dismiss="modal" aria-label="Close" routerLink="/orderView/{{requestData.orderRqstId}}" >Request ID : {{requestData.requestId}}</span> 
+                <span style="color:#0d4608;font-weight: bold;cursor: pointer;" data-dismiss="modal" aria-label="Close" routerLink="/orderView/{{requestData.orderRqstId}}" >Request ID : {{requestData.requestId}}</span>
               </p>
               <div class="text-center">
                   <button type="button" class="btn btn-success button_word" data-dismiss="modal" aria-label="Close" routerLink="/my-order">OK</button>
@@ -514,4 +514,3 @@
         </div>
       </div>
     </div>
-  
