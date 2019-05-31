@@ -34,6 +34,7 @@ export class OrderRequestComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.getElementById('focusDiv').focus();
     this.getSignupReq();
   }
 
@@ -65,6 +66,7 @@ export class OrderRequestComponent implements OnInit {
       };
     });
   }
+
 
   singleUpdateSignupReq1(id) {
     this.id = id;
@@ -124,6 +126,23 @@ export class OrderRequestComponent implements OnInit {
         res => {
           console.log(res);
           this.updateCreditArr();
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
+
+  dropOrderRequest() {
+    this.loadingCtrl.show();
+    this.userOrderReq2.sellerStatus = 'Cancelled';
+    this.userOrderReq2.status = 'Cancelled';
+    this._dealService
+      .updateOrderRequestStatus(this.userOrderReq2, this.id)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.loadingCtrl.hide();
         },
         err => {
           console.log(err);

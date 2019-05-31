@@ -85,11 +85,13 @@ export class DealsComponent implements OnInit {
   }
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this._dealsService.getDeals().subscribe(
       res => {
         this.showDeals = true;
         this.crdDeals = res;
+        console.log(this.crdDeals )
         let CurrentDate = new Date().toISOString();
         let j = 0, k =0;
         for(let i=0;i < this.crdDeals.length ; i++){
@@ -129,7 +131,7 @@ export class DealsComponent implements OnInit {
       if (this.queryString != this.getPrdtName[i]) {
         console.log('no data');
         this.errMsg1 = 'Product Unavailable';
-        
+
       }
     }
   }
@@ -225,7 +227,7 @@ export class DealsComponent implements OnInit {
      }
      this.showDeals = false;
      document.getElementById('hidePagination').style.display = 'block';
- 
+
      if (this.totalDeals1.length == 0) {
        sweetAlert('Sorry!', 'Currently no product available', 'error');
        this.getLocationDeals = '';

@@ -1,3 +1,4 @@
+<div id='focusDiv' tabindex="1"></div>
 <body class="bg" style="overflow-x: hidden;">
   <div class="container mt-5 pt-5">
     <h4 style="color:#0d4608;text-align:center">Support Tickets</h4>
@@ -104,7 +105,7 @@
       </div>
       <div class="modal-body">
           <span class="float-right"><span><b>Ticket Id</b></span> : {{disputeObj1.ticketId}}</span>
-      <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate> 
+      <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate>
           <div class="form-group mt-2">
               <label class="english_wrd" for="solution" style="color:#0d4608" >Solution</label>
                   <textarea type="text" #solution="ngModel" [class.is-invalid]="solution.invalid && solution.touched" ngModel name="solution" class="form-control borderClr" [(ngModel)]="disputeObj.solution" autocomplete="off" required></textarea>
@@ -133,7 +134,7 @@
       </div>
       <div class="modal-body">
           <span class="float-right"><span><b>Ticket Id</b></span> : {{disputeObj1.ticketId}}</span>
-      <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate> 
+      <form #disputeForm="ngForm" *ngIf ="!submitted" novalidate>
           <div class="form-group mt-4">
               <label class="english_wrd" for="solution" style="color:#0d4608" >Solution</label>
                   <textarea type="text" #solution="ngModel" [class.is-invalid]="solution.invalid && solution.touched" ngModel name="solution" class="form-control borderClr" [(ngModel)]="ticketObj.solution" autocomplete="off" required></textarea>

@@ -36,6 +36,7 @@ export class AdminDisputeComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this.getdispute();
   }

@@ -1,3 +1,4 @@
+<div id='focusDiv' tabindex="1"></div>
 <body class="bg" style="overflow-x: hidden;">
   <div class="container card marTop">
     <h5 class="styl mt-3">My Orders</h5><br>
@@ -55,7 +56,7 @@
                   <div class="col-md-4" style="text-align: left;margin-top: 15px;">
                     <p class="orderHead1 tamil_word " style="color: #0d4608;font-weight: bold;">{{order.prdctCategory}}</p>
                     <p class="orderHead">{{order.prdctName}}</p>
-                    <p class="orderHead">{{order.prdctQty}}/{{order.prdctUnit}}</p>
+                    <p class="orderHead">{{order.requiredQuantity}}/{{order.requiredUnit}}</p>
                     <p class="orderHead">{{order.prdctAvlplace}}</p>
                   </div>
                   <div class="col-md-2" style="text-align: left;margin-top: 15px;">
@@ -64,8 +65,9 @@
                     <p class="orderHead1" style="color: #0d4608;font-weight: bold;">Urgency</p>
                     <p class="orderHead">{{order.urgency}}</p>
                   </div>
-                  <div class="col-md-4 center" style="font-weight: bold;text-align: left;">
-                   <button class="btn btn-outline-danger text-center viewMoreBtn button_word" style="padding: 3px;" data-toggle="modal" data-target="#myModal1"  (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Closed'? 'none' : '' }" [ngStyle]="{'display':order.status === 'Order cancelled'? 'none' : '' }">Cancel Order</button>
+                  <!-- [ngStyle]="{'display':order.status === 'Closed'? 'none' : '' }" [ngStyle]="{'display':order.status === 'Order cancelled'? 'none' : '' }" -->
+                  <div class="col-md-4 center" style="font-weight: bold;text-align: left;" *ngIf = "order.status == 'Order created'">
+                   <button class="btn text-center viewMoreBtn button_word" style="padding: 3px;" data-toggle="modal" data-target="#myModal1"  (click)="singleUpdateSignupReq1(order._id)">Cancel Order</button>
                   </div>
                 </div>
               </div>
@@ -103,7 +105,7 @@
               <div class="col-md-4" style="text-align: left;margin-top: 15px;">
                 <p class="orderHead1" style="color: #0d4608;font-weight: bold;">{{order.prdctCategory}}</p>
                 <p class="orderHead">{{order.prdctName}}</p>
-                <p class="orderHead">{{order.prdctQty}}/{{order.prdctUnit}}</p>
+                <p class="orderHead">{{order.requiredQuantity}}/{{order.requiredUnit}}</p>
                 <p class="orderHead">{{order.prdctAvlplace}}</p>
               </div>
               <div class="col-md-4" style="text-align: left;margin-top: 15px;">
@@ -113,7 +115,7 @@
                 <p class="orderHead">{{order.urgency}}</p>
               </div>
               <div class="col-md-2 center" style="font-weight: bold;">
-               <button class="btn btn-outline-danger text-center viewMoreBtn button_word" style="padding: 3px;" data-toggle="modal" data-target="#myModal1"  (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Order cancelled' ? 'none' : '' }">Cancel Order</button>
+               <button class="btn text-center viewMoreBtn button_word" style="padding: 3px;" data-toggle="modal" data-target="#myModal1"  (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Order cancelled' ? 'none' : '' }">Cancel Order</button>
               </div>
             </div>
           </div>
@@ -227,6 +229,23 @@
             <button type="button" [disabled]="disputeForm.form.invalid" class="btnClr btn" (click)="disputeSave()">Save changes</button>
           </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal5" name="button" id="openConfirmModal"></button>
+  <!-- //open login modal -->
+  <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal5">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style="width: auto;">
+        <div class="modal-body" style="padding: 25px;">
+            <h5 class="text-center" style="color:#0d4608">Sent successfully!</h5>
+            <p class="text-center">We got your dispute, Sorry! for the inconvenience.
+            </p>
+            <div class="text-center">
+                <button type="button" class="btn btn-success button_word" data-dismiss="modal" aria-label="Close">OK</button>
+            </div>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router'
 import { AdminService } from '../admin.service';
 import { DealsService } from '../deals.service';
-// loader 
+// loader
 import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-admin',
@@ -21,12 +21,13 @@ export class AdminComponent implements OnInit {
   constructor(private router:Router,private _adminService:AdminService,private _dealsService:DealsService,public loadingCtrl: NgxSpinnerService) { }
 
   ngOnInit() {
+    document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     setTimeout(() => {
       // swal.close();
       this.loadingCtrl.hide();
   }, 1000);
-   
+
 
   this._dealsService.getDetails()
   .subscribe(
@@ -53,7 +54,6 @@ export class AdminComponent implements OnInit {
   )
 
   }
-  
+
 
 }
-

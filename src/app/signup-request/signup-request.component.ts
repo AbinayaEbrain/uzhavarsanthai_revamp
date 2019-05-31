@@ -29,6 +29,7 @@ export class SignupRequestComponent implements OnInit {
   }
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
     this.getSignupReq();
   }
 

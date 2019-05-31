@@ -26,11 +26,12 @@ export class DealscategoryComponent implements OnInit {
    }
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this._dealService.getCategory()
     .subscribe(
         res => {
-    
+
           this.categoryArr = res;
           this.loadingCtrl.hide();
           if(this.categoryArr.length == 0){
@@ -44,7 +45,7 @@ export class DealscategoryComponent implements OnInit {
            // this.categoryArr = [];
         });
 
-        
+
   }
 
 }

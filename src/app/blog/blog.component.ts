@@ -30,6 +30,7 @@ export class BlogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this.id = this.route.snapshot.params['id'];
 

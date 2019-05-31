@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild,NgZone} from '@angular/core';
 import { DealsService } from '../deals.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router, ParamMap } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NgForm } from '@angular/forms';
 import { Location } from '@angular/common';
-
 declare var swal: any;
-
+declare var $:any;
 @Component({
   selector: 'app-user-products',
   templateUrl: './user-products.component.html',
   styleUrls: ['./user-products.component.css']
 })
 export class UserProductsComponent implements OnInit {
+    @ViewChild('updateAddressform') mytemplateForm: NgForm;
   myCredit: any;
   credits: any;
   crdDeals = [];
@@ -26,20 +27,48 @@ export class UserProductsComponent implements OnInit {
   errMsg1: any;
   success: any;
   queryString: any;
+  successMsg:any;
   p: any;
   d: any;
   errMsg2: any;
   hideProduct = true;
   multiPost = [];
+  currentUserid:any;
+  currentUserName:any;
+  currentUserPwd:any;
+  currentUserPhone:any;
+  currentUserRole:any;
+  currentUserRoleStatus:any;
+  currentUserCredits:any;
+  currentUserStatus:any;
+  userAddress : any;
   singleMultiArray = [];
+  public updateAddressData: any = {};
+  public addrKeys: string[];
+  public addr: {
+    formatted_address: '';
+  };
   crntUser: any = {};
   roleStatus: any;
   role: any;
+  crdits:any;
+
+  setAddress(addrObj) {
+    this.zone.run(() => {
+      this.addr = addrObj;
+      this.addrKeys = Object.keys(addrObj);
+        console.log(this.addrKeys);
+        console.log(this.addr )
+    });
+  }
+
+
 
   constructor(
     private _dealsService: DealsService,
     private route: ActivatedRoute,
     private router: Router,
+    public zone: NgZone,
     public loadingCtrl: NgxSpinnerService,
     private location: Location
   ) {
@@ -52,7 +81,19 @@ export class UserProductsComponent implements OnInit {
   }
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
+    this.currentUserid = JSON.parse(localStorage.getItem('currentUser'))._id;
+    this.currentUserName = JSON.parse(localStorage.getItem('currentUser')).firstname;
+    this.currentUserPwd = JSON.parse(localStorage.getItem('currentUser')).password;
+    this.currentUserPhone = JSON.parse(localStorage.getItem('currentUser')).phone;
+    this.currentUserRole = JSON.parse(localStorage.getItem('currentUser')).role;
+    this.currentUserRoleStatus = JSON.parse(localStorage.getItem('currentUser')).roleStatus;
+    this.currentUserCredits = JSON.parse(localStorage.getItem('currentUser')).credits;
+    this.currentUserStatus = JSON.parse(localStorage.getItem('currentUser')).status;
+
+    console.log(this.currentUserid)
     this.loadingCtrl.show();
+    this.checkAddress();
     this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.getSingleUser();
   }
@@ -64,6 +105,7 @@ export class UserProductsComponent implements OnInit {
         this.crntUser = data;
         this.roleStatus = data.roleStatus;
         this.role = data.role;
+        this.credits = data.credits;
         if (this.role == 'buyer' || this.roleStatus == 'Deactive') {
           this.loadingCtrl.hide();
         }
@@ -116,17 +158,71 @@ export class UserProductsComponent implements OnInit {
     );
   }
 
-  getUser() {
-    this._dealsService.getDetails().subscribe(
-      res => {
-        this.loadingCtrl.hide();
-        for (let i = 0; i < res.length; i++) {
-          if (this.id == res[i]._id) {
-            this.credits = res[i];
-          }
+checkAddress(){
+  this._dealsService.getDetails().subscribe(
+    res => {
+      this.loadingCtrl.hide();
+      for (let i = 0; i < res.length; i++) {
+        if (this.id == res[i]._id) {
+          this.userAddress = res[i].address.addressLine;
+          console.log(this.userAddress )
         }
-        console.log(this.credits);
-        this.checkSellerCredit();
+      }
+    },
+    err => {
+      console.log(err);
+    }
+  );
+}
+
+confirmAddAddr(){
+  document.getElementById("closeAddressModal1").click();
+  document.getElementById("updateAddressModal").click();
+}
+
+  getUser(){
+    var pacContainerInitialized = false;
+     $('#city').keypress(function() {
+      if (!pacContainerInitialized) {
+        console.log("df")
+              $('.pac-container').css('z-index', '9999');
+              pacContainerInitialized = true;
+      }
+});
+console.log(this.userAddress == null || this.userAddress == '')
+if(this.userAddress == null || this.userAddress == ''){
+  document.getElementById("updateAddressConfirmationModal").click();
+  this.mytemplateForm.reset();
+}else{
+  this.router.navigate(['/post'])
+}
+  }
+
+  updateAddress(){
+    this.updateAddressData.firstname = this.currentUserName;
+    this.updateAddressData.password =   this.currentUserPwd ;
+    this.updateAddressData.phone = this.currentUserPhone;
+    this.updateAddressData.roleStatus =  this.roleStatus;
+    this.updateAddressData.status = this.currentUserStatus;
+    this.updateAddressData.role = this.role ;
+    this.updateAddressData.credits = this.credits ;
+    this.updateAddressData.address = this.addr;
+    console.log(this.updateAddressData)
+    this._dealsService.updateCustomerAddress(this.updateAddressData, this.currentUserid).subscribe(
+      res => {
+        console.log(res);
+        localStorage.setItem('currentUpdateAddr', JSON.stringify(this.updateAddressData));
+        this.loadingCtrl.hide();
+        document.getElementById('closeAddressModal').click();
+        document.getElementById("openConfirmModal").click();
+        // this.successMsg = 'Updated successfully!';
+        // setTimeout(() => {
+        //   this.successMsg = '';
+        //   this.router.navigateByUrl('/dummy', { skipLocationChange: true });
+        //   setTimeout(() => this.router.navigate(['/products']),100);
+        //   document.getElementById('closeAddressModal').click();
+        // }, 2000);
+
       },
       err => {
         console.log(err);

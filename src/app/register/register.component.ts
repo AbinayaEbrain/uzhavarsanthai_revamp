@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
   phoneObj: any = {};
   registeredUserData = {
     address: {
+      addressLine:'',
       city: {},
       location: ''
     },
@@ -85,6 +86,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+      document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this.getRole = this.route.snapshot.paramMap.get('role');
     console.log(this.getRole);
@@ -108,7 +110,8 @@ export class RegisterComponent implements OnInit {
       this.registeredUserData.credits = 0;
     }
     this.registeredUserData.status = 'ACTIVE';
-    this.registeredUserData.address.city = this.addr;
+    this.registeredUserData.address.city = '';
+    this.registeredUserData.address.addressLine = '';
     this.registeredUserData.phone = this.phoneObj.phone;
     this.registeredUserData.subscription = this.freeSubscription;
     this.registeredUserData.subscriptionName = this.subscriptionName;

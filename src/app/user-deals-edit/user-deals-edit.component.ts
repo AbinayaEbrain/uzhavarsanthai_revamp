@@ -257,7 +257,7 @@ export class UserDealsEditComponent implements OnInit {
     this.credit.qnty = this.deallistobj.qnty;
     this.credit.image = this.deallistobj.image;
     // this.credit.productCreatedAt = this.deallistobj.productCreatedAt;
-
+   
     console.log(this.credit);
         console.log(this.newquantity);
         console.log(this.newprice);
@@ -268,6 +268,7 @@ export class UserDealsEditComponent implements OnInit {
     this.myCredit = this.creditsOld.credits;
     console.log(this.myCredit);
     console.log(this.lastprice == this.newprice)
+    console.log(this.lastquantity == this.newquantity)
         // minus credit
         if(this.lastprice == this.newprice){
           if(this.lastquantity < this.newquantity ){
@@ -381,11 +382,11 @@ export class UserDealsEditComponent implements OnInit {
         localStorage.getItem('currentUser')
       ).phone;
       this.deallistobj.userAddressLine = JSON.parse(
-        localStorage.getItem('currentUser')
+        localStorage.getItem('currentUpdateAddr')
       ).address.addressLine;
       this.deallistobj.userAddress = JSON.parse(
-        localStorage.getItem('currentUser')
-      ).address.city.formatted_address;
+        localStorage.getItem('currentUpdateAddr')
+      ).address.formatted_address;
 
       if (this.Image.length != 0) {
         this.deallistobj.image = this.Image;
@@ -422,12 +423,14 @@ export class UserDealsEditComponent implements OnInit {
 
   //Minus credits when edit post
   QuantityCredit(){
+    this.loadingCtrl.show();
       this.cumulativequantity = this.newquantity - this.lastquantity;
       console.log(this.cumulativequantity);
 
       this.newprice = this.deallistobj.price;
      
-    this.cumulativecredit = ((this.cumulativequantity * this.newprice) * 1/100);
+    this.cumulativecredit = ((this.cumulativequantity *  this.newprice) * 1/100);
+    this.loadingCtrl.hide();
     console.log(this.cumulativecredit);
     console.log(this.myCredit);
     // if(this.myCredit > this.cumulativecredit){
@@ -438,22 +441,25 @@ export class UserDealsEditComponent implements OnInit {
   }
 
   PriceCredit(){
-
+    this.loadingCtrl.show();
       this.cumulativeprice = this.newprice - this.lastprice;
       console.log(this.cumulativeprice);
    
       this.cumulativecredit = ((this.lastquantity * this.cumulativeprice) * 1/100);
 
       console.log(this.cumulativecredit);
+      this.loadingCtrl.hide();
       // if(this.myCredit > this.cumulativecredit){
       //   this.getUser();
       // }
     }
 
   quantityPriceCredit(){
+    this.loadingCtrl.show();
     if(this.lastquantity < this.newquantity){
       this.cumulativequantity = this.newquantity - this.lastquantity;
       console.log(this.cumulativequantity);
+      this.loadingCtrl.hide();
     } 
 
     if(this.lastprice < this.newprice){
@@ -544,26 +550,31 @@ export class UserDealsEditComponent implements OnInit {
   }
 
   sellerReduceQuantity(){
+    this.loadingCtrl.show();
       console.log(this.newquantity);
     console.log(this.lastprice)
     this.cumulativecredit = ((this.newquantity * this.lastprice) * 1/100);
     console.log(this.cumulativecredit);
+    this.loadingCtrl.hide();
     // if(this.myCredit > this.cumulativecredit){
     //   this.getUser1();
     // }
   }
 
   sellerReducePrice(){   
+    this.loadingCtrl.show();
       console.log(this.newprice);
       console.log(this.lastquantity);
     this.cumulativecredit = ((this.newprice * this.lastquantity) * 1/100);
     console.log(this.cumulativecredit);
+    this.loadingCtrl.hide();
     // if(this.myCredit > this.cumulativecredit){
     //   this.getUser1();
     // }
   }
 
   sellerQuantityPrice(){
+    this.loadingCtrl.show();
       this.cumulativequantity =  this.newquantity;
       console.log(this.cumulativequantity);
 
@@ -572,6 +583,7 @@ export class UserDealsEditComponent implements OnInit {
 
     this.cumulativecredit = ((this.cumulativequantity * this.cumulativeprice) * 1/100);
     console.log(this.cumulativecredit);
+    this.loadingCtrl.hide();
     // if(this.myCredit > this.cumulativecredit){
     //   this.getUser1();
     // }

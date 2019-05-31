@@ -31,6 +31,7 @@ export class BuyerAsSellerComponent implements OnInit {
 
   ngOnInit() {
     this.loadingCtrl.show();
+    document.getElementById('focusDiv').focus();
     this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.getSingleUser();
   }

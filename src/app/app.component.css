@@ -62,11 +62,12 @@ ul li a {
   font-family: 'Hind Madurai', sans-serif;
 }
 .footer-copyright {
-  font-family: 'Mukta', sans-serif;
+  font-family: 'Quattrocento Sans', sans-serif;
 }
 .footerOptions {
   /* margin-top: 3% !important; */
-  font-family: 'Mukta', sans-serif;
+  /* font-family: 'Mukta', sans-serif; */
+font-family: 'Quattrocento Sans', sans-serif;
   cursor: pointer !important;
   text-align: center !important;
 }
@@ -96,6 +97,11 @@ ul li a {
   }
 }
 
+@media screen and (min-width: 768px){
+  .heightNav {
+    height: 70px !important;
+  }
+}
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .footerOptions {
     font-size: 13px;

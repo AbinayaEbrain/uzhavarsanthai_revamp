@@ -34,6 +34,7 @@ export class AdminUserComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this._dealService.getDetails().subscribe(
       res => {
@@ -47,20 +48,21 @@ export class AdminUserComponent implements OnInit {
               1
             );
           }
-          // if (this.registerUser[i].address.city.formatted_address) {
-          //   let city = this.registerUser[i].address.city.formatted_address;
-          //   this.registerUser[i].address.city.formatted_address = city.split(
-          //     ','
-          //   )[0];
-          //   this.registerUser[i].address.city.locality = city.split(',')[1];
-          // }
+          if (this.registerUser[i].address.city.formatted_address) {
+            let city = this.registerUser[i].address.city.formatted_address;
+            this.registerUser[i].address.city.formatted_address = city.split(
+              ','
+            )[0];
+            this.registerUser[i].address.city.locality = city.split(',')[1];
+          }
         }
+        console.log(this.registerUser);
         if (this.registerUser.length == 0) {
           this.errMsg = 'No users found';
         }
       },
       err => {
-        this.loadingCtrl.hide();
+        // this.loadingCtrl.hide();
         console.log(err);
       }
     );

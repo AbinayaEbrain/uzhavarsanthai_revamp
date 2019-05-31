@@ -15,7 +15,9 @@ export class NotificationsComponent implements OnInit {
 
   constructor(private _dealsService: DealsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+      document.getElementById('focusDiv').focus();
+  }
 
   notificationToAll() {
     console.log('function works');

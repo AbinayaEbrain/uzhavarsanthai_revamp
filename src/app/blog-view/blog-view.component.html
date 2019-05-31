@@ -1,3 +1,4 @@
+<div id='focusDiv' tabindex="1"></div>
 <div class="container-fluid bg1">
     <div class="container  pt-5">
       <div class="row mt-2 mb-2">
@@ -13,20 +14,20 @@
                         <!-- <div  class="alert alert-warning fade show onmobviewfont" style="display: none">
                             <button type="button" class="close alertbtncss" data-dismiss="alert"   aria-label="close">&times;</button>
                           {{errMsg}}
-                          <a class="pt-2" id="onErrMsg" routerLink="/login">Proceed</a> 
+                          <a class="pt-2" id="onErrMsg" routerLink="/login">Proceed</a>
                         </div>  -->
                       </div>
-                      <div class="showAlert"> 
+                      <div class="showAlert">
                       <div  class="alert alert-warning fade show onmobviewfont">
                           <button type="button" class="close alertbtncss" onclick="$('.showAlert').hide()">x</button>
-                        {{errMsg}} 
-                        <a class="pt-2" id="onErrMsg" routerLink="/login">Login now</a> 
-                      </div>   
+                        {{errMsg}}
+                        <a class="pt-2" id="onErrMsg" routerLink="/login">Login now</a>
+                      </div>
                     </div>
-                    
-                   
+
+
                         <!-- <div class="container" style="display:none;" id="myAlert">
-                         
+
                           <div class="alert alert-success alert-dismissable" id="myAlert2">
                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                               Success! message sent successfully.
@@ -49,7 +50,7 @@
                   <app-read-more class="mt-2" [text]="blog.commenttext" [maxLength]="200"></app-read-more>
 
                   </div>
-                
+
                 </div>
              </div>
              <div *ngIf="show < blogArr.length" class="mx-auto mb-3" style="color: #0d4608;font-weight: bold;cursor: pointer" (click)="increaseShow()">Load More...</div>

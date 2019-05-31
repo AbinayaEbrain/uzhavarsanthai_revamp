@@ -1,7 +1,8 @@
+<div id='focusDiv' tabindex="1"></div>
 <body class="bg">
   <br>
     <br>
-    <br>  
+    <br>
     <br>
 <div class="container-fluid">
     <div *ngIf="role == 'seller' && roleStatus == 'Active'">
@@ -38,7 +39,7 @@
                 </ul>
                 <div class="col-md-12">
                         <div class="text-center">
-                         <button  class="btn btn-outline-success btn-sm text-center viewMoreBtn mx-auto"  [ngStyle]="{'display':dispute.planType == 'Paid plan' ? 'block' : 'none' }"  type="submit" (click)="getSingleSubsc(dispute._id)" style="font-family: 'Oxygen', sans-serif;">Buy Now</button>
+                         <button  class="btn btn-outline-success btn-sm text-center viewMoreBtn mx-auto"  [ngStyle]="{'display':dispute.planType == 'Paid plan' ? 'block' : 'none' }"  type="submit" (click)="getSingleSubsc(dispute._id)" style="font-family: 'Oxygen', sans-serif;" data-toggle="modal" data-target="#myModal">Buy Now</button>
                          <p class="ticketRow" [ngStyle]="{'display':dispute.planType == 'Free plan' ? 'block' : 'none' }" style="color: #0d4608;font-weight: bold;margin-bottom: 7px;font-family: 'Oxygen', sans-serif;font-size: 16px;">FREE</p>
                           </div>
                     </div>
@@ -67,7 +68,7 @@
           <div class="col-md-6 col-lg-4 col-12 errDesign">
               <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
               <p class="mt-4">Your seller request is on processing.Please wait until you get confirmation message.</p>
-              <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #0d4608;">Go to back</a>
+              <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">Go to back</a>
           </div>
           <div class="col-md-3 col-lg-4 col-12"></div>
       </div>
@@ -76,3 +77,30 @@
 
 <br><br>
 </body>
+
+
+
+ <!-- modal -->
+
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title fntSize" style="font-family:'Oxygen', sans-serif;">Plan Confirmation</p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="text-black x">X</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to buy this plan?</p>
+          <div class="text-center">
+           <button type="button" class="btn btnClr button_word modelBtn" (click)="updateSubsc()" data-dismiss="modal">Yes</button>&nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btnDanger button_word modelBtn" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>

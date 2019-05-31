@@ -6,6 +6,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { DealsService } from '../deals.service';
 import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -22,6 +23,9 @@ export class UserProfileComponent implements OnInit {
   firstnam = '';
   success: any;
   id: any;
+  checkpassword = false
+  notOldpwderr : any;
+  otpObj: any = {};
   currentusername: any;
   public crntUser: any = {};
   public addrKeys: string[];
@@ -31,13 +35,9 @@ export class UserProfileComponent implements OnInit {
   public address: any;
   adrss: any;
   addrs: any;
-  checkpassword = false
-  notOldpwderr : any;
   pwd : any;
-
+  googleAddress: any;
   setAddress(addrObj) {
-    //We are wrapping this in a NgZone to reflect the changes
-    //to the object in the DOM.
     this.zone.run(() => {
       this.addr = addrObj;
       this.addrKeys = Object.keys(addrObj);
@@ -52,27 +52,39 @@ export class UserProfileComponent implements OnInit {
     private _users: DealsService,
     private route: ActivatedRoute,
     public zone: NgZone
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
+    document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
     this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
-    this.InitialCall();
-    // this.id = this.route.snapshot.params['id']
     this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
+    this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
     this._users.getDetails().subscribe(
       res => {
         this.loggedUser = res;
-        console.log(this.loggedUser);
+    this.loadingCtrl.hide();
+        console.log(this.loggedUser)
         for (let i = 0; i < this.loggedUser.length; i++) {
           this.currentuserId = JSON.parse(
             localStorage.getItem('currentUser')
           )._id;
           if (this.currentuserId == this.loggedUser[i]._id) {
             this.crntUser = this.loggedUser[i];
+            console.log(this.crntUser)
           }
         }
-        this.loadingCtrl.hide();
+        if((this.crntUser.address.addressLine == "" || this.crntUser.address.addressLine == null) || (this.crntUser.address.city == ""
+      || this.crntUser.address.city == undefined || this.crntUser.address.city == "Not yet update")){
+            this.crntUser.address.addressLine = "Not yet update";
+            this.crntUser.address.city = " Not yet update";
+            // this.crntUser.address.city.formatted_address = " Not yet update";
+            console.log(this.crntUser.address.city)
+            console.log(this.crntUser.address.addressLine)
+        }
+        this.InitialCall();
+
       },
       err => {
         console.log(err);
@@ -83,6 +95,7 @@ export class UserProfileComponent implements OnInit {
   updateUser() {
     this.loadingCtrl.show();
     localStorage.setItem('firstname', JSON.stringify(this.crntUser.firstname));
+    console.log(this.addr != undefined || this.addr != null)
     if (this.addr != undefined || this.addr != null) {
       this.crntUser.address.city = this.addr;
     }
@@ -91,6 +104,7 @@ export class UserProfileComponent implements OnInit {
     this._users.updateCustomer(this.crntUser, this.id).subscribe(
       res => {
         console.log(res);
+         localStorage.setItem('currentUpdateAddr', JSON.stringify(this.crntUser));
         this.updatePostName();
         //this.updateReviewSellerName();
         //this.updateReviewBuyerName();
@@ -157,18 +171,16 @@ export class UserProfileComponent implements OnInit {
   InitialCall() {
     for (let i = 0; i < this.loggedUser.length; i++) {
       if (this.id == this.loggedUser[i]._id) {
+
         this.crntUser.firstname = this.loggedUser[i].firstname;
         this.crntUser.lastName = this.loggedUser[i].lastName;
         this.crntUser.gender = this.loggedUser[i].gender;
-        this.crntUser.address.addressLine = this.loggedUser[
-          i
-        ].address.addressLine;
-        this.crntUser.address.address1 = this.loggedUser[i].address.address1;
-        this.crntUser.address.city.formatted_address = this.loggedUser[
-          i
-        ].address.city.formatted_address;
+        this.crntUser.address.addressLine = this.loggedUser[i].address.addressLine;
+        //this.crntUser.address.address1 = this.loggedUser[i].address.address1;
+        //this.crntUser.address.city.formatted_address = this.loggedUser[i].address.city.formatted_address;
       }
     }
+    console.log(this.crntUser);
   }
 
   onSubmit() {
@@ -186,7 +198,6 @@ export class UserProfileComponent implements OnInit {
       document.getElementById("firstDiv").style.display = 'block';
       document.getElementById("secondDiv").style.display = 'none';
   }
-
   verifyPwd(){
     if(this.crntUser.oldotp == this.pwd){
       this.notOldpwderr = '';

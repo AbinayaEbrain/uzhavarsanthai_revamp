@@ -7,7 +7,9 @@
   min-height: 100vh;
   width: 100%;
 }
-
+.updateAddrees{
+      width: 50px;
+}
 .inline input {
   display: inline-block;
 }

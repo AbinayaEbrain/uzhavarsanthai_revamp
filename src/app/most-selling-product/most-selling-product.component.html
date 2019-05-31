@@ -1,3 +1,4 @@
+<div id='focusDiv' tabindex="1"></div>
 <body class="bg" style="overflow-x: hidden;">
   <div class="container mt-4 pt-5">
     <div class="card mt-3">
@@ -12,8 +13,9 @@
         <div class="col-md-12">
             <div class="card mb-3" *ngFor="let credit of orderrequests | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
                 <div class="card-header cardShadow shadow-sm bg-white rounded text-left">
-                  <div><strong class="tamil_word">{{ credit.category }}</strong></div>
-                  <small>Posted On : {{ credit.date | date }}</small>
+                  <div><strong class="tamil_word">{{ credit.category }}</strong>
+                  <small style="color: #ef6806d9;float:right">Posted On : {{ credit.date | date }}</small>
+                </div>
                   <!-- <div class="float-right">
                       <strong style="color: #eb0f2491"
                       >Credits Used : {{ credit.credit }}</strong
@@ -52,6 +54,3 @@
       </div>
 </div></div>
 </body>
-
-
-
