@@ -20,6 +20,7 @@ export class UserProductsComponent implements OnInit {
   crdDeals1 = [];
   userDeals = [];
   userDeals1 = [];
+  submitted:any;
   getPrdtName = [];
   id: any;
   deal: any;
