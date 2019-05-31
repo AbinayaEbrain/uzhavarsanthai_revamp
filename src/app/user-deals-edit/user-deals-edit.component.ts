@@ -156,6 +156,7 @@ export class UserDealsEditComponent implements OnInit {
         this.lastprice = this.deallistobj.price;
         console.log(this.lastquantity);
         console.log(this.lastprice);
+        console.log(this.address);
         this.deallistobj.avlPlace = this.address.formatted_address;
         this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
         this.deallistobj.validityTime = this.dateNrml;

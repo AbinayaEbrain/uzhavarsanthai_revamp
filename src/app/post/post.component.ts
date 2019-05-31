@@ -149,10 +149,10 @@ export class PostComponent implements OnInit {
 
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
     console.log( this.currentuserId)
-      this.productData.avlPlace = JSON.parse(
+      this.carForm.value.avlPlace = JSON.parse(
         localStorage.getItem('currentUpdateAddr')
       ).address.formatted_address;
-      console.log(this.productData.avlPlace)
+      console.log(this.carForm.value.avlPlace)
       this.multiData.avlPlace = JSON.parse(
         localStorage.getItem('currentUpdateAddr')
       ).address.formatted_address;
@@ -387,8 +387,7 @@ export class PostComponent implements OnInit {
 
             if (this.addr == undefined || this.addr == null) {
               this.carForm.value.product[i].avlPlace = JSON.parse(
-                localStorage.getItem('currentUser')
-              ).address.city;
+                localStorage.getItem('currentUpdateAddr')).address.city;
             } else {
               this.carForm.value.product[i].avlPlace = this.addr;
             }
