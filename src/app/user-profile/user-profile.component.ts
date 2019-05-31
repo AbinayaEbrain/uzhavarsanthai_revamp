@@ -106,8 +106,8 @@ export class UserProfileComponent implements OnInit {
         console.log(res);
          localStorage.setItem('currentUpdateAddr', JSON.stringify(this.crntUser));
         this.updatePostName();
-        this.updateReviewSellerName();
-        this.updateReviewBuyerName();
+        //this.updateReviewSellerName();
+        //this.updateReviewBuyerName();
         this.loadingCtrl.hide();
         this.success = 'Updated successfully!';
         setTimeout(() => {

@@ -13,6 +13,7 @@ declare var $:any;
 export class HomeComponent implements OnInit {
   // public updateAddressData: any = {};
   gettoken:any;
+  submitted:any;
   role:any;
   public addrKeys: string[];
   public addr: {

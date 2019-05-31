@@ -19,11 +19,51 @@
     </div>
     </div> <!-- slider-product.// -->
 
+    <!-- 
+  <div class="carouStyle">
+    <ngx-slick-carousel class="carousel slider-nav"
+    #slickModal1="slick-carousel"
+    style="text-align: center;"
+            [config]="slideConfig1"
+            (init)="slickInit1($event)">
+        <div ngxSlickItem *ngFor="let slide of arrayImage ; let i = index" class="slide slickStyle">
+            <img src="{{ slide }}"  alt=""  height="30" width="43" (click)="slickModal.slickGoTo(i)">
+        </div>
+    </ngx-slick-carousel>
+  </div> -->
+
+  <!-- <div *ngFor="let slide of arrayImage ; let i = index" class="slide slickStyle">
+    <img src="{{ slide }}"  alt=""  height="30" width="43" (click)="slickModal.slickGoTo(i)">
+</div> -->
+
+
+<!-- <div class="main">
+  <div class="slider slider-for">
+    <div *ngFor="let slide of arrayImage">
+      <img src="{{slide}}" class="viewImage" style="max-width: 10%;" height="20">
+    </div>
+  </div>
+  <div class="slider slider-nav">
+    <div *ngFor="let slide of arrayImage">
+      <img src="{{slide}}" height="30" width="43" (click)="slickModal.slickGoTo(i)">
+    </div>
+  </div>
+</div> -->
+
+
+  <!-- <div class="slider slider-nav">
     <div class="img-small-wrap">
+      <div class="item-gallery" *ngFor="let slide of arrayImage ; let i = index"> 
+        <img src="{{ slide }}" height="30" width="43" (click)="slickModal.slickGoTo(i)"> 
+      </div>
+      </div>
+  </div> -->
+
+    <!-- <div class="img-small-wrap">
     <div class="item-gallery" *ngFor="let slide of arrayImage ; let i = index">
       <img src="{{ slide }}" height="30" width="43" (click)="slickModal.slickGoTo(i)">
     </div>
-    </div>
+    </div> -->
      <!-- slider-nav.// -->
     </article> <!-- gallery-wrap .end// -->
     </aside>

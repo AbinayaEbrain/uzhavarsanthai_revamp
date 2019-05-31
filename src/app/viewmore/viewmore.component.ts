@@ -78,6 +78,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   errMsgVerfi: any;
   phoneObj: any = {};
   errormsg1: any;
+  slideConfig1 : any;
   optsent: any;
   signUoptsent:any;
   phnErr: any;
@@ -95,6 +96,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
     role: '',
     roleStatus: ''
   };
+  arrNum = [];
   success: any;
   signErrormsg :any;
   signUpNumbrExisterrormsg:any;
@@ -278,6 +280,30 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
           autoplay: false,
           autoplaySpeed: 1500
         };
+
+        $('.slider-for').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          fade: true,
+          asNavFor: '.slider-nav'
+        });
+        $('.slider-nav').slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          asNavFor: '.slider-for',
+          dots: true,
+          focusOnSelect: true
+        });
+        this.slideConfig1 = {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          dots: true,
+          infinite: true,
+          arrows: true,
+         // autoplay: false,
+         // autoplaySpeed: 1500
+        };
       },
       err => console.log(err)
     );
@@ -447,6 +473,10 @@ mapWithPost(){
 }
 
   slickInit(e) {
+    console.log('slick initialized');
+  }
+
+  slickInit1(e) {
     console.log('slick initialized');
   }
 

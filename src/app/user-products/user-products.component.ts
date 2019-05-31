@@ -20,6 +20,7 @@ export class UserProductsComponent implements OnInit {
   crdDeals1 = [];
   userDeals = [];
   userDeals1 = [];
+  submitted:any;
   getPrdtName = [];
   id: any;
   deal: any;
@@ -98,24 +99,33 @@ export class UserProductsComponent implements OnInit {
     this.getSingleUser();
   }
 
-  getSingleUser(){
-    this._dealsService.getSingleUser(this.id).subscribe(data =>{
-      console.log(data);
-      this.crntUser = data;
-      this.roleStatus = data.roleStatus;
-      this.role = data.role;
-      this.credits = data.credits;
-      this.loadingCtrl.hide();
-    },err =>{
-      console.log(err);
-    })
+  getSingleUser() {
+    this._dealsService.getSingleUser(this.id).subscribe(
+      data => {
+        console.log(data);
+        this.crntUser = data;
+        this.roleStatus = data.roleStatus;
+        this.role = data.role;
+        this.credits = data.credits;
+        if (this.role == 'buyer' || this.roleStatus == 'Deactive') {
+          this.loadingCtrl.hide();
+        }
+
+        if (this.role == 'seller' && this.roleStatus == 'Active') {
+          this.getDeals();
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   goToBack() {
     this.location.back();
   }
 
-  getDeals(){
+  getDeals() {
     this._dealsService.getDeals().subscribe(
       res => {
         let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
@@ -135,8 +145,12 @@ export class UserProductsComponent implements OnInit {
             l++;
           }
         }
+
+        if (this.userDeals.length == 0) {
+          this.errMsg = "Still you haven't post any deals";
+        }
         this.loadingCtrl.hide();
-        this.getMultiArray();
+        // this.getMultiArray();
       },
       err => {
         this.loadingCtrl.hide();
@@ -217,54 +231,53 @@ if(this.userAddress == null || this.userAddress == ''){
     );
   }
 
-  checkSellerCredit(){
-    console.log(this.credits)
-    this.myCredit = this.credits.credits
+  checkSellerCredit() {
+    console.log(this.credits);
+    this.myCredit = this.credits.credits;
     console.log(this.myCredit);
-      if (this.myCredit < 1) {
-        console.log('No credit')
-        swal({
-          title: 'You have no credit!',
-          text:
-            'If you post your product! Please pay MONEY show your PLANS.',
-          imageUrl: '../../assets/Images/progress.gif'
-        });
-        this.router.navigate(['/subscription-plan']);
-      } else{
-        console.log('You have a credit')
-        this.router.navigate(['/post']);
-      }
-  }
-
-  getMultiArray(){
-    this._dealsService.getMultiPost().subscribe(res =>{
-      console.log(res);
-
-      let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
-      let j = 0;
-      let CurrentDate = new Date().toISOString();
-
-      for(let i = 0 ; i < res.length ; i++){
-        if (
-          acntID == res[i].accountId &&
-          res[i].validityTime > CurrentDate
-        ){
-          this.multiPost[j] = res[i];
-          j++;
-        }
-      }
-      this.getArray();
-    },err =>{
-      console.log(err);
-    });
-  }
-
-  getArray(){
-    this.singleMultiArray = this.userDeals.concat(this.multiPost);
-    if (this.singleMultiArray.length == 0) {
-      this.errMsg = "Still you haven't post any deals";
+    if (this.myCredit < 1) {
+      console.log('No credit');
+      swal({
+        title: 'You have no credit!',
+        text: 'If you post your product! Please pay MONEY show your PLANS.',
+        imageUrl: '../../assets/Images/progress.gif'
+      });
+      this.router.navigate(['/subscription-plan']);
+    } else {
+      console.log('You have a credit');
+      this.router.navigate(['/post']);
     }
   }
+
+  // getMultiArray(){
+  //   this._dealsService.getMultiPost().subscribe(res =>{
+  //     console.log(res);
+
+  //     let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+  //     let j = 0;
+  //     let CurrentDate = new Date().toISOString();
+
+  //     for(let i = 0 ; i < res.length ; i++){
+  //       if (
+  //         acntID == res[i].accountId &&
+  //         res[i].validityTime > CurrentDate
+  //       ){
+  //         this.multiPost[j] = res[i];
+  //         j++;
+  //       }
+  //     }
+  //     this.getArray();
+  //   },err =>{
+  //     console.log(err);
+  //   });
+  // }
+
+  // getArray(){
+  //   this.singleMultiArray = this.userDeals.concat(this.multiPost);
+  //   if (this.singleMultiArray.length == 0) {
+  //     this.errMsg = "Still you haven't post any deals";
+  //   }
+  // }
 
   getActiveDeals() {
     this.queryString = '';
@@ -339,7 +352,7 @@ if(this.userAddress == null || this.userAddress == ''){
     );
   }
 
-  deleteMultiPost(){
+  deleteMultiPost() {
     this.id = this.route.snapshot.params['id'];
     this._dealsService.deleteMultiPost(this.id).subscribe(
       res => {

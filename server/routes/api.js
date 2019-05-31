@@ -580,6 +580,28 @@ router.put('/deals/:id', function(req, res) {
   );
 });
 
+//update deals
+router.put('/productUpdate/:id', function(req, res) {
+  Post.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: {
+        quantity: req.body.quantity,
+      }
+    },
+    {
+      new: true
+    },
+    function(err, updatedUser) {
+      if (err) {
+        res.send('Error updating user');
+      } else {
+        res.json(updatedUser);
+      }
+    }
+  );
+});
+
 //Update order request
 router.post('/updateRegister/:id', function(req, res) {
   User.updateOne(

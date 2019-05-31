@@ -100,7 +100,7 @@
                                       <input type="date" placeholder="Date" #validityTime="ngModel" [class.is-invalid]="validityTime.invalid && validityTime.touched" ngModel  name="validityTime" class="form-control" (change)="dateChange($event)" [ngModel]="deallistobj.validityTime | date:'yyyy-MM-dd'" required>
                                       <span class="text-danger float-left error_word" [class.d-none] = "validityTime.valid || validityTime.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span>
                                     </div>
-                              </div> -->
+                                     </div> -->
                             <div class="col-md-1"></div>
                         </div>
                            <!-- last row -->
@@ -135,24 +135,40 @@
       </div>
     
     
-          <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog  modal-dialog-centered">
-              <div class="modal-content" >
-                <!-- <div class="modal-header">
-                  <h5 class="modal-title ">Product Image</h5>
-                  <button type="button" class="close"  data-dismiss="modal">&times;</button>
-                </div> -->
-                <div class="modal-body">
-                        <!-- <img src="{{arrayImage}}" height="250px" width= "100%" alt="Card image cap"> -->
-                        <ngx-slick-carousel class="carousel"
-                        #slickModal="slick-carousel"
-                                [config]="slideConfig"
-                                (init)="slickInit($event)">
-                            <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
-                                <img src="{{ slide }}" alt="Card image" height="250px" width= "100%" class="viewImage">
-                            </div>
-                        </ngx-slick-carousel>
-                </div>
-              </div>
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog  modal-dialog-centered">
+          <div class="modal-content" >
+            <!-- <div class="modal-header">
+              <h5 class="modal-title ">Product Image</h5>
+              <button type="button" class="close"  data-dismiss="modal">&times;</button>
+            </div> -->
+            <div class="modal-body" *ngIf="arrayImage.length != 1">
+                    <!-- <img src="{{arrayImage}}" height="250px" width= "100%" alt="Card image cap"> -->
+                    <ngx-slick-carousel class="carousel"
+                    #slickModal="slick-carousel"
+                            [config]="slideConfig"
+                            (init)="slickInit($event)">
+                        <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
+                            <img src="{{ slide }}" alt="Card image" height="250px" width= "100%" class="viewImage">
+                        </div>
+                    </ngx-slick-carousel>
+            </div>
+
+            <div class="modal-body" *ngIf="arrayImage.length == 1">
+                    <!-- <img src="{{arrayImage}}" height="250px" width= "100%" alt="Card image cap"> -->
+                    <!-- <ngx-slick-carousel class="carousel"
+                    #slickModal="slick-carousel"
+                            [config]="slideConfig"
+                            (init)="slickInit($event)">
+                        <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
+                            <img src="{{ slide }}" alt="Card image" height="250px" width= "100%" class="viewImage">
+                        </div>
+                    </ngx-slick-carousel> -->
+                    <div  *ngFor="let slide of arrayImage" class="slide">
+                            <img src="{{ slide }}" alt="Card image" height="250px" width= "100%" class="viewImage">
+                    </div>
             </div>
           </div>
+        </div>
+        </div>
+        
