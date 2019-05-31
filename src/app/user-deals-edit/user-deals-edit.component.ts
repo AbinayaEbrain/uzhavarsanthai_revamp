@@ -314,21 +314,25 @@ export class UserDealsEditComponent implements OnInit {
       });
       this.router.navigate(['/subscription-plan']);
       this.loadingCtrl.hide();
-    }else{
+    }else if((this.newprice == this.lastprice) && (this.newquantity == this.lastquantity)){
+      this.imageUpload();
+    }
+    else{
       //Adding the image to the form data to be sent
       this.imageUpload();
     }
     
 
-    if(this.myCredit > this.cumulativecredit){
-      if (this.urls.length == 0 || this.urls == undefined || this.urls == []) {
-        this.loadingCtrl.hide();
-        this.update();
-      }
-    }
+    // if(this.myCredit > this.cumulativecredit){
+    //   if (this.urls.length == 0 || this.urls == undefined || this.urls == []) {
+    //     this.loadingCtrl.hide();
+    //     this.update();
+    //   }
+    // }
   }
 
   imageUpload(){
+    console.log(this.urls)
     if (this.urls.length != 0 || this.urls != undefined) {
       for (let i = 0; i < this.urls.length; i++) {
         var image = new FormData(); //FormData creation
@@ -341,6 +345,11 @@ export class UserDealsEditComponent implements OnInit {
         });
         break;
       }
+    }
+
+    if(this.urls.length == 0){
+      this.update();
+
     }
   }
 
@@ -380,8 +389,11 @@ export class UserDealsEditComponent implements OnInit {
 
       if (this.Image.length != 0) {
         this.deallistobj.image = this.Image;
+      }else{
+        this.deallistobj.image = this.arrayImage
       }
-console.log(this.deallistobj);
+    console.log(this.deallistobj);
+
       this._dealsService.editDeals(this.deallistobj, this.id).subscribe(
         res => {
           console.log(res);

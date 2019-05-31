@@ -18,6 +18,7 @@ export class DealsService {
   private _getCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/getCount';
   // https://farmers-market-ebrain.herokuapp.com
   private _dealsUrl = 'http://localhost:5000/api/deals';
+  private _productUpdateUrl = 'http://localhost:5000/api/productUpdate';
   private _postUrl = 'http://localhost:5000/api/post';
   private _getUrl = 'https://uzhavarsanthai.herokuapp.com/api/details';
 
@@ -149,6 +150,7 @@ export class DealsService {
   }
 
   addPost(data) {
+    console.log("1");
     return this.http.post<any>(this._postUrl, data);
   }
 
@@ -182,6 +184,10 @@ export class DealsService {
 
   editDeals(data, id) {
     return this.http.put<any>(this._dealsUrl + '/' + id, data);
+  }
+
+  productUpdate(data, id) {
+    return this.http.put<any>(this._productUpdateUrl + '/' + id, data);
   }
 
   editCategory(data, id) {

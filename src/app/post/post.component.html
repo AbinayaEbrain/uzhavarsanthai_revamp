@@ -78,7 +78,7 @@
                         <div class="form-group">
                           <input type="text" placeholder="Enter product name" formControlName="name" maxlength="50" name="name" class="form-control"  autocomplete="off"  required>
                           <!-- <span class="text-danger float-left error_word" *ngIf="carForm.controls.name.invalid && carForm.controls.name.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Product name is required</span> -->
-                          <div *ngIf="item.controls.name.dirty || item.controls.name.touched">
+                          <div *ngIf="(item.controls.name.dirty || item.controls.name.touched)">
                               <div class="text-danger float-left error_word errFont" *ngIf="item.hasError('required', 'name')"><i class="fa fa-info-circle" aria-hidden="true"></i>
                               Name is Required</div>  
                             </div>
@@ -170,7 +170,7 @@
               <!-- Third row -->
               <div class="row">
                   <div class="col-md-1"></div>
-                  <div class="col-md-5 mb-3">
+                  <div class="col-md-5">
                       <div class="form-group">
                           <div class="upload-btn-wrapper">
                             <label for="image" class="english_wrd" ><span span style="font-size: 14px" class="tamil_word">படத்தை பதிவேற்றம் செய்யவும்</span> / Upload product image</label>
@@ -184,6 +184,12 @@
               </div>
             </div>
         
+            <div class="container mb-2" id="alreadyExist" style="display: none">
+                    <div class="text-center">
+                        <div *ngIf="nameEqual" class="text-danger error_word">
+                          Product name <span class="text-success">"{{nameEqual}}"</span> already exist!
+            </div></div></div>
+
             <div class="row">
                 <div class="col-md-12">
                         <div class="text-center">
@@ -191,7 +197,7 @@
                          <button type="reset" class="btn button_word">Reset</button>
                           </div>
                     </div>
-          </div>
+            </div>
 
         </form>
       

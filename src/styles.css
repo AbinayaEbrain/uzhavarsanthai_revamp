@@ -21,9 +21,9 @@
   background-color: #d3efe680;
 }
 
-.slick-dots {
+/* .slick-dots {
   display: none !important;
-}
+} */
 
 .ngx-pagination {
   position: sticky;

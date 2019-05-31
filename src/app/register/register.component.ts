@@ -60,6 +60,7 @@ export class RegisterComponent implements OnInit {
   verifymsg: any;
   authorize: any;
   visitId: any;
+  getRole : any;
   subscriptionArr: any = [];
 
   setAddress(addrObj) {
@@ -85,8 +86,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.loadingCtrl.show();
-    let role = this.route.snapshot.paramMap.get('role');
-    console.log(role);
+    this.getRole = this.route.snapshot.paramMap.get('role');
+    console.log(this.getRole);
     setTimeout(() => this.inputEl.nativeElement.focus(), 0);
     setTimeout(() => {
       this.loadingCtrl.hide();
@@ -95,9 +96,9 @@ export class RegisterComponent implements OnInit {
   }
 
   post() {
-    let role = this.route.snapshot.paramMap.get('role');
-    console.log(role);
-    if (role != null) {
+    // let role = this.route.snapshot.paramMap.get('role');
+    console.log(this.getRole);
+    if (this.getRole != null) {
       this.registeredUserData.role = 'seller';
       this.registeredUserData.roleStatus = 'Deactive';
       this.registeredUserData.credits = 1000;
@@ -145,6 +146,7 @@ export class RegisterComponent implements OnInit {
           });
           this.router.navigate(['/home']);
         } else {
+          this.registeredUserData.address.city = this.addr.formatted_address;
           localStorage.setItem('token', res.token);
           localStorage.setItem('role', JSON.stringify(res.user.role));
           localStorage.setItem('currentUser', JSON.stringify(res.user));

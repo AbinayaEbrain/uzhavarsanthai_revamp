@@ -57,7 +57,7 @@
                                                                            </td>
                                                                        </tr>
                                    
-                                                                  <tr  id="hide" *ngFor="let deal of singleMultiArray | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
+                                                                  <tr  id="hide" *ngFor="let deal of userDeals | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
                                                                     
                                                                       <td *ngIf="deal === -1" class="prdUnavil text-danger">
                                                                            {{errMsg2}}

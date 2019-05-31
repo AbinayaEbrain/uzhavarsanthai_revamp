@@ -75,6 +75,7 @@ export class PostComponent implements OnInit {
   };
   files: any;
   url: '';
+  nameEqual = [];
   today: Date;
   imageLength = 0;
   editId: any;
@@ -89,6 +90,7 @@ export class PostComponent implements OnInit {
   myCredit: any;
   public carForm: FormGroup;
   imglen = 0;
+  num= 0 ;
   imglen1 = 0;
   productArr: any = [];
   isAlready: boolean = false;
@@ -96,6 +98,7 @@ export class PostComponent implements OnInit {
   quantity = 0;
   lastImage: any;
   postLenght: any = [];
+  getdeals: any = [];
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -166,6 +169,13 @@ export class PostComponent implements OnInit {
       }
     );
 
+    this._dealsService.getDeals().subscribe(data =>{
+      console.log(data);
+      this.getdeals = data;
+    }, err =>{
+      console.log(err);
+    })
+    
     if (this.editId) {
       this._dealsService.getSingleMultiPost(this.editId).subscribe(
         res => {
@@ -253,7 +263,7 @@ export class PostComponent implements OnInit {
 
     this.productArr = this.carForm.value.product;
     if(this.isAlready == false){
-      this.imageUrl();
+      this.findName();
     }
 
     console.log(this.carForm.value);
@@ -285,52 +295,55 @@ export class PostComponent implements OnInit {
       this.loadingCtrl.hide();
     }
     else{
-      console.log(this.carForm.value);
-      for(let i = 0 ; i < this.carForm.value.product.length ; i++){
-         this._dealsService.addPost(this.carForm.value.product[i]).subscribe(
-        res => {
-          console.log(res);
-          // this.loadingCtrl.hide();
-          this.postLenght.push(res);
-          console.log(this.postLenght);
-          // this.creditObj.productId = res._id;
-          // this.getUser();
-          // this.updateUser();
-          // this.success = 'Posted successfully!';
-         // document.getElementById('idView').scrollIntoView();
-          // setTimeout(() => {
-          //   this.route.navigate(['products']);
-          //   this.loadingCtrl.hide();
-          // }, 3000);
-          console.log(this.carForm.value.product.length);
-          if(this.carForm.value.product.length == this.postLenght.length){
-            this.success = 'Posted successfully!';
-             document.getElementById('idView').scrollIntoView();
-              setTimeout(() => {
-                this.route.navigate(['products']);
-                this.loadingCtrl.hide();
-              }, 3000);
-          }
-        },
-        err => {
-          console.log(err);
-        }
-      );
+      if(this.num != this.carForm.value.product.length){
+       this.postTotal();
       }
-
     }
    }
   }
 
+  postTotal(){
+    for(let i = 0 ; i < this.carForm.value.product.length ; i++){
+      this.num = this.num + 1;
+       this._dealsService.addPost(this.carForm.value.product[i]).subscribe(
+      res => {
+        console.log(res);
+        this.postLenght.push(res);
+        if(this.carForm.value.product.length == this.postLenght.length){
+          this.success = 'Posted successfully!';
+           document.getElementById('idView').scrollIntoView();
+            setTimeout(() => {
+              this.route.navigate(['products']);
+              this.loadingCtrl.hide();
+            }, 3000);
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
+    }
+  }
+
     imageUrl(){
-      console.log(this.imglen1)
+      console.log(this.imglen1);
       if(this.imglen1 != this.productArr.length){
         for(let i = 0 ; i < this.productArr.length ; i++){
               i = this.imglen1;
               this.urls = this.productArr[i].image;
               console.log(this.urls);
+              if(this.urls.length == 0){
+                let img =
+                'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
+              this.Image.push(img);
+              console.log(this.Image);
               this.imglen1 = i+1;
-              this.postMultiImage();
+              this.imageAppend();
+              break;
+              }else{
+                this.imglen1 = i+1;
+                this.postMultiImage();
+              }
           break;
           }
       }else{
@@ -377,9 +390,7 @@ export class PostComponent implements OnInit {
               this.carForm.value.product[i].avlPlace = this.addr;
             }
             this.carForm.value.product[i].category = this.carForm.value.category;
-            //this.carForm.value.product[i].date = this.carForm.value.date;
             this.carForm.value.product[i].categoryId = this.carForm.value.categoryId;
-            console.log(this.carForm.value.product[i]);
             this.imglen = i+1;
             this.imageUrl();
             break;
@@ -546,9 +557,9 @@ export class PostComponent implements OnInit {
         }
        
       } else {
-        this.multiData.image =
+        let img =
           'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
-          this.Image.push(this.multiData.image);
+          this.Image.push(img);
           this.imageAppend();
         }
     }
@@ -639,40 +650,40 @@ export class PostComponent implements OnInit {
     );
   }
 
-  updateUser(){
-    this.credits.credits = this.credits.credits - this.creditMinus;
-    console.log(this.credits.credits);
-    this._dealsService.updateCustomer(this.credits, this.currentuserId).subscribe(
-      res => {
-        console.log(res);
-        this.updateCreditArr();
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+  // updateUser(){
+  //   this.credits.credits = this.credits.credits - this.creditMinus;
+  //   console.log(this.credits.credits);
+  //   this._dealsService.updateCustomer(this.credits, this.currentuserId).subscribe(
+  //     res => {
+  //       console.log(res);
+  //       this.updateCreditArr();
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
-  updateCreditArr(){
-    this.creditObj.credit = this.creditMinus;
-    this.creditObj.productName = this.carForm.value.product.length;
-    this.creditObj.category = this.carForm.value.category;
-    this.creditObj.quantity = this.quantity;
-    //this.creditObj.qnty = this.productData.qnty;
-    this.creditObj.price = this.price;
-    this.creditObj.image = this.lastImage;
-    this.creditObj.productCreatedAt = this.carForm.value.date;
-    console.log(this.creditObj);
+  // updateCreditArr(){
+  //   this.creditObj.credit = this.creditMinus;
+  //   this.creditObj.productName = this.carForm.value.product.length;
+  //   this.creditObj.category = this.carForm.value.category;
+  //   this.creditObj.quantity = this.quantity;
+  //   //this.creditObj.qnty = this.productData.qnty;
+  //   this.creditObj.price = this.price;
+  //   this.creditObj.image = this.lastImage;
+  //   this.creditObj.productCreatedAt = this.carForm.value.date;
+  //   console.log(this.creditObj);
 
-    this._dealsService.updateUserCreditArr(this.creditObj,this.currentuserId).subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+  //   this._dealsService.updateUserCreditArr(this.creditObj,this.currentuserId).subscribe(
+  //     res => {
+  //       console.log(res);
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
   postMultiProduct() {
     this.multiData.accountId = JSON.parse(
@@ -853,5 +864,30 @@ export class PostComponent implements OnInit {
       JSON.stringify(result.geometry.location.lng())
     );
     //callback(this.postProduct)
+  }
+
+  findName(){
+    this.nameEqual = [];
+    //console.log(ind);
+    console.log(this.getdeals);
+    let userId = JSON.parse(localStorage.getItem('currentUser'))._id;
+    for(let i = 0; i < this.getdeals.length; i++){
+      if(userId == this.getdeals[i].accountId){
+        for(let j = 0; j < this.carForm.value.product.length; j++){
+          // if(ind == j){
+            if((this.getdeals[i].name).toLowerCase() == (this.carForm.value.product[j].name).toLowerCase()){
+              this.nameEqual.push(this.carForm.value.product[j].name);
+              console.log(this.nameEqual);
+             }
+        }
+      }
+    }
+
+    if(this.nameEqual.length != 0){
+      document.getElementById('alreadyExist').style.display = 'block';
+    }else{
+      document.getElementById('alreadyExist').style.display = 'none';
+      this.imageUrl();
+    }
   }
 }

@@ -92,8 +92,8 @@ export class UserProfileComponent implements OnInit {
       res => {
         console.log(res);
         this.updatePostName();
-        this.updateReviewSellerName();
-        this.updateReviewBuyerName();
+        //this.updateReviewSellerName();
+        //this.updateReviewBuyerName();
         this.loadingCtrl.hide();
         this.success = 'Updated successfully!';
         setTimeout(() => {
