@@ -385,7 +385,7 @@
                           <div class="form-group">
                               <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">அளவு </span>/ Unit</label>
                               <select  class="form-control" class="form-control mobmargintop"
-                              style="background-color: transparent;color: #0d4608;"  #requiredUnit="ngModel"
+                              style="background-color: transparent;color: #0d4608;" placeholder="dfdsf"  #requiredUnit="ngModel"
                               name="requiredUnit" [class.is-invalid]="requiredUnit.invalid && requiredUnit.touched"
                               ngModel [(ngModel)]="querydata.requiredUnit" required>
                               <option selected="" disabled="" value="" >Choose Unit</option>
@@ -442,7 +442,7 @@
                     </div>
                     <br>
                     <div class="text-center">
-                        <button type="submit" [disabled]="queryform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn" (click)="sendQuery()">Send Order Request</button>
+                        <button type="submit" [disabled]="queryform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn"  (click)="sendQuery()">Send Order Request</button>
                     </div>
                   </form>
           </div>

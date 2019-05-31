@@ -139,14 +139,11 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
     private _auth: AuthService,
     private http: HttpClient
   ) {
-      // this.registeredUserData.address.location = '';
-      // this.registeredUserData.address.city = '';
+  this.querydata = '';
   }
 
   ngOnInit() {
-    this.querydata.requiredQuantity = '';
-    this.querydata.requiredUnit = '';
-    this.querydata.urgency = '';
+
     document.getElementById('focusDiv').focus();
     this.id = this.route.snapshot.params['id'];
     this.loadingCtrl.show();
@@ -332,6 +329,7 @@ openloginModal(){
 
 sendQuery(){
   this.loadingCtrl.show();
+
   var a = "UZ"
   this.reqId = Math.floor(100000 + Math.random() * 900000);
   console.log(this.reqId);
@@ -905,9 +903,6 @@ mapWithPost(){
 
 //create order modal
 createOrederModal(){
-  this.querydata.requiredQuantity = '';
-  this.querydata.requiredUnit = '';
-  this.querydata.urgency = '';
   var pacContainerInitialized = false;
    $('#cityOne').keypress(function() {
     if (!pacContainerInitialized) {
@@ -917,8 +912,6 @@ createOrederModal(){
 });
 document.getElementById("openOrderReqModal").click();
 this.mytemplateForm3.reset();
-this.querydata.urgency = '';
-this.querydata.requiredUnit = '';
   // console.log(this.currentuserAddress == null || this.currentuserAddress == '')
   // if(this.currentuserAddress == null || this.currentuserAddress == ''){
   //     document.getElementById("updateAddressConfirmationModal").click();
