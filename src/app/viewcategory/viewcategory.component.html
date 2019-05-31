@@ -125,8 +125,8 @@
                                                        <tr>
                                                           <!-- <td><strong>Location &nbsp;</strong></td>
                                                           <td>:</td> -->
-                                                          <div *ngIf="deal.avlPlace.locality" class="productFullName">{{deal.avlPlace.locality}}</div>
-                                                        <div *ngIf="!deal.avlPlace.locality" class="productFullName">{{deal.avlPlace.formatted_address}}</div>
+                                                          <div  *ngIf="deal.avlPlace.locality" class="productFullName">{{deal.avlPlace.locality}}</div>
+                                                       <div *ngIf="!deal.avlPlace.locality" class="productFullName">{{deal.avlPlace.formatted_address}}</div> 
                                                        </tr>
                                                <br>
                                              </table>

@@ -149,6 +149,7 @@ export class PostComponent implements OnInit {
       this.productData.avlPlace = JSON.parse(
         localStorage.getItem('currentUpdateAddr')
       ).address.formatted_address;
+      console.log(this.productData.avlPlace)
       this.multiData.avlPlace = JSON.parse(
         localStorage.getItem('currentUpdateAddr')
       ).address.formatted_address;

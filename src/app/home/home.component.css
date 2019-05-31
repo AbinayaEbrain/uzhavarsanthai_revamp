@@ -13,6 +13,22 @@
   color: white;
 }
 
+.updateAddrees{
+  height:50px;
+}
+
+.btnClr {
+  border: 2px solid #0d4608;
+  color: #0d4608;
+  background-color: white;
+  font-weight: bolder;
+}
+
+.btnClr:hover {
+  background-color: #0d4608;
+  color: white;
+}
+
 .bg1 {
   background-image: url('https://heroku-support-production.s3.amazonaws.com/c8a8a45f-f013-4eed-85bb-0fe2de4e6be4%2F656d2539-6df8-4849-bf8a-792afc849d5e%2Fcard.JPG');
   height: 182px;
@@ -133,4 +149,73 @@
   background-color: #0d4608;
   color: white;
   border: 2px solid white;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-control {
+  background-color: transparent !important;
+}
+.form-control-placeholder {
+  position: absolute;
+  top: 0;
+  padding: 7px 0 0 13px;
+  transition: all 200ms;
+  /* / opacity: 0.5; / */
+  left: -12px;
+  font-weight: 500;
+  font-size: 17px;
+  color: #0d4608;
+}
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  font-size: 100%;
+  transform: translate3d(0, -100%, 0);
+  opacity: 1;
+  color: #0d4608(255, 254, 254);
+}
+
+.clr {
+  color: #0d4608;
+  font-family: 'Mukta', sans-serif;
+}
+.txtalign {
+  font-family: 'Mukta', sans-serif;
+  color: #0d4608;
+  text-align: center !important;
+  font-weight: bold;
+}
+.sent_font {
+  font-weight: bold;
+  color: #0d4608;
+  font-size: 20px;
+}
+.span_clr {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.greetmsg {
+  display: none;
+}
+.english_wrd {
+  font-family: 'Mukta', sans-serif;
+  color: #0d4608;
+  float: left;
+  font-weight: bold;
+}
+.tamil_word {
+  font-family: 'Hind Madurai', sans-serif;
+}
+.error_word {
+  font-family: 'Cabin', sans-serif;
+}
+input {
+  font-family: 'Nunito', sans-serif;
+}
+.button_word {
+  font-family: 'Kanit', sans-serif;
 }

@@ -52,72 +52,45 @@ export class UserProfileComponent implements OnInit {
     private _users: DealsService,
     private route: ActivatedRoute,
     public zone: NgZone
-  ) {}
-
-  ngOnInit() {
-    this.loadingCtrl.show();
-//document.getElementById('focusDiv').focus();
-    
-// setTimeout(() => {
-//   this.callback();
-// }, 1000);
- // this.InitialCall();
-  this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
-
-  this._users.getSingleUser(this.id).subscribe(
-    data => {
-      console.log(data);
-      this.crntUser = data;
-      if((this.crntUser.address.addressLine == "" || this.crntUser.address.addressLine == null) || (this.crntUser.address.city == ""
-    || this.crntUser.address.city == undefined || this.crntUser.address.city == "Not yet update")){
-          this.crntUser.address.addressLine = "Not yet update";
-          this.crntUser.address.city = " Not yet update";
-          // this.crntUser.address.city.formatted_address = " Not yet update";
-          console.log(this.crntUser.address.city)
-          console.log(this.crntUser.address.addressLine)
-    }
-      this.loadingCtrl.hide();
-    },
-    err => {
-      console.log(err);
-      this.loadingCtrl.hide();
-    }
-  );
-//this.callback();
-this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
+  ) {
   }
 
-callback(){
-  
-  // this._users.getDetails().subscribe(
-  //   res => {
-  //     this.loggedUser = res;
+  ngOnInit() {
+    document.getElementById('focusDiv').focus();
+    this.loadingCtrl.show();
+    this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
+    this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
+    this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
+    this._users.getDetails().subscribe(
+      res => {
+        this.loggedUser = res;
+    this.loadingCtrl.hide();
+        console.log(this.loggedUser)
+        for (let i = 0; i < this.loggedUser.length; i++) {
+          this.currentuserId = JSON.parse(
+            localStorage.getItem('currentUser')
+          )._id;
+          if (this.currentuserId == this.loggedUser[i]._id) {
+            this.crntUser = this.loggedUser[i];
+            console.log(this.crntUser)
+          }
+        }
+        if((this.crntUser.address.addressLine == "" || this.crntUser.address.addressLine == null) || (this.crntUser.address.city == ""
+      || this.crntUser.address.city == undefined || this.crntUser.address.city == "Not yet update")){
+            this.crntUser.address.addressLine = "Not yet update";
+            this.crntUser.address.city = " Not yet update";
+            // this.crntUser.address.city.formatted_address = " Not yet update";
+            console.log(this.crntUser.address.city)
+            console.log(this.crntUser.address.addressLine)
+        }
+        this.InitialCall();
 
-  //     console.log(this.loggedUser)
-  //     for (let i = 0; i < this.loggedUser.length; i++) {
-  //       if (this.id == this.loggedUser[i]._id) {
-  //         this.crntUser = this.loggedUser[i];
-  //         console.log(this.crntUser)
-  //       }
-  //     }
-
-  //     if((this.crntUser.address.addressLine == "" || this.crntUser.address.addressLine == null) || (this.crntUser.address.city == ""
-  //   || this.crntUser.address.city == undefined || this.crntUser.address.city == "Not yet update")){
-  //         this.crntUser.address.addressLine = "Not yet update";
-  //         this.crntUser.address.city = " Not yet update";
-  //         // this.crntUser.address.city.formatted_address = " Not yet update";
-  //         console.log(this.crntUser.address.city)
-  //         console.log(this.crntUser.address.addressLine)
-  //     }
-  //     this.loadingCtrl.show();
-
-  //   },
-  //   err => {
-  //     console.log(err);
-  //   }
-  // );
-}
-
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 
   updateUser() {
     this.loadingCtrl.show();
@@ -131,7 +104,7 @@ callback(){
     this._users.updateCustomer(this.crntUser, this.id).subscribe(
       res => {
         console.log(res);
-        // localStorage.setItem('currentUser', JSON.stringify(this.crntUser));
+         localStorage.setItem('currentUpdateAddr', JSON.stringify(this.crntUser));
         this.updatePostName();
         this.updateReviewSellerName();
         this.updateReviewBuyerName();
@@ -198,11 +171,12 @@ callback(){
   InitialCall() {
     for (let i = 0; i < this.loggedUser.length; i++) {
       if (this.id == this.loggedUser[i]._id) {
+
         this.crntUser.firstname = this.loggedUser[i].firstname;
         this.crntUser.lastName = this.loggedUser[i].lastName;
         this.crntUser.gender = this.loggedUser[i].gender;
         this.crntUser.address.addressLine = this.loggedUser[i].address.addressLine;
-        this.crntUser.address.address1 = this.loggedUser[i].address.address1;
+        //this.crntUser.address.address1 = this.loggedUser[i].address.address1;
         //this.crntUser.address.city.formatted_address = this.loggedUser[i].address.city.formatted_address;
       }
     }
