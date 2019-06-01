@@ -18,15 +18,15 @@
                       </div>
                  </div></div>
 
-                 <div class="row" *ngIf="!crntUser.firstname">
+                  <div class="row" *ngIf="!crntUser.firstname">
                   <div class="col-md-12">
                       <div class="form-group  mt-2">
                           <label class=" english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
-                          <input type="text" placeholder="Enter your name" name="firstname" class="form-control" autocomplete="off" required>
-                        </div>
+                          <input type="text" placeholder="Enter your name" #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="crntUser.firstname" autocomplete="off" required>
                    </div></div>
+                   </div>
 
-                   <div class="row" *ngIf="!crntUser.firstname">
+                  <!-- <div class="row" *ngIf="!crntUser.firstname">
                     <div class="col-md-12">
                        <div class="form-group mt-2" >
                             <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
@@ -40,7 +40,7 @@
                               <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">மாவட்டம் </span>/ City</label>
                              <input type="text" placeholder="Enter your address" name="addressLine" class="form-control" autocomplete="off" required>
                            </div>
-                      </div></div>
+                      </div></div> -->
 
                    <div class="row" *ngIf="crntUser.address.addressLine">
                  <div class="col-md-12">
@@ -50,6 +50,15 @@
                         <span class="text-danger float-left error_word errFont" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
                       </div>
                  </div> </div>
+
+                 <div class="row" *ngIf="!crntUser.address.addressLine">
+                    <div class="col-md-12">
+                       <div class="form-group mb-5 mt-2" >
+                             <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
+                           <input type="text" placeholder="Enter your address" #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control" [(ngModel)]="crntUser.address.addressLine" autocomplete="off" required>
+                           <span class="text-danger float-left error_word errFont" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
+                         </div>
+                    </div> </div>
 
                   <div class="row">
                  <div class="col-md-12 well" >

@@ -15,6 +15,12 @@
   line-height: 22px;
 }
 
+@media (min-width: 768px) and (max-width: 2400px) {
+  .cardBorder {
+    border-left: 2px solid #a2cb77 !important;
+  }
+}
+
 a:hover,
 a:active {
   color: #ffb901;
@@ -88,6 +94,20 @@ a:active {
   text-align: center;
   width: 70px;
 }
+
+.zoom {
+  transition: transform 0.2s;
+}
+.zoom:hover {
+  -ms-transform: scale(1.02);
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
+}
+
+/* .hoverCard{
+   transform: scale(0.5);;
+} */
+
 .holeRow {
   margin-top: 3% !important;
 }
@@ -101,6 +121,7 @@ a:active {
   font-weight: bold;
   text-align: justify;
 }
+
 .feature .feature-box .iconset2 {
   background: #fff none repeat scroll 0 0;
   float: left;
@@ -181,6 +202,7 @@ a:active {
   font-family: 'Hind Madurai', sans-serif !important;
   text-align: center;
   font-weight: bold;
+  color: #0d4608;
 }
 .clearfix .icon {
   float: left;

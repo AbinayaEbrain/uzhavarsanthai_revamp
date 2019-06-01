@@ -53,24 +53,22 @@ export class UserProfileComponent implements OnInit {
     private route: ActivatedRoute,
     public zone: NgZone
   ) {
+    this.loadingCtrl.show();
   }
 
   ngOnInit() {
-    document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
+    document.getElementById('focusDiv').focus();
+    
     this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
     this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
-    this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
+
     this._users.getDetails().subscribe(
       res => {
         this.loggedUser = res;
-    this.loadingCtrl.hide();
         console.log(this.loggedUser)
         for (let i = 0; i < this.loggedUser.length; i++) {
-          this.currentuserId = JSON.parse(
-            localStorage.getItem('currentUser')
-          )._id;
-          if (this.currentuserId == this.loggedUser[i]._id) {
+          if (this.id == this.loggedUser[i]._id) {
             this.crntUser = this.loggedUser[i];
             console.log(this.crntUser)
           }
@@ -83,11 +81,15 @@ export class UserProfileComponent implements OnInit {
             console.log(this.crntUser.address.city)
             console.log(this.crntUser.address.addressLine)
         }
+        this.loadingCtrl.hide();
+
         this.InitialCall();
 
       },
       err => {
         console.log(err);
+        this.loadingCtrl.hide();
+
       }
     );
   }

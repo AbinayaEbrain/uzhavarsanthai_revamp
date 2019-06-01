@@ -63,8 +63,6 @@ export class UserProductsComponent implements OnInit {
     });
   }
 
-
-
   constructor(
     private _dealsService: DealsService,
     private route: ActivatedRoute,
