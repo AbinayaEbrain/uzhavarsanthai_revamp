@@ -117,6 +117,21 @@ export class OrderRequestComponent implements OnInit {
       );
   }
 
+  updateUser() {
+    this.credits.credits = this.credits.credits - this.creditMinus;
+    console.log(this.credits.credits);
+    this._dealService
+      .updateCustomer(this.credits, this.userOrderReq2.sellerId)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.updateCreditArr();
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
 
   dropOrderRequest() {
     this.loadingCtrl.show();
@@ -135,22 +150,7 @@ export class OrderRequestComponent implements OnInit {
       );
   }
 
-  updateUser(){
-    this.credits.credits = this.credits.credits - this.creditMinus;
-    console.log(this.credits.credits);
-    // this.updateCreditArr();
-    this._dealService.updateCustomer(this.credits, this.userOrderReq2.sellerId).subscribe(
-      res => {
-        console.log(res);
-        this.updateCreditArr();
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
-
-  updateCreditArr(){
+  updateCreditArr() {
     this.creditObj.credit = this.creditMinus;
     this.creditObj.productName = this.userOrderReq2.prdctName;
     this.creditObj.category = this.userOrderReq2.prdctCategory;
@@ -162,14 +162,16 @@ export class OrderRequestComponent implements OnInit {
     this.creditObj.productCreatedAt = crntDate;
     console.log(this.creditObj);
 
-    this._dealService.updateUserCreditArr(this.creditObj,this.userOrderReq2.sellerId).subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    this._dealService
+      .updateUserCreditArr(this.creditObj, this.userOrderReq2.sellerId)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        }
+      );
   }
 
   updatePostOrderqst() {
@@ -181,6 +183,22 @@ export class OrderRequestComponent implements OnInit {
         data => {
           console.log(data);
           this.getSignupReq();
+          this.updatePost();
+        },
+        err => {
+          console.log(err);
+        }
+      );
+  }
+
+  updatePost() {
+    this.userOrderReq2.quantity = (this.userOrderReq2.prdctQty - this.userOrderReq2.requiredQuantity);
+    console.log(this.userOrderReq2.quantity);
+    this._dealService
+      .productUpdate(this.userOrderReq2, this.userOrderReq2.prdctId)
+      .subscribe(
+        res => {
+          console.log(res);
         },
         err => {
           console.log(err);

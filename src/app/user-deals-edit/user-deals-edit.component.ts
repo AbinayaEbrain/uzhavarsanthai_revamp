@@ -156,6 +156,7 @@ export class UserDealsEditComponent implements OnInit {
         this.lastprice = this.deallistobj.price;
         console.log(this.lastquantity);
         console.log(this.lastprice);
+        console.log(this.address);
         this.deallistobj.avlPlace = this.address.formatted_address;
         this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
         this.deallistobj.validityTime = this.dateNrml;
@@ -315,8 +316,8 @@ export class UserDealsEditComponent implements OnInit {
       });
       this.router.navigate(['/subscription-plan']);
       this.loadingCtrl.hide();
-    }else if(this.lastprice == this.newprice && this.lastquantity == this.newquantity){
-      this.update();
+    }else if((this.newprice == this.lastprice) && (this.newquantity == this.lastquantity)){
+      this.imageUpload();
     }
     else{
       //Adding the image to the form data to be sent
@@ -324,15 +325,16 @@ export class UserDealsEditComponent implements OnInit {
     }
     
 
-    if(this.myCredit > this.cumulativecredit){
-      if (this.urls.length == 0 || this.urls == undefined || this.urls == []) {
-        this.loadingCtrl.hide();
-        this.update();
-      }
-    }
+    // if(this.myCredit > this.cumulativecredit){
+    //   if (this.urls.length == 0 || this.urls == undefined || this.urls == []) {
+    //     this.loadingCtrl.hide();
+    //     this.update();
+    //   }
+    // }
   }
 
   imageUpload(){
+    console.log(this.urls)
     if (this.urls.length != 0 || this.urls != undefined) {
       for (let i = 0; i < this.urls.length; i++) {
         var image = new FormData(); //FormData creation
@@ -345,6 +347,11 @@ export class UserDealsEditComponent implements OnInit {
         });
         break;
       }
+    }
+
+    if(this.urls.length == 0){
+      this.update();
+
     }
   }
 
@@ -384,8 +391,11 @@ export class UserDealsEditComponent implements OnInit {
 
       if (this.Image.length != 0) {
         this.deallistobj.image = this.Image;
+      }else{
+        this.deallistobj.image = this.arrayImage
       }
-console.log(this.deallistobj);
+    console.log(this.deallistobj);
+
       this._dealsService.editDeals(this.deallistobj, this.id).subscribe(
         res => {
           console.log(res);

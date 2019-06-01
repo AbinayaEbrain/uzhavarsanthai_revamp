@@ -17,8 +17,9 @@ export class DealsService {
   private _getSingleUser = "https://uzhavarsanthai.herokuapp.com/api/getSingleUser";
   private _getCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/getCount';
   // https://farmers-market-ebrain.herokuapp.com
-  private _dealsUrl = 'http://localhost:5000/api/deals';
-  private _postUrl = 'http://localhost:5000/api/post';
+  private _dealsUrl = 'https://uzhavarsanthai.herokuapp.com/api/deals';
+  private _productUpdateUrl = 'https://uzhavarsanthai.herokuapp.com/api/productUpdate';
+  private _postUrl = 'https://uzhavarsanthai.herokuapp.com/api/post';
   private _getUrl = 'https://uzhavarsanthai.herokuapp.com/api/details';
 
   // Multipost
@@ -26,7 +27,7 @@ export class DealsService {
   private _getMultiUrl =
     'https://uzhavarsanthai.herokuapp.com/api/getMultipost';
   private _getSingleMultiUrl =
-    'http://localhost:5000/api/singleMultipost';
+    'https://uzhavarsanthai.herokuapp.com/api/singleMultipost';
   private _updateMultiPost =
     'https://uzhavarsanthai.herokuapp.com/api/updateMultipost';
   private _deleteMultiPost =
@@ -40,11 +41,11 @@ export class DealsService {
   private activeUrl =
     'https://uzhavarsanthai.herokuapp.com/api/admin-user/active';
 
-  private updateuserurl = 'http://localhost:5000/api/updateuser';
-  private updateaddressuserurl = 'http://localhost:5000/api/updateuseraddress';
-  private _updatePostName = 'http://localhost:5000/api/updateNamePost';
-  private _updateReviewSellerName = 'http://localhost:5000/api/updateSellerNameReview';
-  private _updateReviewBuyerName = 'http://localhost:5000/api/updateBuyerNameReview';
+  private updateuserurl = 'https://uzhavarsanthai.herokuapp.com/api/updateuser';
+  private updateaddressuserurl = 'https://uzhavarsanthai.herokuapp.com/api/updateuseraddress';
+  private _updatePostName = 'https://uzhavarsanthai.herokuapp.com/api/updateNamePost';
+  private _updateReviewSellerName = 'https://uzhavarsanthai.herokuapp.com/api/updateSellerNameReview';
+  private _updateReviewBuyerName = 'https://uzhavarsanthai.herokuapp.com/api/updateBuyerNameReview';
 
   private uploadUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendImage';
   private notificationtoallurl =
@@ -54,7 +55,7 @@ export class DealsService {
   private notificationtoPostedProductUrl =
     'https://uzhavarsanthai.herokuapp.com/api/notificationforpost';
   private orderReqmailUrl = 'https://uzhavarsanthai.herokuapp.com/api/sendorderrequest';
-  private storeOrderReqUrl = 'http://localhost:5000/api/storeorderrequest';
+  private storeOrderReqUrl = 'https://uzhavarsanthai.herokuapp.com/api/storeorderrequest';
   private _getOrderReqUrl = 'https://uzhavarsanthai.herokuapp.com/api/getorderrequest';
   private _updateOrderReqUrl = "https://uzhavarsanthai.herokuapp.com/api/updateorderrequest";
   private _getSinleOrderReqUrl =
@@ -102,13 +103,13 @@ export class DealsService {
   private _updateUserBuyerDispute = "https://uzhavarsanthai.herokuapp.com/api/updateDisputeUserBuyer";
 
   // Credit
-  private _updateUserCreditArr = "http://localhost:5000/api/updateCreditArr";
-  private _updateUserCreditArrCredit = "http://localhost:5000/api/updateCreditArrCredit";
+  private _updateUserCreditArr = "https://uzhavarsanthai.herokuapp.com/api/updateCreditArr";
+  private _updateUserCreditArrCredit = "https://uzhavarsanthai.herokuapp.com/api/updateCreditArrCredit";
   private _sendticketUrl = "https://uzhavarsanthai.herokuapp.com/api/sendticket";
   private _getticketUrl = "https://uzhavarsanthai.herokuapp.com/api/getticket";
 
   //admin order closed
-  private updateUserOrderRequestStatus = "http://localhost:5000/api/mapuserOrderRequestStatus";
+  private updateUserOrderRequestStatus = "https://uzhavarsanthai.herokuapp.com/api/mapuserOrderRequestStatus";
   
   //subscription
   private subscription = "https://uzhavarsanthai.herokuapp.com/api/subscription";
@@ -150,6 +151,7 @@ export class DealsService {
   }
 
   addPost(data) {
+    console.log("1");
     return this.http.post<any>(this._postUrl, data);
   }
 
@@ -186,6 +188,10 @@ export class DealsService {
 
   editDeals(data, id) {
     return this.http.put<any>(this._dealsUrl + '/' + id, data);
+  }
+
+  productUpdate(data, id) {
+    return this.http.put<any>(this._productUpdateUrl + '/' + id, data);
   }
 
   editCategory(data, id) {

@@ -18,8 +18,9 @@ export class BuyerAsSellerComponent implements OnInit {
   loggedUser = [];
   currentuserId: any;
   show = true;
-  roleStatus : any;
-  private sendMailSignUpBuyer = 'https://uzhavarsanthai.herokuapp.com/api/sendMailSignUpBuyer';
+  roleStatus: any;
+  private sendMailSignUpBuyer =
+    'https://uzhavarsanthai.herokuapp.com/api/sendMailSignUpBuyer';
 
   constructor(
     private _dealsService: DealsService,
@@ -29,25 +30,25 @@ export class BuyerAsSellerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loadingCtrl.show();
     document.getElementById('focusDiv').focus();
     this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
     this.getSingleUser();
   }
 
-  getSingleUser(){
+  getSingleUser() {
     this._dealsService.getDetails().subscribe(
       res => {
         this.loggedUser = res;
-        this.loadingCtrl.hide();
         for (let i = 0; i < this.loggedUser.length; i++) {
           if (this.id == this.loggedUser[i]._id) {
             this.crntUser = this.loggedUser[i];
             this.roleStatus = this.loggedUser[i].roleStatus;
           }
         }
+        this.loadingCtrl.hide();
         console.log(this.crntUser);
-        if(this.roleStatus == "Deactive"){
-
+        if (this.roleStatus == 'Deactive') {
         }
       },
       err => {

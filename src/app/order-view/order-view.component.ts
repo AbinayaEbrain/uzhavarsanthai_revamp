@@ -25,6 +25,7 @@ export class OrderViewComponent implements OnInit {
   splitImage1 = '';
   userReview: any = {};
   public reviewData: any = {};
+  submitted:any
 
   constructor(
     private _dealService: DealsService,

@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
         document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
-    setTimeout(() => this.inputEl.nativeElement.focus());
+   // setTimeout(() => this.inputEl.nativeElement.focus());
     setTimeout(() => {
       // swal.close();
       this.loadingCtrl.hide();
