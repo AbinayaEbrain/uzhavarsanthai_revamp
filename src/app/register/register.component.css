@@ -16,10 +16,11 @@
   }
 }
 
-@media only screen and (min-width: 320px) and (max-width: 425px) {
-  .bg {
-    height: fit-content;
-  }
+.sent_font1 {
+  font-weight: bold;
+  color: #0d4608;
+  font-size: 20px;
+  margin-top: 7%;
 }
 
 .sent_font {
@@ -165,6 +166,7 @@ select {
   font-weight: bold;
   color: white;
 }
+
 .span_clr {
   text-decoration: underline;
 }
@@ -214,9 +216,27 @@ input {
 .mobpara {
   margin-top: 0%;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .sent_font1 {
+    margin-top: 16%;
+  }
+}
+
+
+@media screen and (min-width: 426px) and (max-width: 767px) {
+  .sent_font1 {
+    margin-top: 26%;
+  }
+}
+
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .sent_font {
     font-size: 15px;
+  }
+  .sent_font1 {
+    font-size: 15px;
+    margin-top: 37%;
   }
   .greetmsg {
     display: block;
@@ -230,9 +250,9 @@ input {
   .onmobhide {
     display: none;
   }
-  .mobpara {
+  /* .mobpara {
     margin-top: 35%;
-  }
+  } */
 }
 
 .resend {
@@ -246,13 +266,13 @@ input {
   }
 }
 
-input[type="checkbox"][readonly] {
+input[type='checkbox'][readonly] {
   pointer-events: none;
 }
 
-.styl{
+.styl {
   /* margin-top: 25px; */
   color: #0d4608;
-  font-family: "Varela Round",Arial,"Helvetica Neue",Helvetica,serif;
+  font-family: 'Varela Round', Arial, 'Helvetica Neue', Helvetica, serif;
   font-weight: bold;
 }
