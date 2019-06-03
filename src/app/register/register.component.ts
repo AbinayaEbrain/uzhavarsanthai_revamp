@@ -149,7 +149,9 @@ export class RegisterComponent implements OnInit {
           });
           this.router.navigate(['/home']);
         } else {
-          this.registeredUserData.address.city = this.addr.formatted_address;
+          if(this.addr.formatted_address){
+            this.registeredUserData.address.city = this.addr.formatted_address;
+          }
           localStorage.setItem('token', res.token);
           localStorage.setItem('role', JSON.stringify(res.user.role));
           localStorage.setItem('currentUser', JSON.stringify(res.user));

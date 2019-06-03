@@ -62,12 +62,15 @@ export class HomeComponent implements OnInit {
           this.currentUserCredits = JSON.parse(localStorage.getItem('currentUser')).credits;
           this.currentUserStatus = JSON.parse(localStorage.getItem('currentUser')).status;
         }
+        console.log(this.currentUserid);
 
     this.loadingCtrl.show();
     setTimeout(() => {
       this.loadingCtrl.hide();
   }, 1000);
-  this.getSingleUser();
+  if(this.currentUserid){
+    this.getSingleUser();
+  }
     this.checkAddress();
   }
 

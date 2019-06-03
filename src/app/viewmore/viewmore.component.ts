@@ -57,7 +57,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   slideConfig:any;
   getToken : any;
   lastvisit:any;
-  reqId:any;
+  requestId:number;
   requestSent:any;
   buyerName:any;
   buyerPhone:any;
@@ -355,11 +355,11 @@ openloginModal(){
 
 sendQuery(){
   this.loadingCtrl.show();
-
   var a = "UZ"
-  this.reqId = Math.floor(100000 + Math.random() * 900000);
-  console.log(this.reqId);
-  this.querydata.requestId = a+ "-" +this.reqId;
+  this.requestId = Math.floor(100000 + Math.random() * 900000);
+  console.log(this.requestId);
+  this.querydata.requestId = a + "-" + this.requestId;
+  console.log(this.querydata.requestId);
   this.buyerName = JSON.parse(localStorage.getItem('currentUser')).firstname;
   this.buyerPhone = JSON.parse(localStorage.getItem('currentUser')).phone;
   this.buyerAddress = JSON.parse(localStorage.getItem('currentUpdateAddr')).address.addressLine;
@@ -388,7 +388,7 @@ sendQuery(){
   this.querydata.status = 'Order created';
   let curntDte = new Date().getTime();
   this.querydata.createdAt = curntDte;
-
+console.log(this.querydata);
   this._dealsService.sendOrderReqmail(this.querydata).subscribe(
     res => {
       console.log(res);
@@ -407,8 +407,8 @@ sendQuery(){
       this.loadingCtrl.hide();}
   );
 
-// this.smsToSeller();
-// this.smsToBuyer();
+this.smsToSeller();
+this.smsToBuyer();
 
 }
 
