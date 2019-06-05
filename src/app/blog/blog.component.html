@@ -1,7 +1,7 @@
 <div id='focusDiv' tabindex="1"></div>
 <div class="container-fluid bg1">
   <div class="container pt-4">
-    <div class="row mt-5 mb-3" id="focus">
+    <div class="row cardPad mt-5 mb-3" id="focus">
       <div class="col-md-2"></div>
       <div class="col-md-8 card mt-3" style="padding: 10px;">
         <p class="container styl mt-3">வலைப்பதிவு / Blog</p>
@@ -40,7 +40,7 @@
                 is required</span
               >
             </div>
-            <div class="form-group mt-5" style="color:#0d4608;">
+            <div class="form-group mt-4" style="color:#0d4608;">
               <label class="blgtitle" for="comment">கருத்து / Comment</label>
               <textarea
                 class="form-control"
@@ -56,11 +56,11 @@
               <span
                 class="text-danger float-left error_word errFont"
                 [class.d-none]="commenttext.valid || commenttext.untouched"
-                ><i class="fa fa-info-circle" aria-hidden="true"></i> Blog is
+                ><i class="fa fa-info-circle" aria-hidden="true"></i> Blog comment is
                 required</span
               >
             </div>
-            <div class="mt-5 mb-3" style="text-align:center">
+            <div class="mt-4 mb-3" style="text-align:center">
               <button
                 type="button"
                 [disabled]="usrform.form.invalid"
@@ -77,20 +77,14 @@
       </div>
       <div class="col-md-2"></div>
     </div>
-
     <div>
         <div class="mb-2 noBlog" style="text-align: center" *ngIf="noBlog">
             {{noBlog}}
-          </div>
+          </div>   
+         </div>
       <p *ngIf="!noBlog" class="container styl mt-3">பதிவுகள்</p>
-      <div
-        id="cardFocus"
-        class="card mb-2 cardBorder"
-        *ngFor="let blog of (loggedInBlog | slice: 0:show);"
-      >
-        <div
-          class="card-header"
-          style="color:#0d4608;padding: 20px;background-color: white;"
+      <div id="cardFocus" class="card mb-2 cardBorder container" *ngFor="let blog of (loggedInBlog | slice: 0:show);">
+        <div class="card-header" style="color:#0d4608;background-color: white;"
         >
           <div class="row">
             <div class="col-md-10 col-9"></div>
@@ -129,7 +123,6 @@
               </div> -->
       </div>
     </div>
-  </div>
   <div
     *ngIf="show < loggedInBlog.length"
     class="mx-auto mb-3"

@@ -76,7 +76,7 @@
     height: fit-content;
   }
   .mobviewfontamil {
-    font-size: 20px;
+    font-size: 18px;
   }
   .mobviewfonteng {
     font-size: 18px;
@@ -194,4 +194,13 @@ input {
   color: #0d4608;
   font-family: 'Varela Round', Arial, 'Helvetica Neue', Helvetica, serif;
   font-weight: bold;
+}
+
+.vl {
+  border-right: 2px solid lightgrey;
+  /* height: 500px; */
+}
+
+hr {
+  border-right: 2px solid lightgrey;
 }

@@ -1,17 +1,17 @@
 <div class="bg" style="overflow-x: hidden;">
   <div *ngIf="role == 'seller' && roleStatus == 'Active'" class="pt-5">
-    <div class="row">
+    <div class="row" style="padding: 10px;">
       <!-- <div class="col-md-1"></div> -->
       <div class="col-md-12">
         <h5 class="mt-5 container styl text-center">Your Credits</h5>
 
         <div class="row">
           <div class="col-md-1"></div>
-          <div class="col-md-5">
+          <div class="col-md-5 col-sm-6 col-6">
             <h6>Hai <span style="font-style:italic;color:#0d4608;font-weight:bold">{{ credits.firstname }}</span>,</h6>
           </div>
-          <div class="col-md-5">
-            <strong class="float-right">Total credits : {{ credits.credits}}</strong>
+          <div class="col-md-5 col-sm-6 col-6">
+            <strong class="float-right" style="font-size:14px">Total credits : {{ credits.credits}}</strong>
           </div>
           <div class="col-md-1"></div>
         </div>
@@ -29,7 +29,7 @@
               <div class="col-md-6 col-lg-4 col-12 errDesign1">
                   <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
                   <p class="mt-4" style="font-style: italic;">{{errMsg}}</p>
-                  <button class="btn btn-success btn-sm" routerLink="/post">Post Products</button>
+                  <button class="btn btn-success btn-sm" routerLink="/products">Post Products</button>
               </div>
               <div class="col-md-3 col-lg-4 col-12"></div>
         </div>

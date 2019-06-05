@@ -40,6 +40,7 @@ export class BlogComponent implements OnInit {
       res => {
         console.log(res);
         this.blogUserData = res;
+        console.log(this.blogUserData);
         this.loadingCtrl.hide();
       },
       err => {
@@ -52,7 +53,6 @@ export class BlogComponent implements OnInit {
 
   getAllBlog() {
     let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
-
     this._auth.blogGetData().subscribe(
       data => {
         this.blogArr = data;
@@ -112,10 +112,10 @@ export class BlogComponent implements OnInit {
           this.getAllBlog();
           setTimeout(() => {
             this.success = '';
+            this.mytemplateForm.reset();
             this.router.navigate(['/blog']);
             document.getElementById('cardFocus').scrollIntoView();
           }, 2000);
-          this.mytemplateForm.reset();
         },
         err => console.log(err)
       );
@@ -133,10 +133,10 @@ export class BlogComponent implements OnInit {
         this.getAllBlog();
         setTimeout(() => {
           this.success = '';
+          this.mytemplateForm.reset();
           document.getElementById('cardFocus').scrollIntoView();
         }, 2000);
       });
-      this.mytemplateForm.reset();
     }
   }
 }

@@ -39,3 +39,7 @@
     background-color: #dc3545;
     color: white;
   }
+
+ .rightBorder {
+    border-right: 1px solid lightgray;
+  }

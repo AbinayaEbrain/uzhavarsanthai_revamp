@@ -86,6 +86,10 @@
   color: #0d4608;
 }
 
+label{
+  font-size: 14px !important;
+}
+
 input {
   font-family: 'Hind Madurai', sans-serif !important;
 }
@@ -112,6 +116,13 @@ textarea {
     white-space: nowrap;
     width: 200px !important;
     overflow: hidden;
+  }
+  .container{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+  .cardPad{
+    padding: 15px !important;
   }
 }
 @media screen and (min-width: 990px) and (max-width: 1440px) {

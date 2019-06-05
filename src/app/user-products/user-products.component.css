@@ -13,6 +13,9 @@
   .imgRes {
     width: inherit !important;
   }
+  tr{
+    font-size: 14px !important;
+  }
 }
 
 .imgRes {
@@ -155,14 +158,27 @@ section .section-title {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 425px) {
+
   .tabTitle {
     font-size: 12px !important;
     color: #0d4608 !important;
   }
+
   .onmobiviewpadding {
     padding: 10px;
   }
+
+  /* .nav-link {
+    display: block;
+    padding: 0.3rem 0.5rem !important;
+  } */
+
+  input{
+ font-size: 13px !important;
+  }
+
 }
+
 .postError {
   text-align: center;
   color: white;

@@ -64,6 +64,12 @@
       .welcomeUser{
         color: #0d4608;text-align: left;margin-bottom: 10%;
       }
+      label{
+        font-size: 14px !important;
+      }
+      .btn{
+        font-size: 14px !important;
+      }
   }
 
 

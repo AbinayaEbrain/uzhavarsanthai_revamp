@@ -25,11 +25,11 @@
 
                     <h5 class="h5 clr mobviewfonteng titilebold mt-2" ><span  class="tamil_word mobviewfontamil">பதிவு செய்க</span> / Sign up</h5>
                     <div id="firstDiv" class="mt-5">
-                        <form  #postform1="ngForm" class="mt-4" *ngIf ="!submitted" novalidate >
+                        <form  #postform1="ngForm" class="mt-4" *ngIf ="!submitted" novalidate>
                             <div class="form-group ">
                             <label class="english_wrd" for="phone"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
                             <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" (change)="phnTen()" [(ngModel)]="phoneObj.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
-                            <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
+                            <div *ngIf="phone.errors && (phone.invalid && phone.touched) && !phnErr">
                                 <span class="text-danger float-left error_word errFont" *ngIf="phone.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
                             </div>
                            <span class="text-danger float-left mb-3 errfont"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="errormsg">{{errormsg}}

@@ -9,24 +9,24 @@
         <table class="table" id="cardFocus">
           <thead>
               <tr style="font-size:15px;text-align:center;border-left: 1px solid red;border-right: 1px solid red;">
-                  <th colspan="1">ID</th>
-                  <th colspan="2">Buyer Details</th>
-                  <th colspan="5">Product Details</th>
-                  <th colspan="2">Seller Details</th>
-                  <th colspan="2"></th>
+                  <th class="rightBorder" colspan="1">ID</th>
+                  <th class="rightBorder" colspan="2">Buyer Details</th>
+                  <th class="rightBorder" colspan="5">Product Details</th>
+                  <th class="rightBorder" colspan="2">Seller Details</th>
+                  <th colspan="3"></th>
                 </tr>
             <tr style="font-size:15px">
-              <th style="width: 150px;">Request id</th>
+              <th class="rightBorder" style="width: 150px;">Request id</th>
               <th style="width: 150px;">Name</th>
-              <th style="width: 150px;">Phone</th>
+              <th class="rightBorder" style="width: 150px;">Phone</th>
               <!-- <th style="width: 150px;">Buyer address</th> -->
               <th style="width: 150px;"> Category</th>
               <th style="width: 150px;"> Name</th>
               <th style="width: 150px;"> Available place</th>
               <th style="width: 150px;"> Qty</th>
-              <th style="width: 150px;"> Urgency</th>
+              <th class="rightBorder" style="width: 150px;"> Urgency</th>
               <th style="width: 150px;"> Name</th>
-              <th style="width: 150px;"> Phone</th>
+              <th class="rightBorder" style="width: 150px;"> Phone</th>
               <th style="width: 150px;">Status</th>
               <th style="width: 150px;">Action</th>
               <th style="width: 150px;">Drop</th>
@@ -39,17 +39,17 @@
                   </td>
               </tr>
             <tr *ngFor="let order of userOrderReq1 | paginate: {id: 'foo', itemsPerPage:5,currentPage:d},let i = index" style="font-size:14px">
-              <td style="min-width: 150px;">{{order.requestId}}</td>
+              <td class="rightBorder" style="min-width: 150px;">{{order.requestId}}</td>
               <td style="min-width: 150px;">{{order.buyerName}}</td>
-              <td style="min-width: 150px;">{{order.buyerPhone}}</td>
+              <td class="rightBorder" style="min-width: 150px;">{{order.buyerPhone}}</td>
               <!-- <td style="min-width: 150px;">{{order.buyerAddress}}</td> -->
               <td style="min-width: 150px;">{{order.prdctCategory}}</td>
               <td style="min-width: 150px;">{{order.prdctName}}</td>
               <td style="min-width: 150px;">{{order.prdctAvlplace}}</td>
               <td style="min-width: 150px;">{{order.requiredQuantity}}/{{order.requiredUnit}}</td>
-              <td style="min-width: 150px;">{{order.urgency}}</td>
+              <td class="rightBorder" style="min-width: 150px;">{{order.urgency}}</td>
               <td style="min-width: 150px;">{{order.sellerName}}</td>
-              <td style="min-width: 150px;">{{order.sellerPhone}}</td>
+              <td class="rightBorder" style="min-width: 150px;">{{order.sellerPhone}}</td>
               <td style="min-width: 150px;" [ngStyle]="{'color':order.status === 'Order created' ? 'green' : 'red' }">{{order.status}}</td>
               <td style="min-width: 150px;">
                 <button id="hideEditBtn" class="btn btn-outline-success text-center viewMoreBtn button_word" (click)= "singleUpdateSignupReq1(order._id)" data-toggle="modal" data-target="#myModal1"><i class="fa fa-times" aria-hidden="true"></i>

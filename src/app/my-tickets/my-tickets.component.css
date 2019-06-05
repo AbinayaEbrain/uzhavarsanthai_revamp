@@ -399,6 +399,9 @@ section .section-title {
     color: #0d4608;
     font-size: 15px;
   }
+  label{
+    font-size: 14px !important;
+  }
 }
 @media only screen and (min-width: 200px) and (max-width: 320px) {
   .nav-link {

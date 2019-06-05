@@ -220,6 +220,9 @@ input {
   .forMobiviewPost {
     margin-top: -19%;
   }
+  label{
+    font-size: 14px !important;
+  }
 }
 .error_word {
   font-family: 'Cabin', sans-serif;

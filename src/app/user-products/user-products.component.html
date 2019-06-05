@@ -12,14 +12,14 @@
                      </nav><br>
                 </div>
                 <div class="col-md-2"></div>
-                <div class="col-md-4 onmobiviewpadding">
+                <div class="col-md-4 col-sm-6 col-6 onmobiviewpadding">
                    <div class="inner-addon left-addon" id="hideSearchDiv">
                        <i class="fa fa-search glyphicon" aria-hidden="true"></i>
-                       <input type="text" class="form-control searchBorder"   [(ngModel)]="queryString" name="search" (keyup)="case()" autocomplete="off" placeholder="Search by product category..." />
+                       <input type="text" class="form-control searchBorder" [(ngModel)]="queryString" name="search" (keyup)="case()" autocomplete="off" placeholder="Search by product category..." />
 
                      </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 col-sm-6 col-6 onmobiviewpadding">
                    <button type="button" class="btn btn-outline-success text-center viewMoreBtn  button_word" (click)="getUser()" >New Product <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
                    <!-- <div class="dropdown-content">
                       <a routerLink="/post">Single product</a>
@@ -297,7 +297,7 @@
 
 <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal5" name="button" id="openConfirmModal"></button>
 <!-- //open login modal -->
-<div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal5">
+<div class="modal fade" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal5">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content" style="width: auto;">
       <div class="modal-body" style="padding: 25px;">

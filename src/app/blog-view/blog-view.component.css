@@ -127,6 +127,9 @@
     width: 200px !important;
     overflow: hidden;
   }
+  .writeBlog {
+    padding: 3px !important;
+  }
 }
 @media screen and (min-width: 990px) and (max-width: 1440px) {
   .btn1 {
@@ -215,4 +218,8 @@ button {
   .onmobviewfont {
     font-size: 14px;
   }
+}
+
+.english_wrd {
+  font-family: 'Mukta', sans-serif;
 }

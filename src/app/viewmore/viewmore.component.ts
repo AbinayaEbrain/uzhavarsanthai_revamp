@@ -57,7 +57,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   slideConfig:any;
   getToken : any;
   lastvisit:any;
-  requestId:number;
+  // requestId:number;
   requestSent:any;
   buyerName:any;
   buyerPhone:any;
@@ -141,7 +141,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
     private _auth: AuthService,
     private http: HttpClient
   ) {
-  this.querydata = '';
+ // this.querydata = '';
   }
 
   ngOnInit() {
@@ -355,10 +355,13 @@ openloginModal(){
 
 sendQuery(){
   this.loadingCtrl.show();
-  var a = "UZ"
-  this.requestId = Math.floor(100000 + Math.random() * 900000);
-  console.log(this.requestId);
-  this.querydata.requestId = a + "-" + this.requestId;
+  var a = "UZ";
+  let reqId = Math.floor(100000 + Math.random() * 900000);
+  this.querydata.requestId = a + "-" + reqId;
+  // var a = "UZ"
+  // this.requestId = Math.floor(100000 + Math.random() * 900000);
+  // console.log(this.requestId);
+  // this.querydata.requestId = a + "-" + this.requestId;
   console.log(this.querydata.requestId);
   this.buyerName = JSON.parse(localStorage.getItem('currentUser')).firstname;
   this.buyerPhone = JSON.parse(localStorage.getItem('currentUser')).phone;

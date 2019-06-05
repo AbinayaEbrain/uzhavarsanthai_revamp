@@ -152,9 +152,9 @@ textarea {
 tr {
   text-align: left;
 }
-table {
+/* table {
   margin: auto;
-}
+} */
 
 .has-search .form-control1 {
   padding-left: 2.375rem;
@@ -523,4 +523,12 @@ input {
   .topLoc{
   margin-top: -5% !important;
   }
+  }
+
+  @media screen and (min-width: 366px) and (max-width: 575px) {
+    .cardRes {
+      width: 360px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }

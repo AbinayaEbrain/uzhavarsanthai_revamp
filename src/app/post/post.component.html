@@ -36,7 +36,7 @@
           <div class="row" style="margin-top: 1%;">
               <div class="col-md-1"></div>
             <div class="col-md-5  mb-3">
-               <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word"> பொருள் வகை </span>/ Category</label>
+               <label class="english_wrd" for="phone" ><span style="font-size: 13px" class="tamil_word"> பொருள் வகை </span>/ Category</label>
                 <div class="form-group">
                     <select required class="form-control" formControlName="categoryId" name="categoryId">
                       <option class="opt" selected="" disabled="" value="" >Choose product category</option>
@@ -53,7 +53,7 @@
                     </div> -->
               </div>
             <div class="col-md-5 mb-3">
-              <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">கிடைக்குமிடம் </span>/ Available Place</label>
+              <label class="english_wrd" for="phone" ><span style="font-size: 13px" class="tamil_word">கிடைக்குமிடம் </span>/ Available Place</label>
                 <div class="form-group">
                       <input google-place type="text" placeholder="Enter your address"  [value]="carForm.value.avlPlace" formControlName="avlPlace" class="form-control" (onSelect)="setAddress($event)" name="avlPlace" required>
                       <span class="text-danger float-left error_word errFont" *ngIf="carForm.controls.avlPlace.invalid && carForm.controls.avlPlace.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
@@ -75,7 +75,7 @@
               <div class="row ">
                   <div class="col-md-1"></div>
                     <div class="col-md-4  mb-3">
-                      <label class="english_wrd postLble" for="phone" ><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Product Name</label>
+                      <label class="english_wrd postLble" for="phone" ><span style="font-size: 13px" class="tamil_word">பெயர் </span>/ Product Name</label>
                         <div class="form-group">
                           <input type="text" placeholder="Enter product name" formControlName="name" maxlength="50" name="name" class="form-control"  autocomplete="off"  required>
                           <!-- <span class="text-danger float-left error_word" *ngIf="carForm.controls.name.invalid && carForm.controls.name.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Product name is required</span> -->
@@ -86,7 +86,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                      <label class="english_wrd postLble" for="phone" ><span style="font-size: 14px" class="tamil_word"> அளவு </span>/ Quantity</label>
+                      <label class="english_wrd postLble" for="phone" ><span style="font-size: 13px" class="tamil_word"> அளவு </span>/ Quantity</label>
                         <div class="form-group">
                             <input type="text"  placeholder="Enter product quantity" formControlName="quantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" name="quantity" class="form-control"  maxlength="5" autocomplete="off"  required>
                             <!-- <span class="text-danger float-left error_word" *ngIf="carForm.controls.quantity.invalid && carForm.controls.quantity.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Quantity is required</span> -->
@@ -97,7 +97,7 @@
                           </div>
                     </div>
                   <div class="col-md-3 mb-3">
-                    <label class="english_wrd" for="phone" ><span style="font-size: 14px" class="tamil_word">அலகு </span>/ Unit</label>
+                    <label class="english_wrd" for="phone" ><span style="font-size: 13px" class="tamil_word">அலகு </span>/ Unit</label>
                       <div class="form-group">
                           <select required class="form-control" (select)="getunits()" placeholder="Choose unit" formControlName="qnty" name="qnty" (change)="getunits()">
                               <option class="prdtOption" selected="" disabled="" value="" >Choose product unit</option>
@@ -121,7 +121,7 @@
               <div class="row ">
                   <div class="col-md-1"></div>
                     <div class="col-md-4  mb-3">
-                      <label class="english_wrd postLble" for="phone" ><span style="font-size: 14px" class="tamil_word">விலை </span>/ Price / unit</label>
+                      <label class="english_wrd postLble" for="phone" ><span style="font-size: 13px" class="tamil_word">விலை </span>/ Price / unit</label>
                         <div class="form-group">
                           <input type="text" placeholder="Enter price" formControlName="price" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" name="price" class="form-control"  autocomplete="off"  required>
                           <!-- <span class="text-danger float-left error_word" *ngIf="carForm.controls.price.invalid && carForm.controls.price.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Price is required</span> -->
@@ -132,25 +132,25 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                      <label class="english_wrd postLble" for="phone"><span style="font-size: 14px" class="tamil_word">குறிப்பு </span>/ Description</label>
+                      <label class="english_wrd postLble" for="phone"><span style="font-size: 13px" class="tamil_word">குறிப்பு </span>/ Description</label>
                         <div class="form-group">
                             <input type="text"  placeholder="Enter description" formControlName="description"  name="description" class="form-control" maxlength="500" autocomplete="off" >
                         </div>
                     </div>
                     <div class="col-md-3 mb-3" *ngIf="!editId">
-                        <label class="english_wrd" for=""><span style="font-size: 14px" class="tamil_word">காலாவதி </span>/ Expiry</label>
+                        <label class="english_wrd" for=""><span style="font-size: 13px" class="tamil_word">காலாவதி </span>/ Expiry</label>
                               <div class="form-group">
                                 <input type="text" placeholder="Enter expiry date" name="validityTime" formControlName="validityTime" class="form-control" autocomplete="off"  bsDatepicker [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"  required>
                                 <!-- <span class="text-danger float-left error_word" *ngIf="carForm.controls.validityTime.invalid && carForm.controls.validityTime.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span> -->
                                 <div *ngIf="item.controls.validityTime.dirty || item.controls.validityTime.touched">
-                                    <div class="text-danger float-left error_word" *ngIf="item.hasError('required', 'validityTime')"><i class="fa fa-info-circle" aria-hidden="true"></i>
+                                    <div class="text-danger float-left error_word errFont"  *ngIf="item.hasError('required', 'validityTime')"><i class="fa fa-info-circle" aria-hidden="true"></i>
                                      Expiry Date is Required</div>
                                   </div>
                               </div>
                       </div>
 
                       <div class="col-md-3 mb-3" *ngIf="editId">
-                        <label class="english_wrd" for=""><span style="font-size: 14px" class="tamil_word">காலாவதி தேதி </span>/ Expiry Date</label>
+                        <label class="english_wrd" for=""><span style="font-size: 13px" class="tamil_word">காலாவதி தேதி </span>/ Expiry Date</label>
                               <div class="form-group">
                                 <input type="text" placeholder="Enter expiry date" name="validityTime" formControlName="validityTime" class="form-control" autocomplete="off"  bsDatepicker [minDate]="today" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }"  required>
                                 <!-- <span class="text-danger float-left error_word" *ngIf="carForm.controls.validityTime.invalid && carForm.controls.validityTime.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Expiration is required</span> -->
@@ -174,8 +174,8 @@
                   <div class="col-md-5">
                       <div class="form-group">
                           <div class="upload-btn-wrapper">
-                            <label for="image" class="english_wrd" ><span span style="font-size: 14px" class="tamil_word">படத்தை பதிவேற்றம் செய்யவும்</span> / Upload product image</label>
-                            <input multiple type="file" class="upload" (change)="onFileChangeMulti($event)"
+                            <label for="image" class="english_wrd" ><span span style="font-size: 13px" class="tamil_word">படத்தை பதிவேற்றம் செய்யவும்</span> / Upload product image</label>
+                            <input multiple style="font-size: 14px;" type="file" class="upload" (change)="onFileChangeMulti($event)"
                              autocomplete="off" >
                           </div>
                      </div>

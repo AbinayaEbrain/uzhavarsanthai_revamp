@@ -144,6 +144,9 @@ section .section-title {
   .onmobiviewpadding {
     padding: 10px;
   }
+  tr{
+    font-size: 14px !important;
+  }
 }
 .postError {
   text-align: center;
