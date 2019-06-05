@@ -11,7 +11,7 @@
             <h6>Hai <span style="font-style:italic;color:#0d4608;font-weight:bold">{{ credits.firstname }}</span>,</h6>
           </div>
           <div class="col-md-5 col-sm-6 col-6">
-            <strong class="float-right" style="font-size:14px">Total credits : {{ credits.credits}}</strong>
+            <strong class="float-right" style="font-size:14px">Total credits : {{ totalCredit}}</strong>
           </div>
           <div class="col-md-1"></div>
         </div>
@@ -44,7 +44,7 @@
                     <small>Posted On : {{ credit.productCreatedAt | date }}</small>
                     <div class="float-right">
                         <strong style="color: #ef6806d9"
-                        >Credits Used : {{ credit.credit}}</strong
+                        >Credits Used : {{ credit.credit | number}}</strong
                       >
                     </div>
                   </div>
@@ -66,7 +66,7 @@
                           <p class="text-muted">{{ credit.price }}</p>
                       </div>
                     </div>
-                    <p class="creditPara"><i class="fa fa-check-square-o" aria-hidden="true"></i> You have used <span style="color: #ef6806d9;font-weight: 700">{{ credit.credit }} credits</span> to post this product.</p>
+                    <p class="creditPara"><i class="fa fa-check-square-o" aria-hidden="true"></i> You have used <span style="color: #ef6806d9;font-weight: 700">{{ credit.credit | number }} credits</span> to post this product.</p>
                   </div>
                 </div>
           </div>

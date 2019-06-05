@@ -141,7 +141,8 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
     private _auth: AuthService,
     private http: HttpClient
   ) {
- // this.querydata = '';
+  this.querydata.requiredUnit = '';
+  this.querydata.urgency = '';
   }
 
   ngOnInit() {
@@ -362,7 +363,7 @@ sendQuery(){
   // this.requestId = Math.floor(100000 + Math.random() * 900000);
   // console.log(this.requestId);
   // this.querydata.requestId = a + "-" + this.requestId;
-  console.log(this.querydata.requestId);
+  // console.log(this.querydata.requestId);
   this.buyerName = JSON.parse(localStorage.getItem('currentUser')).firstname;
   this.buyerPhone = JSON.parse(localStorage.getItem('currentUser')).phone;
   this.buyerAddress = JSON.parse(localStorage.getItem('currentUpdateAddr')).address.addressLine;

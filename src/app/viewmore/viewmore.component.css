@@ -198,7 +198,7 @@ textarea::placeholder {
   font-weight: bold;
   padding: 3px;
   font-size: 15px;
-  margin-top: 15px;
+  /* margin-top: 15px; */
   border: none;
 }
 

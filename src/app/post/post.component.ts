@@ -150,12 +150,12 @@ export class PostComponent implements OnInit {
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
     console.log( this.currentuserId)
       this.carForm.value.avlPlace = JSON.parse(
-        localStorage.getItem('currentUser')
-      ).address.city.formatted_address;
+        localStorage.getItem('currentUpdateAddr')
+      ).address.formatted_address;
       console.log(this.carForm.value.avlPlace)
-      this.multiData.avlPlace = JSON.parse(
-        localStorage.getItem('currentUser')
-      ).address.city.formatted_address;
+      // this.multiData.avlPlace = JSON.parse(
+      //   localStorage.getItem('currentUser')
+      // ).address.city.formatted_address;
 
     this.getUser();
 

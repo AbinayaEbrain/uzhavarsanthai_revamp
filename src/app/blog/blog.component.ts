@@ -32,10 +32,13 @@ export class BlogComponent implements OnInit {
   ngOnInit() {
     document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
-    this.id = this.route.snapshot.params['id'];
-
+    // this.id = this.route.snapshot.params['id'];
     this.getAllBlog();
+  }
+
+  editBLog(id){
     if(this.id){
+      console.log(this.id);
     this._auth.blogGetOneData(this.id).subscribe(
       res => {
         console.log(res);
@@ -78,7 +81,9 @@ export class BlogComponent implements OnInit {
   }
 
   edit(id) {
-    this.router.navigate(['/blog', id]);
+    this.id = id;
+    console.log(this.id);
+    this.editBLog(id);
     document.getElementById('focus').scrollIntoView();
   }
 
