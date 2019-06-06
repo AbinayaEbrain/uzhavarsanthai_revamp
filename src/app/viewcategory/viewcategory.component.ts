@@ -105,7 +105,7 @@ export class ViewcategoryComponent implements OnInit {
             this.id = this.route.snapshot.params['id'];
             let CurrentDate = new Date().toISOString();
             for (let i = 0; i < this.crdDeals.length; i++) {
-              if (this.id == this.crdDeals[i].categoryId  && this.loggedUser != this.crdDeals[i].accountId && this.crdDeals[i].validityTime > CurrentDate && this.loggedUser != this.crdDeals[i].accountId && this.crdDeals[i].status == 'ACTIVE' ) {
+              if (this.id == this.crdDeals[i].categoryId  && this.loggedUser != this.crdDeals[i].accountId && this.crdDeals[i].validityTime > CurrentDate && this.crdDeals[i].quantity != 0 && this.loggedUser != this.crdDeals[i].accountId && this.crdDeals[i].status == 'ACTIVE' ) {
                 console.log(this.crdDeals[i].accountId)
                 this.totalDeals[j] = this.crdDeals[i];
                 this.splitImage =  this.totalDeals[j].image;
@@ -148,7 +148,7 @@ export class ViewcategoryComponent implements OnInit {
           this.id = this.route.snapshot.params['id'];
           let CurrentDate = new Date().toISOString();
           for (let i = 0; i < this.crdDeals.length; i++) {
-            if (this.id == this.crdDeals[i].categoryId  && this.crdDeals[i].validityTime > CurrentDate && this.crdDeals[i].status == 'ACTIVE' ) {
+            if (this.id == this.crdDeals[i].categoryId  && this.crdDeals[i].validityTime > CurrentDate && this.crdDeals[i].status == 'ACTIVE' && this.crdDeals[i].quantity != 0) {
               console.log(this.crdDeals[i].accountId)
               this.totalDeals[j] = this.crdDeals[i];
               this.splitImage =  this.totalDeals[j].image;
@@ -209,7 +209,7 @@ export class ViewcategoryComponent implements OnInit {
         if (
           this.id == this.multiPost[i].categoryId && this.loggedUser != this.crdDeals[i].accountId &&
           this.multiPost[i].validityTime > CurrentDate &&
-          this.multiPost[i].status == 'ACTIVE'
+          this.multiPost[i].status == 'ACTIVE' && this.multiPost[i].quantity != 0
         ) {
           this.multiPosts[j] = this.multiPost[i];
           this.splitImage1 =  this.multiPosts[j].image;
@@ -233,7 +233,8 @@ export class ViewcategoryComponent implements OnInit {
         if (
           this.id == this.multiPost[i].categoryId &&
           this.multiPost[i].validityTime > CurrentDate &&
-          this.multiPost[i].status == 'ACTIVE'
+          this.multiPost[i].status == 'ACTIVE'&&
+          this.multiPost[i].quantity != 0
         ) {
           this.multiPosts[j] = this.multiPost[i];
           this.splitImage1 =  this.multiPosts[j].image;

@@ -45,7 +45,7 @@
   }
 }
 
-@media screen and (min-width: 366px) and (max-width: 575px) {
+@media screen and (min-width: 400px) and (max-width: 575px) {
   .categoryHeading {
     font-size: 15px;
   }

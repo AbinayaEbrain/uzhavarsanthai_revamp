@@ -18,7 +18,7 @@ export class MostSellingProductComponent implements OnInit {
   userDeals = [];
   orderrequests: any = [];
   orderrequestsErr = '';
-
+  splitImage1 = '';
 
   constructor(
     private _dealsService: DealsService,
@@ -72,6 +72,8 @@ getOrderRequests(){
     console.log(this.crdDeals[i].orderrequests.length);
     if (this.crdDeals[i].orderrequests.length > 2) {
       this.orderrequests[j] = this.crdDeals[i];
+      this.splitImage1 =  this.orderrequests[j].image;
+        this.orderrequests[j].image = this.splitImage1.split(",",1);
       j++;
     }
 

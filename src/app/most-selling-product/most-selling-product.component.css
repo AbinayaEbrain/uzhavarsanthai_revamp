@@ -46,6 +46,17 @@
     background-color: #0d4608;
     color: white;
   }
+  .imgRes {
+    width: 300px;
+    }
+    
+    .errDesign {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      font-weight: bold;
+      color: red;
+    }
   @media only screen and (min-width: 320px) and (max-width: 425px) {
     .card {
       /* margin-top: 10%; */
@@ -55,6 +66,9 @@
       top: 0;
       margin-bottom: 5px;
       transition: all 0.25s;
+    }
+    .imgRes {
+      width: inherit !important;
     }
     .welcomeUser {
       color: #0d4608;

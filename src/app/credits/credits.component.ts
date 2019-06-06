@@ -9,14 +9,20 @@ import { Location } from '@angular/common';
   styleUrls: ['./credits.component.css']
 })
 export class CreditsComponent implements OnInit {
+  totalCredit: any;
   id: any;
   p: any;
   errMsg: any;
   credits: any = {};
   creditsArr = [];
+  credit = [];
   crntUser: any = {};
   roleStatus: any;
   role: any;
+  totalCredits : any;
+  singleCredit : any;
+  singleCredits : any;
+
 
   constructor(
     private _dealsService: DealsService,
@@ -67,11 +73,13 @@ export class CreditsComponent implements OnInit {
           if (this.id == res[i]._id) {
             console.log(res[i]);
             this.credits = res[i];
+            this.totalCredits = res[i].credits;
+            this.totalCredit = this.totalCredits.toFixed(2)
+            console.log(this.totalCredit);
             this.creditsArr = res[i].creditDetails;
           }
         }
-        console.log(this.creditsArr.length);
-
+        console.log(this.creditsArr);
         if (
           this.creditsArr.length == 0 ||
           this.creditsArr == [] ||

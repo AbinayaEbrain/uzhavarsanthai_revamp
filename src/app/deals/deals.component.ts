@@ -96,7 +96,7 @@ export class DealsComponent implements OnInit {
         let j = 0, k =0;
         for(let i=0;i < this.crdDeals.length ; i++){
           if(this.crdDeals[i].status == 'ACTIVE'){
-            if(this.crdDeals[i].validityTime > CurrentDate){
+            if(this.crdDeals[i].validityTime > CurrentDate && this.crdDeals[i].quantity != 0){
               this.crdDeals1[j] = this.crdDeals[i];
               this.splitImage1 =  this.crdDeals1[j].image;
               this.crdDeals1[j].image = this.splitImage1.split(",",1);
@@ -173,7 +173,7 @@ export class DealsComponent implements OnInit {
     let CurrentDate = new Date().toISOString();
     let j = 0;
     for (let i = 0; i < this.getSearchDeals.length; i++) {
-      if (this.getSearchDeals[i].validityTime > CurrentDate)
+      if (this.getSearchDeals[i].validityTime > CurrentDate && this.getSearchDeals[i].quantity != 0)
         if (
           this.querydetails.searchCategory ==
             this.getSearchDeals[i].categoryId ||
