@@ -171,11 +171,11 @@ export class UserDealsEditComponent implements OnInit {
           this.slideConfig = {
             slidesToShow: 1,
             slidesToScroll: 1,
-            dots: true,
+            dots: false,
             infinite: false,
             arrows: true,
             autoplay: true,
-            autoplaySpeed: 800
+            autoplaySpeed: 500
           };
       },
       err => {

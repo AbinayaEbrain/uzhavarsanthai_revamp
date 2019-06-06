@@ -55,7 +55,7 @@
             <div class="col-md-5 mb-3">
               <label class="english_wrd" for="phone" ><span style="font-size: 13px" class="tamil_word">கிடைக்குமிடம் </span>/ Available Place</label>
                 <div class="form-group">
-                      <input google-place type="text" placeholder="Enter your address"  [value]="carForm.value.avlPlace" formControlName="avlPlace" class="form-control" (onSelect)="setAddress($event)" name="avlPlace" required>
+                      <input google-place type="text" placeholder="Enter your address" formControlName="avlPlace" class="form-control" (onSelect)="setAddress($event)" name="avlPlace" required>
                       <span class="text-danger float-left error_word errFont" *ngIf="carForm.controls.avlPlace.invalid && carForm.controls.avlPlace.touched "><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
                     </div>
 
@@ -175,7 +175,7 @@
                       <div class="form-group">
                           <div class="upload-btn-wrapper">
                             <label for="image" class="english_wrd" ><span span style="font-size: 13px" class="tamil_word">படத்தை பதிவேற்றம் செய்யவும்</span> / Upload product image</label>
-                            <input multiple style="font-size: 14px;" type="file" class="upload" (change)="onFileChangeMulti($event)"
+                            <input multiple style="font-size: 14px;" type="file" class="upload" (change)="onFileChangeMulti($event,i)"
                              autocomplete="off" >
                           </div>
                      </div>

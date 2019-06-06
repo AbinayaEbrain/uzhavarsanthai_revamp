@@ -332,14 +332,13 @@ if(this.userAddress == null || this.userAddress == ''){
   }
 
   deleteuser() {
+    this.loadingCtrl.show();
+
     this.id = this.route.snapshot.params['id'];
     this._dealsService.deletedeal(this.id).subscribe(
       res => {
-        this.success = 'Deleted successfully!';
-
         setTimeout(() => {
-          // swal.close();
-          this.loadingCtrl.show();
+          this.success = 'Deleted successfully!';
           this.router.navigate(['/products']);
           this.loadingCtrl.hide();
         }, 1000);

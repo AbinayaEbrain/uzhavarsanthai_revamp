@@ -149,13 +149,10 @@ export class PostComponent implements OnInit {
 
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
     console.log( this.currentuserId)
-      this.carForm.value.avlPlace = JSON.parse(
-        localStorage.getItem('currentUser')
-      ).address.city.formatted_address;
-      console.log(this.carForm.value.avlPlace)
-      this.multiData.avlPlace = JSON.parse(
-        localStorage.getItem('currentUser')
-      ).address.city.formatted_address;
+      // this.carForm.value.avlPlace = JSON.parse(
+      //   localStorage.getItem('currentUser')
+      // ).address.city.formatted_address;
+      // console.log(this.carForm.value.avlPlace)
 
     this.getUser();
 
@@ -309,7 +306,7 @@ export class PostComponent implements OnInit {
     for(let i = 0 ; i < this.carForm.value.product.length ; i++){
       this.num = this.num + 1;
        this._dealsService.addPost(this.carForm.value.product[i]).subscribe(
-      res => {
+       res => {
         console.log(res);
         this.postLenght.push(res);
         if(this.carForm.value.product.length == this.postLenght.length){
@@ -330,23 +327,16 @@ export class PostComponent implements OnInit {
 
     imageUrl(){
       console.log(this.imglen1);
-      if(this.imglen1 != this.productArr.length){
-        for(let i = 0 ; i < this.productArr.length ; i++){
+      console.log(this.carForm.value.product.length);
+      if(this.imglen1 != this.carForm.value.product.length){
+        for(let i = 0 ; i < this.carForm.value.product.length ; i++){
+          console.log(this.carForm.value.product[i]);
               i = this.imglen1;
-              this.urls = this.productArr[i].image;
-              console.log(this.urls);
-              if(this.urls.length == 0){
-                let img =
-                'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
-              this.Image.push(img);
-              console.log(this.Image);
-              this.imglen1 = i+1;
-              this.imageAppend();
-              break;
-              }else{
+              this.urls = this.carForm.value.product[i].image;
+              console.log(this.urls.length);
+                console.log(this.carForm.value.product[i].image)
                 this.imglen1 = i+1;
                 this.postMultiImage();
-              }
           break;
           }
       }else{
@@ -469,7 +459,8 @@ export class PostComponent implements OnInit {
 
   // }
 
-  onFileChangeMulti(event) {
+  onFileChangeMulti(event,k) {
+    console.log(k)
     this.urls = [];
     var filesAmount = event.target.files.length;
     if (filesAmount > 0) {
@@ -479,8 +470,9 @@ export class PostComponent implements OnInit {
         this.imageLength = this.urls.length;
       }
     }
+    console.log(this.carForm.value.product);
     for(let i = 0 ; i < this.carForm.value.product.length ; i++){
-      if(this.carForm.value.product[i].image.length == 0){
+      if(k == i){
         this.carForm.value.product[i].image = this.urls;
       }
     }
@@ -552,12 +544,10 @@ export class PostComponent implements OnInit {
             this.lastImage = res;
             this.Image.push(res);
             if(this.urls.length == this.Image.length){
-              console.log(this.productArr);
               this.imageAppend();
             }
           });
         }
-
       } else {
         let img =
           'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';

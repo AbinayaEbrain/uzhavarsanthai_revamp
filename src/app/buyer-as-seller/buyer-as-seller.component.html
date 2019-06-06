@@ -1,4 +1,4 @@
-<div id='focusDiv' tabindex="1"></div>
+<div id="focusDiv" tabindex="1"></div>
 <body class="bg" style="overflow-x:hidden">
   <div class="container mt-5 pt-1">
     <h2 class="mt-5 pt-5 d-sm-block clr sent_font text-center tamil_word">
@@ -45,12 +45,18 @@
               <div class="row" style="margin:0px">
                 <div class="col-md-1 col-sm-12"></div>
                 <div class="col-md-10 col-sm-12">
-                  <div *ngIf="this.roleStatus == 'Active' && this.crntUser.role == 'buyer'">
+                  <div
+                    *ngIf="
+                      this.roleStatus == 'Active' &&
+                      this.crntUser.role == 'buyer'
+                    "
+                  >
                     <h4 class="mt-3 clr sent_font1">Your Details</h4>
                     <div class="form-group mt-4 m-2">
                       <label class="english_wrd" for="name"
                         ><span style="font-size: 14px;" class="tamil_word">
-                       </span>Name</label
+                        </span
+                        >Name</label
                       >
                       <input
                         type="text"
@@ -63,7 +69,8 @@
                     <div class="form-group mt-3 m-2">
                       <label class="english_wrd" for="phone"
                         ><span style="font-size: 14px;" class="tamil_word">
-                           </span>Phone Number</label
+                        </span
+                        >Phone Number</label
                       >
                       <input
                         type="text"
@@ -90,25 +97,52 @@
                     />
                   </div>
 
-                  <div *ngIf="this.roleStatus == 'Active' && this.crntUser.role == 'seller'">
+                  <div
+                    *ngIf="
+                      this.roleStatus == 'Active' &&
+                      this.crntUser.role == 'seller'
+                    "
+                  >
                     <!-- <br> -->
                     <h4 class="text-center mt-3 clr sent_font">
                       You are a SELLER now!
                     </h4>
                     <p class="clr mt-3 paraStyle">
-                      You have been succesfully activated as seller by Uzhavrasanthai! You can now post your products. 
+                      You have been succesfully activated as seller by
+                      Uzhavrasanthai! You can now post your products.
                     </p>
                     <img
                       class="imgStyle d-sm-block d-none mb-3"
                       src="../../assets/Images/ezgif.com-crop (3).gif"
                     />
                   </div>
+
+                  <div *ngIf="this.roleStatus == 'Rejected'">
+                    <!-- <br> -->
+                    <h4 class="text-center mt-3 clr sent_font">
+                      Sorry!
+                    </h4>
+                    <img
+                      class="d-sm-block d-none mb-3"
+                      style="height: 130px;
+                      margin-left: auto;
+                      margin-right: auto;"
+                      src="../../assets/Images/reject.png"
+                    />
+                    <p class="clr mt-3 paraStyle">
+                      Your seller request has been rejected by Uzhavarsanthai!
+                      Please contact our executive.
+                    </p>
+                  </div>
                 </div>
                 <div class="col-md-1 col-sm-12"></div>
               </div>
               <button
                 class="btn mx-auto mt-3 mb-3"
-                *ngIf="show && (this.roleStatus == 'Active' && this.crntUser.role == 'buyer')"
+                *ngIf="
+                  show &&
+                  (this.roleStatus == 'Active' && this.crntUser.role == 'buyer')
+                "
                 (click)="updateUser()"
               >
                 Make me as a seller
