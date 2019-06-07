@@ -133,7 +133,7 @@ export class SellerOrderRequestsComponent implements OnInit {
     this.loadingCtrl.show();
     let j = 0;
     for (let i = 0; i < this.orderRequests.length; i++) {
-      if (this.orderRequests[i].status != 'Order created') {
+      if (this.orderRequests[i].status != 'Order created' && this.orderRequests[i].status != 'Closed') {
         this.cancelledRequests[j] = this.orderRequests[i];
         j++;
       }
