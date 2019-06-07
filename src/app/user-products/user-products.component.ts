@@ -282,12 +282,20 @@ if(this.userAddress == null || this.userAddress == ''){
   }
 
   case() {
+    console.log(this.queryString)
+    console.log(this.errMsg2)
     this.queryString = this.queryString.toLowerCase();
     for (let i = 0; i < this.getPrdtName.length; i++) {
       if (this.queryString != this.getPrdtName[i]) {
         this.errMsg2 = 'Category is not available';
+      }else{
+        this.errMsg2 = '';
       }
     }
+    if(this.queryString === ''){
+      this.errMsg2 = '';
+    }
+    console.log(this.errMsg2)
   }
 
   getExpiredDeals() {
@@ -311,6 +319,7 @@ if(this.userAddress == null || this.userAddress == ''){
         }
         if (this.userDeals1.length == 0) {
           this.errMsg1 = 'No expired products found';
+          document.getElementById('hideSearchDiv').style.display = 'none';
         }
         // for (let j = 0; j < this.userDeals1.length; j++) {
         //   if (this.userDeals1[j].category == undefined) {

@@ -66,7 +66,7 @@
                     <p class="orderHead">{{order.urgency}}</p>
                   </div>
                   <!-- [ngStyle]="{'display':order.status === 'Closed'? 'none' : '' }" [ngStyle]="{'display':order.status === 'Order cancelled'? 'none' : '' }" -->
-                  <div class="col-md-4 center" style="font-weight: bold;text-align: left;" *ngIf = "order.status == 'Order created'">
+                  <div class="col-md-4 center canelBtn" *ngIf = "order.status == 'Order created'">
                    <button class="btn text-center viewMoreBtn button_word" style="padding: 3px;" data-toggle="modal" data-target="#myModal1"  (click)="singleUpdateSignupReq1(order._id)">Cancel Order</button>
                   </div>
                 </div>
@@ -114,7 +114,7 @@
                 <p class="orderHead1" style="color: #0d4608;font-weight: bold;">Urgency</p>
                 <p class="orderHead">{{order.urgency}}</p>
               </div>
-              <div class="col-md-2 center" style="font-weight: bold;">
+              <div class="col-md-2 center canelBtn">
                <button class="btn text-center viewMoreBtn button_word" style="padding: 3px;" data-toggle="modal" data-target="#myModal1"  (click)="singleUpdateSignupReq1(order._id)" [ngStyle]="{'display':order.status === 'Order cancelled' ? 'none' : '' }">Cancel Order</button>
               </div>
             </div>

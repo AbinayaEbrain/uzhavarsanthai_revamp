@@ -40,6 +40,7 @@ export class OrderViewComponent implements OnInit {
     this.passingId = this.route.snapshot.params['id'];
     this.totalOrders();
   }
+
   totalOrders(){
     this._dealService.getOrderRequest().subscribe(res =>{
     console.log(res);
@@ -51,9 +52,6 @@ export class OrderViewComponent implements OnInit {
         this.passingId == this.userOrderReq[i]._id
       ) {
         this.userOrder = this.userOrderReq[i];
-        console.log(this.userOrder)
-        console.log(this.userOrder.status)
-         console.log (this.userOrder.image)
          var str = this.userOrder.image;
          var res = str.split(",",1);
          console.log(res)

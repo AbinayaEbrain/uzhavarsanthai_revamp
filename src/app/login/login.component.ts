@@ -238,10 +238,10 @@ export class LoginComponent implements OnInit {
         this.loadingCtrl.hide();
         console.log(err);
         if (err.statusText === 'Unauthorized') {
-          this.errormsg = 'Invalid Phone Number and Password !';
+          this.errormsg = 'Invalid Phone Number or Password !';
           setTimeout(() => {
             this.errormsg = '';
-          }, 3000);
+          }, 5000);
         }
       }
     );
@@ -290,10 +290,10 @@ export class LoginComponent implements OnInit {
           this.errormsg1 = '';
         }
         // this.phoneObj.phone1 = '';
-        this.optsent = 'OTP has been sent successfully!';
-        setTimeout(() => {
-          this.optsent = '';
-        }, 3000);
+        this.optsent = this.phoneObj.phone1;
+        // setTimeout(() => {
+        //   this.optsent = '';
+        // }, 3000);
         document.getElementById('showForm').style.display = 'none';
         document.getElementById('secondDiv').style.display = 'block';
       },

@@ -44,7 +44,7 @@
 
                 <div id="secondDiv" class="mt-5" style="display: none">
                     <form  #postform2="ngForm" class="mt-4" *ngIf ="!submitted" novalidate >
-                        <div class="text-center" style="margin-top: -10%;color: black" *ngIf="optsent">OTP has been sent successfully to this number<br>
+                        <div class="text-center" style="margin-top: -10%;color: #179e36" *ngIf="optsent">OTP has been sent successfully to this number<br>
                             <b style="color: black">'{{optsent}}'</b>
                         </div>
                     <div class="alert alert-danger text-center" style="margin-top: -10%;" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>

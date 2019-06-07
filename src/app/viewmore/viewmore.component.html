@@ -118,8 +118,8 @@
                                                 <p class="product-description" *ngIf="postProduct.description == '' || postProduct.description == undefined || postProduct.description == null" style="text-align: justify">No description.</p>
                                               </div>
                                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                              <p class="product-productreview" *ngIf="postProduct.productreview == '' || postProduct.productreview == undefined || postProduct.productreview == null" style="text-align: justify">No reviews yet.</p>
-                                              <div class="container card" *ngFor="let slide of reviewArr| slice:0:show;">
+                                              <p class="product-productreview" *ngIf="postProduct.productreview == '' || postProduct.productreview == undefined || postProduct.productreview == null" style="text-align: justify">No reviews.</p>
+                                              <div class="container" *ngFor="let slide of reviewArr| slice:0:show;">
                                                 <div style="padding: 10px;">
                                                 <div class="notice notice-success">
                                                   <div *ngIf="reviewlngthErr">
@@ -272,7 +272,7 @@
     <!-- //second div -->
     <div id="secondDiv" class="mt-2" style="display: none">
         <form>
-          <div class="text-center" *ngIf="optsent">OTP has been sent to this number successfully!<br><b>'{{optsent}}'</b></div>
+          <div class="text-center" *ngIf="optsent">OTP has been sent successfully to this number!<br><b>'{{optsent}}'</b></div>
       <div class="alert alert-danger text-center" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
       <div class="form-group ">
           <label class="english_wrd" for="verifyPhone"><span style="font-size: 14px" class="tamil_word">Enter your OTP</span></label>
@@ -319,7 +319,7 @@
 
     <!-- signUp modal -->
     <div class="modal fade centered-modal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal1">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h6 class="headingEng"><span class="tamil_word">பதிவு செய்க</span> / Sign Up</h6>
@@ -345,7 +345,7 @@
             </div>
 
             <div id="signUpsecondDiv" style="display: none">
-                    <div class="text-center"  *ngIf="signUoptsent">OTP has been sent to this number successfully!<br> <b>'{{signUoptsent}}'</b></div>
+                    <div class="text-center" style="color: #179e36" *ngIf="signUoptsent">OTP has been sent successfully to this number!<br> <b>'{{signUoptsent}}'</b></div>
                 <div class="alert alert-danger text-center"  *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
                 <div class="form-group ">
                     <label class="english_wrd" for="phone">Enter your OTP</label>

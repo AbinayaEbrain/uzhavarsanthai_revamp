@@ -544,13 +544,12 @@ mapWithPost(){
         this.user = JSON.parse(localStorage.getItem('firstname'));
         let previousUrl1 = localStorage.getItem('previousUrl');
         this.authorize = localStorage.getItem('authorization');
+        console.log(this.authorize)
 		    let role = JSON.parse(localStorage.getItem('role'));
         if (this.user === 'Admin') {
-          console.log('2');
           this.router.navigate(['/admin']);
         } else {
-
-          if (this.wholedata === 'ACTIVE' && this.wholedata1 === 'Active') {
+          if (this.wholedata === 'ACTIVE' && (this.wholedata1 === 'Active' || this.wholedata1 === 'Rejected')) {
 		    if(this.authorize){
 
               this.visitId = this.route.snapshot.params['id'];
@@ -574,13 +573,11 @@ mapWithPost(){
             }
           }
         else if(this.wholedata != 'ACTIVE') {
-          console.log('8');
             this.deactiveErrorMsg = 'Your account has been deactivated !';
             // setTimeout(() => {
             //   this.deactiveErrorMsg = '';
             // }, 3000);
           }else if(this.wholedata1 != 'Active'  && role == "seller"){
-            console.log('9');
             this.adminVerifyErr = 'Stay cool until get confirmation from Uzhavarsanthai to login!';
             this.mytemplateForm1.reset();
             this.removeLS();
@@ -594,7 +591,7 @@ mapWithPost(){
         this.loadingCtrl.hide();
         if (err.statusText === 'Unauthorized') {
           console.log('10');
-          this.errormsg = 'Invalid Phone Number and Password !';
+          this.errormsg = 'Invalid Phone Number or Password !';
           // setTimeout(() => {
           //   this.errormsg = '';
           // }, 3000);

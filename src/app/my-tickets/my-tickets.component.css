@@ -112,7 +112,7 @@ section .section-title {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
   color: #0d4608 !important;
-  /* background-color: #0d4608; */
+  /* / / background-color: #0d4608; / / */
   font-size: 1rem;
   font-weight: 500;
 }
@@ -149,14 +149,14 @@ section .section-title {
   position: relative;
 }
 
-/* style glyph */
+/* / / style glyph / / */
 .inner-addon .glyphicon {
   position: absolute;
   padding: 10px;
   pointer-events: none;
 }
 
-/* align glyph */
+/* / / align glyph / / */
 .left-addon .glyphicon {
   left: 0px;
 }
@@ -164,7 +164,7 @@ section .section-title {
   right: 0px;
 }
 
-/* add padding  */
+/* / / add padding  / / */
 .left-addon input {
   padding-left: 30px;
 }
@@ -180,12 +180,12 @@ section .section-title {
   text-align: center;
   margin-bottom: 5px;
   transition: all 0.25s;
-  margin-top: 7% !important;
+  /* / margin-top: 7% !important; / */
 }
 
 .nav-tabs {
-  border-bottom: 1px solid #0d4608;
-  /* width: 550px; */
+ 
+
 }
 
 .orderPara {
@@ -194,17 +194,24 @@ section .section-title {
 }
 .orderHighlight {
   float: left;
-  background-color: #0d4608;
   padding: 3px;
   font-weight: bold;
-  color: white;
 }
 .button_word1 {
   font-family: 'Kanit', sans-serif;
   cursor: pointer;
   color: red !important;
   float: right;
-  /* margin-top: 50%; */
+  /* / / margin-top: 50%; / / */
+}
+
+@media screen and (min-width: 425px) {
+  .mobiViewShow{
+    display: none;
+  }
+  .addBr{
+    display: none;
+  }
 }
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .card {
@@ -216,7 +223,7 @@ section .section-title {
     text-align: center;
     margin-bottom: 5px;
     transition: all 0.25s;
-    margin-top: 25% !important;
+    /* / margin-top: 25% !important; / */
   }
   .button_word1 {
     font-family: 'Kanit', sans-serif;
@@ -250,6 +257,32 @@ section .section-title {
   }
   .imgRes {
     width: inherit !important;
+  }
+  .mobiViewHide{
+    display: none;
+  }
+  .mobiViewShow{
+    display: block;
+    font-size: 15px;
+  }
+  .mainHeader{
+    height: 70px !important;
+  }
+  .orderHighlight {
+    float: left;
+    padding: 3px;
+    font-weight: bold;
+    font-size: 15px !important;
+  }
+  .needPadding{
+        padding: 2%;
+        font-size: 14px;
+  }
+  .solBtn{
+    font-size: 15px;
+  }
+  .addBr{
+    display: block;
   }
 }
 .headingrow {
@@ -306,10 +339,10 @@ section .section-title {
   pointer-events: none;
 }
 
-/* component */
+/* / / component / / */
 
 .star-rating {
-  /* border:solid 1px #ccc; */
+  /* / / border:solid 1px #ccc; / / */
   display: flex;
   flex-direction: row-reverse;
   font-size: 1.5em;
@@ -405,8 +438,8 @@ section .section-title {
 }
 @media only screen and (min-width: 200px) and (max-width: 320px) {
   .nav-link {
-    font-size: 10px !important;
-    padding: 14px !important;
+    font-size: 13px !important;
+    padding: 4px !important;
   }
 }
 .notice {
@@ -505,7 +538,7 @@ section .section-title {
 }
 #accordion .panel-title a:before,
 #accordion .panel-title a.collapsed:before {
-  /* content: "More..."; */
+  /* / / content: "More..."; / / */
   font-family: 'Font Awesome 5 Free';
   font-weight: bold;
   color: #2ca093;
@@ -535,7 +568,7 @@ section .section-title {
 .ticketTit {
   text-align: start;
   color: #0d4608;
-  /* color: #0d4608;font-weight: 600; */
+  /* / / color: #0d4608;font-weight: 600; / / */
 }
 .ticketdate {
   text-align: end !important;
@@ -544,7 +577,7 @@ section .section-title {
 }
 
 .styl{
-  /* margin-top: 25px; */
+  /* / / margin-top: 25px; / / */
   color: #0d4608;
   font-family: "Varela Round",Arial,"Helvetica Neue",Helvetica,serif;
   font-weight: bold;

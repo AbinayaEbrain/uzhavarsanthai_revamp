@@ -10,11 +10,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./most-selling-product.component.css']
 })
 export class MostSellingProductComponent implements OnInit {
-
   productId: any;
   acntID: any;
   crdDeals = [];
-  p:any;
+  p: any;
   userDeals = [];
   orderrequests: any = [];
   orderrequestsErr = '';
@@ -32,30 +31,20 @@ export class MostSellingProductComponent implements OnInit {
   }
 
   ngOnInit() {
-        document.getElementById('focusDiv').focus();
+    this.loadingCtrl.show();
+    document.getElementById('focusDiv').focus();
     this.getUser();
   }
 
-  getUser(){
+  getUser() {
     this._dealsService.getDeals().subscribe(
       res => {
-        this.loadingCtrl.hide();
         this.acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
         let j = 0;
         let l = 0;
         this.crdDeals = res;
         this.orderrequestsErr = '';
         console.log(this.crdDeals);
-        // for (let i = 0; i < this.crdDeals.length; i++) {
-        //   if (
-        //     this.acntID == this.crdDeals[i].accountId) {
-        //     this.userDeals[j] = this.crdDeals[i];
-        //     this.productId = this.crdDeals[i]._id;
-        //     j++;
-        //   }
-        // }
-        // console.log(this.userDeals);
-        // console.log(this.productId);
         this.getOrderRequests();
       },
       err => {
@@ -65,23 +54,22 @@ export class MostSellingProductComponent implements OnInit {
     );
   }
 
-getOrderRequests(){
-  console.log(this.crdDeals);
-  let j = 0;
-  for (let i = 1; i < this.crdDeals.length; i++) {
-    console.log(this.crdDeals[i].orderrequests.length);
-    if (this.crdDeals[i].orderrequests.length > 2) {
-      this.orderrequests[j] = this.crdDeals[i];
-      this.splitImage1 =  this.orderrequests[j].image;
-        this.orderrequests[j].image = this.splitImage1.split(",",1);
-      j++;
+  getOrderRequests() {
+    console.log(this.crdDeals);
+    let j = 0;
+    for (let i = 1; i < this.crdDeals.length; i++) {
+      console.log(this.crdDeals[i].orderrequests.length);
+      if (this.crdDeals[i].orderrequests.length > 2) {
+        this.orderrequests[j] = this.crdDeals[i];
+        this.splitImage1 = this.orderrequests[j].image;
+        this.orderrequests[j].image = this.splitImage1.split(',', 1);
+        j++;
+      }
     }
-
-}
-console.log(this.orderrequests);
-if (this.orderrequests.length == 0) {
-  this.orderrequestsErr = 'No product available!';
-}
-}
-
+    console.log(this.orderrequests);
+    if (this.orderrequests.length == 0) {
+      this.orderrequestsErr = 'No products available!';
+    }
+    this.loadingCtrl.hide();
+  }
 }

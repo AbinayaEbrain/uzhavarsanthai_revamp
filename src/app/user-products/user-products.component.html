@@ -16,7 +16,6 @@
                    <div class="inner-addon left-addon" id="hideSearchDiv">
                        <i class="fa fa-search glyphicon" aria-hidden="true"></i>
                        <input type="text" class="form-control searchBorder" [(ngModel)]="queryString" name="search" (keyup)="case()" autocomplete="off" placeholder="Search by product category..." />
-
                      </div>
                 </div>
                 <div class="col-md-2 col-sm-6 col-6 onmobiviewpadding">
@@ -57,25 +56,28 @@
                                                                               {{errMsg}}
                                                                            </td>
                                                                        </tr>
+
+                                                                       <tr *ngIf="errMsg2">
+                                                                            <td colspan="7" class="text-danger" style="text-align: center">
+                                                                               {{errMsg2}}
+                                                                            </td>
+                                                                        </tr>
                                    
                                                                   <tr  id="hide" *ngFor="let deal of userDeals | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
                                                                     
-                                                                      <td *ngIf="deal === -1" class="prdUnavil text-danger">
+                                                                      <!-- <td *ngIf="deal === -1" class="prdUnavil text-danger">
                                                                            {{errMsg2}}
-                                                                       </td>
+                                                                       </td> -->
 
                                                                       <td>{{deal.category}}</td>
 
                                                                       <td *ngIf="deal.name">
                                                                       <div class="productFullName">{{deal.name}}</div>
                                                                        </td>
-                                                                       <td *ngIf="!deal.name">--</td>
 
                                                                       <td *ngIf="deal.quantity">{{deal.quantity}}{{deal.qnty}} </td>
-                                                                      <td *ngIf="!deal.quantity">--</td>
 
                                                                      <td *ngIf="deal.price">{{deal.price}}</td>
-                                                                     <td *ngIf="!deal.price">--</td>
 
                                                                       <td>{{deal.date | date: 'dd/MM/yyyy'}}</td>
                                                                       <td> {{deal.validityTime | date: 'dd/MM/yyyy'}} </td>
@@ -173,7 +175,7 @@
                 <div class="col-md-3 col-lg-3 col-12"></div>
                 <div class="col-md-6 col-lg-6 col-12 errDesign">
                     <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
-                    <p class="mt-4">You have to be a "<font style="color: #f53636;font-style: italic">seller</font>" to see <span style="font-style: italic">Order Requests</span>.</p>
+                    <p class="mt-4">You have to be a "<font style="color: #f53636;font-style: italic">seller</font>" to see <span style="font-style: italic">My Products</span>.</p>
                     <a routerLink="/buyerAsSeller" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">SignUp as seller</a>
                 </div>
                 <div class="col-md-3 col-lg-3 col-12"></div>

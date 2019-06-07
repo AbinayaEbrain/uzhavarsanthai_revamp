@@ -1,6 +1,6 @@
 <div id='focusDiv' tabindex="1"></div>
 <body class="bg" style="overflow-x: hidden;">
-  <div class="container card">
+  <div class="container card mt-5">
     <h5 class="styl mt-3">My Tickets</h5><br>
     <section id="tabs" style="margin-top: -20px;">
           <div class="container">
@@ -23,7 +23,7 @@
     font-size: 13px;" id="paraTag1" (click)="changeColor1()" (click)="openTickets()">Open Tickets</p>  &nbsp;&nbsp;
             <p style="float:left;cursor:pointer;font-weight: 600;margin-left: 1%;font-size: 13px;" id="paraTag" (click)="changeColor()" (click)="closedTickets()">Resolved Tickets</p>
 <br>
-            <div class="container" style="margin-top: 1%;">
+
               <div >
               <div class="col-md-3 col-lg-4 col-12"></div>
               <div class="col-md-6 col-lg-4 col-12 errDesign" *ngIf="noTicketsMsg && !noOpenTicketsMsg && !noClosedTicketsMsg">
@@ -48,43 +48,59 @@
   </div>
   <div class="col-md-3 col-lg-4 col-12"></div>
 </div>
-              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
-              <div class="panel panel-default" style="box-shadow: 0px 2px 5px 0px #ccc;" >
-                  <div class="panel-heading" role="tab" id="headingOne">
-                      <h4 class="panel-title">
-                          <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ticket._id}}" aria-expanded="true" aria-controls="collapseOne">
-                              <div class="col-md-12">
-                                <div class="row">
-                                  <div class="col-md-3">
-                                      <!-- [ngStyle]="{'background-color': ticket.ticketStatus === 'Created' ? 'rgba(13, 70, 8, 0.74)' : '#f44336e6' }" -->
-                          <p style=" text-align: start;color: #0d4608;font-weight: bold;">{{ticket.ticketId}}</p>
 
-                                  </div>
-                                  <div class="col-md-6">
-                                     <p class="ticketTit text-center" >{{ticket.ticketTitle}}</p>
-                                  </div>
-                                  <div class="col-md-3">
-                                     <p class="ticketdate" style="font-weight: 500;" [ngStyle]="{'color': ticket.ticketStatus === 'Created' ? '#0d4608' : '#f44336e6' }">{{ticket.ticketStatus}}</p>
-                                     <small style="float: right;color: #ef6806d9">{{ticket.createddate | date}}</small>
-                                  </div>
-                                </div>
-                              </div>
-                          </a>
-                      </h4>
-                  </div>
-                  <div id="{{ticket._id}}" class="panel-collapse collapse in" style="margin-top: -2%;" role="tabpanel" aria-labelledby="headingOne">
-                      <div class="panel-body">
-                        <hr>
-                        <p style="text-align: start;color: #0d4608;font-size: 15px;"><b>Description :</b> {{ticket.ticketDescription}}</p>
-                        <p *ngIf="ticket.solution" style="text-align: start;color: #0d4608;font-size: 15px;"><b>Solution :</b> {{ticket.solution}}</p>
+<!-- <div class="container"> -->
+<!-- <div class="row" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
+<div class="container card" style="margin-top:2%">
+  <div class="row card-header mainHeader" style="height: 50px;">
+    <div class="col-md-6 col-6">
+     <p class="orderHighlight" style="border-radius: 3px;color: #ef6806d9;">{{ticket.ticketId}}</p>
+    </div>
+    <div class="col-md-6 col-xs-12 col-6" style="font-weight: bold;">
+      <p class="orderHead2 float-right" ><span class="ticketdate"
+        style="font-weight: 500;color: #ef6806d9;">
+        &nbsp; {{ticket.createddate | date}}</span>&nbsp;<br class="addBr"><b>{{ticket.ticketStatus}}</b></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" style="text-align: left;margin-top: 15px;">
+      <p class="orderHead1" style="margin-bottom: 1rem;text-align: center;"><b>{{ticket.ticketTitle}}</b></p>
+      <p class="orderHead1 needPadding" style="color: #0d4608;text-align:justify;"> <span> {{ticket.ticketDescription}}</span></p>
+          <p   class="button_word solBtn" (click)="getSolution(dispute._id)" style="text-align:right;margin-top: -2%;cursor:pointer;color: #ef6806d9;
+font-weight: 700;" data-toggle="modal" data-target="#myModal1"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> View Solution</p>
+    </div>
+  </div>
+</div>
+</div> -->
+<!-- </div> -->
+
+              <div class="container card" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
+                 
+                      <div class="row card-header mainHeader"  style="height: 50px;">
+                        <!-- <div class="col-md-12"> -->
+                      <div class="col-md-6 col-xs-12 col-6">
+                       <p class="orderHighlight" style="border-radius: 3px;color: #ef6806d9;">{{ticket.ticketId}}</p>
+                       </div>
+                       <div class="col-md-6 col-xs-12 col-6">
+                        <p class="orderHead2" style="text-align: right;"><span class="ticketdate"
+                          style="font-weight: 500;color: #ef6806d9;">
+                          &nbsp; {{ticket.createddate | date}}</span>&nbsp;<br class="addBr"><b>{{ticket.ticketStatus}}</b></p>
+                          </div>
+                        <!-- </div> -->
                       </div>
+                    
+                <div class="row">
+                    <div class="col-md-12" style="text-align: left;margin-top: 15px;">
+                      <p class="orderHead1" style="margin-bottom: 1rem;text-align: center;"><b>{{ticket.ticketTitle}}</b></p>
+                      <p class="orderHead1 needPadding" style="color: #0d4608;text-align:justify;"> <span> {{ticket.ticketDescription}}</span></p>
+                          <p  *ngIf = "ticket.solution"   class="button_word solBtn" (click)="getTicketSol(ticket._id)" style="text-align:right;margin-top: -2%;cursor:pointer;color: #ef6806d9;
+                font-weight: 700;" data-toggle="modal" data-target="#myModal2"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> View Solution</p>
+                    </div>
                   </div>
               </div>
-          </div>
-              <div class="mx-auto mt-3">
-                   <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
-                 </div>
-            </div>
+            <div class="mx-auto mt-3">
+                 <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
+               </div>
           </div>
           <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
         <div class="container">
@@ -138,7 +154,38 @@
                   </div>
                   <div class="col-md-3 col-lg-4 col-12"></div>
           </div>
-          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" *ngFor="let dispute of getExactDisputes | paginate: {id: 'foo1', itemsPerPage:10,currentPage:p},let i = index">
+          <div class="container">
+            <div class="row" *ngFor="let dispute of getExactDisputes | paginate: {id: 'foo1', itemsPerPage:10,currentPage:p},let i = index">
+            <div class="container card" style="margin-top:0px !important;">
+              <div class="row card-header mainHeader" style="height: 50px;">
+                <div class="col-md-6 col-6">
+                 <p class="orderHighlight" style="border-radius: 3px;color: #ef6806d9;">{{dispute.ticketId}}</p>
+                 <span  *ngIf="dispute.sellerName" class="mobiViewHide" style="font-weight: 500;">#{{dispute.sellerName}}</span>
+                 <span  *ngIf="dispute.buyerName" class="mobiViewHide" style="font-weight: 500;">#{{dispute.buyerName}}</span>
+                </div>
+                <div class="col-md-6 col-xs-12 col-6" style="font-weight: bold;">
+                  <p class="orderHead2 float-right" ><span class="ticketdate"
+                    style="font-weight: 500;color: #ef6806d9;">
+                    &nbsp; {{dispute.createdAt | date}}</span><br class="addBr">&nbsp;{{dispute.disputeStatus}}</p>
+                   <!-- <img height="30px"  width="30px" *ngIf="dispute.disputeStatus === 'Created'" src="https://img.icons8.com/cotton/2x/checkmark.png">
+                    <img height="30px"  width="30px" *ngIf="dispute.disputeStatus === 'Resolved'" src="https://cdn1.iconfinder.com/data/icons/real-estate-set-1/512/19-512.png"> {{dispute.disputeStatus}}</p> -->
+
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12" style="text-align: left;margin-top: 15px;">
+                  <p class="mobiViewShow orderHead1" style="margin-bottom: 0rem;">Dispute against <b>#{{dispute.sellerName}}</b></p>
+                  <p class="orderHead1 needPadding" style="color: #0d4608;text-align:justify;text-indent: 5%;"> <span> {{ dispute.dispute }}</span></p>
+                      <p *ngIf="dispute.solution"  class="button_word solBtn" (click)="getSolution(dispute._id)" style="text-align:right;margin-top: -2%;cursor:pointer;color: #ef6806d9;
+    font-weight: 700;" data-toggle="modal" data-target="#myModal1"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> View Solution</p>
+                </div>
+
+              </div>
+            </div>
+            </div>
+          </div>
+          <!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" *ngFor="let dispute of getExactDisputes | paginate: {id: 'foo1', itemsPerPage:10,currentPage:p},let i = index">
           <div class="panel panel-default" style="box-shadow: 0px 2px 5px 0px #ccc;" >
               <div class="panel-heading" role="tab" id="headingOne">
                   <h4 class="panel-title">
@@ -170,7 +217,7 @@ border-radius: 0px 10px 0px 10px;padding: 1.2%;" [ngStyle]="{'background-color':
                   </div>
               </div>
           </div>
-      </div>
+      </div> -->
               <div class="mx-auto mt-3">
                    <pagination-controls id="foo1"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
                  </div>
@@ -178,3 +225,38 @@ border-radius: 0px 10px 0px 10px;padding: 1.2%;" [ngStyle]="{'background-color':
           </div>
       </div>
     </div>
+
+
+    <div class="modal fade" id="myModal1" role="dialog">
+       <div class="modal-dialog modal-dialog-centered">
+         <div class="modal-content">
+           <div class="modal-header">
+             <p class="modal-title fntSize" style="font-family:'Oxygen', sans-serif;">Solution</p>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true" class="text-black x">X</span>
+             </button>
+           </div>
+           <div class="modal-body">
+             {{disputeSol}}
+           </div>
+         </div>
+       </div>
+     </div>
+
+
+     
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p class="modal-title fntSize" style="font-family:'Oxygen', sans-serif;">Solution</p>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="text-black x">X</span>
+              </button>
+            </div>
+            <div class="modal-body">
+             <p>{{ticketSolution}}</p> 
+            </div>
+          </div>
+        </div>
+      </div>

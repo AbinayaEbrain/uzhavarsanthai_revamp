@@ -45,7 +45,7 @@
                   <span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Status : {{order.status}}</span> 
                  </p> -->
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4" *ngIf="userOrder.status != 'Order created'">
                 <div class="txtAlign" style="color: blue;font-size: 12px;">
                   <p data-toggle="modal" data-target="#myModal" (click)="singleUpdateSignupReq(userOrder._id)" style="cursor: pointer;">
                     <i class="fa fa-star" aria-hidden="true"></i> RATE & REVIEW
