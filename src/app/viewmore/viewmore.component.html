@@ -400,7 +400,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <p class="modal-title fntSize">Requirement Details</p>
-              <button type="button" class="close x" id="closeCancelOrderModal1" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+              <button type="button" class="close x" (click)="closeReset()" id="closeCancelOrderModal1" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
           </div>
           <div class="modal-body">
             <div class="alert alert-success text-center error_word"  *ngIf="orderRequestMsg">
