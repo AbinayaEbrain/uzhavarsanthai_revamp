@@ -357,12 +357,12 @@ openloginModal(){
 
 sendQuery(){
   this.loadingCtrl.show();
-  //this.findQuantity();
-  if(this.greaterQty == ''){
-    this.postQuery();
-  }else{
-    this.loadingCtrl.hide();
-  }
+  this.findQuantity();
+  // if(this.greaterQty == ''){
+  //   this.postQuery();
+  // }else{
+  //   this.loadingCtrl.hide();
+  // }
 }
 
 postQuery(){
@@ -424,7 +424,7 @@ findQuantity(){
     this.loadingCtrl.hide();
   }else{
     this.greaterQty = '';
-    // this.postQuery();
+    this.postQuery();
   }
 }
 
