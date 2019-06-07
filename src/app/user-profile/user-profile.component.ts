@@ -108,6 +108,7 @@ export class UserProfileComponent implements OnInit {
         console.log(res);
          localStorage.setItem('currentUpdateAddr', JSON.stringify(this.crntUser));
         this.updatePostName();
+        this.removeLS();
         //this.updateReviewSellerName();
         //this.updateReviewBuyerName();
         this.loadingCtrl.hide();
@@ -127,6 +128,20 @@ export class UserProfileComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  removeLS() {
+    localStorage.removeItem('payload');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    localStorage.removeItem('Address');
+    localStorage.removeItem('roleStatus');
+    localStorage.removeItem('googleLat');
+    localStorage.removeItem('googleLong');
+    localStorage.removeItem('ipAddress');
+    localStorage.removeItem('status');
+    localStorage.removeItem('firstname');
+    localStorage.removeItem('Image');
   }
 
   updatePostName() {

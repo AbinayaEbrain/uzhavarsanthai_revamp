@@ -121,7 +121,7 @@
                                         <td>
                                         <div class="productFullName">{{deal.prdctName}}</div>
                                          </td>
-                                        <td>{{deal.prdctQty}}{{deal.prdctUnit}} </td>
+                                        <td>{{deal.requiredQuantity}}{{deal.requiredUnit}} </td>
                                        <td>{{deal.buyerName}}</td>
                                         <td>{{deal.buyerPhone}}</td>
                                         <td *ngIf = "deal.sellerStatus == 'Order cancelled'" class="text-danger">Cancelled by myself</td>
