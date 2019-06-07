@@ -23,8 +23,8 @@ export class UserProfileComponent implements OnInit {
   firstnam = '';
   success: any;
   id: any;
-  checkpassword = false
-  notOldpwderr : any;
+  checkpassword = false;
+  notOldpwderr: any;
   otpObj: any = {};
   currentusername: any;
   public crntUser: any = {};
@@ -35,7 +35,7 @@ export class UserProfileComponent implements OnInit {
   public address: any;
   adrss: any;
   addrs: any;
-  pwd : any;
+  pwd: any;
   googleAddress: any;
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -52,44 +52,44 @@ export class UserProfileComponent implements OnInit {
     private _users: DealsService,
     private route: ActivatedRoute,
     public zone: NgZone
-  ) {
-    this.loadingCtrl.show();
-  }
+  ) {}
 
   ngOnInit() {
     this.loadingCtrl.show();
     document.getElementById('focusDiv').focus();
-    
+
     this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
     this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
 
     this._users.getDetails().subscribe(
       res => {
         this.loggedUser = res;
-        console.log(this.loggedUser)
+        console.log(this.loggedUser);
         for (let i = 0; i < this.loggedUser.length; i++) {
           if (this.id == this.loggedUser[i]._id) {
             this.crntUser = this.loggedUser[i];
-            console.log(this.crntUser)
+            console.log(this.crntUser);
           }
         }
-        if((this.crntUser.address.addressLine == "" || this.crntUser.address.addressLine == null) || (this.crntUser.address.city == ""
-      || this.crntUser.address.city == undefined || this.crntUser.address.city == "Not yet update")){
-            this.crntUser.address.addressLine = "Not yet update";
-            this.crntUser.address.city = " Not yet update";
-            // this.crntUser.address.city.formatted_address = " Not yet update";
-            console.log(this.crntUser.address.city)
-            console.log(this.crntUser.address.addressLine)
+        if (
+          this.crntUser.address.addressLine == '' ||
+          this.crntUser.address.addressLine == null ||
+          (this.crntUser.address.city == '' ||
+            this.crntUser.address.city == undefined ||
+            this.crntUser.address.city == 'Not yet update')
+        ) {
+          this.crntUser.address.addressLine = 'Not yet update';
+          this.crntUser.address.city = ' Not yet update';
+          console.log(this.crntUser.address.city);
+          console.log(this.crntUser.address.addressLine);
         }
         this.loadingCtrl.hide();
 
         this.InitialCall();
-
       },
       err => {
         console.log(err);
         this.loadingCtrl.hide();
-
       }
     );
   }
@@ -97,7 +97,7 @@ export class UserProfileComponent implements OnInit {
   updateUser() {
     this.loadingCtrl.show();
     localStorage.setItem('firstname', JSON.stringify(this.crntUser.firstname));
-    console.log(this.addr != undefined || this.addr != null)
+    console.log(this.addr != undefined || this.addr != null);
     if (this.addr != undefined || this.addr != null) {
       this.crntUser.address.city = this.addr;
     }
@@ -106,14 +106,17 @@ export class UserProfileComponent implements OnInit {
     this._users.updateCustomer(this.crntUser, this.id).subscribe(
       res => {
         console.log(res);
-         localStorage.setItem('currentUpdateAddr', JSON.stringify(this.crntUser));
+        localStorage.setItem(
+          'currentUpdateAddr',
+          JSON.stringify(this.crntUser)
+        );
         this.updatePostName();
         this.removeLS();
         //this.updateReviewSellerName();
         //this.updateReviewBuyerName();
         this.loadingCtrl.hide();
-        document.getElementById("closePwdModal").click();
-        document.getElementById("openPwdModal").click();
+        document.getElementById('closePwdModal').click();
+        document.getElementById('openPwdModal').click();
         // this.success = 'Updated successfully!';
         // setTimeout(() => {
         //   this.success = '';
@@ -190,11 +193,12 @@ export class UserProfileComponent implements OnInit {
   InitialCall() {
     for (let i = 0; i < this.loggedUser.length; i++) {
       if (this.id == this.loggedUser[i]._id) {
-
         this.crntUser.firstname = this.loggedUser[i].firstname;
         this.crntUser.lastName = this.loggedUser[i].lastName;
         this.crntUser.gender = this.loggedUser[i].gender;
-        this.crntUser.address.addressLine = this.loggedUser[i].address.addressLine;
+        this.crntUser.address.addressLine = this.loggedUser[
+          i
+        ].address.addressLine;
         //this.crntUser.address.address1 = this.loggedUser[i].address.address1;
         //this.crntUser.address.city.formatted_address = this.loggedUser[i].address.city.formatted_address;
       }
@@ -209,22 +213,22 @@ export class UserProfileComponent implements OnInit {
     this.InitialCall();
   }
 
-  changePwd(){
-    document.getElementById("openChangePwdModal").click();
-      this.notOldpwderr = '';
-      this.mytemplateForm1.reset();
-      this.mytemplateForm2.reset();
-      document.getElementById("firstDiv").style.display = 'block';
-      document.getElementById("secondDiv").style.display = 'none';
+  changePwd() {
+    document.getElementById('openChangePwdModal').click();
+    this.notOldpwderr = '';
+    this.mytemplateForm1.reset();
+    this.mytemplateForm2.reset();
+    document.getElementById('firstDiv').style.display = 'block';
+    document.getElementById('secondDiv').style.display = 'none';
   }
-  verifyPwd(){
-    if(this.crntUser.oldotp == this.pwd){
+  verifyPwd() {
+    if (this.crntUser.oldotp == this.pwd) {
       this.notOldpwderr = '';
-      document.getElementById("secondDiv").style.display = 'block';
-      document.getElementById("firstDiv").style.display = 'none';
+      document.getElementById('secondDiv').style.display = 'block';
+      document.getElementById('firstDiv').style.display = 'none';
       this.checkpassword = true;
-    }else{
-      this.notOldpwderr = 'You have entered wrong password'
+    } else {
+      this.notOldpwderr = 'You have entered wrong password';
     }
   }
 }

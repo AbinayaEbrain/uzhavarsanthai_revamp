@@ -174,7 +174,7 @@
                     </div>
 
                     <div style="text-align:center;" *ngIf="getToken && !requestSent && !omit" >
-                        <button type="button" data-toggle="modal" data-target="#myModal2" class="btn btnStyle mx-auto contactbtn" style="padding: 10px;border-radius: unset"><p style="margin-top: -5px;
+                        <button type="button" (click)="createOrederModal()" class="btn btnStyle mx-auto contactbtn" style="padding: 10px;border-radius: unset"><p style="margin-top: -5px;
                         margin-bottom: -5px;font-weight: bold;font-size:14px">Create Order Request</p>
                         </button>
 

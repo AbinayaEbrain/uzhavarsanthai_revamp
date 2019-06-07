@@ -921,9 +921,7 @@ mapWithPost(){
     }
 
     closeReset(){
-      this.mytemplateForm3.reset();
-      this.querydata.requiredUnit = '';
-      this.querydata.urgency = '';
+       this.mytemplateForm3.reset();
     }
 
     handleInput(evt) {
@@ -940,27 +938,9 @@ mapWithPost(){
 
 //create order modal
 createOrederModal(){
-  this.mytemplateForm3.reset();
   this.querydata.requiredUnit = '';
-this.querydata.urgency = '';
-  var pacContainerInitialized = false;
-   $('#cityOne').keypress(function() {
-    if (!pacContainerInitialized) {
-            $('.pac-container').css('z-index', '9999');
-            pacContainerInitialized = true;
-    }
-});
-
-document.getElementById("openOrderReqModal").click();
-  // console.log(this.currentuserAddress == null || this.currentuserAddress == '')
-  // if(this.currentuserAddress == null || this.currentuserAddress == ''){
-  //     document.getElementById("updateAddressConfirmationModal").click();
-  //     this.mytemplateForm5.reset();
-  //   // document.getElementById("updateAddressModal").click();
-  // }else{
-
-  // }
-
+  this.querydata.urgency = '';
+  document.getElementById("openOrderReqModal").click();
 }
 
 updateAddress(){
