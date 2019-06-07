@@ -220,6 +220,10 @@ input {
   width: 345px;
 }
 
+.imgStyle1 {
+  height: 150px;
+}
+
 @media screen and (min-width: 320px) and (max-width: 768px) {
   .paraStyle {
     padding: 5px;
