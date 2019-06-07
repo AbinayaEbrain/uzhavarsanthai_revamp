@@ -29,6 +29,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   @ViewChild('forgotpwdform') mytemplateForm4: NgForm;
   @ViewChild('updateAddressform') mytemplateForm5: NgForm;
   rqstId : any;
+  greaterQty: any;
   show = 3;
   id = '';
   viewmore = [];
@@ -356,14 +357,14 @@ openloginModal(){
 
 sendQuery(){
   this.loadingCtrl.show();
+  this.findQuantity();
+}
+
+postQuery(){
   var a = "UZ";
   let reqId = Math.floor(100000 + Math.random() * 900000);
   this.querydata.requestId = a + "-" + reqId;
-  // var a = "UZ"
-  // this.requestId = Math.floor(100000 + Math.random() * 900000);
-  // console.log(this.requestId);
-  // this.querydata.requestId = a + "-" + this.requestId;
-  // console.log(this.querydata.requestId);
+  
   this.buyerName = JSON.parse(localStorage.getItem('currentUser')).firstname;
   this.buyerPhone = JSON.parse(localStorage.getItem('currentUser')).phone;
   this.buyerAddress = JSON.parse(localStorage.getItem('currentUpdateAddr')).address.addressLine;
@@ -392,28 +393,32 @@ sendQuery(){
   this.querydata.status = 'Order created';
   let curntDte = new Date().getTime();
   this.querydata.createdAt = curntDte;
-console.log(this.querydata);
+  console.log(this.querydata);
   this._dealsService.sendOrderReqmail(this.querydata).subscribe(
     res => {
       console.log(res);
       this.storeOrderRequest();
       this.mytemplateForm3.reset();
-        // this.orderRequestMsg = 'We got your order query, we get back to you soon!';
-        //  setTimeout(() => {
-        //      this.orderRequestMsg='';
-        //     document.getElementById("closeRequirementModal").click();
-        //      this.router.navigate(['/my-order']);
-        //  },3000)
-
-        this.loadingCtrl.hide();
+      this.loadingCtrl.hide();
     },
-    err => {console.log(err);
-      this.loadingCtrl.hide();}
+    err => {
+      console.log(err);
+      this.loadingCtrl.hide();
+    }
   );
 
-// this.smsToSeller();
-// this.smsToBuyer();
+//  this.smsToSeller();
+//  this.smsToBuyer();
+}
 
+findQuantity(){
+  if(this.querydata.requiredQuantity > this.postProduct.quantity){
+    this.greaterQty = 'Required quantity is greater than available quantity';
+    this.loadingCtrl.hide();
+  }else{
+    this.greaterQty = '';
+    this.postQuery();
+  }
 }
 
 //store order request
@@ -433,9 +438,6 @@ storeOrderRequest(){
     err => console.log(err)
   );
 }
-closeModel(){
-
-}
 
 //sms to seller
 smsToSeller(){
@@ -446,6 +448,7 @@ smsToSeller(){
     err => console.log(err)
   );
 }
+
 //sms to buyer
 smsToBuyer(){
   this._dealsService.sendOrderSmsBuyer(this.querydata).subscribe(
