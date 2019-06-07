@@ -413,7 +413,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                               <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">எடை </span>/ Quantity</label>
-                                 <input type="text" class="form-control" placeholder="Enter quantity" #requiredQuantity="ngModel"
+                                 <input type="text" class="form-control" (keyup)="findQuantity()" placeholder="Enter quantity" #requiredQuantity="ngModel"
                                   name="requiredQuantity" [class.is-invalid]="requiredQuantity.invalid && requiredQuantity.touched"
                                    ngModel [(ngModel)]="querydata.requiredQuantity" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" maxlength="5" required>
                                  <span class="text-danger float-left error_word errFont"

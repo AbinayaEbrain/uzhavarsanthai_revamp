@@ -357,7 +357,12 @@ openloginModal(){
 
 sendQuery(){
   this.loadingCtrl.show();
-  this.findQuantity();
+  //this.findQuantity();
+  if(this.greaterQty == ''){
+    this.postQuery();
+  }else{
+    this.loadingCtrl.hide();
+  }
 }
 
 postQuery(){
@@ -412,12 +417,14 @@ postQuery(){
 }
 
 findQuantity(){
+  console.log(this.querydata.requiredQuantity);
+  console.log(this.postProduct.quantity);
   if(this.querydata.requiredQuantity > this.postProduct.quantity){
     this.greaterQty = 'Required quantity is greater than available quantity';
     this.loadingCtrl.hide();
   }else{
     this.greaterQty = '';
-    this.postQuery();
+    // this.postQuery();
   }
 }
 
@@ -925,6 +932,7 @@ mapWithPost(){
 
     closeReset(){
        this.mytemplateForm3.reset();
+       this.greaterQty = '';
     }
 
     handleInput(evt) {
