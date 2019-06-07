@@ -372,18 +372,18 @@ postQuery(){
   
   this.buyerName = JSON.parse(localStorage.getItem('currentUser')).firstname;
   this.buyerPhone = JSON.parse(localStorage.getItem('currentUser')).phone;
-  if(localStorage.getItem('currentUpdateAddr') == null || localStorage.getItem('currentUpdateAddr') == undefined){
-    this.buyerAddress = JSON.parse(localStorage.getItem('currentUser')).address.addressLine;
-    this.buyerCity = JSON.parse(localStorage.getItem('currentUser')).address.city.formatted_address;
-  }else{
-    this.buyerAddress = JSON.parse(localStorage.getItem('currentUpdateAddr')).address.addressLine;
-    this.buyerCity = JSON.parse(localStorage.getItem('currentUpdateAddr')).address.city.formatted_address;
-  }
+  // if(localStorage.getItem('currentUpdateAddr') == null || localStorage.getItem('currentUpdateAddr') == undefined){
+  //   this.buyerAddress = JSON.parse(localStorage.getItem('currentUser')).address.addressLine;
+  //   this.buyerCity = JSON.parse(localStorage.getItem('currentUser')).address.city.formatted_address;
+  // }else{
+  //   this.buyerAddress = JSON.parse(localStorage.getItem('currentUpdateAddr')).address.addressLine;
+  //   this.buyerCity = JSON.parse(localStorage.getItem('currentUpdateAddr')).address.city.formatted_address;
+  // }
  
   this.querydata.buyerName =  this.buyerName;
   this.querydata.buyerPhone =  this.buyerPhone;
-  this.querydata.buyerAddress =  this.buyerAddress;
-  this.querydata.buyerCity =  this.buyerCity;
+  // this.querydata.buyerAddress =  this.buyerAddress;
+  // this.querydata.buyerCity =  this.buyerCity;
   this.querydata.buyerId = JSON.parse(localStorage.getItem('currentUser'))._id;
   //seller data
   this.querydata.sellerName = this.postProduct.firstName;
