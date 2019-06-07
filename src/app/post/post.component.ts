@@ -149,9 +149,16 @@ export class PostComponent implements OnInit {
 
     this.currentuserId = JSON.parse(localStorage.getItem('currentUser'))._id;
     console.log( this.currentuserId)
+    if(localStorage.getItem('currentUpdateAddr') == null || localStorage.getItem('currentUpdateAddr') == undefined){
+      this.carForm.value.avlPlace = JSON.parse(
+        localStorage.getItem('currentUser')
+      ).address.city.formatted_address;
+    }else{
       this.carForm.value.avlPlace = JSON.parse(
         localStorage.getItem('currentUpdateAddr')
       ).address.formatted_address;
+    }
+     
       console.log(this.carForm.value.avlPlace)
       // this.multiData.avlPlace = JSON.parse(
       //   localStorage.getItem('currentUser')
