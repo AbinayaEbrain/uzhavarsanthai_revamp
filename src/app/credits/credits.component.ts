@@ -86,7 +86,7 @@ export class CreditsComponent implements OnInit {
           this.creditsArr == undefined
         ) {
           console.log(this.creditsArr);
-          this.errMsg = 'You have not closed products yet!';
+          this.errMsg = 'You have not spent credits yet!';
         } else {
           this.creditsArr = this.creditsArr.reverse();
         }
