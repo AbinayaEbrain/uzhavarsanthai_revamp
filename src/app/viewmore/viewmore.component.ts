@@ -922,6 +922,8 @@ mapWithPost(){
 
     closeReset(){
       this.mytemplateForm3.reset();
+      this.querydata.requiredUnit = '';
+      this.querydata.urgency = '';
     }
 
     handleInput(evt) {
