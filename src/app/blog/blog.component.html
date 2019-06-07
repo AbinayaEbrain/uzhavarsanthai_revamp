@@ -31,6 +31,7 @@
                 autocomplete="off"
                 id="usr"
                 name="username"
+                placeholder="Enter blog title"
                 required
               />
               <span
@@ -51,6 +52,7 @@
                 autocomplete="off"
                 style="height: 150px;border-color: #0d4608;"
                 name="commenttext"
+                placeholder="Enter blog comment"
                 required
               ></textarea>
               <span
@@ -78,7 +80,7 @@
       <div class="col-md-2"></div>
     </div>
     <div>
-        <div class="mb-2 noBlog" style="text-align: center" *ngIf="noBlog">
+        <div class="mb-2 noBlog text-danger" style="text-align: center" *ngIf="noBlog">
             {{noBlog}}
           </div>   
          </div>
@@ -91,19 +93,31 @@
             <div class="col-md-2 col-3">
               <div class="row float" style="display: inline-block;">
                 <!-- <div class="col-md-6 col-xs-6"> -->
-                <button class="btn btnstl btnEdit" (click)="edit(blog._id)">
-                  <i class="fa fa-pencil-square-o icon"> </i>
-                </button>
-                <button
+                <p class="btn btnstl btnEdit" style=" outline: none !important;" (click)="edit(blog._id)">
+                  <i class="fa fa-pencil-square-o"> </i>
+                </p>
+                <p class="btn btnstl btnEdit" style=" outline: none !important;"  data-toggle="modal"
+                data-target="#myModal"
+                data-backdrop="static"
+                data-keyboard="false"
+                (click)="getId(blog._id)"
+              
+                >
+                  <i class="fa fa-trash-o text-danger"> </i>
+                </p>
+                <!-- routerLink="/blog/{{ blog._id }}" -->
+                <!-- <p
+                style=" outline: none !important;"
                   class="btn btnstl btnDlt"
+                  
                   data-toggle="modal"
                   data-target="#myModal"
                   data-backdrop="static"
                   data-keyboard="false"
                   routerLink="/blog/{{ blog._id }}"
                 >
-                  <i class="fa fa-trash-o text-danger icon"></i>
-                </button>
+                  <i style=" outline: none !important;" class="fa fa-trash-o text-danger"></i>
+              </p> -->
               </div>
             </div>
           </div>

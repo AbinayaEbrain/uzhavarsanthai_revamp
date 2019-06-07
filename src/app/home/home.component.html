@@ -109,7 +109,7 @@
          <button type="button" id="closeAddressModal" class="close" data-dismiss="modal">X</button>
       </div>
       <div class="modal-body">
-            <div class="alert alert-success text-center" *ngIf="successMsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{successMsg}}</div>
+            <!-- <div class="alert alert-success text-center" *ngIf="successMsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{successMsg}}</div> -->
         <form  #updateAddressform="ngForm" *ngIf ="!submitted" novalidate >
         <div class="form-group">
             <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
@@ -126,6 +126,24 @@
          <button type="reset" class="btn btnClr button_word modelBtn">Reset</button>
         </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModal5" name="button" id="openConfirmModal"></button>
+<!-- //open login modal -->
+<div class="modal fade" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModal5">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="padding: 25px;">
+          <h5 class="text-center" style="color:#0d4608">Updated successfully!</h5>
+          <p class="text-center">Your address has been saved successfully! <br>
+          </p>
+          <div class="text-center">
+              <button type="button" class="btn btn-success button_word" routerLink="/post" data-dismiss="modal" aria-label="Close">OK</button>
+          </div>
       </div>
     </div>
   </div>

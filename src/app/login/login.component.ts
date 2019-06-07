@@ -208,11 +208,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/admin']);
         } else {
           if (this.wholedata === 'ACTIVE' && this.wholedata1 === 'Active') {
-            if(this.authorize){
-              this.visitId = localStorage.getItem('lastvisitproductid');
-              this.router.navigate(['/viewmore/' + this.visitId ]);
-              localStorage.removeItem('authorization');
-            }else{
+            // if(this.authorize){
+            //   this.visitId = localStorage.getItem('lastvisitproductid');
+            //   this.router.navigate(['/viewmore/' + this.visitId ]);
+            //   localStorage.removeItem('authorization');
+            // }else{
               if (previousUrl1 == '/blog-view') {
                 this.router.navigate(['/blog']);
               } else if(role == "seller"){
@@ -220,7 +220,7 @@ export class LoginComponent implements OnInit {
               }else{
                 this.router.navigate(['/my-order']);
               }
-            }
+            //}
           }
         else if(this.wholedata != 'ACTIVE') {
             this.deactiveErrorMsg = 'Your account has been deactivated !';

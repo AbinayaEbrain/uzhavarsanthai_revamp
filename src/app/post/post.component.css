@@ -132,6 +132,10 @@ select {
   border: 1px solid #0d4608 !important;
 }
 
+select.form-control{
+  font-family: 'Hind Madurai', sans-serif !important;
+}
+
 .form-control-placeholder {
   position: absolute;
   top: 0;

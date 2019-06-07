@@ -21,6 +21,7 @@ export class BlogComponent implements OnInit {
   public bloglistobj: any = {};
   show = 5;
   noBlog: any;
+  blogId:any;
 
   constructor(
     private _auth: AuthService,
@@ -87,14 +88,22 @@ export class BlogComponent implements OnInit {
     document.getElementById('focus').scrollIntoView();
   }
 
+  
+  getId(id){
+    console.log(id);
+    this.blogId = id
+      }
+
   deleteblog() {
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.blogId;
     this._auth.blogDeleteData(this.id).subscribe(
       res => {
         this.loadingCtrl.show();
         setTimeout(() => {
           // swal.close();
-          this.router.navigate(['/blog']);
+          this.router.navigateByUrl('/dummy', { skipLocationChange: true });
+          setTimeout(() => this.router.navigate(['/blog']),0);
+          // this.router.navigate(['/blog']);
           this.loadingCtrl.hide();
         }, 1000);
       },
@@ -144,4 +153,5 @@ export class BlogComponent implements OnInit {
       });
     }
   }
+
 }

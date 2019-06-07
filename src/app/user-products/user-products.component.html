@@ -176,7 +176,7 @@
                 <div class="col-md-6 col-lg-6 col-12 errDesign">
                     <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
                     <p class="mt-4">You have to be a "<font style="color: #f53636;font-style: italic">seller</font>" to see <span style="font-style: italic">My Products</span>.</p>
-                    <a routerLink="/buyerAsSeller" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">SignUp as seller</a>
+                    <a routerLink="/buyerAsSeller" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">Make me as a seller</a>
                 </div>
                 <div class="col-md-3 col-lg-3 col-12"></div>
             </div>
@@ -293,12 +293,12 @@
         <div class="form-group">
             <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
                     <input type="text" #addressLine="ngModel" placeholder="Enter your address" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" [(ngModel)]="updateAddressData.addressLine" class="form-control"   autocomplete="off" required>
-                    <span class="text-danger float-left error_word" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
+                    <span class="text-danger float-left error_word errFont" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
          </div>
          <div class="form-group ">
              <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">மாவட்டம்  </span>/ City</label>
                 <input google-place type="text" placeholder="Enter your city" id="city" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)"  name="city" [class.is-invalid]="city.invalid && city.touched"  [(ngModel)]="updateAddressData.city"ngModel  required>
-                <span class="text-danger float-left error_word" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
+                <span class="text-danger float-left error_word errFont" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
         </div>
         <div class="text-center">
          <button type="button" [disabled]="updateAddressform.form.invalid"  class="btn btnClr button_word modelBtn" (click)="updateAddress()">Submit</button>&nbsp;&nbsp;&nbsp;
@@ -321,7 +321,7 @@
             <!-- <span style="color:#0d4608;font-weight: bold;cursor: pointer;" data-dismiss="modal" aria-label="Close" routerLink="/orderView/{{requestData.orderRqstId}}" >Request ID : {{requestData.requestId}}</span>  -->
           </p>
           <div class="text-center">
-              <button type="button" class="btn btn-success button_word" data-dismiss="modal" aria-label="Close">OK</button>
+              <button type="button" class="btn btn-success button_word" data-dismiss="modal" routerLink="/post" aria-label="Close">OK</button>
           </div>
       </div>
       <!-- <div class="modal-footer">

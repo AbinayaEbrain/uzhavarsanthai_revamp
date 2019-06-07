@@ -135,8 +135,8 @@ export class OrderRequestComponent implements OnInit {
 
   dropOrderRequest() {
     this.loadingCtrl.show();
-    this.userOrderReq2.sellerStatus = 'Cancelled';
-    this.userOrderReq2.status = 'Cancelled';
+    this.userOrderReq2.sellerStatus = 'Order dropped';
+    this.userOrderReq2.status = 'Order dropped';
     this._dealService
       .updateOrderRequestStatus(this.userOrderReq2, this.id)
       .subscribe(

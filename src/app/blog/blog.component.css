@@ -5,12 +5,23 @@
   background-size: cover;
   background-color: whitesmoke;
   width: 100%;
-  height: fit-content;
+  min-height: -webkit-fill-available;
+  /* height: 104vh; */
+  /* height: fit-content; */
 }
 
-.icon {
-  font-size: 24px;
+::placeholder{
+  font-size: 13px !important;
 }
+
+i{
+  font-size: 20px;
+  /* outline: none !important; */
+}
+
+/* button {
+  outline: none !important;
+  } */
 
 @media only screen and (min-width: 1023px) and (max-width: 1330px) {
   .bg1 {
@@ -82,8 +93,8 @@
 
 .noBlog {
   font-weight: bold;
-  font-size: 18px;
-  color: #0d4608;
+  font-size: 16px;
+  /* color: #0d4608; */
 }
 
 label{
@@ -162,6 +173,8 @@ textarea {
   background-color: transparent;
   color: #0d4608;
   font-weight: bold;
+  outline: none !important;
+  /* border: none; */
 }
 .collapse {
   font-family: 'Hind Madurai', sans-serif !important;

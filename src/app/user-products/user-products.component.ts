@@ -146,6 +146,7 @@ export class UserProductsComponent implements OnInit {
 
         if (this.userDeals.length == 0) {
           this.errMsg = "Still you haven't post any deals";
+          document.getElementById('hideSearchDiv').style.display = 'none';
         }
         this.loadingCtrl.hide();
         // this.getMultiArray();

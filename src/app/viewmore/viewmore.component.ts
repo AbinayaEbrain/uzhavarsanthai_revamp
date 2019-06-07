@@ -411,8 +411,8 @@ console.log(this.querydata);
       this.loadingCtrl.hide();}
   );
 
-this.smsToSeller();
-this.smsToBuyer();
+// this.smsToSeller();
+// this.smsToBuyer();
 
 }
 
@@ -885,10 +885,10 @@ mapWithPost(){
       this._auth.sendOtp(this.phoneObj).subscribe(
         res => {
           console.log(res);
-          this.signUoptsent = 'OTP has been sent to this number successfully! '+ resultpath;
-          setTimeout(() => {
-            this.signUoptsent = '';
-          }, 3000);
+          this.signUoptsent = ''+ resultpath;
+          // setTimeout(() => {
+          //   this.signUoptsent = '';
+          // }, 3000);
           document.getElementById('signUpfirstDiv').style.display = 'none';
           document.getElementById('signUpsecondDiv').style.display = 'block';
         },
@@ -934,6 +934,9 @@ mapWithPost(){
 
 //create order modal
 createOrederModal(){
+  this.mytemplateForm3.reset();
+  this.querydata.requiredUnit = '';
+this.querydata.urgency = '';
   var pacContainerInitialized = false;
    $('#cityOne').keypress(function() {
     if (!pacContainerInitialized) {
@@ -941,8 +944,8 @@ createOrederModal(){
             pacContainerInitialized = true;
     }
 });
+
 document.getElementById("openOrderReqModal").click();
-this.mytemplateForm3.reset();
   // console.log(this.currentuserAddress == null || this.currentuserAddress == '')
   // if(this.currentuserAddress == null || this.currentuserAddress == ''){
   //     document.getElementById("updateAddressConfirmationModal").click();
@@ -1000,15 +1003,17 @@ cancelOrderReq(){
   this._dealsService.cancelOrderStatus(this.postProduct,this.visitId).subscribe(
     res => {
       console.log(res);
+      document.getElementById("closeCancelOrderModal").click();
+      document.getElementById("openConfirmCancelModal").click();
       // this.updateOrderRqst();
-      this.orderCancelMsg = "Order Request Cancelled!";
-      setTimeout(() => {
-        this.orderCancelMsg ='';
-          document.getElementById("closeCancelOrderModal").click();
-          // this.router.navigateByUrl('/dummy', { skipLocationChange: true });
-          // setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);
-          this.router.navigate(['/my-order']);
-      }, 3000);
+      // this.orderCancelMsg = "Order Request Cancelled!";
+      // setTimeout(() => {
+      //   this.orderCancelMsg ='';
+      //     document.getElementById("closeCancelOrderModal").click();
+      //     this.router.navigateByUrl('/dummy', { skipLocationChange: true });
+      //     setTimeout(() => this.router.navigate(['/viewmore/' + this.visitId ]),100);
+      //     this.router.navigate(['/my-order']);
+      // }, 3000);
     },
     err => {
       console.log(err);

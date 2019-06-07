@@ -46,7 +46,7 @@
                  <div class="col-md-12">
                     <div class="form-group mb-5 mt-2" >
                           <label class="english_wrd" for="address"> <span style="font-size: 13px" class="tamil_word">முகவரி </span>/ Address</label>
-                        <input type="text" placeholder="Enter your address" #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control" [(ngModel)]="crntUser.address.addressLine" autocomplete="off" required>
+                        <input type="text" placeholder="Enter your address" #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control" [(ngModel)]="crntUser.address.addressLine" autocomplete="off" style="font-size: 14px;font-weight: bold;" required>
                         <span class="text-danger float-left error_word errFont" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
                       </div>
                  </div> </div>
@@ -126,6 +126,23 @@
                   <button class="btn2" [disabled]="pwdform.form.invalid" type="submit" (click)="updateUser()">Submit</button>
                 </div>
                 </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myPwdModal" name="button" id="openPwdModal"></button>
+<!-- //open login modal -->
+<div class="modal fade" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myPwdModal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="padding: 25px;">
+          <h5 class="text-center" style="color:#0d4608">Updated successfully!</h5>
+          <p class="text-center">Your password has been updated successfully! <br>
+          </p>
+          <div class="text-center">
+              <button type="button" class="btn btn-success button_word" routerLink="/login" data-dismiss="modal" aria-label="Close">OK</button>
+          </div>
       </div>
     </div>
   </div>

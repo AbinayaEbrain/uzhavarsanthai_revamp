@@ -9,6 +9,10 @@
   min-height: -webkit-fill-available;
 }
 
+::placeholder{
+  font-size: 13px !important;
+}
+
 @media only screen and (min-width: 320px) and (max-width: 425px) {
   .imgRes {
     width: inherit !important;
