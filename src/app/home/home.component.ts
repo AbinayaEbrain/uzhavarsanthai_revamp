@@ -117,7 +117,8 @@ export class HomeComponent implements OnInit {
 if(this.gettoken == true && this.role =='seller'){
   console.log(this.userAddress == null || this.userAddress == '')
   if(this.userAddress == null || this.userAddress == ''){
-      document.getElementById("updateAddressConfirmationModal").click();
+      // document.getElementById("updateAddressConfirmationModal").click();
+      this.router.navigate(['/products'])
     }else{
         this.router.navigate(['/post']);
     }
