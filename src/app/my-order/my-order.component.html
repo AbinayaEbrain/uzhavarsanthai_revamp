@@ -210,8 +210,8 @@
       <div class="modal-content">
         <div class="modal-header">
           <p id="exampleModalLongTitle" class="modal-title fntSize">Dispute against <span style="font-style:italic">{{userOrder1.sellerName}}</span></p>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" class="text-black x" id="closeCancelOrderModal" (click) = "formReset()">X</span>
+          <button type="button" class="close" data-dismiss="modal" (click) = "formReset()" aria-label="Close">
+            <span aria-hidden="true" class="text-black x" id="closeCancelOrderModal">X</span>
           </button>
         </div>
         <div class="modal-body">

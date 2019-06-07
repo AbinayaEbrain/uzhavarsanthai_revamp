@@ -371,7 +371,7 @@ disputeMailSend() {
 }
 
 formReset(){
-  this.id = '';
+  // this.id = '';
   this.mytemplateForm1.reset();
 }
 clear(){
