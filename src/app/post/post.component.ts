@@ -313,12 +313,15 @@ export class PostComponent implements OnInit {
         console.log(res);
         this.postLenght.push(res);
         if(this.carForm.value.product.length == this.postLenght.length){
+          this.loadingCtrl.hide();
+          // document.getElementById("").focus();
+          document.getElementById('focusDiv').focus();
+          this.loadingCtrl.hide();
           this.success = 'Posted successfully!';
-           document.getElementById('idView').scrollIntoView();
             setTimeout(() => {
+              this.success = "";
               this.route.navigate(['products']);
-              this.loadingCtrl.hide();
-            }, 3000);
+            }, 2000);
         }
       },
       err => {

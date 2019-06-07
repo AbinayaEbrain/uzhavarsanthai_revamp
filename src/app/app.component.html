@@ -2,8 +2,8 @@
 <nav class="navbar navbar-expand-md fixed-top heightNav navbar-dark nav_clr">
   <!-- <a class="navbar-brand apptitle" routerLink="/">உழவர் சந்தை</a> -->
   <div>
-  <img src="../../assets/Images/logo2.png" routerLink="/" alt="logo"><br>
-  <p class="every clr tamil_word hideMobile d-lg-block" routerLink="/" style="margin-left: 20px;cursor: pointer;">
+  <img src="../../assets/Images/logo2.png" routerLink="/" alt="logo" style="outline: none"><br>
+  <p class="every clr tamil_word hideMobile d-lg-block" routerLink="/" style="margin-left: 20px;cursor: pointer;outline: none;">
     ஏரின்றி அமையாது உலகு!
   </p></div>
   <!-- <a class="textAlign">
@@ -366,12 +366,12 @@
       <div class="col-lg-8 col-md-6 col-sm-12 col-12 textCenter float-right" style="margin-top: 1%;">
           <p class="onmobviewalign" style="float: right;">
               <span class="footerOptions" *ngIf="!_authService.loggedIn()"
-              >Want to be a seller ? <span style="text-decoration: underline" (click)="register()">SignUp</span> &nbsp;&nbsp; &nbsp;&nbsp;</span
+              >Want to be a seller ? <span style="text-decoration: underline;outline: none;" (click)="register()">SignUp</span> &nbsp;&nbsp; &nbsp;&nbsp;</span
             >
-            <span class="footerOptions" routerLink="/about"
+            <span class="footerOptions" routerLink="/about" style="outline: none;"
               >About Us &nbsp;&nbsp;|</span
             >
-            <span class="footerOptions" routerLink="/contact"
+            <span class="footerOptions" routerLink="/contact" style="outline: none;"
               >&nbsp;&nbsp;Contact Us &nbsp;&nbsp;
               </span>
             <!-- <span class="footerOptions" routerLink="/about"

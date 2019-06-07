@@ -32,8 +32,8 @@
                             <div *ngIf="phone.errors && (phone.invalid && phone.touched) && !phnErr">
                                 <span class="text-danger float-left error_word errFont" *ngIf="phone.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
                             </div>
-                           <span class="text-danger float-left mb-3 errfont"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="errormsg">{{errormsg}}
-                               <span style="color: #0d4608"> Please <span style="text-decoration: underline;cursor: pointer;" routerLink="/login">login</span> </span> </span>
+                           <span class="text-danger float-left mb-3 errfont" style="font-size: 13px;"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="errormsg">{{errormsg}}
+                               <span class="errfont" style="color: #0d4608"> Please <span style="text-decoration: underline;cursor: pointer;" routerLink="/login">login</span> </span> </span>
                             <span class="text-danger float-left error_word errFont" *ngIf="phnErr"><i class="fa fa-info-circle" aria-hidden="true"></i> {{phnErr}}</span>
                     </div>
                     <div style="text-align: center;">
@@ -47,7 +47,7 @@
                         <div class="text-center" style="margin-top: -10%;color: black" *ngIf="optsent">OTP has been sent successfully to this number<br>
                             <b style="color: black">'{{optsent}}'</b>
                         </div>
-                    <div class="alert alert-danger text-center" style="margin-top: -10%;" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
+                    <div class="alert alert-danger text-center" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
                     <div class="form-group ">
                         <label class="english_wrd" for="phone">Enter your OTP</label>
                             <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone" maxlength="6" autocomplete="off" required>

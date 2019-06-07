@@ -114,7 +114,7 @@
                                         </nav>
                                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                                <p class="product-description" *ngIf="postProduct.description" style="text-align: justify">{{postProduct.description}}</p>
+                                                <p class="product-description" *ngIf="postProduct.description" style="text-align: justify;font-size: 13px;">{{postProduct.description}}</p>
                                                 <p class="product-description" *ngIf="postProduct.description == '' || postProduct.description == undefined || postProduct.description == null" style="text-align: justify">No description.</p>
                                               </div>
                                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -167,26 +167,26 @@
                             </div>
                         </section>
 
-                      <div style="text-align:center;" *ngIf="!getToken" ><button (click)="checkBuyer()" type="button" class="btn btnStyle mx-auto contactbtn" style="padding: 13px;border-radius: unset"><p style="margin-top: -5px;
-                        margin-bottom: -5px;font-weight: bold">Contact Seller</p>
+                      <div style="text-align:center;" *ngIf="!getToken" ><button (click)="checkBuyer()" type="button" class="btn btnStyle mx-auto contactbtn" style="padding: 10px;border-radius: unset"><p style="margin-top: -5px;
+                        margin-bottom: -5px;font-weight: bold;font-size:14px">Contact Seller</p>
                     <!-- <p class="askbest">Ask for best deal</p> -->
                       </button>
                     </div>
 
                     <div style="text-align:center;" *ngIf="getToken && !requestSent && !omit" >
-                        <button type="button" (click)="createOrederModal()" class="btn btnStyle mx-auto contactbtn" style="padding: 13px;border-radius: unset"><p style="margin-top: -5px;
-                        margin-bottom: -5px;font-weight: bold">Create Order Request</p>
+                        <button type="button" data-toggle="modal" data-target="#myModal2" class="btn btnStyle mx-auto contactbtn" style="padding: 10px;border-radius: unset"><p style="margin-top: -5px;
+                        margin-bottom: -5px;font-weight: bold;font-size:14px">Create Order Request</p>
                         </button>
 
                     </div>
                     <div style="text-align:center;" *ngIf= "omit">
-                      <p style="color: red;font-weight: 600;">! Oops This product posted by you!</p>
+                      <p style="color: red;font-weight: 600;"><i class="fa fa-frown-o" aria-hidden="true"></i> This product is posted by you!</p>
                     </div>
                     <p *ngIf="requestSent" style="text-align:center;color:#0d4608;font-weight:bold;"><i class="fa fa-paper-plane" aria-hidden="true"></i> {{requestSent}}</p>                <!-- card-body.// -->
     </aside> <!-- col.// -->
     </div> <!-- row.// -->
     <div class="col-md-12 text-center first" style="margin-bottom: 1%;">
-      <button type="button" class="btn btnColor viewMoreBtn" (click)="goToBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
+      <button type="button" style="font-size: 15px;" class="btn btnColor viewMoreBtn" (click)="goToBack()"><i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back</button>
   </div>
     </div> <!-- card.// -->
     <div class="second" style="display: none">
@@ -354,7 +354,7 @@
                 <div style="text-align: center;">
                 <button class="mb-2 btn2" type="submit" id="verify" [disabled]="!verifyPhone1.verifyPhone" (click)="sigunUpverifyOtp()">Verify OTP</button>
             </div>
-                <p style="text-align: center;"><span>Not received otp yet? </span><a class="resend" (click)="signUpSendOtp()">Resend OTP</a></p>
+                <p style="text-align: center;"><span>Not received OTP yet? </span><a class="resend" (click)="signUpSendOtp()">Resend OTP</a></p>
             </div>
             <!-- AFTER OTP VERIFIED -->
             <div id="afterotpverified" style="display: none">
@@ -428,7 +428,7 @@
                               style="background-color: transparent;color: #0d4608;" placeholder="dfdsf"  #requiredUnit="ngModel"
                               name="requiredUnit" [class.is-invalid]="requiredUnit.invalid && requiredUnit.touched"
                               ngModel [(ngModel)]="querydata.requiredUnit" required>
-                              <option selected=" " disabled=" " value=" ">Choose unit</option>
+                              <option selected="" disabled="" value="">Choose unit</option>
                               <option value="Ml" class="categoryOption">Milli litre</option>
                               <option value="Litre" class="categoryOption">Litre</option>
                               <option value="g" class="categoryOption">Gram</option>
@@ -471,19 +471,18 @@
                                class="form-control"
                                [(ngModel)]="querydata.description"
                                autocomplete="off"
-                               required
                            ></textarea>
-                           <span
+                           <!-- <span
                              class="text-danger float-left error_word errFont"
                              [class.d-none]="description.valid || description.untouched"
                              ><i class="fa fa-info-circle" aria-hidden="true"></i> Notes
                              is required</span
-                           >
+                           > -->
                             </div>
                     </div>
                     <br>
                     <div class="text-center">
-                        <button type="submit" [disabled]="queryform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn"  (click)="sendQuery()">Send Order Request</button>
+                        <button type="submit" style="padding: 8px;font-size: 14px;" [disabled]="queryform.form.invalid " class="btn btn-outline-success text-center viewMoreBtn mobmargintopbtn"  (click)="sendQuery()">Send Order Request</button>
                     </div>
                   </form>
           </div>
@@ -502,10 +501,10 @@
              <button type="button" class="close x" id="closeCancelOrderModal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
          </div>
          <div class="modal-body">
-           <div class="alert alert-success text-center error_word"  *ngIf="orderCancelMsg">
+           <!-- <div class="alert alert-success text-center error_word"  *ngIf="orderCancelMsg">
              {{orderCancelMsg}}
-           </div>
-           <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to delete this order request?</h6>
+           </div> -->
+           <h6 class="text-center" style="font-family: 'Mukta', sans-serif;">Are you sure want to Cancel this order request?</h6>
            <div class="text-center">
 
         <button type="button" class="btn btn-success button_word modelBtn"  (click)="updateOrderRqst()">Yes</button>&nbsp;&nbsp;&nbsp;
@@ -552,3 +551,21 @@
         </div>
       </div>
     </div>
+
+    <button type="button" class="btn btn-success" [hidden]="true" data-toggle="modal" data-target="#myModalCancel" name="button" id="openConfirmCancelModal"></button>
+<!-- //open login modal -->
+<div class="modal fade" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" id="myModalCancel">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="padding: 25px;">
+          <h5 class="text-center" style="color:#0d4608">Order Request Cancelled!</h5>
+          <p class="text-center">Your order request has been cancelled successfully! <br>
+          </p>
+          <div class="text-center">
+              <button type="button" class="btn btn-success button_word" routerLink="/my-order" data-dismiss="modal" aria-label="Close">OK</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+

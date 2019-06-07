@@ -151,13 +151,14 @@ else{
         console.log(res);
         localStorage.setItem('currentUpdateAddr', JSON.stringify(this.updateAddressData));
         this.loadingCtrl.hide();
-        this.successMsg = 'Updated successfully!';
-        setTimeout(() => {
-          this.successMsg = '';
-          this.router.navigateByUrl('/dummy', { skipLocationChange: true });
-          setTimeout(() => this.router.navigate(['/post']),100);
-          document.getElementById('closeAddressModal').click();
-        }, 2000);
+        document.getElementById('closeAddressModal').click();
+        document.getElementById("openConfirmModal").click();
+        // this.router.navigate(['/post'])
+        // this.successMsg = 'Updated successfully!';
+        // setTimeout(() => {
+        //   this.router.navigateByUrl('/dummy', { skipLocationChange: true });
+        //   setTimeout(() => this.router.navigate(['/post']),100);
+        // }, 100);
 
       },
       err => {

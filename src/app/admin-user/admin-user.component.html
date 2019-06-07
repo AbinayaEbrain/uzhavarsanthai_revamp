@@ -23,6 +23,7 @@
                                         <th>Phone Number</th>
                                         <th>City</th>
                                         <th>State</th>
+                                        <th>Role</th>
                                         <th>Subscription Name</th>
                                         <th>Status</th>
                                         <th class="disabled-sorting">Action</th>
@@ -37,6 +38,7 @@
                                         <td class="tamil_word" *ngIf = "deal.address.city">{{deal.address.city.locality}}</td>
                                         <td class="tamil_word" *ngIf = "deal.address.addressLine == ''">Not yet update</td>
                                         <!-- <td>{{deal.address.city.admin_area_l1}}</td> -->
+                                        <td class="tamil_word">{{deal.role}}</td>
                                         <td class="tamil_word" style="color: mediumvioletred;font-weight: 600;">{{deal.subscriptionName}}</td>
                                         <td style="font-weight: bold;" [ngStyle]="{'color':deal.status === 'ACTIVE' ? 'green' : 'red' }">{{deal.status}}</td>
                                         <td>

@@ -121,6 +121,7 @@ export class SellerOrderRequestsComponent implements OnInit {
         j++;
       }
     }
+    console.log(this.createdRequests);
     if (this.createdRequests.length == 0) {
       this.errMsg = 'No order requests!';
     }
@@ -132,7 +133,7 @@ export class SellerOrderRequestsComponent implements OnInit {
     this.loadingCtrl.show();
     let j = 0;
     for (let i = 0; i < this.orderRequests.length; i++) {
-      if (this.orderRequests[i].status == 'Order cancelled') {
+      if (this.orderRequests[i].status != 'Order created') {
         this.cancelledRequests[j] = this.orderRequests[i];
         j++;
       }

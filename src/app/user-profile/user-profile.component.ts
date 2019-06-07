@@ -111,15 +111,17 @@ export class UserProfileComponent implements OnInit {
         //this.updateReviewSellerName();
         //this.updateReviewBuyerName();
         this.loadingCtrl.hide();
-        this.success = 'Updated successfully!';
-        setTimeout(() => {
-          this.success = '';
-          if(this.checkpassword == true){
-            document.getElementById("closePwdModal").click();
-            this._authService.logoutUser();
-            this.router.navigate(['/login']);
-          }
-        }, 2000);
+        document.getElementById("closePwdModal").click();
+        document.getElementById("openPwdModal").click();
+        // this.success = 'Updated successfully!';
+        // setTimeout(() => {
+        //   this.success = '';
+        //   if(this.checkpassword == true){
+        //     document.getElementById("closePwdModal").click();
+        //     this._authService.logoutUser();
+        //     this.router.navigate(['/login']);
+        //   }
+        // }, 2000);
       },
       err => {
         console.log(err);

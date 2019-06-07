@@ -98,7 +98,10 @@ export class RegisterComponent implements OnInit {
   }
 
   post() {
-    // let role = this.route.snapshot.paramMap.get('role');
+   let role = this.route.snapshot.paramMap.get('role');
+   if(this.getRole == null){
+    this.getRole = role;
+   }
     console.log(this.getRole);
     if (this.getRole != null) {
       this.registeredUserData.role = 'seller';
