@@ -251,8 +251,6 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
               }
             }
 
-
-
             this.loadingCtrl.hide();
           }
         }
@@ -357,7 +355,7 @@ openloginModal(){
 
 sendQuery(){
   this.loadingCtrl.show();
-  this.findQuantity();
+  this.postQuery();
   // if(this.greaterQty == ''){
   //   this.postQuery();
   // }else{
