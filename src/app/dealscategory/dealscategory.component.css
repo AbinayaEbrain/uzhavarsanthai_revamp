@@ -48,8 +48,9 @@
   font-size: 12px;
   font-weight: 600;
   border-radius: 50%;
-  background: var(--secondary);
-  color: #fff;
+  background: white;
+  color: #0d4608;
+  border: 1px soild #0d4608;
 }
 
 span.badge-notification {
