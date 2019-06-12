@@ -112,26 +112,14 @@ export class ViewcategoryComponent implements OnInit {
                 if(this.splitImage != undefined || this.splitImage != null || this.splitImage != ''){
                   this.totalDeals[j].image = this.splitImage.split(",",1);
                 }
+              
                 this.getPrdtName = this.totalDeals[j].name;
                 j++;
                 this.loadingCtrl.hide();
               }
             }
+
             this.getMultiArray();
-
-            // if (this.totalDeals.length == 0) {
-            //   this.loadingCtrl.show();
-            //   this.errMsg = 'Currently no deals available';
-            //   document.getElementById('hidePagination').style.display = 'none';
-            //   document.getElementById('hideSearchDiv').style.display = 'none';
-            //   document.getElementById('hideSelectedCategory').style.display ='none';
-            //   document.getElementById('hideFilterButton').style.display = 'none';
-            //   document.getElementById('hideSearchlocDiv').style.display = 'none';
-            //   document.getElementById('hideFilterButton2').style.display = 'none';
-
-            //   this.loadingCtrl.hide();
-            // }
-
             this.showDeals = true;
           },
           err => {
@@ -161,20 +149,6 @@ export class ViewcategoryComponent implements OnInit {
             }
           }
           this.getMultiArray();
-
-          // if (this.totalDeals.length == 0) {
-          //   this.loadingCtrl.show();
-          //   this.errMsg = 'Currently no deals available';
-          //   document.getElementById('hidePagination').style.display = 'none';
-          //   document.getElementById('hideSearchDiv').style.display = 'none';
-          //   document.getElementById('hideSelectedCategory').style.display ='none';
-          //   document.getElementById('hideFilterButton').style.display = 'none';
-          //   document.getElementById('hideSearchlocDiv').style.display = 'none';
-          //   document.getElementById('hideFilterButton2').style.display = 'none';
-
-          //   this.loadingCtrl.hide();
-          // }
-
           this.showDeals = true;
         },
         err => {
