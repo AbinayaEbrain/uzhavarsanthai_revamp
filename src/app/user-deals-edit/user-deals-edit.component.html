@@ -1,6 +1,9 @@
-<div class="bg1" style="overflow-x:hidden">
+<body class="bg1" style="overflow-x:hidden">
         <div class="text-center container mt-5 pt-1" id="idView">
-              <form  #postform="ngForm" *ngIf ="!submitted" novalidate class="card mt-5 pt-2">
+            <div class="mt-4 pt-2 first" style="text-align:left">
+            <button type="button" class="btn btn-outline-success text-center viewMoreBtn button_word" routerLink="/products"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
+            </div>        
+              <form  #postform="ngForm" *ngIf ="!submitted" novalidate class="card mt-4 pt-2">
                     <p class="clr">Edit Your Product Details</p>
                     <div class="row mb-3" *ngIf = "success">
                         <div class="col-md-4"></div>
@@ -132,7 +135,11 @@
                              <br>
                   </form>
                   </div>
-      </div>
+                  <div class="second" style="display: none">
+                        <button class="float1" style="float:left" id="hideFilterButton1"  routerLink="/products"><i class="fa fa-arrow-left"></i> </button>
+                        <!-- <button id="hideFilterButton2" style="float:right;outline: none;" (click)="getGoogleAddress()" class="float" data-toggle="modal"  data-target="#myModal" > <i class="fa fa-filter "></i></button> -->
+                        </div>
+      </body>
     
     
       <div class="modal fade" id="myModal" role="dialog">

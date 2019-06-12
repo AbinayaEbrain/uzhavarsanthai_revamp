@@ -504,6 +504,22 @@ router.get('/category', (req, res) => {
   });
 });
 
+router.get('/categoryProductCount', (req, res) => {
+  var promise = Post.aggregate([
+    { $match: {} },
+    {
+      $group: { _id: '$categoryId', productcount: { $sum: 1 } }
+    }
+  ]);
+  promise
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    });
+});
+
 //get a user
 router.get('/details', (req, res) => {
   User.find(function(err, result) {

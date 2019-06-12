@@ -32,7 +32,7 @@
                <div class="stunning-header stunning-header-bg-green mt-5 mt-md-3 mb-md-0 mb-1 two" id="hideSelectedCategory">
                       <div class="stunning-header-content" >
                            <ul class="breadcrumbs" style=" list-style-type: none;cursor: pointer;color:#072304;margin-left: -25px;margin-bottom: -10px;">
-                              <li class="breadcrumbs-item" ><span routerLink="/dealCategory" >Category</span>&nbsp;<i class="fa fa-arrow-right" style="font-weight: normal;"></i>&nbsp;<span class="printCategory">{{getCategory}}</span></li>
+                              <li class="breadcrumbs-item" ><span routerLink="/dealCategory" style="outline:none" >Category</span>&nbsp;<i class="fa fa-arrow-right" style="font-weight: normal;"></i>&nbsp;<span class="printCategory">{{getCategory}}</span></li>
                           </ul>
                       </div>
                   </div>
@@ -92,7 +92,7 @@
                       </div>
               <div class="row " id="hideifNoData" style="margin-top: -20px;">
                       <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of singleMultiArray  | filterdata: queryString  : 'name' | paginate: {id: 'foo1', itemsPerPage:40,currentPage:e },let i = index">
-                              <div class="card card-1 cardRes" *ngIf="deal !== -1">
+                              <div class="card card-1 cardRes" (click)="goToView(deal)" *ngIf="deal !== -1">
                                       <img src="{{deal.image}}" class="zoom" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                                          <table class="tableContent" style="margin: 5px;">
                                                 <tr *ngIf="!deal.bulk">
@@ -130,7 +130,7 @@
                                                        </tr>
                                              </table>
                                              <br>
-                                         <button type="button" style="margin-top:-12px;margin-bottom:-12px" class="btn btn-outline-success text-center viewMoreBtn" (click)="goToView(deal)">View More</button>
+                                         <button type="button" style="margin-top:-12px;margin-bottom:-12px" class="btn btn-outline-success text-center viewMoreBtn btnHide" (click)="goToView(deal)">View More</button>
                                          <br>
                                     </div>
                       </div>
@@ -157,7 +157,7 @@
                   <p class="no_deals_found error_word" *ngIf="errMsg">{{errMsg}}</p>
                   <div class="row mt-3" id="hideifData">
                          <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of totalDeals1  | filterdata: queryString  : 'name'| paginate: {id: 'foo', itemsPerPage:40,currentPage:p },let i = index">
-                              <div class="card card-1 cardRes" *ngIf="deal !== -1">
+                              <div class="card card-1 cardRes" (click)="goToView(deal)" *ngIf="deal !== -1">
                                       <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                                       <table class="tableContent" style="margin: 5px;">
                                             <tr *ngIf="!deal.bulk">
@@ -196,7 +196,7 @@
                                                    </tr>
                                          </table>
                                          <br>
-                                         <button type="button" style="margin-top:-12px;margin-bottom:-12px" class="btn btn-outline-success text-center viewMoreBtn" (click)="goToView(deal)">View More</button>
+                                         <button type="button" style="margin-top:-12px;margin-bottom:-12px" class="btn btn-outline-success text-center viewMoreBtn btnHide" (click)="goToView(deal)">View More</button>
                                          <br>
                                     </div>
                             </div>
@@ -208,7 +208,7 @@
             </div>
         <div class="second" style="display: none">
         <button class="float1" style="float:left" id="hideFilterButton1"  routerLink="/dealCategory"><i class="fa fa-arrow-left"></i> </button>
-        <button id="hideFilterButton2" style="float:right" (click)="getGoogleAddress()" class="float" data-toggle="modal"  data-target="#myModal" > <i class="fa fa-filter "></i></button>
+        <button id="hideFilterButton2" style="float:right;outline: none;" (click)="getGoogleAddress()" class="float" data-toggle="modal"  data-target="#myModal" > <i class="fa fa-filter "></i></button>
         </div>
 </body>
 <div class="modal fade" id="myModal" role="dialog">

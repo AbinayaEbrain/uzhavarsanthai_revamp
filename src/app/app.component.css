@@ -33,11 +33,11 @@ ul li a {
   }
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .dropdown-menu {
     margin-left: -75px;
   }
-}
+} */
 
 .navbar-dark .navbar-nav .nav-link:hover {
   color: rgba(246, 246, 246, 0.98);
@@ -67,7 +67,7 @@ ul li a {
 .footerOptions {
   /* margin-top: 3% !important; */
   /* font-family: 'Mukta', sans-serif; */
-font-family: 'Quattrocento Sans', sans-serif;
+  font-family: 'Quattrocento Sans', sans-serif;
   cursor: pointer !important;
   text-align: center !important;
 }
@@ -97,7 +97,7 @@ font-family: 'Quattrocento Sans', sans-serif;
   }
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) {
   .heightNav {
     height: 70px !important;
   }

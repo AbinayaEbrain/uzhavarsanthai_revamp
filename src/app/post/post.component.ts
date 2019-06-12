@@ -99,6 +99,7 @@ export class PostComponent implements OnInit {
   lastImage: any;
   postLenght: any = [];
   getdeals: any = [];
+  img : any;
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -493,6 +494,7 @@ export class PostComponent implements OnInit {
   }
 
   postImage() {
+    console.log(this.productData);
     this.loadingCtrl.show();
     console.log(this.credits)
     this.myCredit = this.credits.credits;
@@ -519,6 +521,7 @@ export class PostComponent implements OnInit {
           this.postProduct();
         });
       } else {
+
         this.productData.image =
           'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
         this.postProduct();
@@ -562,9 +565,39 @@ export class PostComponent implements OnInit {
           });
         }
       } else {
-        let img =
-          'http://vollrath.com/ClientCss/images/VollrathImages/No_Image_Available.jpg';
-          this.Image.push(img);
+        if(this.carForm.value.category == 'காய்கறிகள் / Vegetables'){
+          this.img =
+          'https://res.cloudinary.com/uzhavar-image/image/upload/v1560172308/veg.jpg';
+        }
+        if(this.carForm.value.category == 'பழங்கள் / Fruits'){
+          this.img =
+          'https://res.cloudinary.com/uzhavar-image/image/upload/v1560172671/fruits.jpg';
+        }
+        if(this.carForm.value.category == 'தானியங்கள் / Grains'){
+          this.img =
+          'https://res.cloudinary.com/uzhavar-image/image/upload/v1560173012/whole_grains_01_hd_picture_166514.jpg';
+        }
+        if(this.carForm.value.category == 'எண்ணெய் / Oil'){
+          this.img =
+          'https://res.cloudinary.com/uzhavar-image/image/upload/v1560173151/o.jpg';
+        }
+        if(this.carForm.value.category == 'மீன் / Fish'){
+          this.img =
+          'https://res.cloudinary.com/uzhavar-image/image/upload/v1560173273/fish.jpg';
+        }
+        if(this.carForm.value.category == 'மளிகை / Grocery'){
+          this.img =
+          'https://res.cloudinary.com/uzhavar-image/image/upload/v1560173420/m.jpg';
+        }
+        if(this.carForm.value.category == 'விதைகள் / Seeds'){
+          this.img =
+          'https://res.cloudinary.com/uzhavar-image/image/upload/v1560173578/ee.jpg';
+        }
+        if(this.carForm.value.category == 'பால் / Milk'){
+          this.img =
+          'https://res.cloudinary.com/uzhavar-image/image/upload/v1560173634/milk.jpg';
+        }
+          this.Image.push(this.img);
           this.imageAppend();
         }
     }

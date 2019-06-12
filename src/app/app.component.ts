@@ -18,7 +18,8 @@ import { DealsService } from './deals.service';
 var url = 'https://geoip-db.com/json';
 declare var swal: any;
 declare let ClientIP: any;
-
+const { detect } = require('detect-browser');
+const browser = detect();
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -53,6 +54,12 @@ export class AppComponent implements OnInit {
       .subscribe((event: any[]) => {
         this.previousUrl = event[0].urlAfterRedirects;
       });
+
+    if (browser) {
+      console.log(browser.name);
+      console.log(browser.version);
+      console.log(browser.os);
+    }
   }
 
   ngOnInit() {

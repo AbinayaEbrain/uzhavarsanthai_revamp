@@ -98,7 +98,7 @@ font-weight: 700;" data-toggle="modal" data-target="#myModal1"><i class="fa fa-a
                     </div>
                   </div>
               </div>
-            <div class="mx-auto mt-3">
+            <div class="mx-auto mt-3" *ngIf="!noTicketsMsg">
                  <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
                </div>
           </div>
@@ -149,7 +149,7 @@ font-weight: 700;" data-toggle="modal" data-target="#myModal1"><i class="fa fa-a
                 <div *ngIf="noDisputesMsg">
                   <div class="col-md-3 col-lg-4 col-12"></div>
                   <div class="col-md-6 col-lg-4 col-12 errDesign">
-                      <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                      <!-- <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart"> -->
                       <p class="mt-4" style="font-style: italic;">{{noDisputesMsg}}</p>
                   </div>
                   <div class="col-md-3 col-lg-4 col-12"></div>
@@ -218,7 +218,7 @@ border-radius: 0px 10px 0px 10px;padding: 1.2%;" [ngStyle]="{'background-color':
               </div>
           </div>
       </div> -->
-              <div class="mx-auto mt-3">
+              <div class="mx-auto mt-3" *ngIf="!noDisputesMsg">
                    <pagination-controls id="foo1"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
                  </div>
             </div>

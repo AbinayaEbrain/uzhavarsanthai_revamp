@@ -13,7 +13,7 @@
               [config]="slideConfig"
               (init)="slickInit($event)">
           <div ngxSlickItem *ngFor="let slide of arrayImage" class="slide">
-              <img src="{{ slide }}"  alt="" class="viewImage" style="max-width: 80%;" height="200">
+              <img src="{{ slide }}"  alt="" class="viewImage" style="max-width: 100%;" height="200">
           </div>
       </ngx-slick-carousel>
     </div>
@@ -74,7 +74,7 @@
     <h5 style="color: #ef6806d9" class="tamil_word" *ngIf="postProduct.bulk">{{postProduct.category}}</h5>
     <hr>
     <p class="seller float-right" style="font-weight: bold">Seller: <span style="font-weight:400;">{{postProduct.firstName}}</span></p>
-    <p style="color: #0d4608;font-size: larger;" *ngIf="!postProduct.bulk"><b>Rs.{{postProduct.price}}.00 / {{postProduct.qnty}}</b></p>
+    <p style="color: #0d4608;" *ngIf="!postProduct.bulk"><b>Rs.{{postProduct.price}}.00 / {{postProduct.qnty}}</b></p>
     <!--<i class="fa" style="font-size: larger;">Rs.</i>  &#xf156;   -->
     <table class="table table-borderless teble-responsive" style="text-align: justify;">
                               <tbody>
@@ -114,11 +114,11 @@
                                         </nav>
                                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                                <p class="product-description" *ngIf="postProduct.description" style="text-align: justify;font-size: 13px;">{{postProduct.description}}</p>
-                                                <p class="product-description" *ngIf="postProduct.description == '' || postProduct.description == undefined || postProduct.description == null" style="text-align: justify">No description.</p>
+                                                <p class="product-description" *ngIf="postProduct.description" style="text-align: justify;font-size: 14px;">{{postProduct.description}}</p>
+                                                <p class="product-description" *ngIf="postProduct.description == '' || postProduct.description == undefined || postProduct.description == null" style="text-align: justify;font-size: 14px;">No description.</p>
                                               </div>
                                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                              <p class="product-productreview" *ngIf="postProduct.productreview == '' || postProduct.productreview == undefined || postProduct.productreview == null" style="text-align: justify">No reviews.</p>
+                                              <p class="product-productreview" *ngIf="postProduct.productreview == '' || postProduct.productreview == undefined || postProduct.productreview == null" style="text-align: justify;font-size: 14px;">No reviews.</p>
                                               <div class="container" *ngFor="let slide of reviewArr| slice:0:show;">
                                                 <div style="padding: 10px;">
                                                 <div class="notice notice-success">
@@ -172,12 +172,11 @@
                     <!-- <p class="askbest">Ask for best deal</p> -->
                       </button>
                     </div>
-
+                  <!-- <br><br><br> -->
                     <div style="text-align:center;" *ngIf="getToken && !requestSent && !omit" >
                         <button type="button" (click)="createOrederModal()" class="btn btnStyle mx-auto contactbtn" style="padding: 10px;border-radius: unset"><p style="margin-top: -5px;
-                        margin-bottom: -5px;font-weight: bold;font-size:14px">Create Order Request</p>
+                        margin-bottom: -5px;font-weight: bold;font-size:14px">Place an order</p>
                         </button>
-
                     </div>
                     <div style="text-align:center;" *ngIf= "omit">
                       <p style="color: red;font-weight: 600;"><i class="fa fa-frown-o" aria-hidden="true"></i> This product is posted by you!</p>
@@ -190,7 +189,7 @@
   </div>
     </div> <!-- card.// -->
     <div class="second" style="display: none">
-        <button class="float1" style="float:left" id="hideFilterButton1"  (click)="goToBack()"><i class="fa fa-arrow-left"></i> </button>
+        <button class="float1" style="float:left;outline: none;" id="hideFilterButton1"  (click)="goToBack()"><i class="fa fa-arrow-left"></i> </button>
         </div>
 
     </div>

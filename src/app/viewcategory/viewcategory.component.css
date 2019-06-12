@@ -382,6 +382,9 @@ input {
   .second {
     display: block !important;
   }
+  .btnHide{
+    display: none !important;
+  }
   ul {
     margin-top: -40px;
   }
