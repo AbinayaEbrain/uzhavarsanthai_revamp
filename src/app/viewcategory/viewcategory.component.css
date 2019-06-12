@@ -382,7 +382,7 @@ input {
   .second {
     display: block !important;
   }
-  .btnHide{
+  .btnHide {
     display: none !important;
   }
   ul {
@@ -405,24 +405,25 @@ input {
   }
   .scrollbtn {
     display: none !important;
+    outline: none !important;
   }
-  #hideifNoData{
+  #hideifNoData {
     margin-top: -45px !important;
   }
 }
 
 @media only screen and (min-width: 320px) and (max-width: 374px) {
-  .topLoc{
+  .topLoc {
     margin-top: -7% !important;
   }
 }
 @media only screen and (min-width: 375px) and (max-width: 425px) {
-  .topLoc{
+  .topLoc {
     margin-top: -6% !important;
   }
 }
-@media only screen and (min-width: 425px) and (max-width:426px) {
-  .topLoc{
+@media only screen and (min-width: 425px) and (max-width: 426px) {
+  .topLoc {
     margin-top: -5% !important;
   }
 }
@@ -513,25 +514,25 @@ input {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 374px) {
-  .topLoc{
-  margin-top: -7% !important;
+  .topLoc {
+    margin-top: -7% !important;
   }
+}
+@media only screen and (min-width: 375px) and (max-width: 425px) {
+  .topLoc {
+    margin-top: -6% !important;
   }
-  @media only screen and (min-width: 375px) and (max-width: 425px) {
-  .topLoc{
-  margin-top: -6% !important;
+}
+@media only screen and (min-width: 425px) and (max-width: 426px) {
+  .topLoc {
+    margin-top: -5% !important;
   }
-  }
-  @media only screen and (min-width: 425px) and (max-width:426px) {
-  .topLoc{
-  margin-top: -5% !important;
-  }
-  }
+}
 
-  @media screen and (min-width: 400px) and (max-width: 575px) {
-    .cardRes {
-      width: 360px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+@media screen and (min-width: 400px) and (max-width: 575px) {
+  .cardRes {
+    width: 360px;
+    margin-left: auto;
+    margin-right: auto;
   }
+}

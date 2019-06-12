@@ -17,7 +17,7 @@
   .imgRes {
     width: inherit !important;
   }
-  .btnHide{
+  .btnHide {
     display: none !important;
   }
 }
@@ -303,7 +303,7 @@ input {
     margin-top: -25px;
     margin-bottom: -5px;
   }
-  .mobMargin{
+  .mobMargin {
     margin-top: -35px !important;
   }
   .mobiviewinputBtn {
@@ -333,6 +333,7 @@ input {
   }
   .scrollbtn {
     display: none !important;
+    outline: none !important;
   }
 }
 .searchBorder {
