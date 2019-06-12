@@ -24,6 +24,10 @@ export class AuthService {
   private _sendsmsToSeller =
     'https://uzhavarsanthai.herokuapp.com/api/sendSmsToSeller';
 
+  private _deviceTokenUrl = "https://uzhavarsanthai.herokuapp.com/api/deviceToken";
+
+
+
   constructor(private http: HttpClient, private route: Router) {}
 
   sendOtp(data) {
@@ -143,6 +147,10 @@ export class AuthService {
   //get token from interceptor
   getToken() {
     return localStorage.getItem('token');
+  }
+
+  postDeviceToken(user){
+    return this.http.post<any>(this._deviceTokenUrl,user)
   }
 
   //logout

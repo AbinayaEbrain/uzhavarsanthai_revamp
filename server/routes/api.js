@@ -25,6 +25,7 @@ const Reviewrate = require('../models/reviewrate');
 const Ticket = require('../models/ticket');
 
 const Dispute = require('../models/dispute');
+const DeviceToken = require('../models/deviceToken');
 // const Buyerdispute = require('../models/buyerdispute');
 
 
@@ -2538,5 +2539,17 @@ router.get('/currentUserCredits/:id', (req, res) => {
     }
   });
 });
+
+router.post('/deviceToken',(req,res)=>{
+  let deviceTokenData = req.body
+  let deviceToken = new DeviceToken(deviceTokenData)
+  deviceToken.save((error,deviceTokenData)=>{
+      if(error){
+          console.log(error)
+      }else{
+          res.status(200).send(deviceTokenData)
+      }
+  })
+})
 
 module.exports = router;
