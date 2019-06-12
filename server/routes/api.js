@@ -32,13 +32,13 @@ const DeviceToken = require('../models/deviceToken');
 //email
 var email = require('emailjs/email');
 
-var admin = require("firebase-admin");
-var serviceAccount = require("../../pushuzhavar-firebase-adminsdk-1friv-f4a1757e68.json");
+// var admin = require("firebase-admin");
+// var serviceAccount = require("../../pushuzhavar-firebase-adminsdk-1friv-f4a1757e68.json");
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://pushuzhavar.firebaseio.com"
-});
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://pushuzhavar.firebaseio.com"
+// });
 
 mongoose.connect(db, err => {
   if (err) {
