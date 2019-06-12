@@ -68,6 +68,7 @@ import { AdminSubscriptionComponent } from './admin-subscription/admin-subscript
 import { SubscriptionPlanComponent } from './subscription-plan/subscription-plan.component';
 import { OrderViewComponent } from './order-view/order-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateaddressComponent } from './updateaddress/updateaddress.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReadMoreViewComponent,
     AdminSubscriptionComponent,
     SubscriptionPlanComponent,
-    OrderViewComponent
+    OrderViewComponent,
+    UpdateaddressComponent
   ],
   imports: [
     BrowserModule,

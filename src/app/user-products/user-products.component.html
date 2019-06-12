@@ -62,9 +62,9 @@
                                                                                {{errMsg2}}
                                                                             </td>
                                                                         </tr>
-                                   
+
                                                                   <tr  id="hide" *ngFor="let deal of userDeals | filterdata: queryString  : 'category'| paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index"  >
-                                                                    
+
                                                                       <!-- <td *ngIf="deal === -1" class="prdUnavil text-danger">
                                                                            {{errMsg2}}
                                                                        </td> -->
@@ -174,7 +174,7 @@
             <div style="margin-bottom: 6%">
                 <div class="col-md-3 col-lg-3 col-12"></div>
                 <div class="col-md-6 col-lg-6 col-12 errDesign">
-                    <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                    <img src="https://res.cloudinary.com/uzhavar-image/image/upload/v1558507630/empty_cart_retina.png" class="imgRes" alt="cart">
                     <p class="mt-4">You have to be a "<font style="color: #f53636;font-style: italic">seller</font>" to see <span style="font-style: italic">My Products</span>.</p>
                     <a routerLink="/buyerAsSeller" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">Make me as a seller</a>
                 </div>
@@ -186,7 +186,7 @@
           <div style="margin-bottom: 6%">
               <div class="col-md-3 col-lg-3 col-12"></div>
               <div class="col-md-6 col-lg-6 col-12 errDesign">
-                  <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" alt="cart">
+                  <img src="https://res.cloudinary.com/uzhavar-image/image/upload/v1558507630/empty_cart_retina.png" class="imgRes" alt="cart">
                   <p class="mt-4">Your seller request is on processing.Please wait until you get confirmation message.</p>
                   <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">Go to back</a>
               </div>
@@ -198,7 +198,7 @@
         <div style="margin-bottom: 6%">
             <div class="col-md-3 col-lg-4 col-12"></div>
             <div class="col-md-6 col-lg-4 col-12 errDesign">
-                <img src="../../assets/Images/reject.png" alt="cart">
+                <img src="https://res.cloudinary.com/uzhavar-image/image/upload/v1559912403/reject.png" alt="cart">
                 <p class="mt-4">Sorry! Your seller request has been rejected by Uzhavarsanthai!
                     Please contact our executive.</p>
                 <a (click)="goToBack()" style="cursor: pointer;text-decoration: underline;color: #ef6806d9;">Go to back</a>
@@ -268,10 +268,11 @@
       <div class="modal-body">
         <p style="text-align: center;color: #072304;">To make this process please add your address.</p>
         <div class="text-center" style="margin-top: -3%;">
-        <img class="updateAddrees" src="https://png2.kisspng.com/sh/6ba706fecf7cc4cd45e0674a4b5acd68/L0KzQYm3WMIzN5ZsfpH0aYP2gLBuTfNwdaF6jNd7LXnmf7B6Tf1ieF5mfNZ7ZYP2PcT7kvVmfF5uhdNwZT33eLa0lvVzcZNmi9c2cHjkgr7oTfNzdV5ohN82NXK6dYK8hPVmP2VqUKc3MUS3QoW4UsAyPWQ5UaoEN0mzSYWAVL5xdpg=/kisspng-computer-icons-map-address-street-image-the-veribase-pharma-crm-clm-5b7e15dee74e85.1442412015349897909474.png">
+        <img class="updateAddrees" src="https://res.cloudinary.com/uzhavar-image/image/upload/v1559912721/hfghfhfgh.png">
         </div>
         <div class="text-center">
-        <button type="button" class="btn btnClr button_word modelBtn" (click)="confirmAddAddr()">Add Address</button>
+        <button type="button" class="btn btnClr button_word modelBtn" *ngIf=" _auth.checkOS()" (click)="confirmAddAddr()">Add Address</button>
+        <button type="button" class="btn btnClr button_word modelBtn" *ngIf=" !_auth.checkOS()" (click)="confirmAddAddrMobile()">Add Address</button>
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DatePipe } from '@angular/common';
 import { FileUploader } from 'ng2-file-upload';
 import { empty } from 'rxjs';
+import { AuthService } from '../auth.service';
 declare var swal: any;
 const URL = 'https://uzhavarsanthai.herokuapp.com/api/upload';
 
@@ -56,6 +57,7 @@ export class UserDealsEditComponent implements OnInit {
   newprice: any;
   newquantity: any;
   lastprice: any;
+  changedTime:any;
   lastquantity: any;
   public uploader: FileUploader = new FileUploader({
     url: URL,
@@ -100,6 +102,7 @@ export class UserDealsEditComponent implements OnInit {
   constructor(
     private _dealsService: DealsService,
     private route: ActivatedRoute,
+    private auth:AuthService,
     private router: Router,
     public zone: NgZone,
     public loadingCtrl: NgxSpinnerService,
@@ -158,8 +161,14 @@ export class UserDealsEditComponent implements OnInit {
         console.log(this.lastprice);
         console.log(this.address);
         this.deallistobj.avlPlace = this.address.formatted_address;
-        this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
-        this.deallistobj.validityTime = this.dateNrml;
+        if(this.auth.checkOS()){
+          this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
+          this.deallistobj.validityTime = this.dateNrml;
+        }else{
+          this.deallistobj.validityTime = this.time;
+          console.log(this.deallistobj.validityTime )
+        }
+
 
         this.splitImage = this.deallistobj.image;
         this.deallistobj.image = this.splitImage.split(',', 1);
@@ -198,7 +207,7 @@ export class UserDealsEditComponent implements OnInit {
   slickInit(e) {
     console.log('slick initialized');
   }
-  
+
   getUserCredits() {
     this._dealsService.getDetails().subscribe(
       res => {
@@ -240,8 +249,13 @@ export class UserDealsEditComponent implements OnInit {
       }
     }
     console.log(this.deallistobj);
-    this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
-    this.deallistobj.validityTime = this.dateNrml;
+    if(this.auth.checkOS()){
+      this.dateNrml = this.datePipe.transform(this.time, 'dd/MM/yyyy');
+      this.deallistobj.validityTime = this.dateNrml;
+    }else{
+      this.deallistobj.validityTime =  this.time;
+    }
+
   }
 
   postImage() {
@@ -258,7 +272,7 @@ export class UserDealsEditComponent implements OnInit {
     this.credit.qnty = this.deallistobj.qnty;
     this.credit.image = this.deallistobj.image;
     // this.credit.productCreatedAt = this.deallistobj.productCreatedAt;
-   
+
     console.log(this.credit);
         console.log(this.newquantity);
         console.log(this.newprice);
@@ -282,7 +296,7 @@ export class UserDealsEditComponent implements OnInit {
             this.sellerReduceQuantity();
           }
         }
-       
+
         if(this.lastquantity == this.newquantity){
           if(this.lastprice < this.newprice){
             this.PriceCredit();
@@ -294,17 +308,17 @@ export class UserDealsEditComponent implements OnInit {
             this.sellerReducePrice();
           }
         }
-  
+
         if(this.lastquantity < this.newquantity && this.lastprice < this.newprice){
           this.quantityPriceCredit();
         }
-  
+
         //add credit
-  
+
         if(this.lastquantity > this.newquantity && this.lastprice > this.newprice){
           this.sellerQuantityPrice();
         }
-    
+
 
     if(this.myCredit < this.cumulativecredit){
       console.log('No credit')
@@ -323,7 +337,7 @@ export class UserDealsEditComponent implements OnInit {
       //Adding the image to the form data to be sent
       this.imageUpload();
     }
-    
+
 
     // if(this.myCredit > this.cumulativecredit){
     //   if (this.urls.length == 0 || this.urls == undefined || this.urls == []) {
@@ -355,6 +369,11 @@ export class UserDealsEditComponent implements OnInit {
     }
   }
 
+  dateChange(event) {
+    this.changedTime = event.target.value;
+    this.deallistobj.validityTime = this.changedTime;
+  }
+
   update() {
     console.log(this.Image.length);
     console.log(this.imageLength);
@@ -368,9 +387,10 @@ export class UserDealsEditComponent implements OnInit {
       } else {
         this.deallistobj.avlPlace = this.addr;
       }
-
-      if (this.dateNrml == this.deallistobj.validityTime) {
-        this.deallistobj.validityTime = this.time;
+      if(this.auth.checkOS()){
+        if (this.dateNrml == this.deallistobj.validityTime) {
+          this.deallistobj.validityTime = this.time;
+        }
       }
 
       this.deallistobj.username = JSON.parse(
@@ -404,7 +424,7 @@ export class UserDealsEditComponent implements OnInit {
           } else {
             this.deallistobj.avlPlace = this.addr.formatted_address;
           }
-          // this.productId = res._id;        
+          // this.productId = res._id;
           this.success = 'Updated successfully!';
           document.getElementById('idView').scrollIntoView();
           setTimeout(() => {
@@ -412,7 +432,7 @@ export class UserDealsEditComponent implements OnInit {
             this.router.navigate(['/products']);
             this.loadingCtrl.hide();
           }, 2000);
-      
+
         },
         err => console.log(err)
       );
@@ -429,7 +449,7 @@ export class UserDealsEditComponent implements OnInit {
       console.log(this.cumulativequantity);
 
       this.newprice = this.deallistobj.price;
-     
+
     this.cumulativecredit = ((this.cumulativequantity *  this.newprice) * 1/100);
     this.loadingCtrl.hide();
     console.log(this.cumulativecredit);
@@ -445,7 +465,7 @@ export class UserDealsEditComponent implements OnInit {
     this.loadingCtrl.show();
       this.cumulativeprice = this.newprice - this.lastprice;
       console.log(this.cumulativeprice);
-   
+
       this.cumulativecredit = ((this.lastquantity * this.cumulativeprice) * 1/100);
 
       console.log(this.cumulativecredit);
@@ -461,12 +481,12 @@ export class UserDealsEditComponent implements OnInit {
       this.cumulativequantity = this.newquantity - this.lastquantity;
       console.log(this.cumulativequantity);
       this.loadingCtrl.hide();
-    } 
+    }
 
     if(this.lastprice < this.newprice){
       this.cumulativeprice = this.newprice - this.lastprice;
       console.log(this.cumulativeprice);
-    } 
+    }
 
     this.addQtyPrice = (this.cumulativequantity * this.newprice);
 
@@ -562,7 +582,7 @@ export class UserDealsEditComponent implements OnInit {
     // }
   }
 
-  sellerReducePrice(){   
+  sellerReducePrice(){
     this.loadingCtrl.show();
       console.log(this.newprice);
       console.log(this.lastquantity);

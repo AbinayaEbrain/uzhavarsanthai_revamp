@@ -8,7 +8,7 @@
          <div class="row mt-3">
         <div class="col-md-5 onmobhide">
             <div class="text-center">
-                <img style="height: 110px;" src="../../assets//Images/Im-Farmer.png"/>
+                <img style="height: 110px;" src="https://res.cloudinary.com/uzhavar-image/image/upload/v1559911951/Im-Farmer.png"/>
             </div>
              <br>
             <h6 class="text-center tamil_word" style="color:#0d4608;font-weight:bold">உழவர் சந்தை</h6>
@@ -84,7 +84,7 @@
                              <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word">கடவுச்சொல் </span>/ Password</label>
                                 <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
                               <span class="text-danger float-left error_word errFont" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
-                            </div> 
+                            </div>
                             <div class="mb-2">
                             <!-- <input type="checkbox" class="custom-control-input" id="defaultChecked2" checked  readonly #subscription="ngModel" [(ngModel)]="registeredUserData.subscription" ngModel name="subscription"> -->
                             <input type="checkbox" onclick="return false" checked/>&nbsp;

@@ -115,6 +115,9 @@ ul li a {
   .onmobviewalign {
     float: none !important;
   }
+  .mobileViewFont{
+    font-size: 13px;
+  }
 }
 
 .navbarCollapse {

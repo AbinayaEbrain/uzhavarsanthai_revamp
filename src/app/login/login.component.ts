@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
   subscriptionName :any;
   constructor(
     private router: Router,
-    private _auth: AuthService,
+    public _auth: AuthService,
     private _dealsService: DealsService,
     private location: Location,
     public loadingCtrl: NgxSpinnerService
@@ -109,6 +109,10 @@ export class LoginComponent implements OnInit {
       //alert(this.phnErr)
     }
   }
+
+  registerSeller(){
+   this.router.navigate(['/register', { role: 'seller' }]);
+ }
 
   eyeClick() {
     var temp = <HTMLInputElement>document.getElementById('password');

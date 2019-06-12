@@ -44,7 +44,7 @@
     "core-js": "^2.5.4",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
-    "detect-browser": "^4.5.0",
+    "detect-browser": "^4.5.1",
     "emailjs": "^2.2.0",
     "event-stream": "^4.0.1",
     "express": "^4.16.4",

@@ -75,7 +75,7 @@ font-weight: 700;" data-toggle="modal" data-target="#myModal1"><i class="fa fa-a
 <!-- </div> -->
 
               <div class="container card" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
-                 
+
                       <div class="row card-header mainHeader"  style="height: 50px;">
                         <!-- <div class="col-md-12"> -->
                       <div class="col-md-6 col-xs-12 col-6">
@@ -88,7 +88,7 @@ font-weight: 700;" data-toggle="modal" data-target="#myModal1"><i class="fa fa-a
                           </div>
                         <!-- </div> -->
                       </div>
-                    
+
                 <div class="row">
                     <div class="col-md-12" style="text-align: left;margin-top: 15px;">
                       <p class="orderHead1" style="margin-bottom: 1rem;text-align: center;"><b>{{ticket.ticketTitle}}</b></p>
@@ -244,7 +244,7 @@ border-radius: 0px 10px 0px 10px;padding: 1.2%;" [ngStyle]="{'background-color':
      </div>
 
 
-     
+
     <div class="modal fade" id="myModal2" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -255,7 +255,7 @@ border-radius: 0px 10px 0px 10px;padding: 1.2%;" [ngStyle]="{'background-color':
               </button>
             </div>
             <div class="modal-body">
-             <p>{{ticketSolution}}</p> 
+             <p>{{ticketSolution}}</p>
             </div>
           </div>
         </div>

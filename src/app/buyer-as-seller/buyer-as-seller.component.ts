@@ -83,7 +83,7 @@ export class BuyerAsSellerComponent implements OnInit {
             title: 'Requested successfully!',
             text:
               'Your request for seller has been sent succesfully! Please wait until you get confirmation message to LOGIN.',
-            imageUrl: '../../assets/Images/progress.gif'
+            imageUrl: 'https://res.cloudinary.com/uzhavar-image/image/upload/v1559912230/progress.gif'
           });
           this.getSingleUser();
           this.router.navigate(['/buyerAsSeller']);
