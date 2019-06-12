@@ -326,70 +326,62 @@
           </div>
           <div class="modal-body">
             <div  id="cardFocus">
-        <form  #postform="ngForm" *ngIf ="!submitted" novalidate >
-                <div id="signUpfirstDiv">
-                <div class="form-group ">
-                    <label class="english_wrd" for="phone"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
-                        <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" (change)="phnTen1()" [(ngModel)]="phoneObj.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
-                        <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
-                            <span class="text-danger float-left error_word errFont" *ngIf="phone.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
-                        </div>
-                       <span class="text-danger float-left mb-3 errfont"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="signUpNumbrExisterrormsg">{{signUpNumbrExisterrormsg}}
-                           <span style="color: #0d4608"> Please <span style="text-decoration: underline;cursor: pointer;" (click)="showLogin()">login</span> </span> </span>
-                        <span class="text-danger float-left error_word errFont" *ngIf="phnErr"><i class="fa fa-info-circle" aria-hidden="true"></i> {{phnErr}}</span>
-                </div>
-                <div style="text-align: center;">
-                    <button class="btn2" type="submit" id="hideGetOtp" [disabled]="!phoneObj.phone" (click)="signUpSendOtp()">Get OTP</button>
-                </div>
+                <div id="signUpfirstDiv" class="mt-5">
+                    <form  #postform1="ngForm" class="mt-4" *ngIf ="!submitted" novalidate>
+                            <div class="form-group ">
+                                <label class="english_wrd" for="phone"><span style="font-size: 14px" class="tamil_word">தொலைபேசி எண் </span>/ Phone Number</label>
+                                    <input type="tel"  #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" ngModel name="phone" class="form-control" (change)="phnTen1()" [(ngModel)]="phoneObj.phone" autocomplete="off" maxlength="10" minlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" required>
+                                    <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
+                                        <span class="text-danger float-left error_word errFont" *ngIf="phone.errors.required"><i class="fa fa-info-circle" aria-hidden="true"></i> Phone number is required</span>
+                                    </div>
+                                   <span class="text-danger float-left mb-3 errfont"  [class.d-none] = "phone.invalid && phone.touched" *ngIf="signUpNumbrExisterrormsg">{{signUpNumbrExisterrormsg}}
+                                       <span style="color: #0d4608"> Please <span style="text-decoration: underline;cursor: pointer;" (click)="showLogin()">login</span> </span> </span>
+                                    <span class="text-danger float-left error_word errFont" *ngIf="phnErr"><i class="fa fa-info-circle" aria-hidden="true"></i> {{phnErr}}</span>
+                            </div>
+                            <div style="text-align: center;">
+                                <button class="btn2" type="submit" id="hideGetOtp" [disabled]="!phoneObj.phone" (click)="signUpSendOtp()">Get OTP</button>
+                            </div>
+            </form>
             </div>
 
-            <div id="signUpsecondDiv" style="display: none">
+            <div id="signUpsecondDiv" class="mt-5" style="display: none">
+                <form  #postform2="ngForm" class="mt-4" *ngIf ="!submitted" novalidate >
                     <div class="text-center" style="color: #179e36" *ngIf="signUoptsent">OTP has been sent successfully to this number!<br> <b>'{{signUoptsent}}'</b></div>
-                <div class="alert alert-danger text-center"  *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
-                <div class="form-group ">
-                    <label class="english_wrd" for="phone">Enter your OTP</label>
-                        <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone"  autocomplete="off" required>
+                    <div class="alert alert-danger text-center"  *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
+                    <div class="form-group ">
+                        <label class="english_wrd" for="phone">Enter your OTP</label>
+                            <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone"  autocomplete="off" required>
+                    </div>
+                    <div style="text-align: center;">
+                    <button class="mb-2 btn2" type="submit" id="verify" [disabled]="!verifyPhone1.verifyPhone" (click)="sigunUpverifyOtp()">Verify OTP</button>
                 </div>
-                <div style="text-align: center;">
-                <button class="mb-2 btn2" type="submit" id="verify" [disabled]="!verifyPhone1.verifyPhone" (click)="sigunUpverifyOtp()">Verify OTP</button>
+                    <p style="text-align: center;"><span>Not received OTP yet? </span><a class="resend" (click)="signUpSendOtp()">Resend OTP</a></p>
+            </form>
             </div>
-                <p style="text-align: center;"><span>Not received OTP yet? </span><a class="resend" (click)="signUpSendOtp()">Resend OTP</a></p>
-            </div>
-            <!-- AFTER OTP VERIFIED -->
-            <div id="afterotpverified" style="display: none">
-                    <div class="alert alert-success text-center" *ngIf="verifymsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{verifymsg}}</div>
-                <div class="form-group ">
-                    <label class="english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
-                          <input type="text" #input1 id="firstinput"   #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="registeredUserData.firstname" autocomplete="off" required >
-                          <span class="text-danger float-left error_word errFont" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Name is required</span>
+
+                   <!-- AFTER OTP VERIFIED -->
+                   <div id="afterotpverified" style="display: none">
+                      <form  #postform="ngForm" class="mt-4" *ngIf ="!submitted" novalidate >
+                          <div class="alert alert-success text-center" *ngIf="verifymsg"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{verifymsg}}</div>
+                          <div class="form-group ">
+                              <label class="english_wrd" for="firstname"><span style="font-size: 14px" class="tamil_word">பெயர் </span>/ Name</label>
+                                    <input type="text" #input1 id="firstinput"   #firstname="ngModel" [class.is-invalid]="firstname.invalid && firstname.touched" ngModel (keypress)="handleInput($event)" name="firstname" class="form-control" [(ngModel)]="registeredUserData.firstname" autocomplete="off" required >
+                                    <span class="text-danger float-left error_word errFont" [class.d-none] = "firstname.valid || firstname.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Name is required</span>
+                            </div>
+                             <div class="form-group">
+                                 <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word">கடவுச்சொல் </span>/ Password</label>
+                                    <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
+                                  <span class="text-danger float-left error_word errFont" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12 ">
+                                      <button id="hideButton" class="btn btn-block button_word" [disabled]="postform.form.invalid" type="submit" (click)="post()"><span style="font-size: 14px" class="tamil_word">பதிவு செய்க</span> / Sign up</button>
+                              </div>
+                              </div>
+                      </form>
                   </div>
-                  <!-- <div class="form-group">
-                      <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">முகவரி </span>/ Address</label>
-                              <input type="text" #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control"  [(ngModel)]="registeredUserData.address.addressLine" autocomplete="off" required>
-                              <span class="text-danger float-left error_word errFont" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
-                   </div> -->
-                   <!-- <div class="form-group">
-                       <label class="english_wrd" for="address"> <span style="font-size: 14px" class="tamil_word">மாவட்டம்  </span>/ City</label>
-                          <input google-place type="text" placeholder="" id="city" class="form-control addressplhldr"  #city="ngModel" (onSelect)="setAddress($event)"  name="city" [class.is-invalid]="city.invalid && city.touched" ngModel [(ngModel)]="registeredUserData.address.city" required>
-                          <span class="text-danger float-left error_word errFont" [class.d-none] = "city.valid || city.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> City is required</span>
-                  </div> -->
-                   <div class="form-group">
-                       <label class="english_wrd" for="password"><span style="font-size: 14px" class="tamil_word">கடவுச்சொல் </span>/ Password</label>
-                          <input type="password"  #password="ngModel" [class.is-invalid]="password.invalid && password.touched" ngModel name="password" class="form-control" [(ngModel)]="registeredUserData.password" autocomplete="off"  required maxlength="10"  validateEqual="confirmPassword" reverse="true">
-                        <span class="text-danger float-left error_word errFont" [class.d-none] = "password.valid || password.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Password is required</span>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12 ">
-                            <button id="hideButton" class="btn btn-block button_word" [disabled]="postform.form.invalid" type="submit" (click)="post()"><span style="font-size: 14px" class="tamil_word">பதிவு செய்க</span> / Sign up</button>
-                    </div>
-                    </div>
-            </div>
-        </form>
     </div>
           </div>
-          <!-- <div class="modal-footer">
-            <button type="button" class="btn btn-default" id="closeModal" data-dismiss="modal">Close</button>
-          </div> -->
         </div><!-- /.modal-content -->
       </div>
     </div>

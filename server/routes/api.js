@@ -2561,7 +2561,7 @@ router.post('/deviceToken',(req,res)=>{
 })
 
 router.post('/fcmNotification',(req,res)=>{
-  var registrationToken = "dhIERC5OSR8:APA91bGeqZsqGY40pUumR8aEtUuFGYa3xl-t4U_giJQKiQzG2ohcyxANbBiXy7EE6zR6aHn03QZheEiFRtX7wx_2ZzAPd0b9hsg8dDjYg165E7K4HPpSZFhuiI40ZN30G-yy7d-CEm9Q";
+  var registrationToken = "evZUY6kf4e4:APA91bElS-B0zD-O2N_9se2vRVDH05IRviD-Nhh2A9Wt2BwHmo3lcLbMhT47JHzPLSmbeg4Qu4hYghCw3k8iVx0vRJbHnW2iF6S_zCJp1AMV5vzSAJyh6-xsLcmGVsPNBBy75cFcplLz";
 
 var payload = {
   notification: {
