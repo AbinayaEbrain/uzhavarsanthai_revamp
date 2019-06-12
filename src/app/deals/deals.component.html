@@ -53,7 +53,7 @@
                                 <tr>
                                    <!-- <td><strong>Product &nbsp; </strong></td>
                                    <td>:</td> -->
-                                   <div class="productFullName" style="font-weight: bold;font-size: 14px;">{{deal.name}}</div>
+                                   <div class="productFullName tamil_word" style="font-weight: bold;font-size: 14px;">{{deal.name}}</div>
                                </tr>
                                <div class="row">
                              <div class="col-md-5 col-sm-6 col-6">
@@ -190,8 +190,10 @@
                                           <label style="color: black;font-weight: bold;" class="english_wrd"> Unit</label>
                                           <select  class="form-control" class="form-control mobmargintop"   placeholder="Enter unit" style="background-color: transparent;color: #0d4608;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
                                                 <option style="color: black" value="" disabled >Choose unit</option>
-                                                <option style="color: black" value="Kg">Kg</option>
-                                                <option style="color: black" value="Litre">Ltre</option>
+                                                <option style="color: black" value="Ml">Milli litre</option>
+                                                <option style="color: black" value="L">Litre</option>
+                                                <option style="color: black" value="g">Gram</option>
+                                                <option style="color: black" value="Kg">Kilogram</option>
                                             </select>
 
                                       </div>

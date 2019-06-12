@@ -132,6 +132,7 @@ export class UserProductsComponent implements OnInit {
         let j = 0;
         let l = 0;
         this.crdDeals = res;
+        this.errMsg2 = '';
         console.log(this.crdDeals);
         let CurrentDate = new Date().toISOString();
         for (let i = 0; i < this.crdDeals.length; i++) {

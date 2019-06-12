@@ -99,7 +99,7 @@
                                         <th>Product Name</th>
                                         <th>Quantity</th>
                                         <th>Buyer Name</th>
-                                        <th>Buyer Number</th>
+                                        <!-- <th>Buyer Number</th> -->
                                         <th>Status</th>
                                         <!-- <th>Buyer City</th> -->
                                         <!-- <th class="disabled-sorting">Action</th> -->
@@ -123,7 +123,7 @@
                                          </td>
                                         <td>{{deal.requiredQuantity}}{{deal.requiredUnit}} </td>
                                        <td>{{deal.buyerName}}</td>
-                                        <td>{{deal.buyerPhone}}</td>
+                                        <!-- <td>{{deal.buyerPhone}}</td> -->
                                         <td *ngIf = "deal.sellerStatus == 'Order cancelled'" class="text-danger">Cancelled by myself</td>
                                         <td *ngIf = "deal.sellerStatus == 'Order dropped'" class="text-danger">Cancelled by admin</td>
                                         <td *ngIf = "deal.sellerStatus == 'Order created'" class="text-danger">Cancelled by {{deal.buyerName}}</td>

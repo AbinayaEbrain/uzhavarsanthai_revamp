@@ -25,6 +25,7 @@ export class AuthService {
     'https://uzhavarsanthai.herokuapp.com/api/sendSmsToSeller';
 
   private _deviceTokenUrl = "https://uzhavarsanthai.herokuapp.com/api/deviceToken";
+  private _fcmNotificationUrl = "https://uzhavarsanthai.herokuapp.com/api/fcmNotification";
 
 
 
@@ -151,6 +152,10 @@ export class AuthService {
 
   postDeviceToken(user){
     return this.http.post<any>(this._deviceTokenUrl,user)
+  }
+
+  postFcmNotification(user){
+    return this.http.post<any>(this._fcmNotificationUrl,user)
   }
 
   //logout

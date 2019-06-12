@@ -1,6 +1,6 @@
 <div id='focusDiv' tabindex="1"></div>
 <body class="bg" style="overflow-x: hidden;">
-  <div class="container card mt-5">
+  <div class="container card " style="margin-top:7%">
     <h5 class="styl mt-3">My Tickets</h5><br>
     <section id="tabs" style="margin-top: -20px;">
           <div class="container">
@@ -91,8 +91,8 @@ font-weight: 700;" data-toggle="modal" data-target="#myModal1"><i class="fa fa-a
 
                 <div class="row">
                     <div class="col-md-12" style="text-align: left;margin-top: 15px;">
-                      <p class="orderHead1" style="margin-bottom: 1rem;text-align: center;"><b>{{ticket.ticketTitle}}</b></p>
-                      <p class="orderHead1 needPadding" style="color: #0d4608;text-align:justify;"> <span> {{ticket.ticketDescription}}</span></p>
+                      <p class="orderHead1 tamil_word" style="margin-bottom: 1rem;text-align: center;font-size: 14px;"><b>{{ticket.ticketTitle}}</b></p>
+                      <p class="orderHead1 needPadding tamil_word" style="color: #0d4608;text-align:justify;"> <span style="font-size: 12px;word-spacing: 5px;"> {{ticket.ticketDescription}}</span></p>
                           <p  *ngIf = "ticket.solution"   class="button_word solBtn" (click)="getTicketSol(ticket._id)" style="text-align:right;margin-top: -2%;cursor:pointer;color: #ef6806d9;
                 font-weight: 700;" data-toggle="modal" data-target="#myModal2"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> View Solution</p>
                     </div>

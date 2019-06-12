@@ -569,7 +569,7 @@ export class PostComponent implements OnInit {
       } else {
         if(this.carForm.value.category == 'காய்கறிகள் / Vegetables'){
           this.img =
-          'https://res.cloudinary.com/uzhavar-image/image/upload/v1560172308/veg.jpg';
+          'https://res.cloudinary.com/uzhavar-image/image/upload/v1560320911/veg1.jpg';
         }
         if(this.carForm.value.category == 'பழங்கள் / Fruits'){
           this.img =

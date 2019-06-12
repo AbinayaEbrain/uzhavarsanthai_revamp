@@ -32,6 +32,14 @@ const DeviceToken = require('../models/deviceToken');
 //email
 var email = require('emailjs/email');
 
+var admin = require("firebase-admin");
+var serviceAccount = require("../../pushuzhavar-firebase-adminsdk-1friv-f4a1757e68.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://pushuzhavar.firebaseio.com"
+});
+
 mongoose.connect(db, err => {
   if (err) {
     console.log('Error !' + err);
@@ -2551,5 +2559,33 @@ router.post('/deviceToken',(req,res)=>{
       }
   })
 })
+
+router.post('/fcmNotification',(req,res)=>{
+  var registrationToken = "dhIERC5OSR8:APA91bGeqZsqGY40pUumR8aEtUuFGYa3xl-t4U_giJQKiQzG2ohcyxANbBiXy7EE6zR6aHn03QZheEiFRtX7wx_2ZzAPd0b9hsg8dDjYg165E7K4HPpSZFhuiI40ZN30G-yy7d-CEm9Q";
+
+var payload = {
+  notification: {
+    title: "This is a Notification",
+    body: "This is the body of the notification message."
+  }
+};
+
+ var options = {
+  priority: "high",
+  timeToLive: 60 * 60 * 24
+};
+console.log(payload);
+
+admin.messaging().sendToDevice(registrationToken, payload, options)
+.then(function(response) {
+  console.log("Successfully sent message:", response);
+})
+.catch(function(error) {
+  console.log("Error sending message:", error);
+});
+})
+
+
+
 
 module.exports = router;
