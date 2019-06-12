@@ -1,6 +1,7 @@
 import { Component, OnInit ,ViewChild,NgZone} from '@angular/core';
 import { DealsService } from '../deals.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { Router, ParamMap } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgForm } from '@angular/forms';
@@ -67,6 +68,7 @@ export class UserProductsComponent implements OnInit {
     private _dealsService: DealsService,
     private route: ActivatedRoute,
     private router: Router,
+    public _auth:AuthService,
     public zone: NgZone,
     public loadingCtrl: NgxSpinnerService,
     private location: Location
@@ -178,6 +180,11 @@ checkAddress(){
 confirmAddAddr(){
   document.getElementById("closeAddressModal1").click();
   document.getElementById("updateAddressModal").click();
+}
+
+confirmAddAddrMobile(){
+  document.getElementById("closeAddressModal1").click();
+  this.router.navigate(['/updateAdderss'])
 }
 
   getUser(){

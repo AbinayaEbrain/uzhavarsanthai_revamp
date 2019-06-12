@@ -19,6 +19,7 @@ import {} from '@types/googlemaps';
 import { FileUploader } from 'ng2-file-upload';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 // const URL = 'http://localhost:8080/api/upload';
 
@@ -111,6 +112,7 @@ export class PostComponent implements OnInit {
 
   constructor(
     private _dealsService: DealsService,
+    private _auth:AuthService,
     private http: HttpClient,
     private route: Router,
     private router: ActivatedRoute,
@@ -158,7 +160,7 @@ export class PostComponent implements OnInit {
         localStorage.getItem('currentUpdateAddr')
       ).address.formatted_address;
     }
-     
+
       console.log(this.carForm.value.avlPlace)
       // this.multiData.avlPlace = JSON.parse(
       //   localStorage.getItem('currentUser')
@@ -185,7 +187,7 @@ export class PostComponent implements OnInit {
     }, err =>{
       console.log(err);
     })
-    
+
     if (this.editId) {
       this._dealsService.getSingleMultiPost(this.editId).subscribe(
         res => {
@@ -572,8 +574,11 @@ export class PostComponent implements OnInit {
 
   postProduct() {
    // this.loadingCtrl.show();
-    // var time = this.productData.validityTime;
-    // this.productData.validityTime = time.getTime();
+   if(this._auth.checkOS()){
+    var time = this.productData.validityTime;
+    this.productData.validityTime = time.getTime();
+   }
+
     this.productData.accountId = JSON.parse(
       localStorage.getItem('currentUser')
     )._id;

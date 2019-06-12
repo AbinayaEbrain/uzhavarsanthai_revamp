@@ -40,6 +40,7 @@ import { MostSellingProductComponent } from 'src/app/most-selling-product/most-s
 import { AdminSubscriptionComponent } from 'src/app/admin-subscription/admin-subscription.component';
 import { SubscriptionPlanComponent } from 'src/app/subscription-plan/subscription-plan.component';
 import { OrderViewComponent } from './order-view/order-view.component';
+import { UpdateaddressComponent } from './updateaddress/updateaddress.component';
 const routes: Routes = [
   {
     path: '',
@@ -235,7 +236,11 @@ const routes: Routes = [
   {
     path: 'orderView/:id',
     component: OrderViewComponent
-  }
+  },
+  {
+   path: 'updateAdderss',
+   component: UpdateaddressComponent
+ }
 ];
 
 @NgModule({

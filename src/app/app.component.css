@@ -115,6 +115,9 @@ font-family: 'Quattrocento Sans', sans-serif;
   .onmobviewalign {
     float: none !important;
   }
+  .mobileViewFont{
+    font-size: 13px;
+  }
 }
 
 .navbarCollapse {

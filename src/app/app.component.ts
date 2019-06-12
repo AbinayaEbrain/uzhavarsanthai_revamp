@@ -18,7 +18,8 @@ import { DealsService } from './deals.service';
 var url = 'https://geoip-db.com/json';
 declare var swal: any;
 declare let ClientIP: any;
-
+const { detect } = require('detect-browser');
+const browser = detect();
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -37,6 +38,10 @@ export class AppComponent implements OnInit {
   username: any;
   public previousUrl: any;
   privateIP: any;
+  browserName:any;
+  browserVer:any;
+  browserOs:any;
+  notBrowser:any;
 
   constructor(
     public _authService: AuthService,
@@ -53,6 +58,21 @@ export class AppComponent implements OnInit {
       .subscribe((event: any[]) => {
         this.previousUrl = event[0].urlAfterRedirects;
       });
+
+      if (browser) {
+      console.log(browser.name);
+      this.browserName = browser.name
+      localStorage.setItem('browser', JSON.stringify(this.browserName));
+      console.log(browser.version);
+      this.browserVer = browser.version
+      localStorage.setItem('browserVer', JSON.stringify(this.browserVer));
+      console.log(browser.os);
+      this.browserOs = browser.os
+      localStorage.setItem('browserOS', JSON.stringify(this.browserOs));
+    }else{
+      console.log("This is mobile");
+      this.notBrowser = "This is mobile";
+    }
   }
 
   ngOnInit() {

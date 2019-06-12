@@ -104,6 +104,16 @@ export class AuthService {
     }
   }
 
+  checkOS(){
+  let OS = JSON.parse(localStorage.getItem('browserOS'));
+  let browser = JSON.parse(localStorage.getItem('browser'));
+  if (OS == 'Android OS' && browser == 'chromium-webview') {
+    return false;
+  }else{
+    return true;
+  }
+}
+
   deviceData(data) {
     return this.http.post<any>(this._devicedataeUrl, data);
   }
@@ -153,6 +163,9 @@ export class AuthService {
     localStorage.removeItem('lastvisitproductid');
     localStorage.removeItem('credits');
     localStorage.removeItem('logged');
+    localStorage.removeItem('browser');
+    localStorage.removeItem('browserVer');
+    localStorage.removeItem('browserOS');
     this.route.navigate(['/deals']);
   }
 }

@@ -2,10 +2,11 @@
 <nav class="navbar navbar-expand-md fixed-top heightNav navbar-dark nav_clr">
   <!-- <a class="navbar-brand apptitle" routerLink="/">உழவர் சந்தை</a> -->
   <div>
-  <img src="../../assets/Images/logo2.png" routerLink="/" alt="logo" style="outline: none"><br>
+  <img src="https://res.cloudinary.com/uzhavar-image/image/upload/v1558505613/logo2.png" routerLink="/" alt="logo" style="outline: none"><br>
   <p class="every clr tamil_word hideMobile d-lg-block" routerLink="/" style="margin-left: 20px;cursor: pointer;outline: none;">
     ஏரின்றி அமையாது உலகு!
   </p></div>
+  <!-- <p style="color:white">{{browserName}} {{browserVer}} {{browserOs}} {{notBrowser}}</p> -->
   <!-- <a class="textAlign">
     <p class="every clr tamil_word hideMobile d-lg-block d-md-none d-none">
       ஏரின்றி அமையாது உலகு!
@@ -22,7 +23,7 @@
   >
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
+  <div class="collapse navbar-collapse mobileViewFont" id="navbarCollapse">
     <hr color = "white">
     <ul class="navbar-nav ml-auto">
       <li
@@ -172,6 +173,32 @@
         >Sell on Uzhavar</a
       >
     </li>
+    <li
+*ngIf=" !_authService.checkOS()"
+class="nav-item"
+data-toggle="collapse"
+data-target="#navbarCollapse"
+aria-controls="navbarCollapse"
+aria-expanded="false"
+aria-label="Toggle navigation"
+><!-- <span class="tamil_word" >வலைப்பதிவு</span> /  -->
+<a class="nav-link" routerLink="/about" style="outline: none;" routerLinkActive="active"
+  >About Us</a
+>
+</li>
+<li
+*ngIf="!_authService.checkOS()"
+class="nav-item"
+data-toggle="collapse"
+data-target="#navbarCollapse"
+aria-controls="navbarCollapse"
+aria-expanded="false"
+aria-label="Toggle navigation"
+><!-- <span class="tamil_word" >வலைப்பதிவு</span> /  -->
+<a class="nav-link" routerLink="/contact" style="outline: none;" routerLinkActive="active"
+>Contact Us</a
+>
+</li>
       <li
         *ngIf="_authService.roleAdmin() && _authService.loggedIn()"
         class="nav-item"
@@ -273,7 +300,7 @@
           aria-expanded="true"
           >{{this._authService.getUserName()}} <i class="fa fa-caret-down" aria-hidden="true"></i></a
         >
-        <div class="dropdown-menu" aria-labelledby="dropdown03">
+        <div class="dropdown-menu mobileViewFont" aria-labelledby="dropdown03">
           <a
             class="dropdown-item"
             routerLink="/updateuser"
@@ -342,7 +369,7 @@
     </p>
   </div>
 </ngx-spinner>
-<footer class="footer uzhavarsanthaiFooter">
+<footer class="footer uzhavarsanthaiFooter" *ngIf="_authService.checkOS()">
   <div class="container">
     <div class="row" style="font-size: 15px;">
         <div class="col-lg-4 col-md-6 col-sm-12 col-12 ">

@@ -148,14 +148,14 @@ export class RegisterComponent implements OnInit {
             title: 'Registered successfully!',
             text:
               'Your signup request has been sent succesfully! Please wait until you get confirmation message to LOGIN.',
-            imageUrl: '../../assets/Images/progress.gif'
+            imageUrl: 'https://res.cloudinary.com/uzhavar-image/image/upload/v1559912230/progress.gif'
           });
           this.router.navigate(['/home']);
         } else {
-          
+
           // if(this.addr.formatted_address){
           //   this.registeredUserData.address.city = this.addr.formatted_address;
-          // } 
+          // }
 
           localStorage.setItem('token', res.token);
           localStorage.setItem('role', JSON.stringify(res.user.role));
