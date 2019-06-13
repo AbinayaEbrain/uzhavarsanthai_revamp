@@ -47,11 +47,16 @@ export class BlogComponent implements OnInit {
         res => {
           console.log(res);
           this.blogUserData = res;
-          console.log(this.blogUserData);
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'blogetone';
+          this.postTrackInformation();
           this.loadingCtrl.hide();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.apiName = 'blogetone';
+          this.postTrackInformation();
           this.loadingCtrl.hide();
         }
       );
@@ -64,6 +69,7 @@ export class BlogComponent implements OnInit {
       data => {
         this.blogArr = data;
         this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'blogview';
         this.postTrackInformation();
         this.loadingCtrl.hide();
         console.log(this.blogArr);
@@ -82,6 +88,7 @@ export class BlogComponent implements OnInit {
       err => {
         console.log(err);
         this.trackInformationData.response = 'Failure';
+        this.trackInformationData.apiName = 'blogview';
         this.postTrackInformation();
         this.loadingCtrl.hide();
       }
@@ -104,6 +111,9 @@ export class BlogComponent implements OnInit {
     this.id = this.blogId;
     this._auth.blogDeleteData(this.id).subscribe(
       res => {
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'blogdel';
+        this.postTrackInformation();
         this.loadingCtrl.show();
         setTimeout(() => {
           // swal.close();
@@ -115,6 +125,9 @@ export class BlogComponent implements OnInit {
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.apiName = 'blogdel';
+        this.postTrackInformation();
       }
     );
   }
@@ -130,6 +143,9 @@ export class BlogComponent implements OnInit {
           console.log(res);
           this.success = 'Updated successfully!';
           this.getAllBlog();
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'blogedit';
+          this.postTrackInformation();
           setTimeout(() => {
             this.success = '';
             this.mytemplateForm.reset();
@@ -137,7 +153,12 @@ export class BlogComponent implements OnInit {
             document.getElementById('cardFocus').scrollIntoView();
           }, 2000);
         },
-        err => console.log(err)
+        err => {
+          console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.apiName = 'blogedit';
+          this.postTrackInformation();
+        }
       );
     } else {
       this.blogUserData.bloggerName = this._auth.getUserName();
@@ -151,6 +172,9 @@ export class BlogComponent implements OnInit {
         this.noBlog = '';
         this.success = 'Saved successfully!';
         this.getAllBlog();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'blog';
+        this.postTrackInformation();
         setTimeout(() => {
           this.success = '';
           this.mytemplateForm.reset();

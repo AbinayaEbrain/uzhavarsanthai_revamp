@@ -2568,7 +2568,7 @@ router.post('/fcmNotification',(req,res)=>{
 var payload = {
   notification: {
     title: "Order Request from Uzhavarsanthai!",
-    body: "This is the body of the notification message."
+    body: "Hai," +  req.body.buyerName + "wants%20to%20purchase%20your%20product.%20Your%20order%20request%20Id%20" + req.body.requestId + "Product%20name%20is%20" + req.body.productName + "with%20the%quantity%20of%20" +  req.body.requiredQuantity
   }
 };
 
