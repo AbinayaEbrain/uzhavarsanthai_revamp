@@ -25,6 +25,7 @@ export class OrderViewComponent implements OnInit {
   splitImage1 = '';
   userReview: any = {};
   public reviewData: any = {};
+  public trackInformationData: any = {};
   submitted:any
 
   constructor(
@@ -61,8 +62,15 @@ export class OrderViewComponent implements OnInit {
         j++;
       }
     }
+    this.trackInformationData.response = 'Success';
+    this.trackInformationData.apiName = 'getorderrequest';
+    this.postTrackInformation();
     },err =>{
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'getorderrequest';
+      this.postTrackInformation();
     });
   }
 
@@ -223,6 +231,23 @@ export class OrderViewComponent implements OnInit {
 
   clear(){
           this.mytemplateForm.reset();
+  }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
 }

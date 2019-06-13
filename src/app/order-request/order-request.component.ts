@@ -22,6 +22,8 @@ export class OrderRequestComponent implements OnInit {
   creditObj: any = {};
   creditMinus: any;
   splitImage = '';
+  public trackInformationData: any = {};
+
 
   constructor(
     private _dealService: DealsService,
@@ -61,10 +63,18 @@ export class OrderRequestComponent implements OnInit {
       if (this.userOrderReq1.length == 0) {
         this.errMsg = 'No order request';
       }
-      err => {
-        console.log(err);
-      };
-    });
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getorderrequest';
+        this.postTrackInformation();
+    },
+    err => {
+      console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'getorderrequest';
+      this.postTrackInformation();
+    }
+  );
   }
 
 
@@ -85,9 +95,16 @@ export class OrderRequestComponent implements OnInit {
         console.log(data);
         this.credits = data;
         console.log(this.credits);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getSingleUser';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getSingleUser';
+        this.postTrackInformation();
       }
     );
   }
@@ -110,9 +127,16 @@ export class OrderRequestComponent implements OnInit {
           this.updatePostOrderqst();
           this.updateUser();
           this.loadingCtrl.hide();
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'mapuserOrderRequestStatus';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'mapuserOrderRequestStatus';
+          this.postTrackInformation();
         }
       );
   }
@@ -126,9 +150,16 @@ export class OrderRequestComponent implements OnInit {
         res => {
           console.log(res);
           this.updateCreditArr();
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'updateuser';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'updateuser';
+          this.postTrackInformation();
         }
       );
     }
@@ -143,9 +174,16 @@ export class OrderRequestComponent implements OnInit {
         res => {
           console.log(res);
           this.loadingCtrl.hide();
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'mapuserOrderRequestStatus';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'mapuserOrderRequestStatus';
+          this.postTrackInformation();
         }
       );
   }
@@ -167,9 +205,16 @@ export class OrderRequestComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'updateCreditArr';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'updateCreditArr';
+          this.postTrackInformation();
         }
       );
   }
@@ -184,9 +229,16 @@ export class OrderRequestComponent implements OnInit {
           console.log(data);
           this.getSignupReq();
           this.updatePost();
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'orderReqPost';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'orderReqPost';
+          this.postTrackInformation();
         }
       );
   }
@@ -199,10 +251,35 @@ export class OrderRequestComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'productUpdate';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'productUpdate';
+          this.postTrackInformation();
         }
       );
   }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+
 }

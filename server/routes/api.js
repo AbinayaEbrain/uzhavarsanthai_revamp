@@ -2564,7 +2564,6 @@ router.post('/deviceToken',(req,res)=>{
 
 // Order Request Notification
 router.post('/fcmNotification',(req,res)=>{
-  alert(req.body.token);
   var registrationToken = req.body.token;
 
 var payload = {
