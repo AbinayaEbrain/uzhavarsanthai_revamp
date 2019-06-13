@@ -34,6 +34,7 @@ export class LocationdealsComponent implements OnInit {
   noLocationErr: any;
   crdDeals1 = [];
   public userdetails: any = [];
+  public trackInformationData: any = {};
   errMsg1: any;
   p: any;
   e: any;
@@ -113,14 +114,30 @@ export class LocationdealsComponent implements OnInit {
               this.loadingCtrl.hide();
             }
             this.showDeals = true;
+            this.trackInformationData.response = 'Success';
+            this.trackInformationData.apiName = 'details';
+            this.postTrackInformation();
           },
-          err => {}
+          err => {
+            console.log(err);
+            this.trackInformationData.response = 'Failure';
+            this.trackInformationData.error = err.statusText;
+            this.trackInformationData.apiName = 'details';
+            this.postTrackInformation();
+          }
         );
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
       },
 
       err => {
         this.loadingCtrl.hide();
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
       }
     );
   }
@@ -142,10 +159,17 @@ export class LocationdealsComponent implements OnInit {
       res => {
         this.categoryArr = res;
         this.loadingCtrl.hide();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.hide();
         this.categoryArr = [];
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
       }
     );
   }
@@ -194,4 +218,22 @@ export class LocationdealsComponent implements OnInit {
     this.userdetails.searchqnty = '';
     this.userdetails.searchCategory = '';
   }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealsService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+
 }

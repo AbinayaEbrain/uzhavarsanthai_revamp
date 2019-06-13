@@ -18,6 +18,7 @@ export class DealscategoryComponent implements OnInit {
   imageSrc: any;
   e: any;
   ProductCountArr: any = [];
+  public trackInformationData: any = {};
   count: any;
 
   constructor(
@@ -41,9 +42,16 @@ export class DealscategoryComponent implements OnInit {
         this.ProductCountArr = data;
         console.log(this.ProductCountArr);
         this.getCategory();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'categoryProductCount';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'categoryProductCount';
+        this.postTrackInformation();
       }
     );
   }
@@ -69,11 +77,35 @@ export class DealscategoryComponent implements OnInit {
         }
         // this.imageSrc = require('../../../server/uploads' + this.categoryArr);
         // this.imageSrc = JSON.parse(localStorage.getItem('image_c'))
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.hide();
         // this.categoryArr = [];
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
       }
     );
+  }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 }

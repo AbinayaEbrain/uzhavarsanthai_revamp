@@ -27,6 +27,7 @@ export class DealsComponent implements OnInit {
   public userdetails: any = [];
   public crdDeals: any = [];
   public totalDeals1: any = [];
+  public trackInformationData: any = {};
   public showDeals = true;
   mapDeals = [];
   activeUsers = [];
@@ -117,10 +118,17 @@ export class DealsComponent implements OnInit {
         }
         this.showDeals = true;
         this.loadingCtrl.hide();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.hide();
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
       }
     );
   }
@@ -148,10 +156,17 @@ export class DealsComponent implements OnInit {
       res => {
         this.categoryArr = res;
         this.loadingCtrl.hide();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
       },
 
       err => {
         this.categoryArr = [];
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
       }
     );
   }
@@ -245,8 +260,15 @@ export class DealsComponent implements OnInit {
     this._dealsService.getCount(data.name,data._id,this.privateIP).subscribe(res =>{
       console.log(res);
       this.route.navigate(['/viewmore', data._id]);
+      this.trackInformationData.response = 'Success';
+      this.trackInformationData.apiName = 'getCount';
+      this.postTrackInformation();
     },err =>{
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'getCount';
+      this.postTrackInformation();
     });
   }
   @HostListener("window:scroll", []) onWindowScroll() {
@@ -266,4 +288,22 @@ topFunction() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+
+postTrackInformation() {
+  let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+  let token = localStorage.getItem('token');
+  let UserName = localStorage.getItem('firstname');
+  let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+  this.trackInformationData.UserId = acntID;
+  this.trackInformationData.jwt = token;
+  this.trackInformationData.ipAddress = ipAddress;
+  this.trackInformationData.UserName = UserName;
+  this.trackInformationData.apiCallingAt = new Date().getTime();
+  this._dealsService
+    .trackInformationPost(this.trackInformationData)
+    .subscribe(data => {
+      console.log(data);
+    });
+}
+
 }

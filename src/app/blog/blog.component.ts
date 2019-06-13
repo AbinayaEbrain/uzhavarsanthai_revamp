@@ -204,4 +204,5 @@ export class BlogComponent implements OnInit {
         console.log(data);
       });
   }
+  
 }

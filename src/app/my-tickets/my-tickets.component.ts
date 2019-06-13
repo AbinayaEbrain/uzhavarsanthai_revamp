@@ -12,6 +12,7 @@ export class MyTicketsComponent implements OnInit {
   ticketId: number;
   ticketData: any = {};
   disputeArr: any = [];
+  public trackInformationData: any = {};
   username: any;
   userphone: any;
   userrole: any;
@@ -83,11 +84,18 @@ export class MyTicketsComponent implements OnInit {
           this.noDisputesMsg = 'You have no disputes.';
           this.loadingCtrl.hide();
         }
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'getDispute';
+          this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.show();
         console.log(err);
         this.loadingCtrl.hide();
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getDispute';
+        this.postTrackInformation();
       }
     );
   }
@@ -131,11 +139,18 @@ export class MyTicketsComponent implements OnInit {
           this.loadingCtrl.hide();
           console.log(this.noTicketsMsg);
         }
+        this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'getticket';
+          this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.show();
         console.log(err);
         this.loadingCtrl.hide();
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getticket';
+        this.postTrackInformation();
       }
     );
   }
@@ -179,11 +194,18 @@ export class MyTicketsComponent implements OnInit {
           this.loadingCtrl.hide();
           console.log(this.noOpenTicketsMsg);
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getticket';
+        this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.show();
         console.log(err);
         this.loadingCtrl.hide();
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getticket';
+        this.postTrackInformation();
       }
     );
   }
@@ -221,11 +243,18 @@ export class MyTicketsComponent implements OnInit {
           this.loadingCtrl.hide();
           console.log(this.noTicketsMsg);
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getticket';
+        this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.show();
         console.log(err);
         this.loadingCtrl.hide();
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getticket';
+        this.postTrackInformation();
       }
     );
   }
@@ -259,9 +288,16 @@ export class MyTicketsComponent implements OnInit {
           setTimeout(() => this.router.navigate(['/my-tickets']), 100);
           // this.loadingCtrl.hide();
         }, 3000);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'sendticket';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'sendticket';
+        this.postTrackInformation();
       }
     );
   }
@@ -302,9 +338,16 @@ export class MyTicketsComponent implements OnInit {
         }
 
         console.log(this.disputeArr);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getDispute';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getDispute';
+        this.postTrackInformation();
       }
     );
   }
@@ -335,4 +378,22 @@ export class MyTicketsComponent implements OnInit {
       }
     }
   }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealsService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+
 }

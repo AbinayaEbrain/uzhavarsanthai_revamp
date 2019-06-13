@@ -10,6 +10,7 @@ import { Location } from '@angular/common';
 })
 export class CreditsComponent implements OnInit {
   totalCredit: any;
+  public trackInformationData: any = {};
   id: any;
   p: any;
   errMsg: any;
@@ -19,10 +20,9 @@ export class CreditsComponent implements OnInit {
   crntUser: any = {};
   roleStatus: any;
   role: any;
-  totalCredits : any;
-  singleCredit : any;
-  singleCredits : any;
-
+  totalCredits: any;
+  singleCredit: any;
+  singleCredits: any;
 
   constructor(
     private _dealsService: DealsService,
@@ -49,6 +49,9 @@ export class CreditsComponent implements OnInit {
       data => {
         console.log(data);
         this.crntUser = data;
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getSingleUser';
+        this.postTrackInformation();
         this.roleStatus = data.roleStatus;
         this.role = data.role;
         if (this.role == 'buyer' || this.roleStatus == 'Deactive') {
@@ -61,6 +64,10 @@ export class CreditsComponent implements OnInit {
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getSingleUser';
+        this.postTrackInformation();
       }
     );
   }
@@ -74,7 +81,7 @@ export class CreditsComponent implements OnInit {
             console.log(res[i]);
             this.credits = res[i];
             this.totalCredits = res[i].credits;
-            this.totalCredit = this.totalCredits.toFixed(2)
+            this.totalCredit = this.totalCredits.toFixed(2);
             console.log(this.totalCredit);
             this.creditsArr = res[i].creditDetails;
           }
@@ -90,11 +97,35 @@ export class CreditsComponent implements OnInit {
         } else {
           this.creditsArr = this.creditsArr.reverse();
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.hide();
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
       }
     );
+  }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealsService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 }

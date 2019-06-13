@@ -26,7 +26,7 @@ export class ContactComponent implements OnInit {
   contactDetail() {
     this.adminService.addContact(this.contact);
     this.trackInformationData.response = 'Success';
-    this.trackInformationData.apiName = 'blogetone';
+    this.trackInformationData.apiName = 'contact';
     this.postTrackInformation();
     this.successMsg = 'Your message received successfully';
     this.mytemplateForm.reset();

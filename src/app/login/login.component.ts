@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit {
   subscriptionId : any;
   freeSubscription : any;
   subscriptionName :any;
+  public trackInformationData: any = {};
+
   constructor(
     private router: Router,
     public _auth: AuthService,
@@ -92,9 +94,16 @@ export class LoginComponent implements OnInit {
 
     }
     console.log(this.freeSubscription);
+    this.trackInformationData.response = 'Success';
+    this.trackInformationData.apiName = 'getSubscription';
+    this.postTrackInformation();
     },
     err => {
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'getSubscription';
+      this.postTrackInformation();
     }
   );
 }
@@ -181,9 +190,16 @@ export class LoginComponent implements OnInit {
           this.phoneObj.phone1 = '';
           document.getElementById('firstDiv').style.display = 'none';
           document.getElementById('hideForm').style.display = 'block';
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'resetPassword';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'resetPassword';
+          this.postTrackInformation();
         }
       );
   }
@@ -237,6 +253,9 @@ export class LoginComponent implements OnInit {
           }
           this.loadingCtrl.hide();
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'login';
+        this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.hide();
@@ -247,6 +266,10 @@ export class LoginComponent implements OnInit {
             this.errormsg = '';
           }, 5000);
         }
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'login';
+        this.postTrackInformation();
       }
     );
   }
@@ -300,6 +323,9 @@ export class LoginComponent implements OnInit {
         // }, 3000);
         document.getElementById('showForm').style.display = 'none';
         document.getElementById('secondDiv').style.display = 'block';
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'forgotPwd';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
@@ -310,6 +336,10 @@ export class LoginComponent implements OnInit {
           }, 7000);
         }
         this.loadingCtrl.hide();
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'forgotPwd';
+        this.postTrackInformation();
       }
     );
   }
@@ -330,4 +360,22 @@ export class LoginComponent implements OnInit {
       this.verifyPhone1.verifyPhone = '';
     }
   }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealsService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+
 }
