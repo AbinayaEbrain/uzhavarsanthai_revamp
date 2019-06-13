@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const postSchema = new Schema({
   category: String,
   categoryId: String,
+  device_token: String,
   name: String,
   quantity: String,
   qnty: String,

@@ -4,9 +4,11 @@ const Schema = mongoose.Schema;
 
 const trackinformationSchema = new Schema({
   UserId: String,
+  UserName: String,
   apiName: String,
   jwt: String,
   response: String,
+  ipAddress: String,
   apiCallingAt: Date
 });
 

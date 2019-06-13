@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router, Params } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DealsService } from '../deals.service';
 
 @Component({
   selector: 'app-blog',
@@ -12,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class BlogComponent implements OnInit {
   public blogUserData: any = {};
+  public trackInformationData: any = {};
   @ViewChild('usrform') mytemplateForm: NgForm;
   @ViewChild('focus') divFocus: ElementRef;
   blogArr: any = [];
@@ -21,9 +23,10 @@ export class BlogComponent implements OnInit {
   public bloglistobj: any = {};
   show = 5;
   noBlog: any;
-  blogId:any;
+  blogId: any;
 
   constructor(
+    private _dealService: DealsService,
     private _auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
@@ -37,30 +40,31 @@ export class BlogComponent implements OnInit {
     this.getAllBlog();
   }
 
-  editBLog(id){
-    if(this.id){
+  editBLog(id) {
+    if (this.id) {
       console.log(this.id);
-    this._auth.blogGetOneData(this.id).subscribe(
-      res => {
-        console.log(res);
-        this.blogUserData = res;
-        console.log(this.blogUserData);
-        this.loadingCtrl.hide();
-      },
-      err => {
-        console.log(err);
-        this.loadingCtrl.hide();
-      }
-    );
-  }
+      this._auth.blogGetOneData(this.id).subscribe(
+        res => {
+          console.log(res);
+          this.blogUserData = res;
+          console.log(this.blogUserData);
+          this.loadingCtrl.hide();
+        },
+        err => {
+          console.log(err);
+          this.loadingCtrl.hide();
+        }
+      );
+    }
   }
 
   getAllBlog() {
     let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
-    let token = JSON.parse(localStorage.getItem('token'));
     this._auth.blogGetData().subscribe(
       data => {
         this.blogArr = data;
+        this.trackInformationData.response = 'Success';
+        this.postTrackInformation();
         this.loadingCtrl.hide();
         console.log(this.blogArr);
         let j = 0;
@@ -77,6 +81,8 @@ export class BlogComponent implements OnInit {
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.postTrackInformation();
         this.loadingCtrl.hide();
       }
     );
@@ -89,11 +95,10 @@ export class BlogComponent implements OnInit {
     document.getElementById('focus').scrollIntoView();
   }
 
-  
-  getId(id){
+  getId(id) {
     console.log(id);
-    this.blogId = id
-      }
+    this.blogId = id;
+  }
 
   deleteblog() {
     this.id = this.blogId;
@@ -103,7 +108,7 @@ export class BlogComponent implements OnInit {
         setTimeout(() => {
           // swal.close();
           this.router.navigateByUrl('/dummy', { skipLocationChange: true });
-          setTimeout(() => this.router.navigate(['/blog']),0);
+          setTimeout(() => this.router.navigate(['/blog']), 0);
           // this.router.navigate(['/blog']);
           this.loadingCtrl.hide();
         }, 1000);
@@ -155,4 +160,20 @@ export class BlogComponent implements OnInit {
     }
   }
 
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
 }
