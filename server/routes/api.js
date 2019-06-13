@@ -26,6 +26,8 @@ const Ticket = require('../models/ticket');
 
 const Dispute = require('../models/dispute');
 const DeviceToken = require('../models/deviceToken');
+const Trackinformation = require('../models/trackinformation');
+
 // const Buyerdispute = require('../models/buyerdispute');
 
 
@@ -2588,7 +2590,7 @@ admin.messaging().sendToDevice(registrationToken, payload, options)
 // trackInformation
 router.post('/trackInformationPost', (req, res) => {
   let trackInformationData = req.body;
-  let trackInformation = new Subscription(trackInformationData);
+  let trackInformation = new Trackinformation(trackInformationData);
   trackInformation.save((error, trackInformationData) => {
     if (error) {
       console.log(error);

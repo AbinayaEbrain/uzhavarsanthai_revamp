@@ -179,6 +179,7 @@ export class AuthService {
     localStorage.removeItem('browser');
     localStorage.removeItem('browserVer');
     localStorage.removeItem('browserOS');
+    localStorage.removeItem('privateIP');
     this.route.navigate(['/deals']);
   }
 }

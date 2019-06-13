@@ -57,6 +57,7 @@ export class BlogComponent implements OnInit {
 
   getAllBlog() {
     let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = JSON.parse(localStorage.getItem('token'));
     this._auth.blogGetData().subscribe(
       data => {
         this.blogArr = data;
