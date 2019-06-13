@@ -26,8 +26,7 @@ export class AuthService {
 
   private _deviceTokenUrl = "https://uzhavarsanthai.herokuapp.com/api/deviceToken";
   private _fcmNotificationUrl = "https://uzhavarsanthai.herokuapp.com/api/fcmNotification";
-
-
+  private _fcmNotificationAdminUrl = "https://uzhavarsanthai.herokuapp.com/api/fcmNotificationAdmin";
 
   constructor(private http: HttpClient, private route: Router) {}
 
@@ -156,6 +155,10 @@ export class AuthService {
 
   postFcmNotification(user){
     return this.http.post<any>(this._fcmNotificationUrl,user)
+  }
+
+  postFcmNotificationAdmin(user){
+    return this.http.post<any>(this._fcmNotificationAdminUrl,user)
   }
 
   //logout

@@ -9,6 +9,7 @@ const trackinformationSchema = new Schema({
   jwt: String,
   response: String,
   ipAddress: String,
+  error : String,
   apiCallingAt: Date
 });
 

@@ -2562,13 +2562,40 @@ router.post('/deviceToken',(req,res)=>{
   })
 })
 
+// Order Request Notification
 router.post('/fcmNotification',(req,res)=>{
   var registrationToken = req.body.token;
 
 var payload = {
   notification: {
-    title: "Order Request from Uzhavarsanthai!",
-    body: "Hai," +  req.body.buyerName + "wants%20to%20purchase%20your%20product.%20Your%20order%20request%20Id%20" + req.body.requestId + "Product%20name%20is%20" + req.body.productName + "with%20the%quantity%20of%20" +  req.body.requiredQuantity
+    title: "Uzhavarsanthai!",
+    body : "Order Request from Uzhavarsanthai!"
+  }
+};
+
+ var options = {
+  priority: "high",
+  timeToLive: 60 * 60 * 24
+};
+console.log(payload);
+
+admin.messaging().sendToDevice(registrationToken, payload, options)
+.then(function(response) {
+  console.log("Successfully sent message:", response);
+})
+.catch(function(error) {
+  console.log("Error sending message:", error);
+});
+})
+
+// Order Closed Notification by admin
+router.post('/fcmNotificationAdmin',(req,res)=>{
+  var registrationToken = req.body.token;
+
+var payload = {
+  notification: {
+    title: "Order Closed by Uzhavarsanthai!",
+    body: "Hai," + "Your%20order%20request%20Id%20" + req.body.requestId + "for%20the%20product%20" + req.body.productName + "under%20category%20" + req.body.productCategory + "has%20been%20closed%20by%20Uzhavarsanthai."
   }
 };
 

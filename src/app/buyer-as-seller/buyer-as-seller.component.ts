@@ -15,6 +15,7 @@ export class BuyerAsSellerComponent implements OnInit {
   id: any;
   success: any;
   public crntUser: any = {};
+  public trackInformationData: any = {};
   loggedUser = [];
   currentuserId: any;
   show = true;
@@ -40,6 +41,9 @@ export class BuyerAsSellerComponent implements OnInit {
     this._dealsService.getDetails().subscribe(
       res => {
         this.loggedUser = res;
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
         for (let i = 0; i < this.loggedUser.length; i++) {
           if (this.id == this.loggedUser[i]._id) {
             this.crntUser = this.loggedUser[i];
@@ -53,6 +57,10 @@ export class BuyerAsSellerComponent implements OnInit {
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
       }
     );
   }
@@ -65,6 +73,9 @@ export class BuyerAsSellerComponent implements OnInit {
     this._dealsService.updateCustomer(this.crntUser, this.id).subscribe(
       data => {
         console.log(data);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'updateuser';
+        this.postTrackInformation();
         if (data.roleStatus == 'Deactive') {
           if (data) {
             this.http.post<any>(this.sendMailSignUpBuyer, data).subscribe(
@@ -83,7 +94,8 @@ export class BuyerAsSellerComponent implements OnInit {
             title: 'Requested successfully!',
             text:
               'Your request for seller has been sent succesfully! Please wait until you get confirmation message to LOGIN.',
-            imageUrl: 'https://res.cloudinary.com/uzhavar-image/image/upload/v1559912230/progress.gif'
+            imageUrl:
+              'https://res.cloudinary.com/uzhavar-image/image/upload/v1559912230/progress.gif'
           });
           this.getSingleUser();
           this.router.navigate(['/buyerAsSeller']);
@@ -91,7 +103,28 @@ export class BuyerAsSellerComponent implements OnInit {
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'updateuser';
+        this.postTrackInformation();
       }
     );
+  }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealsService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 }

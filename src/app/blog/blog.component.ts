@@ -55,6 +55,7 @@ export class BlogComponent implements OnInit {
         err => {
           console.log(err);
           this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
           this.trackInformationData.apiName = 'blogetone';
           this.postTrackInformation();
           this.loadingCtrl.hide();
@@ -88,6 +89,7 @@ export class BlogComponent implements OnInit {
       err => {
         console.log(err);
         this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
         this.trackInformationData.apiName = 'blogview';
         this.postTrackInformation();
         this.loadingCtrl.hide();
@@ -126,6 +128,7 @@ export class BlogComponent implements OnInit {
       err => {
         console.log(err);
         this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
         this.trackInformationData.apiName = 'blogdel';
         this.postTrackInformation();
       }
@@ -156,6 +159,7 @@ export class BlogComponent implements OnInit {
         err => {
           console.log(err);
           this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
           this.trackInformationData.apiName = 'blogedit';
           this.postTrackInformation();
         }

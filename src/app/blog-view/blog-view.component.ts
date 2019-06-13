@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DealsService } from '../deals.service';
 declare var $: any;
 // import * as moment from 'moment';
 
@@ -15,6 +16,7 @@ export class BlogViewComponent implements OnInit {
   blogArr = [];
   id: any;
   public bloglistobj: any = {};
+  public trackInformationData: any = {};
   errMsg: any;
   success: any;
   show = 5;
@@ -22,6 +24,7 @@ export class BlogViewComponent implements OnInit {
 
   constructor(
     private _auth: AuthService,
+    private _dealService: DealsService,
     private route: ActivatedRoute,
     private router: Router,
     public loadingCtrl: NgxSpinnerService
@@ -37,6 +40,9 @@ export class BlogViewComponent implements OnInit {
     this._auth.blogGetData().subscribe(
       res => {
         this.blogArr = res;
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'blogview';
+        this.postTrackInformation();
         this.loadingCtrl.hide();
         if (this.blogArr.length == 0) {
           this.noBlog = 'No blogs added';
@@ -44,6 +50,10 @@ export class BlogViewComponent implements OnInit {
       },
       err => {
         this.blogArr = [];
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'blogview';
+        this.postTrackInformation();
       }
     );
   }
@@ -56,6 +66,9 @@ export class BlogViewComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this._auth.blogDeleteData(this.id).subscribe(
       res => {
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'blogdel';
+        this.postTrackInformation();
         setTimeout(() => {
           // swal.close();
           this.router.navigate(['/blog-view']);
@@ -63,6 +76,10 @@ export class BlogViewComponent implements OnInit {
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'blogdel';
+        this.postTrackInformation();
       }
     );
   }
@@ -84,11 +101,24 @@ export class BlogViewComponent implements OnInit {
     }
   }
 
-  // timeFromNow(time) {
-  //   return moment(time).fromNow();
-  // }
-
   openblog() {
     document.getElementById('hide').innerHTML = '';
+  }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 }
