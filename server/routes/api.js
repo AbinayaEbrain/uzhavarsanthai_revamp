@@ -33,11 +33,11 @@ const DeviceToken = require('../models/deviceToken');
 var email = require('emailjs/email');
 
 var admin = require("firebase-admin");
-var serviceAccount = require("../../pushuzhavar-firebase-adminsdk-1friv-f4a1757e68.json");
+var serviceAccount = require("../../uzhavarsanthai-e218a-firebase-adminsdk-co6gp-8284b5dc60.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://pushuzhavar.firebaseio.com"
+  databaseURL: "https://uzhavarsanthai-e218a.firebaseio.com"
 });
 
 mongoose.connect(db, err => {
@@ -2565,7 +2565,7 @@ router.post('/fcmNotification',(req,res)=>{
 
 var payload = {
   notification: {
-    title: "This is a Notification",
+    title: "Order Request from Uzhavarsanthai!",
     body: "This is the body of the notification message."
   }
 };
@@ -2585,7 +2585,17 @@ admin.messaging().sendToDevice(registrationToken, payload, options)
 });
 })
 
-
-
+// trackInformation
+router.post('/trackInformationPost', (req, res) => {
+  let trackInformationData = req.body;
+  let trackInformation = new Subscription(trackInformationData);
+  trackInformation.save((error, trackInformationData) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.status(200).send(trackInformationData);
+    }
+  });
+});
 
 module.exports = router;

@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   firstname: String,
+  device_token: String,
   address: {
     addressLine: String,
     address1: String,
@@ -25,15 +26,15 @@ const userSchema = new Schema({
   role: String,
   roleStatus: String,
   credits: { type: Number, default: 0 },
-  subscriptionName : String,
-  subscriptionId : String,
+  subscriptionName: String,
+  subscriptionId: String,
   subscription: [
     {
       subscription: String,
       amount: String,
       credit: String,
       status: String,
-      planType : String,
+      planType: String,
       createdAt: Date
     }
   ],
@@ -75,7 +76,7 @@ const userSchema = new Schema({
       dispute: String,
       requestId: String,
       disputeStatus: String,
-      solution: {type: String , default:''},
+      solution: { type: String, default: '' },
       against: String,
       createdAt: Date
     }
@@ -93,7 +94,7 @@ const userSchema = new Schema({
       requestId: String,
       dispute: String,
       disputeStatus: String,
-      solution: {type: String , default:''},
+      solution: { type: String, default: '' },
       against: String,
       createdAt: Date
     }

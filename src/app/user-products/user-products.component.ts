@@ -178,10 +178,10 @@ checkAddress(){
   );
 }
 
-confirmAddAddr(){
-  document.getElementById("closeAddressModal1").click();
-  document.getElementById("updateAddressModal").click();
-}
+// confirmAddAddr(){
+//   document.getElementById("closeAddressModal1").click();
+//   document.getElementById("updateAddressModal").click();
+// }
 
 confirmAddAddrMobile(){
   document.getElementById("closeAddressModal1").click();

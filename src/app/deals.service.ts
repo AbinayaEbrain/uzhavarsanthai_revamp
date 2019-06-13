@@ -122,6 +122,8 @@ export class DealsService {
   private updateUserSubscriptionUrl = "https://uzhavarsanthai.herokuapp.com/api/updateUserSubscription";
   private getCurrentuserCrditsUrl = "https://uzhavarsanthai.herokuapp.com/api/currentUserCredits";
 
+  private _postTrackInformation = "http://localhost:5000/api/trackInformationPost";
+
 
   constructor(private http: HttpClient) {}
 
@@ -441,4 +443,11 @@ export class DealsService {
   getSingleUser(id) {
     return this.http.get<any>(this._getSingleUser + '/' + id);
   }
+
+// trackInformation
+
+trackInformationPost(data){
+  return this.http.post<any>(this._postTrackInformation, data);
+}
+
 }
