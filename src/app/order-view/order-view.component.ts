@@ -19,21 +19,22 @@ export class OrderViewComponent implements OnInit {
   id: any;
   acntID: any;
   userOrderReq = [];
-  userOrder : any = {};
-  passingId : any;
-  singleImg :any;
+  userOrder: any = {};
+  passingId: any;
+  singleImg: any;
   splitImage1 = '';
   userReview: any = {};
   public reviewData: any = {};
-  submitted:any
+  public trackInformationData: any = {};
+  submitted: any;
 
   constructor(
     private _dealService: DealsService,
     public loadingCtrl: NgxSpinnerService,
     private location: Location,
     private route: ActivatedRoute,
-    private router: Router ,
-    ) {}
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadingCtrl.show();
@@ -41,31 +42,38 @@ export class OrderViewComponent implements OnInit {
     this.totalOrders();
   }
 
-  totalOrders(){
-    this._dealService.getOrderRequest().subscribe(res =>{
-    console.log(res);
-    this.userOrderReq = res;
-    this.loadingCtrl.hide();
-    let j =0;
-    for (let i = 0; i < this.userOrderReq.length; i++) {
-      if (
-        this.passingId == this.userOrderReq[i]._id
-      ) {
-        this.userOrder = this.userOrderReq[i];
-         var str = this.userOrder.image;
-         var res = str.split(",",1);
-         console.log(res)
-         this.singleImg = res;
-        // this.singleImg[j].image = this.splitImage1.split(",",1);
-        // console.log(this.singleImg[j].image)
-        j++;
+  totalOrders() {
+    this._dealService.getOrderRequest().subscribe(
+      res => {
+        console.log(res);
+        this.userOrderReq = res;
+        this.loadingCtrl.hide();
+        let j = 0;
+        for (let i = 0; i < this.userOrderReq.length; i++) {
+          if (this.passingId == this.userOrderReq[i]._id) {
+            this.userOrder = this.userOrderReq[i];
+            var str = this.userOrder.image;
+            var res = str.split(',', 1);
+            console.log(res);
+            this.singleImg = res;
+            // this.singleImg[j].image = this.splitImage1.split(",",1);
+            // console.log(this.singleImg[j].image)
+            j++;
+          }
+        }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getorderrequest';
+        this.postTrackInformation();
+      },
+      err => {
+        console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getorderrequest';
+        this.postTrackInformation();
       }
-    }
-    },err =>{
-      console.log(err);
-    });
+    );
   }
-
 
   goToBack() {
     this.location.back();
@@ -76,9 +84,16 @@ export class OrderViewComponent implements OnInit {
       data => {
         console.log(data);
         this.getSingleOrder();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getorderrequest';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getorderrequest';
+        this.postTrackInformation();
       }
     );
   }
@@ -89,9 +104,16 @@ export class OrderViewComponent implements OnInit {
         console.log(data);
         this.orderRequests = data;
         this.getCreatedRequests();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getSingleOrderRequest';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getSingleOrderRequest';
+        this.postTrackInformation();
       }
     );
   }
@@ -179,7 +201,10 @@ export class OrderViewComponent implements OnInit {
         //this.mytemplateForm.reset();
         this.loadingCtrl.hide();
         document.getElementById('closeCancelOrderModal1').click();
-        document.getElementById("openConfirmModal").click();
+        document.getElementById('openConfirmModal').click();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'postreviewrating';
+        this.postTrackInformation();
         // swal("Sent successfully!", "Your Rate & Review has been sent succesfully!", "success")
         // swal({
         //   title: 'Rate & Review sent successfully!',
@@ -190,6 +215,10 @@ export class OrderViewComponent implements OnInit {
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'postreviewrating';
+        this.postTrackInformation();
       }
     );
   }
@@ -201,9 +230,16 @@ export class OrderViewComponent implements OnInit {
     this._dealService.mapProductReviewinPost(this.reviewData).subscribe(
       res => {
         console.log(res);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'mapproductreviewpostUrl';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'mapproductreviewpostUrl';
+        this.postTrackInformation();
       }
     );
   }
@@ -214,15 +250,39 @@ export class OrderViewComponent implements OnInit {
     this._dealService.mapProductReviewinUser(this.reviewData).subscribe(
       res => {
         console.log(res);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'mapproductreviewuserUrl';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'mapproductreviewuserUrl';
+        this.postTrackInformation();
       }
     );
   }
 
-  clear(){
-          this.mytemplateForm.reset();
+  clear() {
+    this.mytemplateForm.reset();
   }
 
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+  
 }

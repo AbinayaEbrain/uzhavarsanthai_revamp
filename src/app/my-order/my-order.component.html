@@ -55,8 +55,8 @@
                   </div>
                   <div class="col-md-4" style="text-align: left;margin-top: 15px;">
                     <p class="orderHead1 tamil_word " style="color: #0d4608;font-weight: bold;">{{order.prdctCategory}}</p>
-                    <p class="orderHead" style="font-size: 14px;">{{order.prdctName}}</p>
-                    <p class="orderHead">{{order.requiredQuantity}}/{{order.requiredUnit}}</p>
+                    <p class="orderHead tamil_word" style="font-size: 14px;">{{order.prdctName}}</p>
+                    <p class="orderHead">{{order.requiredQuantity}} {{order.requiredUnit}}</p>
                     <p class="orderHead">{{order.prdctAvlplace}}</p>
                   </div>
                   <div class="col-md-2" style="text-align: left;margin-top: 15px;">
@@ -104,8 +104,8 @@
               </div>
               <div class="col-md-4" style="text-align: left;margin-top: 15px;">
                 <p class="orderHead1" style="color: #0d4608;font-weight: bold;">{{order.prdctCategory}}</p>
-                <p class="orderHead" style="font-size: 14px;">{{order.prdctName}}</p>
-                <p class="orderHead">{{order.requiredQuantity}}/{{order.requiredUnit}}</p>
+                <p class="orderHead tamil_word" style="font-size: 14px;">{{order.prdctName}}</p>
+                <p class="orderHead">{{order.requiredQuantity}} {{order.requiredUnit}}</p>
                 <p class="orderHead">{{order.prdctAvlplace}}</p>
               </div>
               <div class="col-md-4" style="text-align: left;margin-top: 15px;">
@@ -171,7 +171,7 @@
                   <div class="col-md-8">
               <h6 class="english_wrd">Category : {{userOrder1.prdctCategory}}</h6></div>
               <div class="col-md-4">
-              <h6 class="english_wrd">Name : {{userOrder1.prdctName}}</h6></div>
+              <h6 class="english_wrd tamil_word">Name : {{userOrder1.prdctName}}</h6></div>
             </div>
             <form #reviewform="ngForm" *ngIf ="!submitted" novalidate>
               <div class="form-group">

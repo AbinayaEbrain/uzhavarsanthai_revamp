@@ -41,6 +41,7 @@ export class MyOrderComponent implements OnInit {
   userData: any = {};
   disputeData: any;
   disputeMailData: any = {};
+  public trackInformationData: any = {};
 
   constructor(
     private _dealService: DealsService,
@@ -85,8 +86,15 @@ export class MyOrderComponent implements OnInit {
     }
     this.createdRequests = [];
     this.filterMonth();
+    this.trackInformationData.response = 'Success';
+    this.trackInformationData.apiName = 'getorderrequest';
+    this.postTrackInformation();
     },err =>{
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'getorderrequest';
+      this.postTrackInformation();
     });
   }
 
@@ -156,9 +164,16 @@ singleUpdateSignupReq(id){
                 this.successMsg = '';
               }, 2000);
            this.getSignupReq();
+           this.trackInformationData.response = 'Success';
+           this.trackInformationData.apiName = 'updateorderrequest';
+           this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'updateorderrequest';
+        this.postTrackInformation();
       }
     );
   }
@@ -182,9 +197,16 @@ singleUpdateSignupReq(id){
             }
           );
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'orderReqPost';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'orderReqPost';
+        this.postTrackInformation();
       }
     );
   }
@@ -236,9 +258,16 @@ reviewAndRating(){
       this.mytemplateForm.reset();
       this.loadingCtrl.hide();
       document.getElementById('closeCancelOrderModal1').click();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'postreviewrating';
+        this.postTrackInformation();
     },
     err => {
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'postreviewrating';
+      this.postTrackInformation();
     }
   );
 }
@@ -250,9 +279,15 @@ mapWithPost(){
   this._dealService.mapProductReviewinPost(this.reviewData).subscribe(
     res => {
       console.log(res);
-
+      this.trackInformationData.response = 'Success';
+      this.trackInformationData.apiName = 'mapproductreviewpostUrl';
+      this.postTrackInformation();
     },
     err => {console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'mapproductreviewpostUrl';
+      this.postTrackInformation();
     }
   );
 }
@@ -263,8 +298,15 @@ mapWithUser(){
   this._dealService.mapProductReviewinUser(this.reviewData).subscribe(
     res => {
       console.log(res);
+      this.trackInformationData.response = 'Success';
+      this.trackInformationData.apiName = 'mapproductreviewuserUrl';
+      this.postTrackInformation();
     },
     err => {console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'mapproductreviewuserUrl';
+      this.postTrackInformation();
     }
   );
 }
@@ -295,11 +337,16 @@ disputeSave() {
       // this.orderRequestMsg = 'We got your dispute, Sorry! for the inconvenience';
           document.getElementById('closeCancelOrderModal').click();
           document.getElementById("openConfirmModal").click();
-   
-
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'postdispute';
+          this.postTrackInformation();
     },
     err => {
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'postdispute';
+      this.postTrackInformation();
     }
   );
 }
@@ -311,9 +358,16 @@ updatePostDispute() {
         console.log(data);
         this.updateUserDispute();
         this.updateUserBuyerDispute();
+        this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'updateBuyerDisputePost';
+          this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'updateBuyerDisputePost';
+      this.postTrackInformation();
       }
     );
 }
@@ -325,9 +379,16 @@ updateUserDispute() {
     .subscribe(
       data => {
         console.log(data);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'buyerupdateDisputeUser';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'buyerupdateDisputeUser';
+        this.postTrackInformation();
       }
     );
 }
@@ -340,9 +401,16 @@ updateUserBuyerDispute() {
       data => {
         console.log(data);
         this.disputeMailSend();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'updateDisputeUserBuyer';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'updateDisputeUserBuyer';
+        this.postTrackInformation();
       }
     );
 }
@@ -378,6 +446,23 @@ clear(){
   this.router.navigateByUrl('/dummy', { skipLocationChange: true });
         setTimeout(() => this.router.navigate(['/my-order']),0);
         this.mytemplateForm.reset();
+}
+
+postTrackInformation() {
+  let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+  let token = localStorage.getItem('token');
+  let UserName = localStorage.getItem('firstname');
+  let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+  this.trackInformationData.UserId = acntID;
+  this.trackInformationData.jwt = token;
+  this.trackInformationData.ipAddress = ipAddress;
+  this.trackInformationData.UserName = UserName;
+  this.trackInformationData.apiCallingAt = new Date().getTime();
+  this._dealService
+    .trackInformationPost(this.trackInformationData)
+    .subscribe(data => {
+      console.log(data);
+    });
 }
 
 }

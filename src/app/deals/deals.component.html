@@ -47,13 +47,13 @@
 
         <div class="col-md-6 col-lg-3 col-12 col-sm-12"  *ngFor = "let deal of crdDeals1 | filterdata: queryString  : 'name' | paginate: {id: 'foo', itemsPerPage:40,currentPage:e}; let i = index">
 
-                <div class="card card-1 cardRes" (click)="goToView(deal)" *ngIf="deal !== -1">
+                <div class="card card-1 cardRes" style="cursor: pointer;" (click)="goToView(deal)" *ngIf="deal !== -1">
                         <img src="{{deal.image}}" class="zoom" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                         <table class="tableContent" style="margin: 5px;">
                                 <tr>
                                    <!-- <td><strong>Product &nbsp; </strong></td>
                                    <td>:</td> -->
-                                   <div class="productFullName" style="font-weight: bold;font-size: 14px;">{{deal.name}}</div>
+                                   <div class="productFullName tamil_word" style="font-weight: bold;font-size: 14px;">{{deal.name}}</div>
                                </tr>
                                <div class="row">
                              <div class="col-md-5 col-sm-6 col-6">
@@ -81,7 +81,7 @@
                            </table>
                            <br>
                            <button type="button" class="btn btn-outline-success text-center viewMoreBtn onpadding btnHide" (click)="goToView(deal)">View More</button>
-                           <br>
+                           <br class="mobile-break">
                       </div>
           </div>
       </div>
@@ -105,7 +105,7 @@
                 </div>
       <div class="row mt-4">
             <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of totalDeals1 | paginate: {id:'foo1' ,itemsPerPage:40,currentPage:p,totalItems: total } | filterdata: queryString  : 'name'">
-                    <div class="card card-1 cardRes" (click)="goToView(deal)"  *ngIf="deal !== -1">
+                    <div class="card card-1 cardRes" style="cursor: pointer;" (click)="goToView(deal)"  *ngIf="deal !== -1">
                             <img src="{{deal.image}}" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
                             <table class="tableContent" style="margin: 5px;">
                                     <tr>
@@ -138,7 +138,7 @@
                                </table>
                                <br>
                                <button type="button" class="btn btn-outline-success text-center viewMoreBtn btnHide"  (click)="goToView(deal)">View More</button>
-                               <br>
+                               <br class="mobile-break">
                           </div>
               </div>
 
@@ -190,8 +190,10 @@
                                           <label style="color: black;font-weight: bold;" class="english_wrd"> Unit</label>
                                           <select  class="form-control" class="form-control mobmargintop"   placeholder="Enter unit" style="background-color: transparent;color: #0d4608;"  #searchqnty="ngModel" name="searchqnty" [class.is-invalid]="searchqnty.invalid && searchqnty.touched" ngModel [(ngModel)]="userdetails.searchqnty">
                                                 <option style="color: black" value="" disabled >Choose unit</option>
-                                                <option style="color: black" value="Kg">Kg</option>
-                                                <option style="color: black" value="Litre">Ltre</option>
+                                                <option style="color: black" value="Ml">Milli litre</option>
+                                                <option style="color: black" value="L">Litre</option>
+                                                <option style="color: black" value="g">Gram</option>
+                                                <option style="color: black" value="Kg">Kilogram</option>
                                             </select>
 
                                       </div>

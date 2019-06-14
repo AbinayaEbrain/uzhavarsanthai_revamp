@@ -101,6 +101,7 @@ export class PostComponent implements OnInit {
   postLenght: any = [];
   getdeals: any = [];
   img : any;
+  public trackInformationData: any = {};
 
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
@@ -175,18 +176,32 @@ export class PostComponent implements OnInit {
       res => {
         this.categoryArr = res;
         this.loadingCtrl.hide();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
       },
 
       err => {
         this.categoryArr = [];
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
       }
     );
 
     this._dealsService.getDeals().subscribe(data =>{
       console.log(data);
       this.getdeals = data;
+      this.trackInformationData.response = 'Success';
+      this.trackInformationData.apiName = 'deals';
+      this.postTrackInformation();
     }, err =>{
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'deals';
+      this.postTrackInformation();
     })
 
     if (this.editId) {
@@ -233,10 +248,17 @@ export class PostComponent implements OnInit {
           //   autoplaySpeed: 800
           // };
           this.loadingCtrl.hide();
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'singleMultipost';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
           this.loadingCtrl.hide();
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'singleMultipost';
+          this.postTrackInformation();
         }
       );
     }
@@ -333,9 +355,16 @@ export class PostComponent implements OnInit {
               this.route.navigate(['products']);
             }, 2000);
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'post';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'post';
+        this.postTrackInformation();
       }
     );
     }
@@ -452,10 +481,17 @@ export class PostComponent implements OnInit {
             console.log(this.credits);
           }
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.hide();
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
       }
     );
   }
@@ -569,7 +605,7 @@ export class PostComponent implements OnInit {
       } else {
         if(this.carForm.value.category == 'காய்கறிகள் / Vegetables'){
           this.img =
-          'https://res.cloudinary.com/uzhavar-image/image/upload/v1560172308/veg.jpg';
+          'https://res.cloudinary.com/uzhavar-image/image/upload/v1560320911/veg1.jpg';
         }
         if(this.carForm.value.category == 'பழங்கள் / Fruits'){
           this.img =
@@ -668,6 +704,9 @@ export class PostComponent implements OnInit {
           this.route.navigate(['products']);
           this.loadingCtrl.hide();
         }, 3000);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'post';
+        this.postTrackInformation();
       },
       err => {
         if (err instanceof HttpErrorResponse) {
@@ -677,6 +716,10 @@ export class PostComponent implements OnInit {
             this.loadingCtrl.hide();
           }
         }
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'post';
+        this.postTrackInformation();
       }
     );
     this.notifyPush();
@@ -686,9 +729,16 @@ export class PostComponent implements OnInit {
     this._dealsService.notificationToPostedProduct(this.productData).subscribe(
         res => {
           console.log(res)
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'notificationforpost';
+          this.postTrackInformation();
         },
         err => {
             console.log(err)
+            this.trackInformationData.response = 'Failure';
+            this.trackInformationData.error = err.statusText;
+            this.trackInformationData.apiName = 'notificationforpost';
+            this.postTrackInformation();
         }
     );
   }
@@ -852,6 +902,9 @@ export class PostComponent implements OnInit {
               this.route.navigate(['products']);
               this.loadingCtrl.hide();
             }, 2000);
+            this.trackInformationData.response = 'Success';
+            this.trackInformationData.apiName = 'multipost';
+            this.postTrackInformation();
           },
           err => {
             if (err instanceof HttpErrorResponse) {
@@ -861,6 +914,10 @@ export class PostComponent implements OnInit {
                 this.loadingCtrl.hide();
               }
             }
+            this.trackInformationData.response = 'Failure';
+            this.trackInformationData.error = err.statusText;
+            this.trackInformationData.apiName = 'multipost';
+            this.postTrackInformation();
           }
         );
       } else {
@@ -933,4 +990,22 @@ export class PostComponent implements OnInit {
       this.imageUrl();
     }
   }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealsService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+
 }

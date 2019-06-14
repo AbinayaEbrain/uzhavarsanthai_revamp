@@ -25,8 +25,8 @@ export class AuthService {
     'https://uzhavarsanthai.herokuapp.com/api/sendSmsToSeller';
 
   private _deviceTokenUrl = "https://uzhavarsanthai.herokuapp.com/api/deviceToken";
-
-
+  private _fcmNotificationUrl = "https://uzhavarsanthai.herokuapp.com/api/fcmNotification";
+  private _fcmNotificationAdminUrl = "https://uzhavarsanthai.herokuapp.com/api/fcmNotificationAdmin";
 
   constructor(private http: HttpClient, private route: Router) {}
 
@@ -153,6 +153,14 @@ export class AuthService {
     return this.http.post<any>(this._deviceTokenUrl,user)
   }
 
+  postFcmNotification(user){
+    return this.http.post<any>(this._fcmNotificationUrl,user)
+  }
+
+  postFcmNotificationAdmin(user){
+    return this.http.post<any>(this._fcmNotificationAdminUrl,user)
+  }
+
   //logout
   logoutUser() {
     localStorage.removeItem('payload');
@@ -174,6 +182,7 @@ export class AuthService {
     localStorage.removeItem('browser');
     localStorage.removeItem('browserVer');
     localStorage.removeItem('browserOS');
+    localStorage.removeItem('privateIP');
     this.route.navigate(['/deals']);
   }
 }

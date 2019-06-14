@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router, Params } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DealsService } from '../deals.service';
 
 @Component({
   selector: 'app-blog',
@@ -12,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class BlogComponent implements OnInit {
   public blogUserData: any = {};
+  public trackInformationData: any = {};
   @ViewChild('usrform') mytemplateForm: NgForm;
   @ViewChild('focus') divFocus: ElementRef;
   blogArr: any = [];
@@ -21,9 +23,10 @@ export class BlogComponent implements OnInit {
   public bloglistobj: any = {};
   show = 5;
   noBlog: any;
-  blogId:any;
+  blogId: any;
 
   constructor(
+    private _dealService: DealsService,
     private _auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
@@ -37,22 +40,28 @@ export class BlogComponent implements OnInit {
     this.getAllBlog();
   }
 
-  editBLog(id){
-    if(this.id){
+  editBLog(id) {
+    if (this.id) {
       console.log(this.id);
-    this._auth.blogGetOneData(this.id).subscribe(
-      res => {
-        console.log(res);
-        this.blogUserData = res;
-        console.log(this.blogUserData);
-        this.loadingCtrl.hide();
-      },
-      err => {
-        console.log(err);
-        this.loadingCtrl.hide();
-      }
-    );
-  }
+      this._auth.blogGetOneData(this.id).subscribe(
+        res => {
+          console.log(res);
+          this.blogUserData = res;
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'blogetone';
+          this.postTrackInformation();
+          this.loadingCtrl.hide();
+        },
+        err => {
+          console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'blogetone';
+          this.postTrackInformation();
+          this.loadingCtrl.hide();
+        }
+      );
+    }
   }
 
   getAllBlog() {
@@ -60,6 +69,9 @@ export class BlogComponent implements OnInit {
     this._auth.blogGetData().subscribe(
       data => {
         this.blogArr = data;
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'blogview';
+        this.postTrackInformation();
         this.loadingCtrl.hide();
         console.log(this.blogArr);
         let j = 0;
@@ -76,6 +88,10 @@ export class BlogComponent implements OnInit {
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'blogview';
+        this.postTrackInformation();
         this.loadingCtrl.hide();
       }
     );
@@ -88,27 +104,33 @@ export class BlogComponent implements OnInit {
     document.getElementById('focus').scrollIntoView();
   }
 
-  
-  getId(id){
+  getId(id) {
     console.log(id);
-    this.blogId = id
-      }
+    this.blogId = id;
+  }
 
   deleteblog() {
     this.id = this.blogId;
     this._auth.blogDeleteData(this.id).subscribe(
       res => {
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'blogdel';
+        this.postTrackInformation();
         this.loadingCtrl.show();
         setTimeout(() => {
           // swal.close();
           this.router.navigateByUrl('/dummy', { skipLocationChange: true });
-          setTimeout(() => this.router.navigate(['/blog']),0);
+          setTimeout(() => this.router.navigate(['/blog']), 0);
           // this.router.navigate(['/blog']);
           this.loadingCtrl.hide();
         }, 1000);
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'blogdel';
+        this.postTrackInformation();
       }
     );
   }
@@ -124,6 +146,9 @@ export class BlogComponent implements OnInit {
           console.log(res);
           this.success = 'Updated successfully!';
           this.getAllBlog();
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'blogedit';
+          this.postTrackInformation();
           setTimeout(() => {
             this.success = '';
             this.mytemplateForm.reset();
@@ -131,7 +156,13 @@ export class BlogComponent implements OnInit {
             document.getElementById('cardFocus').scrollIntoView();
           }, 2000);
         },
-        err => console.log(err)
+        err => {
+          console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'blogedit';
+          this.postTrackInformation();
+        }
       );
     } else {
       this.blogUserData.bloggerName = this._auth.getUserName();
@@ -145,6 +176,9 @@ export class BlogComponent implements OnInit {
         this.noBlog = '';
         this.success = 'Saved successfully!';
         this.getAllBlog();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'blog';
+        this.postTrackInformation();
         setTimeout(() => {
           this.success = '';
           this.mytemplateForm.reset();
@@ -154,4 +188,21 @@ export class BlogComponent implements OnInit {
     }
   }
 
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+  
 }

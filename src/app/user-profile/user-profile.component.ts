@@ -24,6 +24,7 @@ export class UserProfileComponent implements OnInit {
   success: any;
   id: any;
   checkpassword = false;
+  public trackInformationData: any = {};
   notOldpwderr: any;
   otpObj: any = {};
   currentusername: any;
@@ -46,6 +47,7 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
+    private _dealsService: DealsService,
     public _authService: AuthService,
     public loadingCtrl: NgxSpinnerService,
     private router: Router,
@@ -86,10 +88,17 @@ export class UserProfileComponent implements OnInit {
         this.loadingCtrl.hide();
 
         this.InitialCall();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
         this.loadingCtrl.hide();
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
       }
     );
   }
@@ -123,6 +132,9 @@ export class UserProfileComponent implements OnInit {
         } else {
           document.getElementById('openUpdateModal').click();
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'updateuser';
+        this.postTrackInformation();
         // this.success = 'Updated successfully!';
         // setTimeout(() => {
         //   this.success = '';
@@ -135,6 +147,10 @@ export class UserProfileComponent implements OnInit {
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'updateuser';
+        this.postTrackInformation();
       }
     );
   }
@@ -158,9 +174,16 @@ export class UserProfileComponent implements OnInit {
     this._users.updatePostName(this.crntUser, this.id).subscribe(
       res => {
         console.log(res);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'updateNamePost';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'updateNamePost';
+        this.postTrackInformation();
       }
     );
   }
@@ -170,9 +193,16 @@ export class UserProfileComponent implements OnInit {
     this._users.updateReviewSellerName(this.crntUser, this.id).subscribe(
       res => {
         console.log(res);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'updateSellerNameReview';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'updateSellerNameReview';
+        this.postTrackInformation();
       }
     );
   }
@@ -182,9 +212,16 @@ export class UserProfileComponent implements OnInit {
     this._users.updateReviewBuyerName(this.crntUser, this.id).subscribe(
       res => {
         console.log(res);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'updateBuyerNameReview';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'updateBuyerNameReview';
+        this.postTrackInformation();
       }
     );
   }
@@ -237,4 +274,22 @@ export class UserProfileComponent implements OnInit {
       this.notOldpwderr = 'You have entered wrong password';
     }
   }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealsService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+  
 }

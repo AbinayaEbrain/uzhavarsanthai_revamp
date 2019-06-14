@@ -18,6 +18,7 @@ export class MostSellingProductComponent implements OnInit {
   orderrequests: any = [];
   orderrequestsErr = '';
   splitImage1 = '';
+  public trackInformationData: any = {};
 
   constructor(
     private _dealsService: DealsService,
@@ -46,10 +47,17 @@ export class MostSellingProductComponent implements OnInit {
         this.orderrequestsErr = '';
         console.log(this.crdDeals);
         this.getOrderRequests();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.hide();
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
       }
     );
   }
@@ -71,5 +79,22 @@ export class MostSellingProductComponent implements OnInit {
       this.orderrequestsErr = 'No products available!';
     }
     this.loadingCtrl.hide();
+  }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealsService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 }

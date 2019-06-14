@@ -48,7 +48,7 @@ public addr: {
 crntUser: any = {};
 roleStatus: any;
 role: any;
-
+public trackInformationData: any = {};
 crdits:any;
 setAddress(addrObj) {
   this.zone.run(() => {
@@ -88,10 +88,16 @@ getSingleUser() {
       this.roleStatus = data.roleStatus;
       this.role = data.role;
       this.credits = data.credits;
-
+      this.trackInformationData.response = 'Success';
+      this.trackInformationData.apiName = 'getSingleUser';
+      this.postTrackInformation();
     },
     err => {
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'getSingleUser';
+      this.postTrackInformation();
     }
   );
 }
@@ -113,10 +119,35 @@ updateAddress(){
       this.loadingCtrl.hide();
       // document.getElementById('closeAddressModal').click();
       document.getElementById("openConfirmModal").click();
+      this.trackInformationData.response = 'Success';
+      this.trackInformationData.apiName = 'updateuseraddress';
+      this.postTrackInformation();
     },
     err => {
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'updateuseraddress';
+      this.postTrackInformation();
     }
   );
 }
+
+postTrackInformation() {
+  let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+  let token = localStorage.getItem('token');
+  let UserName = localStorage.getItem('firstname');
+  let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+  this.trackInformationData.UserId = acntID;
+  this.trackInformationData.jwt = token;
+  this.trackInformationData.ipAddress = ipAddress;
+  this.trackInformationData.UserName = UserName;
+  this.trackInformationData.apiCallingAt = new Date().getTime();
+  this._dealsService
+    .trackInformationPost(this.trackInformationData)
+    .subscribe(data => {
+      console.log(data);
+    });
+}
+
 }

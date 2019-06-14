@@ -26,11 +26,21 @@ const Ticket = require('../models/ticket');
 
 const Dispute = require('../models/dispute');
 const DeviceToken = require('../models/deviceToken');
+const Trackinformation = require('../models/trackinformation');
+
 // const Buyerdispute = require('../models/buyerdispute');
 
 
 //email
 var email = require('emailjs/email');
+
+var admin = require("firebase-admin");
+var serviceAccount = require("../../uzhavarsanthai-e218a-firebase-adminsdk-co6gp-8284b5dc60.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://uzhavarsanthai-e218a.firebaseio.com"
+});
 
 mongoose.connect(db, err => {
   if (err) {
@@ -2551,5 +2561,70 @@ router.post('/deviceToken',(req,res)=>{
       }
   })
 })
+
+// Order Request Notification
+router.post('/fcmNotification',(req,res)=>{
+  var registrationToken = req.body.token;
+
+var payload = {
+  notification: {
+    title: "Uzhavarsanthai!",
+    body : "Order Request from Uzhavarsanthai!"
+  }
+};
+
+ var options = {
+  priority: "high",
+  timeToLive: 60 * 60 * 24
+};
+console.log(payload);
+
+admin.messaging().sendToDevice(registrationToken, payload, options)
+.then(function(response) {
+  console.log("Successfully sent message:", response);
+})
+.catch(function(error) {
+  console.log("Error sending message:", error);
+});
+})
+
+// Order Closed Notification by admin
+router.post('/fcmNotificationAdmin',(req,res)=>{
+  var registrationToken = req.body.token;
+
+var payload = {
+  notification: {
+    title: "Order Closed by Uzhavarsanthai!",
+    body: "Hai," + "Your%20order%20request%20Id%20" + req.body.requestId + "for%20the%20product%20" + req.body.productName + "under%20category%20" + req.body.productCategory + "has%20been%20closed%20by%20Uzhavarsanthai."
+  }
+};
+
+ var options = {
+  priority: "high",
+  timeToLive: 60 * 60 * 24
+};
+console.log(payload);
+
+admin.messaging().sendToDevice(registrationToken, payload, options)
+.then(function(response) {
+  console.log("Successfully sent message:", response);
+})
+.catch(function(error) {
+  console.log("Error sending message:", error);
+});
+})
+
+// trackInformation
+router.post('/trackInformationPost', (req, res) => {
+  let trackInformationData = req.body;
+  let trackInformation = new Trackinformation(trackInformationData);
+  trackInformation.save((error, trackInformationData) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.status(200).send(trackInformationData);
+    }
+  });
+});
 
 module.exports = router;

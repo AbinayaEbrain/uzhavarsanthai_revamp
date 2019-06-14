@@ -19,9 +19,9 @@
               <p class="tamil_word" style="color: #0d4608;font-weight: bold;">
                 {{ userOrder.prdctCategory }}
               </p>
-              <p class="orderHead" style="margin-bottom: 2px">Name : {{ userOrder.prdctName }}</p>
+              <p class="orderHead" style="margin-bottom: 2px">Name : <span class="tamil_word" style="font-size: 13px">{{ userOrder.prdctName }}</span></p>
               <p class="orderHead" style="margin-bottom: 2px">
-                Qty : {{ userOrder.requiredQuantity }}/{{ userOrder.requiredUnit }}
+                Qty : {{ userOrder.requiredQuantity }} {{ userOrder.requiredUnit }}
               </p>
               <p class="orderHead" style="margin-bottom: 2px">Place : {{ userOrder.prdctAvlplace }}</p>
             </div>

@@ -26,6 +26,7 @@ export class CategoryComponent implements OnInit {
 
   public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
   public cateData: any = {};
+  public trackInformationData: any = {};
   @ViewChild('cateform') form
   categoryArr=[]
   id:any
@@ -57,6 +58,9 @@ export class CategoryComponent implements OnInit {
        res => {
         this.loadingCtrl.hide();
          this.categoryArr = res;
+         this.trackInformationData.response = 'Success';
+         this.trackInformationData.apiName = 'category';
+         this.postTrackInformation();
          if(this.categoryArr.length == 0){
            this.errMsg = "No Category Added"
 
@@ -66,6 +70,10 @@ export class CategoryComponent implements OnInit {
        err => {
         this.loadingCtrl.hide();
            this.categoryArr = [];
+           this.trackInformationData.response = 'Failure';
+           this.trackInformationData.error = err.statusText;
+           this.trackInformationData.apiName = 'category';
+           this.postTrackInformation();
        });
 
 
@@ -75,7 +83,10 @@ export class CategoryComponent implements OnInit {
     this._dealService.getCategory()
     .subscribe(
       res=>{
-        this.categoryArr = res
+        this.categoryArr = res;
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
         for(let i=0; i < this.categoryArr.length; i++){
           if(this.id == this.categoryArr[i]._id){
             this.deallistobj.productCategory = this.categoryArr[i].productCategory
@@ -85,7 +96,11 @@ export class CategoryComponent implements OnInit {
 
       },
       err=>{
-        console.log(err)
+        console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
       }
     )
   }
@@ -140,7 +155,9 @@ export class CategoryComponent implements OnInit {
     this._adminService.addCate(this.cateData)
       .subscribe(
        res =>{
-
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
           this.sucessMsg="Category Added";
 
           setTimeout(()=>{
@@ -155,7 +172,11 @@ export class CategoryComponent implements OnInit {
        },
         err =>{
           this.loadingCtrl.hide();
-          console.log(err)
+          console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'category';
+          this.postTrackInformation();
         }
 
       )
@@ -167,9 +188,15 @@ export class CategoryComponent implements OnInit {
       this._dealService.deleteCate(this.id)
       .subscribe(
          res=>{ console.log(res)
-
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'category';
+          this.postTrackInformation();
          },
          err=>{ console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'category';
+          this.postTrackInformation();
         },
 
       )
@@ -178,6 +205,9 @@ export class CategoryComponent implements OnInit {
       this._dealService.editCategory(this.deallistobj,this.id)
       .subscribe(
         res=>{
+          this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
          // this.success = "Updated successfully!"
           setTimeout(() => {
             // swal.close();
@@ -187,7 +217,12 @@ export class CategoryComponent implements OnInit {
         }, 3000);
 
         },
-        err=>console.log(err),
+        err=>{console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'category';
+          this.postTrackInformation();
+        },
 
       )
       localStorage.removeItem('Image')
@@ -202,5 +237,21 @@ export class CategoryComponent implements OnInit {
       this.InitialCall();
     }
 
+    postTrackInformation() {
+      let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+      let token = localStorage.getItem('token');
+      let UserName = localStorage.getItem('firstname');
+      let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+      this.trackInformationData.UserId = acntID;
+      this.trackInformationData.jwt = token;
+      this.trackInformationData.ipAddress = ipAddress;
+      this.trackInformationData.UserName = UserName;
+      this.trackInformationData.apiCallingAt = new Date().getTime();
+      this._dealService
+        .trackInformationPost(this.trackInformationData)
+        .subscribe(data => {
+          console.log(data);
+        });
+    }
 
 }

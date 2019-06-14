@@ -22,6 +22,7 @@ export class SubscriptionPlanComponent implements OnInit {
   crntUser: any = {};
   roleStatus: any;
   role: any;
+  public trackInformationData: any = {};
 
   constructor(
     private _dealService: DealsService,
@@ -56,9 +57,16 @@ export class SubscriptionPlanComponent implements OnInit {
           this.getSubscription();
           this.currentUserCredit();
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getSingleUser';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getSingleUser';
+        this.postTrackInformation();
       }
     );
   }
@@ -70,9 +78,16 @@ export class SubscriptionPlanComponent implements OnInit {
         console.log(res);
         this.subscriptionArr = res;
         this.loadingCtrl.hide();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getSubscription';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getSubscription';
+        this.postTrackInformation();
       }
     );
   }
@@ -85,10 +100,17 @@ export class SubscriptionPlanComponent implements OnInit {
         this.crntSUbscription = res.subscriptionName;
         this.usersCurrentCredits = res.credits;
         this.loadingCtrl.hide();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'currentUserCredits';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
         this.loadingCtrl.hide();
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'currentUserCredits';
+        this.postTrackInformation();
       }
     );
   }
@@ -104,9 +126,16 @@ export class SubscriptionPlanComponent implements OnInit {
         this.subcriptionData = data;
         this.loadingCtrl.hide();
         // this.updateSubsc();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getSingleSubscription';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getSingleSubscription';
+        this.postTrackInformation();
       }
     );
   }
@@ -120,10 +149,34 @@ export class SubscriptionPlanComponent implements OnInit {
         data => {
           console.log(data);
           this.loadingCtrl.hide();
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'updateUserSubscription';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'updateUserSubscription';
+          this.postTrackInformation();
         }
       );
+  }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 }

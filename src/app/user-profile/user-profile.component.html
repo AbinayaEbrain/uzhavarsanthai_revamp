@@ -46,7 +46,7 @@
                  <div class="col-md-12">
                     <div class="form-group mb-5 mt-2" >
                           <label class="english_wrd" for="address"> <span style="font-size: 13px" class="tamil_word">முகவரி </span>/ Address</label>
-                        <input type="text" placeholder="Enter your address" #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control" [(ngModel)]="crntUser.address.addressLine" autocomplete="off" style="font-size: 14px;font-weight: bold;" required>
+                        <input type="text" placeholder="Enter your address" #addressLine="ngModel" [class.is-invalid]="addressLine.invalid && addressLine.touched" ngModel name="addressLine" class="form-control" [(ngModel)]="crntUser.address.addressLine" autocomplete="off" required>
                         <span class="text-danger float-left error_word errFont" [class.d-none] = "addressLine.valid || addressLine.untouched"><i class="fa fa-info-circle" aria-hidden="true"></i> Address is required</span>
                       </div>
                  </div> </div>

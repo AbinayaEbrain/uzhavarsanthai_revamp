@@ -10,8 +10,12 @@
   padding: 4px;
 }
 
-.mt-5 {
+/* .mt-5 {
   margin-top: 6rem !important;
+} */
+
+::placeholder{
+  font-size: 13px !important;
 }
 
 .tamil_word {
