@@ -111,12 +111,18 @@ export class UserProfileComponent implements OnInit {
           JSON.stringify(this.crntUser)
         );
         this.updatePostName();
-        this.removeLS();
+        // this.removeLS();
         //this.updateReviewSellerName();
         //this.updateReviewBuyerName();
         this.loadingCtrl.hide();
-        document.getElementById('closePwdModal').click();
-        document.getElementById('openPwdModal').click();
+        if (this.checkpassword == true) {
+          document.getElementById('closePwdModal').click();
+          document.getElementById('openPwdModal').click();
+          this.removeLS();
+          // this._authService.logoutUser();
+        } else {
+          document.getElementById('openUpdateModal').click();
+        }
         // this.success = 'Updated successfully!';
         // setTimeout(() => {
         //   this.success = '';

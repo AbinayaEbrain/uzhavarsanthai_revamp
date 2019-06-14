@@ -1,0 +1,10 @@
+<div class="textSize"  style="font-family: 'Oxygen', sans-serif;" [innerHTML]="currentText"></div>
+<a
+  *ngIf="show"
+  class="btn btnmed float-right"
+  [class.hidden]="hideToggle"
+  (click)="toggleView()"
+  style="font-size: 14px;
+    color: #0d4608;"
+  >{{ isCollapsed ? 'View more...' : '...View less' }}</a
+>

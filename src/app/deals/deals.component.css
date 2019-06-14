@@ -17,6 +17,9 @@
   .imgRes {
     width: inherit !important;
   }
+  .btnHide{
+    display: none !important;
+  }
 }
 
 .imgRes {

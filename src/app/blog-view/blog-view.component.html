@@ -38,9 +38,18 @@
                     <button class="btn writeBlog" id="btnShow" (click)="addBlog()">Write Blog</button>
                   </div>
                 </div>
-                <div class="mb-2 noBlog text-danger" style="text-align: center" *ngIf="noBlog">
+                <div *ngIf="noBlog" class=" mt-5" style="margin-bottom: 7%">
+                    <div class="col-md-3 col-lg-4 col-12"></div>
+                    <div class="col-md-6 col-lg-4 col-12 errDesign">
+                        <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" style="margin-top: 40px;" alt="cart">
+                        <p class="mt-4"><font class="tamil_word" style="color: #f53636;font-style: italic">" {{noBlog}} "</font> 
+                            </p>
+                    </div>
+                    <div class="col-md-3 col-lg-4 col-12"></div>
+            </div>
+                <!-- <div class="mb-2 noBlog text-danger" style="text-align: center" *ngIf="noBlog">
                   {{noBlog}}
-                </div>
+                </div> -->
             <div class="card mb-2 panel panel-default"   *ngFor="let blog of blogArr | slice:0:show;">
                   <div class="card-header" style="color:#0d4608;padding: 5px;">
                       <!-- <p style="float:right" class="blogAuthor">#{{blog.bloggerName}}<span class="postedOn"> Posted on {{blog.createdAt | date}}</span> </p> -->

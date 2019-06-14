@@ -25,7 +25,49 @@
 .viewMoreBtn {
   margin-top: 65%;
 }
+
+.viewMoreBtn {
+  margin: auto;
+  font-weight: bold;
+  color: #0d4608;
+  border-color: #0d4608;
+}
+.viewMoreBtn:hover {
+  background-color: #0d4608;
+  color: white;
+}
+
+.float1 {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  bottom: 5px;
+  left: 20px;
+  background-color: #0d4608;
+  color: #fff;
+  border-radius: 30px;
+  text-align: center;
+  border: 0px solid;
+  padding: 0px;
+  box-shadow: 0px 0px 0px 0px #0d4608;
+}
+
+@media only screen and (max-width: 767px) {
+  .first {
+    display: none;
+  }
+  .second {
+    display: block !important;
+  }
+}
+
 @media screen and (min-width: 320px) and (max-width: 425px) {
+  .first {
+    display: none;
+  }
+  .second {
+    display: block !important;
+  }
   .bg1 {
     min-height: 1300px;
     margin-top: 7%;
@@ -37,11 +79,11 @@
   .viewMoreBtn {
     margin-top: -20%;
   }
-  .singlepost{
+  .singlepost {
     padding: 5%;
   }
   .card {
-        margin-top: -20% !important;
+    margin-top: -15% !important;
   }
 }
 input[type='text'],
@@ -68,12 +110,12 @@ select option {
   padding: 10px;
   width: 100px;
   background-color: white;
-  color:#0d4608 ;
+  color: #0d4608;
   font-weight: bold;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
   font-family: 'Hind Madurai', sans-serif !important;
 }
-select{
+select {
   font-family: 'Hind Madurai', sans-serif !important;
   font-family: 'Mukta', sans-serif !important;
 }
@@ -117,8 +159,8 @@ select {
 
 .form-control {
   border: 1px solid #0d4608 !important;
-  font-family: 'Hind Madurai', sans-serif ;
-  font-family: 'Mukta', sans-serif ;
+  font-family: 'Hind Madurai', sans-serif;
+  font-family: 'Mukta', sans-serif;
 }
 .slect {
   position: absolute;
@@ -132,7 +174,7 @@ select {
   border: 1px solid #0d4608 !important;
 }
 
-select.form-control{
+select.form-control {
   font-family: 'Hind Madurai', sans-serif !important;
 }
 
@@ -224,7 +266,7 @@ input {
   .forMobiviewPost {
     margin-top: -19%;
   }
-  label{
+  label {
     font-size: 14px !important;
   }
 }
@@ -318,7 +360,7 @@ label {
   width: fit-content;
 }
 @media only screen and (min-width: 768px) and (max-width: 1100px) {
-  .nav-item{
+  .nav-item {
     font-size: 10px;
   }
   .nav-tabs .nav-link.active {
@@ -329,4 +371,4 @@ label {
     font-size: 10px;
     font-weight: bold;
   }
-  }
+}

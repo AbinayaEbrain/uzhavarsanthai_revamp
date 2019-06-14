@@ -80,9 +80,18 @@
       <div class="col-md-2"></div>
     </div>
     <div>
+        <!-- <div *ngIf="noBlog" class=" mt-5" style="margin-bottom: 7%">
+            <div class="col-md-3 col-lg-4 col-12"></div>
+            <div class="col-md-6 col-lg-4 col-12 errDesign">
+                <img src="../../assets/Images/empty_cart_retina.png" class="imgRes" style="margin-top: 40px;" alt="cart">
+                <p class="mt-4">"<font class="tamil_word" style="color: #f53636;font-style: italic">{{noBlog}}</font> "
+                    </p>
+            </div>
+            <div class="col-md-3 col-lg-4 col-12"></div>
+    </div> -->
         <div class="mb-2 noBlog text-danger" style="text-align: center" *ngIf="noBlog">
             {{noBlog}}
-          </div>   
+          </div>
          </div>
       <p *ngIf="!noBlog" class="container styl mt-3">பதிவுகள்</p>
       <div id="cardFocus" class="card mb-2 cardBorder container" *ngFor="let blog of (loggedInBlog | slice: 0:show);">
@@ -101,7 +110,7 @@
                 data-backdrop="static"
                 data-keyboard="false"
                 (click)="getId(blog._id)"
-              
+
                 >
                   <i class="fa fa-trash-o text-danger"> </i>
                 </p>
@@ -109,7 +118,7 @@
                 <!-- <p
                 style=" outline: none !important;"
                   class="btn btnstl btnDlt"
-                  
+
                   data-toggle="modal"
                   data-target="#myModal"
                   data-backdrop="static"

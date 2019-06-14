@@ -34,6 +34,8 @@ export class DealsService {
     'https://uzhavarsanthai.herokuapp.com/api/dltMultiPost';
 
   private _getCategoryUrl = 'https://uzhavarsanthai.herokuapp.com/api/category';
+  private _getCategoryPrductCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/categoryProductCount';
+
   //Deactivate URL
   private deactiveUrl =
     'https://uzhavarsanthai.herokuapp.com/api/admin-user/deactive';
@@ -212,6 +214,9 @@ export class DealsService {
 
   getCategory() {
     return this.http.get<any>(this._getCategoryUrl);
+  }
+  getCategoryPrductCount() {
+    return this.http.get<any>(this._getCategoryPrductCountUrl);
   }
 
   //deactivate account

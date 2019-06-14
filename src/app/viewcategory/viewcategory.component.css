@@ -9,7 +9,15 @@
   margin-top: -30px;
   overflow-x: auto;
 }
-
+.text-block {
+      position: absolute;
+      background-color: white;
+      color: #ef6806d9;
+      right: 0px;
+      padding: 5px;
+      font-weight: bold;
+      border-radius: 0px 0px 0px 10px;
+}
 .printCategory {
   font-weight: bold;
   color: #0d4608;
@@ -381,6 +389,9 @@ input {
   }
   .second {
     display: block !important;
+  }
+  .btnHide{
+    display: none !important;
   }
   ul {
     margin-top: -40px;
