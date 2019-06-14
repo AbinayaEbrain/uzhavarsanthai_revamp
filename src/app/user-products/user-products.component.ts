@@ -54,6 +54,7 @@ export class UserProductsComponent implements OnInit {
   roleStatus: any;
   role: any;
   crdits:any;
+  public trackInformationData: any = {};
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -114,9 +115,16 @@ export class UserProductsComponent implements OnInit {
         if (this.role == 'seller' && this.roleStatus == 'Active') {
           this.getDeals();
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getSingleUser';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getSingleUser';
+        this.postTrackInformation();
       }
     );
   }
@@ -153,10 +161,17 @@ export class UserProductsComponent implements OnInit {
         }
         this.loadingCtrl.hide();
         // this.getMultiArray();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.hide();
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
       }
     );
   }
@@ -171,9 +186,16 @@ checkAddress(){
           console.log(this.userAddress )
         }
       }
+      this.trackInformationData.response = 'Success';
+      this.trackInformationData.apiName = 'details';
+      this.postTrackInformation();
     },
     err => {
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'details';
+      this.postTrackInformation();
     }
   );
 }
@@ -230,10 +252,16 @@ if(this.userAddress == null || this.userAddress == ''){
         //   setTimeout(() => this.router.navigate(['/products']),100);
         //   document.getElementById('closeAddressModal').click();
         // }, 2000);
-
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'updateuseraddress';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'updateuseraddress';
+        this.postTrackInformation();
       }
     );
   }
@@ -341,10 +369,17 @@ if(this.userAddress == null || this.userAddress == ''){
         //     this.loadingCtrl.hide();
         //   }
         // }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.hide();
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
       }
     );
   }
@@ -360,9 +395,16 @@ if(this.userAddress == null || this.userAddress == ''){
           this.router.navigate(['/products']);
           this.loadingCtrl.hide();
         }, 1000);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
       }
     );
   }
@@ -379,10 +421,35 @@ if(this.userAddress == null || this.userAddress == ''){
           this.router.navigate(['/products']);
           this.loadingCtrl.hide();
         }, 1000);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'dltMultiPost';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'dltMultiPost';
+        this.postTrackInformation();
       }
     );
   }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealsService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+
 }

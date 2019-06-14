@@ -63,6 +63,8 @@ export class RegisterComponent implements OnInit {
   visitId: any;
   getRole : any;
   subscriptionArr: any = [];
+  public trackInformationData: any = {};
+
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -181,6 +183,9 @@ export class RegisterComponent implements OnInit {
           this.errormsg = 'Check phone number or Password !';
           this.loadingCtrl.hide();
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'register';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
@@ -192,6 +197,10 @@ export class RegisterComponent implements OnInit {
 
           this.loadingCtrl.hide();
         }
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'register';
+        this.postTrackInformation();
       }
     );
   }
@@ -298,11 +307,35 @@ export class RegisterComponent implements OnInit {
     console.log(this.freeSubscription);
     console.log(this.subscriptionName);
     console.log(this.subscriptionId);
+    this.trackInformationData.response = 'Success';
+    this.trackInformationData.apiName = 'getSubscription';
+    this.postTrackInformation();
     },
     err => {
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'getSubscription';
+      this.postTrackInformation();
     }
   );
+}
+
+postTrackInformation() {
+  let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+  let token = localStorage.getItem('token');
+  let UserName = localStorage.getItem('firstname');
+  let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+  this.trackInformationData.UserId = acntID;
+  this.trackInformationData.jwt = token;
+  this.trackInformationData.ipAddress = ipAddress;
+  this.trackInformationData.UserName = UserName;
+  this.trackInformationData.apiCallingAt = new Date().getTime();
+  this._dealsService
+    .trackInformationPost(this.trackInformationData)
+    .subscribe(data => {
+      console.log(data);
+    });
 }
 
 }

@@ -64,6 +64,7 @@ export class ViewcategoryComponent implements OnInit {
   loggedUser:any;
   multiImage = [];
   bulkPost : boolean = false;
+  public trackInformationData: any = {};
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -461,4 +462,22 @@ topFunction() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+
+postTrackInformation() {
+  let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+  let token = localStorage.getItem('token');
+  let UserName = localStorage.getItem('firstname');
+  let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+  this.trackInformationData.UserId = acntID;
+  this.trackInformationData.jwt = token;
+  this.trackInformationData.ipAddress = ipAddress;
+  this.trackInformationData.UserName = UserName;
+  this.trackInformationData.apiCallingAt = new Date().getTime();
+  this._dealService
+    .trackInformationPost(this.trackInformationData)
+    .subscribe(data => {
+      console.log(data);
+    });
+}
+
 }

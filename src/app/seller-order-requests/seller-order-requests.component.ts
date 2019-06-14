@@ -35,6 +35,7 @@ export class SellerOrderRequestsComponent implements OnInit {
   crntUser: any = {};
   roleStatus: any;
   role: any;
+  public trackInformationData: any = {};
 
   private sendMailForReject =
     'https://uzhavarsanthai.herokuapp.com/api/sendMailRejectSeller';
@@ -80,8 +81,15 @@ export class SellerOrderRequestsComponent implements OnInit {
       if(this.role == "seller" && this.roleStatus =="Active"){
         this.getSignUpRqst();
       }
+      this.trackInformationData.response = 'Success';
+      this.trackInformationData.apiName = 'getSingleUser';
+      this.postTrackInformation();
     },err =>{
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'getSingleUser';
+      this.postTrackInformation();
     })
 
   }
@@ -91,9 +99,16 @@ export class SellerOrderRequestsComponent implements OnInit {
       data => {
         console.log(data);
         this.getSingleOrder();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getorderrequest';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getorderrequest';
+        this.postTrackInformation();
       }
     );
   }
@@ -106,9 +121,16 @@ export class SellerOrderRequestsComponent implements OnInit {
         this.cancelledErrMsg = '';
         this.createdRequests = [];
         this.getCreatedRequests();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getSingleOrderRequest';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getSingleOrderRequest';
+        this.postTrackInformation();
       }
     );
   }
@@ -151,9 +173,16 @@ export class SellerOrderRequestsComponent implements OnInit {
       data => {
         console.log(data);
         this.singleOrderRequest = data;
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getSingleOrderRequest1';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getSingleOrderRequest1';
+        this.postTrackInformation();
       }
     );
   }
@@ -176,9 +205,16 @@ export class SellerOrderRequestsComponent implements OnInit {
         data => {
           console.log(data);
           this.updatePost(this.singleOrderRequest.prdctId);
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'updateorderrequest';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'updateorderrequest';
+          this.postTrackInformation();
         }
       );
   }
@@ -209,10 +245,17 @@ export class SellerOrderRequestsComponent implements OnInit {
               }
             );
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'orderReqPost';
+        this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.hide();
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'orderReqPost';
+        this.postTrackInformation();
       }
     );
   }
@@ -245,9 +288,16 @@ export class SellerOrderRequestsComponent implements OnInit {
         this.formReset();
         document.getElementById('closeCancelOrderModal').click();
         document.getElementById("openConfirmModal").click();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'disputePost';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'disputePost';
+        this.postTrackInformation();
       }
     );
   }
@@ -260,9 +310,16 @@ export class SellerOrderRequestsComponent implements OnInit {
           console.log(data);
           this.updateUserDispute();
           this.updateUserSellerDispute();
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'updateDisputePost';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'updateDisputePost';
+          this.postTrackInformation();
         }
       );
   }
@@ -274,9 +331,16 @@ export class SellerOrderRequestsComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'updateDisputeUser';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'updateDisputeUser';
+          this.postTrackInformation();
         }
       );
   }
@@ -289,9 +353,16 @@ export class SellerOrderRequestsComponent implements OnInit {
         data => {
           console.log(data);
           this.disputeMailSend();
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'updateDisputeUserSeller';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'updateDisputeUserSeller';
+          this.postTrackInformation();
         }
       );
   }
@@ -321,6 +392,23 @@ export class SellerOrderRequestsComponent implements OnInit {
 
   formReset(){
     this.mytemplateForm1.reset();
+  }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
 }

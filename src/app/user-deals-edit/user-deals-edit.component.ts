@@ -90,6 +90,7 @@ export class UserDealsEditComponent implements OnInit {
   imageLength = 0;
   creditsOld: any;
   myCredit: any;
+  public trackInformationData: any = {};
   setAddress(addrObj) {
     //We are wrapping this in a NgZone to reflect the changes
     //to the object in the DOM.
@@ -186,20 +187,34 @@ export class UserDealsEditComponent implements OnInit {
             autoplay: true,
             autoplaySpeed: 500
           };
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'deals';
+          this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.hide();
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
       }
     );
 
     this._dealsService.getCategory().subscribe(
       res => {
         this.categoryArr = res;
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
       },
 
       err => {
         this.categoryArr = [];
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
       }
     );
   }
@@ -218,10 +233,17 @@ export class UserDealsEditComponent implements OnInit {
             console.log(this.creditsOld);
           }
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
       },
       err => {
         this.loadingCtrl.hide();
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
       }
     );
   }
@@ -432,10 +454,17 @@ export class UserDealsEditComponent implements OnInit {
             this.router.navigate(['/products']);
             this.loadingCtrl.hide();
           }, 2000);
-
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'deals';
+          this.postTrackInformation();
         },
-        err => console.log(err)
-      );
+        err => {console.log(err)
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'deals';
+        this.postTrackInformation();
+        }
+       );
     } else {
       this.urls.shift();
       this.imageUpload();
@@ -534,9 +563,16 @@ export class UserDealsEditComponent implements OnInit {
         this.addSellerCredit = (this.totalCredit - this.cumulativecredit);
         console.log(this.addSellerCredit);
         this.updateUser1();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
       }
     );
   }
@@ -548,9 +584,16 @@ export class UserDealsEditComponent implements OnInit {
       res => {
         console.log(res);
         this.updateUserCreditArrCredit1();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'updateuser';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'updateuser';
+        this.postTrackInformation();
       }
     );
   }
@@ -563,9 +606,16 @@ export class UserDealsEditComponent implements OnInit {
     this._dealsService.updateUserCreditArrCredit(this.credit,this.currentuserId).subscribe(
       res => {
         console.log(res);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'updateCreditArrCredit';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'updateCreditArrCredit';
+        this.postTrackInformation();
       }
     );
   }
@@ -638,9 +688,16 @@ export class UserDealsEditComponent implements OnInit {
         this.addSellerCredit = (this.totalCredit + this.minusSellerCredit);
         console.log(this.addSellerCredit);
         this.updateUser();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'details';
+        this.postTrackInformation();
       }
     );
   }
@@ -652,9 +709,16 @@ export class UserDealsEditComponent implements OnInit {
       res => {
         console.log(res);
         this.updateUserCreditArrCredit();
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'updateuser';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'updateuser';
+        this.postTrackInformation();
       }
     );
   }
@@ -667,9 +731,16 @@ export class UserDealsEditComponent implements OnInit {
     this._dealsService.updateUserCreditArrCredit(this.credit,this.currentuserId).subscribe(
       res => {
         console.log(res);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'updateCreditArrCredit';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'updateCreditArrCredit';
+        this.postTrackInformation();
       }
     );
   }
@@ -690,4 +761,22 @@ export class UserDealsEditComponent implements OnInit {
 
     this.InitialCall();
   }
+
+  postTrackInformation() {
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+    this.trackInformationData.apiCallingAt = new Date().getTime();
+    this._dealsService
+      .trackInformationPost(this.trackInformationData)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+
 }
