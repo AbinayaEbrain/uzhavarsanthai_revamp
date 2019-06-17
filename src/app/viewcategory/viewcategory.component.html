@@ -94,6 +94,7 @@
                       <div class="col-md-6 col-lg-3 col-12 col-sm-6"  *ngFor = "let deal of singleMultiArray  | filterdata: queryString  : 'name' | paginate: {id: 'foo1', itemsPerPage:40,currentPage:e },let i = index">
                               <div class="card card-1 cardRes" style="cursor: pointer;" (click)="goToView(deal)" *ngIf="deal !== -1">
                                       <img src="{{deal.image}}" class="zoom" alt="uzhavarsanthai" height="150px" style="margin-bottom: 10px;">
+                                        <!-- <p  class="text-block" *ngIf="deal.statusText"><i class="fa fa-tags" aria-hidden="true"></i> Requested</p> -->
                                          <table class="tableContent" style="margin: 5px;">
                                                 <tr *ngIf="!deal.bulk">
                                                         <!-- <td><strong>Product &nbsp; </strong></td>
@@ -123,18 +124,23 @@
                                                              </div>
                                                       </div>
                                                        <tr>
+                                                      <!-- <p *ngIf="deal.statusText">{{deal.statusText}}</p> -->
                                                           <!-- <td><strong>Location &nbsp;</strong></td>
                                                           <td>:</td> -->
                                                           <div  *ngIf="deal.avlPlace.locality" class="productFullName">{{deal.avlPlace.locality}}</div>
                                                        <div *ngIf="!deal.avlPlace.locality" class="productFullName">{{deal.avlPlace.formatted_address}}</div>
                                                        </tr>
                                              </table>
+
                                              <br>
-                                         <button type="button" style="margin-top:-12px;margin-bottom:-12px" class="btn btn-outline-success text-center viewMoreBtn btnHide" (click)="goToView(deal)">View More</button>
-                                         <br class="mobile-break">
+                                              <button *ngIf="deal.statusText" type="button" style="margin-top:-12px;margin-bottom:-12px" class="btn btn-outline-success text-center viewMoreBtn btnHide" (click)="goToView(deal)"><i class="fa fa-paper-plane" aria-hidden="true"></i> View More</button>
+                                         <button *ngIf="!deal.statusText" type="button" style="margin-top:-12px;margin-bottom:-12px" class="btn btn-outline-success text-center viewMoreBtn btnHide" (click)="goToView(deal)">View More</button>
+                                           <br class="mobile-break">
                                     </div>
                       </div>
                   </div>
+
+
                   <div class="mx-auto" id="hidePagination" >
                           <pagination-controls id="foo1"  class="ngx-pagination" style="margin-right: 30px;" (pageChange)="e=$event" maxSize="5"></pagination-controls>
                         </div>
@@ -196,6 +202,7 @@
                                                    </tr>
                                          </table>
                                          <br>
+  <p *ngIf="deal.statusText">{{deal.statusText}}</p>
                                          <button type="button" style="margin-top:-12px;margin-bottom:-12px" class="btn btn-outline-success text-center viewMoreBtn btnHide" (click)="goToView(deal)">View More</button>
                                          <br class="mobile-break">
                                     </div>

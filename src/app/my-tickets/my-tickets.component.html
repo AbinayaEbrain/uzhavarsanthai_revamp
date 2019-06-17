@@ -20,8 +20,8 @@
       <div class="tab-content py-3" id="nav-tabContent">
           <div class="tab-pane fade " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
             <p style="float:left;cursor:pointer;font-weight: 600;margin-left: 2%;
-    font-size: 13px;" id="paraTag1" (click)="changeColor1()" (click)="openTickets()">Open Tickets</p>  &nbsp;&nbsp;
-            <p style="float:left;cursor:pointer;font-weight: 600;margin-left: 1%;font-size: 13px;" id="paraTag" (click)="changeColor()" (click)="closedTickets()">Resolved Tickets</p>
+    font-size: 13px;font-family: 'Oxygen', sans-serif;" id="paraTag1" (click)="changeColor1()" (click)="openTickets()">Open Tickets</p>  &nbsp;&nbsp;
+            <p style="float:left;cursor:pointer;font-weight: 600;margin-left: 1%;font-size: 13px;font-family: 'Oxygen', sans-serif;" id="paraTag" (click)="changeColor()" (click)="closedTickets()">Resolved Tickets</p>
 <br>
 
               <div >
@@ -48,52 +48,27 @@
   </div>
   <div class="col-md-3 col-lg-4 col-12"></div>
 </div>
-
-<!-- <div class="container"> -->
-<!-- <div class="row" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
-<div class="container card" style="margin-top:2%">
-  <div class="row card-header mainHeader" style="height: 50px;">
-    <div class="col-md-6 col-6">
-     <p class="orderHighlight" style="border-radius: 3px;color: #ef6806d9;">{{ticket.ticketId}}</p>
-    </div>
-    <div class="col-md-6 col-xs-12 col-6" style="font-weight: bold;">
-      <p class="orderHead2 float-right" ><span class="ticketdate"
-        style="font-weight: 500;color: #ef6806d9;">
-        &nbsp; {{ticket.createddate | date}}</span>&nbsp;<br class="addBr"><b>{{ticket.ticketStatus}}</b></p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12" style="text-align: left;margin-top: 15px;">
-      <p class="orderHead1" style="margin-bottom: 1rem;text-align: center;"><b>{{ticket.ticketTitle}}</b></p>
-      <p class="orderHead1 needPadding" style="color: #0d4608;text-align:justify;"> <span> {{ticket.ticketDescription}}</span></p>
-          <p   class="button_word solBtn" (click)="getSolution(dispute._id)" style="text-align:right;margin-top: -2%;cursor:pointer;color: #ef6806d9;
-font-weight: 700;" data-toggle="modal" data-target="#myModal1"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> View Solution</p>
-    </div>
-  </div>
-</div>
-</div> -->
-<!-- </div> -->
-
               <div class="container card" *ngFor="let ticket of userTickets | paginate: {id: 'foo', itemsPerPage:10,currentPage:p},let i = index">
 
                       <div class="row card-header mainHeader"  style="height: 50px;">
                         <!-- <div class="col-md-12"> -->
                       <div class="col-md-6 col-xs-12 col-6">
-                       <p class="orderHighlight" style="border-radius: 3px;color: #ef6806d9;">{{ticket.ticketId}}</p>
+                       <p class="orderHighlight" style="border-radius: 3px;color: #ef6806d9;font-family: 'Nunito', sans-serif;">{{ticket.ticketId}}</p>
                        </div>
                        <div class="col-md-6 col-xs-12 col-6">
                         <p class="orderHead2" style="text-align: right;"><span class="ticketdate"
-                          style="font-weight: 500;color: #ef6806d9;">
-                          &nbsp; {{ticket.createddate | date}}</span>&nbsp;<br class="addBr"><b>{{ticket.ticketStatus}}</b></p>
+                          style="font-weight: 500;color: #ef6806d9;font-family: 'Varela Round', Arial, 'Helvetica Neue', Helvetica, serif;">
+                          &nbsp; {{ticket.createddate | date}}</span>&nbsp;&nbsp;<br class="addBr"><b style="font-family: 'Oxygen', sans-serif;">{{ticket.ticketStatus}}</b></p>
                           </div>
                         <!-- </div> -->
                       </div>
 
                 <div class="row">
                     <div class="col-md-12" style="text-align: left;margin-top: 15px;">
-                      <p class="orderHead1 tamil_word" style="margin-bottom: 1rem;text-align: center;font-size: 14px;"><b>{{ticket.ticketTitle}}</b></p>
-                      <p class="orderHead1 needPadding tamil_word" style="color: #0d4608;text-align:justify;"> <span style="font-size: 12px;word-spacing: 5px;"> {{ticket.ticketDescription}}</span></p>
-                          <p  *ngIf = "ticket.solution"   class="button_word solBtn" (click)="getTicketSol(ticket._id)" style="text-align:right;margin-top: -2%;cursor:pointer;color: #ef6806d9;
+                      <p class="orderHead1" style="margin-bottom: 1rem;text-align: center;font-family: 'Oxygen', sans-serif;"><b>{{ticket.ticketTitle}}</b></p>
+                      <!-- <p class="orderHead1 needPadding" style="color: #0d4608;text-align:justify;"> <span> {{ticket.ticketDescription}}</span></p> -->
+                      <app-ticketreadmore [text]="ticket.ticketDescription" [maxLength]="300"></app-ticketreadmore>
+                      <p  *ngIf = "ticket.solution"   class="button_word solBtn" (click)="getTicketSol(ticket._id)" style="text-align:right;margin-top: -2%;cursor:pointer;color: #ef6806d9;font-family: 'Oxygen', sans-serif;
                 font-weight: 700;" data-toggle="modal" data-target="#myModal2"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> View Solution</p>
                     </div>
                   </div>
@@ -159,14 +134,14 @@ font-weight: 700;" data-toggle="modal" data-target="#myModal1"><i class="fa fa-a
             <div class="container card" style="margin-top:0px !important;">
               <div class="row card-header mainHeader" style="height: 50px;">
                 <div class="col-md-6 col-6">
-                 <p class="orderHighlight" style="border-radius: 3px;color: #ef6806d9;">{{dispute.ticketId}}</p>
+                 <p class="orderHighlight" style="border-radius: 3px;color: #ef6806d9;font-family: 'Nunito', sans-serif;">{{dispute.ticketId}}</p>
                  <span  *ngIf="dispute.sellerName" class="mobiViewHide" style="font-weight: 500;">#{{dispute.sellerName}}</span>
                  <span  *ngIf="dispute.buyerName" class="mobiViewHide" style="font-weight: 500;">#{{dispute.buyerName}}</span>
                 </div>
                 <div class="col-md-6 col-xs-12 col-6" style="font-weight: bold;">
                   <p class="orderHead2 float-right" ><span class="ticketdate"
-                    style="font-weight: 500;color: #ef6806d9;">
-                    &nbsp; {{dispute.createdAt | date}}</span><br class="addBr">&nbsp;{{dispute.disputeStatus}}</p>
+                    style="font-weight: 500;color: #ef6806d9;    font-family: 'Varela Round', Arial, 'Helvetica Neue', Helvetica, serif;">
+                    &nbsp; {{dispute.createdAt | date}}</span><br class="addBr">&nbsp;&nbsp;<b style="font-family: 'Oxygen', sans-serif;">{{dispute.disputeStatus}}</b></p>
                    <!-- <img height="30px"  width="30px" *ngIf="dispute.disputeStatus === 'Created'" src="https://img.icons8.com/cotton/2x/checkmark.png">
                     <img height="30px"  width="30px" *ngIf="dispute.disputeStatus === 'Resolved'" src="https://cdn1.iconfinder.com/data/icons/real-estate-set-1/512/19-512.png"> {{dispute.disputeStatus}}</p> -->
 
@@ -176,7 +151,8 @@ font-weight: 700;" data-toggle="modal" data-target="#myModal1"><i class="fa fa-a
               <div class="row">
                 <div class="col-md-12" style="text-align: left;margin-top: 15px;">
                   <p class="mobiViewShow orderHead1" style="margin-bottom: 0rem;">Dispute against <b>#{{dispute.sellerName}}</b></p>
-                  <p class="orderHead1 needPadding" style="color: #0d4608;text-align:justify;text-indent: 5%;"> <span> {{ dispute.dispute }}</span></p>
+                  <!-- <p class="orderHead1 needPadding" style="color: #0d4608;text-align:justify;text-indent: 5%;"> <span> {{ dispute.dispute }}</span></p> -->
+                      <app-ticketreadmore [text]="dispute.dispute" [maxLength]="300"></app-ticketreadmore>
                       <p *ngIf="dispute.solution"  class="button_word solBtn" (click)="getSolution(dispute._id)" style="text-align:right;margin-top: -2%;cursor:pointer;color: #ef6806d9;
     font-weight: 700;" data-toggle="modal" data-target="#myModal1"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> View Solution</p>
                 </div>

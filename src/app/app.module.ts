@@ -70,6 +70,7 @@ import { OrderViewComponent } from './order-view/order-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateaddressComponent } from './updateaddress/updateaddress.component';
 import { TrackingInformationComponent } from './tracking-information/tracking-information.component';
+import { TicketreadmoreComponent } from './ticketreadmore/ticketreadmore.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { TrackingInformationComponent } from './tracking-information/tracking-in
     SubscriptionPlanComponent,
     OrderViewComponent,
     UpdateaddressComponent,
-    TrackingInformationComponent
+    TrackingInformationComponent,
+    TicketreadmoreComponent
   ],
   imports: [
     BrowserModule,

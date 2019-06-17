@@ -28,10 +28,10 @@ export class ViewcategoryComponent implements OnInit {
   getLocationDeals: any;
   locationData: any;
   public showDeals = true;
-  crdDeals = [];
+  crdDeals: any = [];
   crdCategory = [];
-  totalDeals = [];
-  singleMultiArray  =[];
+  totalDeals :any = [];
+  singleMultiArray :any =[];
   id: any;
   errMsg: any;
   noSearchDeals: any;
@@ -64,7 +64,11 @@ export class ViewcategoryComponent implements OnInit {
   loggedUser:any;
   multiImage = [];
   bulkPost : boolean = false;
+  orderCreated:any = [];
+  statusText : any;
+  reqPerson:any = [];
   public trackInformationData: any = {};
+
 
   setAddress(addrObj) {
     this.zone.run(() => {
@@ -101,13 +105,12 @@ export class ViewcategoryComponent implements OnInit {
           res => {
             let j = 0;
             this.crdDeals = res;
-            console.log(this.crdDeals)
+            console.log(this.crdDeals);
             this.showDeals = true;
             this.id = this.route.snapshot.params['id'];
             let CurrentDate = new Date().toISOString();
             for (let i = 0; i < this.crdDeals.length; i++) {
               if (this.id == this.crdDeals[i].categoryId  && this.loggedUser != this.crdDeals[i].accountId && this.crdDeals[i].validityTime > CurrentDate && this.crdDeals[i].quantity != 0 && this.loggedUser != this.crdDeals[i].accountId && this.crdDeals[i].status == 'ACTIVE' ) {
-                console.log(this.crdDeals[i].accountId)
                 this.totalDeals[j] = this.crdDeals[i];
                 this.splitImage =  this.totalDeals[j].image;
                 if(this.splitImage != undefined || this.splitImage != null || this.splitImage != ''){
@@ -115,9 +118,13 @@ export class ViewcategoryComponent implements OnInit {
                 }
                 this.getPrdtName = this.totalDeals[j].name;
                 j++;
+
                 this.loadingCtrl.hide();
               }
             }
+
+
+
             this.getMultiArray();
             this.showDeals = true;
             this.trackInformationData.response = 'Success';
@@ -155,20 +162,6 @@ export class ViewcategoryComponent implements OnInit {
             }
           }
           this.getMultiArray();
-
-          // if (this.totalDeals.length == 0) {
-          //   this.loadingCtrl.show();
-          //   this.errMsg = 'Currently no deals available';
-          //   document.getElementById('hidePagination').style.display = 'none';
-          //   document.getElementById('hideSearchDiv').style.display = 'none';
-          //   document.getElementById('hideSelectedCategory').style.display ='none';
-          //   document.getElementById('hideFilterButton').style.display = 'none';
-          //   document.getElementById('hideSearchlocDiv').style.display = 'none';
-          //   document.getElementById('hideFilterButton2').style.display = 'none';
-
-          //   this.loadingCtrl.hide();
-          // }
-
           this.showDeals = true;
           this.trackInformationData.response = 'Success';
           this.trackInformationData.apiName = 'deals';
@@ -269,10 +262,27 @@ export class ViewcategoryComponent implements OnInit {
 
   }
 
+  order(){
+    for (let i = 0; i< this.singleMultiArray.length;i++){
+      console.log(this.singleMultiArray)
+      console.log(this.singleMultiArray[i].orderrequests)
+      this.orderCreated = this.singleMultiArray[i].orderrequests;
+    for(let j = 0 ; j < this.orderCreated.length;j++){
+      console.log(this.orderCreated.length)
+      console.log(this.loggedUser == this.orderCreated[j].requestedPersonId)
+      if(this.loggedUser == this.orderCreated[j].requestedPersonId && this.orderCreated[j].orderStatus == 'Order created'){
+          this.singleMultiArray[i].statusText = "req";
+      }
+    }
+
+    }
+
+  }
   getArray(){
     if(this.totalDeals && this.multiPosts){
       this.singleMultiArray = this.totalDeals.concat(this.multiPosts);
-      console.log(this.singleMultiArray);
+      console.log(this.singleMultiArray)
+      this.order();
     }else if(this.totalDeals){
       this.singleMultiArray = this.totalDeals;
       console.log(this.singleMultiArray);

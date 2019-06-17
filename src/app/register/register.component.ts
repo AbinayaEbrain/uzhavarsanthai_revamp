@@ -142,7 +142,6 @@ export class RegisterComponent implements OnInit {
           }
         }
         this.loadingCtrl.hide();
-
         this.success = 'Registered successfully!';
         if (res.user.roleStatus == 'Deactive') {
           this.removeLS();
@@ -154,11 +153,6 @@ export class RegisterComponent implements OnInit {
           });
           this.router.navigate(['/home']);
         } else {
-
-          // if(this.addr.formatted_address){
-          //   this.registeredUserData.address.city = this.addr.formatted_address;
-          // }
-
           localStorage.setItem('token', res.token);
           localStorage.setItem('role', JSON.stringify(res.user.role));
           localStorage.setItem('currentUser', JSON.stringify(res.user));
