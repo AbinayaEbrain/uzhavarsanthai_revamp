@@ -465,10 +465,7 @@ export class PostComponent implements OnInit {
   }
 
   deleteSellingPoint(index) {
-    console.log(this.product)
-    console.log(index);
     this.product.removeAt(index);
-    console.log(this.product)
   }
 
   getUser() {

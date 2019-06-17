@@ -41,6 +41,7 @@ import { AdminSubscriptionComponent } from 'src/app/admin-subscription/admin-sub
 import { SubscriptionPlanComponent } from 'src/app/subscription-plan/subscription-plan.component';
 import { OrderViewComponent } from './order-view/order-view.component';
 import { UpdateaddressComponent } from './updateaddress/updateaddress.component';
+import { TrackingInformationComponent } from './tracking-information/tracking-information.component';
 const routes: Routes = [
   {
     path: '',
@@ -240,7 +241,11 @@ const routes: Routes = [
   {
    path: 'updateAdderss',
    component: UpdateaddressComponent
- }
+ },
+ {
+  path: 'trackingInformation',
+  component: TrackingInformationComponent
+}
 ];
 
 @NgModule({

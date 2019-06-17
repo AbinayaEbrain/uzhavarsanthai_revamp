@@ -120,9 +120,16 @@ export class ViewcategoryComponent implements OnInit {
             }
             this.getMultiArray();
             this.showDeals = true;
+            this.trackInformationData.response = 'Success';
+            this.trackInformationData.apiName = 'deals';
+            this.postTrackInformation();
           },
           err => {
             console.log(err);
+            this.trackInformationData.response = 'Failure';
+            this.trackInformationData.error = err.statusText;
+            this.trackInformationData.apiName = 'deals';
+            this.postTrackInformation();
           }
         );
     }else{
@@ -163,9 +170,16 @@ export class ViewcategoryComponent implements OnInit {
           // }
 
           this.showDeals = true;
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'deals';
+          this.postTrackInformation();
         },
         err => {
           console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'deals';
+          this.postTrackInformation();
         }
       );
     }
@@ -180,6 +194,9 @@ export class ViewcategoryComponent implements OnInit {
             this.getCategory = this.crdCategory[i].productCategory;
           }
         }
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'category';
+        this.postTrackInformation();
       }
     )
   }
@@ -207,8 +224,15 @@ export class ViewcategoryComponent implements OnInit {
       }
       console.log(this.multiPost);
       this.getArray();
+      this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getMultipost';
+        this.postTrackInformation();
     },err =>{
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'getMultipost';
+      this.postTrackInformation();
     });
   }else {
     this._dealService.getMultiPost().subscribe(res =>{
@@ -231,8 +255,15 @@ export class ViewcategoryComponent implements OnInit {
         }
       }
       this.getArray();
+      this.trackInformationData.response = 'Success';
+      this.trackInformationData.apiName = 'getMultipost';
+      this.postTrackInformation();
     },err =>{
       console.log(err);
+      this.trackInformationData.response = 'Failure';
+      this.trackInformationData.error = err.statusText;
+      this.trackInformationData.apiName = 'getMultipost';
+      this.postTrackInformation();
     });
   }
 
@@ -330,9 +361,16 @@ export class ViewcategoryComponent implements OnInit {
       res => {
         console.log(res);
         this.router.navigate(['/viewmore', data._id], this.id);
+        this.trackInformationData.response = 'Success';
+        this.trackInformationData.apiName = 'getCount';
+        this.postTrackInformation();
       },
       err => {
         console.log(err);
+        this.trackInformationData.response = 'Failure';
+        this.trackInformationData.error = err.statusText;
+        this.trackInformationData.apiName = 'getCount';
+        this.postTrackInformation();
       }
     );
   }
