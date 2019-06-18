@@ -19,6 +19,7 @@ export class TrackingInformationComponent implements OnInit {
   fromDate: any;
   toDate: any;
   errorMsg2: string;
+  p: any;
 
   constructor(
     private _dealsService: DealsService,
