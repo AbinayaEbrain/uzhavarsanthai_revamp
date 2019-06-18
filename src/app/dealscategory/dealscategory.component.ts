@@ -67,6 +67,7 @@ export class DealscategoryComponent implements OnInit {
               this.categoryArr[i].productcount = this.ProductCountArr[
                 j
               ].productcount;
+              // alert(this.categoryArr[i].productcount);
             }
           }
         }
