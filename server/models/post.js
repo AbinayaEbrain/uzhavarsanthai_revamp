@@ -15,7 +15,7 @@ const postSchema = new Schema({
   accountId: String,
   date: String,
   ipAddress: String,
-  validityTime: Date,
+  validityTime: String,
   image: String,
   avlPlace: {
     lat: '',

@@ -516,14 +516,31 @@ router.get('/category', (req, res) => {
 });
 
 router.get('/categoryProductCount', (req, res) => {
+  var date = new Date();
+var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
+                    .toISOString()
+                    .split("T")[0];
+
+console.log(dateString);
   var promise = Post.aggregate([
-    { $match: {} },
+    //{ $match: { $gte: [ "$validityTime", todayDate ] } },
+    //{ $match: {} },
+    {
+      $project: {
+        categoryId : 1,
+        validityTime: { $dateToString: { format: "%Y-%m-%d", date: "$validityTime" } },
+     }
+    },
+    { "$match": {
+      validityTime: { "$gt": dateString }
+    }},
     {
       $group: { _id: '$categoryId', productcount: { $sum: 1 } }
     }
   ]);
   promise
     .then(data => {
+      console.log(data);
       res.status(200).send(data);
     })
     .catch(err => {

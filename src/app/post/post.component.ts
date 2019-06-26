@@ -302,8 +302,10 @@ export class PostComponent implements OnInit {
     }
 
     console.log(this.carForm.value);
+    console.log(this.isAlready);
 
    if(this.isAlready){
+     console.log(this.carForm.value.product.length);
     for(let i = 0 ; i < this.carForm.value.product.length ; i++){
       this.price = this.price + parseInt(this.carForm.value.product[i].price);
       this.quantity = this.quantity + parseInt(this.carForm.value.product[i].quantity);
@@ -330,7 +332,9 @@ export class PostComponent implements OnInit {
       this.loadingCtrl.hide();
     }
     else{
+      console.log(this.num)
       if(this.num != this.carForm.value.product.length){
+        this.isAlready = false;
        this.postTotal();
       }
     }
@@ -405,12 +409,26 @@ export class PostComponent implements OnInit {
             this.carForm.value.product[i].userNumber = JSON.parse(
               localStorage.getItem('currentUser')
             ).phone;
-            this.carForm.value.product[i].userAddressLine = JSON.parse(
-              localStorage.getItem('currentUpdateAddr')
-            ).address.addressLine;
-            this.carForm.value.product[i].userAddress = JSON.parse(
-              localStorage.getItem('currentUpdateAddr')
-            ).address.formatted_address;
+
+            if(localStorage.getItem('currentUpdateAddr') == null || 
+              localStorage.getItem('currentUpdateAddr') == undefined){
+                this.carForm.value.product[i].userAddressLine = JSON.parse(
+                  localStorage.getItem('currentUser')
+                ).address.addressLine;
+
+                this.carForm.value.product[i].userAddress = JSON.parse(
+                  localStorage.getItem('currentUser')
+                ).address.formatted_address;
+            }else{
+                this.carForm.value.product[i].userAddressLine = JSON.parse(
+                  localStorage.getItem('currentUpdateAddr')
+                ).address.addressLine;
+
+                this.carForm.value.product[i].userAddress = JSON.parse(
+                  localStorage.getItem('currentUpdateAddr')
+                ).address.formatted_address;
+            }
+            
             this.carForm.value.product[i].status = JSON.parse(
               localStorage.getItem('currentUser')
             ).status;
@@ -421,13 +439,21 @@ export class PostComponent implements OnInit {
             this.carForm.value.product[i].ipAddress = this.privateIP;
 
             if (this.addr == undefined || this.addr == null) {
-              this.carForm.value.product[i].avlPlace = JSON.parse(
-                localStorage.getItem('currentUpdateAddr')).address.city;
+              if(localStorage.getItem('currentUpdateAddr') == null || 
+              localStorage.getItem('currentUpdateAddr') == undefined){
+                this.carForm.value.product[i].avlPlace = JSON.parse(
+                  localStorage.getItem('currentUser')).address.city;
+              }else{
+                this.carForm.value.product[i].avlPlace = JSON.parse(
+                  localStorage.getItem('currentUpdateAddr')).address.city;
+              }
             } else {
               this.carForm.value.product[i].avlPlace = this.addr;
             }
             this.carForm.value.product[i].category = this.carForm.value.category;
             this.carForm.value.product[i].categoryId = this.carForm.value.categoryId;
+            console.log(this.carForm.value.product[i].validityTime)
+            console.log(this.carForm.value.product[i].validityTime.getTime())
             this.imglen = i+1;
             this.imageUrl();
             break;
