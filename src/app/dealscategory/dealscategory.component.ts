@@ -40,7 +40,7 @@ export class DealscategoryComponent implements OnInit {
 
   getProductCount() {
     if(this._auth.checkOS()){
-      this._dealService.getCategoryPrductCountWeb().subscribe(
+      this._dealService.getCategoryPrductCount().subscribe(
         data => {
           this.ProductCountArr = data;
           console.log(this.ProductCountArr);
