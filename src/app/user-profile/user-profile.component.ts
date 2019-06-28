@@ -76,12 +76,13 @@ export class UserProfileComponent implements OnInit {
         if (
           this.crntUser.address.addressLine == '' ||
           this.crntUser.address.addressLine == null ||
+          this.crntUser.address.addressLine == 'Not yet update' ||
           (this.crntUser.address.city == '' ||
             this.crntUser.address.city == undefined ||
             this.crntUser.address.city == 'Not yet update')
         ) {
-          this.crntUser.address.addressLine = 'Not yet update';
-          this.crntUser.address.city = ' Not yet update';
+          this.crntUser.address.addressLine = '';
+          this.crntUser.address.city = '';
           console.log(this.crntUser.address.city);
           console.log(this.crntUser.address.addressLine);
         }

@@ -74,7 +74,8 @@
               </div>
             </div>
             <div class="mx-auto mt-3" *ngIf="!recentErrMsg">
-              <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
+              <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event" directionLinks="true"
+              autoHide="true"></pagination-controls>
             </div>
           </div>
           <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -122,7 +123,8 @@
           </div>
         </div>
         <div class="mx-auto mt-3" *ngIf="!pastErrMsg">
-          <pagination-controls id="foo1"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="d = $event"></pagination-controls>
+          <pagination-controls id="foo1"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="d = $event" directionLinks="true"
+          autoHide="true"></pagination-controls>
         </div>
           </div>
       </div>

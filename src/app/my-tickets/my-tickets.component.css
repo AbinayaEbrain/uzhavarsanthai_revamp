@@ -231,6 +231,9 @@ font-family: 'Mukta', sans-serif;
     transition: all 0.25s;
     /* / margin-top: 25% !important; / */
   }
+  .statusSize{
+    font-size: 12px !important;
+  }
   .button_word1 {
     font-family: 'Kanit', sans-serif;
     cursor: pointer;
@@ -243,9 +246,6 @@ font-family: 'Mukta', sans-serif;
     text-align: center;
     margin-top: 20%;
     font-size: 20px;
-  }
-  .orderHighlight {
-    font-size: 11px;
   }
   .col-md-6 {
     position: relative;
@@ -269,23 +269,23 @@ font-family: 'Mukta', sans-serif;
   }
   .mobiViewShow{
     display: block;
-    font-size: 15px;
+    font-size: 12px;
   }
   .mainHeader{
-    height: 70px !important;
+    height: 50px !important;
   }
   .orderHighlight {
     float: left;
     padding: 3px;
     font-weight: bold;
-    font-size: 15px !important;
+    font-size: 13px !important;
   }
   .needPadding{
         padding: 2%;
         font-size: 14px;
   }
   .solBtn{
-    font-size: 15px;
+    font-size: 12px;
   }
   .addBr{
     display: block;
@@ -328,7 +328,7 @@ font-family: 'Mukta', sans-serif;
 
 @media screen and (max-width: 320px) {
   .orderHead2 {
-    font-size: 13px;
+    font-size: 12px;
   }
 }
 
@@ -423,6 +423,9 @@ font-family: 'Mukta', sans-serif;
     font-size: 11px !important;
     padding: 14px !important;
   }
+  .marTop{
+    margin-top: 25% !important;
+  }
   .byWhom {
     float: left !important;
   }
@@ -436,13 +439,13 @@ font-family: 'Mukta', sans-serif;
   }
   .ticketdate {
     color: #0d4608;
-    font-size: 15px;
+    font-size: 11px !important;
   }
   label{
     font-size: 14px !important;
   }
 }
-@media only screen and (min-width: 200px) and (max-width: 320px) {
+@media only screen and (min-width: 200px) and (max-width: 321px) {
   .nav-link {
     font-size: 13px !important;
     padding: 4px !important;
@@ -577,9 +580,9 @@ font-family: 'Mukta', sans-serif;
   /* / / color: #0d4608;font-weight: 600; / / */
 }
 .ticketdate {
-  text-align: end !important;
+  /* text-align: end !important; */
   color: #0d4608;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .styl{
@@ -588,4 +591,29 @@ font-family: 'Mukta', sans-serif;
   font-family: "Varela Round",Arial,"Helvetica Neue",Helvetica,serif;
   font-weight: bold;
   text-align: left;
+}
+
+@media only screen and (min-width: 410px) and (max-width: 425px) {
+  .nav-link {
+    font-size: 16px !important;
+    padding: 14px !important;
+  }
+}
+@media only screen and (min-width: 375px) and (max-width: 409px) {
+  .nav-link {
+    font-size: 14px !important;
+    padding: 14px !important;
+  }
+}
+@media only screen and (min-width: 351px) and (max-width: 374px) {
+  .nav-link {
+    font-size: 14px !important;
+    padding: 10px !important;
+  }
+}
+@media only screen and (min-width: 333px) and (max-width: 350px) {
+  .nav-link {
+    font-size: 13px !important;
+    padding: 10px !important;
+  }
 }

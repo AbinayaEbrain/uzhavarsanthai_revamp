@@ -11,13 +11,13 @@
               <div class="col-md-3 col-sm-6 col-6 onmobiviewpadding mt-md-0 mt-2" id="hideSearchDiv">
                     <div class="inner-addon left-addon">
                         <i class="fa fa-search glyphicon" aria-hidden="true"></i>
-                        <input type="text" class="form-control searchDiv mobviewmargintop " id="search_box"  [(ngModel)]="queryString" (keyup)="case()" name="search" autocomplete="off" placeholder="Search by product.." />
+                        <input type="text" class="form-control searchDiv" id="search_box"  [(ngModel)]="queryString" (keyup)="case()" name="search" autocomplete="off" placeholder="Search by product.." />
                     </div>
               </div>
               <div class="col-md-3 col-sm-6 col-6 onmobiviewpadding mt-md-0 mt-2 one" id="hideSearchDiv1">
                 <div class="inner-addon left-addon" >
                         <i class="fa fa-search glyphicon" aria-hidden="true"></i>
-                        <input google-place type="text" class="form-control searchBorder mobviewmargin "  [(ngModel)]="getLocationDeals" (onSelect)="setAddress($event)" placeholder="Search by location.." />
+                        <input google-place type="text" class="form-control searchBorder mobviewmargin"  [(ngModel)]="getLocationDeals" (onSelect)="setAddress($event)" placeholder="Search by location.." />
                     </div>
              </div>
           </div>
@@ -145,7 +145,8 @@
 
           </div>
           <div class="mx-auto" id="hidePagination">
-                <pagination-controls id="foo1" class="ngx-pagination mobiviewpageBtn"   style="margin-right: 30px;" (pageChange)="p=$event" maxSize="5"></pagination-controls>
+                <pagination-controls id="foo1" class="ngx-pagination mobiviewpageBtn"   style="margin-right: 30px;" (pageChange)="p=$event" maxSize="5" directionLinks="true"
+                autoHide="true"></pagination-controls>
               </div>
         </div>
 
