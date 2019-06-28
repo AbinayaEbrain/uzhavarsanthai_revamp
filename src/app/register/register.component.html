@@ -44,7 +44,7 @@
 
                 <div id="secondDiv" class="mt-5" style="display: none">
                     <form  #postform2="ngForm" class="mt-4" *ngIf ="!submitted" novalidate >
-                        <div class="text-center" style="margin-top: -10%;color: #179e36" *ngIf="optsent">OTP has been sent successfully to this number<br>
+                        <div class="text-center" style="margin-top: -10%;color: #179e36" *ngIf="optsent">OTP has been sent successfully to this number <br>
                             <b style="color: black">'{{optsent}}'</b>
                         </div>
                     <div class="alert alert-danger text-center" *ngIf="errMsgVerfi">{{errMsgVerfi}}</div>
@@ -52,7 +52,7 @@
                         <label class="english_wrd" for="phone">Enter your OTP</label>
                             <input type="text" #verifyPhone="ngModel" name="verifyPhone" class="form-control" ngModel class="form-control" [(ngModel)]="verifyPhone1.verifyPhone" maxlength="6" autocomplete="off" required>
                     </div>
-                    <a class="mb-2 resend" id="resend" style="display: none;cursor:pointer" (click)="sendOtp()">Resend</a>
+                    <a class="mb-2 resend" id="resend" style="display: none;cursor:pointer" (click)="sendOtp()">Resend OTP</a>
                     <div style="text-align: center;">
                     <button class="mb-2 btn2" type="submit" id="verify" [disabled]="postform2.form.invalid" (click)="verifyOtp()">Verify OTP</button>
                 </div>

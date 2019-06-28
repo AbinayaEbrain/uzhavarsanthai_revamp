@@ -19,6 +19,7 @@ export class UserProfileComponent implements OnInit {
   @ViewChild('editForm') form;
   currentuserId: any;
   public dummyname: any = {};
+  loggedUser1: any = {}
   submitted: boolean;
   firstnam = '';
   success: any;
@@ -59,6 +60,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.loadingCtrl.show();
     document.getElementById('focusDiv').focus();
+    this.InitialCall();
 
     this.pwd = JSON.parse(localStorage.getItem('currentUser')).password;
     this.id = JSON.parse(localStorage.getItem('currentUser'))._id;
@@ -69,6 +71,7 @@ export class UserProfileComponent implements OnInit {
         console.log(this.loggedUser);
         for (let i = 0; i < this.loggedUser.length; i++) {
           if (this.id == this.loggedUser[i]._id) {
+            this.loggedUser1 = this.loggedUser[i];
             this.crntUser = this.loggedUser[i];
             console.log(this.crntUser);
           }
@@ -76,18 +79,18 @@ export class UserProfileComponent implements OnInit {
         if (
           this.crntUser.address.addressLine == '' ||
           this.crntUser.address.addressLine == null ||
+          this.crntUser.address.addressLine == 'Not yet update' ||
           (this.crntUser.address.city == '' ||
             this.crntUser.address.city == undefined ||
             this.crntUser.address.city == 'Not yet update')
         ) {
-          this.crntUser.address.addressLine = 'Not yet update';
-          this.crntUser.address.city = ' Not yet update';
+          this.crntUser.address.addressLine = '';
+          this.crntUser.address.city = '';
           console.log(this.crntUser.address.city);
           console.log(this.crntUser.address.addressLine);
         }
         this.loadingCtrl.hide();
 
-        this.InitialCall();
         this.trackInformationData.response = 'Success';
         this.trackInformationData.apiName = 'details';
         this.postTrackInformation();
@@ -234,16 +237,16 @@ export class UserProfileComponent implements OnInit {
   }
 
   InitialCall() {
-    for (let i = 0; i < this.loggedUser.length; i++) {
-      if (this.id == this.loggedUser[i]._id) {
-        this.crntUser.firstname = this.loggedUser[i].firstname;
-        this.crntUser.lastName = this.loggedUser[i].lastName;
-        this.crntUser.gender = this.loggedUser[i].gender;
-        this.crntUser.address.addressLine = this.loggedUser[
+    for (let i = 0; i < this.loggedUser1.length; i++) {
+      if (this.id == this.loggedUser1[i]._id) {
+        console.log(this.loggedUser1[i])
+        this.crntUser.firstname = this.loggedUser1[i].firstname;
+        this.crntUser.address.addressLine = this.loggedUser1[
           i
         ].address.addressLine;
         //this.crntUser.address.address1 = this.loggedUser[i].address.address1;
         //this.crntUser.address.city.formatted_address = this.loggedUser[i].address.city.formatted_address;
+        console.log(this.loggedUser1[i])
       }
     }
     console.log(this.crntUser);

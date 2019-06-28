@@ -17,8 +17,12 @@ declare var $: any;
 export class LoginComponent implements OnInit {
   @ViewChild('input1') inputEl: ElementRef;
   @ViewChild('loginform') mytemplateForm: NgForm;
-  userData = {};
+  @ViewChild('loginform1') mytemplateForm1: NgForm;
+  @ViewChild('loginform2') mytemplateForm2: NgForm;
+  @ViewChild('resetForm') mytemplateForm3: NgForm;
+  userData:any = {};
   errormsg;
+  phnErr1:any
   id: any;
   user: any;
   wholedata: any;
@@ -55,7 +59,11 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-        document.getElementById('focusDiv').focus();
+    document.getElementById('focusDiv').focus();
+    // document.getElementById('hideForm').style.display = 'block';
+    // document.getElementById('showForm').style.display = 'none';
+    // document.getElementById('secondDiv').style.display = 'none';
+    // document.getElementById('firstDiv').style.display = 'none';
     this.loadingCtrl.show();
    // setTimeout(() => this.inputEl.nativeElement.focus());
     setTimeout(() => {
@@ -109,13 +117,38 @@ export class LoginComponent implements OnInit {
 }
 
   phnTen() {
-    if (this.phoneObj.phone1.length !== 10) {
-      //alert(this.registeredUserData.phone.length)
+    console.log(this.phoneObj.phone1)
+    console.log(this.phoneObj.phone1.length)
+
+    if (this.phoneObj.phone1.length !== 10 && this.phoneObj.phone1.length != 0) {
+      this.phnErr1 = 'Phone number must be 10 digits';
+      // setTimeout(() => {
+      //   this.phnErr = '';
+      // }, 3000);
+    }else{
+      this.phnErr1 = ''
+    }
+
+    if(this.phoneObj.phone1.length == 0){
+      this.phnErr1 = '';
+    }
+  }
+
+  phnTen1() {
+    console.log(this.userData.phone)
+    console.log(this.userData.phone.length)
+
+    if (this.userData.phone.length !== 10  && this.userData.phone.length != 0) {
       this.phnErr = 'Phone number must be 10 digits';
-      setTimeout(() => {
-        this.phnErr = '';
-      }, 3000);
-      //alert(this.phnErr)
+      // setTimeout(() => {
+      //   this.phnErr = '';
+      // }, 3000);
+    }else{
+      this.phnErr = ''
+    }
+
+    if(this.userData.phone.length == 0){
+      this.phnErr = '';
     }
   }
 
@@ -167,14 +200,24 @@ export class LoginComponent implements OnInit {
     console.log(value);
     let value1 = this.resetPasswordObj.confirmPassword;
     console.log(value1);
-    if (value != value1) {
+
+    if(!value1){
+      this.notEqual = '';
+    }
+    if (value != value1 && value1 !='') {
       this.notEqual = "Password doesn't match";
-      // setTimeout(() => {
-      //   this.notEqual = '';
-      // }, 3000);
     } else {
       this.notEqual = '';
     }
+  }
+
+  resetTotalForm(){
+    this.phnErr = '';
+    document.getElementById('secondDiv').style.display = 'none';
+    document.getElementById('firstDiv').style.display = 'none';
+    this.mytemplateForm1.reset();
+    this.mytemplateForm2.reset();
+    this.mytemplateForm3.reset();
   }
 
   resetConPassword() {
@@ -186,8 +229,10 @@ export class LoginComponent implements OnInit {
           this.message = res.message;
           setTimeout(() => {
             this.message = '';
-          }, 3000);
+          }, 4000);
           this.phoneObj.phone1 = '';
+          document.getElementById('closeSignUpModal').click();
+          document.getElementById("openConfirmCancelModal").click();
           document.getElementById('firstDiv').style.display = 'none';
           document.getElementById('hideForm').style.display = 'block';
           this.trackInformationData.response = 'Success';
@@ -291,7 +336,7 @@ export class LoginComponent implements OnInit {
 
   toggle() {
     this.mytemplateForm.reset();
-    document.getElementById('hideForm').style.display = 'none';
+    //document.getElementById('hideForm').style.display = 'none';
     document.getElementById('showForm').style.display = 'block';
   }
 
@@ -362,14 +407,23 @@ export class LoginComponent implements OnInit {
   }
 
   postTrackInformation() {
-    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
-    let token = localStorage.getItem('token');
-    let UserName = localStorage.getItem('firstname');
-    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
-    this.trackInformationData.UserId = acntID;
-    this.trackInformationData.jwt = token;
-    this.trackInformationData.ipAddress = ipAddress;
-    this.trackInformationData.UserName = UserName;
+    let tracking = this._auth.loggedIn()
+    if(tracking){
+      let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+      let token = localStorage.getItem('token');
+      let UserName = localStorage.getItem('firstname');
+      let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+      this.trackInformationData.UserId = acntID;
+      this.trackInformationData.jwt = token;
+      this.trackInformationData.ipAddress = ipAddress;
+      this.trackInformationData.UserName = UserName;
+    }else{
+      this.trackInformationData.UserId = '';
+      this.trackInformationData.jwt = '';
+      this.trackInformationData.ipAddress = '';
+      this.trackInformationData.UserName = '';
+    }
+   
     this.trackInformationData.apiCallingAt = new Date().getTime();
     this._dealsService
       .trackInformationPost(this.trackInformationData)

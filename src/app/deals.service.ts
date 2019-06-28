@@ -34,7 +34,7 @@ export class DealsService {
     'https://uzhavarsanthai.herokuapp.com/api/dltMultiPost';
 
   private _getCategoryUrl = 'https://uzhavarsanthai.herokuapp.com/api/category';
-  private _getCategoryPrductCountUrl = 'http://localhost:5000/api/categoryProductCount';
+  private _getCategoryPrductCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/categoryProductCount';
 
   //Deactivate URL
   private deactiveUrl =
@@ -125,6 +125,7 @@ export class DealsService {
   private _postTrackInformation = "https://uzhavarsanthai.herokuapp.com/api/trackInformationPost";
   private _getTrackInformation = "https://uzhavarsanthai.herokuapp.com/api/getTrackInformation";
 
+  private updateDeviceTokenurl = 'https://uzhavarsanthai.herokuapp.com/api/updateDeviceToken';
 
   constructor(private http: HttpClient) {}
 
@@ -453,6 +454,10 @@ trackInformationPost(data){
 
 getTrackInformation() {
   return this.http.get<any>(this._getTrackInformation);
+}
+
+updateDeviceToken(data, id) {
+  return this.http.put<any>(this.updateDeviceTokenurl + '/' + id, data);
 }
 
 }

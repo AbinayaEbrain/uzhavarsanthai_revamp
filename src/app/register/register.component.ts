@@ -200,13 +200,17 @@ export class RegisterComponent implements OnInit {
   }
 
   phnTen() {
-    if (this.phoneObj.phone.length !== 10) {
-      //alert(this.registeredUserData.phone.length)
+    if (this.phoneObj.phone.length !== 10 && this.phoneObj.phone.length != 0) {
       this.phnErr = 'Phone number must be 10 digits';
-      setTimeout(() => {
-        this.phnErr = '';
-      }, 3000);
-      //alert(this.phnErr)
+      // setTimeout(() => {
+      //   this.phnErr = '';
+      // }, 3000);
+    }else{
+      this.phnErr = '';
+    }
+
+    if(this.phoneObj.phone.length == 0){
+      this.phnErr = '';
     }
   }
 
@@ -316,14 +320,23 @@ export class RegisterComponent implements OnInit {
 }
 
 postTrackInformation() {
-  let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
-  let token = localStorage.getItem('token');
-  let UserName = localStorage.getItem('firstname');
-  let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
-  this.trackInformationData.UserId = acntID;
-  this.trackInformationData.jwt = token;
-  this.trackInformationData.ipAddress = ipAddress;
-  this.trackInformationData.UserName = UserName;
+  let tracking = this._auth.loggedIn()
+  if(tracking){
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+  }else{
+    this.trackInformationData.UserId = '';
+    this.trackInformationData.jwt = '';
+    this.trackInformationData.ipAddress = '';
+    this.trackInformationData.UserName = '';
+  }
+  
   this.trackInformationData.apiCallingAt = new Date().getTime();
   this._dealsService
     .trackInformationPost(this.trackInformationData)

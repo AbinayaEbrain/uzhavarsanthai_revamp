@@ -117,7 +117,7 @@
 }
 .table td {
   padding: 2px !important;
-  font-size: 15px !important;
+  font-size: 13px !important;
 }
 
 .tamil_word {
@@ -433,7 +433,6 @@ input {
 .resend {
   cursor: pointer;
   color: #0d4608 !important;
-  font-weight: bold;
 }
 
 .notice {

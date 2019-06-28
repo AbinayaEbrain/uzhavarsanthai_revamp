@@ -24,17 +24,21 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   reviewlngthErr: any;
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   @ViewChild('loginform') mytemplateForm1: NgForm;
+  @ViewChild('loginform2') mytemplateForm6: NgForm;
   @ViewChild('postform') mytemplateForm2: NgForm;
   @ViewChild('queryform') mytemplateForm3: NgForm;
   @ViewChild('forgotpwdform') mytemplateForm4: NgForm;
   @ViewChild('updateAddressform') mytemplateForm5: NgForm;
+  @ViewChild('resetForm') mytemplateForm7: NgForm;
+  @ViewChild('postform1') mytemplateForm8: NgForm;
+  @ViewChild('postform2') mytemplateForm9: NgForm;
   rqstId : any;
   greaterQty: any;
   show = 3;
   id = '';
   viewmore = [];
   viewPost = [];
-  userData = {};
+  userData:any = {};
   useracid :any;
   requestPerson = [];
   omit:any;
@@ -70,6 +74,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   wholedata: any;
   wholedata1: any;
   user: any;
+  phnErr2:any
   authorize:any;
   visitId:any;
   deactiveErrorMsg: any;
@@ -77,6 +82,7 @@ export class ViewmoreComponent implements OnInit, AfterViewChecked {
   errormsg;
   verifyPhone1: any = {};
   errMsgVerfi: any;
+  phnErr1:any;
   phoneObj: any = {};
   errormsg1: any;
   slideConfig1 : any;
@@ -698,8 +704,20 @@ mapWithPost(){
     toggle() {
       this.mytemplateForm1.reset();
       this.mytemplateForm4.reset();
-      document.getElementById('hideForm').style.display = 'none';
+      document.getElementById("closeLoginModal").click();
+      document.getElementById("openForgotPassword").click();
       document.getElementById('showForm').style.display = 'block';
+    }
+
+    resetTotalForm(){
+      this.phnErr = '';
+      document.getElementById('secondDiv').style.display = 'none';
+      document.getElementById('firstDiv').style.display = 'none';
+      this.mytemplateForm1.reset();
+      this.mytemplateForm2.reset();
+      this.mytemplateForm3.reset();
+      this.mytemplateForm6.reset();
+      this.mytemplateForm7.reset();
     }
 
     sendOtp() {
@@ -720,10 +738,10 @@ mapWithPost(){
             this.errormsg1 = '';
           }
           // this.phoneObj.phone1 = '';
-          this.optsent = 'OTP has been sent to this number successfully! '+ resultpath;
-          setTimeout(() => {
-            this.optsent = '';
-          }, 3000);
+          this.optsent = '' + resultpath;
+          // setTimeout(() => {
+          //   this.optsent = '';
+          // }, 3000);
           document.getElementById('showForm').style.display = 'none';
           document.getElementById('secondDiv').style.display = 'block';
           this.trackInformationData.response = 'Success';
@@ -748,24 +766,50 @@ mapWithPost(){
     }
 
     phnTen() {
-      if (this.phoneObj.phone1.length !== 10) {
-        //alert(this.registeredUserData.phone.length)
+      if (this.phoneObj.phone1.length !== 10 && this.phoneObj.phone1.length != 0) {
         this.phnErr = 'Phone number must be 10 digits';
-        setTimeout(() => {
-          this.phnErr = '';
-        }, 3000);
-        //alert(this.phnErr)
+        // setTimeout(() => {
+        //   this.phnErr = '';
+        // }, 3000);
+      }else{
+        this.phnErr = '';
+      }
+
+      if(this.phoneObj.phone1.length == 0){
+        this.phnErr = '';
       }
     }
 
     phnTen1() {
-      if (this.phoneObj.phone.length !== 10) {
-        //alert(this.registeredUserData.phone.length)
-        this.phnErr = 'Phone number must be 10 digits';
-        setTimeout(() => {
-          this.phnErr = '';
-        }, 3000);
-        //alert(this.phnErr)
+      if (this.phoneObj.phone.length !== 10 && this.phoneObj.phone.length != 0) {
+        this.phnErr1 = 'Phone number must be 10 digits';
+        // setTimeout(() => {
+        //   this.phnErr = '';
+        // }, 3000);
+      }else{
+        this.phnErr1 = '';
+      }
+
+      if(this.phoneObj.phone.length == 0){
+        this.phnErr1 = '';
+      }
+    }
+
+    phnTen2() {
+      console.log(this.userData.phone)
+      console.log(this.userData.phone.length)
+  
+      if (this.userData.phone.length !== 10  && this.userData.phone.length != 0) {
+        this.phnErr2 = 'Phone number must be 10 digits';
+        // setTimeout(() => {
+        //   this.phnErr = '';
+        // }, 3000);
+      }else{
+        this.phnErr2 = ''
+      }
+  
+      if(this.userData.phone.length == 0){
+        this.phnErr2 = '';
       }
     }
 
@@ -874,8 +918,18 @@ mapWithPost(){
         );
     }
 
+    resetSignUp(){
+      this.mytemplateForm8.reset();
+      this.mytemplateForm9.reset();
+      this.mytemplateForm2.reset();
+      this.phnErr = '';
+      this.phnErr1 = '';
+      this.phnErr2 = '';
+    }
+
     //register modal
     showLogin(){
+      this.mytemplateForm8.reset();
       document.getElementById("closeSignUpModal").click();
       document.getElementById("openLoginModal").click();
     }

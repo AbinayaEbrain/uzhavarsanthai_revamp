@@ -2579,6 +2579,28 @@ router.post('/deviceToken',(req,res)=>{
   })
 })
 
+router.put('/updateDeviceToken/:id', function(req, res) {
+  // console.log('Update a userprofile');
+  User.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: {
+        device_token : req.body.device_token,
+      }
+    },
+    {
+      new: true
+    },
+    function(err, updatedUser) {
+      if (err) {
+        res.send('Error updating userprofile');
+      } else {
+        res.json(updatedUser);
+      }
+    }
+  );
+});
+
 // Order Request Notification
 router.post('/fcmNotification',(req,res)=>{
   var registrationToken = req.body.token;

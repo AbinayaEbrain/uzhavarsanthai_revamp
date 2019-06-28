@@ -171,6 +171,11 @@ input[type='password'] {
 .error_word {
   font-family: 'Cabin', sans-serif;
 }
+.resend {
+  color: #0d4608 !important;
+  text-decoration: underline !important;
+  font-weight: 600 !important;
+}
 input {
   font-family: 'Nunito', sans-serif;
 }
