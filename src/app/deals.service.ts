@@ -35,6 +35,8 @@ export class DealsService {
 
   private _getCategoryUrl = 'https://uzhavarsanthai.herokuapp.com/api/category';
   private _getCategoryPrductCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/categoryProductCount';
+  private _getCategoryPrductCountWebUrl = 'https://uzhavarsanthai.herokuapp.com/api/categoryProductCountWebsite';
+
 
   //Deactivate URL
   private deactiveUrl =
@@ -221,6 +223,9 @@ export class DealsService {
   }
   getCategoryPrductCount() {
     return this.http.get<any>(this._getCategoryPrductCountUrl);
+  }
+  getCategoryPrductCountWeb() {
+    return this.http.get<any>(this._getCategoryPrductCountWebUrl);
   }
 
   //deactivate account

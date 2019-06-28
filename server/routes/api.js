@@ -331,7 +331,7 @@ router.post('/contact', (req, res) => {
 
 router.post('/sendMail', (req, res) => {
   var server = email.server.connect({
-    user: 'support@ebraintechnologies.com',
+    user: 'ebraintechnologiesapps@gmail.com',
     password: 'Ji#993te',
     host: 'smtp.gmail.com',
     ssl: true
@@ -339,8 +339,8 @@ router.post('/sendMail', (req, res) => {
   server.send(
     {
       text: 'Contact mail',
-      from: 'support@ebraintechnologies.com',
-      to: 'support@ebraintechnologies.com',
+      from: 'ebraintechnologiesapps@gmail.com',
+      to: 'ebraintechnologiesapps@gmail.com',
       subject: 'Welcome to my app',
       attachment: [
         {
@@ -362,16 +362,16 @@ router.post('/sendMail', (req, res) => {
 // Mail for signup rqst
 router.post('/sendMailSignUp', (req, res) => {
   var server = email.server.connect({
-    user: 'abishakshi1496@gmail.com',
-    password: 'abiyuva14382',
+    user: 'ebraintechnologiesapps@gmail.com',
+    password: 'Ji#993te',
     host: 'smtp.gmail.com',
     ssl: true
   });
   server.send(
     {
       text: 'Signup request from Uzhavarsanthai !',
-      from: 'abishakshi1496@gmail.com',
-      to: 'abishakshi1496@gmail.com',
+      from: 'ebraintechnologiesapps@gmail.com',
+      to: 'ebraintechnologiesapps@gmail.com',
       subject: 'Signup request from Uzhavarsanthai !',
       attachment: [
         {
@@ -399,16 +399,16 @@ router.post('/sendMailSignUp', (req, res) => {
 // Mail for buyer as seller signup rqst
 router.post('/sendMailSignUpBuyer', (req, res) => {
   var server = email.server.connect({
-    user: 'abishakshi1496@gmail.com',
-    password: 'abiyuva14382',
+    user: 'ebraintechnologiesapps@gmail.com',
+    password: 'Ji#993te',
     host: 'smtp.gmail.com',
     ssl: true
   });
   server.send(
     {
       text: 'Signup request from Uzhavarsanthai !',
-      from: 'abishakshi1496@gmail.com',
-      to: 'abishakshi1496@gmail.com',
+      from: 'ebraintechnologiesapps@gmail.com',
+      to: 'ebraintechnologiesapps@gmail.com',
       subject: 'Signup request from Uzhavarsanthai !',
       attachment: [
         {
@@ -431,16 +431,16 @@ router.post('/sendMailSignUpBuyer', (req, res) => {
 // Mail for buyer as seller signup rqst
 router.post('/sendMailRejectSeller', (req, res) => {
   var server = email.server.connect({
-    user: 'abishakshi1496@gmail.com',
-    password: 'abiyuva14382',
+    user: 'ebraintechnologiesapps@gmail.com',
+    password: 'Ji#993te',
     host: 'smtp.gmail.com',
     ssl: true
   });
   server.send(
     {
       text: 'Seller rejected order request from Uzhavarsanthai !',
-      from: 'abishakshi1496@gmail.com',
-      to: 'abishakshi1496@gmail.com',
+      from: 'ebraintechnologiesapps@gmail.com',
+      to: 'ebraintechnologiesapps@gmail.com',
       subject: 'Seller rejected order request from Uzhavarsanthai !',
       attachment: [
         {
@@ -516,6 +516,39 @@ router.get('/category', (req, res) => {
 });
 
 router.get('/categoryProductCount', (req, res) => {
+  var date = new Date();
+var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
+                    .toISOString()
+                    .split("T")[0];
+
+console.log(dateString);
+  var promise = Post.aggregate([
+    //{ $match: { $gte: [ "$validityTime", todayDate ] } },
+    //{ $match: {} },
+    {
+      $project: {
+        categoryId : 1,
+        validityTime: 1,
+     }
+    },
+    { "$match": {
+      validityTime: { "$gt": dateString }
+    }},
+    {
+      $group: { _id: '$categoryId', productcount: { $sum: 1 } }
+    }
+  ]);
+  promise
+    .then(data => {
+      console.log(data);
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    });
+});
+
+router.get('/categoryProductCountWebsite', (req, res) => {
   var date = new Date();
 var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
                     .toISOString()
@@ -1383,16 +1416,16 @@ res.status(200).send(message);
 //order request mail for admin
 router.post('/sendorderrequest', (req, res) => {
   var server = email.server.connect({
-    user: 'abishakshi1496@gmail.com',
-    password: 'abiyuva14382',
+    user: 'ebraintechnologiesapps@gmail.com',
+    password: 'Ji#993te',
     host: 'smtp.gmail.com',
     ssl: true
   });
   server.send(
     {
       text: 'You have signed up',
-      from: 'abishakshi1496@gmail.com',
-      to: 'abishakshi1496@gmail.com',
+      from: 'ebraintechnologiesapps@gmail.com',
+      to: 'ebraintechnologiesapps@gmail.com',
       subject: 'Buyer Order Request - Uzhavarsanthai',
       attachment: [
         {
@@ -1439,16 +1472,16 @@ router.post('/sendorderrequest', (req, res) => {
 router.post('/sendordercancelrequest', (req, res) => {
   console.log(req.body);
   var server = email.server.connect({
-    user: 'abishakshi1496@gmail.com',
-    password: 'abiyuva14382',
+    user: 'ebraintechnologiesapps@gmail.com',
+    password: 'Ji#993te',
     host: 'smtp.gmail.com',
     ssl: true
   });
   server.send(
     {
       text: 'You have signed up',
-      from: 'abishakshi1496@gmail.com',
-      to: 'abishakshi1496@gmail.com',
+      from: 'ebraintechnologiesapps@gmail.com',
+      to: 'ebraintechnologiesapps@gmail.com',
       subject: 'Buyer Cancelled Request - Uzhavarsanthai',
       attachment: [
         {
@@ -2364,16 +2397,16 @@ router.get('/getDispute', (req, res) => {
 // Dispute mail for admin
 router.post('/sendDisputeMail', (req, res) => {
   var server = email.server.connect({
-    user: 'abishakshi1496@gmail.com',
-    password: 'abiyuva14382',
+    user: 'ebraintechnologiesapps@gmail.com',
+    password: 'Ji#993te',
     host: 'smtp.gmail.com',
     ssl: true
   });
   server.send(
     {
       text: 'You have signed up',
-      from: 'abishakshi1496@gmail.com',
-      to: 'abishakshi1496@gmail.com',
+      from: 'ebraintechnologiesapps@gmail.com',
+      to: 'ebraintechnologiesapps@gmail.com',
       subject: 'Dispute against Buyer Order Request - Uzhavarsanthai',
       attachment: [
         {

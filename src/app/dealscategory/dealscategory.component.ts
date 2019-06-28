@@ -2,6 +2,7 @@ declare function require(path: string);
 import { Component, OnInit } from '@angular/core';
 import { DealsService } from '../deals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-dealscategory',
@@ -23,7 +24,8 @@ export class DealscategoryComponent implements OnInit {
 
   constructor(
     private _dealService: DealsService,
-    public loadingCtrl: NgxSpinnerService
+    public loadingCtrl: NgxSpinnerService,
+    private _auth:AuthService
   ) {
     for (let i = 1; i <= this.categoryArr.length; i++) {
       this.categoryArr.push(`deal ${i}.0`);
@@ -37,23 +39,43 @@ export class DealscategoryComponent implements OnInit {
   }
 
   getProductCount() {
-    this._dealService.getCategoryPrductCount().subscribe(
-      data => {
-        this.ProductCountArr = data;
-        console.log(this.ProductCountArr);
-        this.getCategory();
-        this.trackInformationData.response = 'Success';
-        this.trackInformationData.apiName = 'categoryProductCount';
-        this.postTrackInformation();
-      },
-      err => {
-        console.log(err);
-        this.trackInformationData.response = 'Failure';
-        this.trackInformationData.error = err.statusText;
-        this.trackInformationData.apiName = 'categoryProductCount';
-        this.postTrackInformation();
-      }
-    );
+    if(this._auth.checkOS()){
+      this._dealService.getCategoryPrductCountWeb().subscribe(
+        data => {
+          this.ProductCountArr = data;
+          console.log(this.ProductCountArr);
+          this.getCategory();
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'categoryProductCount';
+          this.postTrackInformation();
+        },
+        err => {
+          console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'categoryProductCount';
+          this.postTrackInformation();
+        }
+      );
+    }else{
+      this._dealService.getCategoryPrductCount().subscribe(
+        data => {
+          this.ProductCountArr = data;
+          console.log(this.ProductCountArr);
+          this.getCategory();
+          this.trackInformationData.response = 'Success';
+          this.trackInformationData.apiName = 'categoryProductCount';
+          this.postTrackInformation();
+        },
+        err => {
+          console.log(err);
+          this.trackInformationData.response = 'Failure';
+          this.trackInformationData.error = err.statusText;
+          this.trackInformationData.apiName = 'categoryProductCount';
+          this.postTrackInformation();
+        }
+      );
+    }
   }
 
   getCategory() {
