@@ -109,13 +109,18 @@ export class MyOrderComponent implements OnInit {
       if ( a <= 1 ) {
         this.recentOrder[j] = this.userOrder[i];
         this.splitImage1 =  this.recentOrder[j].image;
-        this.recentOrder[j].image = this.splitImage1.split(",",1);
+        if(this.recentOrder[j].image.length != 1){
+          this.recentOrder[j].image = this.splitImage1.split(",",1);
+        }
         j++;
         console.log( this.recentOrder)
       } else {
         this.pastOrder[k] = this.userOrder[i];
         this.splitImage1 =  this.pastOrder[j].image;
-        this.pastOrder[j].image = this.splitImage1.split(",",1);
+        console.log(this.pastOrder[j].image.length);
+        if(this.pastOrder[j].image.length != 1){
+          this.pastOrder[j].image = this.splitImage1.split(",",1);
+        }
         k++;
       }
     }

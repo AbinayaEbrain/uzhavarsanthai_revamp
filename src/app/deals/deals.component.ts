@@ -100,7 +100,9 @@ export class DealsComponent implements OnInit {
             if(this.crdDeals[i].validityTime > CurrentDate && this.crdDeals[i].quantity != 0){
               this.crdDeals1[j] = this.crdDeals[i];
               this.splitImage1 =  this.crdDeals1[j].image;
-              this.crdDeals1[j].image = this.splitImage1.split(",",1);
+              if(this.crdDeals1[j].image.length != 1){
+                this.crdDeals1[j].image = this.splitImage1.split(",",1);
+              }
               this.getPrdtName[k] = this.crdDeals1[j].name;
               j++;
               k++;

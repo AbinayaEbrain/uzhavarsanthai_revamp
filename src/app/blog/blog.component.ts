@@ -84,7 +84,7 @@ export class BlogComponent implements OnInit {
         if (this.loggedInBlog.length == 0) {
           this.noBlog = 'No blogs added';
         }
-        // console.log(this.loggedInBlog);
+        console.log(this.loggedInBlog);
       },
       err => {
         console.log(err);
@@ -144,6 +144,7 @@ export class BlogComponent implements OnInit {
       this._auth.blogEditData(this.blogUserData, this.id).subscribe(
         res => {
           console.log(res);
+          this.id = '';
           this.success = 'Updated successfully!';
           this.getAllBlog();
           this.trackInformationData.response = 'Success';
@@ -205,4 +206,26 @@ export class BlogComponent implements OnInit {
       });
   }
   
+  resetBlog(){
+    // this.mytemplateForm.reset();
+    this.mytemplateForm.form.markAsPristine();
+    this.mytemplateForm.form.markAsUntouched();
+    this.mytemplateForm.form.updateValueAndValidity();
+    this.InitialCall();
+  }
+
+  InitialCall() {
+    for (let i = 0; i < this.loggedInBlog.length; i++) {
+      if (this.id == this.loggedInBlog[i]._id) {
+        this.blogUserData.username = this.loggedInBlog[i].username;
+        this.blogUserData.commenttext = this.loggedInBlog[i].commenttext;
+      }
+    }
+    console.log(this.blogUserData);
+  }
+
+  reset(){
+    this.mytemplateForm.reset();
+  }
+
 }

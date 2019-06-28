@@ -85,7 +85,8 @@
       </div> -->
     </div>
     <div class="mx-auto mt-3" *ngIf="!errMsg">
-      <pagination-controls id="foo"  class="ngx-pagination" style="margin-right: 30px;" maxSize="5" (pageChange)="d = $event"></pagination-controls>
+      <pagination-controls id="foo"  class="ngx-pagination" style="margin-right: 30px;" maxSize="5" (pageChange)="d = $event" directionLinks="true"
+      autoHide="true"></pagination-controls>
     </div>
   </div>
 </body>

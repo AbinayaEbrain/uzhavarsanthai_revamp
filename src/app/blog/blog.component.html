@@ -31,7 +31,7 @@
                 autocomplete="off"
                 id="usr"
                 name="username"
-                placeholder="Enter blog title"
+                placeholder="Enter title"
                 required
               />
               <span
@@ -52,7 +52,7 @@
                 autocomplete="off"
                 style="height: 150px;border-color: #0d4608;"
                 name="commenttext"
-                placeholder="Enter blog comment"
+                placeholder="Enter comment"
                 required
               ></textarea>
               <span
@@ -71,8 +71,28 @@
                 type="submit"
                 (click)="post()"
               >
-                Save Blog
-              </button>
+                <span *ngIf = "!id">Save Blog</span> <span *ngIf = "id">Update Blog</span>
+              </button>&nbsp;
+              <button
+              *ngIf = "id"
+              type="button"
+              class="btn btn-outline text-center viewMoreBtn"
+              style="margin-bottom: 10px;"
+              type="submit"
+              (click)="resetBlog()"
+            >
+              Reset
+            </button>
+            <button
+            *ngIf = "!id"
+            type="button"
+            class="btn btn-outline text-center viewMoreBtn"
+            style="margin-bottom: 10px;"
+            type="submit"
+            (click)="reset()"
+          >
+            Reset
+          </button>
             </div>
           </form>
         </div>

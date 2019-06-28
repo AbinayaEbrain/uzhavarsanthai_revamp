@@ -113,7 +113,7 @@ export class ViewcategoryComponent implements OnInit {
               if (this.id == this.crdDeals[i].categoryId  && this.loggedUser != this.crdDeals[i].accountId && this.crdDeals[i].validityTime > CurrentDate && this.crdDeals[i].quantity != 0 && this.loggedUser != this.crdDeals[i].accountId && this.crdDeals[i].status == 'ACTIVE' ) {
                 this.totalDeals[j] = this.crdDeals[i];
                 this.splitImage =  this.totalDeals[j].image;
-                if(this.splitImage != undefined || this.splitImage != null || this.splitImage != ''){
+                if(this.splitImage != undefined || this.splitImage != null || this.splitImage != '' || this.totalDeals[j].image.length != 1){
                   this.totalDeals[j].image = this.splitImage.split(",",1);
                 }
                 this.getPrdtName = this.totalDeals[j].name;
@@ -153,7 +153,7 @@ export class ViewcategoryComponent implements OnInit {
               console.log(this.crdDeals[i].accountId)
               this.totalDeals[j] = this.crdDeals[i];
               this.splitImage =  this.totalDeals[j].image;
-              if(this.splitImage != undefined || this.splitImage != null || this.splitImage != ''){
+              if(this.splitImage != undefined || this.splitImage != null || this.splitImage != '' || this.totalDeals[j].image.length != 1){
                 this.totalDeals[j].image = this.splitImage.split(",",1);
               }
               this.getPrdtName = this.totalDeals[j].name;
@@ -210,7 +210,9 @@ export class ViewcategoryComponent implements OnInit {
         ) {
           this.multiPosts[j] = this.multiPost[i];
           this.splitImage1 =  this.multiPosts[j].image;
-          this.multiPosts[j].image = this.splitImage1.split(",",1);
+          if(this.multiPosts[j].image.length != 1){
+            this.multiPosts[j].image = this.splitImage1.split(",",1);
+          }
           j++;
           this.loadingCtrl.hide();
         }
@@ -242,7 +244,9 @@ export class ViewcategoryComponent implements OnInit {
         ) {
           this.multiPosts[j] = this.multiPost[i];
           this.splitImage1 =  this.multiPosts[j].image;
-          this.multiPosts[j].image = this.splitImage1.split(",",1);
+          if(this.multiPosts[j].image.length != 1){
+            this.multiPosts[j].image = this.splitImage1.split(",",1);
+          }
           j++;
           this.loadingCtrl.hide();
         }

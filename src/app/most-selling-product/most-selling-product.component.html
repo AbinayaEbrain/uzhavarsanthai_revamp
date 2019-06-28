@@ -57,7 +57,8 @@
         </div>
       </div>
       <div class="mx-auto mt-3" *ngIf="!orderrequestsErr">
-        <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event"></pagination-controls>
+        <pagination-controls id="foo"  style="margin-right: 30px;" maxSize="5" class="ngx-pagination" (pageChange)="p = $event" directionLinks="true"
+        autoHide="true"></pagination-controls>
       </div>
 </div></div>
 </body>

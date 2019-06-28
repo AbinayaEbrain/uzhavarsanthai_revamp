@@ -67,7 +67,8 @@
 
       </div>
       <div class="mx-auto" id="hidePagination">
-        <pagination-controls id="foo" class="ngx-pagination" (pageChange)="e = $event"></pagination-controls>
+        <pagination-controls id="foo" class="ngx-pagination" (pageChange)="e = $event" directionLinks="true"
+        autoHide="true"></pagination-controls>
       </div>
       </div>
       <!-- [style.display]="totalDeals1 ? 'block' : 'none'" -->
@@ -116,7 +117,8 @@
             </div>
         </div>
         <div class="mx-auto" id="hidePagination">
-            <pagination-controls id="foo1" class="ngx-pagination" (pageChange)="p=$event"></pagination-controls>
+            <pagination-controls id="foo1" class="ngx-pagination" (pageChange)="p=$event" directionLinks="true"
+            autoHide="true"></pagination-controls>
           </div>
         </div>
     </div>
