@@ -139,7 +139,7 @@
                                     </div>
                       </div>
                   </div>
-          </div>
+          
           <div class="mx-auto" id="hidePagination" >
                 <pagination-controls id="foo1"  
                 class="ngx-pagination" 
@@ -149,6 +149,7 @@
                 directionLinks="true"
                 autoHide="true"></pagination-controls>
               </div>
+            </div>
           <div *ngIf="!showDeals" style="margin-top: -20px;">
                   <div class="mt-5" *ngFor = "let deal of totalDeals1 | filterdata: queryString  : 'name'">
                           <div *ngIf="!errMsg1 && !errMsgSec">

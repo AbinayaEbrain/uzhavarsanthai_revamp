@@ -34,7 +34,7 @@ export class DealsService {
     'https://uzhavarsanthai.herokuapp.com/api/dltMultiPost';
 
   private _getCategoryUrl = 'https://uzhavarsanthai.herokuapp.com/api/category';
-  private _getCategoryPrductCountUrl = 'https://uzhavarsanthai.herokuapp.com/api/categoryProductCount';
+  private _getCategoryPrductCountUrl = 'http://localhost:5000/api/categoryProductCount';
 
   //Deactivate URL
   private deactiveUrl =

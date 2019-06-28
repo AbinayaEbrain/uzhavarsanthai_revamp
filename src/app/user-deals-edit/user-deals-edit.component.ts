@@ -424,12 +424,31 @@ export class UserDealsEditComponent implements OnInit {
       this.deallistobj.userNumber = JSON.parse(
         localStorage.getItem('currentUser')
       ).phone;
+      // this.deallistobj.userAddressLine = JSON.parse(
+      //   localStorage.getItem('currentUpdateAddr')
+      // ).address.addressLine;
+      // this.deallistobj.userAddress = JSON.parse(
+      //   localStorage.getItem('currentUpdateAddr')
+      // ).address.formatted_address;
+
+      if(localStorage.getItem('currentUpdateAddr') == null || 
+      localStorage.getItem('currentUpdateAddr') == undefined){
+        this.deallistobj.userAddressLine = JSON.parse(
+          localStorage.getItem('currentUser')
+        ).address.addressLine;
+
+        this.deallistobj.userAddress = JSON.parse(
+          localStorage.getItem('currentUser')
+        ).address.formatted_address;
+    }else{
       this.deallistobj.userAddressLine = JSON.parse(
-        localStorage.getItem('currentUpdateAddr')
-      ).address.addressLine;
-      this.deallistobj.userAddress = JSON.parse(
-        localStorage.getItem('currentUpdateAddr')
-      ).address.formatted_address;
+          localStorage.getItem('currentUpdateAddr')
+        ).address.addressLine;
+
+        this.deallistobj.userAddress = JSON.parse(
+          localStorage.getItem('currentUpdateAddr')
+        ).address.formatted_address;
+    }
 
       if (this.Image.length != 0) {
         this.deallistobj.image = this.Image;
