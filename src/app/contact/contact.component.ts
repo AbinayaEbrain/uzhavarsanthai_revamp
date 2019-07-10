@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { NgForm } from '@angular/forms';
 import { DealsService } from '../deals.service';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-contact',
@@ -16,6 +17,7 @@ export class ContactComponent implements OnInit {
   @ViewChild('contactform') mytemplateForm: NgForm;
 
   constructor(private adminService: AdminService,
+              private _auth: AuthService,
               private _dealService: DealsService
             ) {}
 
@@ -36,14 +38,22 @@ export class ContactComponent implements OnInit {
   }
 
   postTrackInformation() {
-    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
-    let token = localStorage.getItem('token');
-    let UserName = localStorage.getItem('firstname');
-    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
-    this.trackInformationData.UserId = acntID;
-    this.trackInformationData.jwt = token;
-    this.trackInformationData.ipAddress = ipAddress;
-    this.trackInformationData.UserName = UserName;
+    let tracking = this._auth.loggedIn()
+    if(tracking){
+      let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+      let token = localStorage.getItem('token');
+      let UserName = localStorage.getItem('firstname');
+      let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+      this.trackInformationData.UserId = acntID;
+      this.trackInformationData.jwt = token;
+      this.trackInformationData.ipAddress = ipAddress;
+      this.trackInformationData.UserName = UserName;
+    }else{
+      this.trackInformationData.UserId = '';
+      this.trackInformationData.jwt = '';
+      this.trackInformationData.ipAddress = '';
+      this.trackInformationData.UserName = '';
+    }
     this.trackInformationData.apiCallingAt = new Date().getTime();
     this._dealService
       .trackInformationPost(this.trackInformationData)

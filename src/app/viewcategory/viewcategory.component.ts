@@ -14,6 +14,7 @@ import { GooglePlacesDirective } from '../google-places.directive';
 // import {} from '@types/googlemaps';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/pairwise';
+import { AuthService } from 'src/app/auth.service';
 
 declare var sweetAlert: any;
 declare var $: any;
@@ -82,7 +83,8 @@ export class ViewcategoryComponent implements OnInit {
     private _dealService: DealsService,
     public loadingCtrl: NgxSpinnerService,
     private router: Router,
-    public zone: NgZone
+    public zone: NgZone,
+    private _auth: AuthService
   ) {
     this.privateIP = ClientIP;
     this.userdetails.searchqnty = '';
@@ -516,14 +518,22 @@ topFunction() {
 }
 
 postTrackInformation() {
-  let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
-  let token = localStorage.getItem('token');
-  let UserName = localStorage.getItem('firstname');
-  let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
-  this.trackInformationData.UserId = acntID;
-  this.trackInformationData.jwt = token;
-  this.trackInformationData.ipAddress = ipAddress;
-  this.trackInformationData.UserName = UserName;
+  let tracking = this._auth.loggedIn()
+  if(tracking){
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+  }else{
+    this.trackInformationData.UserId = '';
+    this.trackInformationData.jwt = '';
+    this.trackInformationData.ipAddress = '';
+    this.trackInformationData.UserName = '';
+  }
   this.trackInformationData.apiCallingAt = new Date().getTime();
   this._dealService
     .trackInformationPost(this.trackInformationData)

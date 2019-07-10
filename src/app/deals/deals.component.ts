@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, NgZone, HostListener } from '@angular/cor
 import { DealsService } from '../deals.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from 'src/app/auth.service';
 
 declare let ClientIP: any;
 declare var sweetAlert: any;
@@ -69,6 +70,7 @@ export class DealsComponent implements OnInit {
   getLocationDeals: any;
   constructor(
     private _dealsService: DealsService,
+    private _auth: AuthService,
     private route: Router,
     public loadingCtrl: NgxSpinnerService,
     public zone: NgZone
@@ -292,14 +294,22 @@ topFunction() {
 }
 
 postTrackInformation() {
-  let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
-  let token = localStorage.getItem('token');
-  let UserName = localStorage.getItem('firstname');
-  let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
-  this.trackInformationData.UserId = acntID;
-  this.trackInformationData.jwt = token;
-  this.trackInformationData.ipAddress = ipAddress;
-  this.trackInformationData.UserName = UserName;
+  let tracking = this._auth.loggedIn()
+  if(tracking){
+    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+    let token = localStorage.getItem('token');
+    let UserName = localStorage.getItem('firstname');
+    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+    this.trackInformationData.UserId = acntID;
+    this.trackInformationData.jwt = token;
+    this.trackInformationData.ipAddress = ipAddress;
+    this.trackInformationData.UserName = UserName;
+  }else{
+    this.trackInformationData.UserId = '';
+    this.trackInformationData.jwt = '';
+    this.trackInformationData.ipAddress = '';
+    this.trackInformationData.UserName = '';
+  }
   this.trackInformationData.apiCallingAt = new Date().getTime();
   this._dealsService
     .trackInformationPost(this.trackInformationData)

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router, ParamMap } from '@angular/router';
 // loader
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from 'src/app/auth.service';
 @Component({
   selector: 'app-deactive-deals',
   templateUrl: './deactive-deals.component.html',
@@ -21,6 +22,7 @@ export class DeactiveDealsComponent implements OnInit {
   p: any;
   constructor(
     private _dealsService: DealsService,
+    private _auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     public loadingCtrl: NgxSpinnerService
@@ -105,14 +107,22 @@ export class DeactiveDealsComponent implements OnInit {
   }
 
   postTrackInformation() {
-    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
-    let token = localStorage.getItem('token');
-    let UserName = localStorage.getItem('firstname');
-    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
-    this.trackInformationData.UserId = acntID;
-    this.trackInformationData.jwt = token;
-    this.trackInformationData.ipAddress = ipAddress;
-    this.trackInformationData.UserName = UserName;
+    let tracking = this._auth.loggedIn()
+    if(tracking){
+      let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+      let token = localStorage.getItem('token');
+      let UserName = localStorage.getItem('firstname');
+      let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+      this.trackInformationData.UserId = acntID;
+      this.trackInformationData.jwt = token;
+      this.trackInformationData.ipAddress = ipAddress;
+      this.trackInformationData.UserName = UserName;
+    }else{
+      this.trackInformationData.UserId = '';
+      this.trackInformationData.jwt = '';
+      this.trackInformationData.ipAddress = '';
+      this.trackInformationData.UserName = '';
+    }
     this.trackInformationData.apiCallingAt = new Date().getTime();
     this._dealsService
       .trackInformationPost(this.trackInformationData)

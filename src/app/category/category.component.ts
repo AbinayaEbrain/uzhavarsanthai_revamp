@@ -8,6 +8,7 @@ import { Router, ParamMap } from '@angular/router';
 import {  FileUploader } from 'ng2-file-upload';
 import { AppComponent } from '../app.component'
 import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
+import { AuthService } from 'src/app/auth.service';
 
 
 //https://uzhavarsanthai.herokuapp.com
@@ -39,7 +40,14 @@ export class CategoryComponent implements OnInit {
   valid: boolean = false;
   Image: File;
 
-  constructor(private _dealsService:DealsService,private _adminService:AdminService,public loadingCtrl: NgxSpinnerService,private _dealService:DealsService,private route:ActivatedRoute,private router:Router) { }
+  constructor(private _dealsService:DealsService,
+              private _auth: AuthService,
+              private _adminService:AdminService,
+              public loadingCtrl: NgxSpinnerService,
+              private _dealService:DealsService,
+              private route:ActivatedRoute,
+              private router:Router)
+     { }
 
   onFileChange(event) { //Method to set the value of the file to the selected file by the user
     this.Image = event.target.files[0]; //To get the image selected by the user
@@ -238,16 +246,24 @@ export class CategoryComponent implements OnInit {
     }
 
     postTrackInformation() {
-      let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
-      let token = localStorage.getItem('token');
-      let UserName = localStorage.getItem('firstname');
-      let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
-      this.trackInformationData.UserId = acntID;
-      this.trackInformationData.jwt = token;
-      this.trackInformationData.ipAddress = ipAddress;
-      this.trackInformationData.UserName = UserName;
+      let tracking = this._auth.loggedIn()
+      if(tracking){
+        let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+        let token = localStorage.getItem('token');
+        let UserName = localStorage.getItem('firstname');
+        let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+        this.trackInformationData.UserId = acntID;
+        this.trackInformationData.jwt = token;
+        this.trackInformationData.ipAddress = ipAddress;
+        this.trackInformationData.UserName = UserName;
+      }else{
+        this.trackInformationData.UserId = '';
+        this.trackInformationData.jwt = '';
+        this.trackInformationData.ipAddress = '';
+        this.trackInformationData.UserName = '';
+      }
       this.trackInformationData.apiCallingAt = new Date().getTime();
-      this._dealService
+      this._dealsService
         .trackInformationPost(this.trackInformationData)
         .subscribe(data => {
           console.log(data);

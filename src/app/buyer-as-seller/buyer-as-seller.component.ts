@@ -3,6 +3,7 @@ import { DealsService } from '../deals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 
 declare var swal: any;
 
@@ -25,6 +26,7 @@ export class BuyerAsSellerComponent implements OnInit {
 
   constructor(
     private _dealsService: DealsService,
+    private _auth: AuthService,
     public loadingCtrl: NgxSpinnerService,
     private http: HttpClient,
     private router: Router
@@ -112,14 +114,22 @@ export class BuyerAsSellerComponent implements OnInit {
   }
 
   postTrackInformation() {
-    let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
-    let token = localStorage.getItem('token');
-    let UserName = localStorage.getItem('firstname');
-    let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
-    this.trackInformationData.UserId = acntID;
-    this.trackInformationData.jwt = token;
-    this.trackInformationData.ipAddress = ipAddress;
-    this.trackInformationData.UserName = UserName;
+    let tracking = this._auth.loggedIn()
+    if(tracking){
+      let acntID = JSON.parse(localStorage.getItem('currentUser'))._id;
+      let token = localStorage.getItem('token');
+      let UserName = localStorage.getItem('firstname');
+      let ipAddress = JSON.parse(localStorage.getItem('privateIP'));
+      this.trackInformationData.UserId = acntID;
+      this.trackInformationData.jwt = token;
+      this.trackInformationData.ipAddress = ipAddress;
+      this.trackInformationData.UserName = UserName;
+    }else{
+      this.trackInformationData.UserId = '';
+      this.trackInformationData.jwt = '';
+      this.trackInformationData.ipAddress = '';
+      this.trackInformationData.UserName = '';
+    }
     this.trackInformationData.apiCallingAt = new Date().getTime();
     this._dealsService
       .trackInformationPost(this.trackInformationData)
@@ -127,4 +137,5 @@ export class BuyerAsSellerComponent implements OnInit {
         console.log(data);
       });
   }
+
 }
