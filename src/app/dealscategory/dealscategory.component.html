@@ -29,13 +29,19 @@
             </figure>
           </div>
           <div class="card-body text-center" *ngIf="deal.productcount">
-            <button
+            <!-- <button
               type="button"
-              value="{{ deal.productcount }}"
-              class="btn btn-outline-success text-center viewMoreBtn d-block btn btn-outline badge-notification"
+              class="btn btn-outline-success text-center viewMoreBtn d-block btn btn-outline"
             >
               {{ deal.productCategory }}
-            </button>
+            </button> -->
+            <button
+            type="button"
+            value="{{ deal.productcount }}"
+            class="btn btn-outline-success text-center viewMoreBtn d-block btn btn-outline badge-notification"
+          >
+            {{ deal.productCategory }}
+          </button>
           </div>
           <div class="card-body text-center" *ngIf="!deal.productcount">
             <button
