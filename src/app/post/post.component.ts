@@ -343,10 +343,6 @@ export class PostComponent implements OnInit {
 
   postTotal(){
     for(let i = 0 ; i < this.carForm.value.product.length ; i++){
-      // if(!this._auth.checkOS){
-      //   this.carForm.value.product[i].validityTime = this.carForm.value.product[i].validityTime.toISOString();
-      //   console.log(this.carForm.value.product[i].validityTime);
-      // }
       this.num = this.num + 1;
        this._dealsService.addPost(this.carForm.value.product[i]).subscribe(
        res => {
@@ -458,9 +454,9 @@ export class PostComponent implements OnInit {
             this.carForm.value.product[i].categoryId = this.carForm.value.categoryId;
             console.log(this.carForm.value.product[i].validityTime)
             console.log(this.carForm.value.product[i].validityTime.getTime())
-            // if(!this._auth.checkOS){
-            //   this.carForm.value.product[i].validityTime = this.carForm.value.product[i].validityTime.toISOString();
-            // }
+            if(!this._auth.checkOS){
+              this.carForm.value.product[i].validityTime = this.carForm.value.product[i].validityTime.toISOString();
+            }
             this.imglen = i+1;
             this.imageUrl();
             break;
