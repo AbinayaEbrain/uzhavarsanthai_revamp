@@ -17,9 +17,9 @@ app.use('/api', api);
 //Configuring Cloduinary API
 cloudinary.config({
   //Your Cloudinary API Data
-  cloud_name: 'uzhavar-image',
-  api_key: '358719619665496',
-  api_secret: '4GhqUn7TJW1TRPMucTo0MFvg3m4'
+  cloud_name: 'uzhavar-santhai-image',
+  api_key: '457587464958268',
+  api_secret: 'xU4pxoDPf0er6EJhcv3Ox4QeVDA'
 });
 
 const DIR = './server/uploads';

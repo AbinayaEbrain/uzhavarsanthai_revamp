@@ -515,7 +515,7 @@ router.get('/category', (req, res) => {
   });
 });
 
-router.get('/categoryProductCountWebsite', (req, res) => {
+router.get('/categoryProductCount', (req, res) => {
   var date = new Date();
 var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
                     .toISOString()
@@ -548,39 +548,38 @@ console.log(dateString);
     });
 });
 
-router.get('/categoryProductCount', (req, res) => {
-  var date = new Date();
-var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
-                    .toISOString()
-                    .split("T")[0];
+// router.get('/categoryProductCount', (req, res) => {
+//   var date = new Date();
+// var dateString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000 ))
+//                     .toISOString()
+//                     .split("T")[0];
 
-console.log(dateString);
-  var promise = Post.aggregate([
-    //{ $match: { $gte: [ "$validityTime", todayDate ] } },
-    //{ $match: {} },
-    {
-      $project: {
-        categoryId : 1,
-        validityTime: { $dateToString: { format: "%Y-%m-%d", date: "$validityTime" } },
-     }
-    },
-    { "$match": {
-      validityTime: { "$gt": dateString }
-    }},
-    {
-      $group: { _id: '$categoryId', productcount: { $sum: 1 } }
-    }
-  ]);
-  console.log(validityTime);
-  promise
-    .then(data => {
-      console.log(data);
-      res.status(200).send(data);
-    })
-    .catch(err => {
-      res.status(500).send(err);
-    });
-});
+// console.log(dateString);
+//   var promise = Post.aggregate([
+//     //{ $match: { $gte: [ "$validityTime", todayDate ] } },
+//     //{ $match: {} },
+//     {
+//       $project: {
+//         categoryId : 1,
+//         validityTime: { $dateToString: { format: "%Y-%m-%d", date: "$validityTime" } },
+//      }
+//     },
+//     { "$match": {
+//       validityTime: { "$gt": dateString }
+//     }},
+//     {
+//       $group: { _id: '$categoryId', productcount: { $sum: 1 } }
+//     }
+//   ]);
+//   promise
+//     .then(data => {
+//       console.log(data);
+//       res.status(200).send(data);
+//     })
+//     .catch(err => {
+//       res.status(500).send(err);
+//     });
+// });
 
 //get a user
 router.get('/details', (req, res) => {

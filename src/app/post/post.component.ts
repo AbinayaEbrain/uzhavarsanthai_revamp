@@ -452,10 +452,9 @@ export class PostComponent implements OnInit {
             }
             this.carForm.value.product[i].category = this.carForm.value.category;
             this.carForm.value.product[i].categoryId = this.carForm.value.categoryId;
-            console.log(this.carForm.value.product[i].validityTime)
-            console.log(this.carForm.value.product[i].validityTime.getTime())
-            if(!this._auth.checkOS){
-              this.carForm.value.product[i].validityTime = this.carForm.value.product[i].validityTime.toISOString();
+            if(this._auth.checkOS){
+              this.carForm.value.product[i].validityTime = this.carForm.value.product[i].validityTime.toISOString().split('T')[0];
+              console.log(this.carForm.value.product[i].validityTime);
             }
             this.imglen = i+1;
             this.imageUrl();

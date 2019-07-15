@@ -35,29 +35,11 @@ export class DealscategoryComponent implements OnInit {
   ngOnInit() {
     document.getElementById('focusDiv').focus();
     this.loadingCtrl.show();
+    // this.getCategory();
     this.getProductCount();
   }
 
   getProductCount() {
-    if(this._auth.checkOS()){
-      this._dealService.getCategoryPrductCountWeb().subscribe(
-        data => {
-          this.ProductCountArr = data;
-          console.log(this.ProductCountArr);
-          this.getCategory();
-          this.trackInformationData.response = 'Success';
-          this.trackInformationData.apiName = 'categoryProductCount';
-          this.postTrackInformation();
-        },
-        err => {
-          console.log(err);
-          this.trackInformationData.response = 'Failure';
-          this.trackInformationData.error = err.statusText;
-          this.trackInformationData.apiName = 'categoryProductCount';
-          this.postTrackInformation();
-        }
-      );
-    }else{
       this._dealService.getCategoryPrductCount().subscribe(
         data => {
           this.ProductCountArr = data;
@@ -74,8 +56,7 @@ export class DealscategoryComponent implements OnInit {
           this.trackInformationData.apiName = 'categoryProductCount';
           this.postTrackInformation();
         }
-      );
-    }
+      )
   }
 
   getCategory() {
