@@ -452,16 +452,22 @@ export class PostComponent implements OnInit {
             }
             this.carForm.value.product[i].category = this.carForm.value.category;
             this.carForm.value.product[i].categoryId = this.carForm.value.categoryId;
-            if(this._auth.checkOS){
-              this.carForm.value.product[i].validityTime = this.carForm.value.product[i].validityTime.toISOString().split('T')[0];
-              console.log(this.carForm.value.product[i].validityTime);
-            }
+            this.inWindows();
             this.imglen = i+1;
             this.imageUrl();
             break;
         }
       }
     }
+
+inWindows(){
+  if(this._auth.checkOS){
+    for(let i = 0 ; i < this.carForm.value.product.length ; i++){
+    this.carForm.value.product[i].validityTime = this.carForm.value.product[i].validityTime.toISOString().split('T')[0];
+    console.log(this.carForm.value.product[i].validityTime);
+    }
+  }
+}
 
   getForm(){
     this.carForm = this.fb.group({
