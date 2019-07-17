@@ -246,6 +246,8 @@ export class RegisterComponent implements OnInit {
       OTP += resultpath[Math.floor(Math.random() * 10)];
     }
     this.phoneObj.otp = OTP;
+    this.verifyPhone1.verifyPhone = this.phoneObj.otp;
+    console.log(this.verifyPhone1.verifyPhone);
     this._auth.sendOtp(this.phoneObj).subscribe(
       res => {
         console.log(res);
