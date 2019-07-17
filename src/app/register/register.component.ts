@@ -247,7 +247,7 @@ export class RegisterComponent implements OnInit {
     }
     this.phoneObj.otp = OTP;
     this.verifyPhone1.verifyPhone = this.phoneObj.otp;
-    console.log(this.verifyPhone1.verifyPhone);
+    // console.log(this.verifyPhone1.verifyPhone);
     this._auth.sendOtp(this.phoneObj).subscribe(
       res => {
         console.log(res);
