@@ -54,7 +54,7 @@
     "getmac": "^1.4.6",
     "google-maps": "^3.3.0",
     "jquery": "^3.4.0",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^2.2.0",
     "material-design-icons": "^3.0.1",
     "moment": "^2.24.0",
